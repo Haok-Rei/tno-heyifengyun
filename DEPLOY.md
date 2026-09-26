@@ -20,25 +20,28 @@ git push -u origin main
 
 `.gitignore` 会排除 `node_modules`、`dist`、环境变量文件和临时文件。`art`、`music`、`src/assets`、锁文件及素材许可证需要提交。
 
-## 2. Cloudflare Pages 连接 GitHub
+## 2. Cloudflare Workers 连接 GitHub
 
-在 Cloudflare 的 Workers & Pages 区域创建 **Pages** 项目，选择连接 GitHub 仓库，授权所选仓库后选择上述仓库。
+当前默认 `wrangler.toml` 使用 Workers 静态资源部署，并包含 `previews = {}`，支持日志中的 `npx wrangler preview` 命令。
 
 | 项目 | 填写 |
 | --- | --- |
-| 项目名称 | 例如 `hefei-order`；如果名称已被使用，另取名称 |
-| 生产分支 | `main` |
-| 框架预设 | Vite；没有对应项时使用无预设并手动填写下面两项 |
-| 根目录 | 留空 |
+| 根目录 | 留空：package.json 在仓库根目录 |
 | 构建命令 | `npm run build` |
-| 构建输出目录 | `dist` |
-| 构建 Node 版本 | `.node-version` 已指定 `22.16.0`；也可设置环境变量 `NODE_VERSION=22.16.0` |
+| 正式部署命令 | `npx wrangler@4.141.0 deploy` |
+| 非生产分支预览命令 | `npx wrangler@4.141.0 preview` |
+| 生产分支 | `main` |
+| Node 版本 | `22.16.0`，由 `.node-version` 指定 |
 
-`wrangler.toml` 提供 Pages 输出目录配置。控制台项目名称若不同，可同步改它的 `name`。本项目是静态网站，不需要 Functions、Worker 服务端代码、数据库或 Gemini API 密钥。
+将 `wrangler.toml` 的 `name` 改为控制台中现有 Worker 的准确名称。静态资源从 `dist` 上传，无需添加服务端入口或 API 密钥。`preview` 创建测试预览；正式上线请使用 `deploy`。命令中的英文单词不可翻译成中文。
 
-Cloudflare 自动安装依赖并构建。完成后访问提供的 `*.pages.dev` 地址，检查开始菜单、头像、地图、国策树、音乐播放和一次存读档。浏览器可能要求先点击页面才允许播放音乐。
+日志出现 “configuration must contain a previews block” 表示部署配置错误，不是游戏编译错误。修正后需提交到 GitHub，再重新部署。
 
-官方参考：[Git 集成](https://developers.cloudflare.com/pages/get-started/git-integration/)、[构建配置](https://developers.cloudflare.com/pages/configuration/build-configuration/)、[Node 版本配置](https://developers.cloudflare.com/pages/configuration/build-image/)。
+### 如果继续使用 Cloudflare Pages
+
+将 `wrangler.pages.toml` 的内容复制为 `wrangler.toml`，创建或使用 Pages 项目，构建命令 `npm run build`，输出目录 `dist`，根目录留空。Pages 的 Git 集成自动发布，不填写 Workers 的 `deploy` 或 `preview` 命令。
+
+官方参考：[Workers 静态资源](https://developers.cloudflare.com/workers/static-assets/)、[Workers 预览配置](https://developers.cloudflare.com/workers/previews/configuration/)、[Pages 构建配置](https://developers.cloudflare.com/pages/configuration/build-configuration/)。
 
 ## 3. 后续更新
 

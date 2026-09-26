@@ -1,3 +1,7 @@
-name = "hefei-order"
-pages_build_output_dir = "./dist"
+# Set name to the exact Worker name in the Cloudflare dashboard.
+name = "tno-heyifengyun"
 compatibility_date = "2026-09-26"
+previews = {}
+
+[assets]
+directory = "./dist"

@@ -1,6 +1,6 @@
 # 合一风云 / The Hefei Order
 
-这是可直接作为 **GitHub 仓库根目录** 使用的完整开发版本，面向 **Cloudflare Pages** 部署。剧情、地图、国策、工作组、小游戏、图片、音乐和音效均保留。
+这是可直接作为 **GitHub 仓库根目录** 使用的完整开发版本，默认面向 **Cloudflare Workers 静态资源** 部署，并提供 Pages 备用配置。剧情、地图、国策、工作组、小游戏、图片、音乐和音效均保留。
 
 ## 首次上传和上线
 
@@ -8,15 +8,19 @@
 
 | 设置 | 值 |
 | --- | --- |
-| 服务 | Cloudflare Pages，连接 GitHub |
+| 服务 | Cloudflare Workers，连接 GitHub |
 | 生产分支 | `main` |
 | 项目根目录 | 留空：本文件夹的内容就是仓库根目录 |
 | 构建命令 | `npm run build` |
-| 构建输出目录 | `dist` |
+| 静态资源目录 | `dist`，已写入 Wrangler 配置 |
+| 正式部署命令 | `npx wrangler@4.141.0 deploy` |
+| 非生产分支预览命令 | `npx wrangler@4.141.0 preview` |
 | Node.js | `22.16.0`，已写入 `.node-version` |
 | API 密钥 / 数据库 | 不需要 |
 
-构建设置依据 [Cloudflare 官方配置文档](https://developers.cloudflare.com/pages/configuration/build-configuration/)。
+构建设置依据 [Cloudflare 官方配置文档](https://developers.cloudflare.com/workers/static-assets/)。
+
+控制台 Worker 名称必须与 `wrangler.toml` 中的 `name` 一致。若使用 Pages，请按部署说明切换到 `wrangler.pages.toml` 配置。
 
 ## 本地开发
 
