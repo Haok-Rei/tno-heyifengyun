@@ -1,0 +1,12 @@
+node_modules/
+dist/
+build/
+coverage/
+.wrangler/
+.env
+.env.*
+*.log
+__pycache__/
+.DS_Store
+Thumbs.db
+Ultimate-HOI4-GFX-master/

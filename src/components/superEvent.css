@@ -1,0 +1,28 @@
+.super-event-backdrop {
+  background: radial-gradient(ellipse at center, #161b1be8, #020303fa 70%);
+  backdrop-filter: blur(5px);
+}
+.super-event-frame {
+  border-width: 2px;
+  background: #080b0c;
+  box-shadow: 0 0 0 5px #080a0b, 0 0 0 6px #6e6658, 0 25px 90px #000;
+}
+.super-event-image {
+  opacity: .88;
+  filter: saturate(.76) contrast(1.15) brightness(.85);
+  transform: scale(1.025);
+  animation: super-event-image-in 15s ease-out both;
+}
+.super-event-vignette {
+  background: linear-gradient(90deg, #030607e8 0%, #071012bd 35%, #070b0b38 76%),
+    linear-gradient(0deg, #040606e0, transparent 44%, #05080756);
+}
+.super-event-frame h1 { max-width: 94%; line-height: 1.13; }
+.super-event-continue { transition: background .16s, border-color .16s, transform .16s; }
+.super-event-continue:hover { transform: translateX(3px); background: #412b28; }
+@keyframes super-event-image-in { from { transform: scale(1.08); } to { transform: scale(1.025); } }
+@media (max-width: 600px) {
+  .super-event-frame { height: min(540px, 88vh); }
+  .super-event-image { background-position: 58% center; }
+  .super-event-frame h1 { font-size: clamp(29px, 9vw, 52px); }
+}

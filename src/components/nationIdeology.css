@@ -1,0 +1,115 @@
+.nation-overview { display:grid; grid-template-columns:minmax(0,40%) minmax(0,1fr); gap:9px; padding:10px; border-bottom:1px solid #674d46; background:linear-gradient(125deg,#242824,#181e1e 55%,#151a1b); }
+.nation-leader-section { min-width:0; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding:10px 9px 0 0; border-right:1px solid #594f43; }
+.nation-leader-section > div { width:100%; }
+.nation-leader-identity { display:flex; flex-direction:column; align-items:center; width:100%; }
+.nation-leader-section .nation-leader-portrait { width:122px; max-width:100%; aspect-ratio:3/4; box-shadow:0 3px 15px #000c; }
+.nation-leader-name { width:122px; max-width:100%; margin-top:4px; padding:4px 3px; font-size:12px; line-height:1.25; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.nation-ideology-section { min-width:0; }
+.nation-ideology-heading { display:flex; justify-content:space-between; align-items:baseline; gap:4px; padding-bottom:4px; margin-bottom:5px; border-bottom:1px solid #5c5446; color:#d9d1c1; font-size:11px; font-weight:700; white-space:nowrap; }
+.nation-ideology-heading small { color:#87928e; font-size:8px; font-weight:400; }
+.nation-ideology-layout { display:flex; align-items:center; gap:8px; margin-bottom:9px; }
+.nation-ideology-chart { width:min(112px,62%); aspect-ratio:1; flex:none; position:relative; border:3px solid #111716; border-radius:50%; background:#0a0e0e; box-shadow:0 0 0 1px #736b59,0 4px 14px #000b; }
+.nation-ideology-ring { position:absolute; inset:0; border-radius:50%; }
+.nation-ideology-lead { min-width:0; display:flex; flex-direction:column; gap:4px; color:#8f9e99; font-size:9px; }
+.nation-ideology-lead strong { color:#d8ccad; font-size:11px; line-height:1.25; overflow-wrap:anywhere; }
+.nation-ideology-lead em { color:#e2d2ad; font:700 16px Consolas,monospace; font-style:normal; }
+.nation-ideology-chart,.nation-ideology-ring { border-radius:50% !important; }
+.nation-ideology-list { display: grid; gap: 1px; min-width: 0; }
+.nation-ideology-list > div { min-width: 0; }
+.nation-faction-row { position: relative; min-height: 18px; display: grid; grid-template-columns: 6px minmax(0,1fr) 27px; align-items: center; gap: 5px; padding: 1px 2px 2px; border-bottom: 1px solid #55575180; color: #c2c9c2; cursor: help; transition: background .12s, color .12s; }
+.nation-faction-row::after { content: ''; position: absolute; bottom: -1px; left: 0; height: 2px; width: var(--faction-share); max-width: 100%; background: var(--faction-accent); opacity: .58; }
+.nation-faction-row:hover { background: #ffffff10; color: #fff0d6; }
+.nation-faction-row:hover::after { opacity: 1; }
+.nation-faction-swatch { width: 6px; height: 6px; background: var(--faction-accent); box-shadow: 0 0 0 1px #080b0b; }
+.nation-faction-name { min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 9px; }
+.nation-faction-row strong { justify-self: end; color: #e2d9c8; font: 700 9px Consolas, monospace; }
+.nation-faction-dossier { --faction-accent: #bbaa84; padding: 12px; border: 1px solid #756d5c; border-left: 3px solid var(--faction-accent); background: linear-gradient(140deg, #242928, #111718 70%); color: #d8d7ce; box-shadow: 0 12px 30px #000d; }
+.nation-faction-dossier-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 9px; padding-bottom: 6px; border-bottom: 1px solid #5a5c55; }
+.nation-faction-dossier-heading strong { color: var(--faction-accent); font-size: 14px; }
+.nation-faction-dossier-heading span { color: #9caaa4; font-size: 9px; text-align: right; }
+.nation-faction-dossier-leader { display: flex; gap: 10px; align-items: center; margin-bottom: 10px; }
+.nation-faction-dossier-leader img { width: 55px; height: 65px; flex: none; object-fit: cover; object-position: center 24%; border: 1px solid #867a64; filter: grayscale(.78) sepia(.18) contrast(1.14); }
+.nation-faction-dossier-leader div { min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.nation-faction-dossier-leader small { color: #87918b; font-size: 9px; }
+.nation-faction-dossier-leader strong { color: #f0e0bf; font-size: 14px; }
+.nation-faction-dossier-leader span { color: #aab4af; font-size: 10px; line-height: 1.3; }
+.nation-faction-dossier p { margin: 0 0 9px; color: #c9cfca; font-size: 11px; line-height: 1.55; }
+.nation-faction-dossier-situation { padding-top: 7px; border-top: 1px solid #545b56; color: #aebdb6; font-size: 10px; line-height: 1.45; }
+.nation-faction-dossier-situation span { display: block; margin-bottom: 2px; color: var(--faction-accent); font-weight: 700; }
+@media (max-width: 600px) { .nation-overview { gap:7px; padding:8px; }.nation-leader-section { padding-right:7px; }.nation-ideology-heading small { display:none; } }
+
+/* A single materials palette for the entire country dossier. */
+.nation-panel {
+  background: #111819;
+  scrollbar-color: #665244 #111819;
+  scrollbar-width: thin;
+  box-shadow: inset -1px 0 #796250, 3px 0 16px #0008;
+}
+.nation-overview {
+  position: relative;
+  border-bottom: 2px solid #9b7760;
+  background: radial-gradient(ellipse at 24% 0%, #43392f7a, transparent 64%),
+    linear-gradient(135deg, #262c29, #11191b 76%);
+}
+.nation-overview::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 1px solid #c0a37b2a;
+  pointer-events: none;
+}
+.nation-leader-section .nation-leader-portrait { width: 128px; }
+.nation-leader-name { width: 128px; margin-top: 0; padding: 5px 3px; background: #1b1b19 !important; border-top: 0 !important; letter-spacing: .16em; }
+.nation-ideology-heading { color: #e3d6bd; border-color: #786452; letter-spacing: .12em; }
+.nation-ideology-chart { width: min(116px, 62%); border-color: #101414; box-shadow: 0 0 0 1px #b49b73, 0 0 0 4px #0c1112, 0 5px 16px #000d; }
+.nation-ideology-lead em { color: #f3e1b9; font-size: 17px; }
+.nation-faction-row { min-height: 20px; }
+.nation-module {
+  position: relative;
+  border-bottom: 1px solid #675a4a !important;
+  background: linear-gradient(160deg, #1d2525, #151b1c 74%);
+}
+.nation-module:nth-of-type(2n) { background: linear-gradient(160deg, #222725, #171c1c 74%); }
+.nation-module::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: #9b785c; opacity: .75; }
+.nation-module-heading {
+  min-height: 19px;
+  margin-bottom: 8px;
+  padding: 0 0 5px 7px;
+  border-bottom: 1px solid #5c584b;
+  color: #d8c6a5 !important;
+  font: 700 11px/1.35 'Microsoft YaHei', sans-serif;
+  letter-spacing: .15em;
+}
+.nation-module-heading > span:first-child { color: #d8c6a5; }
+.nation-module--spirits .nation-spirit-icon { background: #0b1011; border-color: #736754; box-shadow: 0 2px 6px #0009; }
+.nation-module--focus .nation-focus-card { border-color: #746654; background: radial-gradient(ellipse at 12% 30%, #4e483755, transparent 52%), #111819; box-shadow: inset 0 0 0 2px #080d0e; }
+.nation-module--focus .nation-focus-card:hover { border-color: #d2ad77; background-color: #232623; }
+.nation-module--cabinet .grid > * { min-width: 0; }
+.nation-module--cabinet .grid > button,
+.nation-module--cabinet .group { background: #0e1415; border-color: #736450; box-shadow: inset 0 0 0 2px #161d1e; }
+.nation-module--cabinet { padding-top: 9px !important; padding-bottom: 9px !important; }
+.nation-module--cabinet .nation-module-heading { margin-bottom: 6px; }
+.nation-advisor-card { overflow: visible; }
+.nation-advisor-card__image { height: 72px; overflow: hidden; background: #0b1112; border-bottom: 1px solid #514a3e; }
+.nation-advisor-card__image img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; filter: grayscale(.6) sepia(.15) contrast(1.1); }
+.nation-advisor-card__name { padding: 3px 2px; color: #d9c199; font-size: 10px; font-weight: 700; line-height: 1.15; text-align: center; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.nation-advisor-empty { min-height: 88px; background: #0f1516; }
+.nation-module--laws { flex: none !important; overflow: visible !important; padding-top: 9px !important; }
+.nation-hire-panel { height: 100%; min-height: 420px; background: linear-gradient(145deg, #1a2322f7, #0b1112f9); box-shadow: 0 0 0 1px #80694d, 8px 0 25px #000b; }
+.nation-hire-option { display: grid; grid-template-columns: 72px minmax(0,1fr); align-items: start; gap: 9px; background: #121a1b; }
+.nation-hire-option:hover { background: #232927; }
+.nation-hire-option__portrait { width: 72px; height: 96px; object-fit: contain; background: #090e10; border: 1px solid #77664f; filter: grayscale(.4) sepia(.1); }
+.nation-hire-option__body { min-width: 0; }
+.nation-hire-option__cost { display: block; margin-top: 8px; padding-top: 6px; border-top: 1px solid #5e594b; font-size: 10px; font-weight: 700; }
+.nation-hire-option__cost.is-affordable { color: #d7b777; }
+.nation-hire-option__cost.is-unaffordable { color: #d7867e; }
+.nation-module--laws .space-y-1\.5 > div button { background: #141b1c; border-color: #514f46; }
+.nation-module--laws .space-y-1\.5 > div button:hover { border-color: #bea077; background: #282923; }
+.nation-overview { padding: 7px; }
+.nation-leader-section { padding-top: 7px; }
+.nation-ideology-layout { margin-bottom: 5px; }
+.nation-ideology-chart { width: min(100px, 62%); }
+.nation-faction-row { min-height: 17px; padding-top: 0; padding-bottom: 1px; }
+.nation-module--spirits,.nation-module--focus { padding: 9px !important; }
+.nation-module--focus .nation-focus-card { padding: 7px !important; }
+.nation-module--cabinet .nation-advisor-empty { min-height: 88px; }

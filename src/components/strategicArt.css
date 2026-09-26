@@ -1,0 +1,112 @@
+.strategic-art {
+  --art-accent: #baa371;
+  position: relative;
+  display: inline-block;
+  width: 108px;
+  height: 92px;
+  flex: none;
+  isolation: isolate;
+}
+.strategic-art--spirit::before {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  z-index: 1;
+  pointer-events: none;
+  border: 1px solid color-mix(in srgb, var(--art-accent), transparent 60%);
+  background: linear-gradient(145deg, #ffffff0c, transparent 40%, #0005 100%);
+}
+.strategic-art__background,
+.strategic-art__piece {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+.strategic-art__background { z-index: 0; filter: saturate(.72) contrast(1.15); }
+.strategic-art__piece { z-index: 2; filter: contrast(1.12) sepia(.12) brightness(1.18) drop-shadow(0 3px 3px #000b); }
+.strategic-art__portrait {
+  position: absolute;
+  z-index: 2;
+  inset: 0 14px;
+  width: calc(100% - 28px);
+  height: 100%;
+  object-fit: cover;
+  object-position: center 24%;
+  filter: grayscale(.92) sepia(.25) contrast(1.2) brightness(.93) drop-shadow(0 3px 3px #000b);
+  mask-image: radial-gradient(ellipse 68% 62% at 50% 45%, #000 56%, transparent 100%);
+}
+.strategic-art--revolt,.strategic-art--command,.strategic-art--crisis { --art-accent: #c46d62; }
+.strategic-art--alliance,.strategic-art--assembly,.strategic-art--reform { --art-accent: #9eb7b9; }
+.strategic-art--security,.strategic-art--law,.strategic-art--authority { --art-accent: #c4b087; }
+.strategic-art--research,.strategic-art--study { --art-accent: #b2c0ad; }
+.strategic-art--industry,.strategic-art--economy { --art-accent: #cfaa71; }
+.strategic-art--media,.strategic-art--culture { --art-accent: #aa9dbd; }
+.strategic-art--compact { width: 48px; height: 48px; }
+.strategic-art--compact .strategic-art__portrait { inset: 0 6px; width: calc(100% - 12px); height: 100%; }
+.strategic-art--spirit { width: 52px; height: 52px; overflow: hidden; border: 1px solid #625d50; background: #121719; box-shadow: inset 0 0 0 2px #080b0c, 0 2px 6px #000b; }
+.strategic-art--spirit .strategic-art__piece { inset: 3px; width: calc(100% - 6px); height: calc(100% - 6px); }
+.strategic-art--negative { --art-accent: #c77069; }
+.strategic-art--positive { --art-accent: #a7bd91; }
+.strategic-art--neutral { --art-accent: #c2ad81; }
+.focus-art-node {
+  width: 164px;
+  height: 126px;
+  padding: 3px 7px 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1px;
+  border: 1px solid #63584b;
+  background: radial-gradient(ellipse 85px 60px at 50% 35%, #32332d, transparent 100%), linear-gradient(180deg, #282b29, #101516 72%);
+  box-shadow: inset 0 0 0 2px #0b1011, 0 4px 9px #0009;
+}
+.focus-art-node::before { content: ''; position: absolute; inset: 3px; pointer-events: none; border: 1px solid #85786044; }
+.focus-art-node__title {
+  max-width: 100%;
+  min-height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 11px;
+  line-height: 1.16;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-shadow: 0 1px 2px #000;
+}
+.focus-art-node__days { position: absolute; top: 4px; right: 5px; z-index: 2; color: #e2c691; font: 9px monospace; background: #070b0de8; border: 1px solid #756344; padding: 1px 3px; }
+.focus-art-node--available { border-color: #aaa085; }
+.focus-art-node--available:hover { border-color: #d1b571; background: linear-gradient(180deg, #37342b, #181c1c); }
+.focus-art-node--active { border-color: #dcc184; box-shadow: inset 0 0 0 2px #1f251f, 0 0 17px #dec07370; }
+.focus-art-node--completed { border-color: #839a75; }
+.focus-art-node--completed .strategic-art { filter: saturate(.75); }
+.focus-art-node--locked { filter: saturate(.58) brightness(.85); }
+.focus-art-node__progress { position: absolute; bottom: 0; left: 0; height: 3px; background: #e6c77e; box-shadow: 0 0 6px #e6c77e; }
+.nation-spirit-icon { display: grid; place-items: center; border: 1px solid #68604d; background: #0e1213; padding: 2px; cursor: help; transition: transform .16s, border-color .16s; }
+.nation-spirit-icon:hover { transform: translateY(-2px); border-color: #d4b879; }
+.nation-leader-portrait { border-color: #8d7653 !important; box-shadow: inset 0 0 0 2px #111, 0 3px 14px #000a; }
+.nation-leader-portrait::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(0deg, #0b0d0dcc, transparent 40%), repeating-linear-gradient(0deg, #0000 0 3px, #00000013 4px); mix-blend-mode: multiply; }
+.nation-leader-portrait>div:first-child { filter: grayscale(.75) sepia(.2) contrast(1.17) brightness(.84); background-position: center 26%; }
+
+.focus-tree-panel { border-color: #675744; background: #0d1314; }
+.focus-tree-canvas {
+  background: radial-gradient(ellipse at 50% 5%, #242622, transparent 52%),
+    linear-gradient(110deg, #0b1112, #141918 50%, #0b1112);
+  scrollbar-color: #675a49 #101718;
+}
+.focus-tree-status {
+  background: linear-gradient(140deg, #29302b, #131b1b 80%);
+  border-color: #978069;
+  box-shadow: 0 4px 16px #000b, inset 0 0 0 2px #111717;
+}
+.focus-art-node { border-color: #756853; background: radial-gradient(ellipse 90px 54px at 50% 30%, #34372f, transparent), linear-gradient(180deg, #2b312e, #121819 75%); }
+.focus-art-node::before { border-color: #ac987449; }
+.focus-art-node::after { content: ''; position: absolute; left: 4px; right: 4px; top: 4px; height: 2px; background: #a37c63; opacity: .65; pointer-events: none; }
+.focus-art-node--available::after { background: #ceb88b; opacity: 1; }
+.focus-art-node--active::after { background: #e2c17e; opacity: 1; box-shadow: 0 0 7px #dcb979; }
+.focus-art-node--completed::after { background: #8cac81; }
+.focus-art-node__title { color: #e2dacb; }

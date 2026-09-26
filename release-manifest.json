@@ -1,0 +1,2239 @@
+{
+  "format": 1,
+  "files": {
+    ".gitattributes": {
+      "bytes": 213,
+      "sha256": "38f82a9c4bdf5084e8331285f6232e0bf2dd2b60123bf0bc7ad890f8bedab505"
+    },
+    ".gitignore": {
+      "bytes": 125,
+      "sha256": "b37d98a1543e6c4c8d2ffa77b060d9e2671b277d74f3227332f4b6209b00d8b6"
+    },
+    ".node-version": {
+      "bytes": 8,
+      "sha256": "177d20030d4dcc37eae9ef92865ec54dadce60e8f19e9a34a5d4f37502195a36"
+    },
+    "CHANGELOG.md": {
+      "bytes": 41162,
+      "sha256": "6dd85875bcd82588b8a838a6494fb1870947efa6c86fa098e6932cd593e19584"
+    },
+    "CHARACTERS.md": {
+      "bytes": 9656,
+      "sha256": "772e6341cfd1b0f3baf8246490592b7bf7cda81357c376cc80018528ef93728a"
+    },
+    "DEPLOY.md": {
+      "bytes": 4925,
+      "sha256": "4fad1b215db2c93e64b5b1896887e4b82e40511fb287ef3ef3daa69d6e8de2aa"
+    },
+    "DEVELOPER_GUIDE.md": {
+      "bytes": 8960,
+      "sha256": "be57e6c5f6d58a8b371d1c5a6261e93b9c8395158a2d8c1d7abd22003e714d96"
+    },
+    "MAP_UPGRADE_PLAN.md": {
+      "bytes": 5957,
+      "sha256": "eca4711d3e693351ae1e5aa5eb89e0f0408b5748cb1617d9b381f3a3ddc994d3"
+    },
+    "README.md": {
+      "bytes": 2460,
+      "sha256": "04b08e360a631c736c0845ea5ba33f98ca96cf724e8b2036506d5f49e15fbe16"
+    },
+    "SYSTEMIC_UPGRADE_DESIGN.md": {
+      "bytes": 2552,
+      "sha256": "6af221cb9afa65915afb0735b3948023c106c7fabffd9b6084aa102f258f9439"
+    },
+    "art/人像/吕波汉.png": {
+      "bytes": 4080248,
+      "sha256": "c6a87a1090433585c51e6b29af3b98d4009f6770a1e2b6d869e4c46437d7eeee"
+    },
+    "art/人像/吴福军.jpeg": {
+      "bytes": 410788,
+      "sha256": "bdae73cfcf22a81956724c9fbd075617713b203b56eacba040b6941ca984ec15"
+    },
+    "art/人像/周晨.jpg": {
+      "bytes": 170983,
+      "sha256": "6be85563a3c783384399e4d88d1aa861cb05f6515243f9033d66b7915be12969"
+    },
+    "art/人像/周鸿斌.png": {
+      "bytes": 2450188,
+      "sha256": "5a124f6be18deaec326f214d54d9cc6913646f83b544d64567afd19416c8bd7c"
+    },
+    "art/人像/四五号.png": {
+      "bytes": 1875009,
+      "sha256": "289e7a72dd1326f341c31d6e9f95da28ab1166ecb437b882cb25d7ac2b703f59"
+    },
+    "art/人像/四五号2.png": {
+      "bytes": 2237314,
+      "sha256": "9a21b4aae76b06c76e1b582f91a0a9901d3ec44a1f6d9698c105f7374f02a1a2"
+    },
+    "art/人像/四五号3.png": {
+      "bytes": 2084253,
+      "sha256": "1d215a43797393ab793f546c8ac4980b4f96b1d3982eafb74ff152e8a7edc1df"
+    },
+    "art/人像/封安保.png": {
+      "bytes": 3989316,
+      "sha256": "ba5155bcf6430ddd2835d7759e585a971199854f37b3baf58d20a3f8cfb1f0ef"
+    },
+    "art/人像/封安祥.png": {
+      "bytes": 5872773,
+      "sha256": "0eb09cd56b43f3c22e617f94826f804b17c48198a3ef90718f424e6e51d16128"
+    },
+    "art/人像/尤光雷.jpg": {
+      "bytes": 142504,
+      "sha256": "0d41f9cc06d30721f6833671e339372b460a34abf04215bb9d22836d8b857f4b"
+    },
+    "art/人像/张春.jpg": {
+      "bytes": 164606,
+      "sha256": "7fa53e786fb7459e549a6a635c6cbe2669f84fddb4223990902001c5cb15ff22"
+    },
+    "art/人像/时稷.png": {
+      "bytes": 3689634,
+      "sha256": "b43af3bf9861a24bbe49ab6855daf353c7a7fdce8ec25748824510f32769283b"
+    },
+    "art/人像/杨玉乐.jpeg": {
+      "bytes": 273230,
+      "sha256": "7a9224bef80b912d13a052f262f33e0d428e994c22786d736f8d06a534556836"
+    },
+    "art/人像/杨玉乐2.jpeg": {
+      "bytes": 318041,
+      "sha256": "d848458065375de6111897b65efa16500545d12fe5a8740c3b3844b8a9dfa78f"
+    },
+    "art/人像/杨玉乐3.png": {
+      "bytes": 3155839,
+      "sha256": "e0eff5fa5de439e88a1fd7a058b48aae50519fb926dc6ea0f4fd79db941c77e5"
+    },
+    "art/人像/杨玉乐4.png": {
+      "bytes": 2171857,
+      "sha256": "d207364271d3d27b79401d870bb690564add389a2091ea11b3651b77625e1886"
+    },
+    "art/人像/潘仁越.png": {
+      "bytes": 2183079,
+      "sha256": "8c83f64650981d61474d5ecdd2793161042d47eb126a2221c34c4176ca6f5c80"
+    },
+    "art/人像/潘仁越2.png": {
+      "bytes": 3198759,
+      "sha256": "acf0dc080a8f2e75ce0a1e9e5581215b53085fe49fd52ba756280003719466b0"
+    },
+    "art/人像/潘仁越3.jpeg": {
+      "bytes": 289128,
+      "sha256": "01c19a35713e52e890fe5f5aab37c1a65a95e686c78f24ef0098c8e5067a7010"
+    },
+    "art/人像/潘仁越4.jpeg": {
+      "bytes": 2190359,
+      "sha256": "ef869995b89ac9ab6db831f012adee43ac41082399ffa5daf40d090358727a13"
+    },
+    "art/人像/潘仁越5.png": {
+      "bytes": 2885367,
+      "sha256": "b85a4801ae6b3acffadd3c8abe3f67190fbe8ada8d368d8b5c7b7632564413ac"
+    },
+    "art/人像/狗熊.jpeg": {
+      "bytes": 301327,
+      "sha256": "2ae7854c12d5dcfd1304e0c740b6953678c498c1e259cf9af653aa33850b1c69"
+    },
+    "art/人像/狗熊2.png": {
+      "bytes": 5009989,
+      "sha256": "92757314340813c682daf92f79eb1de0188f7a1287c5614a63e3e57b87b583a3"
+    },
+    "art/人像/王俊豪.png": {
+      "bytes": 2611028,
+      "sha256": "85d4e76d775b4dad9b7056d187e030cbdf7d998b4b59301bd127e2b6437b1ac3"
+    },
+    "art/人像/王兆凯.png": {
+      "bytes": 4333932,
+      "sha256": "9b500df5b2195a70b1f3710dcb6122724614698ae35cf40b0ac9ccf1186ae038"
+    },
+    "art/人像/王兆凯2.png": {
+      "bytes": 3743945,
+      "sha256": "0f597340c50596c01261eba2e92d4511bbd58fd27aedde1f90dfcb030dae4703"
+    },
+    "art/人像/王兆凯3.png": {
+      "bytes": 3157074,
+      "sha256": "cad4fddd2ec3fa8c0663ec42e4d1382c41cb2830f6ddc6a72e9d03eb3afd455a"
+    },
+    "art/人像/王兆凯4.png": {
+      "bytes": 6201270,
+      "sha256": "681a8e4cf079d4a8739bf5ac555a889c64e46c1c1324a774bcda6fbc41d0a4d5"
+    },
+    "art/人像/背景.png": {
+      "bytes": 1031669,
+      "sha256": "e2ed2a7023d02ae9fc2d69a4318cb9a0088cd54505b85a79fa560187882d20fa"
+    },
+    "art/人像/蔡君泰.png": {
+      "bytes": 3451984,
+      "sha256": "a29cc8dea3c83cd9b423ca116feeeda6b7ba99910841b3dda99b92741f15c1cf"
+    },
+    "art/人像/许文峰.png": {
+      "bytes": 4652786,
+      "sha256": "76277c2a526f17b7f32372f31a9182d3ffec5a903a620423e6f582a221e00f2c"
+    },
+    "art/人像/许文峰2.png": {
+      "bytes": 5187750,
+      "sha256": "b0260b34745cdae3940c6cb133b0c7cc17f92a8376001b4fff37a85231733ff4"
+    },
+    "art/人像/豪邦.png": {
+      "bytes": 2768065,
+      "sha256": "9b73d2535085cb15cd4d9b3b6ac0cd287f54c0bf2852d0c554836e0dff7bc18c"
+    },
+    "art/人像/豪邦2.png": {
+      "bytes": 6138758,
+      "sha256": "2e2657d3043a1fb616c15832055297da71d9612d428cbdf5fdb5fc2f2655eba1"
+    },
+    "art/人像/通用头像/130c0e12b31bb05195511060217adab44bede0f9.jpg": {
+      "bytes": 8523,
+      "sha256": "5a568bda428feaa81cca943c037b130a9fc22aae3e544af367b932c97d7e632a"
+    },
+    "art/人像/通用头像/152ac4deb48f8c5461e667672d292df5e0fe7f39.jpg": {
+      "bytes": 9268,
+      "sha256": "577523b1c6880db6428da0f75f3122cda3706966cf20766c2dae0673914fd8c8"
+    },
+    "art/人像/通用头像/15b84e310a55b319b5ee213d54a98226cefc17da.jpg": {
+      "bytes": 8613,
+      "sha256": "4ed9b3bd5fc7f3cd22b88c77f76cd9ead0de9e9d5d81caa84d02d766dbf322f8"
+    },
+    "art/人像/通用头像/1bf0b0d6277f9e2f7301b4400830e924b899f33a.jpg": {
+      "bytes": 9430,
+      "sha256": "8d418b14cca8a158536aa5c99fc4a45e4d6c413567df1b1e1ef3291f295e1d8e"
+    },
+    "art/人像/通用头像/242a38b30f2442a7e4a86cedc643ad4bd013024b.jpg": {
+      "bytes": 8658,
+      "sha256": "9d46437dd07f404714166d0c0f98af654eeb75e786fea9c81f8e68585b12abe0"
+    },
+    "art/人像/通用头像/283ee188d43f879489d2e166c51b0ef41ad53ac0.jpg": {
+      "bytes": 11230,
+      "sha256": "73353d6536e78f910ea66e85a016c134962046c8b1459afe3bfe6978086016fc"
+    },
+    "art/人像/通用头像/3a712ed8bc3eb135229614f3b11ea8d3fc1f44a4.jpg": {
+      "bytes": 9582,
+      "sha256": "4ac5fd1f7c679acdb3eb880c000f6b6fcbf070eb36413226d538aad40aaeee6b"
+    },
+    "art/人像/通用头像/3d3fdcf81a4c510f69c441527759252dd52aa5f6.jpg": {
+      "bytes": 9664,
+      "sha256": "22cb20f5a50f4861cd4e27f43ada07a752a5dd1e1f8d0ff35d03118da7a7debd"
+    },
+    "art/人像/通用头像/4c5f5c600c3387446423ae34460fd9f9d62aa014.jpg": {
+      "bytes": 10483,
+      "sha256": "2adab50916ef16a0f6b9010590b58d6627f499c9212dbb0118b8091fb9b52594"
+    },
+    "art/人像/通用头像/55a003b30744a5994d323c09bbcdbd13.jpeg": {
+      "bytes": 13812,
+      "sha256": "58cf5ba0b3038c268ffc3a8fe0af37addc8eca4c32c44aa8ff73c97730b4a03b"
+    },
+    "art/人像/通用头像/6f4281003af33a87295da352d15c10385243b5c6.jpg": {
+      "bytes": 32243,
+      "sha256": "c1897568a35728a287b6a8b70b40710e704e83d675866ffaff5a6d330cfcdc5c"
+    },
+    "art/人像/通用头像/79b5f4fdfc039245f41070479094a4c27c1e2548.jpg": {
+      "bytes": 8957,
+      "sha256": "f722d92b43127bce87991aecd36bc5485e8e3b9402c2481b4062850997626cfa"
+    },
+    "art/人像/通用头像/8a35121f95cad1c8b0db526f683e6709c83d5195.jpg": {
+      "bytes": 8603,
+      "sha256": "196ddae55d58f818355dc9584e9c6b0cf06d11e85ea4c8aa5a46c933283ff675"
+    },
+    "art/人像/通用头像/9d04a92f0708283870a64a5caf99a9014d08f14f.jpg": {
+      "bytes": 9508,
+      "sha256": "8c4e7c654090b6d7642ed578e82527b8d552faa077c8cad73fbaba23f42323e0"
+    },
+    "art/人像/通用头像/c1f2a9510fb30f2479537c4bdf95d143ac4b032c.jpg": {
+      "bytes": 10062,
+      "sha256": "6c7d1a5a62375a9a2f2284ef92301688ff740708299ac2ee6d0c22323d3a7b9b"
+    },
+    "art/人像/通用头像/f180ccedab64034f2fe5604eb8c379310b551dcd.jpg": {
+      "bytes": 9265,
+      "sha256": "231de498353297d4735aecae50e52a739fd6f65ba73f06c7453f267d981e6479"
+    },
+    "art/人像/通用头像/fd6b8e12c8fcc3cee47a607b8545d688d53f20bf.jpg": {
+      "bytes": 9539,
+      "sha256": "597c9e88f0d4ad305c77f02e5826d55da10a459d37b3b49b51f0a76d8812f357"
+    },
+    "art/人像/通用头像/v2-b025637cad2fb3898a86e956ccbc78f7_b.jpg": {
+      "bytes": 89210,
+      "sha256": "597d7c622f84115e8106b0ae3e4af75c223c7aa27558de1dc815cd49af080603"
+    },
+    "art/人像/陈栋.jpeg": {
+      "bytes": 648978,
+      "sha256": "da6bf17743b91a4a58d22b62bee9d7bc8149e5a850993d24e14ab1faa556d626"
+    },
+    "art/人像/陈栋2.jpeg": {
+      "bytes": 588871,
+      "sha256": "7cca9ef9f4573e4f9915a4dc7a040fd1f4b88daba1e2dfdc9f64df115c852491"
+    },
+    "art/人像/靖珍.jpg": {
+      "bytes": 232418,
+      "sha256": "6a8f5bb9c6a2e884cf949728f057a8c96e29a7e5463d82d2e9b42f77b429a76b"
+    },
+    "art/人像/黎旭同.png": {
+      "bytes": 5026214,
+      "sha256": "785a752f5aabbd719aa145e5f04c2d1313ac0be0e4d656755b7ed532692fc7ad"
+    },
+    "art/美术素材/TNO：合一风云LOGO.png": {
+      "bytes": 7079427,
+      "sha256": "fd00b808e320389f8d4952d9e17c17e5ffc15331e10215973bb7363b524aec07"
+    },
+    "art/美术素材/xfp-logo (2).png": {
+      "bytes": 5221413,
+      "sha256": "ab4e13f67f2d2829a4f319c425938918ebc313f8454f6b6dc0dd61bb012af2c9"
+    },
+    "art/美术素材/事件图片/王兆凯舵手逝世.jpeg": {
+      "bytes": 169432,
+      "sha256": "4aa22880999b5b36170f8ebcd9b83bd43f47f44ba55d7d119eb2999d9524fcdd"
+    },
+    "art/美术素材/及第教辅/jd1.png": {
+      "bytes": 425510,
+      "sha256": "a930a89ca065c7111e1d385683cc3c246848a631cbd3976e0c7b7291572588aa"
+    },
+    "art/美术素材/及第教辅/jd2.png": {
+      "bytes": 593654,
+      "sha256": "e1fdf7fb1a572559c796aa6b0a1c5e208e70b30f7c004d1cb7baa39d0420eeef"
+    },
+    "art/美术素材/及第教辅/jd3.png": {
+      "bytes": 450760,
+      "sha256": "69f08112e9eb05c70a1d5164cc04fd425044c6eb3f2c514858be9d56d1a9e5c3"
+    },
+    "art/美术素材/及第教辅/jd4.png": {
+      "bytes": 570800,
+      "sha256": "e3c3f40b54598b54964b37a370e2a95fcf106a1456686f38f2586d0d6a832427"
+    },
+    "art/美术素材/及第教辅/jd5.png": {
+      "bytes": 601800,
+      "sha256": "573fed2c0bcc715eff7984bb6b362635fbe1bdef4b4b758155e9f26d934c4190"
+    },
+    "art/美术素材/及第教辅/jd6.png": {
+      "bytes": 546617,
+      "sha256": "5100154f681c0ad802797dfeeb77753381419cc1e9621a8c3285d954b8dfcc18"
+    },
+    "art/美术素材/及第教辅/jd7.png": {
+      "bytes": 551046,
+      "sha256": "ed42650c82388f7b028fee924b9cfb1faf24932a14d3f73012e574e212817750"
+    },
+    "art/美术素材/及第教辅/jd8.png": {
+      "bytes": 518888,
+      "sha256": "e6e32402f6538456d651ef0f3cf4d9c66d2c9af11df60118ca346774639829a9"
+    },
+    "art/美术素材/及第教辅/jd9.png": {
+      "bytes": 472160,
+      "sha256": "074ebc662ff906f6018fa119aa713950147c12febc28ab113e48cc15e3a64098"
+    },
+    "art/载入图/B3革命.png": {
+      "bytes": 2482726,
+      "sha256": "8dcf68fb08464b61a44f75c02407a379a23ae91f2507a04c40e89c581592c514"
+    },
+    "art/载入图/内卷.png": {
+      "bytes": 2037344,
+      "sha256": "4b7afb1010d801639b474f77ccd9cf0562faf271cac933b8387baa5c44544ef7"
+    },
+    "art/载入图/军训.png": {
+      "bytes": 3450212,
+      "sha256": "2b65a757006a6100b8f46b412a71f0703d794730d1801229dd1d89d5d13e04d9"
+    },
+    "art/载入图/及第之梦.png": {
+      "bytes": 6527313,
+      "sha256": "ec5057acd0e293e82a58b1bf94ee2fe56e25e66b6498ed92c8155f749776d14b"
+    },
+    "art/载入图/合一之春.png": {
+      "bytes": 3553088,
+      "sha256": "502dca786a76e124cd8e85717b3d4b3e614d8c4c7ac6e9c5d3ac38911fc683f7"
+    },
+    "art/载入图/合一之春2.png": {
+      "bytes": 2844977,
+      "sha256": "1a459f39ada6e4cdd2d623a3c3a4ffbc0ab9889cea89b5958b35a7a1d43d2e3a"
+    },
+    "art/载入图/合一文革.png": {
+      "bytes": 3222014,
+      "sha256": "0744250a752a3020012fa21f242ec01a312af6ae923a23d9033957e660530755"
+    },
+    "art/载入图/合一文革2.png": {
+      "bytes": 2858295,
+      "sha256": "2f5b2993f3ead216bcc081602c789cccbb70e8b77d84331154139d9f83f3cee2"
+    },
+    "art/载入图/合一陨落.png": {
+      "bytes": 2901651,
+      "sha256": "c0b40809a275691bcb78a42f4979f46353930b9db4f75377dad4c27e5288eee4"
+    },
+    "art/载入图/封安保时代.png": {
+      "bytes": 2744070,
+      "sha256": "75b4a49f40b02a9e58bcf489918b6179d442c159928bb17461fd0880c863611d"
+    },
+    "art/载入图/批斗.png": {
+      "bytes": 2055001,
+      "sha256": "e5be64c1521634b414c86b1157cd83e29ba48e9fdda0b34063752fcd8f206914"
+    },
+    "art/载入图/校园涂鸦1.png": {
+      "bytes": 4721071,
+      "sha256": "e81500fb1d63f3edf562309fa0450ac52706c7c1adfd9a732bd765baef753638"
+    },
+    "art/载入图/校园涂鸦2.png": {
+      "bytes": 5202129,
+      "sha256": "a1e6d84c0891eef08c302a6797414c0bef2d201687360bd444bdddbaf63436fe"
+    },
+    "art/载入图/清场.png": {
+      "bytes": 1974017,
+      "sha256": "7be9a6eea5589462991a459dc85045c6d81c797706c904851c3f39dda0e2e1b7"
+    },
+    "art/载入图/特级.png": {
+      "bytes": 5795116,
+      "sha256": "91190e590882f396e81283e596ef876e2f43aa43ad7d8bf0421c9dfe42efeef1"
+    },
+    "art/载入图/特级0.png": {
+      "bytes": 1935250,
+      "sha256": "7c740deadf27d55e9dc702769157fe64df50e2a8232c6ded8f816f6e9415921c"
+    },
+    "art/载入图/特级教师.png": {
+      "bytes": 2797916,
+      "sha256": "8f31d60aa10bd1e331ca82923671e0e061e841be16c27eb91be0594625a30529"
+    },
+    "art/载入图/红色风暴.png": {
+      "bytes": 3015870,
+      "sha256": "4b8e03c6fa82866d9dad362918d380f38b33c5745fb5ec1371e7cde7394d0452"
+    },
+    "art/载入图/行政楼.png": {
+      "bytes": 2954428,
+      "sha256": "0e4280866a0a141340b636ea9aa164076113a9549c5357ee84575a71522c0bc8"
+    },
+    "art/载入图/裤熊逢春.png": {
+      "bytes": 2673897,
+      "sha256": "278b2ff35fc082ec337a29ad1a4bed68da0964ce3cc518a90b0f0acc5ffe727f"
+    },
+    "art/载入图/陈栋.png": {
+      "bytes": 4240344,
+      "sha256": "0c62b49f13b25c6d6a0bfa73136c31bc6946a8b3086915d9b4cce9d079b42c3c"
+    },
+    "art/载入图/陈栋与合一.png": {
+      "bytes": 4591446,
+      "sha256": "6430c71c9a50453f81490395897cb1a0465eb2c70f1a13e1978db0fb6a4954ae"
+    },
+    "docs/ART_ROADMAP.md": {
+      "bytes": 3600,
+      "sha256": "6e622e9254a321dfeca8669c4a3164145a7bf74075d60ec5890a3bec9aef261e"
+    },
+    "docs/ASSET_MAINTENANCE.md": {
+      "bytes": 2508,
+      "sha256": "c4e9f091d9858ed1e427b033155efd457052b6fd5b4fd0cd46cc791397db16d7"
+    },
+    "docs/BEFORE_THE_DAWN.md": {
+      "bytes": 2208,
+      "sha256": "dde9adcf0ec0bb289355f236ac0b7add263f6a6d51b856b0376d087b8efa15e0"
+    },
+    "docs/story-source/TNO：合一风云-设定文档.docx": {
+      "bytes": 19592,
+      "sha256": "0e614ae743aba2336f65c5f1087f63f8fbcef1cfd3d74182307a5643c91d2289"
+    },
+    "index.html": {
+      "bytes": 331,
+      "sha256": "a14e233366b01e993e3845fc62050125c867a8f4afb48593e4c45dce4bdfa63e"
+    },
+    "music/丑陋的美国人.mp3": {
+      "bytes": 2455574,
+      "sha256": "0b0c3c08c9328381aa2c198579e45d8844a7859d49dfeb0ee3042ea8c7fbbbd7"
+    },
+    "music/勃艮第摇篮曲.mp3": {
+      "bytes": 4125624,
+      "sha256": "113acdd63515ee206eff357a1cc96bbbd52554c51b84b6d00c9c79f70d0a9c48"
+    },
+    "music/十年不晚.mp3": {
+      "bytes": 2250481,
+      "sha256": "db0e5990b0696ada9c067f681b0a751f7ec0669caa4321b417db29249a27fd40"
+    },
+    "music/向合一奔去.mp3": {
+      "bytes": 5676832,
+      "sha256": "1ada540c1caf989147822ccc3b2da8ca9722987ce5b09377f98992a11412ecc8"
+    },
+    "music/四十载法西斯暴政岁月.mp3": {
+      "bytes": 5173985,
+      "sha256": "816452cdf6fa157fc2ad8ea8d82d70017e9f76304c79fe5f7d5a9aa0b14dca6c"
+    },
+    "music/市场开放.mp3": {
+      "bytes": 2987431,
+      "sha256": "8b6fd209170ec32efe85a2da4413755d9c505b58b738d8b3c4cf456759ffc281"
+    },
+    "music/硅晶之梦.mp3": {
+      "bytes": 7938500,
+      "sha256": "69d66c3309e15304d0e046cbdb28d07d5fa5a939b874a3be8d596c5458862427"
+    },
+    "music/迷烟幻镜.mp3": {
+      "bytes": 5244878,
+      "sha256": "3bfdd06ee29cc74b31c1fd352faffb6078d6b5c3e749082e87652077fd1cb0ac"
+    },
+    "music/革命.mp3": {
+      "bytes": 3974667,
+      "sha256": "8bdaffc2b8368ee15c2904394feb78dbcde23b2cc4990f2b221d501e18b1c55c"
+    },
+    "package-lock.json": {
+      "bytes": 115448,
+      "sha256": "610c5ce28398158538cec39fd2861db9b071d17e5c754d4c367a5838b5540092"
+    },
+    "package.json": {
+      "bytes": 1063,
+      "sha256": "9b399f95cab9fb0b1893a499ba7586fcf354a3b0d9385efe8503ba978351e90c"
+    },
+    "public/_headers": {
+      "bytes": 220,
+      "sha256": "7035679d710633e398f5b1dc0801192d7d0e4735699ad0a11613bbc6608aa487"
+    },
+    "public/credits.txt": {
+      "bytes": 3662,
+      "sha256": "8cf222b45ef435e3809a04e48afd11b971e7dd02791f0a0377430e1687d57c4a"
+    },
+    "scripts/assign_strategic_art.py": {
+      "bytes": 14517,
+      "sha256": "2d35380ed02cec9006b8bb31467b5490475ddcb5ee91ccec283eb6038f83a21b"
+    },
+    "scripts/build_loading_art.py": {
+      "bytes": 1988,
+      "sha256": "ddf5e2d3d9245490af2c605952aca06e1d2a928e6c40471fca5ed33960f2a79c"
+    },
+    "scripts/build_missing_advisor_cards.py": {
+      "bytes": 2137,
+      "sha256": "b234b47a195e21fc5141a484a97bcbe47e358d4a866539156e75ff79f2287f8b"
+    },
+    "scripts/check-deployment.mjs": {
+      "bytes": 1359,
+      "sha256": "e55a695585c3302557347b9b65d1e69d1dbda62c42a288ab576e71ed6f274c07"
+    },
+    "scripts/check-local-assets.mjs": {
+      "bytes": 1233,
+      "sha256": "d32dc7ad98529348a4294a805f608e76197bc74f769d4ff1f348627973115b2f"
+    },
+    "scripts/requirements-art.txt": {
+      "bytes": 15,
+      "sha256": "1954ca940740c612a12e7abf0a307b7394715964d66dc8037d503fdd5c1b6424"
+    },
+    "src/App.tsx": {
+      "bytes": 337399,
+      "sha256": "0396c827f5f3ba24dc1667cc5170be69ecad8f0b9f5f3fc2810b0ff8d3a50aba"
+    },
+    "src/assets/hoi4/CREDITS.md": {
+      "bytes": 535,
+      "sha256": "e74e052b9797cebb78949414cef6323fe8f68d8ddd808d2ad382df0439606373"
+    },
+    "src/assets/hoi4/CREDITS.txt": {
+      "bytes": 1029,
+      "sha256": "cf220dc66463d75163f7690ad77b02b662d0c05ca5d53dc62d33ed504512a7f5"
+    },
+    "src/assets/hoi4/README.md": {
+      "bytes": 909,
+      "sha256": "f1ddd5fd297471e5b5c0511ba9017dcf9e6be2bbcfff4008e309485aec09e371"
+    },
+    "src/assets/hoi4/expanded/Arrow Broken.png": {
+      "bytes": 2221,
+      "sha256": "e112fbce41032e48afc2688deaa5ff68dc492df1d6ce0d937f71bd9a8fc416ea"
+    },
+    "src/assets/hoi4/expanded/Arrow Iced.png": {
+      "bytes": 5075,
+      "sha256": "afedbf0099654a98f4182ec30465abe26e7a1d3dcf0adc765080b54ce124f1dc"
+    },
+    "src/assets/hoi4/expanded/Arrow.png": {
+      "bytes": 15429,
+      "sha256": "6dd5819a6c0c8d217d19c44b77f2dadf81cf1046bb4f5bde24135315369e5885"
+    },
+    "src/assets/hoi4/expanded/Arrow2.png": {
+      "bytes": 18894,
+      "sha256": "15f3dc035b5f395a05e6b53a0754e81dc7691dbd40508c3232b4b0d96436feb5"
+    },
+    "src/assets/hoi4/expanded/Arrow3.png": {
+      "bytes": 16466,
+      "sha256": "90ffaea2cb6e428b46c779d09cac5ae05730232463aa9da4f3c343c9b327e791"
+    },
+    "src/assets/hoi4/expanded/Arrow4.png": {
+      "bytes": 17188,
+      "sha256": "d0fc336c81db15cdf65103a15be322c0f31f6133bd19ef27bdf3356ae819451c"
+    },
+    "src/assets/hoi4/expanded/Arrow5.png": {
+      "bytes": 10044,
+      "sha256": "4cb281d277e23bdae8ad952d121175784e888bd0c38c84c94e329b333af6bb74"
+    },
+    "src/assets/hoi4/expanded/Ballot.png": {
+      "bytes": 26035,
+      "sha256": "e9168b09c1623d488a560f6276e18b259e624cb70915af461c556674a7554900"
+    },
+    "src/assets/hoi4/expanded/Ballot2.png": {
+      "bytes": 10832,
+      "sha256": "07bbbf9bdcd42edad81f51bf1d2b71496665760b74828bf31fb769650a2a2208"
+    },
+    "src/assets/hoi4/expanded/Bank Broken.png": {
+      "bytes": 19115,
+      "sha256": "77585daceef88c15fbdc41364548b4c3c9009f5be5595e811683c98e334118de"
+    },
+    "src/assets/hoi4/expanded/Banner.png": {
+      "bytes": 18081,
+      "sha256": "d14c6b9ef49367f98f230ae576d4851204667385dbe6ebbbc27900e707d0ece8"
+    },
+    "src/assets/hoi4/expanded/Banner2.png": {
+      "bytes": 3401,
+      "sha256": "86a809ed006e4cf3aa3775d886adac4ee8962ff8a408ed4ee67d427941d002ed"
+    },
+    "src/assets/hoi4/expanded/Banner3.png": {
+      "bytes": 17879,
+      "sha256": "2fd7b7efb2ee13ef687ec926793f299f894a97f097c26965a7d33dcb847878f4"
+    },
+    "src/assets/hoi4/expanded/Banner4.png": {
+      "bytes": 4642,
+      "sha256": "374b84646523fb0efad8d7cd5d5e8abf6abbbb8a29223f8a10d7fc87f611a5b9"
+    },
+    "src/assets/hoi4/expanded/Barbed Wire.png": {
+      "bytes": 20088,
+      "sha256": "5f2f765cc5a561332e469c849add9a16391da5e3ecf2066a1af3b62202505705"
+    },
+    "src/assets/hoi4/expanded/Bear Trap.png": {
+      "bytes": 9349,
+      "sha256": "5d5de2e1547edf88a49aa28403030ccbd658d80235c0060719b9081564a1999b"
+    },
+    "src/assets/hoi4/expanded/Bear with Artillery.png": {
+      "bytes": 6016,
+      "sha256": "277c3af5e85eee3c864b677a97564e9dd60a80f61d3032ce6168e746e0eb2ca8"
+    },
+    "src/assets/hoi4/expanded/Bear.png": {
+      "bytes": 21310,
+      "sha256": "b282e3a8c123ee29e4b8265dc27bea54636e4ddc0eedf3a968ef39a7ed216e58"
+    },
+    "src/assets/hoi4/expanded/Bear2.png": {
+      "bytes": 20901,
+      "sha256": "3b7c86583ef97aaad40a98352c37b927fb8212dc3ac5681ec3f3b4327e430e6b"
+    },
+    "src/assets/hoi4/expanded/Bear3.png": {
+      "bytes": 8508,
+      "sha256": "401a5ea71986452c1d9a553e46815ea003b01783404ef0f751a757adbe708699"
+    },
+    "src/assets/hoi4/expanded/Bell.png": {
+      "bytes": 5808,
+      "sha256": "fd03e8220cf53bc8495eed69cccf9ac528843b253e61cc8d6f7aa21c523a5692"
+    },
+    "src/assets/hoi4/expanded/Big Brother.png": {
+      "bytes": 5465,
+      "sha256": "aa6df4821439c60199ad40dcc209332ca9ec8d4ef5f65e5c1c15676e86cc0b9f"
+    },
+    "src/assets/hoi4/expanded/Bills.png": {
+      "bytes": 9518,
+      "sha256": "401f79ef7b3aa18c489da3521865f315b38fb623e8d841f7f81e66046fec0aea"
+    },
+    "src/assets/hoi4/expanded/Bird Freed.png": {
+      "bytes": 22150,
+      "sha256": "8e975b5e2602ce4cc10c42396cd8f8d3b3bbb84d0ebe9744376f011d1289c43c"
+    },
+    "src/assets/hoi4/expanded/Birdcage.png": {
+      "bytes": 21419,
+      "sha256": "6f682ac14f31d7eae5e056cedb57b08471569b70bb84b8fc22460ec8bfc89f2e"
+    },
+    "src/assets/hoi4/expanded/Blueprints.png": {
+      "bytes": 5253,
+      "sha256": "1d75e423748392240bd246dc9681b2787c8f0c19c6200bf4a412a14809def3e4"
+    },
+    "src/assets/hoi4/expanded/Blurprints2.png": {
+      "bytes": 9656,
+      "sha256": "08908d376aaafeb058db826409de562aa640c6eab9f45f545558a3ac676601e5"
+    },
+    "src/assets/hoi4/expanded/Book Open.png": {
+      "bytes": 8209,
+      "sha256": "b8f601a26d8e0ad7f8eecdccca2c447a59921e15aa05bb0078142b803ed25e9d"
+    },
+    "src/assets/hoi4/expanded/Book.png": {
+      "bytes": 18442,
+      "sha256": "b2e7e51e79acaeaef614c430a33a0a4fb72b81f14bfc535f27ff7264b28802f9"
+    },
+    "src/assets/hoi4/expanded/Boot Crushing Hand.png": {
+      "bytes": 20906,
+      "sha256": "473e0aea68dbb3ba3ee405f1618556167e0f38a17fb26feed8a34eef36c6d6d1"
+    },
+    "src/assets/hoi4/expanded/Bowl Cracked.png": {
+      "bytes": 19149,
+      "sha256": "4923a4b7c54f89a9f225238289dacad0288212cf33a407f329f03e9491267351"
+    },
+    "src/assets/hoi4/expanded/Box Open.png": {
+      "bytes": 19750,
+      "sha256": "5fc196e304e0f58096b7d5b2955377a5e551d4d3960a3221e159bca862daede3"
+    },
+    "src/assets/hoi4/expanded/Box Open2.png": {
+      "bytes": 17669,
+      "sha256": "d3e4d58b4874b81c1a2aa8a3475e72467f5b19c7f15218d0ba2c03967b7e826a"
+    },
+    "src/assets/hoi4/expanded/Brain.png": {
+      "bytes": 19297,
+      "sha256": "2af7027411eda9f39a038c25279c27368b1faa4d3beddb00874ed1ddac2481ea"
+    },
+    "src/assets/hoi4/expanded/Branch.png": {
+      "bytes": 5055,
+      "sha256": "55a410f15952e7952ef6346092b0d12b3ed09961949446e6441fde476e906ead"
+    },
+    "src/assets/hoi4/expanded/Briefcase.png": {
+      "bytes": 21439,
+      "sha256": "e3a9a122ef6fe1b24743cd40f918c4c6051fcc1a192f32e8ad5eb96f8d93c1ec"
+    },
+    "src/assets/hoi4/expanded/Briefcase2.png": {
+      "bytes": 20194,
+      "sha256": "0ed20621f1f1c11098c1101cb47edf2d06bfde0b97bae275239043ed495b3628"
+    },
+    "src/assets/hoi4/expanded/Brush.png": {
+      "bytes": 18435,
+      "sha256": "ef05bee1b2100bc27676ae74462ffbf95c681e8b63f51f4a50c0a09314912182"
+    },
+    "src/assets/hoi4/expanded/Building.png": {
+      "bytes": 16768,
+      "sha256": "4a2327941cd658b39483a20a14431f9bbf185bd777ca78dda2b1eb3d6f30c47f"
+    },
+    "src/assets/hoi4/expanded/Bulldozer.png": {
+      "bytes": 18538,
+      "sha256": "b0696d4227f2ea232084eb9712659b92065a01d1778702045423b020ebbe8961"
+    },
+    "src/assets/hoi4/expanded/Bunker Plain.png": {
+      "bytes": 17553,
+      "sha256": "22a77858928f0a2ff4e62681117b253e4864900910dc57ead1dfd45bee732655"
+    },
+    "src/assets/hoi4/expanded/Bunker.png": {
+      "bytes": 19586,
+      "sha256": "5baa7ba9831498b8fe0ca4357597a6b3480bc208df2e3d071897e7391d6a0520"
+    },
+    "src/assets/hoi4/expanded/Capitol.png": {
+      "bytes": 17372,
+      "sha256": "f9b452ff2eba758d7ca348d1aa2f4e5b48481229502f586a6250d8bdb24da3ac"
+    },
+    "src/assets/hoi4/expanded/Capitol2.png": {
+      "bytes": 17402,
+      "sha256": "2113b839c6305b8dc8205b0503280b60d3982eb4317f986d967d002eaa853bfa"
+    },
+    "src/assets/hoi4/expanded/Cards.png": {
+      "bytes": 21005,
+      "sha256": "1737cefefe4c6eb9bd8dee4c158c8332b34fc0c987207e0f53a1633f56f2cde4"
+    },
+    "src/assets/hoi4/expanded/Cash Fan.png": {
+      "bytes": 14328,
+      "sha256": "0bf15070854a7d305ae19e9b87bf47d132bb11af18b048aea4b281c03472fdb3"
+    },
+    "src/assets/hoi4/expanded/Cash Flow Negative.png": {
+      "bytes": 21755,
+      "sha256": "88cc43d7e42356fa61f3be9b8a119f30a168c938b67425356022ed7a4dd762ea"
+    },
+    "src/assets/hoi4/expanded/Cash Flow Positive.png": {
+      "bytes": 21849,
+      "sha256": "31b844a1f6cead03c518080f366ac31590b87dd15634409905dabf5855bf97ed"
+    },
+    "src/assets/hoi4/expanded/Cash Flow Positive2.png": {
+      "bytes": 22912,
+      "sha256": "bc605a11cb2dcd38fa2536f1b300dd38ac727cd2b0f87760dc1fdbe8801a130b"
+    },
+    "src/assets/hoi4/expanded/Cash.png": {
+      "bytes": 22264,
+      "sha256": "03f89464dc9f4aeaa713134696f5e0d764ee493034c73019d4f7233c15120061"
+    },
+    "src/assets/hoi4/expanded/Cash2.png": {
+      "bytes": 19751,
+      "sha256": "d499e734095454a3834ca24b6719ef0815dc20c036073b46c569812595197b42"
+    },
+    "src/assets/hoi4/expanded/Cash3.png": {
+      "bytes": 14026,
+      "sha256": "d8139d4ffd726d05e9ce96aa6e193bb45e28bb3a58ead0f048356a868d310c15"
+    },
+    "src/assets/hoi4/expanded/Chains Crossed.png": {
+      "bytes": 21575,
+      "sha256": "859738edac766263325c9a3fa83ddd4a62c87d6ec55b9411761c0a7b9f8f4bd3"
+    },
+    "src/assets/hoi4/expanded/Champagne Shattered.png": {
+      "bytes": 20999,
+      "sha256": "968b6fabba5c58af36c3e7ea3fa00bd50105c413484f646fa0cf2018ef187834"
+    },
+    "src/assets/hoi4/expanded/Champagne.png": {
+      "bytes": 19404,
+      "sha256": "639c50b6b0ca8a31605cd258d74efd6a4d6c45f54831505ef6706354247b0d07"
+    },
+    "src/assets/hoi4/expanded/Champagne2.png": {
+      "bytes": 10281,
+      "sha256": "f65e56ad6990509e7eea8c2c3026de318ead8b4facc3787411ac34642b9d11a3"
+    },
+    "src/assets/hoi4/expanded/Cherry Blossom.png": {
+      "bytes": 10330,
+      "sha256": "ddae84917d9e7110c0f56cb772e362ed9962678f08b6e5355cd714edde7567ac"
+    },
+    "src/assets/hoi4/expanded/Chess Pieces.png": {
+      "bytes": 7550,
+      "sha256": "ceb788e5ea54f67349b8537fd2e30861ca4ee8fd5b4acffd5d0cbcec169249ab"
+    },
+    "src/assets/hoi4/expanded/Circular Arrows.png": {
+      "bytes": 22609,
+      "sha256": "49d17868495b84cabeef78c85a2111adf8d325a5b76a0cb72973f51f9150f4c4"
+    },
+    "src/assets/hoi4/expanded/Circular Arrows2.png": {
+      "bytes": 22569,
+      "sha256": "74dcf909082775609f16b36c585a8f1f22a4cb09f481218fc95f12e30578efa4"
+    },
+    "src/assets/hoi4/expanded/Citizen.png": {
+      "bytes": 18349,
+      "sha256": "b0b82740eeb04ffb16fc6e476e63c66c8179570e08fed8356e2efe99920e4942"
+    },
+    "src/assets/hoi4/expanded/Citizen2.png": {
+      "bytes": 22444,
+      "sha256": "2a1700e6909d561d07bd72b78b695c9039b67cbf03db8874bf002ebee0e3e3da"
+    },
+    "src/assets/hoi4/expanded/Citizen3.png": {
+      "bytes": 23493,
+      "sha256": "f21a61e22a2179371d1dc2b9e3342c5ffdcf9c07da8b92e3ed67ee3e9de0a162"
+    },
+    "src/assets/hoi4/expanded/Clock.png": {
+      "bytes": 25521,
+      "sha256": "139708d9526db928325f05a60c70585a336bf0c70cea4fea119fa0ff4533d145"
+    },
+    "src/assets/hoi4/expanded/Clock2.png": {
+      "bytes": 9409,
+      "sha256": "f8b795738f8de0d4916673e848acd69cc7905c754827c40c57bf80828aec3e28"
+    },
+    "src/assets/hoi4/expanded/Cloud Dark.png": {
+      "bytes": 10609,
+      "sha256": "dc850daa23b59d17f726e3f242e15c64b2f4a39266bc383ec01524c4378a674e"
+    },
+    "src/assets/hoi4/expanded/Coffin.png": {
+      "bytes": 8745,
+      "sha256": "259fec222d89eff41f305e2dabc25e02095b8c347561feca487690db73c5bcc7"
+    },
+    "src/assets/hoi4/expanded/Cog Wheel.png": {
+      "bytes": 19167,
+      "sha256": "8765480f16fbfd54babe02163ad5db3a68e0472e18789c1880ee40c6b12a3ada"
+    },
+    "src/assets/hoi4/expanded/Cog.png": {
+      "bytes": 17654,
+      "sha256": "a40e673ecbc4a08f60390fcf9144228c002cf705f6ef19b6768287e5f65d4107"
+    },
+    "src/assets/hoi4/expanded/Coins.png": {
+      "bytes": 1913,
+      "sha256": "545398fd3cf250a89a03d4a92e7f1bcebe3b28c7b3196894243af19d5a728407"
+    },
+    "src/assets/hoi4/expanded/Coins2.png": {
+      "bytes": 17545,
+      "sha256": "e38f5481315f1539ac4a23b3af4e178cd3d7812036a2b14f6cf2a1ec7e80578a"
+    },
+    "src/assets/hoi4/expanded/Coins3.png": {
+      "bytes": 17898,
+      "sha256": "cbad227a4e5057e0f3015c800b51ee7da3729c8cf5ff242101e138d4f543e6a0"
+    },
+    "src/assets/hoi4/expanded/Coins4.png": {
+      "bytes": 18204,
+      "sha256": "02f3205b872cbf57505a095c1d6780c87db5d427f502e62337bb7b9673915abb"
+    },
+    "src/assets/hoi4/expanded/Coins5.png": {
+      "bytes": 20885,
+      "sha256": "39a6e7345b26e7444cc11d22c5a2473f0022961ad3d8414952a41d7c8a06c313"
+    },
+    "src/assets/hoi4/expanded/Coins6.png": {
+      "bytes": 19611,
+      "sha256": "fc22b0ebd92e9d179e586b56412d386afea72f5926d6e5accfc08b8af8be3c5f"
+    },
+    "src/assets/hoi4/expanded/Computer.png": {
+      "bytes": 5846,
+      "sha256": "fb6041516f36c08bca54ab8d2d7b2d9609dbb8d60444ef2458a8b455a44e6a72"
+    },
+    "src/assets/hoi4/expanded/Constitution.png": {
+      "bytes": 20124,
+      "sha256": "d12d6dbe7608d542981eac2c0492edd55ff06e3ac6507cd959c113c8272bbf35"
+    },
+    "src/assets/hoi4/expanded/Cracks Overlay.png": {
+      "bytes": 15246,
+      "sha256": "9a2eb24f35bce98b1b041e7eb68894a5a6568b4950291bbf744f721f78726fd0"
+    },
+    "src/assets/hoi4/expanded/Crane.png": {
+      "bytes": 20840,
+      "sha256": "d71a333d669e7b367ffa09cb8c4ce7fd964d59e4e03e6c4f7d4bf0de356e93be"
+    },
+    "src/assets/hoi4/expanded/Crown Austrian.png": {
+      "bytes": 18327,
+      "sha256": "40b7f79964151ff17bd9bd1038f90c50062a0e667d4515f1516cb34b58a891e1"
+    },
+    "src/assets/hoi4/expanded/Crown Broken More.png": {
+      "bytes": 21642,
+      "sha256": "019dc6273fe87a8891a7122c5dadf3b65f1f93e6a5fb448a40aa6b0d54b7c61f"
+    },
+    "src/assets/hoi4/expanded/Crown Broken.png": {
+      "bytes": 20811,
+      "sha256": "4253b8ac098464dabe2b8dcab9ff847651a1b495902123d7511a4f1ff9b85e02"
+    },
+    "src/assets/hoi4/expanded/Crown Hungary.png": {
+      "bytes": 23207,
+      "sha256": "913b2797c93264187ae567b5d8d7fbe67c890d1b50a169133bf110a98ce73bcb"
+    },
+    "src/assets/hoi4/expanded/Crown Iran.png": {
+      "bytes": 13597,
+      "sha256": "f0922a4238f8823599a1db149ebbbffd110c10cef2afd822f053fd7d252a9222"
+    },
+    "src/assets/hoi4/expanded/Crown Kaiser.png": {
+      "bytes": 7031,
+      "sha256": "9e135a48f05071f7c892f536d4248d6456adff112491f39faa1dee9ddb3f43f6"
+    },
+    "src/assets/hoi4/expanded/Crown.png": {
+      "bytes": 6429,
+      "sha256": "bf90b6f77e9a5e64bfcc15e28ec53a7e88b418085db2b04924c2d1034b36c49c"
+    },
+    "src/assets/hoi4/expanded/Crown2.png": {
+      "bytes": 19698,
+      "sha256": "ec6297e428d2dbceaa1a3200709d8cb6067b8322e5c263124e37bc5481f650b9"
+    },
+    "src/assets/hoi4/expanded/Crown3.png": {
+      "bytes": 16916,
+      "sha256": "2679904a2fe342b62dfe31d7c65ae570da9ba5fe9b2cd579098594ff4c258432"
+    },
+    "src/assets/hoi4/expanded/Crown4.png": {
+      "bytes": 17561,
+      "sha256": "81ec240fdfe154730a0ae38635a056469c7828d59a2f38956d171088ecb47fdc"
+    },
+    "src/assets/hoi4/expanded/Denied.png": {
+      "bytes": 9043,
+      "sha256": "056000bd4eff3e81affca2297002c6bdab6e9d7d5edf7b2be5cfb22db4fbfddb"
+    },
+    "src/assets/hoi4/expanded/Dice.png": {
+      "bytes": 18287,
+      "sha256": "9ab4eb09e75f33d27fc6133ce03773b11d835db50e8221dbb5de61c1661b5f90"
+    },
+    "src/assets/hoi4/expanded/Documents Classified.png": {
+      "bytes": 9958,
+      "sha256": "6ac68cda3d2807bff161e4cfdab6806b4ef95d40168f5759d60ba16a685b04d2"
+    },
+    "src/assets/hoi4/expanded/Documents.png": {
+      "bytes": 8307,
+      "sha256": "3c599590f456804553db4d2e0f34aeec37d6fdd12daf5b104cf379b80420f4f5"
+    },
+    "src/assets/hoi4/expanded/Dove.png": {
+      "bytes": 18717,
+      "sha256": "dbb182406cb12ebdad7ceeb2e49f6542158f306a144f0a618e4f556e2eb54e52"
+    },
+    "src/assets/hoi4/expanded/Dove2.png": {
+      "bytes": 7336,
+      "sha256": "8cc136dd1ff8c80aaab19f4cd3fea88d10ea837c194b81d72aa440796d7fe954"
+    },
+    "src/assets/hoi4/expanded/Earth.png": {
+      "bytes": 24047,
+      "sha256": "8d595c16bdca79308f6eb2dc3565e1770ca419164412753e403d043070efd7b7"
+    },
+    "src/assets/hoi4/expanded/Earth2.png": {
+      "bytes": 22180,
+      "sha256": "3b2a9cc97f37771ebf83680f18ba66020e0a2b5d97c8bf61d5f61849e8bd6135"
+    },
+    "src/assets/hoi4/expanded/Electricity.png": {
+      "bytes": 3251,
+      "sha256": "9dd1d2abf5e050db4a9d0e5a84ba435a140067e8f2ba6fc73fa9caaab4393a1c"
+    },
+    "src/assets/hoi4/expanded/Envelope.png": {
+      "bytes": 18210,
+      "sha256": "8a3781ca256baeb26b6b12840ed7c658e40942be46259d6411f8881d19b185a7"
+    },
+    "src/assets/hoi4/expanded/Factories2.png": {
+      "bytes": 19363,
+      "sha256": "10898f9e4600558cd329d8bcb601cb453d89d8b46d90d079ce328294a96a31a7"
+    },
+    "src/assets/hoi4/expanded/Factories3.png": {
+      "bytes": 21047,
+      "sha256": "e5353c147e2666d3c30a7f8fedd72667b12db5bb35975b7b164cf86d132f9cc7"
+    },
+    "src/assets/hoi4/expanded/Fire.png": {
+      "bytes": 21908,
+      "sha256": "9de9b6bad8ba36e06e91ce6fde1c3a8a7e1475df05da7c9e8a08b51bff966523"
+    },
+    "src/assets/hoi4/expanded/Fire2.png": {
+      "bytes": 9159,
+      "sha256": "b90f79dfd3ff312c7e54e05620b41d19d37f5952fc97f9d30c249d040d9d4fbd"
+    },
+    "src/assets/hoi4/expanded/Fist Colored.png": {
+      "bytes": 18802,
+      "sha256": "418810ee68918d498889653ee585ee8027030e46d0a43d5546d0a7d11d3950fe"
+    },
+    "src/assets/hoi4/expanded/Fist with Cash.png": {
+      "bytes": 8504,
+      "sha256": "eca1211c53a88191e7b6282a2e72f791629a2116ef3b47d94b308210a28f749a"
+    },
+    "src/assets/hoi4/expanded/Fist.png": {
+      "bytes": 18317,
+      "sha256": "fb71a760abc13cedb3c864d77cd165e250518dd813006019a1e8278a46e85d92"
+    },
+    "src/assets/hoi4/expanded/Flag Overlay.png": {
+      "bytes": 29191,
+      "sha256": "4b61ae982603396da235523dd1c4942a76cde4dd21c15cc8f159dc3337cd1136"
+    },
+    "src/assets/hoi4/expanded/Flag Overlay2.png": {
+      "bytes": 10335,
+      "sha256": "92c8261705cdb8d1f74f7d400dc0ce0b4691bb9cf268aa9de049fbd375f9ffbd"
+    },
+    "src/assets/hoi4/expanded/Flag of Poland.png": {
+      "bytes": 17290,
+      "sha256": "1d1ce4a34cef104bb4652a612df8405cd1bb29f9cd313f66438e3be727bface8"
+    },
+    "src/assets/hoi4/expanded/Flower Petals.png": {
+      "bytes": 20541,
+      "sha256": "b28fcee3a1404a5164d436d25069fe53c6ecae2b67bc4f57c0edc141d303bb1d"
+    },
+    "src/assets/hoi4/expanded/Flower.png": {
+      "bytes": 15741,
+      "sha256": "e31f2b6397a5c966ee1669869131fc5ef05ec1fc296d45a254ed9e97913ceef1"
+    },
+    "src/assets/hoi4/expanded/Gauntlet Upward.png": {
+      "bytes": 19612,
+      "sha256": "022ca17df197f88b2bfd92dd48447a623cb0145342e62ffc316f98da3a30e358"
+    },
+    "src/assets/hoi4/expanded/Gauntlet.png": {
+      "bytes": 19141,
+      "sha256": "0418ca54d9461bcb06d9f1fe07db559761644a7330bd92969c588d3b5186e0f9"
+    },
+    "src/assets/hoi4/expanded/Gold.png": {
+      "bytes": 22792,
+      "sha256": "d7299c91993628dc28a2327bbce63b01a21746d1444b5d395020fe88daa26424"
+    },
+    "src/assets/hoi4/expanded/Grim Reaper.png": {
+      "bytes": 7279,
+      "sha256": "e1428478374e1ae3fd8aed01157147ceb489eade7b2b0232258adda59e9e85c8"
+    },
+    "src/assets/hoi4/expanded/Guillotine.png": {
+      "bytes": 20611,
+      "sha256": "5ee8d6fc49125ed42606598371c6663882b8595aa50ccf13dc83d39c062345cc"
+    },
+    "src/assets/hoi4/expanded/Gun Tommy.png": {
+      "bytes": 7293,
+      "sha256": "873b13b8e0c83ddb42c1f542552d4d6f77572f72b35d1aabeb8eaba0b64815a8"
+    },
+    "src/assets/hoi4/expanded/Hand Empty.png": {
+      "bytes": 16242,
+      "sha256": "24f8efac0df42bd4039ff829ed3f17415ae95d231abbcf25e7af15ad02fcc16d"
+    },
+    "src/assets/hoi4/expanded/Hand Fist.png": {
+      "bytes": 18011,
+      "sha256": "ebbd7e61c06f9f8d8531c9a36a1eaeb872206373c74f397351d6822570470f58"
+    },
+    "src/assets/hoi4/expanded/Hand Grab.png": {
+      "bytes": 19729,
+      "sha256": "9edfc7ce31994db068b932e142139489808c82d24801032ce16769e2c953cb8f"
+    },
+    "src/assets/hoi4/expanded/Hand Grab2.png": {
+      "bytes": 8841,
+      "sha256": "8ce26294af7e749546cd00cd22e4fc490610c15c6ea66dc5fcf2b117f75125cf"
+    },
+    "src/assets/hoi4/expanded/Hand Holding Knife.png": {
+      "bytes": 21353,
+      "sha256": "6ff2241a7a0a39c80f1de5aea7e97092bb1365b2a0967215466e91a0999cc34a"
+    },
+    "src/assets/hoi4/expanded/Hand Out.png": {
+      "bytes": 16935,
+      "sha256": "869586ae9629904ee98467edebb5e35bbb41b18ad1b22da2f22d182196e9b563"
+    },
+    "src/assets/hoi4/expanded/Hand Out2.png": {
+      "bytes": 5942,
+      "sha256": "5813dbd6039c63d05e3ee5ba3b57fff8fb7de44df805e9ac992249143861657b"
+    },
+    "src/assets/hoi4/expanded/Hand Raised.png": {
+      "bytes": 4613,
+      "sha256": "8321e8f3eddf6752a69d32c72e99fdf3b476d489cd885eadffc040f0a6403e95"
+    },
+    "src/assets/hoi4/expanded/Hand Reaching.png": {
+      "bytes": 7322,
+      "sha256": "af272b8841af1eb982156ef4d0ca5c1239c4e407b93eabc052508c311b0962be"
+    },
+    "src/assets/hoi4/expanded/Hand Tearing Paper.png": {
+      "bytes": 7391,
+      "sha256": "56be01fff6bf4b6f49672c3dcdfad601167173e09bdd475a2f92c7cb38595f8e"
+    },
+    "src/assets/hoi4/expanded/Hand Thumbs Up.png": {
+      "bytes": 9411,
+      "sha256": "3ba0fd8863c0a40e8c68be97e321dc59742a2885de058ec8522a1163e0045d85"
+    },
+    "src/assets/hoi4/expanded/Hand Writing.png": {
+      "bytes": 17299,
+      "sha256": "7bffca5437c42ebbc75cee8374e0fb1fb3c083c0ee45b8e24636410211a6a72e"
+    },
+    "src/assets/hoi4/expanded/Hand with Hammer & Sickle.png": {
+      "bytes": 7272,
+      "sha256": "9c911b1e1d2b3404058526fba46c795c69607942abd170fefac47bd5150c7a65"
+    },
+    "src/assets/hoi4/expanded/HandPalmDown.png": {
+      "bytes": 18450,
+      "sha256": "b610cc74d30d2042c57a1849815a1c890a25b612b6bcdd73793e4a3ce4d3e2e1"
+    },
+    "src/assets/hoi4/expanded/Handcuffs Broken.png": {
+      "bytes": 17112,
+      "sha256": "9e023cf0d0eae70c4a8a35d9d0994a6b654414b93e2eb034de5f67ec94e724dc"
+    },
+    "src/assets/hoi4/expanded/Handcuffs.png": {
+      "bytes": 2817,
+      "sha256": "8f72b721068d6dd6cbebcd8df1c465cd77a73dd92b4db61f1875d964c402819d"
+    },
+    "src/assets/hoi4/expanded/Handgun Crossed.png": {
+      "bytes": 8344,
+      "sha256": "e1ab1fc2248e57e82b7cc446c67a30b62869323ebd39245570292b023d8b8caf"
+    },
+    "src/assets/hoi4/expanded/Handgun.png": {
+      "bytes": 3730,
+      "sha256": "76a7f7af1e49da91438b521535f7398b887e078539a3007e42f9e579562b2ea1"
+    },
+    "src/assets/hoi4/expanded/Hands Flat.png": {
+      "bytes": 21198,
+      "sha256": "97d03de8620c0361acfc955f4430c603d4c3d413f20e065078263a2b9b9d9570"
+    },
+    "src/assets/hoi4/expanded/Hands Shaking.png": {
+      "bytes": 18080,
+      "sha256": "33da602c5a3ff1ee05077afdb7d12f13b7a94a0cbc296bb97330f0becd5cbb25"
+    },
+    "src/assets/hoi4/expanded/Hands Shaking2.png": {
+      "bytes": 12260,
+      "sha256": "9d1fbb2ce55441a46eda17392d7248be5b15db52bff1cfd52a4d7dec3dc9372d"
+    },
+    "src/assets/hoi4/expanded/Hands Shaking3.png": {
+      "bytes": 10406,
+      "sha256": "36eb6dcf726d1230c2e048f56c152f9f0ca0b472ba21cd5713bb07bbe3724006"
+    },
+    "src/assets/hoi4/expanded/Hands Shaking4.png": {
+      "bytes": 11039,
+      "sha256": "0eb2cf133f734fd5dea7fd3aca92305bad478c17c1e4c1f6b91b49707555bf20"
+    },
+    "src/assets/hoi4/expanded/Hat Military.png": {
+      "bytes": 20524,
+      "sha256": "59ef73cf28c9303a958b08003ae303ed9afd824896d102531d39f5dda29f7be7"
+    },
+    "src/assets/hoi4/expanded/Hat Military2.png": {
+      "bytes": 18827,
+      "sha256": "51aa1adff169db52d80c859a687b4b116ae4a15540fa0532ad45fd33a79b03c5"
+    },
+    "src/assets/hoi4/expanded/Hat Military3.png": {
+      "bytes": 19167,
+      "sha256": "fcce2222d2b5bfaad6840b3eaee3ec16a1401dd84a3974b703ece90108379c9a"
+    },
+    "src/assets/hoi4/expanded/Hat Military4.png": {
+      "bytes": 7931,
+      "sha256": "33e854b0805d4dd8ecc90f5efdd738668225eff20559cdc16f104711aa3f84a8"
+    },
+    "src/assets/hoi4/expanded/House Ruined.png": {
+      "bytes": 23354,
+      "sha256": "95b35a4c01dfa601e5d351733c9d7986d185e09eb4c6499db602552b2486742b"
+    },
+    "src/assets/hoi4/expanded/House.png": {
+      "bytes": 30519,
+      "sha256": "82b4e15c4bd0e6eb347b66f5f1d82321435f41ee4c515f89c9ff59136766650e"
+    },
+    "src/assets/hoi4/expanded/Idea Icon.png": {
+      "bytes": 20568,
+      "sha256": "336bc64b425eabff27e1079bf6e59eb6ee454dc1215fcbe1b66a560ce9f6ec95"
+    },
+    "src/assets/hoi4/expanded/Karl Marx.png": {
+      "bytes": 25499,
+      "sha256": "b64d58f0fabeba23f938cf13c842acec75bc7bd92077de9d92601d0c14e78dbd"
+    },
+    "src/assets/hoi4/expanded/Keys.png": {
+      "bytes": 9814,
+      "sha256": "4e074f161fe910905daf5a2087643ef95595a8178f99c3671882aae891832e63"
+    },
+    "src/assets/hoi4/expanded/Labor Dispute.png": {
+      "bytes": 24771,
+      "sha256": "21791d587c4de3d94cf9d3189b3662f5bcc1a891804304585dcd21fda4711423"
+    },
+    "src/assets/hoi4/expanded/Lantern.png": {
+      "bytes": 6064,
+      "sha256": "f0cebd4c0df7045fcc222abe571fb2e0ee192c4eaf028d9321779b68d47f7a02"
+    },
+    "src/assets/hoi4/expanded/Lightbulb Broken.png": {
+      "bytes": 6407,
+      "sha256": "76ef611efdabed066fe013c413ff85b936773900dda7e5a1e420b882d4980b8e"
+    },
+    "src/assets/hoi4/expanded/Magician.png": {
+      "bytes": 8476,
+      "sha256": "e6991a3622cd388f9ccf290f1ece017d4cf9693526a8d04bdbcd7625e6e85d2f"
+    },
+    "src/assets/hoi4/expanded/Magnifying Glass.png": {
+      "bytes": 5505,
+      "sha256": "bea177a67a7890adbdb4c79ad689e2d4e271a8db3216f77295e6c46aec7f8674"
+    },
+    "src/assets/hoi4/expanded/Man Trenchcoat.png": {
+      "bytes": 21277,
+      "sha256": "509c7fda08357bf889c9c6bfbdb8f5f598e8bc7866f6e279597862e53a0693d0"
+    },
+    "src/assets/hoi4/expanded/Map with Arrow.png": {
+      "bytes": 20933,
+      "sha256": "ef36c0b1634fde0b29d0f1f7a0f09f01def66d3a7fb829d48bedfcbf01393490"
+    },
+    "src/assets/hoi4/expanded/Map with Knife.png": {
+      "bytes": 27307,
+      "sha256": "c19b1ccbd1900690a71cae2759a6654b08e34d118c5006a71f9f7146b022d0bb"
+    },
+    "src/assets/hoi4/expanded/Marriage.png": {
+      "bytes": 9265,
+      "sha256": "19898ac1617d4a225d06c3f80d6486b5dd386d8c59b5518cff70c3a474511a70"
+    },
+    "src/assets/hoi4/expanded/Mask with Knife.png": {
+      "bytes": 6208,
+      "sha256": "47e7ab7abf3c87a8e7c9f59e149f7d721913bdff10bc0aa8515256d976f07a12"
+    },
+    "src/assets/hoi4/expanded/Megaphone Twins.png": {
+      "bytes": 19829,
+      "sha256": "c79fecfd54b6da095cfc8e1d2d8b405bdd4261794ef7e887b3f7ef64322a437d"
+    },
+    "src/assets/hoi4/expanded/Megaphone.png": {
+      "bytes": 17277,
+      "sha256": "c9a66e418926e79061299f3d43dd2869009a28167a5575f572fdff66acb74a8d"
+    },
+    "src/assets/hoi4/expanded/Megaphone2.png": {
+      "bytes": 5242,
+      "sha256": "ce305217f2a04f73908c441b1ec84a2a594b2219a89de3bf820c0ddd2fe80da4"
+    },
+    "src/assets/hoi4/expanded/Megaphone3.png": {
+      "bytes": 5242,
+      "sha256": "439bd2cb9e4798db6245b54231527ac1a4bb2699050ff11718b0eaa0547ef4e4"
+    },
+    "src/assets/hoi4/expanded/Moon.png": {
+      "bytes": 23012,
+      "sha256": "9bb0e7418167269f733e6a4cf97a0f590437c2fef98eeb6ab32742a25a62665f"
+    },
+    "src/assets/hoi4/expanded/Nuclear Atom 2.png": {
+      "bytes": 8069,
+      "sha256": "abd63a848d9b431678db1a5b57f24333fba57e1c9bbfeea64f89cedad07be374"
+    },
+    "src/assets/hoi4/expanded/Nuclear Atom.png": {
+      "bytes": 28104,
+      "sha256": "f8c0020f4eb6fec666e972c72ab88bf456efec6a5129d2e24186354cff3a8b6a"
+    },
+    "src/assets/hoi4/expanded/Officer.png": {
+      "bytes": 21071,
+      "sha256": "3fd803b8d0c7c74f41a3d42b66fe1eee972abe5aa3bf0eb3d29ea86096e81b7f"
+    },
+    "src/assets/hoi4/expanded/Padlock.png": {
+      "bytes": 16619,
+      "sha256": "33cb21220273a04d5305570823110480230bf5cd7497dd1c36145d39d62a84a6"
+    },
+    "src/assets/hoi4/expanded/Palace Chinese.png": {
+      "bytes": 7979,
+      "sha256": "0660f4ba78c6e2d70084e3fc72e55e0a13e1b466a5405a7760f2b94929a6a6ff"
+    },
+    "src/assets/hoi4/expanded/Paper Sign.png": {
+      "bytes": 18909,
+      "sha256": "e623b233c2ba688421edd3048ce4940073014ed6b423039b77c9e35c6006a8b0"
+    },
+    "src/assets/hoi4/expanded/Paper Torn.png": {
+      "bytes": 19191,
+      "sha256": "fd75c6aa2f7bc4108dcf2807c16ae8fef27fcfc4aa55a557a55d5ac532c42539"
+    },
+    "src/assets/hoi4/expanded/Paper.png": {
+      "bytes": 19520,
+      "sha256": "f702a6971726ba0608f75cb71a90fc8f0ac0cc0474a2cd5ca172330dbf3c803c"
+    },
+    "src/assets/hoi4/expanded/Parliament.png": {
+      "bytes": 8445,
+      "sha256": "c6e3b610167c239d3c39809156fd08a8799834f53020f7ac797d3d346a6d9993"
+    },
+    "src/assets/hoi4/expanded/Pedestal.png": {
+      "bytes": 15611,
+      "sha256": "c3b3b10fe08f1157cfd1ad4559349ecc2a9ca7fde86fbdd2251d7e6baa773f7e"
+    },
+    "src/assets/hoi4/expanded/Pentagon.png": {
+      "bytes": 28003,
+      "sha256": "4cdd7846b75382824b6c70f857ad49b20cd79133084baea0d2de9e55d738beaf"
+    },
+    "src/assets/hoi4/expanded/Plant.png": {
+      "bytes": 17446,
+      "sha256": "670290cab7992649e25b42d546cc4a73a020b906147ccca42b2f7b711adce973"
+    },
+    "src/assets/hoi4/expanded/Politicians Fighting.png": {
+      "bytes": 20916,
+      "sha256": "2c4adaa5c715aaed0033c5240a4e1771b69d108c2bde53db763e6e8614e2989c"
+    },
+    "src/assets/hoi4/expanded/Power Plant.png": {
+      "bytes": 5390,
+      "sha256": "b3b6ea27284b3ff043f4c7e5739ee928bbf179df1a2dbb324e7c27b0cb93218f"
+    },
+    "src/assets/hoi4/expanded/Prepared Defence.png": {
+      "bytes": 20413,
+      "sha256": "837cfd25442ec1db4adcfd0817c00514ff373c1aeb565169e7c2c6570f5b1d9f"
+    },
+    "src/assets/hoi4/expanded/Puppeter.png": {
+      "bytes": 18037,
+      "sha256": "60b2a35ee5704cf9267d309741ebb9a41929eb0662a45545c213015e776c3015"
+    },
+    "src/assets/hoi4/expanded/Rebellion.png": {
+      "bytes": 22475,
+      "sha256": "e52ff023c8db1defefa668fafba17725a984a4025af34432dd7bf391aca0f1f2"
+    },
+    "src/assets/hoi4/expanded/Rifle.png": {
+      "bytes": 17604,
+      "sha256": "eba4bcf7a2820287ed68c4df4569dc694b47b6473101a9bcbb8bf95426772dab"
+    },
+    "src/assets/hoi4/expanded/Rose.png": {
+      "bytes": 8292,
+      "sha256": "6876115eba3a289f799e5c6dd58f9bef707f2a21a5fada1d4b4bf5e726251ca6"
+    },
+    "src/assets/hoi4/expanded/Rose2.png": {
+      "bytes": 4951,
+      "sha256": "f40d5f51c5e6675c4065135d48fb35de00f0e7f766f86a06e8b19c588ca34b4b"
+    },
+    "src/assets/hoi4/expanded/Scales Golden.png": {
+      "bytes": 20919,
+      "sha256": "017ad3f66ffce791e33b1d396ef940556e65031f6e82ba4ccccf1225681bb680"
+    },
+    "src/assets/hoi4/expanded/Scales.png": {
+      "bytes": 21187,
+      "sha256": "c0ac5a1a677c551cc40fcbf7f3a1cde31b000368793aafc070117c1ed24a27b4"
+    },
+    "src/assets/hoi4/expanded/Shackles.png": {
+      "bytes": 20060,
+      "sha256": "42e4630dea9ea5054fa87828a686c648a6909ba0d899faf69aab221e92a5f1da"
+    },
+    "src/assets/hoi4/expanded/Shield Forward.png": {
+      "bytes": 21403,
+      "sha256": "7f08c4720760ebe5f2a7e51a20c43e2cc5c5493afe8365fce7cf1c2729e7c160"
+    },
+    "src/assets/hoi4/expanded/Shield Forward2.png": {
+      "bytes": 22667,
+      "sha256": "2f42986d44d76127f89ccbd162f1f8a7e0d0d11a3b1bef9ae82f78914920b9f0"
+    },
+    "src/assets/hoi4/expanded/Shield Forward3.png": {
+      "bytes": 17997,
+      "sha256": "61e37e7fd947c2d9fdf05e54b9199d3bb465f78edd99b064e2b67510b3283a65"
+    },
+    "src/assets/hoi4/expanded/Shield.png": {
+      "bytes": 19865,
+      "sha256": "a8afd464c5401e8489cdd632362a5c2b576385cb5fef22cfdb310d590ac94e02"
+    },
+    "src/assets/hoi4/expanded/Shop.png": {
+      "bytes": 16602,
+      "sha256": "f068e7dddf7cd9a04040e2d2f13be83dc55879010bfbf6cd3c26b58c1ec2ebf9"
+    },
+    "src/assets/hoi4/expanded/Skull.png": {
+      "bytes": 18876,
+      "sha256": "d8fcfb81de11c5886bd71e6fc124b7c8078b35a1ba7a3164273a55a10e7e740a"
+    },
+    "src/assets/hoi4/expanded/Skull2.png": {
+      "bytes": 20868,
+      "sha256": "65355e5f61761c2f758a632f58ac82d519ce1e7c182172f3183f4e842af8060e"
+    },
+    "src/assets/hoi4/expanded/Skulls.png": {
+      "bytes": 10659,
+      "sha256": "fd2d4e18f85b4499d0401f37ae0350cafd9b0aa127854ece69791da404866285"
+    },
+    "src/assets/hoi4/expanded/Smoke.png": {
+      "bytes": 5625,
+      "sha256": "77aba89f759639f8bd074fde0a2ef4acfdaf23f8f2f4453f9219b3da3f3c0ef9"
+    },
+    "src/assets/hoi4/expanded/Soldier Pointing.png": {
+      "bytes": 21092,
+      "sha256": "0c6b3d567e6f713a87f57b56f592bc2190e9d6eb1fae4cebde771662bcebb40a"
+    },
+    "src/assets/hoi4/expanded/Soldier Saluting.png": {
+      "bytes": 18206,
+      "sha256": "bc620d5d5d9d50b4e9d5245c9f58176fa17471e2c2a5da9569f7e23ecb37423c"
+    },
+    "src/assets/hoi4/expanded/Soldier.png": {
+      "bytes": 20142,
+      "sha256": "827a1b034f70349447fbfc3e6e7ce348a961f7a720074d46483405206ae880b2"
+    },
+    "src/assets/hoi4/expanded/Soldier2.png": {
+      "bytes": 19849,
+      "sha256": "81471b3775a2035387da92742526ee63f51c213e43d5afed373a3ce83f109d36"
+    },
+    "src/assets/hoi4/expanded/Soldier3.png": {
+      "bytes": 21062,
+      "sha256": "d7c5deace5bf276731866b5df32fd63dc8229f866e66fa4ca066bf6fe9d30794"
+    },
+    "src/assets/hoi4/expanded/Soldier4.png": {
+      "bytes": 21282,
+      "sha256": "f8c0292675e3e24aa2ba5a38849e1a87c74611ce39ebb36054a0c02ecdd99b1a"
+    },
+    "src/assets/hoi4/expanded/Soldier5.png": {
+      "bytes": 20189,
+      "sha256": "f522dd329c82103af1e149f7393f36f83ba9337f88261ad45f2e33a0b382bd37"
+    },
+    "src/assets/hoi4/expanded/Soldiers Charging.png": {
+      "bytes": 16982,
+      "sha256": "a2294bba96179b8d348fb3cb6a975107ccd994e996b2f1a9d910855154b50d30"
+    },
+    "src/assets/hoi4/expanded/Soldiers in Rows.png": {
+      "bytes": 6069,
+      "sha256": "438764f0fd3cc8e940aa67ec3934bb881c7d6e1a70339f9b289270c788d0cf7e"
+    },
+    "src/assets/hoi4/expanded/Spy.png": {
+      "bytes": 18800,
+      "sha256": "50bc2238ab21e99f4b87268f5c00aca3e20dba7505cf2f76f8bed7eb198536cd"
+    },
+    "src/assets/hoi4/expanded/Spy2.png": {
+      "bytes": 18954,
+      "sha256": "883f704c3d32d37da74744d4c9e0a459671c22867ce87f3fb606f48a1c6465a1"
+    },
+    "src/assets/hoi4/expanded/Spy3.png": {
+      "bytes": 19539,
+      "sha256": "fd76af90b13e72b58d9f17864c57f733338f66e878892c60fff1ff8ae50a09d8"
+    },
+    "src/assets/hoi4/expanded/Star Broken.png": {
+      "bytes": 19246,
+      "sha256": "745ea68268b036b5196e01ff41bf8ee5d362d75b227175cc59805cc4918ba053"
+    },
+    "src/assets/hoi4/expanded/Star Red with Sickle.png": {
+      "bytes": 20263,
+      "sha256": "41f06252f079403fa35ee0282eafc04e64a4804d9e3fe2dba2789009e3872463"
+    },
+    "src/assets/hoi4/expanded/Star Red.png": {
+      "bytes": 18673,
+      "sha256": "472d3dae0e1da4e2d09e1fbbf858462cee9a9a658e96ffa7d77790feb6eeaddc"
+    },
+    "src/assets/hoi4/expanded/Star Red2.png": {
+      "bytes": 21816,
+      "sha256": "83a8eff184234c129282c43ab18ce7b30145daf6d76d95e534c21f6b13b537ed"
+    },
+    "src/assets/hoi4/expanded/Star Red3.png": {
+      "bytes": 7272,
+      "sha256": "a67bd19e0548ab7b50319d5d6d8fc75d291797f6635dd0c77d764a7c10017270"
+    },
+    "src/assets/hoi4/expanded/Star White.png": {
+      "bytes": 7944,
+      "sha256": "bfe560952d5c0ba3867884ff54bfda836da96dff8a8c9acbabc637a12113fc5a"
+    },
+    "src/assets/hoi4/expanded/Star and Crescent.png": {
+      "bytes": 17656,
+      "sha256": "bf597cbd9eb7a9e3eca1c60521caadfd53626b2ed9bff5ca552c6edea95f5fbd"
+    },
+    "src/assets/hoi4/expanded/Star and Crescent2.png": {
+      "bytes": 7260,
+      "sha256": "8e5fac6dc4ba847aebc785e3bd30de5a724c2fee8104f5aeb4e07f229dc978da"
+    },
+    "src/assets/hoi4/expanded/Star.png": {
+      "bytes": 18537,
+      "sha256": "a48c1fa60bd396acdd292c28cf0c2cd77e9645aefc86b92574abab4498c16b92"
+    },
+    "src/assets/hoi4/expanded/Sun Aktau.png": {
+      "bytes": 8475,
+      "sha256": "9b8ab6649942e7513e161f54fde7f77f805768390c8f264bcdfd564d10d30b60"
+    },
+    "src/assets/hoi4/expanded/Sun Argentinian.png": {
+      "bytes": 15095,
+      "sha256": "a33a574f0e2e15393d4e7ad734af1d3751f01348a3f76f02356a68b0d6b448d4"
+    },
+    "src/assets/hoi4/expanded/Sun Black.png": {
+      "bytes": 11817,
+      "sha256": "afba811c4bde4d5a80df4e1b9c7a196355026be8c3df695a39a607df96cb9a1f"
+    },
+    "src/assets/hoi4/expanded/Sun Tzu.png": {
+      "bytes": 7384,
+      "sha256": "e33c9aab664782f4ac3828fac8770ee24d7087012dfe4ad8a183fc7cb9947e7e"
+    },
+    "src/assets/hoi4/expanded/Sun.png": {
+      "bytes": 8880,
+      "sha256": "3a034e22b2385040dd1a845fa5a88a3af006cbc88e9c66efe55cdc591f151be0"
+    },
+    "src/assets/hoi4/expanded/Sunglasses.png": {
+      "bytes": 3863,
+      "sha256": "fed3d9b455adecc5a84468c49765e9dad0ba269f1f4cc4141c69fa375757009d"
+    },
+    "src/assets/hoi4/expanded/Torch Gold.png": {
+      "bytes": 17670,
+      "sha256": "dfacf9fd7ecf037d8425420e481d251ee9e89bce7988ecb9fb0d9e6d2266eb3d"
+    },
+    "src/assets/hoi4/expanded/Vault.png": {
+      "bytes": 20690,
+      "sha256": "7736ad82712d29b0bd42038d2bb041bd8a2637c5b38b4de884831f373778efbf"
+    },
+    "src/assets/hoi4/expanded/Vial Shared.png": {
+      "bytes": 21895,
+      "sha256": "e2c9dd9da93692c3043d38ba76e94447facade6b4294cc0fd4d4b0c42e0db3ce"
+    },
+    "src/assets/hoi4/expanded/Vial.png": {
+      "bytes": 17238,
+      "sha256": "eaeaf724c4d23e8b9ed98527d27ac9156138a51dc2c1f3cd1ada3d7b4edc239a"
+    },
+    "src/assets/hoi4/expanded/Walkie Talkie.png": {
+      "bytes": 8918,
+      "sha256": "a546e7ab196ffff292af5c64d75e4cbf3f6e31a9d09d2f1a1c2391f587c12a85"
+    },
+    "src/assets/hoi4/expanded/Wall.png": {
+      "bytes": 12491,
+      "sha256": "bbb4a53eecf03c0dfc7a6c73233308ab5e7f530b883d6622269af516ae1f4bc7"
+    },
+    "src/assets/hoi4/expanded/White House.png": {
+      "bytes": 9841,
+      "sha256": "b7d08f3e049b8a775bbf140578ea6743bb7217be584639fa503ddc4f9877703b"
+    },
+    "src/assets/hoi4/expanded/Woman Dancing.png": {
+      "bytes": 7653,
+      "sha256": "35a44208b966be65d2ad46e01328c62faf9dbb7b26f08135e9032e39880d1e36"
+    },
+    "src/assets/hoi4/expanded/Worker.png": {
+      "bytes": 17412,
+      "sha256": "ce24044539a35f6355c012450c02910e5957281391ff85ca9d88f017ea0d87ff"
+    },
+    "src/assets/hoi4/expanded/Wrench.png": {
+      "bytes": 18240,
+      "sha256": "8bb9e9f9322f567f6ac8a8d50b2aa186845d56c3ffc638a16f8e6ff29a10d09f"
+    },
+    "src/assets/hoi4/expanded/Wrenches Crossed.png": {
+      "bytes": 20582,
+      "sha256": "73e8577b06e02cb2c30d2d675f9b310e8532bc31c4889837ccb77292dfa1b94a"
+    },
+    "src/assets/hoi4/focus-backgrounds/Prison.png": {
+      "bytes": 35033,
+      "sha256": "10ad99042e079baff0d718ec488a49672e253078c20b6aa2cfaaee53d9ba9a21"
+    },
+    "src/assets/hoi4/focus-backgrounds/Ring Gold.png": {
+      "bytes": 9897,
+      "sha256": "1b29ce33d3dafd48f7a2a24f5e8885039a0a5a8fea7fd60bb7598bd8b5867307"
+    },
+    "src/assets/hoi4/focus-backgrounds/Ring Silver.png": {
+      "bytes": 11280,
+      "sha256": "c3247593f073e4c6831f27f256dc0fa1ba6061a44040d6516b9626075c829c9e"
+    },
+    "src/assets/hoi4/focus-backgrounds/Square Image.png": {
+      "bytes": 32253,
+      "sha256": "f75a87345e39f0b52ba93e97b1d189679f06a8eef0a4210e3f44a193afd1d689"
+    },
+    "src/assets/hoi4/focus-backgrounds/Star.png": {
+      "bytes": 29082,
+      "sha256": "8947b4f916bc72737b0cd46c4185025d2395c055ef4f1a108429a4c295f7dd7b"
+    },
+    "src/assets/hoi4/focus-backgrounds/Wreath Communist.png": {
+      "bytes": 33471,
+      "sha256": "c58aed1ebe40ab1a81dd74a32deba5ccf0a3b76649e6f3e365e485324bd9f7e1"
+    },
+    "src/assets/hoi4/pieces/Ballot.png": {
+      "bytes": 26035,
+      "sha256": "e9168b09c1623d488a560f6276e18b259e624cb70915af461c556674a7554900"
+    },
+    "src/assets/hoi4/pieces/Banner.png": {
+      "bytes": 18081,
+      "sha256": "d14c6b9ef49367f98f230ae576d4851204667385dbe6ebbbc27900e707d0ece8"
+    },
+    "src/assets/hoi4/pieces/Bear.png": {
+      "bytes": 21310,
+      "sha256": "b282e3a8c123ee29e4b8265dc27bea54636e4ddc0eedf3a968ef39a7ed216e58"
+    },
+    "src/assets/hoi4/pieces/Blueprints.png": {
+      "bytes": 5253,
+      "sha256": "1d75e423748392240bd246dc9681b2787c8f0c19c6200bf4a412a14809def3e4"
+    },
+    "src/assets/hoi4/pieces/Book Open.png": {
+      "bytes": 8209,
+      "sha256": "b8f601a26d8e0ad7f8eecdccca2c447a59921e15aa05bb0078142b803ed25e9d"
+    },
+    "src/assets/hoi4/pieces/Book.png": {
+      "bytes": 18442,
+      "sha256": "b2e7e51e79acaeaef614c430a33a0a4fb72b81f14bfc535f27ff7264b28802f9"
+    },
+    "src/assets/hoi4/pieces/Brush.png": {
+      "bytes": 18435,
+      "sha256": "ef05bee1b2100bc27676ae74462ffbf95c681e8b63f51f4a50c0a09314912182"
+    },
+    "src/assets/hoi4/pieces/Building.png": {
+      "bytes": 16768,
+      "sha256": "4a2327941cd658b39483a20a14431f9bbf185bd777ca78dda2b1eb3d6f30c47f"
+    },
+    "src/assets/hoi4/pieces/Bunker.png": {
+      "bytes": 19586,
+      "sha256": "5baa7ba9831498b8fe0ca4357597a6b3480bc208df2e3d071897e7391d6a0520"
+    },
+    "src/assets/hoi4/pieces/Capitol.png": {
+      "bytes": 17372,
+      "sha256": "f9b452ff2eba758d7ca348d1aa2f4e5b48481229502f586a6250d8bdb24da3ac"
+    },
+    "src/assets/hoi4/pieces/Cash Fan.png": {
+      "bytes": 14328,
+      "sha256": "0bf15070854a7d305ae19e9b87bf47d132bb11af18b048aea4b281c03472fdb3"
+    },
+    "src/assets/hoi4/pieces/Cash Flow Negative.png": {
+      "bytes": 21755,
+      "sha256": "88cc43d7e42356fa61f3be9b8a119f30a168c938b67425356022ed7a4dd762ea"
+    },
+    "src/assets/hoi4/pieces/Circular Arrows.png": {
+      "bytes": 22609,
+      "sha256": "49d17868495b84cabeef78c85a2111adf8d325a5b76a0cb72973f51f9150f4c4"
+    },
+    "src/assets/hoi4/pieces/Clock.png": {
+      "bytes": 25521,
+      "sha256": "139708d9526db928325f05a60c70585a336bf0c70cea4fea119fa0ff4533d145"
+    },
+    "src/assets/hoi4/pieces/Computer.png": {
+      "bytes": 5846,
+      "sha256": "fb6041516f36c08bca54ab8d2d7b2d9609dbb8d60444ef2458a8b455a44e6a72"
+    },
+    "src/assets/hoi4/pieces/Documents Classified.png": {
+      "bytes": 9958,
+      "sha256": "6ac68cda3d2807bff161e4cfdab6806b4ef95d40168f5759d60ba16a685b04d2"
+    },
+    "src/assets/hoi4/pieces/Factories.png": {
+      "bytes": 18250,
+      "sha256": "c5941a2cdedef9b320db71ebdfc10cacc1b50a2cb64fc03a250d2d79201ef4ea"
+    },
+    "src/assets/hoi4/pieces/Fire.png": {
+      "bytes": 21908,
+      "sha256": "9de9b6bad8ba36e06e91ce6fde1c3a8a7e1475df05da7c9e8a08b51bff966523"
+    },
+    "src/assets/hoi4/pieces/Fist Colored.png": {
+      "bytes": 18802,
+      "sha256": "418810ee68918d498889653ee585ee8027030e46d0a43d5546d0a7d11d3950fe"
+    },
+    "src/assets/hoi4/pieces/Guillotine.png": {
+      "bytes": 20611,
+      "sha256": "5ee8d6fc49125ed42606598371c6663882b8595aa50ccf13dc83d39c062345cc"
+    },
+    "src/assets/hoi4/pieces/Hand Writing.png": {
+      "bytes": 17299,
+      "sha256": "7bffca5437c42ebbc75cee8374e0fb1fb3c083c0ee45b8e24636410211a6a72e"
+    },
+    "src/assets/hoi4/pieces/Handcuffs Broken.png": {
+      "bytes": 17112,
+      "sha256": "9e023cf0d0eae70c4a8a35d9d0994a6b654414b93e2eb034de5f67ec94e724dc"
+    },
+    "src/assets/hoi4/pieces/Hands Shaking.png": {
+      "bytes": 18080,
+      "sha256": "33da602c5a3ff1ee05077afdb7d12f13b7a94a0cbc296bb97330f0becd5cbb25"
+    },
+    "src/assets/hoi4/pieces/Hands Shaking2.png": {
+      "bytes": 12260,
+      "sha256": "9d1fbb2ce55441a46eda17392d7248be5b15db52bff1cfd52a4d7dec3dc9372d"
+    },
+    "src/assets/hoi4/pieces/Karl Marx.png": {
+      "bytes": 25499,
+      "sha256": "b64d58f0fabeba23f938cf13c842acec75bc7bd92077de9d92601d0c14e78dbd"
+    },
+    "src/assets/hoi4/pieces/Map with Knife.png": {
+      "bytes": 27307,
+      "sha256": "c19b1ccbd1900690a71cae2759a6654b08e34d118c5006a71f9f7146b022d0bb"
+    },
+    "src/assets/hoi4/pieces/Megaphone.png": {
+      "bytes": 17277,
+      "sha256": "c9a66e418926e79061299f3d43dd2869009a28167a5575f572fdff66acb74a8d"
+    },
+    "src/assets/hoi4/pieces/Padlock.png": {
+      "bytes": 16619,
+      "sha256": "33cb21220273a04d5305570823110480230bf5cd7497dd1c36145d39d62a84a6"
+    },
+    "src/assets/hoi4/pieces/Paper.png": {
+      "bytes": 19520,
+      "sha256": "f702a6971726ba0608f75cb71a90fc8f0ac0cc0474a2cd5ca172330dbf3c803c"
+    },
+    "src/assets/hoi4/pieces/Parliament.png": {
+      "bytes": 8445,
+      "sha256": "c6e3b610167c239d3c39809156fd08a8799834f53020f7ac797d3d346a6d9993"
+    },
+    "src/assets/hoi4/pieces/Rifle.png": {
+      "bytes": 17604,
+      "sha256": "eba4bcf7a2820287ed68c4df4569dc694b47b6473101a9bcbb8bf95426772dab"
+    },
+    "src/assets/hoi4/pieces/Rose.png": {
+      "bytes": 8292,
+      "sha256": "6876115eba3a289f799e5c6dd58f9bef707f2a21a5fada1d4b4bf5e726251ca6"
+    },
+    "src/assets/hoi4/pieces/Scales Golden.png": {
+      "bytes": 20919,
+      "sha256": "017ad3f66ffce791e33b1d396ef940556e65031f6e82ba4ccccf1225681bb680"
+    },
+    "src/assets/hoi4/pieces/Shield Forward.png": {
+      "bytes": 21403,
+      "sha256": "7f08c4720760ebe5f2a7e51a20c43e2cc5c5493afe8365fce7cf1c2729e7c160"
+    },
+    "src/assets/hoi4/pieces/Soldier Saluting.png": {
+      "bytes": 18206,
+      "sha256": "bc620d5d5d9d50b4e9d5245c9f58176fa17471e2c2a5da9569f7e23ecb37423c"
+    },
+    "src/assets/hoi4/pieces/Spy.png": {
+      "bytes": 18800,
+      "sha256": "50bc2238ab21e99f4b87268f5c00aca3e20dba7505cf2f76f8bed7eb198536cd"
+    },
+    "src/assets/hoi4/pieces/Star Red.png": {
+      "bytes": 18673,
+      "sha256": "472d3dae0e1da4e2d09e1fbbf858462cee9a9a658e96ffa7d77790feb6eeaddc"
+    },
+    "src/assets/hoi4/pieces/Train.png": {
+      "bytes": 6367,
+      "sha256": "e382e6113b8dee66324e36e1a6c88f3a99aecf3e6a00fd2c808a1b4b96cb18c8"
+    },
+    "src/assets/hoi4/spirit-backgrounds/Army.png": {
+      "bytes": 19064,
+      "sha256": "8212547a0fba2e2188d158b74c0e1fe2d44549b1efe425868e2506f38594c163"
+    },
+    "src/assets/hoi4/spirit-backgrounds/Bars.png": {
+      "bytes": 23851,
+      "sha256": "4ee87b024c3436a6116ed17c6b50891183b9242d40ca38fc97fa38f17c6b29a9"
+    },
+    "src/assets/hoi4/spirit-backgrounds/Circle.png": {
+      "bytes": 25055,
+      "sha256": "11004efa4f5cafa05524bd1293d6fc464b42c0e33f0dd740a67de4c52bf17804"
+    },
+    "src/assets/hoi4/spirit-backgrounds/Diamonds.png": {
+      "bytes": 33132,
+      "sha256": "8339e04cfde97cb98513acff97005a520c9406b0ad80a70915acb64b310fe4d1"
+    },
+    "src/assets/hoi4/spirit-backgrounds/Fire.png": {
+      "bytes": 6364,
+      "sha256": "185530c5caac9a978115595533b900033ee043afab5246af1bae857ff9fcdfdb"
+    },
+    "src/assets/hoi4/spirit-backgrounds/Intrigue.png": {
+      "bytes": 20003,
+      "sha256": "d064c979601978a843dfa80929aa5521c3eec241d41f963f79bf8077eb19e965"
+    },
+    "src/assets/hoi4/spirit-backgrounds/Losange.png": {
+      "bytes": 24170,
+      "sha256": "27469e0c02673b96898a0044294698891fa0392bdbaf2099b5fbe3136f7fa423"
+    },
+    "src/assets/hoi4/spirit-backgrounds/Military Police.png": {
+      "bytes": 21877,
+      "sha256": "16b2cbb5ed75e1631137ffb96e54ced1b57d0f86cadeb7cd56d816162d192471"
+    },
+    "src/assets/hoi4/spirit-backgrounds/Pentagon.png": {
+      "bytes": 21583,
+      "sha256": "f77aae44d4b515459b2ceacc1c08ccf6a302bbc5a52fa4923d8f3f5dd6fc56c2"
+    },
+    "src/assets/hoi4/spirit-backgrounds/Polygon.png": {
+      "bytes": 25163,
+      "sha256": "66656bddf436916abc4f5c04388df06350bda08f09fffe2cf7cbb026440e3643"
+    },
+    "src/assets/hoi4/spirit-backgrounds/Rectangle 2.png": {
+      "bytes": 6538,
+      "sha256": "2bf8217b4208e5f271dcdef69166175e50ddfb8d4b399fe5aac43bb7cdad27b4"
+    },
+    "src/assets/hoi4/spirit-backgrounds/Rectangle.png": {
+      "bytes": 23061,
+      "sha256": "d4ff1a1912d042b0939e39e1b632598b1e00435f6ed322563905e0a23ec8e37d"
+    },
+    "src/assets/hoi4/spirit-backgrounds/Ring.png": {
+      "bytes": 24856,
+      "sha256": "fbfc8665050dedc0e720fe3e6865a9da91886887acaf6c62bd072f3c4159a360"
+    },
+    "src/assets/hoi4/spirit-backgrounds/Rows.png": {
+      "bytes": 11479,
+      "sha256": "d3eb5cc90005d5f014fbebd8354a97aa8abcfd27db5c3adc9f766618f7c7aec1"
+    },
+    "src/assets/hoi4/spirit-backgrounds/Shield Blue.png": {
+      "bytes": 6886,
+      "sha256": "a9b1fb64ab7c75395f3ba86fa8ea049a48f585eb1d4ce6ae30b58312822e4785"
+    },
+    "src/assets/hoi4/spirit-backgrounds/Shield.png": {
+      "bytes": 21808,
+      "sha256": "ce2c9b992a6a20833320244c7f26cc7ef5e99867e5385ac9282498fb968779e5"
+    },
+    "src/assets/hoi4/spirit-backgrounds/Sun.png": {
+      "bytes": 22731,
+      "sha256": "c7dc27ae572000005cd960046aa7c5de59493e82abe5d51bcbd83f78e76edf29"
+    },
+    "src/assets/hoi4/spirit-backgrounds/Upgrade.png": {
+      "bytes": 20273,
+      "sha256": "ee10e2be8977bf5832a6d7c688188eda7f776ad1051ddd747e241328ec88fdcb"
+    },
+    "src/assets/loading/B3革命.webp": {
+      "bytes": 162944,
+      "sha256": "45d6c0a175c5ec378096ef5dec5077a295c62a4e4eb2ffe8e21588ff9d3ded2a"
+    },
+    "src/assets/loading/内卷.webp": {
+      "bytes": 130444,
+      "sha256": "ae87f2310371c852801bc01fbd92f283fefe10a202f5252e0af33544e116ab3d"
+    },
+    "src/assets/loading/军训.webp": {
+      "bytes": 506180,
+      "sha256": "eba6f5228520278402eb42a79520612eb18cb1374aeaddb3de77c053656a9e54"
+    },
+    "src/assets/loading/及第之梦.webp": {
+      "bytes": 273598,
+      "sha256": "544bfb48d8c7779d9653a01c613f27d717b2caff9f3af3d42fad02a9184b6f38"
+    },
+    "src/assets/loading/合一之春.webp": {
+      "bytes": 298052,
+      "sha256": "f84243ae2b0ab0280c5aabc1b194f09f2b5f6f95a3e46c0d0bdc805c8865ca79"
+    },
+    "src/assets/loading/合一之春2.webp": {
+      "bytes": 330360,
+      "sha256": "0529b6c8a0179018cebbb47990850ddf7b5c48df25bdf6208ec24b49ad41eda8"
+    },
+    "src/assets/loading/合一文革.webp": {
+      "bytes": 301748,
+      "sha256": "05b0e8be3c902159fdae80850e797113bc30d239bcb9644fcd6d3c04012e5c8b"
+    },
+    "src/assets/loading/合一文革2.webp": {
+      "bytes": 228204,
+      "sha256": "36693275bc16eacc03b3d0fd5fb0a086d4a7cea8bc5db97e339920dc7c5ebbc8"
+    },
+    "src/assets/loading/合一陨落.webp": {
+      "bytes": 229292,
+      "sha256": "e3392a94bb11f3dac25a35b75f73c0a610bab400ba26d8f0c7e8c4c9629521d8"
+    },
+    "src/assets/loading/封安保时代.webp": {
+      "bytes": 189936,
+      "sha256": "e0ab191a1c9465e6154d331605c7e52959b957bda3ff6e3df70ca45c3000a119"
+    },
+    "src/assets/loading/批斗.webp": {
+      "bytes": 107882,
+      "sha256": "0f28b4a5577773022556ec8e9085c03d85711bf5ca08b2622e79b4c6e02b49ff"
+    },
+    "src/assets/loading/校园涂鸦1.webp": {
+      "bytes": 475114,
+      "sha256": "bb3a2994a5f6595e450f7954a3df29a617966936df64e0e7755fd2de61daba53"
+    },
+    "src/assets/loading/校园涂鸦2.webp": {
+      "bytes": 545198,
+      "sha256": "ae0976237a1ab5489e87e40b245f7cfbfcb34e9884019ba912fe4a98e9516908"
+    },
+    "src/assets/loading/清场.webp": {
+      "bytes": 132390,
+      "sha256": "3f468860c58b94f2cc7c41a2d3b11b5ddef957e529149e853e8c10894c6bf83c"
+    },
+    "src/assets/loading/特级.webp": {
+      "bytes": 97938,
+      "sha256": "415394c4de06e54e29d8a33b9061416fe68c68cae8933ca06745020d3a3b4cc7"
+    },
+    "src/assets/loading/特级0.webp": {
+      "bytes": 78704,
+      "sha256": "99ae3fdef6075084e9efb9c903c109b860b2c706f170d33027de2f61836394cf"
+    },
+    "src/assets/loading/特级教师.webp": {
+      "bytes": 190852,
+      "sha256": "34a7924a57455ab58ab3bcafa08adccd2099469c68a38c95a9fdf61b74ab1590"
+    },
+    "src/assets/loading/红色风暴.webp": {
+      "bytes": 267056,
+      "sha256": "b3fa0a8c563a234575175d46eff1149a894155f981aaaadf8dad76bc9b4cf589"
+    },
+    "src/assets/loading/行政楼.webp": {
+      "bytes": 315016,
+      "sha256": "18cadf4e7a0986ac5c4cab9121780f18d33fd18036a5d5d9e9c2c698e88ea746"
+    },
+    "src/assets/loading/裤熊逢春.webp": {
+      "bytes": 179812,
+      "sha256": "826ac5b605216c1c93929d5c0afae7169a524a493f8d2e815abfb804f92f1673"
+    },
+    "src/assets/loading/陈栋.webp": {
+      "bytes": 392536,
+      "sha256": "726c5d896a67222b525dc5930be1b0acefc640faf412d40f3d88ba440af46b93"
+    },
+    "src/assets/loading/陈栋与合一.webp": {
+      "bytes": 404290,
+      "sha256": "d72b332fa65faa4c76ff336513fa2e652ac0d3713eb2c017d21031a811b8138b"
+    },
+    "src/assets/portrait-classified.svg": {
+      "bytes": 1158,
+      "sha256": "9e5e5e980873a07c544bccfedd16f5c519b360fda73497b4a9741f4c4f19c314"
+    },
+    "src/assets/portraits/jidi-analyst.svg": {
+      "bytes": 1495,
+      "sha256": "56bcdc45f0b52137b7ee06073cb7c5095b801d79ab1aac949338e6f87e26cd54"
+    },
+    "src/assets/portraits/jidi-investor.svg": {
+      "bytes": 1489,
+      "sha256": "efeb4479088f75a21de99b453fe18546e8f871a015376bfee327e397f0dc84e8"
+    },
+    "src/assets/portraits/jidi-manager.svg": {
+      "bytes": 1495,
+      "sha256": "b2e78618463ef663f3f5300126d7f4244da0bc57e65a2fef8c5eb6f0b3763d5b"
+    },
+    "src/assets/portraits/jidi-partner.svg": {
+      "bytes": 1495,
+      "sha256": "ab3146e98e1bad0fe80347629dbd7e307f91d7c84d9a674d551f3d36687f7c0c"
+    },
+    "src/assets/sfx/KENNEY_LICENSE.txt": {
+      "bytes": 574,
+      "sha256": "f7966c773bbed0eca6a9c75081c44a178b38eae112724dbb5fdfbd4192d118a9"
+    },
+    "src/assets/sfx/SOURCE.md": {
+      "bytes": 504,
+      "sha256": "b3a3c4a1802d70f50bb7b58a535f53e1c8af3c64e7a8c810673aade598d99d4a"
+    },
+    "src/assets/sfx/decision.ogg": {
+      "bytes": 6909,
+      "sha256": "eb6cb435f3f2ab14f85f46a2bdd9073ec511d0f1f8d8c890c6636045703a5fd4"
+    },
+    "src/assets/sfx/error.ogg": {
+      "bytes": 7373,
+      "sha256": "46e67425d16339772e8d328fb36a49426c9467418686e11beeb71ff84b0f6433"
+    },
+    "src/assets/sfx/event.ogg": {
+      "bytes": 15046,
+      "sha256": "bcdca6b5c9c33aa15ca3fb18a1fa8d98a01b528b85be08c5a610e57c75fc022d"
+    },
+    "src/assets/sfx/focus.ogg": {
+      "bytes": 14169,
+      "sha256": "33b17a9a9a2397c62b285c52c33a907fdffb476909c99e42dde603f6a7a8b12c"
+    },
+    "src/assets/sfx/ui.ogg": {
+      "bytes": 4876,
+      "sha256": "ccfb7fa0cccdd9faec0eb16033c732b1e308d139d80f799161495d58f7adcdb9"
+    },
+    "src/assets/superevent/CREDITS.md": {
+      "bytes": 1230,
+      "sha256": "e284d840ecdd7bfa2d9ac52a53da5b66208bd66cabdff06a6f5e886aaeef8928"
+    },
+    "src/assets/superevent/abyss.ogg": {
+      "bytes": 138635,
+      "sha256": "e46e662f04191963c4db9752d3d5d81199c59e61d0e7e7db2655ad39ea5e9cf6"
+    },
+    "src/assets/superevent/cyber_sting.ogg": {
+      "bytes": 201723,
+      "sha256": "aef9c2134d5f0106e28b09fa850f4e56eb92907611bd79e1ee8bbbe2abb5fe31"
+    },
+    "src/assets/superevent/dark_stinger.mp3": {
+      "bytes": 137328,
+      "sha256": "e6431b08e3079cf4614e8b487fdc6605b90ea3d49ac5ebba90911c2c36ed2fbe"
+    },
+    "src/assets/superevent/loss_fanfare.ogg": {
+      "bytes": 51864,
+      "sha256": "e121dabeb5007abc5f24fefa5ea25bc3fadfb70dd0171c54c9a30861ebc2f766"
+    },
+    "src/assets/superevent/orchestral_stinger.mp3": {
+      "bytes": 401298,
+      "sha256": "4e8e3e1673a3a7735c67135722d1ae76028adeb6cc7c416762065605bb83d744"
+    },
+    "src/assets/superevent/sad_stinger.mp3": {
+      "bytes": 252667,
+      "sha256": "4781ef129154fc641019fea085257d904e1cca54c7b3a85d6e010d418a8e3425"
+    },
+    "src/assets/superevent/success_stinger.mp3": {
+      "bytes": 676048,
+      "sha256": "c301d00bff14afe1cf72749c3616e734ec153079de9170929cb4c05f623571b3"
+    },
+    "src/assets/superevent/victory_fanfare.ogg": {
+      "bytes": 79787,
+      "sha256": "f4fef9e93a3636ae7245279b52b7f3398285d80971980e099cf64aec054bea41"
+    },
+    "src/assets/ui/game-logo.webp": {
+      "bytes": 371944,
+      "sha256": "5209ebbfb49f750078fc1db9dda3343aadb95c02b523b13273a5008a493aeb1d"
+    },
+    "src/assets/ui/studio-logo.webp": {
+      "bytes": 146780,
+      "sha256": "73a3d9ff890eeb65cb5f566576529b488cb225a82af78dbcd2eecc098ca44c35"
+    },
+    "src/command.css": {
+      "bytes": 29856,
+      "sha256": "d783d8110f3371d17fb805d79e9051f17dd865c3321a47e0cc6a935e6d4ee68a"
+    },
+    "src/components/AudioDock.tsx": {
+      "bytes": 10074,
+      "sha256": "35fbbaa61283289af5a3fa214139c2731e940623b8517da15e7de1cf96722d9e"
+    },
+    "src/components/CentralMap.tsx": {
+      "bytes": 42281,
+      "sha256": "1e95faf5bb785d088dab53d814e3be667384f1b61e82c064950c695bc8b2abf6"
+    },
+    "src/components/CharacterProfile.tsx": {
+      "bytes": 1194,
+      "sha256": "bf27eca9ffe6b663a76bba6f2c1f85433b44f4e4a9332032afb79b389eb3d27a"
+    },
+    "src/components/ChronicleView.tsx": {
+      "bytes": 6098,
+      "sha256": "295968eb2a51905190a40aa8b8083d93e637101318504e257abfcd9cc0314fe8"
+    },
+    "src/components/CommandPanel.tsx": {
+      "bytes": 3855,
+      "sha256": "7c85d79fbfb2b06406a427f045d94eba2813579806f381a2888cbe3464cf73ad"
+    },
+    "src/components/CyberDeconstruction.tsx": {
+      "bytes": 44748,
+      "sha256": "cf68842a9fc41b2fede6f20af068fa572783a616495a5ee1ed1490ca69d1aba9"
+    },
+    "src/components/EndingGallery.tsx": {
+      "bytes": 9089,
+      "sha256": "16abf0187c31ee4f1994f41636e9084e7aeaec9a58d4ede329dcb2e4e4051ad3"
+    },
+    "src/components/EventPopup.tsx": {
+      "bytes": 6937,
+      "sha256": "f47ca16c20449b2a21b97730ae12b84dd5ff5c5318aa7434aacacf5968bd4a5f"
+    },
+    "src/components/FocusTree.tsx": {
+      "bytes": 303055,
+      "sha256": "b625c821be223b26752b5a45fcb2913a7719ea681da487c20c7e83727ac7275e"
+    },
+    "src/components/GameEndingScreen.tsx": {
+      "bytes": 8001,
+      "sha256": "7a4b026643e82e64e6f72a6640bde127ee9045a11e8af4c874bf2ca6aab6c71c"
+    },
+    "src/components/GouxiongGalGame.tsx": {
+      "bytes": 14002,
+      "sha256": "dd962101ddb0cfb3d3334d6e1783a9b64e3b84c531c551af78cdd2f64d49554d"
+    },
+    "src/components/HoverWindow.tsx": {
+      "bytes": 3444,
+      "sha256": "ec777b9d2e6b3644c3289adfe49f7d7adad664dfc5e4727636379a66a54d21da"
+    },
+    "src/components/JidiCorporateUI.tsx": {
+      "bytes": 61705,
+      "sha256": "14c98b3523a94a2f225e0d0138749610356a7d0e600465e92482b7c873a2d2da"
+    },
+    "src/components/LeftSidebar.tsx": {
+      "bytes": 28439,
+      "sha256": "f97fd1674f7c202b536968bdd715f5d3e7ff2c29fd2f24825209b834d4ca8d24"
+    },
+    "src/components/LoadingScreen.tsx": {
+      "bytes": 5362,
+      "sha256": "e52c9132564fb541df9661206cd2ae2ae429d32b39b4d983a35113cd8f2c86fe"
+    },
+    "src/components/MinigameCrackdown.tsx": {
+      "bytes": 10297,
+      "sha256": "1322981ba249a4aa96133e2ba652a1f7f3541082a0cce579062c20a72a103960"
+    },
+    "src/components/MinigameFrequencyWar.tsx": {
+      "bytes": 9781,
+      "sha256": "b3339cebf63b7b241ddd94d81b9932933a45b56beaab9fcbf2344a6cee728a2c"
+    },
+    "src/components/MinigameNegotiation.tsx": {
+      "bytes": 7708,
+      "sha256": "7cad91a0a510b251b601ea57c646c74075fedce28fe71226920c52d0059d84aa"
+    },
+    "src/components/MinigamePosterWar.tsx": {
+      "bytes": 9256,
+      "sha256": "c108ba8d52922964d0bb6994118edb1055cb6990e7d7b086c493205a412c2c8f"
+    },
+    "src/components/MinigamePrintWorkshop.tsx": {
+      "bytes": 9149,
+      "sha256": "56648c08bd57685e471a6677946e7d3a974e80620c4a35603d2ada2a6c7ea1b7"
+    },
+    "src/components/MinigameSiege.tsx": {
+      "bytes": 9661,
+      "sha256": "ee290fb9d30452667cc794dd57ec8aa55f9d27796b0424aa1b703d6df27152a1"
+    },
+    "src/components/NeonEmblem.tsx": {
+      "bytes": 10708,
+      "sha256": "ff552052bc732731ca79efe292a831a72b99a2d6d694d48360b0b3f00800853d"
+    },
+    "src/components/RedToadPolitburo.tsx": {
+      "bytes": 34555,
+      "sha256": "5be2f7dfe2fdab75adcbe0aa1039f804333e76719f87c767bca4c1c5cc447eb0"
+    },
+    "src/components/ReformCommittee.tsx": {
+      "bytes": 19634,
+      "sha256": "bc9acdc31d9fe763eeed171693322b1a6d603e9fb15fb7fc7569fa092e726051"
+    },
+    "src/components/RightSidebar.tsx": {
+      "bytes": 85626,
+      "sha256": "5e99dcba37fa76ad5102cc521ff5f6c81ed349d8428c4a4eecbd3eacd79eeea9"
+    },
+    "src/components/RouteGuide.tsx": {
+      "bytes": 30688,
+      "sha256": "94ef4a8b6d159991e8700fda9d8af42757b801cd3b2960997381ac029ad6b79c"
+    },
+    "src/components/Settings.tsx": {
+      "bytes": 17643,
+      "sha256": "dc5b0a3d0d58ee4918beb0bbc7bfa0ca29705e442efa99fc1e3b4695381ea6e6"
+    },
+    "src/components/StartMenu.tsx": {
+      "bytes": 8962,
+      "sha256": "5d09fc3210558f0244b8b6643a5e2b9e9ef896b2810152813db6f847ef44061c"
+    },
+    "src/components/StrategicArt.tsx": {
+      "bytes": 6695,
+      "sha256": "52ca8fd762e879e0586a3b267ab2de778d3e75a72fd5dafa37dc51c108e508e5"
+    },
+    "src/components/StudentAssembly.tsx": {
+      "bytes": 30126,
+      "sha256": "25d7402532d30b99401790a0faa1336d3f032ab7992e2a08b2118f51d439640f"
+    },
+    "src/components/SuperEvent.tsx": {
+      "bytes": 4519,
+      "sha256": "f0334a5550ded4ab8f3a3bbe6e0b9b157c26078e0f2d54ee5ea9e73a13a05763"
+    },
+    "src/components/TheaterCommand.tsx": {
+      "bytes": 3374,
+      "sha256": "e40817fa4e5c1ff291db7abb47588c8d988319368d6a7a767a1c2c3b5c5619b5"
+    },
+    "src/components/TopBar.tsx": {
+      "bytes": 8025,
+      "sha256": "1d3985fbbdf014ccbefd9354b7494659b1fba2a5fc509e9b8c7da915f5abc3d0"
+    },
+    "src/components/Tutorial.tsx": {
+      "bytes": 9443,
+      "sha256": "690f565d79cf99b4d023b5c30e1e7974af918e0cf32ee3584a7f890d58583a7e"
+    },
+    "src/components/WuCrackdownConsole.tsx": {
+      "bytes": 39809,
+      "sha256": "465d2d7896a7538e7e2753e8188b18a2c694c47774ec3bc62a24035b943c9caa"
+    },
+    "src/components/YangYuleDesk.tsx": {
+      "bytes": 39202,
+      "sha256": "4462f4b5af4e8f69241b6bedafbcf42e5d26a5ef083bf1cd6f6fb22d7ff45583"
+    },
+    "src/components/audioDock.css": {
+      "bytes": 4181,
+      "sha256": "f9d44667a3239a213410c9261a84de111d648d00b4be8dc44842e5f589543d93"
+    },
+    "src/components/characterProfile.css": {
+      "bytes": 1554,
+      "sha256": "aacd24f781c46f59ae10006f7619d709fcf3de4a52d55c1e278fb378c3f5bcbc"
+    },
+    "src/components/nationIdeology.css": {
+      "bytes": 9596,
+      "sha256": "16afe9c73c6e09a9fd156b5c60d2ce811b04565ef3fea13e6dd58320928a596d"
+    },
+    "src/components/strategicArt.css": {
+      "bytes": 5728,
+      "sha256": "6d2e5922973b7b4fdff55e956d2b2fa28c78bdad1c83a14600d163082ae7bf38"
+    },
+    "src/components/superEvent.css": {
+      "bytes": 1153,
+      "sha256": "70a946c0782ee4899c637b04ec438a81108f7b1172efe9868ba74307a1adf157"
+    },
+    "src/config/artAssignments.json": {
+      "bytes": 13570,
+      "sha256": "8a4182e9d5c2b0b069972f53220e024ebba1ac469c4f37321ad382a96d8c3e36"
+    },
+    "src/config/assets.ts": {
+      "bytes": 16276,
+      "sha256": "aef863d8601aa944a43639e03ef5d72b88e469df58eef6d48550b3bf7accc548"
+    },
+    "src/config/expandedArtwork.ts": {
+      "bytes": 21046,
+      "sha256": "0a53368e82c4ac96a88fcfa72f053a058a0bfde6e5b561ea38b49b451c05e7cc"
+    },
+    "src/config/hoi4Artwork.ts": {
+      "bytes": 6905,
+      "sha256": "507d8c5e8ec94b484b3eaed14425370cf38a621b9c1d16f94f3dcc5e1d10a829"
+    },
+    "src/config/loadingArtwork.ts": {
+      "bytes": 2092,
+      "sha256": "45db62ccd0cfe545b0b8c4714f8d1328ba38f3f57b62105c9c7eec0b39b096b9"
+    },
+    "src/config/localPortraits.ts": {
+      "bytes": 3623,
+      "sha256": "6813ff28f39dbcb0f0566bd61347780054e495fcbe36202b9ff22db049da0df9"
+    },
+    "src/data/characterProfiles.ts": {
+      "bytes": 5419,
+      "sha256": "ab9d6b6aa3614433aee15d60cfafe577cdff62a030caabd5385f34a9fa33fd16"
+    },
+    "src/data/commandRoutes.ts": {
+      "bytes": 8001,
+      "sha256": "d607502e4b84bbb1bc9835021eda90778dd64610a69eb4a4a5ea25ec58e2ded0"
+    },
+    "src/data/endings.ts": {
+      "bytes": 19336,
+      "sha256": "fab0eaed85343094ca6ce916cefe5ae034b775e57197791868d92f404c0dbe6c"
+    },
+    "src/data/factionDossiers.ts": {
+      "bytes": 14038,
+      "sha256": "771523041e6af4e1e6339e6ebc7b35d606ade5beff2e3531a4451727238d1010"
+    },
+    "src/data/flavorEvents.ts": {
+      "bytes": 129746,
+      "sha256": "511431229a6509fa6808f9010fe317df9fe469c195acf0cbf399e0a679b95719"
+    },
+    "src/data/laws.ts": {
+      "bytes": 11410,
+      "sha256": "949be6130fb01e3e5b9d4eb67610f47c78d0c300bf65744b2bfb47af88b7a5cf"
+    },
+    "src/data/redToadBills.ts": {
+      "bytes": 8286,
+      "sha256": "22f22f38cc45704a54b79662ea61fde6be23518300539d8cbcc843fce1744338"
+    },
+    "src/data/redToadState.ts": {
+      "bytes": 1785,
+      "sha256": "d841e6c90b61aa8afdf0c12a7653181b0ad2cacdd9c57360e41980749a791646"
+    },
+    "src/data/routeOperations.ts": {
+      "bytes": 3765,
+      "sha256": "7dfbb4195ae13d474502ea42913d1239a3277d0b4167c477087ea0b37ef30927"
+    },
+    "src/data/storyEvents.ts": {
+      "bytes": 418061,
+      "sha256": "a40f28b54615a8b78950a067a617114d8305e83f1b2ba92c2dc6d8acbfff7a01"
+    },
+    "src/engine/audioSettings.ts": {
+      "bytes": 1250,
+      "sha256": "9772a5099dd8416b3285c68bc6da25294f1da2e71a81b08b3fc7fecbbd730a12"
+    },
+    "src/engine/campaignStats.ts": {
+      "bytes": 2802,
+      "sha256": "d1ba8acd6baa74ed21dcbfa4a7df12407396e8b5e519b13b33dcba35c8197009"
+    },
+    "src/engine/campusEvents.ts": {
+      "bytes": 24590,
+      "sha256": "8c566ec74bd115a27cff4aeea77c986ec41e21b02908c355dfa627dc61729e8e"
+    },
+    "src/engine/commandSystem.ts": {
+      "bytes": 13465,
+      "sha256": "1ce0c3a249d51791667fa3b25a0d2c74f9e6d761754fcf17726ca5471e6ea123"
+    },
+    "src/engine/commandTypes.ts": {
+      "bytes": 742,
+      "sha256": "5e634b65b1d07c43851b713e883bc55045ef531b9c519408a439c2dda8215b52"
+    },
+    "src/engine/endingGallery.ts": {
+      "bytes": 2676,
+      "sha256": "7017d186165e94315176c7fb22b78dcbbef5e79cf7ba82e229360263b705ecf6"
+    },
+    "src/engine/gameLoop.ts": {
+      "bytes": 27211,
+      "sha256": "1a2064f31b56378aa112734338887efd8901a1c1fa1793d2f5e69fa288740419"
+    },
+    "src/engine/mapActions.ts": {
+      "bytes": 15752,
+      "sha256": "c4ea50bffc4a5142240f88af424e6258408edf8cb583e7ff19f5c9c3931e3391"
+    },
+    "src/engine/musicInterruption.ts": {
+      "bytes": 748,
+      "sha256": "b47953aff5cc846f75565059e44476a4b79c8e478f9c5c1a753e10bdc841a532"
+    },
+    "src/engine/routes/gouxiongData.ts": {
+      "bytes": 28389,
+      "sha256": "32e2e3d121cb7e1591a8738827578b51d824f0bf7ae13263d81dbce6d3d1a81e"
+    },
+    "src/engine/saveSystem.ts": {
+      "bytes": 7016,
+      "sha256": "b26b37037d1509cfaf22a4ab08e1b3057fc568806cb53da03ed33c12afca77a9"
+    },
+    "src/engine/superEventAudio.ts": {
+      "bytes": 1770,
+      "sha256": "4b1685f87ba2fc2d2e2bb128cb02c6ebbbc2c8691e9e4ec548b6020814641f16"
+    },
+    "src/engine/tileHelpers.ts": {
+      "bytes": 5788,
+      "sha256": "256bda4f784e3a3cee3b47a66e2e19cd9d72bc29fba18821d0b2cf560ace181a"
+    },
+    "src/engine/uiSounds.ts": {
+      "bytes": 1639,
+      "sha256": "c41caa4b32fe6a7e190e3c33d2b37dba38f71afec5c10f39fed561a3f119d34d"
+    },
+    "src/engine/yangRebellions.ts": {
+      "bytes": 1922,
+      "sha256": "9d44ff85ab00fa36f44b0e21c1e5ab67545d15c4612dc48ea13df3165f151774"
+    },
+    "src/index.css": {
+      "bytes": 4244,
+      "sha256": "22a1d4bc37274515240a6444c2d125638a2555950c12b5123443870f4365822b"
+    },
+    "src/main.tsx": {
+      "bytes": 301,
+      "sha256": "24b8d9bc195970b63a9a13789f539f7272666f9d42db38b8fca53806cc35aff8"
+    },
+    "src/types.ts": {
+      "bytes": 16075,
+      "sha256": "b2cf64b741eaca5f643657c244383f0716d08918507ffb182a1e2602b32ef40c"
+    },
+    "src/vite-env.d.ts": {
+      "bytes": 38,
+      "sha256": "65996936fbb042915f7b74a200fcdde7e410f32a669b1ab9597cfaa4b0faddb5"
+    },
+    "tests/artCatalog.test.ts": {
+      "bytes": 3028,
+      "sha256": "6709353ae0a93d6b0bacf89fd1d54ee99b6f677abf1b0c789ffc1b520fd60f67"
+    },
+    "tests/campusEvents.test.ts": {
+      "bytes": 10570,
+      "sha256": "52b22458d9cee63eba65dae6bf1a9140e7ca687fb516874572bfcafd0a8467bb"
+    },
+    "tests/characterProfiles.test.ts": {
+      "bytes": 813,
+      "sha256": "e37a7e42d409976e0bde949953702700602f9947be559488191d817b8bec70e7"
+    },
+    "tests/commandSystem.test.ts": {
+      "bytes": 12377,
+      "sha256": "7b37be4dafe20a6e9eb5d3af6715ff2f8d07a990d59f5e6eaec36e14dc2c712e"
+    },
+    "tests/factionDossiers.test.ts": {
+      "bytes": 1286,
+      "sha256": "526627275787f9edb676cd2051fd99877f74fd15f1ac4a6547e3593aeee4651e"
+    },
+    "tests/musicInterruption.test.ts": {
+      "bytes": 1412,
+      "sha256": "5f3b259e750d079481d1510bce559a90a20258987ab9db51c26af956372f9c0c"
+    },
+    "tests/negotiationTiming.test.ts": {
+      "bytes": 859,
+      "sha256": "0af3a657129d70e45428e9cf62b999d259d17b74bc02e5000638d10473a346ae"
+    },
+    "tests/redToadState.test.ts": {
+      "bytes": 790,
+      "sha256": "6c27113bb46c4e5c4d51ac4ad64f0c82f9a34b0ea1eca970a870ababf4d16fbc"
+    },
+    "tests/superEventCues.test.ts": {
+      "bytes": 973,
+      "sha256": "c6537e268fb2d63ff090d11907624fa906caf888bcf757d3ce3b66dc2223e57b"
+    },
+    "tsconfig.json": {
+      "bytes": 508,
+      "sha256": "e93e15c3794e43a117964ea191ae985cbedea70c41d3d82b2e20aa8d07374fe4"
+    },
+    "vite.config.ts": {
+      "bytes": 414,
+      "sha256": "28b634fdbe97866cbf90ec0a4181d02ea674b468b3abcf4dd7d2e2e0b6f0f0b8"
+    },
+    "wrangler.toml": {
+      "bytes": 89,
+      "sha256": "5702320bd82b3209b40812445afc5ba14176030f6404a269bc68db8506da3a1c"
+    }
+  },
+  "fileCount": 558,
+  "totalBytes": 246452884
+}

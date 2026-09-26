@@ -1,0 +1,76 @@
+合一风云 — 素材鸣谢
+
+本页记录随项目提供的素材来源与署名。
+
+
+--- src/assets/hoi4/CREDITS.txt ---
+The following people or websites have contributed to Ultimate HOI4 GFX, all with consent, and all free to use:
+	1: Many of the templates were designed by me.
+	2: The HOI4 GFX Modding Database has provided focus parts, idea parts, minister templates, and flag templates (https://drive.google.com/drive/folders/1gUc1gJFzJAXow_bZhhkRz4_rN7_Jze3O?usp=sharing)
+	3: ThePinkPanzer has provided focus parts and idea parts.
+	4: Gunnar von Pontius has provided smart objects for Adobe Photoshop.
+	5: Pacifica has provided a lot of idea icons. 
+	6: Thanks to That Guy Called Curly for many idea parts.
+	7: Deathlinger has made national spirit backgrounds and some focus pieces.
+	8: Edouard_Saladier has designed many focus backgrounds and icons.
+	9: scarecroww has made some smart objects for focus pieces.
+	10: joshyflip has designed smart objects and focus pieces.
+	11: Indycyclone77 has provided focus icon pieces.
+	12: grestin has provided focus icon pieces.
+	13: AtomicSoviet has provided focus icon pieces, courtesy of The New Order.
+
+
+--- src/assets/sfx/SOURCE.md ---
+# 界面音效来源
+
+所用音效选自 Kenney 的 [Interface Sounds](https://kenney.nl/assets/interface-sounds) 素材包，原始许可证见 `KENNEY_LICENSE.txt`（CC0）。
+
+| 游戏文件 | 原始文件 | 用途 |
+| --- | --- | --- |
+| `ui.ogg` | `click_001.ogg` | 通用按钮 |
+| `focus.ogg` | `confirmation_002.ogg` | 国策 |
+| `decision.ogg` | `select_004.ogg` | 决议 |
+| `event.ogg` | `open_003.ogg` | 事件与超事件 |
+| `error.ogg` | `error_001.ogg` | 不可执行的国策或决议 |
+
+
+--- src/assets/sfx/KENNEY_LICENSE.txt ---
+	
+
+	Interface Sounds (1.0)
+
+	Created/distributed by Kenney (www.kenney.nl)
+	Creation date: 11-02-2020
+
+			------------------------------
+
+	License: (Creative Commons Zero, CC0)
+	http://creativecommons.org/publicdomain/zero/1.0/
+
+	This content is free to use in personal, educational and commercial projects.
+
+	Support us by crediting Kenney or www.kenney.nl (this is not mandatory)
+
+			------------------------------
+
+	Donate:   http://support.kenney.nl
+	Patreon:  http://patreon.com/kenney/
+
+	Follow on Twitter for updates:
+	http://twitter.com/KenneyNL
+
+--- src/assets/superevent/CREDITS.md ---
+# 超事件音效素材
+
+- `dark_stinger.mp3` — Kresiek The Furry, [Dark Stinger 1](https://opengameart.org/content/dark-stinger-1), CC0 1.0.
+- `orchestral_stinger.mp3` — tcarisland, [Orchestral Stinger - Dramatic Entrance](https://opengameart.org/content/orchestral-stinger-dramatic-entrance), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). File renamed only; audio unchanged.
+- `abyss.ogg` — congusbongus, [String and piano horror stings](https://opengameart.org/content/string-and-piano-horror-stings), CC0 1.0.
+- `sad_stinger.mp3` — GearFox98, [Something sad](https://opengameart.org/content/something-sad), CC0 1.0.
+- `cyber_sting.ogg` — Fupi, [Long Sci-fi Sting](https://opengameart.org/content/long-sci-fi-sting), CC0 1.0.
+- `loss_fanfare.ogg`, `victory_fanfare.ogg` — Spring Spring / Spring Enterprises, [Fanfares](https://opengameart.org/content/fanfares), used under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+- `success_stinger.mp3` — SterlingRay, [Success Stinger](https://opengameart.org/content/success-stinger), CC0 1.0.
+
+Super-event illustrations in this update come from the project's `art/载入图` source folder. The optimized WebP copies are in `src/assets/loading`.
+
+
+art 与 music：项目作者提供的原始文件；此整理不为其添加新的授权声明。

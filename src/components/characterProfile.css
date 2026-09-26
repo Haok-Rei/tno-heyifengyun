@@ -1,0 +1,15 @@
+.character-profile { border: 1px solid #80694d; background: linear-gradient(145deg, #222927, #101718 70%); padding: 11px 12px; color: #d6d2c7; box-shadow: inset 0 0 0 2px #0b1112, 0 12px 24px #000a; }
+.character-profile__heading { display: flex; align-items: baseline; justify-content: space-between; gap: 7px; border-bottom: 1px solid #71624e; padding-bottom: 6px; margin-bottom: 8px; }
+.character-profile__heading strong { color: #e8d2a8; font-size: 14px; letter-spacing: .08em; }
+.character-profile__heading span { color: #a5aca5; font-size: 10px; text-align: right; }
+.character-profile__description { margin: 0 0 9px; color: #c4cbc4; font-size: 11px; line-height: 1.6; white-space: pre-wrap; }
+.character-profile__traits { border-top: 1px solid #525c57; padding-top: 7px; display: grid; gap: 4px; }
+.character-profile__label { color: #c1a77d; font-size: 10px; font-weight: 700; letter-spacing: .18em; margin-bottom: 1px; }
+.character-profile__trait { display: flex; align-items: baseline; gap: 5px; font-size: 10px; line-height: 1.4; }
+.character-profile__trait span { font-size: 8px; flex: none; }
+.character-profile__trait.is-positive { color: #8fd3a5; }
+.character-profile__trait.is-negative { color: #e3958d; }
+.character-profile__none { color: #84918a; font-size: 10px; }
+.character-profile--compact { border: 0; box-shadow: none; padding: 0; background: none; }
+.character-profile--compact .character-profile__description { font-size: 10px; margin-bottom: 7px; }
+.character-profile--compact .character-profile__heading { margin-bottom: 6px; }

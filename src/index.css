@@ -1,0 +1,180 @@
+@import "tailwindcss";
+@import "./command.css";
+/* Layered national focus and spirit artwork */
+@import "./components/strategicArt.css";
+@import "./components/nationIdeology.css";
+
+@theme {
+  --font-mono: "Courier New", "SimSun", Courier, monospace;
+  --font-serif: "SimSun", "Courier New", serif;
+  --font-sans: "Courier New", "Microsoft YaHei", monospace;
+
+  --color-tno-bg: #0a0b0c;
+  --color-tno-panel: #18191b;
+  --color-tno-highlight: #71c7cc;
+  --color-tno-green: #7baa86;
+  --color-tno-red: #c94b46;
+  --color-tno-text: #d3d3d3;
+  --color-tno-border: #383c40;
+}
+
+body {
+  background-color: var(--color-tno-bg);
+  color: var(--color-tno-text);
+  font-family: var(--font-mono);
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  border-radius: 0 !important;
+}
+
+/* CRT Scanline Effect */
+.crt::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 50;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
+
+/* CRT Flicker Animation */
+@keyframes flicker {
+  0% { opacity: 0.98; }
+  5% { opacity: 0.95; }
+  10% { opacity: 0.98; }
+  15% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+@keyframes scanline-sweep {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes super-event-appear {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes red-flash {
+  0%, 100% { background-color: var(--color-tno-bg); }
+  50% { background-color: rgba(255, 0, 0, 0.1); }
+}
+
+.crt-flicker {
+  animation: flicker 0.15s infinite;
+}
+
+/* v8.0 结局画廊：新解锁卡片揭示动画 */
+@keyframes gallery-reveal {
+  0% { filter: brightness(4) saturate(0); transform: scale(1.06); }
+  100% { filter: none; transform: none; }
+}
+
+.animate-gallery-reveal {
+  animation: gallery-reveal 0.9s ease-out both;
+}
+
+.animate-scanline-sweep::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+  animation: scanline-sweep 1s ease-in-out;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.animate-super-event-appear {
+  animation: super-event-appear 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.animate-red-flash {
+  animation: red-flash 2s infinite;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 4s linear infinite;
+}
+
+@keyframes loading-grid-move {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(48px); }
+}
+
+@keyframes loading-bar-glow {
+  0% { transform: translateX(-120%); }
+  100% { transform: translateX(220%); }
+}
+
+.loading-grid-overlay {
+  background-image:
+    linear-gradient(rgba(56, 189, 248, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(251, 146, 60, 0.035) 1px, transparent 1px);
+  background-size: 54px 54px;
+  mix-blend-mode: screen;
+  opacity: 0.28;
+  animation: loading-grid-move 8s linear infinite;
+}
+
+.loading-bar-sweep::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 56px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0));
+  animation: loading-bar-glow 1.6s ease-in-out infinite;
+}
+
+/* Shake Animation for Errors */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.shake {
+  animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+/* TNO Panel Styles */
+.tno-panel {
+  background-color: var(--color-tno-panel);
+  border: 1px solid var(--color-tno-border);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-tno-bg);
+  border-left: 1px solid var(--color-tno-border);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-tno-border);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-tno-highlight);
+}
