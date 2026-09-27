@@ -52,8 +52,8 @@
 **C. 路线专属特殊机制**
 不同领导人上台后解锁的特殊玩法面板（通常以全屏或半屏浮窗显示）：
 - `StudentAssembly.tsx`：【潘仁越/自由派】学生代表大会机制（议会拉票、法案表决）。
-- `ReformCommittee.tsx`：【王兆凯/真左派】做题体制改革委员会（控制激进愤怒度与改革进度）。
-- `RedToadPolitburo.tsx`：【王兆凯】钢铁红蛤政治局（派系共识与清洗机制）。
+- `ReformCommittee.tsx`：【王照凯/真左派】做题体制改革委员会（控制激进愤怒度与改革进度）。
+- `RedToadPolitburo.tsx`：【王照凯】钢铁红蛤政治局（派系共识与清洗机制）。
 - `CyberDeconstruction.tsx` & `GouxiongGalGame.tsx`：【狗熊/抽象派】赛博解构看番系统与 Galgame 好感度攻略系统。
 - `YangYuleDesk.tsx`：【杨玉乐/反动派】特级教师办公桌（评正高级、喝茶养生）。
 - `JidiCorporateUI.tsx`：【及第/资本派】及第企业管理（研发、市场份额抢占）。

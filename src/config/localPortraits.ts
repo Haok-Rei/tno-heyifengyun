@@ -1,5 +1,5 @@
-const fengAnbao = new URL('../../art/人像/封安保.png', import.meta.url).href;
-const wangZhaokai = new URL('../../art/人像/王兆凯4.png', import.meta.url).href;
+const fengAnbao = new URL('../../art/人像/封安宝.png', import.meta.url).href;
+const wangZhaokai = new URL('../../art/人像/王照凯4.png', import.meta.url).href;
 const panRenyue = new URL('../../art/人像/潘仁越5.png', import.meta.url).href;
 const luBohan = new URL('../../art/人像/吕波汉.png', import.meta.url).href;
 const gouxiong = new URL('../../art/人像/狗熊2.png', import.meta.url).href;

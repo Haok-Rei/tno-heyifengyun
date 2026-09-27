@@ -43,7 +43,7 @@ export default function YangYuleDesk({ state, setGameState, onClose, triggerEven
     },
     {
       id: 'report_to_feng',
-      title: '向封安保汇报工作',
+      title: '向封安宝汇报工作',
       description: '消耗 15 PP。封校长信任 +10，评审进度 +2。',
       costPP: 15,
       effect: () => {
@@ -146,7 +146,7 @@ export default function YangYuleDesk({ state, setGameState, onClose, triggerEven
       }));
       triggerEvent({
         title: '秘密账本',
-        description: '你翻开了那本只有你和封安保知道的秘密账本。通过巧妙地挪用一部分“教改专项资金”，你不仅充实了手头的政治资源，还给封安保送去了一份“心意”。虽然这让学校底层的老师们怨声载道，但只要上面高兴，这点牺牲算什么？',
+        description: '你翻开了那本只有你和封安宝知道的秘密账本。通过巧妙地挪用一部分“教改专项资金”，你不仅充实了手头的政治资源，还给封安宝送去了一份“心意”。虽然这让学校底层的老师们怨声载道，但只要上面高兴，这点牺牲算什么？',
         buttonText: '账面做平了就行。'
       });
     } else {
@@ -336,7 +336,7 @@ export default function YangYuleDesk({ state, setGameState, onClose, triggerEven
                 {((yyState.titleStage ?? 0) === 0) ? (
                   <div className="space-y-2">
                     <p className="text-sm text-gray-600 text-center italic">封校长信任度达到60%后自动启动评审</p>
-                    <p className="text-xs text-gray-400 text-center">提升信任度：向封安保汇报工作、打压异己</p>
+                    <p className="text-xs text-gray-400 text-center">提升信任度：向封安宝汇报工作、打压异己</p>
                     <div className="border-t border-gray-200 pt-2 mt-2">
                       <div className="flex justify-between text-xs">
                         <span className="text-gray-600">名师工作室成员</span>
@@ -551,7 +551,7 @@ export default function YangYuleDesk({ state, setGameState, onClose, triggerEven
               <button 
                 onClick={handleSecretLedger}
                 className="absolute top-15 left-20 group hover:-translate-y-2 transition-transform duration-300 z-20"
-                title={`秘密账本 (消耗 10 稳定度)\n获得 20 PP, 5 封安保好感度\n冷却: ${state.decisionCooldowns['secret_ledger'] || 0} 天`}
+                title={`秘密账本 (消耗 10 稳定度)\n获得 20 PP, 5 封安宝好感度\n冷却: ${state.decisionCooldowns['secret_ledger'] || 0} 天`}
               >
                 <div className="relative">
                   <div className="w-20 h-28 bg-[#2A2A2A] rounded-md border-r-8 border-b-8 border-[#1A1A1A] shadow-[0_10px_20px_rgba(0,0,0,0.5)] flex items-center justify-center relative overflow-hidden">

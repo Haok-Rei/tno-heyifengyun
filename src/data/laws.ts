@@ -195,7 +195,7 @@ export const LAWS: Record<string, Law> = {
   },
 };
 
-/** 开局默认法案（2023-09-01 封安保时代） */
+/** 开局默认法案（2023-09-01 封安宝时代） */
 export const DEFAULT_LAW_SYSTEM: LawSystemState = {
   discipline: 'strict',
   schedule: 'high_intensity',

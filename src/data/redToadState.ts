@@ -1,7 +1,7 @@
 import type { RedToadFaction, RedToadState } from '../types';
 
 const INITIAL_FACTIONS: Record<string, RedToadFaction> = {
-  orthodox: { id: 'orthodox', name: '正统派', leader: '王兆凯', influence: 420, loyalty: 75, execution: 60, color: '#f0d44a', view: '[领袖视图]', portrait: 'faction_orthodox' },
+  orthodox: { id: 'orthodox', name: '正统派', leader: '王照凯', influence: 420, loyalty: 75, execution: 60, color: '#f0d44a', view: '[领袖视图]', portrait: 'faction_orthodox' },
   libertarian_socialist: { id: 'libertarian_socialist', name: '自社派', leader: '豪邦', influence: 280, loyalty: 70, execution: 45, color: '#4a90f0', view: '[基层信号]', portrait: 'faction_libertarian_socialist' },
   anarchist: { id: 'anarchist', name: '安那其派', leader: '时纪', influence: 180, loyalty: 55, execution: 35, color: '#4af0d4', view: '[信号丢失]', portrait: 'faction_anarchist' },
   internet_philosopher: { id: 'internet_philosopher', name: '网哲派', leader: '周红兵', influence: 120, loyalty: 45, execution: 20, color: '#d44af0', view: '[迷雾覆盖]', portrait: 'faction_internet_philosopher' },

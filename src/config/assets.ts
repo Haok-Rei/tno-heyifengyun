@@ -99,7 +99,7 @@ export const ASSET_URLS: Record<AssetKey, string> = {
   ending_unknown: 'https://picsum.photos/seed/unknown/800/400?grayscale',
 
   superevent_default: loadingArt('行政楼'),
-  superevent_game_over_school: loadingArt('封安保时代'),
+  superevent_game_over_school: loadingArt('封安宝时代'),
   superevent_game_over_anarchy: loadingArt('合一陨落'),
   superevent_b3_uprising: loadingArt('B3革命'),
   superevent_jidi_empire_super: loadingArt('及第之梦'),
@@ -142,7 +142,7 @@ export const ASSET_URLS: Record<AssetKey, string> = {
   ui_loading_bg_3: loadingArt('军训'),
   ui_loading_bg_4: loadingArt('合一陨落'),
   ui_loading_bg_5: loadingArt('行政楼'),
-  ui_loading_bg_6: loadingArt('封安保时代'),
+  ui_loading_bg_6: loadingArt('封安宝时代'),
 
   ...LOCAL_PORTRAIT_URLS,
 

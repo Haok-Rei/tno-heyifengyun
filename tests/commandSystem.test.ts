@@ -18,7 +18,7 @@ function fixture(): GameState {
     date: new Date(2023,8,1), isPaused:false, gameSpeed:1,
     stats:{ pp:300, tpr:1000, ss:50, stab:60, studentSanity:65, allianceUnity:50, partyCentralization:50, radicalAnger:0, capitalPenetration:0 },
     modifiers:{ ppDaily:1, tprDaily:0, ssDaily:0, stabDaily:0, studentSanityDaily:0, allianceUnityDaily:0, partyCentralizationDaily:0, radicalAngerDaily:0, capitalPenetrationDaily:0, powerBalanceDaily:0 },
-    leader:{ name:'封安保', title:'校长', portrait:'feng_anbao', ideology:'authoritarian' }, flags:{}, currentFocusTree:'phase1', lawSystem:{...DEFAULT_LAW_SYSTEM},
+    leader:{ name:'封安宝', title:'校长', portrait:'feng_anbao', ideology:'authoritarian' }, flags:{}, currentFocusTree:'phase1', lawSystem:{...DEFAULT_LAW_SYSTEM},
     chronicle:[], nationalSpirits:[], advisors:[], ideologies:{}, activeFocus:null, completedFocuses:[], crises:[], decisionCooldowns:{}, activeEvent:null, activeStoryEvents:[], activeSuperEvent:null, activeMinigame:null, unlockedMinigames:[],
     mapLocations:Object.fromEntries([...new Set(ALL_SUB_TILES.map(t=>t.buildingId))].map(id=>[id,{id,name:id,studentControl:50,defenseDays:0}]))
   };

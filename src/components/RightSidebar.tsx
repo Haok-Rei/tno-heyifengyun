@@ -19,13 +19,13 @@ interface RightSidebarProps {
 
 const DEBUG_LEADERS: Record<string, GameState['leader']> = {
   feng_anbao: {
-    name: '封安保',
+    name: '封安宝',
     title: '校长',
     portrait: 'feng_anbao',
     ideology: 'authoritarian',
   },
   wang_zhaokai: {
-    name: '王兆凯',
+    name: '王照凯',
     title: '钢铁红蛤领袖',
     portrait: 'wang_zhaokai',
     ideology: 'radical_socialism',
@@ -596,7 +596,7 @@ export const DECISIONS: Decision[] = [
       activeEvent: {
         id: 'enter_yang_yule_route',
         title: '“杨特”出山',
-        description: 'B3教学楼的楼梯间里充斥着汗臭、防暴盾牌的碰撞声和声嘶力竭的叫骂。合一内战爆发已经过去了四个小时。\n\n高三年级部主任吴福军的衬衫已经完全被冷汗湿透。他引以为傲的保安队和学生督察，在王兆凯布置的课桌街垒和灭火器烟雾阵面前碰得头破血流。王兆凯的“钢铁红蛤”用严密的纪律接管了潘仁越的浪漫主义起义，现在的B3楼顶是一座真正的堡垒。\n\n“给我砸！用液压剪把门剪开！全给他们记大过！开除！”吴福军在楼道里无能狂怒，他的嗓子已经喊哑了。\n\n但他心里清楚，自己已经完了。教育局的电话已经打到了封安保的办公室，如果事情闹大，如果哪怕有一个学生在冲突中受伤，或者从楼上跳下去，他吴福军就是第一个被封安保扔出去平息众怒的替罪羊。暴力威慑一旦失效，暴君就变成了小丑。\n\n就在吴福军气急败坏，准备下令强行破拆的时候，一只苍老却稳定的手按住了他的肩膀。\n\n“吴主任，歇歇吧。强攻要是见了血，封校长和教育局那边，你我可都担待不起啊。”\n\n吴福军猛地回头，看到了端着保温杯的杨玉乐。这位平时在教务会上连个响屁都不敢放的老特级教师，此刻虽然满脸愁容，但眼镜片后的目光却冷得像冰。杨玉乐知道，吴福军的暴力已经把局势熬到了最脆弱的临界点——学生们的肾上腺素正在消退，取而代之的是对未来的本能恐惧。\n\n现在，是他出场摘桃子的时候了。',
+        description: 'B3教学楼的楼梯间里充斥着汗臭、防暴盾牌的碰撞声和声嘶力竭的叫骂。合一内战爆发已经过去了四个小时。\n\n高三年级部主任吴福军的衬衫已经完全被冷汗湿透。他引以为傲的保安队和学生督察，在王照凯布置的课桌街垒和灭火器烟雾阵面前碰得头破血流。王照凯的“钢铁红蛤”用严密的纪律接管了潘仁越的浪漫主义起义，现在的B3楼顶是一座真正的堡垒。\n\n“给我砸！用液压剪把门剪开！全给他们记大过！开除！”吴福军在楼道里无能狂怒，他的嗓子已经喊哑了。\n\n但他心里清楚，自己已经完了。教育局的电话已经打到了封安宝的办公室，如果事情闹大，如果哪怕有一个学生在冲突中受伤，或者从楼上跳下去，他吴福军就是第一个被封安宝扔出去平息众怒的替罪羊。暴力威慑一旦失效，暴君就变成了小丑。\n\n就在吴福军气急败坏，准备下令强行破拆的时候，一只苍老却稳定的手按住了他的肩膀。\n\n“吴主任，歇歇吧。强攻要是见了血，封校长和教育局那边，你我可都担待不起啊。”\n\n吴福军猛地回头，看到了端着保温杯的杨玉乐。这位平时在教务会上连个响屁都不敢放的老特级教师，此刻虽然满脸愁容，但眼镜片后的目光却冷得像冰。杨玉乐知道，吴福军的暴力已经把局势熬到了最脆弱的临界点——学生们的肾上腺素正在消退，取而代之的是对未来的本能恐惧。\n\n现在，是他出场摘桃子的时候了。',
         buttonText: '唱白脸的屠夫退场了。'
       }
     })
@@ -958,8 +958,8 @@ export const DECISIONS: Decision[] = [
   },
   {
     id: 'debug_set_leader_wang',
-    title: '[DEBUG] 领导人：王兆凯',
-    description: '测试模式：仅切换当前领导人为王兆凯。',
+    title: '[DEBUG] 领导人：王照凯',
+    description: '测试模式：仅切换当前领导人为王照凯。',
     costPP: 0,
     cooldownDays: 0,
     isVisible: (state) => !!state.flags.debug_mode,
@@ -1088,7 +1088,7 @@ export const DECISIONS: Decision[] = [
   },
   {
     id: 'debug_switch_wu_p2_feng',
-    title: '[DEBUG] 吴福军线二阶段：封安保千年线',
+    title: '[DEBUG] 吴福军线二阶段：封安宝千年线',
     description: '测试模式：跳过一阶段，直接进入叙职判定后的二阶段（判定：模范校提名 → 秩序元年）。',
     costPP: 0,
     cooldownDays: 0,
@@ -1265,7 +1265,7 @@ export const DECISIONS: Decision[] = [
       redToadState: state.redToadState || {
         overallConsensus: 55,
         factions: {
-          orthodox: { id: 'orthodox', name: '正统派', leader: '王兆凯', influence: 420, loyalty: 75, execution: 60, color: '#f0d44a', view: '[领袖视图]', portrait: 'faction_orthodox' },
+          orthodox: { id: 'orthodox', name: '正统派', leader: '王照凯', influence: 420, loyalty: 75, execution: 60, color: '#f0d44a', view: '[领袖视图]', portrait: 'faction_orthodox' },
           libertarian_socialist: { id: 'libertarian_socialist', name: '自社派', leader: '豪邦', influence: 280, loyalty: 70, execution: 45, color: '#4a90f0', view: '[基层信号]', portrait: 'faction_libertarian_socialist' },
           anarchist: { id: 'anarchist', name: '安那其派', leader: '时纪', influence: 180, loyalty: 55, execution: 35, color: '#4af0d4', view: '[信号丢失]', portrait: 'faction_anarchist' },
           internet_philosopher: { id: 'internet_philosopher', name: '网哲派', leader: '周红兵', influence: 120, loyalty: 45, execution: 20, color: '#d44af0', view: '[迷雾覆盖]', portrait: 'faction_internet_philosopher' },
@@ -1688,7 +1688,7 @@ export default function RightSidebar({ state, triggerDecision, triggerError }: R
             <span className={state.stats.partyCentralization < 40 ? 'text-tno-highlight font-bold' : state.stats.partyCentralization > 60 ? 'text-tno-red font-bold' : 'text-tno-text font-bold'}>{Math.floor(state.stats.partyCentralization)}%</span>
             <div className="absolute top-full right-0 mt-1 bg-tno-bg border border-tno-border p-2 hidden group-hover:block z-50 w-48 text-[10px] shadow-lg text-left">
               <div className="text-tno-highlight font-bold mb-1 border-b border-tno-border pb-1">党内集权度</div>
-              <div className="text-tno-text/80 mb-1 whitespace-normal">代表王兆凯在“钢铁红蛤”内部的独裁程度以及对待校方的强硬度。极高进入大梦初醒线，极低进入平庸之乐线。</div>
+              <div className="text-tno-text/80 mb-1 whitespace-normal">代表王照凯在“钢铁红蛤”内部的独裁程度以及对待校方的强硬度。极高进入大梦初醒线，极低进入平庸之乐线。</div>
               <div className="flex justify-between"><span>每日变化:</span><span className={state.modifiers.partyCentralizationDaily >= 0 ? 'text-tno-highlight' : 'text-tno-text/80'}>{state.modifiers.partyCentralizationDaily > 0 ? '+' : ''}{state.modifiers.partyCentralizationDaily?.toFixed(1) || '0.0'}%</span></div>
             </div>
           </div>

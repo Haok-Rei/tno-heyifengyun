@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { UserPlus, Scale } from 'lucide-react';
 import { GameState, Advisor } from '../types';
 import { getAdvisorPortraitUrl, getLeaderPortraitUrl } from '../config/assets';
@@ -6,7 +7,7 @@ import { getFocusNodes } from './FocusTree';
 import { formatModifierEntry } from '../engine/gameLoop';
 import { LAWS, LAW_CATEGORIES, getLawSystem, LAW_CHANGE_COST } from '../data/laws';
 import HoverWindow from './HoverWindow';
-import { FocusArt, SpiritArt } from './StrategicArt';
+import { FocusArt, SpiritArt, LawArt } from './StrategicArt';
 import { FACTION_COLORS, getFactionDossier } from '../data/factionDossiers';
 import CharacterProfile from './CharacterProfile';
 import { getAdvisorProfile, getLeaderTraits } from '../data/characterProfiles';
@@ -92,7 +93,7 @@ const AVAILABLE_ADVISORS: Advisor[] = [
   {
     id: 'wang_zhaokai_advisor',
     title: '联合革命委员会主席',
-    name: '王兆凯',
+    name: '王照凯',
     description: '每日激进愤怒度 +0.1，每日党内集权度 +0.2，每日学生支持度 +0.2%。',
     cost: 150,
     modifiers: { radicalAngerDaily: 0.1, partyCentralizationDaily: 0.2, ssDaily: 0.2 }
@@ -124,7 +125,7 @@ const AVAILABLE_ADVISORS: Advisor[] = [
   {
     id: 'feng_anbao_advisor',
     title: '及第教育顾问',
-    name: '封安保',
+    name: '封安宝',
     description: '每日稳定度 +0.1%，每日资本渗透度 +0.5%。',
     cost: 150,
     modifiers: { stabDaily: 0.1, capitalPenetrationDaily: 0.5 }
@@ -182,6 +183,8 @@ const AVAILABLE_ADVISORS: Advisor[] = [
 export default function LeftSidebar({ state, hireAdvisor, dismissAdvisor, cancelActiveFocus, onOpenFocus, triggerError, changeLaw }: LeftSidebarProps) {
   const [selectedSlot, setSelectedSlot] = useState<number | null>(null);
   const [lawCategory, setLawCategory] = useState<string | null>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const [lawBounds, setLawBounds] = useState<React.CSSProperties>({});
 
   const getAdvisorCost = (advisor: Advisor) => {
     // v8.11 人事法案影响雇佣费用
@@ -219,7 +222,7 @@ export default function LeftSidebar({ state, hireAdvisor, dismissAdvisor, cancel
   const activeFocusNode = getFocusNodes(state.currentFocusTree).find(node => node.id === state.activeFocus?.id);
 
   return (
-    <div className="nation-panel flex-shrink-0 tno-panel border-r border-tno-border h-full flex flex-col relative z-40 overflow-y-auto">
+    <div ref={panelRef} className="nation-panel flex-shrink-0 tno-panel border-r border-tno-border h-full flex flex-col relative z-40 overflow-y-auto">
       <div className="nation-overview">
       <div className="nation-leader-section">
         <HoverWindow
@@ -419,7 +422,7 @@ export default function LeftSidebar({ state, hireAdvisor, dismissAdvisor, cancel
                 width={260}
                 estimateHeight={240}
                 content={
-                  law ? (
+                  !lawCategory && law ? (
                     <div className="bg-tno-panel border border-tno-border p-3 shadow-lg shadow-black/60">
                       <div className="font-bold text-xs mb-1 text-tno-text">{cat.name}：{law.name}</div>
                       <div className="text-[10px] text-tno-text/80 leading-relaxed mb-1.5">{law.flavor}</div>
@@ -448,10 +451,14 @@ export default function LeftSidebar({ state, hireAdvisor, dismissAdvisor, cancel
                 }
               >
                 <button
-                  onClick={() => setLawCategory(cat.id)}
-                  className="w-full flex items-center justify-between border border-tno-border/60 bg-tno-bg/60 px-2.5 py-2 hover:border-tno-highlight hover:bg-zinc-900 transition-colors text-left"
+                  onClick={() => {
+                    const rect = panelRef.current?.getBoundingClientRect();
+                    if (rect) setLawBounds({top: rect.top, left: rect.left, width: rect.width, height: rect.height});
+                    setLawCategory(cat.id);
+                  }}
+                  className="w-full flex items-center justify-between border border-tno-border/60 bg-tno-bg/60 px-2.5 py-1 hover:border-tno-highlight hover:bg-zinc-900 transition-colors text-left"
                 >
-                  <span className="text-[11px] font-bold text-tno-text/90">{cat.name}</span>
+                  <span className="flex items-center gap-2 min-w-0"><LawArt id={law?.id ?? cur[cat.id]} /><span className="text-[11px] font-bold text-tno-text/90">{cat.name}</span></span>
                   <span className="flex items-center gap-1">
                     <span className="text-[10px] text-tno-highlight">{law?.name ?? cur[cat.id]}</span>
                     <span className="text-zinc-500 text-[10px]">›</span>
@@ -464,8 +471,8 @@ export default function LeftSidebar({ state, hireAdvisor, dismissAdvisor, cancel
       </div>
 
       {/* 法案二级切换面板 */}
-      {lawCategory && (
-        <div className="absolute inset-0 bg-black/95 z-20 p-3 flex flex-col border-l border-tno-border">
+      {lawCategory && createPortal(
+        <div role="dialog" aria-label="校内法案选择" style={lawBounds} className="fixed bg-[#14191a] z-[120] p-3 flex flex-col border border-tno-border shadow-xl shadow-black/60">
           <div className="flex justify-between items-start border-b border-tno-border pb-2 mb-3">
             <div>
               <h3 className="text-tno-highlight font-bold text-sm">
@@ -492,11 +499,12 @@ export default function LeftSidebar({ state, hireAdvisor, dismissAdvisor, cancel
                       ? 'border-tno-highlight bg-tno-highlight/10'
                       : canAfford
                         ? 'border-tno-border hover:border-tno-highlight hover:bg-zinc-900'
-                        : 'border-tno-border/50 opacity-50 cursor-not-allowed'
+                        : 'border-tno-border/50 cursor-not-allowed'
                   }`}
                 >
-                  <div className="flex justify-between items-baseline mb-1">
-                    <span className={`font-bold text-xs ${isActive ? 'text-tno-highlight' : 'text-tno-text'}`}>
+                  <div className="flex items-center gap-2 mb-1">
+                    <LawArt id={law.id} large />
+                    <span className={`flex-1 font-bold text-xs ${isActive ? 'text-tno-highlight' : 'text-tno-text'}`}>
                       {law.name}{isActive ? '（当前）' : ''}
                     </span>
                     {!isActive && (
@@ -529,7 +537,7 @@ export default function LeftSidebar({ state, hireAdvisor, dismissAdvisor, cancel
               );
             })}
           </div>
-        </div>
+        </div>, document.body
       )}
 
       {/* Hire Modal Overlay */}

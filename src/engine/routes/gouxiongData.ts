@@ -15,7 +15,7 @@ export const GAL_DIALOGUE_TREE: Record<GalCharacterId, Array<{
   photo?: Record<string, string>;
 }>> = {
   dabi: [
-    { gx: { gentle: '现在礼堂我说了算，王兆凯那套过时了。', humor: '我这边是新周目，旧秩序全删档。', confess: '你要来看看我的地上天国吗？' }, npc: { gentle: '听说你占了礼堂，真有这么稳？', humor: '你每次说"删档"都像在自我陶醉。', confess: 'B3太压抑了，我确实有点想去看看。' }, affinity: { gentle: 4, humor: 3, confess: 2 } },
+    { gx: { gentle: '现在礼堂我说了算，王照凯那套过时了。', humor: '我这边是新周目，旧秩序全删档。', confess: '你要来看看我的地上天国吗？' }, npc: { gentle: '听说你占了礼堂，真有这么稳？', humor: '你每次说"删档"都像在自我陶醉。', confess: 'B3太压抑了，我确实有点想去看看。' }, affinity: { gentle: 4, humor: 3, confess: 2 } },
     { gx: { gentle: '怕什么，我正门三班倒，苍蝇都进不来。', humor: '保安队敢来，我让他们先看半小时片头。', confess: '有我在，你不用担心安全。' }, npc: { gentle: '外面都说你们是叛乱分子，我有点怕。', humor: '你这口气比广播站还响。', confess: '你变了，和以前坐最后一排时不一样。' }, affinity: { gentle: 5, humor: 2, confess: 2 } },
     { gx: { gentle: '以前是蛰伏，现在才是主线开始。', humor: '男主觉醒总得压几章剧情。', confess: '你来礼堂，我给你留直达通道。' }, npc: { gentle: '那我报你名字，真的没人拦我？', humor: '你还真把自己写进剧本里了。', confess: '好啊，有机会我就过去。' }, affinity: { gentle: 5, humor: 3, confess: 3 } },
     { gx: { gentle: '你昨天看我指挥纠察队，应该懂谁才是秩序。', humor: '只有力量和二次元能救这个学校。', confess: '你是少数看懂我的人。' }, npc: { gentle: '你确实敢做他们不敢做的事。', humor: '你这套台词，像终局Boss宣言。', confess: '我只是觉得你比他们更像"活人"。' }, affinity: { gentle: 6, humor: 2, confess: 4 } },
@@ -48,7 +48,7 @@ export const GAL_DIALOGUE_TREE: Record<GalCharacterId, Array<{
     { gx: { gentle: '电子门禁我剪了，现在全走挂锁。', humor: '复古安保，物理防破解。', confess: '钥匙在我手里，别担心。' }, npc: { gentle: '我看门禁都没插电。', humor: '你们安保这么原始吗？', confess: '那钥匙都在谁那？' }, affinity: { gentle: 6, humor: 3, confess: 3 } },
     { gx: { gentle: '我一把，门口光头一把，放映室抽屉还有备用。', humor: '想偷家也得先解锁三把钥匙成就。', confess: '你问得这么细，是关心我吗？' }, npc: { gentle: '知道了，我下次不乱跑。', humor: '你这设定挺像游戏副本。', confess: '我只是怕你被人阴。' }, affinity: { gentle: 6, humor: 3, confess: 3 } },
     { gx: { gentle: '周末我要办件人生大事，顶层会戒严。', humor: '你那两天别进最终BOSS房。', confess: '到时我可能顾不上回你。' }, npc: { gentle: '这周末我还能来蹭网吗？', humor: '你突然神神秘秘的。', confess: '好吧，我不打扰你。' }, affinity: { gentle: 7, humor: 4, confess: 3 } },
-    { gx: { gentle: '看番那群学霸都哭了，这就是降维打击。', humor: '我现在比王兆凯更像领袖。', confess: '你这句夸奖，我记了一整天。' }, npc: { gentle: '你今天确实压住场了。', humor: '老周听到会酸死。', confess: '你别飘就行。' }, affinity: { gentle: 7, humor: 4, confess: 4 } },
+    { gx: { gentle: '看番那群学霸都哭了，这就是降维打击。', humor: '我现在比王照凯更像领袖。', confess: '你这句夸奖，我记了一整天。' }, npc: { gentle: '你今天确实压住场了。', humor: '老周听到会酸死。', confess: '你别飘就行。' }, affinity: { gentle: 7, humor: 4, confess: 4 } },
     { gx: { gentle: '真有突发，我会先封顶层再清场。', humor: '流程我都写成攻略图了。', confess: '你要是想看，我发你一份。' }, npc: { gentle: '你终于会做预案了。', humor: '行，攻略发我。', confess: '至少你这次像在认真活。' }, affinity: { gentle: 8, humor: 4, confess: 4 } },
     { gx: { gentle: '等这一波结束，我请你通宵开黑。', humor: '庆功活动：我不嘴硬一整晚。', confess: '谢谢你一直把我当人聊。' }, npc: { gentle: '先把这一波过了再说。', humor: '那可真是隐藏成就。', confess: '你记得自己说过的话就行。' }, affinity: { gentle: 8, humor: 5, confess: 5 } },
     { gx: { gentle: '今晚礼堂大厅你可以继续蹭网，顶层封控。', humor: '地图上面那块临时标红，别误触发。', confess: '我不想你被卷进顶层风波。' }, npc: { gentle: '懂，我只在安全区活动。', humor: '你这个运营公告很专业。', confess: '你这次还挺像在保护人。' }, affinity: { gentle: 8, humor: 5, confess: 5 } },

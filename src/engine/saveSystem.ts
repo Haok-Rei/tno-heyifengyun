@@ -1,3 +1,4 @@
+import { normalizeDisplayNames } from './displayNames';
 /**
  * engine/saveSystem.ts - 多槽位存档系统
  *
@@ -57,7 +58,7 @@ export function serializeGameState(state: GameState): string {
 
 export function deserializeGameState(raw: string): GameState | null {
   try {
-    const parsed = JSON.parse(raw);
+    const parsed = JSON.parse(normalizeDisplayNames(raw));
     if (!parsed || !parsed.stats || !parsed.flags || !Array.isArray(parsed.nationalSpirits)) return null;
     const date = new Date(parsed.date);
     if (!Number.isFinite(date.getTime())) return null;
@@ -128,7 +129,7 @@ export function getSlotMetadata(slotId: SaveSlotId): SaveMetadata | null {
   const raw = localStorage.getItem(keys.meta);
   if (!raw) return null;
   try {
-    return JSON.parse(raw) as SaveMetadata;
+    return JSON.parse(normalizeDisplayNames(raw)) as SaveMetadata;
   } catch {
     return null;
   }

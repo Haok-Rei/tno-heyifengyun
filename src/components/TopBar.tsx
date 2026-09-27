@@ -1,4 +1,5 @@
 import React from 'react';
+import { CAMPUS_FLAGS, getCampusFlagKey } from '../config/campusFlags';
 import { Scale, Activity, Users, FileText, Pause, Play } from 'lucide-react';
 import { GameState } from '../types';
 import { calculateModifierBreakdown, ModifierEntry, BreakdownKey } from '../engine/gameLoop';
@@ -54,12 +55,16 @@ export default function TopBar({ state, togglePause, setGameSpeed, onQuickSave, 
     return `${date.getFullYear()}年${String(date.getMonth() + 1).padStart(2, '0')}月${String(date.getDate()).padStart(2, '0')}日`;
   };
 
+  const flag = CAMPUS_FLAGS[getCampusFlagKey(state)];
   const breakdown = React.useMemo(() => calculateModifierBreakdown(state), [state]);
   const byKey = (key: BreakdownKey) => breakdown.filter(e => e.key === key);
 
   return (
     <div className="resource-topbar flex items-center justify-between px-5 shrink-0 relative z-50">
       <div className="flex items-center gap-5">
+        <div className="campus-flag" role="img" aria-label={flag.label} title={flag.label}>
+          <img src={flag.src} alt="" draggable={false} />
+        </div>
         {/* PP */}
         <div className="flex items-center gap-1.5 group relative cursor-help">
           <Scale className="w-3.5 h-3.5 text-[#ff4444]" />

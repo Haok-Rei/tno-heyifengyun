@@ -91,7 +91,7 @@ export default function Settings({
 
   const ideologyColor = (name: string): string => {
     const map: Record<string, string> = {
-      '封安保': '#9ca3af', '王兆凯': '#ef4444', '潘仁越': '#3B82F6',
+      '封安宝': '#9ca3af', '王照凯': '#ef4444', '潘仁越': '#3B82F6',
       '吕波汉': '#dc2626', '狗熊': '#c084fc', '豪邦': '#38bdf8',
       '封安祥': '#f59e0b', '杨玉乐': '#78716c',
     };

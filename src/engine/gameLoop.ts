@@ -47,7 +47,7 @@ export const FOCUS_COMPLETION_SUPER_EVENTS: Record<string, SuperEventData> = {
   },
   start_reform: {
     id: 'true_left_reform_super', title: '做题改革启动',
-    quote: '"革命不是换一张试卷，而是换一套命运。"', author: '王兆凯', color: '#f43f5e',
+    quote: '"革命不是换一张试卷，而是换一套命运。"', author: '王照凯', color: '#f43f5e',
   },
   lu_bohan_start: {
     id: 'lu_authoritarian_super', title: '极权派上台',
@@ -148,11 +148,11 @@ export function calculateModifiers(state: GameState): {
 
   // ---- Leader buffs ----
   switch (state.leader.name) {
-    case '封安保':
+    case '封安宝':
       stabMod += 0.05;
       tprMod -= 10;
       break;
-    case '王兆凯':
+    case '王照凯':
       radicalAngerMod += 0.5;
       partyCentralizationMod += 0.5;
       break;
@@ -470,13 +470,13 @@ export function calculateModifierBreakdown(state: GameState): ModifierEntry[] {
 
   // 领袖加成
   switch (state.leader.name) {
-    case '封安保':
-      add('stab', '领袖：封安保', 0.05);
-      add('tpr', '领袖：封安保', -10);
+    case '封安宝':
+      add('stab', '领袖：封安宝', 0.05);
+      add('tpr', '领袖：封安宝', -10);
       break;
-    case '王兆凯':
-      add('radicalAnger', '领袖：王兆凯', 0.5);
-      add('partyCentralization', '领袖：王兆凯', 0.5);
+    case '王照凯':
+      add('radicalAnger', '领袖：王照凯', 0.5);
+      add('partyCentralization', '领袖：王照凯', 0.5);
       break;
     case '潘仁越':
       add('allianceUnity', '领袖：潘仁越', 0.5);

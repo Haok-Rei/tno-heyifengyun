@@ -260,3 +260,10 @@ button:focus-visible,summary:focus-visible,[role=button]:focus-visible { outline
   .map-toolbar .eyebrow { display:block; font-size:8px; }
 }
 @media(min-width:601px) { .resource-topbar { padding-right:90px; } }
+
+/* Small, static fabric flag inset into the existing resource strip. */
+.campus-flag { width:66px; height:39px; flex:none; position:relative; overflow:hidden; border:1px solid #7e745e; background:#0b1014; box-shadow:inset 0 0 0 1px #0a0c0d, 0 2px 5px #000b; }
+.campus-flag img { width:100%; height:100%; object-fit:fill; display:block; filter:saturate(.67) sepia(.13) contrast(1.12) brightness(.85); }
+.campus-flag::after { content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(105deg,#0005,transparent 18%,#fff2 33%,#0004 52%,#fff1 72%,#0006),repeating-linear-gradient(0deg,#0000 0 2px,#0002 2px 3px); box-shadow:inset 0 0 5px #000b; }
+@media(max-width:1100px) { .campus-flag { width:52px; height:31px; } }
+@media(max-width:600px) { .campus-flag { width:45px; height:27px; } }

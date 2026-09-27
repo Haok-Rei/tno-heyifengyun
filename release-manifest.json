@@ -14,32 +14,32 @@
       "sha256": "177d20030d4dcc37eae9ef92865ec54dadce60e8f19e9a34a5d4f37502195a36"
     },
     "CHANGELOG.md": {
-      "bytes": 41162,
-      "sha256": "6dd85875bcd82588b8a838a6494fb1870947efa6c86fa098e6932cd593e19584"
+      "bytes": 40612,
+      "sha256": "14bafdff987161419d9163965a09302fdbb4a6fed247da8826e70871804d8b31"
     },
     "CHARACTERS.md": {
       "bytes": 9656,
-      "sha256": "772e6341cfd1b0f3baf8246490592b7bf7cda81357c376cc80018528ef93728a"
+      "sha256": "d5e25f2c84e61f99ef3bccba939c5598b2141ffd26bc9ce2661a6d9c86ccc164"
     },
     "DEPLOY.md": {
-      "bytes": 4925,
-      "sha256": "4fad1b215db2c93e64b5b1896887e4b82e40511fb287ef3ef3daa69d6e8de2aa"
+      "bytes": 5204,
+      "sha256": "adf56073d84fe2ac7a4bdf58b3404d1a8dba7c2d97ae7a929515da4bb67873e8"
     },
     "DEVELOPER_GUIDE.md": {
       "bytes": 8960,
-      "sha256": "be57e6c5f6d58a8b371d1c5a6261e93b9c8395158a2d8c1d7abd22003e714d96"
+      "sha256": "492d256448b611d75a84a11b5cb2157245788e7ced7bb832f812927765db80f7"
     },
     "MAP_UPGRADE_PLAN.md": {
       "bytes": 5957,
       "sha256": "eca4711d3e693351ae1e5aa5eb89e0f0408b5748cb1617d9b381f3a3ddc994d3"
     },
     "README.md": {
-      "bytes": 2460,
-      "sha256": "04b08e360a631c736c0845ea5ba33f98ca96cf724e8b2036506d5f49e15fbe16"
+      "bytes": 2857,
+      "sha256": "72221eb5a9c4173498d8287d7edbe9c9f38a9030fe63fb7f39afe25a845bc29e"
     },
     "SYSTEMIC_UPGRADE_DESIGN.md": {
       "bytes": 2552,
-      "sha256": "6af221cb9afa65915afb0735b3948023c106c7fabffd9b6084aa102f258f9439"
+      "sha256": "993842378d6e3d7b93d53187f9d2a2375210c57ab110233968f4dd73041d4d6c"
     },
     "art/人像/吕波汉.png": {
       "bytes": 4080248,
@@ -69,7 +69,7 @@
       "bytes": 2084253,
       "sha256": "1d215a43797393ab793f546c8ac4980b4f96b1d3982eafb74ff152e8a7edc1df"
     },
-    "art/人像/封安保.png": {
+    "art/人像/封安宝.png": {
       "bytes": 3989316,
       "sha256": "ba5155bcf6430ddd2835d7759e585a971199854f37b3baf58d20a3f8cfb1f0ef"
     },
@@ -137,19 +137,19 @@
       "bytes": 2611028,
       "sha256": "85d4e76d775b4dad9b7056d187e030cbdf7d998b4b59301bd127e2b6437b1ac3"
     },
-    "art/人像/王兆凯.png": {
+    "art/人像/王照凯.png": {
       "bytes": 4333932,
       "sha256": "9b500df5b2195a70b1f3710dcb6122724614698ae35cf40b0ac9ccf1186ae038"
     },
-    "art/人像/王兆凯2.png": {
+    "art/人像/王照凯2.png": {
       "bytes": 3743945,
       "sha256": "0f597340c50596c01261eba2e92d4511bbd58fd27aedde1f90dfcb030dae4703"
     },
-    "art/人像/王兆凯3.png": {
+    "art/人像/王照凯3.png": {
       "bytes": 3157074,
       "sha256": "cad4fddd2ec3fa8c0663ec42e4d1382c41cb2830f6ddc6a72e9d03eb3afd455a"
     },
-    "art/人像/王兆凯4.png": {
+    "art/人像/王照凯4.png": {
       "bytes": 6201270,
       "sha256": "681a8e4cf079d4a8739bf5ac555a889c64e46c1c1324a774bcda6fbc41d0a4d5"
     },
@@ -265,6 +265,30 @@
       "bytes": 5026214,
       "sha256": "785a752f5aabbd719aa145e5f04c2d1313ac0be0e4d656755b7ed532692fc7ad"
     },
+    "art/国旗/吴福军合一旗.png": {
+      "bytes": 1792400,
+      "sha256": "1637ec0e0c9e6bfaaa53475863964d3ebbc29a0a292479b90837d1d8edaeb67e"
+    },
+    "art/国旗/民主合一旗.jpg": {
+      "bytes": 291365,
+      "sha256": "48af2c62543db16b43c95a01da00583f09f60b13a2b363bfaf4f773aff2f6d7a"
+    },
+    "art/国旗/民主陈栋合一旗.png": {
+      "bytes": 1833277,
+      "sha256": "1a890542d5bb87f5a68fe147b7b0031332fd0535fc70134f7e4e88690a843325"
+    },
+    "art/国旗/狗熊合一旗.png": {
+      "bytes": 975017,
+      "sha256": "1352a5a30d3fadc3f6f9c9e91f106036c95913ee24aae9761b2a2a931c03a360"
+    },
+    "art/国旗/联合革命合一旗.png": {
+      "bytes": 1143970,
+      "sha256": "58ae04a84c174fac599afbd5cf55a458abfcd007450f16bfe975eeaa00459155"
+    },
+    "art/国旗/钢铁红蛤合一旗.png": {
+      "bytes": 1034636,
+      "sha256": "0d5bee612165b84ac0484b4f18fc0673cd366cbb49b6378b48792912a07af615"
+    },
     "art/美术素材/TNO：合一风云LOGO.png": {
       "bytes": 7079427,
       "sha256": "fd00b808e320389f8d4952d9e17c17e5ffc15331e10215973bb7363b524aec07"
@@ -273,7 +297,7 @@
       "bytes": 5221413,
       "sha256": "ab4e13f67f2d2829a4f319c425938918ebc313f8454f6b6dc0dd61bb012af2c9"
     },
-    "art/美术素材/事件图片/王兆凯舵手逝世.jpeg": {
+    "art/美术素材/事件图片/王照凯舵手逝世.jpeg": {
       "bytes": 169432,
       "sha256": "4aa22880999b5b36170f8ebcd9b83bd43f47f44ba55d7d119eb2999d9524fcdd"
     },
@@ -349,7 +373,7 @@
       "bytes": 2901651,
       "sha256": "c0b40809a275691bcb78a42f4979f46353930b9db4f75377dad4c27e5288eee4"
     },
-    "art/载入图/封安保时代.png": {
+    "art/载入图/封安宝时代.png": {
       "bytes": 2744070,
       "sha256": "75b4a49f40b02a9e58bcf489918b6179d442c159928bb17461fd0880c863611d"
     },
@@ -413,9 +437,21 @@
       "bytes": 2208,
       "sha256": "dde9adcf0ec0bb289355f236ac0b7add263f6a6d51b856b0376d087b8efa15e0"
     },
+    "docs/VISUAL_UPDATE_2026-09-27.md": {
+      "bytes": 1017,
+      "sha256": "4c7e2b7c9c3c8c9955484bb23e6caa5934c9d07ef4e59975e2ea840da0aeccba"
+    },
+    "docs/screenshots/focus-art-2026-09-27.png": {
+      "bytes": 86795,
+      "sha256": "858d433c5cc7d68305e86f61fdf4d7e6c3b6296be2dec07834aa0aa86b6fe45d"
+    },
+    "docs/screenshots/law-art-2026-09-27.png": {
+      "bytes": 93589,
+      "sha256": "61fc0cd81185a4d3d4fd7de6958c639f57674ff251b3a7dfedfb02373f4ce8d9"
+    },
     "docs/story-source/TNO：合一风云-设定文档.docx": {
-      "bytes": 19592,
-      "sha256": "0e614ae743aba2336f65c5f1087f63f8fbcef1cfd3d74182307a5643c91d2289"
+      "bytes": 17375,
+      "sha256": "357518b00a33189d85b7fd092fcae36ad6b8272c99d16da43381ef7e8fd20015"
     },
     "index.html": {
       "bytes": 331,
@@ -498,8 +534,24 @@
       "sha256": "1954ca940740c612a12e7abf0a307b7394715964d66dc8037d503fdd5c1b6424"
     },
     "src/App.tsx": {
-      "bytes": 337399,
-      "sha256": "0396c827f5f3ba24dc1667cc5170be69ecad8f0b9f5f3fc2810b0ff8d3a50aba"
+      "bytes": 331659,
+      "sha256": "ebee68d6f56f454bf99f51f8abda9e2f51c995f2aa8fd7a690ef4e8e7a4ba68b"
+    },
+    "src/assets/flags/corporate.svg": {
+      "bytes": 604,
+      "sha256": "d626c79499b88dd5f42b9de64c7773d982eb1790a6c4d5ad33e1e3cf7320565e"
+    },
+    "src/assets/flags/school.svg": {
+      "bytes": 645,
+      "sha256": "461f8b9d6c57b81945cb1c450ea2291d52d9b8384d4e419ae11996cbda47481d"
+    },
+    "src/assets/flags/security.svg": {
+      "bytes": 566,
+      "sha256": "474c9054518f53d1d379948d51e311e6ae447a4d06b97d91b6f698abb77466c6"
+    },
+    "src/assets/flags/study.svg": {
+      "bytes": 646,
+      "sha256": "b39874b9efbb7c598546478f9c243458aefd83769274c64eefe913dd83d99d2c"
     },
     "src/assets/hoi4/CREDITS.md": {
       "bytes": 535,
@@ -1449,6 +1501,18 @@
       "bytes": 20582,
       "sha256": "73e8577b06e02cb2c30d2d675f9b310e8532bc31c4889837ccb77292dfa1b94a"
     },
+    "src/assets/hoi4/focus-backgrounds/Background.png": {
+      "bytes": 22721,
+      "sha256": "19b9953e6f12b659b86be7150d4bb3d46f93d19d5224558740d5369c18672917"
+    },
+    "src/assets/hoi4/focus-backgrounds/Circle with Ribbon2.png": {
+      "bytes": 33322,
+      "sha256": "5bcf53259a04276b1586f6c83f7a35a14ba9d22742ea75fb4802911978db2f95"
+    },
+    "src/assets/hoi4/focus-backgrounds/Green Laurel.png": {
+      "bytes": 9773,
+      "sha256": "df7387ce2a0cc8deb747ec3ddc4d2640808b6b52b86b90d19e8c8b81268952d6"
+    },
     "src/assets/hoi4/focus-backgrounds/Prison.png": {
       "bytes": 35033,
       "sha256": "10ad99042e079baff0d718ec488a49672e253078c20b6aa2cfaaee53d9ba9a21"
@@ -1461,6 +1525,14 @@
       "bytes": 11280,
       "sha256": "c3247593f073e4c6831f27f256dc0fa1ba6061a44040d6516b9626075c829c9e"
     },
+    "src/assets/hoi4/focus-backgrounds/Shield with Guns.png": {
+      "bytes": 18934,
+      "sha256": "d76aa72a3560d311a1444b13dd608a871ea613a69890e1ba801dbb0fabd516e0"
+    },
+    "src/assets/hoi4/focus-backgrounds/Spiky Shield.png": {
+      "bytes": 30979,
+      "sha256": "e4dea82b823c41d5e3b90a79646c6acb8a54488ddfeadc7702865e230febbbf9"
+    },
     "src/assets/hoi4/focus-backgrounds/Square Image.png": {
       "bytes": 32253,
       "sha256": "f75a87345e39f0b52ba93e97b1d189679f06a8eef0a4210e3f44a193afd1d689"
@@ -1468,6 +1540,10 @@
     "src/assets/hoi4/focus-backgrounds/Star.png": {
       "bytes": 29082,
       "sha256": "8947b4f916bc72737b0cd46c4185025d2395c055ef4f1a108429a4c295f7dd7b"
+    },
+    "src/assets/hoi4/focus-backgrounds/Sun Star.png": {
+      "bytes": 30317,
+      "sha256": "846e73f25ce3fe14dfca3ae89f39eec18a409457a9ea14d3527fa40403350379"
     },
     "src/assets/hoi4/focus-backgrounds/Wreath Communist.png": {
       "bytes": 33471,
@@ -1733,7 +1809,7 @@
       "bytes": 229292,
       "sha256": "e3392a94bb11f3dac25a35b75f73c0a610bab400ba26d8f0c7e8c4c9629521d8"
     },
-    "src/assets/loading/封安保时代.webp": {
+    "src/assets/loading/封安宝时代.webp": {
       "bytes": 189936,
       "sha256": "e0ab191a1c9465e6154d331605c7e52959b957bda3ff6e3df70ca45c3000a119"
     },
@@ -1878,8 +1954,8 @@
       "sha256": "73a3d9ff890eeb65cb5f566576529b488cb225a82af78dbcd2eecc098ca44c35"
     },
     "src/command.css": {
-      "bytes": 29856,
-      "sha256": "d783d8110f3371d17fb805d79e9051f17dd865c3321a47e0cc6a935e6d4ee68a"
+      "bytes": 30783,
+      "sha256": "9b7d76aceb197bd1833b1207b7ada532f30888ae5c39ea8d639733147a71ec92"
     },
     "src/components/AudioDock.tsx": {
       "bytes": 10074,
@@ -1903,7 +1979,7 @@
     },
     "src/components/CyberDeconstruction.tsx": {
       "bytes": 44748,
-      "sha256": "cf68842a9fc41b2fede6f20af068fa572783a616495a5ee1ed1490ca69d1aba9"
+      "sha256": "f6caf31957340e30596160b57d79d7dbee7105e65806f6504d410f682717e8e0"
     },
     "src/components/EndingGallery.tsx": {
       "bytes": 9089,
@@ -1914,8 +1990,8 @@
       "sha256": "f47ca16c20449b2a21b97730ae12b84dd5ff5c5318aa7434aacacf5968bd4a5f"
     },
     "src/components/FocusTree.tsx": {
-      "bytes": 303055,
-      "sha256": "b625c821be223b26752b5a45fcb2913a7719ea681da487c20c7e83727ac7275e"
+      "bytes": 299713,
+      "sha256": "1cc2dea089e2fb9eed512406d7586b91c8aa8edab529887c39aa27010be1fc8a"
     },
     "src/components/GameEndingScreen.tsx": {
       "bytes": 8001,
@@ -1923,7 +1999,7 @@
     },
     "src/components/GouxiongGalGame.tsx": {
       "bytes": 14002,
-      "sha256": "dd962101ddb0cfb3d3334d6e1783a9b64e3b84c531c551af78cdd2f64d49554d"
+      "sha256": "208d8f9cf4ece3b39a626443de00e665a5cfd798722f9c2616ab604980622718"
     },
     "src/components/HoverWindow.tsx": {
       "bytes": 3444,
@@ -1934,8 +2010,8 @@
       "sha256": "14c98b3523a94a2f225e0d0138749610356a7d0e600465e92482b7c873a2d2da"
     },
     "src/components/LeftSidebar.tsx": {
-      "bytes": 28439,
-      "sha256": "f97fd1674f7c202b536968bdd715f5d3e7ff2c29fd2f24825209b834d4ca8d24"
+      "bytes": 29686,
+      "sha256": "0df7303b828e58d61f83a7cd369f8965da04cb0d8e5580ba96aa58f3ebaeabc8"
     },
     "src/components/LoadingScreen.tsx": {
       "bytes": 5362,
@@ -1978,28 +2054,28 @@
       "sha256": "bc9acdc31d9fe763eeed171693322b1a6d603e9fb15fb7fc7569fa092e726051"
     },
     "src/components/RightSidebar.tsx": {
-      "bytes": 85626,
-      "sha256": "5e99dcba37fa76ad5102cc521ff5f6c81ed349d8428c4a4eecbd3eacd79eeea9"
+      "bytes": 87536,
+      "sha256": "d027c13d11ffae08f16f7f570b74366bf0b77d70152cca60d985ea6b66c93a7d"
     },
     "src/components/RouteGuide.tsx": {
-      "bytes": 30688,
-      "sha256": "94ef4a8b6d159991e8700fda9d8af42757b801cd3b2960997381ac029ad6b79c"
+      "bytes": 31157,
+      "sha256": "f116cdef9a88c0a2dc0e4591eef37eb8b9aee44c09c828132248b799b77e6116"
     },
     "src/components/Settings.tsx": {
-      "bytes": 17643,
-      "sha256": "dc5b0a3d0d58ee4918beb0bbc7bfa0ca29705e442efa99fc1e3b4695381ea6e6"
+      "bytes": 17986,
+      "sha256": "5dbd77b5ff8f9ddb6a95a28bb8652780fadcb428f247edb1100beae80ba69890"
     },
     "src/components/StartMenu.tsx": {
       "bytes": 8962,
       "sha256": "5d09fc3210558f0244b8b6643a5e2b9e9ef896b2810152813db6f847ef44061c"
     },
     "src/components/StrategicArt.tsx": {
-      "bytes": 6695,
-      "sha256": "52ca8fd762e879e0586a3b267ab2de778d3e75a72fd5dafa37dc51c108e508e5"
+      "bytes": 8843,
+      "sha256": "54398a1131d523d2fdfa7d64342fee42472d6afbee133ef7ab3aa441fdfa9762"
     },
     "src/components/StudentAssembly.tsx": {
-      "bytes": 30126,
-      "sha256": "25d7402532d30b99401790a0faa1336d3f032ab7992e2a08b2118f51d439640f"
+      "bytes": 30586,
+      "sha256": "7193f4f41af3fd424b4352bacc697e866eab3bab18cf3208406348c2a34b4768"
     },
     "src/components/SuperEvent.tsx": {
       "bytes": 4519,
@@ -2010,20 +2086,20 @@
       "sha256": "e40817fa4e5c1ff291db7abb47588c8d988319368d6a7a767a1c2c3b5c5619b5"
     },
     "src/components/TopBar.tsx": {
-      "bytes": 8025,
-      "sha256": "1d3985fbbdf014ccbefd9354b7494659b1fba2a5fc509e9b8c7da915f5abc3d0"
+      "bytes": 8500,
+      "sha256": "efae337a275fd1b539b24f619dd45c89c14e3206bbb9ccfe1ebb762c0c7278b7"
     },
     "src/components/Tutorial.tsx": {
       "bytes": 9443,
       "sha256": "690f565d79cf99b4d023b5c30e1e7974af918e0cf32ee3584a7f890d58583a7e"
     },
     "src/components/WuCrackdownConsole.tsx": {
-      "bytes": 39809,
-      "sha256": "465d2d7896a7538e7e2753e8188b18a2c694c47774ec3bc62a24035b943c9caa"
+      "bytes": 40411,
+      "sha256": "1e7046b26d1d3ed55a7a81a6877909bcaf15a47c6e171c19937e5877090757c8"
     },
     "src/components/YangYuleDesk.tsx": {
       "bytes": 39202,
-      "sha256": "4462f4b5af4e8f69241b6bedafbcf42e5d26a5ef083bf1cd6f6fb22d7ff45583"
+      "sha256": "bdd20e1bf49c2f7389a3f15bf639d24aeefdea55eab9572b29a34cb76e9a6d18"
     },
     "src/components/audioDock.css": {
       "bytes": 4181,
@@ -2038,8 +2114,8 @@
       "sha256": "16afe9c73c6e09a9fd156b5c60d2ce811b04565ef3fea13e6dd58320928a596d"
     },
     "src/components/strategicArt.css": {
-      "bytes": 5728,
-      "sha256": "6d2e5922973b7b4fdff55e956d2b2fa28c78bdad1c83a14600d163082ae7bf38"
+      "bytes": 8005,
+      "sha256": "1693d18e86ebe2e603bb3b9fac393b75c6f394548743ab504630863b4db71d77"
     },
     "src/components/superEvent.css": {
       "bytes": 1153,
@@ -2050,64 +2126,80 @@
       "sha256": "8a4182e9d5c2b0b069972f53220e024ebba1ac469c4f37321ad382a96d8c3e36"
     },
     "src/config/assets.ts": {
-      "bytes": 16276,
-      "sha256": "aef863d8601aa944a43639e03ef5d72b88e469df58eef6d48550b3bf7accc548"
+      "bytes": 16320,
+      "sha256": "63a8577cb14f9a104dc8a28842e690e86122c92cd4862bffcf28ad0ab0c548a1"
+    },
+    "src/config/campusFlags.ts": {
+      "bytes": 2869,
+      "sha256": "4e90b33ab292d1f80fcdd5f9c3c589b6599382825f661c4b90b25bb73c094af0"
     },
     "src/config/expandedArtwork.ts": {
       "bytes": 21046,
       "sha256": "0a53368e82c4ac96a88fcfa72f053a058a0bfde6e5b561ea38b49b451c05e7cc"
     },
+    "src/config/focusBackgrounds.ts": {
+      "bytes": 1274,
+      "sha256": "5b1e0a8c03985102fc9a4d928ac73c32cde21cab815178986a68d86f5f376ac4"
+    },
+    "src/config/focusRoutes.json": {
+      "bytes": 10527,
+      "sha256": "1a58f8bca650252554444fd6cb9cb45b7022e1aae4f37a0ec32cbc1f6a8df369"
+    },
     "src/config/hoi4Artwork.ts": {
       "bytes": 6905,
       "sha256": "507d8c5e8ec94b484b3eaed14425370cf38a621b9c1d16f94f3dcc5e1d10a829"
     },
+    "src/config/lawArtwork.ts": {
+      "bytes": 2766,
+      "sha256": "7391d635b28f12e8aeceaca75575fba7a02ead9b1428c202290a5f2ffe415c59"
+    },
     "src/config/loadingArtwork.ts": {
       "bytes": 2092,
-      "sha256": "45db62ccd0cfe545b0b8c4714f8d1328ba38f3f57b62105c9c7eec0b39b096b9"
+      "sha256": "4fed0155c8db5a3b36f1ad68101e50c4d0cfd9e06af56e53a1576fe4dc7bead9"
     },
     "src/config/localPortraits.ts": {
-      "bytes": 3623,
-      "sha256": "6813ff28f39dbcb0f0566bd61347780054e495fcbe36202b9ff22db049da0df9"
+      "bytes": 3695,
+      "sha256": "89e804bb926408d62f2340019c73f0557a65e3c0253eda3f65f08754f1d5eb49"
     },
     "src/data/characterProfiles.ts": {
       "bytes": 5419,
       "sha256": "ab9d6b6aa3614433aee15d60cfafe577cdff62a030caabd5385f34a9fa33fd16"
     },
     "src/data/commandRoutes.ts": {
-      "bytes": 8001,
-      "sha256": "d607502e4b84bbb1bc9835021eda90778dd64610a69eb4a4a5ea25ec58e2ded0"
+      "bytes": 8071,
+      "sha256": "00510ee31e575803e173e1b52515d8da061acdda45aefce92a810b9555787110"
     },
     "src/data/endings.ts": {
-      "bytes": 19336,
-      "sha256": "fab0eaed85343094ca6ce916cefe5ae034b775e57197791868d92f404c0dbe6c"
+      "bytes": 19702,
+      "sha256": "bde2460ef7707d106e610957b0357fb3dbc4b21836db8ee5c983918d5985a4ad"
     },
     "src/data/factionDossiers.ts": {
-      "bytes": 14038,
-      "sha256": "771523041e6af4e1e6339e6ebc7b35d606ade5beff2e3531a4451727238d1010"
+      "bytes": 14205,
+      "sha256": "8f9420d43a2a464867d74477b250cba1eba4cad295230e36f7227965348ddfcf"
     },
     "src/data/flavorEvents.ts": {
-      "bytes": 129746,
-      "sha256": "511431229a6509fa6808f9010fe317df9fe469c195acf0cbf399e0a679b95719"
+      "bytes": 128081,
+      "sha256": "687a957827a5e7c14c0488e8f0b212c1071218ea007103e8c02e53e9cd79e77a"
     },
     "src/data/laws.ts": {
-      "bytes": 11410,
-      "sha256": "949be6130fb01e3e5b9d4eb67610f47c78d0c300bf65744b2bfb47af88b7a5cf"
+      "bytes": 11631,
+      "sha256": "c9218edf6e976d68c0aaa7d0b9a68ae31690277b707de1cf9d07b1d58bbd99f0"
     },
     "src/data/redToadBills.ts": {
       "bytes": 8286,
       "sha256": "22f22f38cc45704a54b79662ea61fde6be23518300539d8cbcc843fce1744338"
     },
     "src/data/redToadState.ts": {
-      "bytes": 1785,
-      "sha256": "d841e6c90b61aa8afdf0c12a7653181b0ad2cacdd9c57360e41980749a791646"
+      "bytes": 1801,
+      "sha256": "63717e8283fe61dc727fa62aada1432a2ba8d428c557b26a808c0ea72900239e"
     },
     "src/data/routeOperations.ts": {
       "bytes": 3765,
       "sha256": "7dfbb4195ae13d474502ea42913d1239a3277d0b4167c477087ea0b37ef30927"
     },
     "src/data/storyEvents.ts": {
-      "bytes": 418061,
-      "sha256": "a40f28b54615a8b78950a067a617114d8305e83f1b2ba92c2dc6d8acbfff7a01"
+      "bytes": 415423,
+      "sha256": "2be3f22f9458a5fccd0fd1107effa8235bd99d16d0cf7c2c1cab7ad56a4f95ce"
     },
     "src/engine/audioSettings.ts": {
       "bytes": 1250,
@@ -2118,8 +2210,8 @@
       "sha256": "d1ba8acd6baa74ed21dcbfa4a7df12407396e8b5e519b13b33dcba35c8197009"
     },
     "src/engine/campusEvents.ts": {
-      "bytes": 24590,
-      "sha256": "8c566ec74bd115a27cff4aeea77c986ec41e21b02908c355dfa627dc61729e8e"
+      "bytes": 24790,
+      "sha256": "d19dca7fc5a38c74ca8f63041ea294659caa94072c060bde918ea49c49e08397"
     },
     "src/engine/commandSystem.ts": {
       "bytes": 13465,
@@ -2129,13 +2221,17 @@
       "bytes": 742,
       "sha256": "5e634b65b1d07c43851b713e883bc55045ef531b9c519408a439c2dda8215b52"
     },
+    "src/engine/displayNames.ts": {
+      "bytes": 383,
+      "sha256": "5b12430abc25edf528b664cbbd3c37529eac4a4bdd6fb126141e681fc7311773"
+    },
     "src/engine/endingGallery.ts": {
-      "bytes": 2676,
-      "sha256": "7017d186165e94315176c7fb22b78dcbbef5e79cf7ba82e229360263b705ecf6"
+      "bytes": 2868,
+      "sha256": "68346531516cab3e3efd2f36b01c5c0176c05b42064f17d74a137e527255e0f0"
     },
     "src/engine/gameLoop.ts": {
-      "bytes": 27211,
-      "sha256": "1a2064f31b56378aa112734338887efd8901a1c1fa1793d2f5e69fa288740419"
+      "bytes": 27864,
+      "sha256": "90725f5bb2b57bdd00af8a87b0c2d80dc9a3d6b7691853970a498c4559898c67"
     },
     "src/engine/mapActions.ts": {
       "bytes": 15752,
@@ -2146,12 +2242,12 @@
       "sha256": "b47953aff5cc846f75565059e44476a4b79c8e478f9c5c1a753e10bdc841a532"
     },
     "src/engine/routes/gouxiongData.ts": {
-      "bytes": 28389,
-      "sha256": "32e2e3d121cb7e1591a8738827578b51d824f0bf7ae13263d81dbce6d3d1a81e"
+      "bytes": 28614,
+      "sha256": "3528bb02a2edd61a56c130e17402a2b3332bbaa99ad8a147dd8a3dd522860d03"
     },
     "src/engine/saveSystem.ts": {
-      "bytes": 7016,
-      "sha256": "b26b37037d1509cfaf22a4ab08e1b3057fc568806cb53da03ed33c12afca77a9"
+      "bytes": 7328,
+      "sha256": "f3000eb6ea0773c0221478f6db654f2d6c169df5614016df829320c8b50ac1db"
     },
     "src/engine/superEventAudio.ts": {
       "bytes": 1770,
@@ -2178,8 +2274,8 @@
       "sha256": "24b8d9bc195970b63a9a13789f539f7272666f9d42db38b8fca53806cc35aff8"
     },
     "src/types.ts": {
-      "bytes": 16075,
-      "sha256": "b2cf64b741eaca5f643657c244383f0716d08918507ffb182a1e2602b32ef40c"
+      "bytes": 16568,
+      "sha256": "c07131c7482eb38794be694428c897ea2cb84207ad132ba89ba172fb8b331ba4"
     },
     "src/vite-env.d.ts": {
       "bytes": 38,
@@ -2198,12 +2294,12 @@
       "sha256": "e37a7e42d409976e0bde949953702700602f9947be559488191d817b8bec70e7"
     },
     "tests/commandSystem.test.ts": {
-      "bytes": 12377,
-      "sha256": "7b37be4dafe20a6e9eb5d3af6715ff2f8d07a990d59f5e6eaec36e14dc2c712e"
+      "bytes": 12589,
+      "sha256": "360166ca4375eada865de5b478300b9dcf75a5c13ed5ed92b941678e08348fa5"
     },
     "tests/factionDossiers.test.ts": {
-      "bytes": 1286,
-      "sha256": "526627275787f9edb676cd2051fd99877f74fd15f1ac4a6547e3593aeee4651e"
+      "bytes": 1305,
+      "sha256": "dadad4f676c68f7f11e109f33c02517ecbd39fea25b144df678243430379abd9"
     },
     "tests/musicInterruption.test.ts": {
       "bytes": 1412,
@@ -2221,6 +2317,10 @@
       "bytes": 973,
       "sha256": "c6537e268fb2d63ff090d11907624fa906caf888bcf757d3ce3b66dc2223e57b"
     },
+    "tests/visualIdentity.test.ts": {
+      "bytes": 4025,
+      "sha256": "50daf4d83d8baa0ad273f0b8e4aae8d714acacd0369b177fcc24e982f48cdf15"
+    },
     "tsconfig.json": {
       "bytes": 508,
       "sha256": "e93e15c3794e43a117964ea191ae985cbedea70c41d3d82b2e20aa8d07374fe4"
@@ -2229,11 +2329,15 @@
       "bytes": 414,
       "sha256": "28b634fdbe97866cbf90ec0a4181d02ea674b468b3abcf4dd7d2e2e0b6f0f0b8"
     },
+    "wrangler.pages.toml": {
+      "bytes": 92,
+      "sha256": "1f8bf33e4d4b100483d4ff4af4a46fff4ac4b582646e21c7be20f68451c1e693"
+    },
     "wrangler.toml": {
-      "bytes": 89,
-      "sha256": "5702320bd82b3209b40812445afc5ba14176030f6404a269bc68db8506da3a1c"
+      "bytes": 176,
+      "sha256": "ba7b6b13d17902bdf7a5e763017a6ea80a00d79e11a3ec00cec7328bdbe400fb"
     }
   },
-  "fileCount": 558,
-  "totalBytes": 246452884
+  "fileCount": 584,
+  "totalBytes": 253874124
 }

@@ -45,13 +45,13 @@ export function getFactionDossier(state: GameState, key: string): FactionDossier
         situation: haobang && state.flags.authoritarian_exit_done ? '退党谈判已有结果，仍需观察其组织是否真正退出中枢。' : '保卫系统是其主要筹码，忠诚和影响力会随路线事件改变。',
       };
       if (iron) return {
-        name: '校方建制派', leader: tree === 'wu_tree_p2_coup' ? '吴福军' : '封安保', role: tree === 'wu_tree_p2_coup' ? '护校队实际掌权者' : '校长；吴福军掌握保安队', portrait: tree === 'wu_tree_p2_coup' ? 'wu_fujun' : 'feng_anbao', portraitDomain: tree === 'wu_tree_p2_coup' ? 'advisor' : undefined, period: '铁腕时代',
-        description: '封安保仍是校方合法性的象征，吴福军则控制巡查、通行与戒严的执行。随着护校队扩张，两人的主从关系逐渐成为校内最危险的裂缝。',
+        name: '校方建制派', leader: tree === 'wu_tree_p2_coup' ? '吴福军' : '封安宝', role: tree === 'wu_tree_p2_coup' ? '护校队实际掌权者' : '校长；吴福军掌握保安队', portrait: tree === 'wu_tree_p2_coup' ? 'wu_fujun' : 'feng_anbao', portraitDomain: tree === 'wu_tree_p2_coup' ? 'advisor' : undefined, period: '铁腕时代',
+        description: '封安宝仍是校方合法性的象征，吴福军则控制巡查、通行与戒严的执行。随着护校队扩张，两人的主从关系逐渐成为校内最危险的裂缝。',
         situation: tree === 'wu_tree_p2_coup' ? '护校队已压过校长办公室，吴福军掌握现实权力。' : '行政楼仍在运转，但校长对保安队的控制并不稳固。',
       };
       if (capital) return {
-        name: '旧校方', leader: '封安保', role: '被托管的原校长', portrait: 'feng_anbao', period: '及第托管时期',
-        description: '旧管理层保留部分章程与印章，预算、人事和课程却已转入及第教育手中。封安保的威望不再足以决定学校的方向。',
+        name: '旧校方', leader: '封安宝', role: '被托管的原校长', portrait: 'feng_anbao', period: '及第托管时期',
+        description: '旧管理层保留部分章程与印章，预算、人事和课程却已转入及第教育手中。封安宝的威望不再足以决定学校的方向。',
         situation: '依赖及第资本维持残余影响力。',
       };
       if (cyber) return {
@@ -60,30 +60,30 @@ export function getFactionDossier(state: GameState, key: string): FactionDossier
         situation: '仍有组织能力，但难以重新控制整个校园。',
       };
       return {
-        name: '校方建制派', leader: '封安保', role: '校长；吴福军负责巡查', portrait: 'feng_anbao', period: '风暴前夜',
-        description: '以行政楼、年级部和校规维系校园秩序。封安保把升学率视为治理成绩，吴福军的巡查则把这一目标落实到每一条走廊。',
+        name: '校方建制派', leader: '封安宝', role: '校长；吴福军负责巡查', portrait: 'feng_anbao', period: '风暴前夜',
+        description: '以行政楼、年级部和校规维系校园秩序。封安宝把升学率视为治理成绩，吴福军的巡查则把这一目标落实到每一条走廊。',
         situation: '掌握正式机构，却面对逐渐成形的学生反对力量。',
       };
     }
     case 'radical_socialism': {
       if (haobang && state.flags.wzk_seat_vacant) return {
         name: '真左派', leader: '豪邦', role: '革委会临时舵手', portrait: 'hao_bang', period: '舵手逝世之后',
-        description: '王兆凯留下的正统派席位暂时空缺。豪邦试图把仍愿合作的革命派留在同一张桌旁，同时继续推进做题改革。',
+        description: '王照凯留下的正统派席位暂时空缺。豪邦试图把仍愿合作的革命派留在同一张桌旁，同时继续推进做题改革。',
         situation: '领导权已经交接，联盟能否维持取决于后续谈判与改革。',
       };
       if (revolutionary) return {
-        name: '真左派', leader: state.redToadState?.factions.orthodox?.leader?.replace(/\[|\]/g, '') || '王兆凯', role: '钢铁红蛤正统派', portrait: 'wang_zhaokai', period: parliament ? '学生议会时期' : '联合革委会时期',
-        description: '王兆凯和B3的组织者相信，学生必须亲自掌握学校的权力。革委会成立后，如何兼顾先锋队纪律、派系合作与真正的自治，成了他们内部的分歧。',
+        name: '真左派', leader: state.redToadState?.factions.orthodox?.leader?.replace(/\[|\]/g, '') || '王照凯', role: '钢铁红蛤正统派', portrait: 'wang_zhaokai', period: parliament ? '学生议会时期' : '联合革委会时期',
+        description: '王照凯和B3的组织者相信，学生必须亲自掌握学校的权力。革委会成立后，如何兼顾先锋队纪律、派系合作与真正的自治，成了他们内部的分歧。',
         situation: parliament ? '保有革命时期的组织网络，在议会中争取制度化席位。' : lu ? '正统派与肃反委员会的权力界线日益模糊。' : '以B3为核心，仍在决定革命的制度形态。',
       };
       if (capital || iron || cyber) return {
-        name: '真左派', leader: '王兆凯', role: 'B3革命网络代表', portrait: 'wang_zhaokai', period: capital ? '及第托管时期' : iron ? '铁腕时代' : '赛博娱乐时期',
+        name: '真左派', leader: '王照凯', role: 'B3革命网络代表', portrait: 'wang_zhaokai', period: capital ? '及第托管时期' : iron ? '铁腕时代' : '赛博娱乐时期',
         description: '曾在B3组织反抗的学生仍保留地下联系。他们反对把校园变成盈利机器，也警惕旧校方和礼堂势力用另一套权威取代自治。',
         situation: '失去公开执政地位，转向组织与抵抗。',
       };
       return {
-        name: '真左派', leader: '王兆凯', role: '钢铁红蛤组织者', portrait: 'wang_zhaokai', period: '风暴前夜',
-        description: '王兆凯在B3集结不满应试高压的学生，试图把零散的怨气变成有纪律的行动。队伍内部已有温和协商与彻底革命两种声音。',
+        name: '真左派', leader: '王照凯', role: '钢铁红蛤组织者', portrait: 'wang_zhaokai', period: '风暴前夜',
+        description: '王照凯在B3集结不满应试高压的学生，试图把零散的怨气变成有纪律的行动。队伍内部已有温和协商与彻底革命两种声音。',
         situation: '尚未掌权，影响力正从教学楼向宿舍和礼堂扩散。',
       };
     }

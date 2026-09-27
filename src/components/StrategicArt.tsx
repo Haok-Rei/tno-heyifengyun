@@ -1,4 +1,7 @@
 import type { FocusNode, NationalSpirit } from '../types';
+import focusRoutes from '../config/focusRoutes.json';
+import { FOCUS_BACKGROUNDS } from '../config/focusBackgrounds';
+import { LAW_ART } from '../config/lawArtwork';
 import { FOCUS_PIECE_OVERRIDES, HOI4_PIECES, SPIRIT_BACKGROUNDS, SPIRIT_BACKGROUND_VARIANTS, SPIRIT_PIECE_OVERRIDES } from '../config/hoi4Artwork';
 import artAssignments from '../config/artAssignments.json';
 import { EXPANDED_ART_URLS } from '../config/expandedArtwork';
@@ -16,10 +19,10 @@ const spiritBackgroundByKind: Record<ArtKind, string> = {
 };
 
 const PORTRAIT_FOCUS: Record<string, string> = {
-  start_2023: new URL('../../art/人像/封安保.png', import.meta.url).href,
-  declare_indep: new URL('../../art/人像/王兆凯4.png', import.meta.url).href,
+  start_2023: new URL('../../art/人像/封安宝.png', import.meta.url).href,
+  declare_indep: new URL('../../art/人像/王照凯4.png', import.meta.url).href,
   pan_takeover: new URL('../../art/人像/潘仁越5.png', import.meta.url).href,
-  true_left_consolidation: new URL('../../art/人像/王兆凯4.png', import.meta.url).href,
+  true_left_consolidation: new URL('../../art/人像/王照凯4.png', import.meta.url).href,
   lu_bohan_start: new URL('../../art/人像/吕波汉.png', import.meta.url).href,
   haobang_start: new URL('../../art/人像/豪邦.png', import.meta.url).href,
   gx_start: new URL('../../art/人像/狗熊2.png', import.meta.url).href,
@@ -70,11 +73,34 @@ export function getStrategicArtKind(id: string, title: string): ArtKind {
   return RULES.find(([pattern]) => pattern.test(text))?.[1] ?? 'campus';
 }
 
+/** Route heraldry is shared; branch subject chooses military, prison and economic variants. */
+export function getFocusBackdrop(route: string, kind: ArtKind): string {
+  if (kind === 'economy' || kind === 'industry') return route === 'corporate' ? 'Ring Gold' : 'Ring Silver';
+  if (kind === 'command') return 'Shield with Guns';
+  if (kind === 'security') return ['military', 'security', 'school'].includes(route) ? 'Spiky Shield' : 'Prison';
+  if (kind === 'crisis') return 'Star';
+  if (kind === 'research' || kind === 'study') return 'Sun Star';
+  if (kind === 'law') return 'Circle with Ribbon2';
+  return ({red: 'Wreath Communist', haobang: 'Wreath Communist', coalition: 'Wreath Communist', democracy: 'Green Laurel', despair: 'Shield with Guns', study: 'Sun Star', culture: 'Star', corporate: 'Ring Gold', security: 'Shield with Guns', military: 'Shield with Guns', school: 'Green Laurel'} as Record<string, string>)[route] ?? 'Background';
+}
+
+export function LawArt({ id, large = false }: { id: string; large?: boolean }) {
+  const art = LAW_ART[id] ?? { piece: 'Scales Golden', background: 'Polygon', rank: 1 };
+  return <span className={`law-art ${large ? 'law-art--large' : ''}`} aria-hidden="true">
+    <img className="law-art__backdrop" src={SPIRIT_BACKGROUND_VARIANTS[art.background]} alt="" draggable={false} />
+    <img className="law-art__piece" src={EXPANDED_ART_URLS[art.piece]} alt="" draggable={false} />
+    <span className="law-art__rank">{Array.from({length: art.rank}, (_, i) => <i key={i} />)}</span>
+  </span>;
+}
+
 export function FocusArt({ node, compact = false }: { node: Pick<FocusNode, 'id' | 'title'>; compact?: boolean }) {
   const kind = getStrategicArtKind(node.id, node.title);
   const portrait = PORTRAIT_FOCUS[node.id];
   const piece = expandedPiece(focusAssignments[node.id]) ?? HOI4_PIECES[FOCUS_PIECE_OVERRIDES[node.id] ?? kind];
-  return <span className={`strategic-art strategic-art--${kind} ${compact ? 'strategic-art--compact' : ''} ${portrait ? 'strategic-art--portrait' : ''}`} data-art-kind={kind} aria-hidden="true">
+  const route = (focusRoutes as Record<string, string>)[node.id] ?? 'school';
+  const backing = getFocusBackdrop(route, kind);
+  return <span className={`strategic-art strategic-art--focus strategic-art--route-${route} strategic-art--${kind} ${compact ? 'strategic-art--compact' : ''} ${portrait ? 'strategic-art--portrait' : ''}`} data-art-kind={kind} aria-hidden="true">
+    <img className="strategic-art__background strategic-art__focus-backdrop" src={FOCUS_BACKGROUNDS[backing]} alt="" draggable={false} />
     {portrait ? <img className="strategic-art__portrait" src={portrait} alt="" loading="lazy" /> : <img className="strategic-art__piece" src={piece} alt="" draggable={false} />}
   </span>;
 }

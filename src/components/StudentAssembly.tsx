@@ -56,7 +56,7 @@ export default function StudentAssembly({ state, onClose, onInteract }: StudentA
   };
 
   const factionDetails = [
-    { id: 'orthodox', name: '钢铁红蛤正统派', count: factions.orthodox, color: 'bg-red-500', btnClass: 'border-red-500/50 bg-red-900/30 hover:bg-red-800/50 text-red-300', desc: '坚持原教旨主义，主张彻底的革命。', leader: isDeluxeAssembly ? '王兆凯（已逝）' : '王兆凯', support: supportMap.orthodox },
+    { id: 'orthodox', name: '钢铁红蛤正统派', count: factions.orthodox, color: 'bg-red-500', btnClass: 'border-red-500/50 bg-red-900/30 hover:bg-red-800/50 text-red-300', desc: '坚持原教旨主义，主张彻底的革命。', leader: isDeluxeAssembly ? '王照凯（已逝）' : '王照凯', support: supportMap.orthodox },
     { id: 'bear', name: '钢铁红蛤狗熊派', count: factions.bear, color: 'bg-fuchsia-500', btnClass: 'border-fuchsia-500/50 bg-fuchsia-900/30 hover:bg-fuchsia-800/50 text-fuchsia-300', desc: '二次元缝合怪，追求抽象与解构。', leader: '狗熊', support: supportMap.bear },
     { id: 'pan', name: '潘仁越民主派', count: factions.pan, color: 'bg-blue-500', btnClass: 'border-blue-500/50 bg-blue-900/30 hover:bg-blue-800/50 text-blue-300', desc: '温和的自由派，主张渐进式改革。', leader: '潘仁越', support: supportMap.pan },
     { id: 'otherDem', name: '非建制民主派', count: factions.otherDem, color: 'bg-cyan-500', btnClass: 'border-cyan-500/50 bg-cyan-900/30 hover:bg-cyan-800/50 text-cyan-300', desc: '松散的民主联盟，诉求多样。', leader: '无', support: supportMap.otherDem },

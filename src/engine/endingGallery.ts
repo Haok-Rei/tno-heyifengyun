@@ -1,3 +1,4 @@
+import { normalizeDisplayNames } from './displayNames';
 /**
  * engine/endingGallery.ts - 结局画廊持久化 (v8.0)
  *
@@ -31,7 +32,7 @@ export function getEndingUnlockState(): EndingUnlockState {
   try {
     const raw = localStorage.getItem(UNLOCK_KEY);
     if (!raw) return { version: 1, unlocked: {}, seen: {} };
-    const parsed = JSON.parse(raw);
+    const parsed = JSON.parse(normalizeDisplayNames(raw));
     return {
       version: 1,
       unlocked: parsed.unlocked ?? {},
@@ -80,7 +81,7 @@ export function getLastChronicle(): LastChronicleRecord | null {
   try {
     const raw = localStorage.getItem(LAST_CHRONICLE_KEY);
     if (!raw) return null;
-    const parsed = JSON.parse(raw);
+    const parsed = JSON.parse(normalizeDisplayNames(raw));
     if (!parsed || !Array.isArray(parsed.entries)) return null;
     return parsed as LastChronicleRecord;
   } catch {

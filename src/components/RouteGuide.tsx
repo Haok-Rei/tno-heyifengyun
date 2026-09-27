@@ -31,7 +31,7 @@ interface GuideNode {
 // ============================================================
 const ROUTE_TREE: GuideNode = {
   id: 'start',
-  title: '2023年9月1日 · 封安保时代（第一阶段）',
+  title: '2023年9月1日 · 封安宝时代（第一阶段）',
   type: 'root',
   story: '滨湖校区，衡水模式高压统治。稳定度、卷子储备(TPR)、学生支持度(SS)与政治点数(PP)是贯穿全局的生命线。',
   children: [
@@ -58,13 +58,13 @@ const ROUTE_TREE: GuideNode = {
           children: [
             {
               id: 'yy_ending_success', title: '装在套子里的合一', type: 'ending', endingId: 'game_over_yang_yule_success',
-              req: '最终维稳人国策：处理事务 ≥ 10 次，且 封安保好感 + 教师支持 > 150、健康 > 0（完成公示期则直接加冕）',
+              req: '最终维稳人国策：处理事务 ≥ 10 次，且 封安宝好感 + 教师支持 > 150、健康 > 0（完成公示期则直接加冕）',
               story: '杨玉乐如愿评上正高级特级教师，合一被永远定格在死寂的稳定之中。',
             },
             {
               id: 'yy_ending_fail', title: '全面镇压', type: 'ending', endingId: 'game_over_school',
               req: '条件不足（好感/支持不够或健康崩盘）',
-              story: '功亏一篑。杨玉乐被封安保抛弃，吴福军重新掌权，镇压比以往更加残酷。',
+              story: '功亏一篑。杨玉乐被封安宝抛弃，吴福军重新掌权，镇压比以往更加残酷。',
             },
           ],
         },
@@ -78,7 +78,7 @@ const ROUTE_TREE: GuideNode = {
         },
         {
           id: 'tree_a',
-          title: '联合革委会（Tree A · 王兆凯）',
+          title: '联合革委会（Tree A · 王照凯）',
           type: 'route',
           story: '革命胜利但群龙无首。此阶段是全校最大分歧场：地图斗争 + 四大危机 + 命运十字路口，几乎所有路线都在这里分叉。',
           children: [
@@ -93,19 +93,19 @@ const ROUTE_TREE: GuideNode = {
                   id: 'wu_route',
                   title: '铁腕时代「吴福军镇压线」（校方视角）',
                   type: 'route',
-                  story: '你扮演封安保与吴福军，戒严地图上清剿“革命残党细胞”。残党实力/戒严等级/封校长信任/吴福军野心/学生愤怒/教师支持/舆论压力/谈判进度八项参数，另有专属戒严指挥部控制台与《午夜清场》小游戏。',
+                  story: '你扮演封安宝与吴福军，戒严地图上清剿“革命残党细胞”。残党实力/戒严等级/封校长信任/吴福军野心/学生愤怒/教师支持/舆论压力/谈判进度八项参数，另有专属戒严指挥部控制台与《午夜清场》小游戏。',
                   children: [
                     {
                       id: 'wu_p1',
                       title: '一阶段：铁腕 / 怀柔 / 野心 三支线',
                       type: 'route',
-                      story: '11个国策收束于唯一节点「封安保的年度叙职」，按 舆论压力/残党实力/学生愤怒 判定三档结果，进入三条互斥路线。',
+                      story: '11个国策收束于唯一节点「封安宝的年度叙职」，按 舆论压力/残党实力/学生愤怒 判定三档结果，进入三条互斥路线。',
                       children: [
                         {
                           id: 'wu_p2_feng',
                           title: '秩序元年（模范校提名 → praise）',
                           type: 'route',
-                          story: '封安保的完美答卷：模范校授牌 → 校规法治化 → 吴福军转岗或教育局背书 → 千年大计。',
+                          story: '封安宝的完美答卷：模范校授牌 → 校规法治化 → 吴福军转岗或教育局背书 → 千年大计。',
                           children: [
                             { id: 'wu_end_feng', title: '连任千年', type: 'ending', endingId: 'game_over_feng_millennium', req: '完成「千年大计」（野心<50 / 愤怒<45 / 舆论<45，与合一之春线共享）', story: '校长任期改为“无固定期限”，一千年的题海开始涨潮。' },
                           ],
@@ -116,7 +116,7 @@ const ROUTE_TREE: GuideNode = {
                           type: 'route',
                           story: '督导组进驻，吴福军被当众羞辱。权力边界审查、整改、忠诚与背叛的抉择。',
                           children: [
-                            { id: 'wu_end_spring', title: '合一之春', type: 'ending', endingId: 'game_over_hefei_spring', req: '「忠诚与背叛」：野心 = 100 且 封校长信任 < 40', story: '一声闷响。封安保倒在行政楼走廊，吴福军被带走，冻结的校园缓慢苏醒。' },
+                            { id: 'wu_end_spring', title: '合一之春', type: 'ending', endingId: 'game_over_hefei_spring', req: '「忠诚与背叛」：野心 = 100 且 封校长信任 < 40', story: '一声闷响。封安宝倒在行政楼走廊，吴福军被带走，冻结的校园缓慢苏醒。' },
                             { id: 'wu_end_compromise', title: '妥协与平静', type: 'ending', endingId: 'compromise', req: '「与残党接触」推进和平协议：谈判进度 = 100', story: '怀柔路线走到尽头。学生回到教室，老师们重新拿起教鞭。' },
                             { id: 'wu_end_feng2', title: '连任千年', type: 'ending', endingId: 'game_over_feng_millennium', req: '「降级留任」后完成共享节点「千年大计」', story: '同上——秩序派路线在整改风暴中幸存后的归宿。' },
                           ],
@@ -260,9 +260,9 @@ const ROUTE_TREE: GuideNode = {
                       children: [
                         { id: 'pan_end_golden', title: '合一大革命', type: 'golden', endingId: 'true_left_good', isNew: true, req: '持有《王潘和解协定》且 潘派 > 25 且 正统派 > 25 且 团结 > 60', story: '大选落幕，两个声音同时在广播站响起。纪律与自由不再互为敌人。' },
                         { id: 'pan_end_1', title: '民主的胜利', type: 'ending', endingId: 'game_over_pan', story: '潘仁越胜选，两代人的黎明。' },
-                        { id: 'pan_end_2', title: '钢铁红蛤的复兴', type: 'ending', endingId: 'game_over_wang', story: '王兆凯胜选，正统派的胜利。' },
+                        { id: 'pan_end_2', title: '钢铁红蛤的复兴', type: 'ending', endingId: 'game_over_wang', story: '王照凯胜选，正统派的胜利。' },
                         { id: 'pan_end_3', title: '自由的狂欢', type: 'ending', endingId: 'game_over_bear', story: '狗熊胜选，最快乐的青春时光。' },
-                        { id: 'pan_end_4', title: '中道之胜', type: 'ending', endingId: 'game_over_xu', story: '徐志胜选——“我们是不是选上台了另一个封安保？”' },
+                        { id: 'pan_end_4', title: '中道之胜', type: 'ending', endingId: 'game_over_xu', story: '徐志胜选——“我们是不是选上台了另一个封安宝？”' },
                         { id: 'pan_end_5', title: '内卷的回归', type: 'ending', endingId: 'game_over_juanhao', story: '王卷豪胜选，模拟考和自习室重新成为主旋律。' },
                       ],
                     },
@@ -282,10 +282,10 @@ const ROUTE_TREE: GuideNode = {
                 },
                 {
                   id: 'route_true_left',
-                  title: '王兆凯真左线（正统派）',
+                  title: '王照凯真左线（正统派）',
                   type: 'route',
                   req: '正统派席位最高 且 团结 > 70 且 集权 > 60',
-                  story: '王兆凯的原教旨路线：红蛤政治局、做题改革。一场触及灵魂的大革命——成功与否，决定合一走向何方。',
+                  story: '王照凯的原教旨路线：红蛤政治局、做题改革。一场触及灵魂的大革命——成功与否，决定合一走向何方。',
                   children: [
                     {
                       id: 'reform_success',
@@ -294,7 +294,7 @@ const ROUTE_TREE: GuideNode = {
                       req: '题改进度 = 100（150天危机内）→ 完成「真左派大团结」国策',
                       story: '改革落地。金线玩家在此迎来最终考验，否则进入豪邦自社线。',
                       children: [
-                        { id: 'tl_end_golden', title: '合一大革命', type: 'golden', endingId: 'true_left_good', isNew: true, req: '持有《王潘和解协定》且 团结 > 60 且 集权 ≤ 70 且 潘派 > 25', story: '做题改革成功的那天，王兆凯与潘仁越共握同一杆麦克风。' },
+                        { id: 'tl_end_golden', title: '合一大革命', type: 'golden', endingId: 'true_left_good', isNew: true, req: '持有《王潘和解协定》且 团结 > 60 且 集权 ≤ 70 且 潘派 > 25', story: '做题改革成功的那天，王照凯与潘仁越共握同一杆麦克风。' },
                         {
                           id: 'route_haobang',
                           title: '豪邦自社线',
@@ -332,7 +332,7 @@ const ROUTE_TREE: GuideNode = {
                   type: 'golden',
                   isNew: true,
                   req: '潘派 > 25 且 正统派 > 25 且 团结 > 60 且 集权 30 ~ 70',
-                  story: '两派势均力敌、不偏不倚时的第三种答案：王兆凯与潘仁越签署《王潘和解协定》（团结 +0.3/日、集权 -0.2/日），玩家自选进入真左线或自由派线继续游戏。结局不在十字路口——必须一路维持两派均衡，到各自路线终盘（大选落幕 / 做题改革成功）才能达成「合一大革命」。',
+                  story: '两派势均力敌、不偏不倚时的第三种答案：王照凯与潘仁越签署《王潘和解协定》（团结 +0.3/日、集权 -0.2/日），玩家自选进入真左线或自由派线继续游戏。结局不在十字路口——必须一路维持两派均衡，到各自路线终盘（大选落幕 / 做题改革成功）才能达成「合一大革命」。',
                 },
                 { id: 'x_end_awakening', title: '大梦初醒', type: 'ending', endingId: 'great_awakening', req: '团结 < 40 且 集权 > 80', story: '钢铁红蛤的铁腕压碎一切反对声音——包括曾经的战友。' },
                 { id: 'x_end_mediocrity', title: '平庸之乐', type: 'ending', endingId: 'pleasure_of_mediocrity', req: '集权 < 40', story: '短暂的狂热后向现实低头。一模的惨败让所有人明白：没有分数，他们什么都不是。' },

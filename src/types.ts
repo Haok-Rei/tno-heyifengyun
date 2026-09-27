@@ -130,7 +130,7 @@ export interface WuState {
   guerrillaStrength: number;
   /** 戒严等级 0-3：影响镇压效率/学生愤怒/吴福军野心 */
   martialLawLevel: number;
-  /** 封安保信任 0-100 */
+  /** 封安宝信任 0-100 */
   fengTrust: number;
   /** 吴福军野心 0-100，高则走向政变/刺杀 */
   wuAmbition: number;

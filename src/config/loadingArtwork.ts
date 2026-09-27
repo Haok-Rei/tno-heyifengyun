@@ -9,7 +9,7 @@ export const LOADING_ART: Record<string, string> = {
   "合一文革": new URL("../assets/loading/合一文革.webp", import.meta.url).href,
   "合一文革2": new URL("../assets/loading/合一文革2.webp", import.meta.url).href,
   "合一陨落": new URL("../assets/loading/合一陨落.webp", import.meta.url).href,
-  "封安保时代": new URL("../assets/loading/封安保时代.webp", import.meta.url).href,
+  "封安宝时代": new URL("../assets/loading/封安宝时代.webp", import.meta.url).href,
   "批斗": new URL("../assets/loading/批斗.webp", import.meta.url).href,
   "校园涂鸦1": new URL("../assets/loading/校园涂鸦1.webp", import.meta.url).href,
   "校园涂鸦2": new URL("../assets/loading/校园涂鸦2.webp", import.meta.url).href,

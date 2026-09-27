@@ -31,7 +31,7 @@ const CHOICES_BY_CHARACTER: Record<CharacterId, CharacterChoice[]> = {
   dabi: [
     { id: 'dabi_steady', texts: ['给她讲礼堂近况', '夸口礼堂布防细节', '把门禁与换岗节奏说透'], sanityCost: 6, minAffinity: 0, goodThreshold: 34, rewardHint: '她越温柔，你越容易多说' },
     { id: 'dabi_boundaries', texts: ['先装体贴问她怕什么', '承诺“我罩你”并安抚', '邀请她来礼堂“看星星”'], sanityCost: 5, minAffinity: 8, goodThreshold: 40, rewardHint: '高好感时容易触发关键邀约' },
-    { id: 'dabi_humor', texts: ['用中二梗给自己抬轿', '把王兆凯和吕波汉都踩一遍', '宣称自己是唯一玩家'], sanityCost: 8, minAffinity: 18, goodThreshold: 52 },
+    { id: 'dabi_humor', texts: ['用中二梗给自己抬轿', '把王照凯和吕波汉都踩一遍', '宣称自己是唯一玩家'], sanityCost: 8, minAffinity: 18, goodThreshold: 52 },
     { id: 'dabi_direct', texts: ['半告白试探她态度', '明示你会为她开后门', '承诺深夜单独见面'], sanityCost: 10, minAffinity: 30, goodThreshold: 64 },
   ],
   maodun: [
@@ -44,7 +44,7 @@ const CHOICES_BY_CHARACTER: Record<CharacterId, CharacterChoice[]> = {
     { id: 'lante_daily', texts: ['先聊游戏和WiFi', '吐槽周红兵再拉她站队', '用“随便玩”降低她戒心'], sanityCost: 4, minAffinity: 0, goodThreshold: 30, rewardHint: '轻松聊天最容易让她套话' },
     { id: 'lante_plan', texts: ['解释你夜间巡逻规则', '交代门禁改造和备用钥匙', '提前说周末顶层要戒严'], sanityCost: 6, minAffinity: 12, goodThreshold: 44, rewardHint: '会暴露礼堂夜间空档' },
     { id: 'lante_flirt', texts: ['把她当自己人试探', '暗示“人生大事”将至', '邀她别在关键夜乱跑'], sanityCost: 8, minAffinity: 24, goodThreshold: 56 },
-    { id: 'lante_showoff', texts: ['炫耀你重塑秩序', '吹自己比王兆凯更像领袖', '宣称你在进行最终剧本'], sanityCost: 10, minAffinity: 32, goodThreshold: 62 },
+    { id: 'lante_showoff', texts: ['炫耀你重塑秩序', '吹自己比王照凯更像领袖', '宣称你在进行最终剧本'], sanityCost: 10, minAffinity: 32, goodThreshold: 62 },
   ],
   wushuo: [
     { id: 'wushuo_listen', texts: ['先拿书当筹码吊她', '要她去后台单独取书', '借“特赦”话术压她姿态'], sanityCost: 5, minAffinity: 0, goodThreshold: 36, rewardHint: '她会诱导你留下把柄' },

@@ -28,7 +28,7 @@
    - `eventSystem.ts` (国策进度、事件队列)
 
 3. **数据驱动国策与事件 (Data-Driven)**：
-   尽可能将 `if (leader.name === '王兆凯')` 这种判断移出 UI 代码。将前置条件、效果写成可配置的 JSON/TS 对象。
+   尽可能将 `if (leader.name === '王照凯')` 这种判断移出 UI 代码。将前置条件、效果写成可配置的 JSON/TS 对象。
 
 ---
 
