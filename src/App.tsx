@@ -30,6 +30,8 @@ import YangYuleDesk from './components/YangYuleDesk';
 import WuCrackdownConsole, { getWuAttitude } from './components/WuCrackdownConsole';
 import StartMenu from './components/StartMenu';
 import Tutorial from './components/Tutorial';
+import GuidedTutorial, { GUIDE_STEPS } from './components/GuidedTutorial';
+import './components/guidedTutorial.css';
 import Settings from './components/Settings';
 import LoadingScreen from './components/LoadingScreen';
 import { GameState, Advisor, Decision, GameEvent, SuperEventData, EventChoice, NationalSpirit, RedToadFaction, ALL_SUB_TILES, ChronicleEntry } from './types';
@@ -583,6 +585,9 @@ function DistrictWindow({ onDock }: { onDock: (node: HTMLDivElement | null) => v
 export default function App() {
   // Menu system states
   const [appMode, setAppMode] = useState<'menu' | 'loading' | 'game'>('menu');
+  const [tutorialStep, setTutorialStep] = useState<number | null>(null);
+  const tutorialWasPausedRef = useRef(true);
+  const tutorialReplayViewRef = useRef<{ government: boolean; decisions: boolean; focus: boolean; tile: string | null } | null>(null);
   const [currentMenuPage, setCurrentMenuPage] = useState<'main' | 'tutorial' | 'settings' | 'gallery'>(
     'main'
   );
@@ -613,6 +618,14 @@ export default function App() {
   const gameStateRef = useRef(gameState);
   const wasPausedBeforeMenuRef = useRef(true);
   useEffect(() => {
+    if (tutorialStep === null) return;
+    const anchor = GUIDE_STEPS[tutorialStep].anchor;
+    setGovernmentOpen(anchor.startsWith('[data-tour="nation-'));
+    setShowFocusTree(anchor === '[data-tour="focus-tree"]');
+    setDecisionsOpen(anchor === '[data-tour="decisions"]');
+    setSelectedTileId(anchor === '[data-tour="map"]' || anchor === '[data-tour="workgroups"]' ? 'b3_tower' : null);
+  }, [tutorialStep]);
+  useEffect(() => {
     gameStateRef.current = gameState;
   }, [gameState]);
 
@@ -630,6 +643,9 @@ export default function App() {
 
   const handleRestart = () => {
     setGameState(INITIAL_GAME_STATE);
+    tutorialWasPausedRef.current = true;
+    tutorialReplayViewRef.current = null;
+    setTutorialStep(0);
   };
 
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -1169,7 +1185,7 @@ export default function App() {
 
   // Game Loop
   useEffect(() => {
-    if (gameState.isPaused || gameState.activeEvent || gameState.activeSuperEvent || gameState.activeMinigame || gameState.gameEnding) return;
+    if (tutorialStep !== null || gameState.isPaused || gameState.activeEvent || gameState.activeSuperEvent || gameState.activeMinigame || gameState.gameEnding) return;
 
     const speedMap: Record<number, number> = {
       1: 1000,
@@ -4383,11 +4399,12 @@ export default function App() {
     }, delay);
 
     return () => clearInterval(interval);
-  }, [gameState.isPaused, gameState.activeEvent, gameState.activeSuperEvent, gameState.activeMinigame, gameState.gameSpeed]);
+  }, [tutorialStep, gameState.isPaused, gameState.activeEvent, gameState.activeSuperEvent, gameState.activeMinigame, gameState.gameSpeed]);
 
   // Keyboard controls
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (tutorialStep !== null) return;
       if (e.key === '`' || e.key === '~') {
         e.preventDefault();
         setIsConsoleOpen(prev => !prev);
@@ -4432,6 +4449,7 @@ export default function App() {
     gameState.activeMinigame,
     isConsoleOpen,
     isInGameMenuOpen,
+    tutorialStep,
   ]);
 
   const handleConsoleSubmit = (e: React.FormEvent) => {
@@ -4517,7 +4535,10 @@ export default function App() {
     setIsConsoleOpen(false);
   };
 
-  const togglePause = () => setGameState(prev => ({ ...prev, isPaused: !prev.isPaused }));
+  const togglePause = () => {
+    if (tutorialStep !== null) return;
+    setGameState(prev => ({ ...prev, isPaused: !prev.isPaused }));
+  };
   const toggleFocusTree = () => setShowFocusTree(prev => !prev);
 
   const hireAdvisor = (slotIndex: number, advisor: Advisor) => {
@@ -5226,14 +5247,20 @@ export default function App() {
   const handleQuickLoad = () => {
     const loaded = loadFromSlot('quicksave');
     if (!loaded) return;
-    setGameState(loaded);
+    tutorialWasPausedRef.current = true;
+    tutorialReplayViewRef.current = null;
+    setGameState(loaded.flags.tutorial_completed ? loaded : { ...loaded, isPaused: true });
+    setTutorialStep(loaded.flags.tutorial_completed ? null : 0);
     setIsInGameMenuOpen(false);
   };
   const handleSaveToSlot = (slotId: 'save_1' | 'save_2' | 'save_3') => { saveToSlot(gameStateRef.current, slotId); };
   const handleLoadFromSlot = (slotId: 'save_1' | 'save_2' | 'save_3' | 'autosave_monthly') => {
     const loaded = loadFromSlot(slotId);
     if (!loaded) return;
-    setGameState(loaded);
+    tutorialWasPausedRef.current = true;
+    tutorialReplayViewRef.current = null;
+    setGameState(loaded.flags.tutorial_completed ? loaded : { ...loaded, isPaused: true });
+    setTutorialStep(loaded.flags.tutorial_completed ? null : 0);
     setIsInGameMenuOpen(false);
   };
   const handleDeleteSlot = (slotId: 'save_1' | 'save_2' | 'save_3') => { deleteSlot(slotId); };
@@ -5247,20 +5274,43 @@ export default function App() {
 
   // Menu callbacks
   const handleStartGame = () => {
+    setTutorialStep(null);
+    tutorialReplayViewRef.current = null;
     setAppMode('loading');
     setCurrentMenuPage('main');
     setIsInGameMenuOpen(false);
+    setGameState(INITIAL_GAME_STATE);
+  };
+
+  const handleLoadingComplete = () => {
+    setAppMode('game');
+    tutorialWasPausedRef.current = true;
+    setTutorialStep(0);
     setGameState(prev => ({
       ...prev,
       isPaused: true
     }));
   };
 
-  const handleLoadingComplete = () => {
-    setAppMode('game');
+  const reopenTutorial = () => {
+    tutorialWasPausedRef.current = gameStateRef.current.isPaused;
+    tutorialReplayViewRef.current = { government: governmentOpen, decisions: decisionsOpen, focus: showFocusTree, tile: selectedTileId };
+    setGameState(prev => ({ ...prev, isPaused: true }));
+    setTutorialStep(0);
+  };
+
+  const finishTutorial = () => {
+    setTutorialStep(null);
+    const previousView = tutorialReplayViewRef.current;
+    tutorialReplayViewRef.current = null;
+    setGovernmentOpen(previousView?.government ?? false);
+    setShowFocusTree(previousView?.focus ?? false);
+    setDecisionsOpen(previousView?.decisions ?? false);
+    setSelectedTileId(previousView?.tile ?? null);
     setGameState(prev => ({
       ...prev,
-      isPaused: false
+      flags: { ...prev.flags, tutorial_completed: true },
+      isPaused: prev.activeEvent || prev.activeSuperEvent || prev.activeMinigame ? true : tutorialWasPausedRef.current,
     }));
   };
 
@@ -5325,11 +5375,12 @@ export default function App() {
       />
       
       <div className={`game-workspace flex-1 overflow-hidden relative ${governmentOpen ? 'has-government' : ''} ${decisionsOpen ? 'has-decisions' : ''}`}>
-        <nav className="campaign-rail" aria-label="游戏主导航">
+        <nav className="campaign-rail" aria-label="游戏主导航" data-tour="rail">
           <div className="rail-mark">合一<small>TNO</small></div>
           <button className={governmentOpen ? 'active' : ''} aria-pressed={governmentOpen} onClick={() => setGovernmentOpen(v => !v)}><span>▤</span>国家</button>
           <button className={decisionsOpen ? 'active' : ''} aria-pressed={decisionsOpen} onClick={() => setDecisionsOpen(v => !v)}><span>▣</span>决议{gameState.crises.length > 0 && <b>{gameState.crises.length}</b>}</button>
           <button onClick={() => setIsChronicleOpen(true)}><span>▥</span>编年史</button>
+          <button data-tour="rail-tutorial" aria-label="重新开始教学" onClick={reopenTutorial}><span>?</span>教学</button>
           {featureEntries.length > 0 && <div className="rail-feature-list" aria-label="已解锁的特色系统">
             {featureEntries.map(entry => <button key={entry.id} className={entry.active ? 'active' : ''} aria-pressed={entry.active} title={entry.label} onClick={entry.open}><span>{entry.glyph}</span>{entry.label}</button>)}
           </div>}
@@ -5504,11 +5555,11 @@ export default function App() {
         </div>
       )}
 
-      {gameState.activeEvent && (
+      {tutorialStep === null && gameState.activeEvent && (
         <EventPopup event={gameState.activeEvent} onConfirm={handleEventConfirm} date={gameState.date} state={gameState} />
       )}
 
-      {gameState.activeSuperEvent && (
+      {tutorialStep === null && gameState.activeSuperEvent && (
         <SuperEvent event={gameState.activeSuperEvent} onConfirm={handleSuperEventConfirm} />
       )}
 
@@ -5743,7 +5794,7 @@ export default function App() {
           }}
         />
       )}
+      {tutorialStep !== null && <GuidedTutorial step={tutorialStep} onStep={setTutorialStep} onFinish={finishTutorial} />}
     </div>
   );
 }
-

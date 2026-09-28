@@ -14,6 +14,7 @@ import { SPIRIT_BACKGROUND_VARIANTS } from '../src/config/hoi4Artwork';
 import { CAMPUS_FLAGS, getCampusFlagKey } from '../src/config/campusFlags';
 import { deserializeGameState } from '../src/engine/saveSystem';
 import { normalizeDisplayNames } from '../src/engine/displayNames';
+import { GUIDE_STEPS } from '../src/components/GuidedTutorial';
 
 test('all playable focus trees have local route and subject backdrops', () => {
   for (const tree of ['phase1', 'treeA', 'treeA_pan', 'treeA_pan_despair', 'treeA_true_left', 'treeA_lu_bohan', 'treeA_haobang', 'treeB', 'jidi_tree', 'gouxiong_tree', 'wu_tree', 'wu_tree_p2_feng', 'wu_tree_p2_spring', 'wu_tree_p2_coup']) {
@@ -60,4 +61,21 @@ test('historical saves migrate names and event text while preserving game IDs an
   assert.equal(restored.activeEvent?.title, '封安宝的谈判');
   assert.deepEqual(restored.stats, {pp:150,tpr:80});
   assert.equal(restored.currentFocusTree, 'treeA_true_left');
+});
+
+test('B3 focus is visible from the start and unlocks only above 80 radical anger', () => {
+  const node = getFocusNodes('phase1').find(item => item.id === 'charge_b3')!;
+  assert.equal(node.isHidden, undefined);
+  assert.equal(node.requires, undefined);
+  for (const [anger, support, expected] of [[0, 100, false], [80, 100, false], [80.01, 0, true]] as const) {
+    assert.equal(node.canStart?.({ stats: { radicalAnger: anger, ss: support } } as GameState), expected);
+  }
+});
+
+test('guided campaign tour covers each operational surface and ends at replay button', () => {
+  assert.ok(GUIDE_STEPS.length >= 12);
+  for (const anchor of ['resources', 'time', 'nation-overview', 'nation-focus', 'nation-cabinet', 'nation-laws', 'focus-tree', 'decisions', 'map', 'map-layers', 'workgroups', 'rail-tutorial']) {
+    assert.ok(GUIDE_STEPS.some(step => step.anchor === `[data-tour="${anchor}"]`), anchor);
+  }
+  assert.equal(GUIDE_STEPS.at(-1)?.anchor, '[data-tour="rail-tutorial"]');
 });

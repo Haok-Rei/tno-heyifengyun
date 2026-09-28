@@ -1,0 +1,13 @@
+.guided-tour { position:fixed; inset:0; z-index:10000; pointer-events:auto; font-family:'Microsoft YaHei',sans-serif; }
+.guided-tour__shade { position:absolute; background:#050809cf; }
+.guided-tour__target { position:absolute; border:2px solid #dfb87c; box-shadow:0 0 0 3px #111718,0 0 22px #d9aa6388,inset 0 0 22px #d9aa6333; pointer-events:none; }
+.guided-tour__card { position:absolute; z-index:1; max-height:calc(100vh - 72px); overflow:auto; border:1px solid #b28b62; background:linear-gradient(145deg,#2a302c,#131a1b 70%); box-shadow:0 16px 45px #000e,inset 0 0 0 3px #0b1011; color:#dfded6; padding:16px 18px 14px; }
+.guided-tour__eyebrow { display:flex; justify-content:space-between; gap:12px; color:#bba47d; font:10px Consolas,monospace; letter-spacing:2px; border-bottom:1px solid #735c48; padding-bottom:8px; }
+.guided-tour__card h2 { margin:13px 0 8px; color:#f3e9d5; font-size:19px; font-weight:800; letter-spacing:1px; }
+.guided-tour__card p { margin:0; color:#bdc5bf; font-size:12px; line-height:1.8; }
+.guided-tour__footer { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:17px; padding-top:11px; border-top:1px solid #50554e; color:#9d9f92; font:11px Consolas,monospace; }
+.guided-tour__footer>div { display:flex; gap:7px; }
+.guided-tour__footer button { border:1px solid #777365; padding:6px 10px; color:#ddd6c4; background:#202525; }
+.guided-tour__footer button:hover,.guided-tour__footer button:focus-visible { border-color:#f0cc86; color:#fff; }
+.guided-tour__footer .guided-tour__primary { border-color:#bd966a; color:#111819; background:#d1ae77; font-weight:800; }
+@media(max-width:700px) { .guided-tour__card { left:12px !important; right:12px; top:auto !important; bottom:12px; width:auto !important; } }

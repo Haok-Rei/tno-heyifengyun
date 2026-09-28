@@ -132,3 +132,25 @@
 .law-art__rank { position:absolute; bottom:0; left:0; right:0; display:flex; gap:2px; justify-content:center; }
 .law-art__rank i { width:3px; height:2px; background:#d3bc83; box-shadow:0 1px 1px #000; }
 .law-art--large { width:42px; height:42px; }
+
+/* Four readable focus states, with labels and distinct materials in addition to color. */
+.focus-tree-legend { display:grid; grid-template-columns:repeat(2,max-content); gap:4px 8px; margin-top:7px; font:10px 'Microsoft YaHei',sans-serif; }
+.focus-tree-legend span { padding:2px 5px; border:1px solid; background:#121919; }
+.focus-tree-legend .is-available { color:#f0d19a; border-color:#c6a266; }
+.focus-tree-legend .is-locked { color:#858d8a; border-color:#525b58; }
+.focus-tree-legend .is-active { color:#e4bb8e; border-color:#a96748; }
+.focus-tree-legend .is-completed { color:#bbd5ac; border-color:#73916d; }
+.focus-art-node__status { position:absolute; top:4px; left:5px; z-index:3; border:1px solid currentColor; padding:1px 3px; font:9px 'Microsoft YaHei',sans-serif; font-weight:700; letter-spacing:.03em; background:#0a1011eb; }
+.focus-art-node--available { border:2px solid #e2bd7c; background:linear-gradient(160deg,#544b35,#282d28 55%,#171d1d); box-shadow:inset 0 0 0 2px #131919,0 0 0 1px #6c5738,0 3px 15px #000b; }
+.focus-art-node--available .focus-art-node__status { color:#f1d399; }
+.focus-art-node--available:hover,.focus-art-node--available:focus-visible { border-color:#ffe2a1; box-shadow:inset 0 0 0 2px #151b1c,0 0 18px #d6ad686b; }
+.focus-art-node--locked { filter:none; border:1px dashed #59615e; background:linear-gradient(160deg,#252c2b,#121919); box-shadow:inset 0 0 0 2px #0a1112,0 3px 8px #0009; }
+.focus-art-node--locked .strategic-art { filter:grayscale(.9) brightness(.55); }
+.focus-art-node--locked .focus-art-node__title { color:#88928e; }
+.focus-art-node--locked .focus-art-node__status { color:#9ba29d; }
+.focus-art-node--active { border:2px solid #cb7952; background:linear-gradient(160deg,#63402e,#2c2923 55%,#151a1a); box-shadow:inset 0 0 0 2px #171818,0 0 18px #d67e4e88; }
+.focus-art-node--active .focus-art-node__status { color:#ffd1a4; }
+.focus-art-node--active .focus-art-node__progress { height:5px; background:#e89a61; box-shadow:0 0 9px #e69761; }
+.focus-art-node--completed { border:2px double #86a17a; background:linear-gradient(160deg,#364337,#202d2b 55%,#131b1b); box-shadow:inset 0 0 0 2px #101919,0 3px 10px #000b; }
+.focus-art-node--completed .focus-art-node__status { color:#c7e5b9; }
+.focus-art-node--completed .focus-art-node__title { color:#c9dec0; }

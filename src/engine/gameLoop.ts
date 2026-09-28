@@ -86,7 +86,7 @@ export const FOCUS_START_SUPER_EVENTS: Record<string, SuperEventData> = {
 // 国策要求检查
 // ============================================================
 
-const OR_REQUIRE_FOCUS_IDS = new Set(['steel_toad', 'rectify_campus_order', 'charge_b3', 'wu_coup_december', 'wu_millennium_plan']);
+const OR_REQUIRE_FOCUS_IDS = new Set(['steel_toad', 'rectify_campus_order', 'wu_coup_december', 'wu_millennium_plan']);
 
 /** 判断节点前置国策是「或」还是「与」关系（供国策树悬浮窗显示） */
 export function requiresIsOr(nodeId: string): boolean {

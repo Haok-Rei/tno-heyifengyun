@@ -11,7 +11,7 @@ interface FocusTreeProps {
   isSuperEventActive?: boolean;
 }
 
-const OR_REQUIRE_FOCUS_IDS = new Set(['steel_toad', 'rectify_campus_order', 'charge_b3', 'wu_coup_december', 'wu_millennium_plan']);
+const OR_REQUIRE_FOCUS_IDS = new Set(['steel_toad', 'rectify_campus_order', 'wu_coup_december', 'wu_millennium_plan']);
 
 const hasFocusRequirements = (node: FocusNode, completedFocuses: string[]) => {
   if (!node.requires || node.requires.length === 0) return true;
@@ -124,16 +124,15 @@ export const PHASE1_NODES: FocusNode[] = [
   },
 
   // ===== 最终节点：B3起义 =====
-  { id: 'charge_b3', title: '冲上B3教学楼！', description: '所有矛盾在这里汇聚。吴福军的保安队在楼下集结，杨玉乐拨不通封安宝的电话。走廊里的街垒已经堆了三小时，一个女生的额头撞上了消防栓。血沿着她的脸颊流下来——然后，所有人心里的最后一丝畏惧碎了。', days: 5, x: 500, y: 880, requires: ['perfect_hengshui', 'steel_toad'],
-    canStart: (s) => s.stats.radicalAnger >= 70 || s.stats.ss >= 80,
-    isHidden: (s) => !(s.stats.radicalAnger >= 70 || s.stats.ss >= 80),
+  { id: 'charge_b3', title: '冲上B3教学楼！', description: '所有矛盾在这里汇聚。吴福军的保安队在楼下集结，杨玉乐拨不通封安宝的电话。走廊里的街垒已经堆了三小时，一个女生的额头撞上了消防栓。血沿着她的脸颊流下来——然后，所有人心里的最后一丝畏惧碎了。', days: 5, x: 500, y: 880,
+    canStart: (s) => s.stats.radicalAnger > 80,
     onComplete: (s) => ({
       activeEvent: FLAVOR_EVENTS.phase1_before_charge,
       activeStoryEvents: [STORY_EVENTS.story_6],
       flags: { ...s.flags, rebellion_started: true, charge_b3_completed_days: 0, yy_charge_b3_done_date: s.date.getTime() }
     }),
     effectsText: ['触发事件链：临界点→B3楼的黑天红字旗→联合革委会成立', '开启校园地图斗争阶段'],
-    requiresText: ['前置：完美衡水流水线 或 铸造钢铁红蛤', '革命路线：激进愤怒度 >= 70', '民主路线：学生支持度 >= 80']
+    requiresText: ['激进愤怒度 > 80']
   },
 ];
 
@@ -3228,8 +3227,6 @@ export default function FocusTree({ state, startFocus, triggerError, isSuperEven
     if (!hasFocusRequirements(node, state.completedFocuses)) return false;
     if (node.mutuallyExclusive && node.mutuallyExclusive.some(ex => state.completedFocuses.includes(ex))) return false;
 
-    if (node.id === 'charge_b3' && state.stats.radicalAnger < 70 && state.stats.ss < 80) return false;
-
     if (node.canStart && !node.canStart(state)) return false;
 
     return true;
@@ -3245,8 +3242,9 @@ export default function FocusTree({ state, startFocus, triggerError, isSuperEven
 
   return (
     <div className="focus-tree-panel flex-1 flex flex-col relative overflow-hidden bg-zinc-950 border-x border-tno-border">
-      <div className="focus-tree-status absolute top-4 left-4 z-10 bg-tno-panel border border-tno-border p-2">
+      <div className="focus-tree-status absolute top-4 left-4 z-10 bg-tno-panel border border-tno-border p-2" data-tour="focus-tree">
         <h2 className="text-tno-highlight font-bold tracking-widest">国家焦点</h2>
+        <div className="focus-tree-legend" aria-label="国策状态图例"><span className="is-available">可选择</span><span className="is-locked">未解锁</span><span className="is-active">进行中</span><span className="is-completed">已完成</span></div>
         {state.activeFocus && (
           <div className="mt-2 text-xs">
             <div className="text-tno-text mb-1">正在研究: {currentNodes.find(n => n.id === state.activeFocus?.id)?.title}</div>
@@ -3312,16 +3310,23 @@ export default function FocusTree({ state, startFocus, triggerError, isSuperEven
             const isCompleted = state.completedFocuses.includes(node.id);
             const isActive = state.activeFocus?.id === node.id;
             const isAvailable = canStartFocus(node);
+            const status = isCompleted ? '已完成' : isActive ? '进行中' : isAvailable ? '可选择' : '未解锁';
             
             return (
               <div 
                 key={node.id}
+                role="button"
+                tabIndex={0}
+                aria-label={`${node.title}：${status}`}
+                data-focus-status={status}
                 data-sound={isAvailable ? 'focus' : isCompleted || isActive ? 'none' : 'error'}
                 onClick={() => handleNodeClick(node)}
+                onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); handleNodeClick(node); } }}
                 className={`focus-art-node absolute select-none z-10 group hover:z-[100] ${isCompleted ? 'focus-art-node--completed' : isActive ? 'focus-art-node--active' : isAvailable ? 'focus-art-node--available cursor-pointer' : 'focus-art-node--locked'}`}
                 style={{ left: node.x, top: focusY(node) }}
               >
                 <FocusArt node={node} />
+                <span className="focus-art-node__status">{status}</span>
                 <div className="focus-art-node__title text-tno-text">{node.title}</div>
                 <div className="focus-art-node__days">{node.days}D</div>
                 {isActive && (
@@ -3360,7 +3365,7 @@ export default function FocusTree({ state, startFocus, triggerError, isSuperEven
                       <span className="font-bold text-amber-300">需要条件: </span>{node.requiresText.join('；')}
                     </div>
                   )}
-                  {node.canStart && (
+                  {node.canStart && !node.requiresText?.length && (
                     <div className="text-[10px] text-amber-200/70 mb-1.5">
                       <span className="font-bold text-amber-300/80">隐藏条件: </span>另有数值判定（悬浮不可见，达成后解锁）
                     </div>

@@ -1601,7 +1601,7 @@ export default function RightSidebar({ state, triggerDecision, triggerError }: R
 
 
   return (
-    <div className="w-64 md:w-80 flex-shrink-0 tno-panel border-l border-tno-border h-full flex flex-col p-4 relative z-10">
+    <div className="w-64 md:w-80 flex-shrink-0 tno-panel border-l border-tno-border h-full flex flex-col p-4 relative z-10" data-tour="decisions">
       
       {/* Secondary Stats */}
       <div className="mb-4">

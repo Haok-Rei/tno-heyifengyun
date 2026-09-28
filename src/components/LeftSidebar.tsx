@@ -223,7 +223,7 @@ export default function LeftSidebar({ state, hireAdvisor, dismissAdvisor, cancel
 
   return (
     <div ref={panelRef} className="nation-panel flex-shrink-0 tno-panel border-r border-tno-border h-full flex flex-col relative z-40 overflow-y-auto">
-      <div className="nation-overview">
+      <div className="nation-overview" data-tour="nation-overview">
       <div className="nation-leader-section">
         <HoverWindow
           width={240}
@@ -328,7 +328,7 @@ export default function LeftSidebar({ state, hireAdvisor, dismissAdvisor, cancel
       </div>
 
       {/* Current Focus */}
-      <div className="nation-module nation-module--focus p-3 border-b border-tno-border">
+      <div className="nation-module nation-module--focus p-3 border-b border-tno-border" data-tour="nation-focus">
         <div className="nation-module-heading flex items-center justify-between mb-1.5"><span className="text-xs text-tno-text/60 uppercase tracking-widest">当前国策</span></div>
         <div className="space-y-2">
           <button onClick={onOpenFocus} aria-label="打开国策树" className="nation-focus-card w-full border border-tno-border bg-zinc-900/50 p-3 flex items-center gap-3 text-left">
@@ -364,7 +364,7 @@ export default function LeftSidebar({ state, hireAdvisor, dismissAdvisor, cancel
       </div>
 
       {/* Cabinet（横排四格）v8.11 */}
-      <div className="nation-module nation-module--cabinet p-3 border-b border-tno-border">
+      <div className="nation-module nation-module--cabinet p-3 border-b border-tno-border" data-tour="nation-cabinet">
         <div className="nation-module-heading text-xs text-tno-text/60 mb-1.5 uppercase tracking-widest">内阁与顾问</div>
         <div className="grid grid-cols-4 gap-1.5">
           {[0, 1, 2, 3].map((slotIndex) => {
@@ -405,7 +405,7 @@ export default function LeftSidebar({ state, hireAdvisor, dismissAdvisor, cancel
       </div>
 
       {/* 校内法案 v8.11：紧凑行 + 二级切换面板 */}
-      <div className="nation-module nation-module--laws p-3">
+      <div className="nation-module nation-module--laws p-3" data-tour="nation-laws">
         <div className="nation-module-heading flex justify-between items-center mb-2">
           <div className="text-xs text-tno-text/60 uppercase tracking-widest flex items-center gap-1">
             <Scale className="w-3 h-3" /> 校内法案

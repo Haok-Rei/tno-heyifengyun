@@ -61,7 +61,7 @@ export default function TopBar({ state, togglePause, setGameSpeed, onQuickSave, 
 
   return (
     <div className="resource-topbar flex items-center justify-between px-5 shrink-0 relative z-50">
-      <div className="flex items-center gap-5">
+      <div className="flex items-center gap-5" data-tour="resources">
         <div className="campus-flag" role="img" aria-label={flag.label} title={flag.label}>
           <img src={flag.src} alt="" draggable={false} />
         </div>
@@ -129,7 +129,7 @@ export default function TopBar({ state, togglePause, setGameSpeed, onQuickSave, 
         </div>
       </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4" data-tour="time">
         <div className="resource-date text-tno-highlight font-bold tracking-widest">
           {formatDate(state.date)}
         </div>

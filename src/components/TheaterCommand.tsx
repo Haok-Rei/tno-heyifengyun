@@ -10,7 +10,7 @@ export function CommandLedger({ state, setGameState, onLocate }: { state: GameSt
   const route = getCommandRoute(state);
   const preparation = command.preparation?.[route.id] || 0;
   const today = Math.floor(Date.UTC(state.date.getFullYear(),state.date.getMonth(),state.date.getDate())/86400000);
-  return <section className="command-ledger" aria-label="战区工作组与战报">
+  return <section className="command-ledger" aria-label="战区工作组与战报" data-tour="workgroups">
     <div className="team-strip"><div className="team-strip-title"><Radio size={16} /><strong>战区指挥</strong><small>{state.activeEvent || state.activeSuperEvent || state.activeMinigame ? '等待事件处理' : state.isPaused ? '时间暂停' : '行动推进中'}</small>{preparation > 0 && <small className="field-preparation">地区筹备 {preparation}/6</small>}</div>
       {command.teams.filter((team, index) => index < getTeamCapacity(state) || team.order).map(team => <div className="team-slot" key={team.id}>
         <button className="team-main" onClick={() => team.order && onLocate(team.order.tileId)} disabled={!team.order}>

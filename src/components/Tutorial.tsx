@@ -72,7 +72,7 @@ export default function Tutorial({ onBackToMenu }: TutorialProps) {
               <section className="border border-tno-highlight/40 bg-tno-highlight/5 p-5">
                 <h2 className="mb-3 text-xl font-bold text-tno-highlight">破晓之前：前五天如何指挥</h2>
                 <ol className="list-decimal pl-5 space-y-2 text-sm text-white/85">
-                  <li>处理开场事件，从左侧主导航打开「国策」，选择开学典礼。</li>
+                  <li>完成入局教学与开场事件，从「国家」面板的当前国策打开国策树，选择开学典礼。</li>
                   <li>点击 B3、礼堂或操场，可以先手动执行已开放的地区行动。</li>
                   <li>在同一地区下方指定工作组每 2、4 或 7 天重复该行动，每次仍支付地图行动原价。</li>
                   <li>按空格继续时间。工作组按日结算；资源不足时暂缓，战报在地图下方出现。</li>

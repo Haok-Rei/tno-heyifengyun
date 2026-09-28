@@ -126,9 +126,9 @@ export default function CentralMap({state,setGameState,triggerError,isElectionUI
   const mapSubtitle = mapLayer==='control' ? 'CONTROL / 地区控制与争夺态势' : mapLayer==='supply' ? 'SUPPLY / 总部交通线与前沿可达范围' : 'DEPLOYMENT / 工作组定期任务与驻扎点';
 
   return(
-    <div className="campus-map-layout">
+    <div className="campus-map-layout" data-tour="map">
       <div className="campus-map-stage">
-      <div className="map-toolbar"><div><span className="eyebrow">{route.chapter} · {route.title}</span><strong>{modeTitle}</strong><small>{mapSubtitle}</small></div><div className="map-layers">{([{id:'control',label:'势力'},{id:'supply',label:'补给'},{id:'orders',label:'部署'}] as const).map(l=><button key={l.id} aria-pressed={mapLayer===l.id} className={mapLayer===l.id?'selected':''} onClick={()=>setMapLayer(l.id)}>{l.label}</button>)}</div></div>
+      <div className="map-toolbar"><div><span className="eyebrow">{route.chapter} · {route.title}</span><strong>{modeTitle}</strong><small>{mapSubtitle}</small></div><div className="map-layers" data-tour="map-layers">{([{id:'control',label:'势力'},{id:'supply',label:'补给'},{id:'orders',label:'部署'}] as const).map(l=><button key={l.id} aria-pressed={mapLayer===l.id} className={mapLayer===l.id?'selected':''} onClick={()=>setMapLayer(l.id)}>{l.label}</button>)}</div></div>
       <div className={`map-viewport layer-${mapLayer}`} onWheel={onWheel} onMouseDown={onMDown} onMouseMove={onMMove} onMouseUp={onMUp} onMouseLeave={onMUp} style={{cursor:isPan?'grabbing':'default'}}>
 
       {/* SVG */}
