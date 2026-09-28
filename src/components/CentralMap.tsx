@@ -45,6 +45,16 @@ const SHORT_LABELS:Record<string,string>={b3_tower:'B3主楼',b3_a1a3:'A1—A3�
 // 派系颜色
 const FC:Record<string,string>={pan:'#3b82f6',orthodox:'#ef4444',bear:'#a855f7',testTaker:'#6b7280',conservativeDem:'#1e40af',jidiTutoring:'#eab308',otherDem:'#22c55e'};
 const FN:Record<string,string>={pan:'泛民主派',orthodox:'正统派',bear:'狗熊派',testTaker:'做题派',conservativeDem:'保守民主派',jidiTutoring:'及第辅导派',otherDem:'其他民主派'};
+function pollPie(poll: Record<string, number>) {
+  const entries = Object.entries(poll).filter(([, value]) => value > 0);
+  const total = entries.reduce((sum, [, value]) => sum + value, 0) || 1;
+  let cursor = 0;
+  return `conic-gradient(${entries.map(([key, value]) => {
+    const start = cursor;
+    cursor += value / total * 100;
+    return `${FC[key] || '#64748b'} ${start}% ${cursor}%`;
+  }).join(',')})`;
+}
 
 // 按钮
 const Btn=({n,c,d,on,ok,cd}:{n:string;c:string;d:string;on:()=>void;ok:boolean;cd?:boolean})=>(
@@ -232,6 +242,7 @@ export default function CentralMap({state,setGameState,triggerError,isElectionUI
 
         {mapLayer==='orders'&&deployed.map((team,index)=>{const r=RGN.find(region=>region.tid===team.order?.tileId);return r?<g key={`unit-${team.id}`} pointerEvents="none"><circle cx={r.x+r.w/2} cy={r.y-11} r="14" fill={route.color} stroke="#e3e8db" strokeWidth="2" filter="url(#g1)"/><text x={r.x+r.w/2} y={r.y-7} textAnchor="middle" fill="#10191b" fontSize="12" fontWeight="bold">{index+1}</text></g>:null;})}
         {mapLayer==='orders'&&teams.some(t=>!t.order)&&<g pointerEvents="none"><rect x="265" y="548" width="270" height="24" fill="#102229" stroke="#558995"/><text x="400" y="564" textAnchor="middle" fill="#b4d0d1" fontSize="11" letterSpacing="1">预备工作组 {teams.filter(t=>!t.order).length} 支 · 点击地区派遣</text></g>}
+        {isEl&&state.electionState?.campaignTeams?.map((team,index)=>{const region=RGN.find(r=>r.bid===team.district);if(!region)return null;const x=region.x+region.w/2;const y=region.y-19;return <g key={`campaign-${team.candidate}`} pointerEvents="none"><circle cx={x} cy={y} r="15" fill="#0b1012" stroke={FC[team.candidate]||'#aaa'} strokeWidth="3"/><text x={x} y={y+3} textAnchor="middle" fill="#f1eee2" fontSize="10" fontWeight="bold">{index+1}</text><text x={x+19} y={y+3} fill={FC[team.candidate]||'#aaa'} fontSize="10" fontWeight="bold" stroke="#090b0b" strokeWidth="2" paintOrder="stroke">{FN[team.candidate]||team.candidate}竞选队</text></g>;})}
 
       </svg>
 
@@ -386,16 +397,16 @@ export default function CentralMap({state,setGameState,triggerError,isElectionUI
             </div>)}
             {(isEl||isPoll)&&(<div className="space-y-2 mt-2">
               <div className={`text-xs border-b pb-1 text-center ${isEl?'text-blue-400 border-blue-400/20':'text-blue-300 border-blue-300/20'}`}>{isEl?'— 大选进行中 —':'— 选举准备阶段 —'}</div>
-              <Btn n="查看民调" c="10 PP" d={`查看${selRgn.lb}的各派系民调数据`} on={()=>act(sel,'view_poll')} ok={state.stats.pp>=10} cd={cd('view_poll')}/>
-              <Btn n="区域拉票" c="25 PP" d={`在${selRgn.lb}为${FN[state.electionState?.playerCandidate||'pan']||'候选人'}拉票(+30%)`} on={()=>act(sel,'campaign')} ok={state.stats.pp>=25} cd={cd('campaign')}/>
+              <Btn n="区域拉票" c="25 PP" d={`为${FN[state.electionState?.playerCandidate||'pan']||'候选人'}拉票（${isEl?'选战加成':'选前小规模宣传'}）；可派工作组定期执行`} on={()=>act(sel,'campaign')} ok={state.stats.pp>=25} cd={cd('campaign')}/>
               {/* 显示民调数据 */}
-              {state.flags['poll_viewed_'+sel]&&selTile&&(()=>{
+              {selTile&&(()=>{
                 const bid=selTile.buildingId;
                 const pd=state.mapLocations[bid]?.pollingData;
                 if(!pd)return null;
                 const sorted=Object.entries(pd).filter(([,v])=>v>0).sort((a,b)=>b[1]-a[1]);
-                return(<div className="mt-2 p-2 border border-blue-500/15 bg-blue-500/5 rounded">
-                  <div className="text-[10px] text-blue-300/70 mb-1">{BN[bid]} 民调</div>
+                return(<div className="mt-2 p-3 border border-[#557388]/50 bg-[#0d1920]">
+                  <div className="text-[10px] text-blue-200/80 mb-2 tracking-widest">{BN[bid]} · 选情比例</div>
+                  <div className="flex items-center gap-3"><div role="img" aria-label="各派系支持率扇形图" className="w-24 h-24 flex-shrink-0 rounded-full border-4 border-[#253640] shadow-[0_0_18px_rgba(110,150,180,.3)]" style={{background:pollPie(pd)}}/><div className="flex-1">
                   {sorted.map(([k,v])=>(
                     <div key={k} className="flex items-center gap-1.5 mb-0.5">
                       <div className="w-2 h-2 rounded-full flex-shrink-0" style={{backgroundColor:FC[k]||'#888'}}/>
@@ -403,6 +414,8 @@ export default function CentralMap({state,setGameState,triggerError,isElectionUI
                       <span className="text-[10px] text-white font-bold">{Math.round(v)}%</span>
                     </div>
                   ))}
+                  </div></div>
+                  {state.electionState?.campaignTeams?.filter(team=>team.district===bid).map(team=><div key={team.candidate} className="mt-2 text-[10px] border-t border-white/10 pt-1" style={{color:FC[team.candidate]}}>◆ {FN[team.candidate]}竞选队正在此区宣传</div>)}
                   <div className="text-[9px] text-white/30 mt-1">总票数: {state.mapLocations[bid]?.totalVotes||'?'} | 已投: {Object.values(state.mapLocations[bid]?.castVotes||{}).reduce((a:number,b:number)=>a+b,0)}</div>
                 </div>);
               })()}
@@ -423,12 +436,11 @@ export default function CentralMap({state,setGameState,triggerError,isElectionUI
 
       {/* 大选实时计票覆盖层 */}
       {isEl && isElectionUIOpen && state.electionState && (
-        <div className="absolute inset-0 z-40 bg-black/90 backdrop-blur-sm flex items-center justify-center p-8" onClick={()=>setIsElectionUIOpen?.(false)}>
-          <div className="bg-[#08080f] border-2 border-blue-500/30 max-w-lg w-full p-6 shadow-[0_0_60px_rgba(59,130,246,0.2)]" onClick={e=>e.stopPropagation()}>
-            <h2 className="text-2xl font-black text-blue-400 text-center tracking-[0.3em] mb-4">合一首届大选 · 实时计票</h2>
-            <div className="text-xs text-white/40 text-center mb-4">
-              剩余 {state.electionState.daysLeft} 天 | 总任期 {state.electionState.totalDays} 天
-            </div>
+        <div className="absolute inset-0 z-40 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4" onClick={()=>setIsElectionUIOpen?.(false)}>
+          <div className="bg-[#10191c] border border-[#8b977f] max-w-4xl w-full max-h-[90%] overflow-y-auto p-5 shadow-[0_0_60px_rgba(97,145,162,0.25)]" onClick={e=>e.stopPropagation()}>
+            <div className="flex items-start justify-between gap-4 border-b border-[#637d83]/50 pb-3 mb-4"><div><div className="text-[10px] tracking-[.4em] text-[#c5ab79]">HEFEI ELECTION COMMISSION · 01</div><h2 className="text-2xl font-black text-[#d7e5df] tracking-[0.16em]">合一首届大选</h2></div><div className="text-right text-[#cfb87c] font-bold"><div className="text-2xl">{state.electionState.daysLeft}<span className="text-xs ml-1">天</span></div><div className="text-[10px] text-white/50">距封票 · 总计 {state.electionState.totalDays} 天</div></div></div>
+            <div className="grid md:grid-cols-[1fr_250px] gap-5"><div>
+              <div className="text-[11px] tracking-widest text-[#a8c2c2] mb-3">全校累计计票</div>
             {/* 候选人排名 */}
             {state.electionState.candidates.map(cand=>{
               const votes=state.electionState?.votes[cand]||0;
@@ -449,6 +461,10 @@ export default function CentralMap({state,setGameState,triggerError,isElectionUI
                 </div>
               );
             })}
+            </div><div className="border-l border-[#637d83]/35 pl-4"><div className="text-[11px] tracking-widest text-[#a8c2c2] mb-3">巡回竞选工作组</div>
+            {state.electionState.campaignTeams?.map(team=><div key={team.candidate} className="flex items-center justify-between gap-2 border-b border-white/10 py-2 text-xs"><span style={{color:FC[team.candidate]}}>◆ {FN[team.candidate]}</span><span className="text-white/70">{BN[team.district]||team.district}</span></div>)}
+            <div className="text-[10px] text-white/45 mt-3 leading-relaxed">各派工作组每五日转移驻地，并持续影响所在地区支持率。己方定期工作组可继续在指定地区拉票。</div></div></div>
+            <div className="grid grid-cols-3 md:grid-cols-6 gap-1 mt-4">{Object.values(state.mapLocations).filter(loc=>loc.pollingData).map(loc=>{const leader=Object.entries(loc.pollingData||{}).sort((a,b)=>b[1]-a[1])[0];return <div key={loc.id} className="bg-[#172629] border border-[#47616a]/50 p-2 text-center"><div className="text-[10px] text-white/65 truncate">{BN[loc.id]||loc.name}</div><div className="w-10 h-10 rounded-full mx-auto my-1 border-2 border-[#647c7a]" style={{background:pollPie(loc.pollingData!)}}/><div className="text-[10px] font-bold" style={{color:FC[leader?.[0]]||'#aaa'}}>{FN[leader?.[0]]||'暂无'} {Math.round(leader?.[1]||0)}%</div></div>})}</div>
             {/* 总计 */}
             <div className="mt-4 pt-3 border-t border-blue-500/20 text-xs text-white/50 text-center">
               累计投票: {Object.values(state.electionState.votes).reduce((a:number,b:number)=>a+b,0).toLocaleString()} 票

@@ -42,6 +42,8 @@ import { STORY_EVENTS } from './data/storyEvents';
 import { ensureRedToadState } from './data/redToadState';
 import { FLAVOR_EVENTS } from './data/flavorEvents';
 import { LAWS, LAW_CATEGORIES, DEFAULT_LAW_SYSTEM, getLawSystem, LAW_CHANGE_COST } from './data/laws';
+import { applyFocusLawTransition, lawChangeEvent } from './engine/lawTransitions';
+import { advanceCampaignTeams } from './engine/electionCampaign';
 import { GOUXIONG_GAL_PHOTO_ASSETS } from './config/assets';
 import { hasFocusRequirements, calculateModifiers } from './engine/gameLoop';
 import { serializeGameState, deserializeGameState, saveToSlot, loadFromSlot, hasSlot, deleteSlot, getSaveSlotStates, migrateLegacySaves } from './engine/saveSystem';
@@ -2101,6 +2103,7 @@ export default function App() {
               if (effectPartial.nationalSpirits) newNationalSpirits = effectPartial.nationalSpirits;
               if (effectPartial.flags) Object.assign(newFlags, effectPartial.flags);
               if (effectPartial.lawSystem) newLawSystem = { ...newLawSystem, ...effectPartial.lawSystem };
+              newLawSystem = applyFocusLawTransition(newLawSystem, newActiveFocus!.id);
               // 杨玉乐路线兜底检查：charge_b3完成时再次检查条件
               if (newActiveFocus!.id === 'charge_b3' && !newFlags.yang_yule_condition_met) {
                 const hasYangYule = prev.advisors.some(a => a?.id === 'yang_yule');
@@ -2803,6 +2806,7 @@ export default function App() {
 
         // Election Logic
         if (newElectionState && newElectionState.isActive) {
+          newElectionState = advanceCampaignTeams(newElectionState, newMapLocations);
           newElectionState.daysLeft -= 1;
           
           // Add daily drift to polling data
@@ -4355,6 +4359,9 @@ export default function App() {
           }
         }
 
+        const focusLawNotice = lawChangeEvent(prev.lawSystem, newLawSystem,
+          newCompletedFocuses.length > prev.completedFocuses.length ? `国策「${getFocusNodes(newCurrentFocusTree).find(n => n.id === newCompletedFocuses[newCompletedFocuses.length - 1])?.title ?? '剧情推进'}」` : '剧情推进', newDate);
+        if (focusLawNotice) queueEvent(focusLawNotice);
         if (!newActiveEvent && newActiveStoryEvents.length > 0) {
           newActiveEvent = newActiveStoryEvents.shift() || null;
         }
@@ -4782,6 +4789,9 @@ export default function App() {
         if (effectPartial.wuState) newState.wuState = effectPartial.wuState;
         if (effectPartial.lawSystem) newState.lawSystem = { ...getLawSystem(newState.lawSystem), ...effectPartial.lawSystem };
       }
+
+      const storyLawNotice = lawChangeEvent(prev.lawSystem, newState.lawSystem, prev.activeEvent?.title ?? '剧情推进', prev.date);
+      if (storyLawNotice) newState.activeStoryEvents = [...newState.activeStoryEvents, storyLawNotice];
 
       // v8.0 编年史：事件 / 领袖变更 / 路线切换 / 结局
       if (prev.activeEvent) {

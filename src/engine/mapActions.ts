@@ -1,5 +1,6 @@
 import { ALL_SUB_TILES, type GameState } from '../types';
 import { getCommandRoute } from '../data/commandRoutes';
+import { shiftPoll } from './electionCampaign';
 
 export interface MapAction { id: string; name: string; cost: string; description: string }
 const action = (id: string, name: string, cost: string, description: string): MapAction => ({ id, name, cost, description });
@@ -25,8 +26,8 @@ export function availableMapActions(state: GameState, tileId: string): MapAction
   if (state.flags.wu_crackdown_map_phase || route === 'wu') return wu.filter(a => a.id !== 'wu_arrest' || state.flags.wu_arrest_unlocked);
   if (state.flags.yang_yule_route_started || route === 'yang') return [action('yy_coord','教师驻点协调','20 PP','教师支持 +3，信任 +2，健康 -1')];
   if (state.flags.jidi_new_era_active || route === 'jidi') return [action('jd_optimize','教学产线优化','20 PP','卷子 +80，GDP +1，理智 -2')];
+  if (state.flags.polling_stations_unlocked || state.electionState?.isActive) return [action('campaign','区域拉票','25 PP',state.electionState?.isActive?'选战期间定期拉票，逐步改变选情':'选前小规模宣传，逐步改变选情')];
   if (state.flags.map_phase_ended || route === 'reform') return [];
-  if (state.flags.polling_stations_unlocked || state.electionState?.isActive) return [action('view_poll','查看民调','10 PP','揭示本区民调'),action('campaign','区域拉票','25 PP','争取本区选民')];
   if (state.flags.map_struggle_ended) return [];
   if (!state.flags.rebellion_started) return [];
   return [...common, ...(byBuilding[tile.buildingId] || []).filter(a => a.id !== 'aud_salon' || state.completedFocuses.includes('expand_assembly') || state.completedFocuses.includes('democratic_reforms'))];
@@ -86,8 +87,7 @@ export function executeMapAction(prev: GameState, tid: string, aid: string): { s
         case'gx_strike':if(ns.stats.pp>=20){ns.stats.pp-=20;nc=Math.min(100,ctrl+20);if(Math.random()<0.6){const oKey=`gx_map_owner_tile_${tid}`;if(String(ns.flags[oKey]||'school')!=='gouxiong'){ns.flags[oKey]='gouxiong';nc=Math.max(70,nc);}}}else ok=false;break;
         case'gx_backdoor':if(ns.stats.pp>=12){ns.stats.pp-=12;nc=Math.min(100,ctrl+12);if(Math.random()<0.4){const oKey=`gx_map_owner_tile_${tid}`;if(String(ns.flags[oKey]||'school')!=='gouxiong'){ns.flags[oKey]='gouxiong';nc=Math.max(62,nc);}}tile.adjacentTo.filter(aid=>String(ns.flags[`gx_map_owner_tile_${aid}`]||'school')==='gouxiong').forEach(aid=>{const ac=(ns.flags['tile_ctrl_'+aid]as number|undefined)??ALL_SUB_TILES.find(t=>t.id===aid)?.studentControl??50;ns.flags['tile_ctrl_'+aid]=Math.min(100,ac+5);});}else ok=false;break;
         // 民调/选举行动
-        case'view_poll':if(ns.stats.pp>=10){ns.stats.pp-=10;ns.flags['poll_viewed_'+tid]=true;}else ok=false;break;
-        case'campaign':if(ns.stats.pp>=25&&(isPoll||isEl)){ns.stats.pp-=25;const bid=tile.buildingId;const loc=ns.mapLocations[bid];if(loc&&loc.pollingData){const cand=ns.electionState?.playerCandidate||'pan';const pd:Record<string,number>={...loc.pollingData};pd[cand]=Math.min(100,(pd[cand]||0)+30);const total:number=Object.values(pd).reduce((s:number,v:number)=>s+v,0);Object.keys(pd).forEach(k=>{pd[k]=Math.round((pd[k]/total)*100);});ns.mapLocations[bid]={...loc,pollingData:pd};}nc=Math.min(100,ctrl+5);}else ok=false;break;
+        case'campaign':if(ns.stats.pp>=25&&(isPoll||isEl)){ns.stats.pp-=25;const bid=tile.buildingId;const loc=ns.mapLocations[bid];if(loc&&loc.pollingData){const cand=ns.electionState?.playerCandidate||'pan';ns.mapLocations[bid]={...loc,pollingData:shiftPoll(loc.pollingData,cand,isEl?12:4)};}nc=Math.min(100,ctrl+(isEl?3:1));}else ok=false;break;
         case 'yy_coord': if (ns.stats.pp >= 20 && ns.yangYuleState) { ns.stats.pp -= 20; ns.yangYuleState.teacherSupport = Math.min(100, ns.yangYuleState.teacherSupport + 3); ns.yangYuleState.fengFavor = Math.min(100, ns.yangYuleState.fengFavor + 2); ns.yangYuleState.health = Math.max(0, ns.yangYuleState.health - 1); ns.yangYuleState.studioAchievements = (ns.yangYuleState.studioAchievements || 0) + 1; } else ok=false; break;
         case 'jd_optimize': if (ns.stats.pp >= 20 && ns.jidiCorporateState) { ns.stats.pp -= 20; ns.stats.tpr += 80; ns.stats.studentSanity = Math.max(0, ns.stats.studentSanity - 2); ns.jidiCorporateState.gdp += 1; } else ok=false; break;
         default:ok=false;

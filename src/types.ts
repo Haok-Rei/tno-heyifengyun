@@ -423,6 +423,7 @@ export interface GameState {
     candidates: string[];
     playerCandidate: string | null;
     votes: Record<string, number>;
+    campaignTeams?: Array<{ candidate: string; district: string; visits: number }>;
   };
   cyberDeconstruction?: {
     level: number;

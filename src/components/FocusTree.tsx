@@ -1658,7 +1658,7 @@ export const TREE_A_PAN_NODES: FocusNode[] = [
   { id: 'pan_ending', title: '民主的胜利', description: '合肥一中迎来了真正的民主。', days: 7, x: 500, y: 1250, requires: ['bill_transparent_finances', 'bill_curriculum_reform'], 
     canStart: (s) => (s.flags.passed_bills_count || 0) >= 3 && (s.parliamentState?.powerBalance ?? 50) <= 30 && (s.stats.studentSanity ?? 0) > 80,
     onComplete: (s) => ({ activeEvent: STORY_EVENTS.pan_democratic_victory_event }), effectsText: ['触发事件：漫长凛冬的终结'], requiresText: ['至少通过3个法案', '权力平衡偏向素质教育至少20%', '学生理智度大于80'] },
-  { id: 'first_democratic_election', title: '第一次民主普选', description: '举行合肥一中历史上的第一次民主普选。', days: 30, x: 500, y: 1400, requires: ['pan_ending'],
+  { id: 'first_democratic_election', title: '第一次民主普选', description: '举行合肥一中历史上的第一次民主普选。', days: 60, x: 500, y: 1400, requires: ['pan_ending'],
     onStart: (s) => ({
       activeEvent: STORY_EVENTS.start_democratic_election_event
     }),
@@ -1666,7 +1666,7 @@ export const TREE_A_PAN_NODES: FocusNode[] = [
       // The election ends, trigger the outcome event
       return { activeEvent: STORY_EVENTS.election_outcome_event };
     },
-    effectsText: ['触发事件：大选开始', '开启为期30天的大选', '地图将切换为大选模式']
+    effectsText: ['触发事件：大选开始', '开启为期60天的大选', '地图将切换为大选模式']
   }
 ];
 
