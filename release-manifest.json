@@ -446,8 +446,8 @@
       "sha256": "4c7e2b7c9c3c8c9955484bb23e6caa5934c9d07ef4e59975e2ea840da0aeccba"
     },
     "docs/event-writing-workflow.md": {
-      "bytes": 4294,
-      "sha256": "e433b51100bf1d681424d03115cb322c7bc80df00c13279e95d3ecc58704ca7d"
+      "bytes": 4426,
+      "sha256": "a66d8e2caaca7120c8331ef027ee9316b330d2a26127138991777048caa461b4"
     },
     "docs/screenshots/focus-art-2026-09-27.png": {
       "bytes": 86795,
@@ -468,6 +468,10 @@
     "docs/story-source/TNO：合一风云-设定文档.docx": {
       "bytes": 17375,
       "sha256": "357518b00a33189d85b7fd092fcae36ad6b8272c99d16da43381ef7e8fd20015"
+    },
+    "docs/text-writing-workflow-v2.md": {
+      "bytes": 6158,
+      "sha256": "597b405fb645d25ab9ae44440871a73e900a8be7452d24f7081004170f7d5fb3"
     },
     "index.html": {
       "bytes": 331,
@@ -550,8 +554,8 @@
       "sha256": "1954ca940740c612a12e7abf0a307b7394715964d66dc8037d503fdd5c1b6424"
     },
     "src/App.tsx": {
-      "bytes": 336642,
-      "sha256": "441a6386f840a65b2607159f6027e5b2cac47a3b719d39b60f0fbc89149524a8"
+      "bytes": 336619,
+      "sha256": "e9e2faed0b3acbec9d02d29bda71b2d7e3885654ba135a9588d6dd58776a8968"
     },
     "src/assets/flags/corporate.svg": {
       "bytes": 604,
@@ -1973,6 +1977,10 @@
       "bytes": 30783,
       "sha256": "9b7d76aceb197bd1833b1207b7ada532f30888ae5c39ea8d639733147a71ec92"
     },
+    "src/components/ArtRoom.tsx": {
+      "bytes": 5967,
+      "sha256": "8a61875a4928811c95f1a1d660c3a263a95b2505b8013acda2ded864ffc50275"
+    },
     "src/components/AudioDock.tsx": {
       "bytes": 10074,
       "sha256": "35fbbaa61283289af5a3fa214139c2731e940623b8517da15e7de1cf96722d9e"
@@ -2022,8 +2030,8 @@
       "sha256": "ac38c3a3496228708b21cf7280919fe85da950e6477346987b14b06556942d2e"
     },
     "src/components/HeyiLight.tsx": {
-      "bytes": 19882,
-      "sha256": "df688fd4a08f942d100a4ffd6a0808fdc785dfdb9cec07b00bfb2b34641b4f2e"
+      "bytes": 33249,
+      "sha256": "7e0c7af46a5c09eb98e57c98338d14f06be5c4213f65be7ba9b75bafa3e1dfb5"
     },
     "src/components/HoverWindow.tsx": {
       "bytes": 3444,
@@ -2034,8 +2042,8 @@
       "sha256": "14c98b3523a94a2f225e0d0138749610356a7d0e600465e92482b7c873a2d2da"
     },
     "src/components/LeftSidebar.tsx": {
-      "bytes": 30712,
-      "sha256": "178e73aa7c40649a126ce3dda171febb331283402218b675e3fd4f8ec0a5611c"
+      "bytes": 31541,
+      "sha256": "d835d71e06a61e381840d2dffe33eb41091e705df23919ddabeefe2e8a2ac142"
     },
     "src/components/LoadingScreen.tsx": {
       "bytes": 5362,
@@ -2090,8 +2098,8 @@
       "sha256": "5dbd77b5ff8f9ddb6a95a28bb8652780fadcb428f247edb1100beae80ba69890"
     },
     "src/components/StartMenu.tsx": {
-      "bytes": 8962,
-      "sha256": "5d09fc3210558f0244b8b6643a5e2b9e9ef896b2810152813db6f847ef44061c"
+      "bytes": 8956,
+      "sha256": "9ba743e37d319999056146a0a0746f3a88662beaa09431f2059d3ca9fa4e3a73"
     },
     "src/components/StrategicArt.tsx": {
       "bytes": 8843,
@@ -2125,6 +2133,10 @@
       "bytes": 39220,
       "sha256": "550d553dfa8da1deae626232ef60bc7e9cfa7f9c33085a27075a610fd5c425f8"
     },
+    "src/components/artRoom.css": {
+      "bytes": 5004,
+      "sha256": "11382acbc61f422e72f879e3baed949d2ff31ad6c79c3da844a41443e706576d"
+    },
     "src/components/audioDock.css": {
       "bytes": 4181,
       "sha256": "f9d44667a3239a213410c9261a84de111d648d00b4be8dc44842e5f589543d93"
@@ -2138,8 +2150,8 @@
       "sha256": "3ff64f9bec8bb15ef171b9fbd46cf2f5bec7741ea07cd91435947728ebc0534e"
     },
     "src/components/heyiLight.css": {
-      "bytes": 5422,
-      "sha256": "025b099c5926b2724fa9ca6a590254f50edfb3e8872857b229383970257f2a79"
+      "bytes": 8218,
+      "sha256": "92252f4d7bda71fda4df94095bd54b8a949233b891dc333ad9180fa622f9d42b"
     },
     "src/components/nationIdeology.css": {
       "bytes": 9596,
@@ -2270,8 +2282,8 @@
       "sha256": "1494a62d055f1ebbbf020e824fcfe183d6d1377949b03b36df0266cbfb8da1ba"
     },
     "src/engine/heyiLight.ts": {
-      "bytes": 17048,
-      "sha256": "2857ca111a269f288fbfc01a31d624c32e067b517f6dfade5f6df4eafaee4bd7"
+      "bytes": 20829,
+      "sha256": "9a671b5d576d048d4af20c9614523e3359b2a524e8f47314a795a02e710929c2"
     },
     "src/engine/lawTransitions.ts": {
       "bytes": 2974,
@@ -2358,8 +2370,8 @@
       "sha256": "dadad4f676c68f7f11e109f33c02517ecbd39fea25b144df678243430379abd9"
     },
     "tests/heyiLight.test.ts": {
-      "bytes": 3662,
-      "sha256": "d465c13af14ee93f7271ab523c14f12b695a7be6032a798b2d8361653602f835"
+      "bytes": 4541,
+      "sha256": "df7de06131be673a82fd526f3e56539894127da132a0ef876feb5bf65827d267"
     },
     "tests/musicInterruption.test.ts": {
       "bytes": 1412,
@@ -2402,6 +2414,6 @@
       "sha256": "ba7b6b13d17902bdf7a5e763017a6ea80a00d79e11a3ec00cec7328bdbe400fb"
     }
   },
-  "fileCount": 600,
-  "totalBytes": 254058380
+  "fileCount": 603,
+  "totalBytes": 254097264
 }

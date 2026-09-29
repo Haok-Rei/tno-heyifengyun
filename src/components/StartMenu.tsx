@@ -3,7 +3,7 @@ import { ASSET_URLS } from '../config/assets';
 
 interface StartMenuProps {
   onStartGame: () => void;
-  onTutorial: () => void;
+  onArtRoom: () => void;
   onSettings: () => void;
   onGallery: () => void;
 }
@@ -17,10 +17,10 @@ const MENU_ITEMS = [
     image: ASSET_URLS.ui_thumbnail_1,
   },
   {
-    key: 'tutorial',
-    label: '教程',
-    subtitle: 'Gameplay Doctrine',
-    hoverText: '快速掌握核心指标、决议逻辑与路线分歧。',
+    key: 'art',
+    label: '美术室',
+    subtitle: 'Art Room / Route CG',
+    hoverText: '翻阅各条路线的超事件画面、载入图与校园美术。',
     image: ASSET_URLS.ui_thumbnail_2,
   },
   {
@@ -47,7 +47,7 @@ const TITLE_QUOTES = [
   '苟利国家生死以，岂因祸福避趋之。',
 ] as const;
 
-export default function StartMenu({ onStartGame, onTutorial, onSettings, onGallery }: StartMenuProps) {
+export default function StartMenu({ onStartGame, onArtRoom, onSettings, onGallery }: StartMenuProps) {
   const [quoteIndex, setQuoteIndex] = useState(0);
   const [isQuoteVisible, setIsQuoteVisible] = useState(true);
 
@@ -78,7 +78,7 @@ export default function StartMenu({ onStartGame, onTutorial, onSettings, onGalle
 
   const handleClick = (key: (typeof MENU_ITEMS)[number]['key']) => {
     if (key === 'start') onStartGame();
-    if (key === 'tutorial') onTutorial();
+    if (key === 'art') onArtRoom();
     if (key === 'gallery') onGallery();
     if (key === 'settings') onSettings();
   };

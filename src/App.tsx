@@ -29,7 +29,7 @@ import GouxiongGalGame from './components/GouxiongGalGame';
 import YangYuleDesk from './components/YangYuleDesk';
 import WuCrackdownConsole, { getWuAttitude } from './components/WuCrackdownConsole';
 import StartMenu from './components/StartMenu';
-import Tutorial from './components/Tutorial';
+import ArtRoom from './components/ArtRoom';
 import GuidedTutorial, { GUIDE_STEPS } from './components/GuidedTutorial';
 import HeyiLight from './components/HeyiLight';
 import { advanceHeyiLight } from './engine/heyiLight';
@@ -594,7 +594,7 @@ export default function App() {
   const [tutorialStep, setTutorialStep] = useState<number | null>(null);
   const tutorialWasPausedRef = useRef(true);
   const tutorialReplayViewRef = useRef<{ government: boolean; decisions: boolean; focus: boolean; tile: string | null } | null>(null);
-  const [currentMenuPage, setCurrentMenuPage] = useState<'main' | 'tutorial' | 'settings' | 'gallery'>(
+  const [currentMenuPage, setCurrentMenuPage] = useState<'main' | 'art' | 'settings' | 'gallery'>(
     'main'
   );
 
@@ -5333,8 +5333,8 @@ export default function App() {
     }));
   };
 
-  const handleTutorial = () => {
-    setCurrentMenuPage('tutorial');
+  const handleArtRoom = () => {
+    setCurrentMenuPage('art');
   };
 
   const handleSettings = () => {
@@ -5352,9 +5352,9 @@ export default function App() {
   // 如果在菜单模式，显示菜单；否则显示游戏 UI
   if (appMode === 'menu') {
     if (currentMenuPage === 'main') {
-      return <StartMenu onStartGame={handleStartGame} onTutorial={handleTutorial} onSettings={handleSettings} onGallery={handleGallery} />;
-    } else if (currentMenuPage === 'tutorial') {
-      return <Tutorial onBackToMenu={handleBackToMenu} />;
+      return <StartMenu onStartGame={handleStartGame} onArtRoom={handleArtRoom} onSettings={handleSettings} onGallery={handleGallery} />;
+    } else if (currentMenuPage === 'art') {
+      return <ArtRoom onBack={handleBackToMenu} />;
     } else if (currentMenuPage === 'settings') {
       return <Settings onBackToMenu={handleBackToMenu} />;
     } else if (currentMenuPage === 'gallery') {
@@ -5432,13 +5432,13 @@ export default function App() {
           dismissAdvisor={dismissAdvisor}
           cancelActiveFocus={cancelActiveFocus}
           onOpenFocus={toggleFocusTree}
-          onOpenHeyiLight={() => setIsHeyiLightOpen(true)}
           triggerError={triggerError}
           changeLaw={changeLaw}
         /></div>}
         
         {/* Main Content Area */}
         <div className="theater-main flex-1 min-w-0 relative overflow-hidden flex flex-col">
+          <div className="heyi-map-slot">
           <CentralMap
             selectedTileId={selectedTileId}
             districtDockTarget={districtDockTarget}
@@ -5449,6 +5449,8 @@ export default function App() {
             isElectionUIOpen={isElectionUIOpen}
             setIsElectionUIOpen={setIsElectionUIOpen}
           />
+          {isHeyiLightOpen && <HeyiLight state={gameState} onClose={() => setIsHeyiLightOpen(false)} />}
+          </div>
           <CommandLedger state={gameState} setGameState={setGameState} onLocate={setSelectedTileId} />
           
           {/* Focus Tree Overlay */}
@@ -5561,7 +5563,6 @@ export default function App() {
           onClose={() => setIsChronicleOpen(false)}
         />
       )}
-      {isHeyiLightOpen && <HeyiLight state={gameState} onClose={() => setIsHeyiLightOpen(false)} />}
       {isConsoleOpen && (
         <div className="fixed top-0 left-0 z-[100] p-2">
           <form onSubmit={handleConsoleSubmit}>

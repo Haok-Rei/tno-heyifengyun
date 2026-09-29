@@ -50,6 +50,21 @@ test('the observation spirit is permanent flavor with no stat effects', () => {
   assert.equal(getHeyiRoute(state), 'jidi');
 });
 
+test('regional spirit readings respond to both route and campus conditions', () => {
+  const hopeful = getHeyiLightSnapshot(makeState({ currentFocusTree: 'treeA_pan', heyiLightValue: 82 }));
+  const exhausted = getHeyiLightSnapshot(makeState({
+    currentFocusTree: 'treeA_pan', heyiLightValue: 82,
+    stats: { ...makeState().stats, studentSanity: 12, stab: 10 },
+  }));
+  const crackdown = getHeyiLightSnapshot(makeState({ currentFocusTree: 'wu_tree_p2_coup', heyiLightValue: 50 }));
+  assert.equal(hopeful.zones.road.status, '干净整洁');
+  assert.equal(hopeful.zones.road.tone, 'good');
+  assert.equal(exhausted.zones.students.status, '行尸走肉');
+  assert.equal(exhausted.zones.road.tone, 'danger');
+  assert.equal(crackdown.zones.students.status, '噤若寒蝉');
+  for (const entry of Object.values(crackdown.zones)) assert.equal([...entry.status].length, 4);
+});
+
 test('value and target remain finite and inside 0–100 with malformed legacy data', () => {
   const state = makeState({ heyiLightValue: Number.NaN, stats: { ...makeState().stats, stab: Number.NaN, ss: -500, studentSanity: 200 } });
   const next = advanceHeyiLight(state);

@@ -4,6 +4,7 @@ import { getLawSystem, LAW_CATEGORIES } from '../data/laws';
 export type HeyiZone = 'sign' | 'gate' | 'building' | 'students' | 'teachers' | 'road' | 'trees' | 'guard';
 export type HeyiRoute = 'opening' | 'democracy' | 'revolution' | 'despair' | 'reform' | 'haobang' | 'yang' | 'jidi' | 'jidi_riot' | 'gouxiong' | 'wu';
 export type HeyiMood = 'ruin' | 'weary' | 'restless' | 'bright';
+export type HeyiStatusTone = 'danger' | 'strained' | 'unsettled' | 'good';
 
 export interface HeyiLightSnapshot {
   value: number;
@@ -14,7 +15,7 @@ export interface HeyiLightSnapshot {
   headline: string;
   overview: string;
   accent: string;
-  zones: Record<HeyiZone, { label: string; description: string }>;
+  zones: Record<HeyiZone, { label: string; description: string; status: string; tone: HeyiStatusTone }>;
   spirit: NationalSpirit;
 }
 
@@ -188,8 +189,53 @@ const ROUTE_SCENES: Record<HeyiRoute, {
 
 const ZONE_LABELS: Record<HeyiZone, string> = {
   sign: '校名', gate: '校门', building: '教学楼', students: '学生',
-  teachers: '教师', road: '门前道路', trees: '行道树', guard: '门卫室',
+  teachers: '教师', road: '门前马路', trees: '行道树', guard: '门卫室',
 };
+
+type Status = [string, HeyiStatusTone];
+const MOOD_STATUS: Record<HeyiMood, Record<HeyiZone, Status>> = {
+  ruin: {
+    sign: ['斑驳难辨', 'danger'], gate: ['破损失守', 'danger'], building: ['残灯断窗', 'danger'],
+    students: ['行尸走肉', 'danger'], teachers: ['踪影难寻', 'danger'], road: ['满地狼藉', 'danger'],
+    trees: ['焦枝败叶', 'danger'], guard: ['空岗无灯', 'danger'],
+  },
+  weary: {
+    sign: ['蒙尘失色', 'strained'], gate: ['戒备森严', 'strained'], building: ['灯火未歇', 'strained'],
+    students: ['倦于奔命', 'strained'], teachers: ['疲于应付', 'strained'], road: ['车流拥堵', 'strained'],
+    trees: ['疏于照料', 'strained'], guard: ['登记繁密', 'strained'],
+  },
+  restless: {
+    sign: ['旧字犹存', 'unsettled'], gate: ['人流交错', 'unsettled'], building: ['窗灯参差', 'unsettled'],
+    students: ['心绪浮动', 'unsettled'], teachers: ['议论未定', 'unsettled'], road: ['人来人往', 'unsettled'],
+    trees: ['枝叶初展', 'unsettled'], guard: ['例行值守', 'unsettled'],
+  },
+  bright: {
+    sign: ['明净如新', 'good'], gate: ['出入有序', 'good'], building: ['书声未断', 'good'],
+    students: ['意气风发', 'good'], teachers: ['从容授课', 'good'], road: ['干净整洁', 'good'],
+    trees: ['绿荫成行', 'good'], guard: ['笑语相迎', 'good'],
+  },
+};
+const ROUTE_STATUS: Partial<Record<HeyiRoute, Partial<Record<HeyiZone, Status>>>> = {
+  democracy: { sign: ['众议留名', 'good'], building: ['灯下辩论', 'good'], students: ['各抒己见', 'good'], teachers: ['平席共议', 'good'] },
+  revolution: { sign: ['红旗高悬', 'unsettled'], gate: ['纠察轮值', 'unsettled'], students: ['奔走相告', 'unsettled'], road: ['粉笔指路', 'unsettled'] },
+  despair: { gate: ['门户洞开', 'danger'], building: ['人去楼空', 'danger'], road: ['路障横陈', 'danger'] },
+  reform: { building: ['新课试行', 'good'], students: ['各展所长', 'good'], trees: ['社团张榜', 'good'] },
+  haobang: { sign: ['新徽高挂', 'unsettled'], gate: ['各方轮值', 'unsettled'], building: ['彻夜商议', 'unsettled'] },
+  yang: { building: ['长夜未熄', 'strained'], students: ['噤声赶课', 'strained'], teachers: ['候签成队', 'strained'] },
+  jidi: { sign: ['榜单滚动', 'strained'], building: ['通宵亮灯', 'strained'], students: ['埋首题海', 'strained'], road: ['准点清场', 'strained'] },
+  jidi_riot: { sign: ['浓烟蔽字', 'danger'], gate: ['铁栅倾倒', 'danger'], students: ['四散寻人', 'danger'], road: ['水纸交杂', 'danger'] },
+  gouxiong: { sign: ['贴纸更迭', 'unsettled'], students: ['笑闹成群', 'unsettled'], road: ['粉笔留痕', 'unsettled'] },
+  wu: { gate: ['逐一查验', 'strained'], building: ['监控遍布', 'strained'], students: ['噤若寒蝉', 'danger'], guard: ['昼夜登记', 'strained'] },
+};
+
+function zoneStatus(state: GameState, route: HeyiRoute, mood: HeyiMood, zone: HeyiZone): Status {
+  if (route === 'jidi_riot' || route === 'despair') return ROUTE_STATUS[route]?.[zone] ?? MOOD_STATUS.ruin[zone];
+  if (zone === 'students' && safeNumber(state.stats.studentSanity, 50) < 25) return ['行尸走肉', 'danger'];
+  if (zone === 'road' && safeNumber(state.stats.stab, 50) < 20) return ['满地狼藉', 'danger'];
+  if (mood === 'ruin') return MOOD_STATUS.ruin[zone];
+  if (mood === 'bright' && route !== 'wu' && route !== 'jidi' && route !== 'yang') return MOOD_STATUS.bright[zone];
+  return ROUTE_STATUS[route]?.[zone] ?? MOOD_STATUS[mood][zone];
+}
 
 const MOOD_NOTES: Record<HeyiMood, string> = {
   ruin: '门前的清扫赶不上损坏的速度。',
@@ -235,15 +281,19 @@ export function getHeyiLightSnapshot(state: GameState): HeyiLightSnapshot {
   const route = getHeyiRoute(state);
   const mood: HeyiMood = value < 25 ? 'ruin' : value < 48 ? 'weary' : value < 72 ? 'restless' : 'bright';
   const scene = ROUTE_SCENES[route];
-  const zones = Object.fromEntries((Object.keys(ZONE_LABELS) as HeyiZone[]).map(zone => [zone, {
-    label: ZONE_LABELS[zone], description: `${scene.descriptions[zone]}${zone === 'gate' ? ` ${MOOD_NOTES[mood]}` : ''}`,
-  }])) as HeyiLightSnapshot['zones'];
+  const zones = Object.fromEntries((Object.keys(ZONE_LABELS) as HeyiZone[]).map(zone => {
+    const [status, tone] = zoneStatus(state, route, mood, zone);
+    return [zone, {
+      label: ZONE_LABELS[zone], description: `${scene.descriptions[zone]}${zone === 'gate' ? ` ${MOOD_NOTES[mood]}` : ''}`,
+      status, tone,
+    }];
+  })) as HeyiLightSnapshot['zones'];
   return {
     value, target: getHeyiLightTarget(state), route, mood, democraticVictory: state.gameEnding === 'game_over_pan', headline: scene.headline,
     overview: scene.overview, accent: scene.accent, zones,
     spirit: {
       id: 'heyi_light', name: '合一之光', type: 'neutral', icon: 'campus',
-      description: `合一值 ${value}/100。${scene.headline}。${zones.gate.description} ${zones.students.description}`,
+      description: `合一值 ${value}/100。校门内外的景象随校园生活缓慢变化。`,
     },
   };
 }

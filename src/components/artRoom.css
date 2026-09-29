@@ -1,0 +1,35 @@
+.art-room { width: 100vw; height: 100vh; display: flex; flex-direction: column; overflow: hidden; color: #d9e4e4; background: radial-gradient(circle at 50% 0%, #1b2b34, #080d12 56%); }
+.art-room__header { min-height: 100px; display: flex; align-items: center; gap: 24px; padding: 18px clamp(16px, 3vw, 48px); border-bottom: 1px solid #496b71; box-shadow: 0 6px 24px #0008; }
+.art-room__header > div:first-child { flex: 1; min-width: 0; }
+.art-room__header span, .art-room__caption span { color: #80a8af; font: 10px 'Courier New', monospace; letter-spacing: .17em; }
+.art-room__header h1 { margin: 3px 0 0; font: bold clamp(24px, 3vw, 36px) 'SimSun', serif; letter-spacing: .16em; color: #e4e9df; }
+.art-room__header p { margin: 2px 0 0; color: #91aeb3; font-size: 11px; letter-spacing: .12em; }
+.art-room__count { white-space: nowrap; color: #8da6a9; font: 12px 'Courier New', monospace; }
+.art-room__count strong { color: #d8e6dc; font-size: 26px; }
+.art-room__back { flex: none; padding: 9px 13px; color: #c5dbd9; background: #0b1b21; border: 1px solid #56828a; cursor: pointer; font-size: 12px; }
+.art-room__back:hover, .art-room__back:focus-visible { color: #fff; border-color: #a8dce1; outline: none; }
+.art-room__filters { flex: none; display: flex; gap: 4px; padding: 11px clamp(16px, 3vw, 48px); overflow-x: auto; border-bottom: 1px solid #29454d; }
+.art-room__filters button { flex: none; padding: 7px 11px; color: #9ab0b3; background: #0b1920; border: 1px solid #31535c; cursor: pointer; font-size: 11px; }
+.art-room__filters button[aria-pressed="true"], .art-room__filters button:hover { color: #e8f3ef; background: #1b343c; border-color: #83bac2; }
+.art-room__content { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) clamp(230px, 26vw, 360px); gap: 16px; padding: 16px clamp(16px, 3vw, 48px) 20px; }
+.art-room__viewer { min-width: 0; min-height: 0; display: flex; flex-direction: column; background: #081218; border: 1px solid #496971; box-shadow: 0 12px 36px #0009; }
+.art-room__canvas { position: relative; flex: 1; min-height: 0; display: grid; place-items: center; background: repeating-linear-gradient(45deg,#0b171d 0 2px,#0a1419 2px 4px); overflow: hidden; }
+.art-room__canvas img { width: 100%; height: 100%; object-fit: contain; }
+.art-room__corner { position: absolute; width: 25px; height: 25px; pointer-events: none; }
+.art-room__corner--tl { top: 10px; left: 10px; border-top: 2px solid #84c4cd; border-left: 2px solid #84c4cd; }
+.art-room__corner--br { bottom: 10px; right: 10px; border-bottom: 2px solid #84c4cd; border-right: 2px solid #84c4cd; }
+.art-room__caption { flex: none; display: flex; align-items: center; justify-content: space-between; gap: 15px; padding: 13px 18px; background: #101d23; border-top: 1px solid #4b7379; }
+.art-room__caption h2 { margin: 3px 0; color: #ecf1e6; font: bold 24px 'SimSun', serif; }
+.art-room__caption p { margin: 0; color: #a8b9b8; font-size: 11px; }
+.art-room__arrows { display: flex; gap: 5px; }
+.art-room__arrows button { width: 32px; height: 32px; color: #d3ebeb; background: #152a31; border: 1px solid #4c7f89; cursor: pointer; font-size: 25px; line-height: 1; }
+.art-room__arrows button:hover { background: #2b4c54; }
+.art-room__shelf { min-height: 0; display: grid; grid-auto-rows: 78px; gap: 7px; overflow-y: auto; padding-right: 3px; align-content: start; }
+.art-room__shelf > button { position: relative; display: flex; align-items: center; gap: 9px; min-width: 0; padding: 5px; text-align: left; background: #0b171d; border: 1px solid #36545a; cursor: pointer; }
+.art-room__shelf > button:hover, .art-room__shelf > button.is-selected { background: #183139; border-color: #8fcbd1; }
+.art-room__shelf img { width: 94px; height: 65px; flex: none; object-fit: cover; filter: saturate(.75); }
+.art-room__shelf-label { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.art-room__shelf b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #d9e3df; font-size: 12px; }
+.art-room__shelf small { color: #8ea9a9; font-size: 10px; }
+.art-room__shelf i { margin-left: auto; align-self: start; color: #89b9bd; font-size: 10px; font-style: normal; }
+@media(max-width: 700px) { .art-room__header { min-height: 74px; gap: 8px; padding: 9px 12px; } .art-room__header p, .art-room__header > div:first-child > span { display: none; } .art-room__header h1 { font-size: 23px; } .art-room__count strong { font-size: 18px; } .art-room__count span { font-size: 9px; } .art-room__back { padding: 7px; font-size: 10px; } .art-room__filters { padding: 7px 12px; } .art-room__content { display: flex; flex-direction: column; gap: 8px; padding: 8px 12px 12px; } .art-room__viewer { flex: 1; } .art-room__caption { padding: 7px 10px; } .art-room__caption h2 { font-size: 17px; } .art-room__shelf { flex: none; display: flex; height: 86px; overflow-x: auto; overflow-y: hidden; } .art-room__shelf > button { width: 130px; flex: none; } .art-room__shelf img { width: 57px; height: 65px; } }

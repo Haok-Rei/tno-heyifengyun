@@ -1,210 +1,364 @@
-import { useEffect, useId, useState, type CSSProperties } from 'react';
+import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from 'react';
 import { X } from 'lucide-react';
 import type { GameState } from '../types';
 import { getHeyiLightSnapshot, type HeyiZone } from '../engine/heyiLight';
 import './heyiLight.css';
 
-interface HeyiLightProps {
-  state: GameState;
-  onClose: () => void;
-}
-
-const ZONES: Array<{ id: HeyiZone; x: number; y: number; width: number; height: number }> = [
-  { id: 'sign', x: 440, y: 172, width: 325, height: 101 },
-  { id: 'gate', x: 370, y: 420, width: 470, height: 160 },
-  { id: 'building', x: 392, y: 310, width: 420, height: 108 },
-  { id: 'students', x: 500, y: 555, width: 240, height: 112 },
-  { id: 'teachers', x: 775, y: 540, width: 135, height: 112 },
-  { id: 'road', x: 270, y: 667, width: 800, height: 90 },
-  { id: 'trees', x: 72, y: 180, width: 240, height: 280 },
-  { id: 'guard', x: 120, y: 385, width: 180, height: 190 },
+interface Props { state: GameState; onClose: () => void }
+type Snapshot = ReturnType<typeof getHeyiLightSnapshot>;
+type Point = { x: number; y: number };
+const HOTSPOTS: { id: HeyiZone; path: string; anchor: Point }[] = [
+  { id: 'building', path: 'M58 55L1050 47V385L791 396V305L366 310V405L58 390Z', anchor: {x: 600, y: 160} },
+  { id: 'sign', path: 'M365 230H792V306L365 311Z', anchor: {x: 590, y: 270} },
+  { id: 'gate', path: 'M365 311L792 305V500L365 529Z', anchor: {x: 590, y: 410} },
+  { id: 'guard', path: 'M65 355L318 349L338 379V522L65 541Z', anchor: {x: 185, y: 430} },
+  { id: 'trees', path: 'M1007 292Q999 251 1040 212Q1037 167 1080 170Q1102 133 1138 160Q1172 151 1184 192Q1214 223 1188 267Q1178 296 1133 299Q1097 317 1064 302Q1036 312 1007 292ZM1084 298L1105 301L1090 461L1081 461Z', anchor: {x: 1100, y: 270} },
+  { id: 'teachers', path: 'M858 468Q865 459 875 460Q888 462 889 477L901 493L904 546L890 556L882 533L872 558L850 557L844 506L854 487Z', anchor: {x: 875, y: 500} },
+  { id: 'students', path: 'M449 498Q463 483 477 498L488 518L501 526L502 571L491 591L473 589L466 563L456 591L437 589L435 536Z M534 509Q550 492 565 508L578 528L589 538L590 579L578 601L560 599L552 572L542 600L522 597L521 545Z M636 503Q651 488 667 504L679 524L690 534L692 575L680 597L662 595L654 569L645 596L624 593L623 540Z', anchor: {x: 570, y: 540} },
+  { id: 'road', path: 'M-500 565L0 506L364 507L450 535L753 515L1200 497L1700 565V700H-500Z', anchor: {x: 700, y: 615} },
 ];
-
-function Figure({ x, y, scale = 1, teacher = false, accent = '#b5a891' }: { x: number; y: number; scale?: number; teacher?: boolean; accent?: string }) {
-  return <g transform={`translate(${x} ${y}) scale(${scale})`} className="heyi-figure" aria-hidden="true">
-    <ellipse cx="0" cy="2" rx="15" ry="3" fill="#080e10" opacity=".75" />
-    <path d="M-4-30L-8-5M4-30L9-5" stroke="#121b20" strokeWidth="7" strokeLinecap="round" />
-    <path d="M-8-48L8-48L11-27L-10-27Z" fill={teacher ? '#69757a' : '#304d56'} stroke={accent} strokeWidth="1.2" />
-    {!teacher && <path d="M-7-46L7-46M-6-40L6-40" stroke="#b7c7bf" strokeWidth="1" opacity=".65" />}
-    <path d="M-9-43L-18-26M10-43L19-28" stroke="#304149" strokeWidth="5" strokeLinecap="round" />
-    {teacher && <rect x="15" y="-31" width="11" height="15" fill="#d4c9ad" stroke="#465159" />}
-    {!teacher && <path d="M-13-44L-21-40L-19-27L-11-30Z" fill="#1b2b31" stroke={accent} strokeWidth=".8" />}
-    <circle cx="0" cy="-57" r="8" fill="#a68f7c" />
-    <path d="M-8-58Q-7-72 1-68Q10-67 8-56L6-63Q-1-59-8-58" fill="#151c1d" />
+const MARKS: Record<Snapshot['route'], [string, string]> = {
+  opening: ['校务公告', '值日 / 课表 / 校历'],
+  democracy: ['学生代表大会', '议程公开 · 等待表决'],
+  revolution: ['临时委员会', '课程与食堂公开讨论'],
+  despair: ['暂停对外开放', '告示张贴后无人落款'],
+  reform: ['新课程试行', '社团教室申请开放'],
+  haobang: ['联席会议公报', '各方签名尚未齐全'],
+  yang: ['教师工作安排', '办公室的灯还亮着'],
+  jidi: ['本周升学指标', '统计口径 / 排名 / 公示'],
+  jidi_riot: ['系统暂停运行', '公告栏玻璃已经碎了'],
+  gouxiong: ['校内活动通知', '礼堂节目单又改了一遍'],
+  wu: ['通行登记制度', '请出示证件并依次入校'],
+};
+function Person({ x, y, teacher = false, tired = false, stride = 0 }: { x: number; y: number; teacher?: boolean; tired?: boolean; stride?: number }) {
+  const accent = teacher ? '#adc7bb' : '#8bbfbe';
+  return <g transform={'translate(' + x + ' ' + y + ')'} className={'heyi-person ' + (stride ? 'heyi-person--walking' : 'heyi-person--standing')} style={{ animationDelay: '-' + (stride * 1.13) + 's' }}>
+    <ellipse cx="2" cy="27" rx="24" ry="4" fill="#111d22" opacity=".8" stroke="none" />
+    <g transform={tired ? 'rotate(7 0 -20)' : undefined}>
+      <path d={stride % 2 ? 'M-8-3L-15 23L-8 25L2 4M7-2L14 18L20 21L15 25L6 22L-1 6' : 'M-8-3L-13 19L-19 22L-15 26L-8 24L1 4M7-2L11 24L18 25L19 21L15 19L15-1'} fill="#0b1b20" stroke={accent} strokeWidth="1.45" strokeLinejoin="round" />
+      <path d="M-17 25l12 1m19-1 10 1" stroke="#c1d1c9" strokeWidth="1.8" />
+      <path d="M-12-38Q0-43 12-37L13-4Q0 1-13-4Z" fill={teacher ? '#142b30' : '#112a31'} stroke={accent} strokeWidth="1.6" strokeLinejoin="round" />
+      <path d="M-10-36L-5-12H6L11-36M-12-19h25M-8-9h16" fill="none" stroke="#477a83" strokeWidth=".8" />
+      {teacher ? <g><path d="M-8-39L0-25L8-39M-6-26L0-20L5-26" fill="#13232a" stroke="#d6d6c4" strokeWidth="1.25" /><path d="M2-25v14" stroke="#ab9c87" strokeWidth="1.2" /></g> : <g><path d="M-7-38L0-29L7-38" fill="none" stroke="#e1e3d6" strokeWidth="1.25" /><path d="M-10-31l-6 6v23l10 2" fill="none" stroke="#6d9ca3" strokeWidth="1.2" /><path d="M-8-19h16" stroke="#acc9c3" strokeWidth=".8" /></g>}
+      <path d={tired ? 'M-12-34L-24-13L-20-8L-7-20M12-34L19-13L15-8L8-21' : 'M-12-34L-20-15L-17-5L-12-7L-15-16L-6-26M12-34L19-14L24-9L20-6L12-15L7-26'} fill="#0b2027" stroke={accent} strokeWidth="1.5" strokeLinejoin="round" />
+      <path d="M-22-8l5 3m33-3 5 3" stroke="#d0c9ae" strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M-3-42v-7h7v7" fill="#18282b" stroke="#b1bcb1" strokeWidth="1.1" />
+      <path d="M-9-54Q-7-64 0-64Q9-63 10-53L8-44Q0-39-8-45Z" fill="#102126" stroke="#bad0c5" strokeWidth="1.45" />
+      <path d="M-9-54Q-13-65-5-69Q3-72 10-64L12-55Q6-60-2-60Q-5-55-9-54Z" fill="#071419" stroke="#a0bbb9" strokeWidth="1.2" />
+      <path d="M-4-50l2 1m6-1 2 1M-2-44q3 1 6 0" stroke="#b9baae" strokeWidth=".8" />
+      {teacher ? <g><path d="M17-7h17v24H17Z" fill="#0d2026" stroke="#c7ccb9" strokeWidth="1.35" /><path d="M21-7v-4h10v4M20 0h11m-11 5h8" stroke="#8faeaa" strokeWidth="1" /></g> : <g><path d="M-14-34L-31-29L-27 1L-13 2Z" fill="#0b1b22" stroke="#8cb2b3" strokeWidth="1.5" /><path d="M-27-26l14-1m-13 10 12-2m-10 11 11-2" stroke="#3f7884" strokeWidth=".9" /><path d="M-15-29l5 5" stroke="#d5c6a5" strokeWidth="1.2" /></g>}
+      {stride === 2 && <g><path d="M19-6l13-5 5 18-16 3Z" fill="#192a2d" stroke="#c0cbbd" strokeWidth="1.2" /><path d="M22-3l10-3m-9 7 10-3m-9 7 10-3" stroke="#8fa8a8" strokeWidth=".8" /></g>}
+    </g>
   </g>;
 }
-
-function GateScene({ snapshot, activeZone, setActiveZone }: {
-  snapshot: ReturnType<typeof getHeyiLightSnapshot>;
-  activeZone: HeyiZone | null;
-  setActiveZone: (zone: HeyiZone | null) => void;
+function ClassroomWindow({ x, y, lit, cracked, index }: { x: number; y: number; lit: boolean; cracked: boolean; index: number }) {
+  const frame = 'M' + x + ' ' + y + 'h51v61h-51Z';
+  return <g className="heyi-window">
+    <path d={'M' + (x - 7) + ' ' + (y - 8) + 'h65v75h-65Z'} fill="#06171c" stroke="#5f8f98" strokeWidth="1" />
+    <path d={frame} fill={lit ? '#0c242a' : '#030e13'} stroke="#bed3d2" strokeWidth="1.6" />
+    <g className={lit ? 'heyi-window__light' : ''} style={{ animationDelay: '-' + ((index % 7) * 1.7) + 's' }}>
+      {lit && <path d={'M' + (x + 2) + ' ' + (y + 3) + 'h47v54h-47Z'} fill={index % 4 === 0 ? '#244047' : '#18363a'} opacity=".52" />}
+      {lit && <path d={'M' + (x + 4) + ' ' + (y + 5) + 'h42'} stroke="#bbd5cc" strokeWidth="1.2" opacity=".72" />}
+    </g>
+    <path d={'M' + (x + 25) + ' ' + y + 'v61M' + x + ' ' + (y + 31) + 'h51M' + (x - 5) + ' ' + (y + 65) + 'h61'} fill="none" stroke="#a2c5c6" strokeWidth="1.3" />
+    <path d={'M' + (x + 3) + ' ' + (y + 5) + 'l17 16m19-13 8 10'} stroke="#79a7a9" strokeWidth=".7" opacity=".6" />
+    {lit && <g fill="none" stroke="#89a8a5" strokeWidth=".8">
+      <path d={'M' + (x + 5) + ' ' + (y + 49) + 'h17l2 10m6-10h16l1 10'} />
+      <path d={'M' + (x + 9) + ' ' + (y + 45) + 'v-5h8v5m18-4 7-4v8'} />
+    </g>}
+    {index % 5 === 0 && <g><path d={'M' + (x + 13) + ' ' + (y + 71) + 'h25v13h-25Z'} fill="#092026" stroke="#96b1b1" strokeWidth="1" /><circle cx={x + 26} cy={y + 77} r="4" fill="none" stroke="#7d9e9f" strokeWidth=".9" /><path d={'M' + (x + 11) + ' ' + (y + 70) + 'h29'} stroke="#c4cfca" strokeWidth="1" /></g>}
+    {index % 6 === 2 && <path d={'M' + (x + 4) + ' ' + (y + 5) + 'v48m43-48v48'} stroke="#647e82" strokeWidth="2.5" opacity=".6" />}
+    {cracked && <path d={'M' + x + ' ' + y + 'l21 31-7 21m7-21 28 30'} fill="none" stroke="#d1856c" strokeWidth="2" />}
+  </g>;
+}
+function Scene({ snapshot, month, viewBox, active, onZone, onPointer }: {
+  snapshot: Snapshot; month: number; viewBox: string; active: HeyiZone | null;
+  onZone: (zone: HeyiZone | null, anchor?: Point) => void;
+  onPointer: (event: PointerEvent<SVGPathElement>, zone: HeyiZone) => void;
 }) {
-  const uid = useId().replace(/:/g, '');
-  const id = (name: string) => `${name}-${uid}`;
-  const { route, mood, value, accent } = snapshot;
-  const riot = route === 'jidi_riot' || route === 'despair';
-  const disciplined = route === 'jidi' || route === 'wu' || route === 'yang';
-  const peaceful = route === 'democracy' && (value >= 60 || snapshot.democraticVictory);
-  const dark = mood === 'ruin';
-  const lights = Math.max(3, Math.round(value / 12));
-  return <svg className={`heyi-scene heyi-scene--${route}`} viewBox="0 0 1200 760" role="img" aria-label={`合一之光：${snapshot.headline}`}>
-    <defs>
-      <linearGradient id={id('sky')} x2="0" y2="1">
-        <stop stopColor={riot ? '#211016' : peaceful ? '#324d54' : '#0c1a22'} />
-        <stop offset="1" stopColor={riot ? '#6a3026' : peaceful ? '#71847d' : '#38434a'} />
-      </linearGradient>
-      <linearGradient id={id('road')} x2="0" y2="1"><stop stopColor="#273137" /><stop offset="1" stopColor="#0c1116" /></linearGradient>
-      <linearGradient id={id('brick')} x2="1" y2="1"><stop stopColor="#3c4141" /><stop offset=".6" stopColor="#1a2327" /><stop offset="1" stopColor="#0d171b" /></linearGradient>
-      <pattern id={id('hatch')} width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(43)"><path d="M0 0V7" stroke="#cad2c9" strokeOpacity=".08" strokeWidth="2" /></pattern>
-      <pattern id={id('tile')} width="50" height="25" patternUnits="userSpaceOnUse"><path d="M0 25H50M25 0V25" stroke="#758184" strokeOpacity=".18" fill="none" /></pattern>
-      <filter id={id('glow')}><feGaussianBlur stdDeviation="8" /></filter>
-      <radialGradient id={id('vignette')}><stop offset=".55" stopColor="transparent" /><stop offset="1" stopColor="#030609" stopOpacity=".8" /></radialGradient>
-    </defs>
-
-    <rect width="1200" height="760" fill={`url(#${id('sky')})`} />
-    <path d="M0 0H1200V340Q900 290 680 315Q350 260 0 355Z" fill="#0c1518" opacity=".32" />
-    {riot && <g className="heyi-fire-glow"><ellipse cx="635" cy="324" rx="210" ry="145" fill="#e75d32" opacity=".4" filter={`url(#${id('glow')})`} /><path d="M400 410Q435 340 470 370Q480 335 515 365Q548 290 579 360Q617 306 651 347Q690 308 724 365Q760 327 808 400Z" fill="#d55230" opacity=".85" /><path d="M420 408Q470 355 505 400Q540 327 580 390Q632 333 677 395Q726 350 785 403Z" fill="#f1a350" opacity=".8" /></g>}
-    {peaceful && <path d="M0 221Q300 120 600 172T1200 158" stroke="#efcc8c" strokeWidth="23" opacity=".1" fill="none" />}
-
-    <g className="heyi-building">
-      <path d="M345 152L795 140L830 172V474H330V172Z" fill={`url(#${id('brick')})`} stroke="#7a8583" strokeWidth="2" />
-      <path d="M345 152L795 140L830 172H330Z" fill="#4b5553" stroke="#a9afa3" />
-      <rect x="330" y="171" width="500" height="303" fill={`url(#${id('tile')})`} />
-      {[0,1,2,3].map(floor => <g key={floor}>
-        <path d={`M330 ${237 + floor * 72}H830`} stroke="#778585" strokeWidth="4" />
-        {Array.from({ length: 8 }, (_, index) => <g key={index}>
-          <rect x={356 + index * 58} y={183 + floor * 72} width="39" height="41" fill={index + floor * 8 < lights * 3 ? '#849d94' : '#101a20'} stroke="#687a78" strokeWidth="2" />
-          <path d={`M${375 + index * 58} ${183 + floor * 72}V${224 + floor * 72}`} stroke="#203136" strokeWidth="1.5" />
-        </g>)}
-      </g>)}
-      {route === 'jidi' && <g><rect x="405" y="253" width="346" height="47" fill="#111b20" stroke="#b49a68" /><text x="578" y="284" textAnchor="middle" fill="#dfc798" fontSize="22" letterSpacing="4">今日升学榜 · {Math.round(value * .7 + 39)}%</text></g>}
-      {route === 'revolution' && <path d="M560 170H659L644 281L595 254L560 280Z" fill="#a64038" stroke="#d89477" strokeWidth="2" />}
-      {route === 'revolution' && <g><rect x="435" y="264" width="293" height="49" fill="#452d2b" stroke="#bc7463" strokeWidth="2" /><text x="581" y="296" textAnchor="middle" fill="#e4b9a1" fontSize="21" letterSpacing="3">题海之外 · 课程革命</text></g>}
-      {route === 'democracy' && <g><rect x="439" y="245" width="284" height="51" fill="#243c39" stroke="#aac7a8" /><text x="581" y="277" textAnchor="middle" fill="#d8e6ca" fontSize="22" letterSpacing="5">学生代表议事厅</text></g>}
-      {peaceful && <g><path d="M332 215Q578 294 828 208" fill="none" stroke="#e3c895" strokeWidth="3" />{[390,447,505,563,621,679,737,795].map((x, i) => <path key={x} d={`M${x} ${234 + Math.sin(i) * 13}l16 8-12 24Z`} fill={i % 2 ? '#a9c8aa' : '#d0aa79'} />)}<text x="582" y="349" textAnchor="middle" fill="#dfe7d3" fontSize="20" letterSpacing="3">选举结果公告 · 学生共治</text></g>}
-      {route === 'reform' && <g><rect x="426" y="254" width="310" height="48" fill="#344536" stroke="#b8c28d" strokeWidth="2" /><text x="581" y="284" textAnchor="middle" fill="#e0dfb3" fontSize="21" letterSpacing="2">新课程试行 · 社团开放</text><path d="M371 406q24-39 48 0q24-39 48 0" fill="none" stroke="#89a87e" strokeWidth="5" /></g>}
-      {route === 'haobang' && <g><rect x="437" y="242" width="289" height="60" fill="#302d2a" stroke="#bb946f" strokeWidth="3" /><text x="581" y="267" textAnchor="middle" fill="#d6b38c" fontSize="18" letterSpacing="3">联席议事 · 校内公报</text><path d="M466 283H695" stroke="#b1816e" strokeWidth="2" /><text x="581" y="295" textAnchor="middle" fill="#aeb7ad" fontSize="11">ASSEMBLY / COMPROMISE</text></g>}
-      {route === 'opening' && <g><circle cx="582" cy="272" r="24" fill="#19262a" stroke="#a3b3aa" strokeWidth="3" /><path d="M582 272v-16m0 16 10 6" stroke="#ded6be" strokeWidth="3" /></g>}
-      {route === 'gouxiong' && <g><rect x="438" y="245" width="285" height="53" fill="#493c50" stroke="#d3a6d0" /><text x="581" y="280" textAnchor="middle" fill="#ebcfec" fontSize="27">✦ 今日也要好好上学 ✦</text></g>}
-      {route === 'yang' && <rect x="745" y="181" width="36" height="40" fill="#ecc38b" opacity=".9" />}
-      {route === 'wu' && <g><circle cx="582" cy="159" r="8" fill="#8eabb0" /><path d="M582 167V195M582 176L567 187M582 176L598 187" stroke="#8eabb0" strokeWidth="3" /></g>}
-      {route === 'jidi_riot' && <g><path d="M453 104Q416 66 443 17M603 106Q569 49 598 5M725 110Q750 51 723 11" stroke="#a0988d" strokeWidth="21" strokeLinecap="round" opacity=".27" fill="none" /><rect x="489" y="263" width="187" height="43" fill="#1d1c1d" stroke="#bd6949" /><text x="582" y="291" textAnchor="middle" fill="#d4825b" fontSize="20">系统故障</text></g>}
-      {riot && <path d="M409 381l28-18 18 22 30-14m142-50 16-29 18 23 14-17m-80 78 22-19 17 28" stroke="#c8aa95" strokeWidth="3" fill="none" />}
-      <path d="M330 474H830" stroke="#bcc8b8" strokeWidth="5" />
+  const { route, mood, value } = snapshot;
+  const unrest = route === 'jidi_riot' || route === 'despair';
+  const lit = Math.max(2, Math.round(value / 11));
+  const autumn = month >= 8 && month <= 10;
+  const winter = month === 11 || month <= 1;
+  return <svg className="heyi-light-v2__scene" viewBox={viewBox} preserveAspectRatio="xMidYMid meet" role="img" aria-label={'合肥一中校门：' + snapshot.headline}>
+    <defs><pattern id="heyi-brick" width="30" height="18" patternUnits="userSpaceOnUse"><path d="M0 0H30M0 9H30M15 0V9M0 9v9" fill="none" stroke="#29505a" strokeWidth=".7" /></pattern></defs>
+    <rect x="-500" width="2200" height="700" fill="#020b10" />
+    <g className="heyi-side-street">
+      <path d="M-500 120L58 55V390L-500 488Z" fill="#051319" stroke="#78a7ad" strokeWidth="1.4" />
+      <path d="M-500 140L58 75M-500 259L58 202M-500 378L58 329" stroke="#4b818c" strokeWidth="1.1" />
+      {Array.from({length: 7}, (_, i) => <g key={i}><path d={'M' + (-465 + i * 70) + ' ' + (197 - i * 11) + 'l43-6v64l-43 6Z'} fill="#071c23" stroke="#9dbdc0" strokeWidth="1.2" /><path d={'M' + (-444 + i * 70) + ' ' + (194 - i * 11) + 'v64m-21-31 43-6'} stroke="#789fa4" strokeWidth=".8" /></g>)}
+      <path d="M-478 344l196-24v57l-196 31Z" fill="#092027" stroke="#b6cec8" strokeWidth="1.5" />
+      <text x="-382" y="366" fill="#bfcfc5" textAnchor="middle" fontSize="22" letterSpacing="4">LIBRARY · 图书馆</text>
+      <path d="M1050 47L1700 127V465L1050 385Z" fill="#06151b" stroke="#789fae" strokeWidth="1.5" />
+      <path d="M1050 74l650 71M1050 177l650 82M1050 281l650 87" stroke="#487b86" strokeWidth="1" />
+      {[0,1,2,3,4,5].map(i => <g key={i}><path d={'M' + (1090+i*94) + ' ' + (124+i*9) + 'l54 5v65l-54-5Z'} fill="#0b2329" stroke="#afc7c4" strokeWidth="1.3" /><path d={'M' + (1117+i*94) + ' ' + (127+i*9) + 'v64m-27-36 54 5'} stroke="#7aa5a9" strokeWidth=".9" /></g>)}
+      <path d="M1245 334l270 31v73l-270-28Z" fill="#0b2025" stroke="#b7cac4" strokeWidth="1.5" />
+      <text x="1379" y="390" textAnchor="middle" fill="#bccdc2" fontSize="26" letterSpacing="4">滨湖街区</text>
+      <path d="M-500 488L0 419V514L-500 563ZM1200 418l500 47v100l-500-65Z" fill="#061319" stroke="#467581" />
     </g>
-
-    <g className="heyi-trees">
-      {[110,245,930,1080].map((x, index) => <g key={x}>
-        <path d={`M${x} 487Q${x-16} 420 ${x-9} 363M${x} 487Q${x+12} 419 ${x+18} 341`} stroke="#413d36" strokeWidth="13" fill="none" />
-        <path d={`M${x-9} 392Q${x-89} 389 ${x-70} 317M${x+13} 377Q${x+90} 360 ${x+74} 299`} stroke="#413d36" strokeWidth="6" fill="none" />
-        <path d={`M${x-74} 350Q${x-108} 301 ${x-70} 256Q${x-72} 210 ${x-16} 211Q${x+39} 185 ${x+60} 249Q${x+109} 263 ${x+86} 335Q${x+35} 359 ${x-74} 350Z`} fill={riot ? '#302e2d' : value > 65 ? '#415a45' : '#293c39'} stroke={riot ? '#885244' : '#718575'} strokeWidth="2" opacity={riot ? .85 : .95} />
-        <path d={`M${x-58} 327Q${x} 273 ${x+50} 318M${x-42} 267Q${x} 298 ${x+43} 252`} stroke="#91a390" strokeOpacity=".28" fill="none" />
-        {index === 1 && route === 'gouxiong' && <path d={`M${x+42} 325l12 20 16-14`} stroke="#e5a7d5" strokeWidth="6" fill="none" />}
-      </g>)}
+    <path d="M0 70L58 55V390L0 419ZM58 55L1050 47V385L791 396L366 405L58 390Z" fill="#07151a" stroke="#8eb9bf" strokeWidth="1.5" />
+    <path d="M58 55L1050 47M58 67L1050 59M58 155L1050 146M58 267L1050 254M58 378L1050 368M1050 47V385" fill="none" stroke="#58a4ad" strokeWidth="1.25" />
+    <path d="M58 55L1050 47V385L58 390Z" fill="url(#heyi-brick)" opacity=".6" />
+    {Array.from({length: 11}, (_, i) => [0, 1, 2].map(floor => {
+      const x = 82 + i * 86, y = 95 + floor * 100 - i;
+      const light = (i + floor * 3) % 11 < lit;
+      return <g key={i + '-' + floor}><ClassroomWindow x={x} y={y} lit={light} cracked={unrest && i === 5 && floor === 1} index={i + floor * 11} /></g>;
+    }))}
+    <g className="heyi-facade" fill="none">
+      <path d="M59 54L1049 45L1063 53L58 64M58 83L1050 73M58 185L1050 175M58 285L1050 274M58 382L1050 372" stroke="#afcecd" strokeWidth="2" />
+      <path d="M58 88L1050 78M58 190L1050 180M58 289L1050 279M58 387L1050 377" stroke="#35656e" strokeWidth="3" />
+      {[66, 152, 238, 324, 410, 496, 582, 668, 754, 840, 926, 1012].map(x => <g key={x}><path d={'M' + x + ' 76v310'} stroke="#2c5e67" strokeWidth="3" /><path d={'M' + (x + 4) + ' 76v310'} stroke="#779b9f" strokeWidth=".8" /></g>)}
+      <path d="M1050 48l-17 7v330l17 2M1041 50v332M69 73l-8 6v303" stroke="#adc6c3" strokeWidth="1.2" />
+      <path d="M112 72l18-4v-19h18v16l47-2v-20h16v17M887 59v-27h37v26M921 32l15 10" stroke="#8fb7b8" strokeWidth="1.4" />
+      <path d="M235 81l-3 306m3-200-3 7m3 93-3 7M840 70l-4 310" stroke="#70979b" strokeWidth="1.1" />
+      <path d="M85 381h948M87 391h942" stroke="#acc8c6" strokeWidth="1.4" />
     </g>
-
-    <g className="heyi-gatehouse">
-      <rect x="119" y="408" width="169" height="158" fill="#202b2d" stroke="#859697" strokeWidth="2" />
-      <rect x="119" y="408" width="169" height="158" fill={`url(#${id('tile')})`} />
-      <path d="M106 407L118 386H283L301 408Z" fill="#344042" stroke="#a4b0a9" strokeWidth="2" />
-      <rect x="136" y="430" width="91" height="70" fill="#384e52" stroke="#90a6a4" strokeWidth="2" />
-      <path d="M182 430V500" stroke="#83958e" strokeWidth="2" />
-      <rect x="236" y="447" width="39" height="70" fill="#122029" stroke="#6f8180" />
-      <path d="M119 565H287" stroke="#c2b394" strokeWidth="5" />
-      <rect x="941" y="415" width="150" height="150" fill="#263134" stroke="#859697" strokeWidth="2" />
-      <rect x="958" y="437" width="115" height="53" fill="#30484d" stroke="#8ca2a0" strokeWidth="2" />
+    <g fill="none" stroke="#4c7981" strokeWidth=".7" opacity=".8">
+      {Array.from({length: 13}, (_, i) => <path key={i} d={'M' + (79 + i * 77) + ' 77l4 308'} />)}
+      <path d="M58 141l992-11M58 246l992-10M58 347l992-10" />
     </g>
-
-    <g className="heyi-monument">
-      <rect x="296" y="168" width="93" height="397" fill="#192a2c" stroke="#86a09c" strokeWidth="3" />
-      <rect x="810" y="168" width="93" height="397" fill="#192a2c" stroke="#86a09c" strokeWidth="3" />
-      {[311,825].map(x => <g key={x}><rect x={x} y="182" width="63" height="370" fill="#2f5356" stroke="#91b6ae" /><path d={`M${x + 16} 182V552M${x + 35} 182V552`} stroke="#81b6b5" opacity=".48" /></g>)}
-      <path d="M284 166L305 145H894L916 166Z" fill="#263234" stroke="#adbbb3" strokeWidth="3" />
-      <rect x="284" y="165" width="632" height="111" fill="#293537" stroke="#9ea9a0" strokeWidth="3" />
-      <rect x="284" y="165" width="632" height="111" fill={`url(#${id('tile')})`} />
-      <text x="600" y="241" textAnchor="middle" fill={riot ? '#e8b0a0' : '#d7bba5'} fontFamily="SimSun, Songti SC, serif" fontSize="68" letterSpacing="23" stroke="#712f2b" strokeWidth="1.5" paintOrder="stroke">合肥一中</text>
-      <path d="M290 276H910" stroke="#b7beb1" strokeWidth="6" />
-      <path d="M300 286H900" stroke="#516569" strokeWidth="3" />
-      {route === 'democracy' && <path d="M540 272v46l61-17 62 17v-46" fill="#718c80" stroke="#c8d9b7" />}
-      {route === 'revolution' && <path d="M342 278l12 80 18-30 22 28 13-78" fill="#a44942" stroke="#d07866" />}
-      {route === 'jidi' && <rect x="436" y="283" width="330" height="26" fill="#a58e64" opacity=".8" />}
-      {route === 'wu' && <path d="M301 278H898V294H301Z" fill="#48545c" />}
-      {route === 'haobang' && <g><path d="M903 287v82l-26-13-27 13v-82" fill="#9e3e36" stroke="#d59c78" strokeWidth="2" /><text x="876" y="332" textAnchor="middle" fill="#ead8b9" fontSize="18">联</text></g>}
-      {route === 'reform' && <g><path d="M294 282v75l23-13 22 13v-75" fill="#647b5e" stroke="#b5c7a8" strokeWidth="2" /><text x="317" y="325" textAnchor="middle" fill="#e3e8c8" fontSize="17">改</text></g>}
+    {route === 'democracy' && <g fill="none" stroke="#a8c6b7" strokeWidth="2"><path d="M388 181Q576 212 781 174M404 179l9 24 19-18m54 7 11 25 18-19m58 2 10 25 19-22m63-3 10 22 18-20" /><path d="M102 351h220M109 357h205" /></g>}
+    {route === 'revolution' && <g><path d="M550 60v142m1-139 78 15-74 36Z" fill="#402126" stroke="#cf8070" strokeWidth="2" /><path d="M223 168l110-2v59l-110 1Z" fill="#25191c" stroke="#b8645b" /><path d="M243 180h71m-71 11h54m-54 11h64" stroke="#c08b7c" strokeWidth="2" /></g>}
+    {route === 'jidi' && <g><path d="M744 169l250-3v53l-250 4Z" fill="#191912" stroke="#b5a578" strokeWidth="2" /><path d="M760 181h217m-217 13h190m-190 13h203" stroke="#a79871" strokeWidth="2" /></g>}
+    {route === 'jidi_riot' && <g fill="none" stroke="#bd7866" strokeWidth="2"><path d="M139 340l39-30 28 27 33-19m537-5-23 25 9 22-19 18M860 311l14-36 24 18 13-27" /><path d="M107 407l28-15 30 14m510 19 45-24 25 9" /></g>}
+    {route === 'wu' && <g><path d="M246 65l49-3v85l-49 1Z" fill="#121f28" stroke="#a4b8bd" strokeWidth="2" /><path d="M258 79h24m-24 10h24m-24 10h24" stroke="#8fa9ae" /><path d="M1040 72l-33 7-15 24 31-5Z" fill="#9eacae" stroke="#c4d2ce" /></g>}
+    {route === 'haobang' && <g><path d="M111 170l150-3v46l-150 3Z" fill="#211819" stroke="#a7796d" strokeWidth="2" /><path d="M124 182h123m-123 10h107m-107 10h116" stroke="#bc9985" strokeWidth="1.5" /></g>}
+    {route === 'reform' && <g fill="none" stroke="#91b49e" strokeWidth="2"><path d="M895 71q-32 21-6 46q25-21 6-46Zm33 12q-17 25 7 38q17-26-7-38Z" /><path d="M137 331l130-2m-126 10 99-2" /></g>}
+    {route === 'gouxiong' && <g fill="none" stroke="#b7a1bd" strokeWidth="2"><path d="M872 222q28-26 51-1q21-19 39 4m-101 12h113" /><path d="M159 371l38-15 26 18 37-19" /></g>}
+    {route === 'despair' && <g fill="none" stroke="#8b8581" strokeWidth="3"><path d="M139 329l27-26m-16 23 31-27M830 328l30-26m-22 29 34-32M64 386l29 13m677-16 24 18" /></g>}
+    {mood === 'bright' && <g fill="none" stroke="#a8c8ad" strokeWidth="1.5"><path d="M198 408q13-21 26 0m10 0q12-17 23 0M1015 412q16-20 28 0" /><path d="M160 535l12-17 11 18m15-5 8-12 10 12" /></g>}
+    <path d="M0 419L58 390L365 405V527L0 514ZM791 396L1050 385L1200 418V500L791 520Z" fill="#061117" stroke="#42818c" strokeWidth="1.4" />
+    <path d="M-500 565L0 514L365 507L450 535L753 515L1200 497L1700 567V700H-500Z" fill="#030b11" stroke="#82a9ae" strokeWidth="1.6" />
+    <path d="M0 531L451 550L750 530L1200 512M0 635L430 578M1200 633L778 572" fill="none" stroke="#396f78" strokeWidth="1" />
+    <path d="M30 622L416 569L517 582L140 699H0ZM665 573L1191 527L1200 559L834 699H506Z" fill="#07151a" stroke="#659ba3" strokeWidth="1" />
+    <path d="M-500 670L30 622L0 700H-500ZM1200 560l500 100v40h-500Z" fill="#07151a" stroke="#628d95" />
+    <path d="M-430 597l390-56M1241 535l349 51M-380 678l322-50m1298-60 331 61" fill="none" stroke="#6c9297" strokeWidth="1" />
+    {[0,1,2,3,4,5].map(i => <path key={i} d={'M' + (350+i*67) + ' ' + (584+i) + 'l28-1 37 70-28 2Z'} fill="#64787b" opacity={unrest ? .35 : .62} />)}
+    <g className="heyi-roadwork" fill="none">
+      <path d="M26 621L416 565M40 629L418 573M846 576l328-43M856 585l330-44" stroke="#a4bdba" strokeWidth="1.4" opacity=".68" />
+      <path d="M0 538l386 18m408-30 406-22M59 685l384-106m269-3 387 110" stroke="#315e68" strokeWidth="1" />
+      <path d="M24 580l101-12m-75 22 78-9m90 37 59-11M905 590l88 14m-42-24 100 11" stroke="#a0aca9" strokeWidth=".75" opacity=".5" />
+      <ellipse cx="164" cy="649" rx="44" ry="13" stroke="#63838b" strokeWidth="1.2" />
+      <path d="M124 648q38-11 80-1m-74 8q37-10 73-1m-37-18v27" stroke="#476e78" strokeWidth=".8" />
+      <path d="M1012 616l26-4 10 12-29 5Z M38 604l17 3 3 8-19-3Z" stroke="#819698" strokeWidth=".85" />
+      {Array.from({length: 18}, (_, i) => <path key={i} d={'M' + (40 + i * 62) + ' ' + (615 + i % 3 * 18) + 'l' + (i % 2 ? 4 : -3) + ' ' + (i % 4 + 1)} stroke="#69929a" strokeWidth=".8" opacity=".48" />)}
+      <path d="M447 596l-50 80m161-80-11 63m98-70 38 77" stroke="#b7c9c6" strokeWidth=".85" opacity=".4" />
     </g>
-
-    <g className="heyi-fence" stroke={riot ? '#8b716a' : '#6f8988'}>
-      <path d="M389 475H810M389 563H810" strokeWidth="5" />
-      {Array.from({ length: 30 }, (_, i) => <g key={i}><path d={`M${392 + i * 14} 478V561`} strokeWidth="2" /><path d={`M${392 + i * 14} 487L${406 + i * 14} 548M${406 + i * 14} 487L${392 + i * 14} 548`} strokeWidth="1" /></g>)}
-      {riot && <path d="M470 479l44 50-30 34M516 479l-25 39" stroke="#d3b4a2" strokeWidth="4" fill="none" />}
+    {value > 65 && <g className="heyi-road-reflection" fill="none" stroke="#66b8c5"><path d="M272 644l82-7m451-33 103-9m-475 82 88-6" strokeWidth="1.2" opacity=".4" /></g>}
+    {(unrest || mood === 'weary') && <g fill="#a9aaa0" stroke="#9caaa7" strokeWidth=".8" opacity=".8"><path d="M256 596l21-8 13 7-18 11Z M910 563l16-6 24 12-19 5Z M71 561l13-3 12 5-12 5Z" /><path d="M873 660l17-2 10 8-19 5Z" /></g>}
+    <g>
+      <path d="M65 355L318 349L338 379L329 522L65 541Z" fill="#07151b" stroke="#a2c9ca" strokeWidth="2" />
+      <path d="M66 380L332 377M80 397L319 391M65 540L329 521" stroke="#72aeb5" strokeWidth="1.2" />
+      <path d="M77 390L318 384M77 396L318 390M75 510L328 496M72 527L329 512" stroke="#476f78" strokeWidth="1" />
+      {[0,1,2,3,4].map(i => <path key={i} d={'M' + (75 + i * 46) + ' 389l4 122'} stroke="#315d68" strokeWidth=".85" />)}
+      <path d="M89 413l98-2v70l-98 4ZM207 408l100-3v70l-100 5Z" fill="#0b252b" stroke="#bad5cf" strokeWidth="1.5" />
+      <path d="M95 464l86-2M213 458l89-2" stroke="#647e80" strokeWidth="1" />
+      <path d="M104 457l51-2v10l-51 2ZM113 454v-20l36-1v21M124 434v-8h14v8" fill="#112429" stroke="#7ea4a7" strokeWidth="1" />
+      <path d="M220 450l21-2v10l-21 2ZM245 448l22-1v9l-22 2ZM224 442l36-1" fill="#122a30" stroke="#99aaa7" strokeWidth="1" />
+      <circle cx="167" cy="429" r="6" fill="#09171b" stroke="#afc7bf" strokeWidth="1.2" />
+      <path d="M160 441q5-10 13 0l6 21h-26Z" fill="#0a1c21" stroke="#9bb7b4" strokeWidth="1.1" />
+      <path d="M161 423q7-11 13 0" fill="none" stroke="#bdc8bd" strokeWidth="1" />
+      <path d="M217 420l16-2v13l-16 1Z" fill="#10262d" stroke="#a8b9b5" strokeWidth="1" />
+      <path d="M226 425h3" stroke="#bad2c7" strokeWidth="1" />
+      <path d="M138 412v70M257 407v70M94 448l91-2M213 444l91-3" stroke="#75abb0" />
+      <path d="M69 538l265-21M72 544l263-20" stroke="#a8c3c1" strokeWidth="1" />
+      <path d="M271 482l20-1v33l-20 2Z" fill="#071519" stroke="#adc4bf" strokeWidth="1" />
+      <circle cx="279" cy="496" r="2" fill="#d0d7c7" />
+      <path d="M80 532v-20h34v18m0-14h9" stroke="#759ca0" strokeWidth="1" />
+      <text x="200" y="373" textAnchor="middle" fill="#c9d4cb" fontSize="14" letterSpacing="5">门卫室</text>
+      {route === 'wu' && <g><path d="M60 480l28 10M330 467l-22 11" stroke="#a6b8bf" strokeWidth="3" /><circle cx="330" cy="465" r="5" fill="#a7c0c4" /></g>}
     </g>
-    {dark && <g className="heyi-decay" fill="none"><path d="M305 351l18 10-8 21 17 11M859 381l-17 18 13 14M410 558l32-17 25 18" stroke="#b57d69" strokeWidth="3" opacity=".75" /><path d="M196 563l7-22 6 23m4-1 6-16 8 16M955 564l4-15 7 17" stroke="#60705f" strokeWidth="2" /></g>}
-    {mood === 'bright' && !riot && <g><path d="M137 566q9-39 16 0m9 0q11-31 15 0m829-2q10-37 16 0" stroke="#75966d" strokeWidth="3" fill="none" /><circle cx="154" cy="535" r="5" fill="#d1a07c" /><circle cx="177" cy="541" r="4" fill="#d3c290" /><circle cx="1024" cy="536" r="5" fill="#cda787" /></g>}
-
-    <path d="M0 566H1200V760H0Z" fill={`url(#${id('road')})`} />
-    <path d="M0 571H1200" stroke="#bbc4b6" strokeWidth="8" opacity=".64" />
-    <path d="M0 587H1200M0 742H1200" stroke="#7f8b87" strokeWidth="2" opacity=".55" />
-    {[75,235,395,555,715,875,1035].map(x => <path key={x} d={`M${x} 660h75l28 61h-95Z`} fill="#abb7b0" opacity={riot ? .25 : .4} />)}
-    <path d="M0 632H1200" stroke="#d1bb78" strokeDasharray="26 18" strokeWidth="2" opacity=".46" />
-    {riot && <g><path d="M500 618l41-8 40 16-21 8-49-7Z" fill="#d6cab9" opacity=".8" /><path d="M846 613l55 17-49 6Z" fill="#d6cab9" opacity=".7" /></g>}
-    {peaceful && <g className="heyi-confetti"><circle cx="487" cy="518" r="3" fill="#edd096" /><circle cx="723" cy="603" r="4" fill="#bed9af" /><circle cx="856" cy="513" r="3" fill="#d9bd9e" /></g>}
-    {peaceful && <g><path d="M93 585q100-39 201 0m630-3q87-44 193 0" stroke="#e2c999" strokeWidth="2" fill="none" /><path d="M181 582l27 19 28-20m720 0 25 22 30-22" fill="#92b69b" stroke="#d3d4b0" strokeWidth="2" /><circle cx="360" cy="603" r="3" fill="#ebcf9c" /><circle cx="910" cy="619" r="3" fill="#dbbd9e" /><circle cx="774" cy="537" r="3" fill="#b0d0a4" /></g>}
-    {route === 'haobang' && <g><rect x="897" y="577" width="115" height="67" fill="#292a29" stroke="#a78f74" strokeWidth="2" /><text x="954" y="601" textAnchor="middle" fill="#d2bc9c" fontSize="14">议事公告</text><path d="M915 613h80m-80 10h65m-65 10h73" stroke="#a99986" strokeWidth="2" /></g>}
-    {route === 'reform' && <g><rect x="953" y="582" width="129" height="64" fill="#2a3b32" stroke="#93a984" strokeWidth="2" /><text x="1017" y="610" textAnchor="middle" fill="#e0e5c7" fontSize="15">社团招新</text><path d="M975 625h88" stroke="#c1c7aa" strokeWidth="2" /></g>}
-
-    <Figure x={504} y={621} scale={1.05} accent={accent} />
-    <Figure x={556} y={642} scale={1.18} accent={accent} />
-    <Figure x={685} y={626} scale={1.02} accent={accent} />
-    <Figure x={790} y={626} scale={1.17} teacher accent={accent} />
-    {!disciplined && <Figure x={636} y={662} scale={1.23} accent={accent} />}
-    {disciplined && <Figure x={702} y={658} scale={1.04} accent={accent} />}
-    {riot && <path d="M581 621l17-20 20 16m-54 38 28-16" stroke="#d47856" strokeWidth="4" fill="none" />}
-
-    <rect width="1200" height="760" fill={`url(#${id('vignette')})`} pointerEvents="none" />
-    <g className="heyi-hotspots">
-      {ZONES.map(zone => <g key={zone.id} role="button" tabIndex={0} aria-label={`查看${snapshot.zones[zone.id].label}：${snapshot.zones[zone.id].description}`}
-        onMouseEnter={() => setActiveZone(zone.id)} onMouseLeave={() => setActiveZone(null)} onFocus={() => setActiveZone(zone.id)} onBlur={() => setActiveZone(null)}
-        onClick={() => setActiveZone(zone.id)} onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); setActiveZone(zone.id); } }}>
-        <rect x={zone.x} y={zone.y} width={zone.width} height={zone.height} fill="transparent" stroke={activeZone === zone.id ? accent : 'transparent'} strokeWidth="2" strokeDasharray="8 4" />
-      </g>)}
+    <g>
+      <path d="M365 230H792V500L365 529Z" fill="#030e13" stroke="#b5d2cf" strokeWidth="2" />
+      <path d="M365 230H792V306L365 311Z" fill="#0e252b" stroke="#d7e4d8" strokeWidth="2" />
+      <path d="M377 239l403-2M377 245l403-2M377 297l403-5" stroke="#447780" strokeWidth="1" />
+      {[388, 409, 754, 776].map(x => <g key={x}><circle cx={x} cy="252" r="2.1" fill="#a3bcbb" /><circle cx={x} cy="286" r="2.1" fill="#a3bcbb" /></g>)}
+      <path d="M375 311V522M780 306V503M375 330L780 326M375 351L780 347" stroke="#78b5ba" strokeWidth="2" />
+      <path d="M375 373L574 361L780 370M375 522L574 501L780 503" fill="none" stroke="#7ab4bb" strokeWidth="1.5" />
+      {Array.from({length: 17}, (_, i) => <path key={i} d={'M' + (385+i*23) + ' 352V' + (520-i)} stroke="#8cb8b9" strokeWidth="1.25" />)}
+      {Array.from({length: 8}, (_, i) => <path key={i} d={'M' + (394+i*46) + ' 391l23 120m-23-91 23-29'} fill="none" stroke="#365f67" strokeWidth=".9" />)}
+      <path d="M574 352V501M574 374l-12 18m13-18 11 18" stroke="#c9d7ce" strokeWidth="2" />
+      <path d="M365 230L379 215H778L792 230Z" fill="#102127" stroke="#d4dfd2" strokeWidth="2" />
+      <path d="M382 222h392M369 313h420M369 321h420" stroke="#83aeb1" strokeWidth="1" />
+      <path d="M365 231l-13 2v297l23-2V311M792 230l14 2v269l-26 3V306" fill="#10232a" stroke="#a2c8c7" strokeWidth="2" />
+      <path d="M357 240v278m6-278v278m426-276v247m9-248v247" stroke="#457884" strokeWidth="1" />
+      <path d="M347 530l33-3 8 7-47 4ZM779 501l25-3 9 7-43 5Z" fill="#0c2027" stroke="#abc7c2" strokeWidth="1.2" />
+      <path d="M367 534L808 507M371 541L809 516" stroke="#76a1a8" strokeWidth="1.3" />
+      <text x="578" y="286" textAnchor="middle" fill={unrest ? '#d9b6aa' : '#dce5d6'} fontFamily="SimSun, Songti SC, serif" fontSize="48" letterSpacing="20">合肥一中</text>
+      {unrest && <path d="M575 370l17 41-24 29m-131 19 25-24 19 29" fill="none" stroke="#ce7864" strokeWidth="2" />}
     </g>
+    <g>
+      <path d="M813 397l190-7v116l-190 9Z" fill="#081a20" stroke={snapshot.accent} strokeWidth="1.5" />
+      <path d="M825 411l166-5v88l-166 7Z" fill="#051015" stroke="#799fa5" />
+      <text x="908" y="439" textAnchor="middle" fill={snapshot.accent} fontSize="17" letterSpacing="2">{MARKS[route][0]}</text>
+      <path d="M836 453l139-4M836 461l117-4M836 469l135-5" stroke="#64858a" strokeWidth="1.3" />
+      <text x="908" y="487" textAnchor="middle" fill="#a5b9b3" fontSize="11">{MARKS[route][1]}</text>
+    </g>
+    <g className="heyi-tree">
+      <path d="M1078 464l12-206m0 90 49-77m-52 18-62-67m52 47-64 9m74 52 91-108m-87 55 71-44m-83 81-81-41" fill="none" stroke="#719497" strokeWidth="4" />
+      <path d="M1077 464l13-111 9-69 3 180Z" fill="#071719" stroke="#9ab9b1" strokeWidth="1.4" />
+      <g className="heyi-tree__crown">
+        <path d="M1007 292Q999 251 1040 212Q1037 167 1080 170Q1102 133 1138 160Q1172 151 1184 192Q1214 223 1188 267Q1178 296 1133 299Q1097 317 1064 302Q1036 312 1007 292Z" fill={winter ? '#051116' : unrest ? '#141a1a' : '#0a2322'} stroke="#91b5ae" strokeWidth="1.5" />
+        <path d="M1012 271q30-17 54 4q19-27 48-15q27-30 62-13M1025 228q25-18 49 1q29-30 56-13q26-21 51-4M1043 186q18 18 44 4m44-12q14 21 36 13" fill="none" stroke="#5d8b8e" strokeWidth="1.3" />
+        <path d="M1042 267l45-39 42 23 42-35M1045 287l42-21 49 20M1084 206l17 23 34-23" fill="none" stroke="#6d9b99" strokeWidth="1" />
+        {!winter && Array.from({length: 24}, (_, i) => {
+          const x = 1019 + (i * 37 % 171), y = 185 + (i * 29 % 109);
+          return <path key={i} d={'M' + x + ' ' + y + 'q5-7 10 0q-4 6-10 0Z'} fill={autumn ? '#544b36' : '#34544a'} stroke={autumn ? '#a9946f' : '#75a395'} strokeWidth=".8" opacity={i % 4 === 0 ? .8 : .53} />;
+        })}
+      </g>
+      {autumn && [0,1,2,3,4,5].map(i => <path key={i} className="heyi-falling-leaf" style={{ animationDelay: '-' + (i * 1.7) + 's' }} d={'M' + (1016 + i * 29) + ' ' + (280 + i % 3 * 17) + 'q7-3 9 3q-5 6-9-3Z'} fill="#715d42" stroke="#b6a071" strokeWidth="1" />)}
+      {winter && <path d="M1060 311l10-4m57-9 11-6m-56-65 9-4" stroke="#c1d1ca" strokeWidth="2" />}
+    </g>
+    <g className="heyi-lamp" fill="none" stroke="#9ebfc0" strokeWidth="2">
+      <path d="M35 526V281l6-16h106M41 282h110l-5 22h-23M35 397h42M124 304l-15 18h35l-15-18ZM53 281v47" />
+      <path d="M28 520h13m-10-20h9M117 299l-3 12h25l-3-12" stroke="#6e9ca2" />
+      <path d="M43 344h18v55H43Z" fill="#081b20" stroke="#a6c9c8" strokeWidth="1.3" />
+      <circle cx="52" cy="354" r="4" fill={unrest || route === 'wu' ? '#a65c57' : '#352a2a'} stroke="#b98781" strokeWidth="1" />
+      <circle cx="52" cy="371" r="4" fill="#554629" stroke="#bbaa85" strokeWidth="1" />
+      <circle className="heyi-lamp__signal" cx="52" cy="387" r="4" fill={!unrest && route !== 'wu' ? '#78a68d' : '#24443d'} stroke="#a3c3a9" strokeWidth="1" />
+      <path d="M119 324q11 18 22 0" stroke={value > 65 ? '#d6c998' : '#53797f'} strokeWidth="1.8" />
+    </g>
+    <Person x={467} y={562} tired={mood === 'weary' || mood === 'ruin'} stride={1} />
+    <Person x={552} y={573} tired={mood === 'ruin'} stride={2} />
+    <Person x={654} y={568} tired={mood === 'weary'} stride={3} />
+    <Person x={868} y={531} teacher />
+    {route === 'democracy' && <g>
+      <path className="heyi-cloth" d="M663 519l43-33v37Z" fill="#103837" stroke="#afccba" strokeWidth="2" />
+      <path d="M663 520v41M709 521v39M93 511l116-6v31l-116 7Z" fill="none" stroke="#a7c7b7" strokeWidth="1.5" />
+      <path d="M100 519l101-5m-101 10 83-4m-83 10 95-4" stroke="#8ebcae" strokeWidth="1" />
+      <Person x={248} y={559} stride={2} />
+    </g>}
+    {route === 'revolution' && <g>
+      <path d="M549 505l-4-58" stroke="#d5b19b" strokeWidth="2" />
+      <path className="heyi-cloth" d="M545 447l42 10-40 18Z" fill="#472328" stroke="#d78470" strokeWidth="2" />
+      <path d="M76 488l73-3v19l-73 4ZM177 482l78-2v19l-78 4Z" fill="#251519" stroke="#b86b60" strokeWidth="1" />
+      <path d="M86 494h53m48-6h56m-56 6h45" stroke="#cb8b7b" strokeWidth="1" />
+      <Person x={259} y={560} stride={1} />
+    </g>}
+    {route === 'reform' && <g>
+      <path d="M804 518q5-25 10 0m8-1q4-17 9 0" fill="none" stroke="#89b29b" strokeWidth="2" />
+      <path d="M824 519l26-6v17l-26 6ZM856 510l28-4v16l-28 4Z" fill="#11221e" stroke="#9dbd9f" />
+      <circle cx="229" cy="551" r="17" fill="none" stroke="#8caea9" strokeWidth="2" /><circle cx="285" cy="549" r="17" fill="none" stroke="#8caea9" strokeWidth="2" /><path d="M229 551l27-38 29 36h-56l21-28h30m-20-9-8-4m21 3 15-1" fill="none" stroke="#a2bfad" strokeWidth="1.4" />
+    </g>}
+    {route === 'haobang' && <g>
+      <path d="M82 502l238-7m-227 20 217-7" stroke="#b59b84" strokeWidth="1.4" />
+      {[108, 180, 252].map(x => <path key={x} d={'M' + x + ' 499v35m-4-35h8m-8 35h8'} stroke="#b59b84" strokeWidth="1.4" />)}
+      <path d="M712 515l63-3v27l-63 3Z" fill="#271d1d" stroke="#bd9580" /><path d="M722 523h41m-41 7h34" stroke="#bd9580" />
+    </g>}
+    {route === 'yang' && <g>
+      <path d="M842 186l46-1v56l-46 1Z" fill="#433b27" stroke="#c1ab7e" opacity=".65" />
+      <path d="M839 231l50-2v8l-50 2Z" fill="#715a3a" opacity=".3" />
+      <path d="M899 548l35-3 6 12-37 3Z M910 541l29-3 5 7-34 4Z" fill="#172226" stroke="#acb8b0" strokeWidth="1" />
+      <path d="M915 545l17-1m-16 9 20-1" stroke="#879e9e" />
+    </g>}
+    {route === 'jidi' && <g>
+      <path d="M89 400l205-5M89 406l178-4" stroke="#b8a77f" />
+      <path d="M763 524l18 3 8 31-31-3Z M822 519l16 2 11 30-30-3Z" fill="#282316" stroke="#d5bb82" strokeWidth="1.5" />
+      <path d="M772 531l9 1m47-7 9 1" stroke="#e2c88c" />
+      <path d="M700 590l69-4" stroke="#baa87d" strokeWidth="2" strokeDasharray="12 7" />
+    </g>}
+    {route === 'gouxiong' && <g>
+      <path d="M108 494q14-22 27 0q14-20 28 0m32-3q18-17 35 0" fill="none" stroke="#b299b4" strokeWidth="1.5" />
+      <path d="M812 515l85-5v25l-85 5Z" fill="#111b20" stroke="#a995b6" />
+      <path d="M825 524l58-3m-53 8 41-2" stroke="#bba6c3" strokeWidth="1.2" />
+      <path d="M255 602l41-5 13 8-32 9Z" fill="#2a2330" stroke="#aa8db2" />
+    </g>}
+    {route === 'wu' && <g>
+      <circle cx="792" cy="233" r="7" fill="#97b2bd" /><path d="M792 240l-15 12m16-11 16 12" stroke="#97b2bd" strokeWidth="2" />
+      <path className="heyi-searchlight" d="M793 240L575 502L438 517Z" fill="#9ab1b0" opacity=".07" />
+      <path d="M91 557l19-31 17 27Zm91-3 18-32 17 28Zm90-5 17-31 18 26Z" fill="#172327" stroke="#b7a881" strokeWidth="1.2" />
+      <path d="M79 570l278-17" stroke="#a89568" strokeWidth="2.5" />
+    </g>}
+    {route === 'despair' && <g>
+      <path d="M63 529l223-17-18 14-179 17Z" fill="#172226" stroke="#af8171" strokeWidth="1.2" />
+      <path d="M782 497l21-10 10 28-22 11Z" fill="#211f20" stroke="#a77d74" />
+      <path d="M102 608l71-20m820-30 99 15" stroke="#a3786f" strokeWidth="1.3" />
+    </g>}
+    {route === 'jidi_riot' && <g>
+      <path d="M72 508l189-12 20 16-210 19Z" fill="#231b1b" stroke="#cf826e" strokeWidth="1.2" />
+      <path d="M780 484l27 12-19 39-36-23Z" fill="#261918" stroke="#c4755c" />
+      <path d="M501 627l60-9 18 12-69 13Z M840 568l62-11 16 11-67 13Z" fill="#a5a59d" stroke="#cb7b66" strokeWidth="1" />
+      <g className="heyi-smoke" fill="none" stroke="#7b7d7a" strokeWidth="8" opacity=".45"><path d="M717 407q-31-33-2-65q-29-28-5-62M758 424q35-38 7-71q24-30 6-58" /></g>
+    </g>}
+    {unrest && <g className="heyi-ember"><path d="M719 406l8-32 11 22 10-39 9 50Z" fill="#8e382c" stroke="#d18b67" /><path d="M754 432l6-23 8 12 8-31 10 44Z" fill="#772b24" stroke="#cb7656" /></g>}
+    <g className="heyi-hotspots">{HOTSPOTS.map(zone => <path key={zone.id} d={zone.path} className={active === zone.id ? 'is-active' : ''}
+      role="button" tabIndex={0} aria-label={'观察' + snapshot.zones[zone.id].label + '：' + snapshot.zones[zone.id].description}
+      onPointerEnter={event => onPointer(event, zone.id)} onPointerMove={event => onPointer(event, zone.id)}
+      onPointerLeave={() => onZone(null)} onFocus={() => onZone(zone.id, zone.anchor)} onBlur={() => onZone(null)}
+      onClick={() => onZone(zone.id, zone.anchor)}
+      onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); event.stopPropagation(); onZone(zone.id, zone.anchor); } }} />)}</g>
   </svg>;
 }
-
-export default function HeyiLight({ state, onClose }: HeyiLightProps) {
+export default function HeyiLight({ state, onClose }: Props) {
   const snapshot = getHeyiLightSnapshot(state);
-  const [activeZone, setActiveZone] = useState<HeyiZone | null>(null);
+  const [active, setActive] = useState<HeyiZone | null>(null);
+  const [point, setPoint] = useState<Point>({ x: 0, y: 0 });
+  const [viewBox, setViewBox] = useState('0 0 1200 700');
+  const sceneRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    const onKeyDown = (event: KeyboardEvent) => { if (event.key === 'Escape') onClose(); };
-    document.addEventListener('keydown', onKeyDown);
-    return () => document.removeEventListener('keydown', onKeyDown);
+    const scene = sceneRef.current;
+    if (!scene) return;
+    const update = () => {
+      const { width, height } = scene.getBoundingClientRect();
+      if (width < 1 || height < 1) return;
+      const worldWidth = Math.round(700 * width / height);
+      setViewBox(((1200 - worldWidth) / 2) + ' 0 ' + worldWidth + ' 700');
+    };
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(scene);
+    return () => observer.disconnect();
+  }, []);
+  const onZone = (zone: HeyiZone | null, anchor?: Point) => {
+    setActive(zone);
+    const bounds = sceneRef.current?.getBoundingClientRect();
+    if (bounds && anchor) {
+      const svg = sceneRef.current?.querySelector('svg');
+      const matrix = svg?.getScreenCTM();
+      if (svg && matrix) {
+        const screenPoint = svg.createSVGPoint();
+        screenPoint.x = anchor.x;
+        screenPoint.y = anchor.y;
+        const transformed = screenPoint.matrixTransform(matrix);
+        setPoint({ x: transformed.x - bounds.left, y: transformed.y - bounds.top });
+      }
+    }
+  };
+  const onPointer = (event: PointerEvent<SVGPathElement>, zone: HeyiZone) => {
+    const bounds = sceneRef.current?.getBoundingClientRect();
+    if (bounds) setPoint({ x: event.clientX - bounds.left, y: event.clientY - bounds.top });
+    setActive(zone);
+  };
+  useEffect(() => {
+    const keydown = (event: KeyboardEvent) => { if (event.key === 'Escape') onClose(); };
+    document.addEventListener('keydown', keydown);
+    return () => document.removeEventListener('keydown', keydown);
   }, [onClose]);
-  return <div className="heyi-light-backdrop" role="presentation" onMouseDown={event => { if (event.target === event.currentTarget) onClose(); }}>
-    <section className="heyi-light" role="dialog" aria-modal="true" aria-labelledby="heyi-light-title" style={{ '--heyi-accent': snapshot.accent } as CSSProperties}>
-      <header className="heyi-light__header">
-        <div><span className="heyi-light__eyebrow">CAMPUS OBSERVATORY / 合一之光</span><h2 id="heyi-light-title">校门口的一天</h2></div>
-        <button type="button" className="heyi-light__close" onClick={onClose} aria-label="关闭合一之光"><X size={22} /></button>
-      </header>
-      <div className="heyi-light__body">
-        <div className="heyi-light__scene-frame"><GateScene snapshot={snapshot} activeZone={activeZone} setActiveZone={setActiveZone} />
-          <div className="heyi-light__scene-caption"><span>合肥一中 · 滨湖校区</span><span>将鼠标移到画面上，观察此刻的校园</span></div>
+  const trend = snapshot.target > snapshot.value + 1 ? '↗' : snapshot.target < snapshot.value - 1 ? '↘' : '→';
+  const trendText = trend === '↗' ? '缓慢回升' : trend === '↘' ? '持续下行' : '基本平稳';
+  const gaugeColor = snapshot.value < 25 ? '#c56f63' : snapshot.value < 48 ? '#c4a079' : snapshot.value < 72 ? '#89c2c5' : '#a9d2b1';
+  const toneColor = active ? snapshot.zones[active].tone === 'danger' ? '#d47870' : snapshot.zones[active].tone === 'strained' ? '#d2a77f' : snapshot.zones[active].tone === 'good' ? '#a8d3b0' : '#81c9d4' : '#81c9d4';
+  return <section className="heyi-light-v2" role="region" aria-labelledby="heyi-light-title">
+    <header className="heyi-light-v2__header">
+      <div className="heyi-light-v2__title"><span>档案 / CAMPUS OBSERVATION</span><h2 id="heyi-light-title">合一之光</h2></div>
+      <div className="heyi-light-v2__value" role="meter" aria-label="合一值" aria-valuemin={0} aria-valuemax={100} aria-valuenow={snapshot.value} aria-valuetext={snapshot.value + '，' + trendText} style={{ '--heyi-gauge': gaugeColor } as CSSProperties}>
+        <div className="heyi-light-v2__readout"><span>合一值 <small>HE YI INDEX</small></span><strong>{snapshot.value.toString().padStart(2, '0')}</strong><div className="heyi-light-v2__trend"><b>{trend}</b><em>{trendText}</em></div></div>
+        <div className="heyi-light-v2__instrument">
+          <div className="heyi-light-v2__ticks">{Array.from({length: 21}, (_, i) => <i key={i} className={i % 5 === 0 ? 'major' : ''} />)}</div>
+          <div className="heyi-light-v2__scale"><i style={{ width: snapshot.value + '%' }} /><b style={{ left: snapshot.value + '%' }} /><span style={{ left: snapshot.target + '%' }} title="长期趋向位置" /></div>
         </div>
-        <aside className="heyi-light__ledger" aria-live="polite">
-          <div className="heyi-light__index"><span>合一值</span><strong>{snapshot.value}<small> / 100</small></strong></div>
-          <div className="heyi-light__meter"><i style={{ width: `${snapshot.value}%` }} /></div>
-          <p className="heyi-light__trend">学校的变化会慢慢积累。当前趋势：{snapshot.target > snapshot.value + 1 ? '回升' : snapshot.target < snapshot.value - 1 ? '下行' : '平稳'}</p>
-          <div className="heyi-light__observation"><span>{activeZone ? `观测 / ${snapshot.zones[activeZone].label}` : '观测 / 全景'}</span>
-            <h3>{activeZone ? snapshot.zones[activeZone].label : snapshot.headline}</h3>
-            <p>{activeZone ? snapshot.zones[activeZone].description : snapshot.overview}</p>
-          </div>
-          <div className="heyi-light__zones" aria-label="可观察区域">
-            {ZONES.map(zone => <button key={zone.id} type="button" className={activeZone === zone.id ? 'is-active' : ''}
-              onMouseEnter={() => setActiveZone(zone.id)} onMouseLeave={() => setActiveZone(null)} onFocus={() => setActiveZone(zone.id)}
-              onClick={() => setActiveZone(zone.id)}>{snapshot.zones[zone.id].label}</button>)}
-          </div>
-        </aside>
       </div>
-      <footer className="heyi-light__footer"><span>照片不会记下每一句话。把光标停在某处，听那里的人说。</span><span>{state.date.getFullYear()} · {String(state.date.getMonth() + 1).padStart(2, '0')} · {String(state.date.getDate()).padStart(2, '0')}</span></footer>
-    </section>
-  </div>;
+      <button type="button" className="heyi-light-v2__close" onClick={onClose} aria-label="关闭合一之光"><X size={18} /></button>
+    </header>
+    <div ref={sceneRef} className="heyi-light-v2__scene-wrap">
+      <Scene snapshot={snapshot} month={state.date.getMonth()} viewBox={viewBox} active={active} onZone={onZone} onPointer={onPointer} />
+      {active && <div className="heyi-light-v2__tooltip" role="status" style={{
+        left: Math.min(point.x + 18, Math.max(8, (sceneRef.current?.clientWidth ?? 600) - 284)),
+        top: Math.min(point.y + 18, Math.max(8, (sceneRef.current?.clientHeight ?? 400) - 118)),
+        '--heyi-status': toneColor,
+      } as CSSProperties}><span>观察 / {snapshot.zones[active].label} <b>{snapshot.zones[active].status}</b></span><p>{snapshot.zones[active].description}</p></div>}
+      <div className="heyi-light-v2__stamp" aria-hidden="true">{state.date.getFullYear()} / {String(state.date.getMonth() + 1).padStart(2, '0')} / {String(state.date.getDate()).padStart(2, '0')}</div>
+    </div>
+  </section>;
 }
