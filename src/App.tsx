@@ -31,6 +31,9 @@ import WuCrackdownConsole, { getWuAttitude } from './components/WuCrackdownConso
 import StartMenu from './components/StartMenu';
 import Tutorial from './components/Tutorial';
 import GuidedTutorial, { GUIDE_STEPS } from './components/GuidedTutorial';
+import HeyiLight from './components/HeyiLight';
+import { advanceHeyiLight } from './engine/heyiLight';
+import { reconcileRouteSpirits } from './engine/routeSpirits';
 import './components/guidedTutorial.css';
 import Settings from './components/Settings';
 import LoadingScreen from './components/LoadingScreen';
@@ -53,7 +56,7 @@ import RedToadPolitburo from './components/RedToadPolitburo';
 const INITIAL_EVENT: GameEvent = {
   id: 'school_starts',
   title: '新学期，新秩序',
-  description: '2023年9月1日，合肥一中迎来了新的学期。然而，平静的表面下暗流涌动。\n\n教务督导吴福军加强了对校园的巡查，试图将一切不稳定因素扼杀在摇篮中。学生群体内部也出现了分裂，激进派和保守派的矛盾日益尖锐。\n\n在这座被高墙围拢的“经天纬地”之城里，谁将主宰未来的秩序？是继续忍受高压的应试教育，还是掀起一场彻底的变革？\n\n命运的齿轮已经开始转动。',
+  description: '九月一日，合肥一中滨湖校区的伸缩门在七点整打开。门卫室旁多了一张巡查表：校服、学生证、迟到原因，每一栏都等着吴福军的签字。送孩子的车还没散，第一批学生已经在议论新贴出的周测安排。\n\nB3 楼梯口，一张要求调整作息的纸被人撕去半角；不久，又有人把它贴了回去。有人怕学校连剩下的自由也收走，有人怕一松手，成绩就先掉下去。教学楼里的铃照常响起，行政楼却收到了两份措辞相反的请愿。\n\n这一天仍要上课。等到放学，必须有人回答那两份请愿。',
   buttonText: '天佑做题家',
 };
 
@@ -188,7 +191,7 @@ const INITIAL_GAME_STATE: GameState = {
     title: '校长',
     portrait: 'feng_anbao',
     ideology: 'authoritarian',
-    description: '合肥市第一中学的现任校长，以其强硬的管理风格和对升学率的极度追求而闻名。在他的治下，学校的纪律严明，但也压抑了学生们的个性发展。',
+    description: '封安宝每天早晨先看年级排名，再看巡查记录。他能记住一次模考里下滑的每个班，却很少记得被叫进办公室的学生说了什么。行政楼的人熟悉他的要求：问题要在下一次铃响前处理好，成绩则要在下一次考试前给出解释。',
     buffs: ['每日稳定度 +0.05', '每日卷子储备 -10']
   },
   ideologies: {
@@ -204,7 +207,7 @@ const INITIAL_GAME_STATE: GameState = {
     {
       id: 'exam_pressure',
       name: '应试高压',
-      description: '升学率的阴影笼罩着整座校园。每一次周考的排名，都是悬在学生头顶的剑。',
+      description: '每周成绩榜准时贴上走廊。有人在榜前找自己的名字，有人先看朋友有没有退步。年级组据此调整课时，学生则开始计算还能从睡眠里挪出多少时间。',
       type: 'negative',
       effects: { stabDaily: -0.5, tprDaily: -0.5 } // Assuming base TPR is -10, +5% is -0.5
     },
@@ -217,6 +220,7 @@ const INITIAL_GAME_STATE: GameState = {
     }
   ],
   lawSystem: { ...DEFAULT_LAW_SYSTEM },
+  heyiLightValue: 50,
   campaignStats: { days: 0, papersUsed: 0, papersPrinted: 0, clubEvents: 0, learningScoreTotal: 0 },
   advisors: [null, null, null, null],
   activeFocus: null,
@@ -609,6 +613,7 @@ export default function App() {
   const [isJidiCorporateUIOpen, setIsJidiCorporateUIOpen] = useState(false);
   const [isRedToadPolitburoOpen, setIsRedToadPolitburoOpen] = useState(false);
   const [isChronicleOpen, setIsChronicleOpen] = useState(false);
+  const [isHeyiLightOpen, setIsHeyiLightOpen] = useState(false);
   const [governmentOpen, setGovernmentOpen] = useState(false);
   const [decisionsOpen, setDecisionsOpen] = useState(false);
   const [selectedTileId, setSelectedTileId] = useState<string | null>(null);
@@ -1227,6 +1232,8 @@ export default function App() {
         let newElectionState = prev.electionState ? structuredClone(prev.electionState) as NonNullable<GameState['electionState']> : undefined;
         let newJidiCorporateState = prev.jidiCorporateState ? structuredClone(prev.jidiCorporateState) as NonNullable<GameState['jidiCorporateState']> : undefined;
         let newRedToadState = prev.redToadState ? { ...prev.redToadState } : undefined;
+        const currentCommandRoute = getCommandRoute(prev).id;
+        const redToadRouteActive = ['revolution', 'democracy', 'reform', 'commune', 'purge'].includes(currentCommandRoute);
         let newWuState = prev.wuState ? { ...prev.wuState } : undefined;
         if (newJidiCorporateState && newJidiCorporateState.unlockedMechanics.rnd && !newJidiCorporateState.rndState) {
           newJidiCorporateState.rndState = {
@@ -1436,7 +1443,7 @@ export default function App() {
 
         // Assembly Dynamics
         const assemblyDynamicsIndex = newNationalSpirits.findIndex(ns => ns.id === 'assembly_dynamics');
-        if (assemblyDynamicsIndex !== -1 && newStudentAssemblyFactions) {
+        if (assemblyDynamicsIndex !== -1 && newStudentAssemblyFactions && redToadRouteActive) {
           const assemblyDynamics = { ...newNationalSpirits[assemblyDynamicsIndex] };
           const factions = newStudentAssemblyFactions;
           // 均势时议会扯皮，增加基础debuff
@@ -1475,7 +1482,7 @@ export default function App() {
         }
 
         // Red Toad Politburo Dynamics
-        if (newRedToadState) {
+        if (newRedToadState && redToadRouteActive) {
           const consensus = newRedToadState.overallConsensus;
           const politburoSpiritIndex = newNationalSpirits.findIndex(ns => ns.id === 'red_toad_politburo');
           
@@ -1517,7 +1524,7 @@ export default function App() {
         }
 
         // Power Balance Modifiers
-        if (prev.parliamentState?.powerBalanceUnlocked) {
+        if (prev.parliamentState?.powerBalanceUnlocked && currentCommandRoute === 'democracy') {
           const pb = prev.parliamentState.powerBalance;
           if (pb < 40) {
             // Left: Quality Education
@@ -1534,7 +1541,7 @@ export default function App() {
         }
 
         // NKPD dual-power balance (Lv Bohan vs Gouxiong)
-        if (newFlags.lu_dual_power_unlocked) {
+        if (newFlags.lu_dual_power_unlocked && currentCommandRoute === 'purge') {
           const currentBalance = typeof newFlags.lu_nkpd_power_balance === 'number' ? newFlags.lu_nkpd_power_balance : 50;
           const luLeaderDrift = (prev.leader.name === '吕波汉' || prev.flags.lu_nkpd_mode) ? -0.05 : 0;
           const manualDrift = typeof newFlags.lu_nkpd_balance_manual_drift === 'number' ? newFlags.lu_nkpd_balance_manual_drift : 0;
@@ -2466,7 +2473,7 @@ export default function App() {
                     title: '赛博娱乐大统领',
                     portrait: 'gouxiong',
                     ideology: 'deconstructivism',
-                    description: '曾经的B3教学楼革命者，如今的赛博娱乐大统领。他利用了学生们的愤怒和绝望，将学校变成了一个充满二次元低幼性压抑风格的游乐场。高二时偷女同学裤子的恶趣味，如今成了他统治的象征。'
+                    description: '狗熊从 B3 的放映设备旁走到了主席台上。屏幕、笑话和突然改写的会议议程仍是他最顺手的工具；只是在被嘲弄者必须执行那些决定时，礼堂里的笑声就不那么整齐了。学生们开始问他，散场之后究竟由谁负责。'
                   },
                   // v8.11 狗熊撕毁一切旧法案：纪律全面自治、作息自由、人事学生评议会、教育素质教育
                   lawSystem: { discipline: 'full_autonomy', schedule: 'free_schedule', personnel: 'student_assembly_hr', education: 'quality_education', assessment: 'project_assessment', clubs: 'student_clubs' },
@@ -2534,7 +2541,7 @@ export default function App() {
                     title: '及第教育CEO',
                     portrait: 'feng_anxiang',
                     ideology: 'anarcho_capitalism',
-                    description: '及第教育的掌舵人，将学校视为一台巨大的提分机器。他认为教育的本质就是一场可以被精确计算和无限压榨的商业游戏。',
+                    description: '封安祥第一次进校长办公室，先问的不是座次，而是印刷室和教辅仓库的成本。旧楼需要修，教师需要发工资，他确实能把钱带来；合同上的每一笔投入，也都附着下一季度必须兑现的增长目标。',
                     buffs: ['每日GDP增长 +5%', '每日学生支持度 -0.5%']
                   },
                   // v8.11 及第接管：应试至上、衡水作息、校长一言堂
@@ -3481,8 +3488,8 @@ export default function App() {
           }
         }
 
-        // Process Red Toad Mechanics
-        if (newRedToadState) {
+        // Process Red Toad Mechanics only while its political institutions exist.
+        if (newRedToadState && redToadRouteActive) {
           const retiredFlagMap: Record<string, string> = {
             orthodox: 'faction_retired_orthodox',
             libertarian_socialist: 'faction_retired_libertarian_socialist',
@@ -4366,7 +4373,7 @@ export default function App() {
           newActiveEvent = newActiveStoryEvents.shift() || null;
         }
 
-        return recordCampaignDay(prev, advanceCampusEvents(advanceCommandDay({
+        const nextDay = recordCampaignDay(prev, advanceCampusEvents(advanceCommandDay({
           ...prev,
           date: newDate,
           isPaused: newIsPaused,
@@ -4402,6 +4409,8 @@ export default function App() {
           redToadState: newRedToadState,
           lawSystem: newLawSystem,
         })), paperUpkeep);
+        const cleaned = reconcileRouteSpirits(nextDay);
+        return { ...cleaned, heyiLightValue: advanceHeyiLight(cleaned) };
       });
     }, delay);
 
@@ -4743,9 +4752,9 @@ export default function App() {
         }
       };
       const route = getCommandRoute(resolved).id;
-      return decision.id === ROUTE_OPERATIONS[route].decision
+      return reconcileRouteSpirits(decision.id === ROUTE_OPERATIONS[route].decision
         ? consumeRoutePreparation(resolved, route, 'decision').state
-        : resolved;
+        : resolved);
     });
   };
 
@@ -4862,7 +4871,7 @@ export default function App() {
         }
       }
       
-      return newState;
+      return reconcileRouteSpirits(newState);
     });
   };
 
@@ -4897,7 +4906,7 @@ export default function App() {
         transitionEvent = FLAVOR_EVENTS.enter_treeA;
       }
 
-      return {
+      return reconcileRouteSpirits({
         ...prev,
         activeSuperEvent: null,
         activeEvent: transitionEvent,
@@ -4914,7 +4923,7 @@ export default function App() {
               importance: 3,
             })
           : prev.chronicle,
-      };
+      });
     });
     
     setTimeout(() => setIsTransitioning(false), 1000);
@@ -5362,6 +5371,7 @@ export default function App() {
     || gameState.nationalSpirits.some(spirit => spirit.id === 'assembly_dynamics')
     || !!gameState.parliamentState;
   const featureEntries = [
+    { id: 'heyi-light', label: '合一之光', glyph: '光', unlocked: true, open: () => setIsHeyiLightOpen(true), active: isHeyiLightOpen },
     { id: 'assembly', label: '学生大会', glyph: '议', unlocked: hasAssemblyMechanic && (!gameState.flags.lu_nkpd_mode || gameState.currentFocusTree === 'treeA_haobang'), open: () => setIsAssemblyOpen(true), active: isAssemblyOpen },
     { id: 'reform', label: '题改委员', glyph: '改', unlocked: !!gameState.flags.reform_unlocked, open: () => setIsReformCommitteeOpen(true), active: isReformCommitteeOpen },
     { id: 'politburo', label: '红蛤政治局', glyph: '政', unlocked: !!gameState.flags.red_toad_politburo_unlocked, open: () => { setGameState(prev => ({ ...prev, redToadState: ensureRedToadState(prev.redToadState) })); setIsRedToadPolitburoOpen(true); }, active: isRedToadPolitburoOpen },
@@ -5392,7 +5402,7 @@ export default function App() {
           <button onClick={() => setIsChronicleOpen(true)}><span>▥</span>编年史</button>
           <button data-tour="rail-tutorial" aria-label="重新开始教学" onClick={reopenTutorial}><span>?</span>教学</button>
           {featureEntries.length > 0 && <div className="rail-feature-list" aria-label="已解锁的特色系统">
-            {featureEntries.map(entry => <button key={entry.id} className={entry.active ? 'active' : ''} aria-pressed={entry.active} title={entry.label} onClick={entry.open}><span>{entry.glyph}</span>{entry.label}</button>)}
+            {featureEntries.map(entry => <button key={entry.id} data-tour={entry.id === 'heyi-light' ? 'heyi-light' : undefined} className={entry.active ? 'active' : ''} aria-pressed={entry.active} title={entry.label} onClick={entry.open}><span>{entry.glyph}</span>{entry.label}</button>)}
           </div>}
           <button className="rail-menu" onClick={openInGameMenu}><span>⚙</span>菜单</button>
         </nav>
@@ -5422,6 +5432,7 @@ export default function App() {
           dismissAdvisor={dismissAdvisor}
           cancelActiveFocus={cancelActiveFocus}
           onOpenFocus={toggleFocusTree}
+          onOpenHeyiLight={() => setIsHeyiLightOpen(true)}
           triggerError={triggerError}
           changeLaw={changeLaw}
         /></div>}
@@ -5550,6 +5561,7 @@ export default function App() {
           onClose={() => setIsChronicleOpen(false)}
         />
       )}
+      {isHeyiLightOpen && <HeyiLight state={gameState} onClose={() => setIsHeyiLightOpen(false)} />}
       {isConsoleOpen && (
         <div className="fixed top-0 left-0 z-[100] p-2">
           <form onSubmit={handleConsoleSubmit}>

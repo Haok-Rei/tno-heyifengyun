@@ -325,6 +325,8 @@ export interface RedToadState {
 }
 
 export interface GameState {
+  /** 合一之光的缓变校风指数；旧存档按 50 处理。 */
+  heyiLightValue?: number;
   campusEvents?: { lastEventDay?: number; lastDocumentDay?: number; seen: string[]; familyDays: Record<string, number>; resolved: string[] };
   /** 本局累计校园运行指标；旧存档缺失时由结算视图兼容处理。 */
   campaignStats?: { days: number; papersUsed: number; papersPrinted: number; clubEvents: number; learningScoreTotal: number };

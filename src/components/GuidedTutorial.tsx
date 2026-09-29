@@ -21,7 +21,8 @@ export const GUIDE_STEPS: GuideStep[] = [
   { section: '11 / 地图图层', title: '切换势力、补给和部署', body: '势力显示控制归属，补给显示交通与连通，部署显示各方力量。右侧可切换图层，下方按钮或滚轮可缩放地图。', anchor: '[data-tour="map-layers"]' },
   { section: '12 / 战区工作组', title: '让行动自动重复', body: '先选地区，再给工作组指定该地区已有的行动与间隔。工作组定期重复执行，仍支付原行动代价；资源不足时会等待，路线变化可能中止任务。', anchor: '[data-tour="workgroups"]' },
   { section: '13 / 特色机制', title: '路线会解锁新的玩法', body: '学生代表大会、题改委员、红蛤政治局、戒严指挥等入口随剧情出现在左侧。它们与国策、决议和地区工作相连；未解锁的入口不会提前出现。', anchor: '[data-tour="rail"]' },
-  { section: '14 / 准备就绪', title: '现在由你指挥', body: '开场事件与国策选择在等你。遇到陌生机制时，可随时点击左侧「教学」重新走一遍；重看不会重置进度或资源。', anchor: '[data-tour="rail-tutorial"]' },
+  { section: '14 / 合一之光', title: '看看这所学校', body: '「合一之光」从开局就能进入。校门、学生、老师与教学楼会随路线和合一值改变；悬停各处可读到当下的校园。国家精神中的合一之光只记录这种变化，不提供数值加成。', anchor: '[data-tour="heyi-light"]' },
+  { section: '15 / 准备就绪', title: '现在由你指挥', body: '开场事件与国策选择在等你。遇到陌生机制时，可随时点击左侧「教学」重新走一遍；重看不会重置进度或资源。', anchor: '[data-tour="rail-tutorial"]' },
 ];
 
 type Rect = { left: number; top: number; width: number; height: number };
@@ -86,6 +87,7 @@ export default function GuidedTutorial({ step, onStep, onFinish }: { step: numbe
       <div className="guided-tour__footer">
         <span>{String(step + 1).padStart(2, '0')} / {GUIDE_STEPS.length}</span>
         <div>
+          <button type="button" onClick={onFinish}>跳过教学</button>
           {step > 0 && <button type="button" onClick={() => onStep(step - 1)}>上一步</button>}
           <button ref={nextRef} type="button" className="guided-tour__primary" onClick={() => step === GUIDE_STEPS.length - 1 ? onFinish() : onStep(step + 1)}>{step === GUIDE_STEPS.length - 1 ? '完成教学' : '下一步'}</button>
         </div>

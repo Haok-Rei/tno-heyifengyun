@@ -11,6 +11,7 @@ import { normalizeDisplayNames } from './displayNames';
 import { GameState } from '../types';
 import { restoreCampusEvent } from './campusEvents';
 import { FLAVOR_EVENTS } from '../data/flavorEvents';
+import { reconcileRouteSpirits } from './routeSpirits';
 
 // ---- 类型定义 ----
 
@@ -80,7 +81,7 @@ export function deserializeGameState(raw: string): GameState | null {
       : FLAVOR_EVENTS[event.id] ? { ...FLAVOR_EVENTS[event.id], ...event, effect: FLAVOR_EVENTS[event.id].effect, choices: FLAVOR_EVENTS[event.id].choices } : event;
     state.activeEvent = state.activeEvent ? restore(state.activeEvent) : null;
     state.activeStoryEvents = (state.activeStoryEvents ?? []).map(restore);
-    return state;
+    return reconcileRouteSpirits(state);
   } catch {
     return null;
   }

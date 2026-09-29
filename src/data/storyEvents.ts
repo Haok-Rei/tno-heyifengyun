@@ -210,14 +210,14 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
   gx_dabi_rooftop_invite_story_event: {
     id: 'gx_dabi_rooftop_invite_story_event',
     title: '达璧的天台邀约',
-    description: '在多轮看似温柔的对话后，达璧终于发来那句“今晚十二点，顶层天台，只要你一个人”。狗熊将其视为情感终章，却没有意识到，这更像一场被精心设计的战术会面。',
+    description: '礼堂散场后，狗熊的手机亮了一次。达璧只发来一行字：“今晚十二点，顶层天台，只要你一个人。”之前几轮对话里，她始终没有接受他的解释，也没有把事情说破。狗熊盯着屏幕，把这条消息读成了和解的邀请；他甚至想好了见面时先讲哪个笑话，却没问她为什么选在没有旁人的天台。',
     buttonText: '赴约',
     isStoryEvent: true,
   },
   gx_wushuo_evidence_submit_story_event: {
     id: 'gx_wushuo_evidence_submit_story_event',
     title: '吴蒴提交录证',
-    description: '吴蒴将狗熊在聊天中关于“扣资料”“查水表”“强迫陪同”等关键言论整理成证据包，提交至学生代表大会与保安处联席邮箱。礼堂内部风向开始变化。',
+    description: '吴蒴把聊天记录按时间排好，标出“扣资料”“查水表”和“强迫陪同”出现的位置。她没有替任何人写结论，只把原始截图与说明一起发送到学生代表大会和保安处的联席邮箱。发送成功的回执停在屏幕上。礼堂里还在讨论下一场放映，收到邮件的人却已经开始核对那些时间戳。',
     buttonText: '查看后果',
     isStoryEvent: true,
     effect: (state) => ({
@@ -1607,7 +1607,7 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
         newSpirits.push({
           id: 'strict_discipline_spirit',
           name: '严格纪律',
-          description: '校园纪律得到了加强，但也压抑了学生的天性。',
+          description: '着装与作息检查重新成为每日例行公事。队伍排得更整齐，值班记录里也开始出现越来越多无法靠一条处分解决的小问题。',
           type: 'neutral',
           effects: { stabDaily: 0.2, studentSanityDaily: -0.1 }
         });
@@ -1621,7 +1621,7 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
   bill_conservative_discipline_failed: {
     id: 'bill_conservative_discipline_failed',
     title: '《加强纪律法案》被否决',
-    description: '保守派提出的《加强纪律法案》未能在议会获得足够的赞成票。徐志脸色铁青地离开了会场，保守派对议会的运作效率表示极度失望。\n\n自由派学生欢呼雀跃，认为这是民主的胜利。但保守派的挫败感可能会在未来引发更大的反弹。',
+    description: '计票结束时，徐志把《加强纪律法案》的草稿合上，没有等议长宣布散会便离开了。走廊里有学生为否决结果鼓掌，另一边，几名保守派代表正把近来的违纪记录摊开，问议会打算怎样处理。法案退回了，校园里的纪律争论并没有退回。',
     buttonText: '自由的代价。',
     effect: (s) => {
       return {
@@ -1645,7 +1645,7 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
         newSpirits.push({
           id: 'red_culture_spirit',
           name: '红色文化教育',
-          description: '红色文化在校园内广泛传播，增强了学生的集体荣誉感。',
+          description: '革命史课程进入正式课表，学生不再只从走廊标语认识这段历史。有人在课后追问讲义里没写的分歧，教师也得准备比口号更具体的答案。',
           type: 'positive',
           effects: { allianceUnityDaily: 0.2, ppDaily: 0.1 }
         });
@@ -1659,7 +1659,7 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
   bill_orthodox_red_culture_failed: {
     id: 'bill_orthodox_red_culture_failed',
     title: '《红色文化教育法案》被否决',
-    description: '正统派提出的《红色文化教育法案》在议会遭到否决。王照凯在讲台上怒斥议会已经被“修正主义”和“资产阶级自由化”思想腐蚀。\n\n钢铁红蛤的成员们在台下高呼口号，表达强烈抗议。这次失败让他们更加确信，议会斗争是一条死路，只有更激进的手段才能拯救合一。',
+    description: '《红色文化教育法案》被否决后，王照凯没有立刻离开讲台。他把投票记录举给台下看，逐个念出反对理由，最后把那张纸折进衣袋。钢铁红蛤成员在礼堂外喊起口号，几名原本想继续修订课程内容的代表被挤到门边。正统派已经开始怀疑，下一次是否还该把希望放在投票箱里。',
     buttonText: '他们不会善罢甘休的。',
     effect: (s) => {
       return {
@@ -1682,7 +1682,7 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
         newSpirits.push({
           id: 'extra_mock_exams_spirit',
           name: '高频模拟考',
-          description: '频繁的模拟考试提高了学生的应试能力，但也极大地消耗了他们的理智。',
+          description: '周末又多了一场模拟考。题型训练更密，订正本也更厚；几位班主任发现，学生开始把难得空出来的半天称作“补觉课”。',
           type: 'negative',
           effects: { tprDaily: 5, studentSanityDaily: -0.5 }
         });
@@ -1734,7 +1734,7 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
         newSpirits.push({
           id: 'club_freedom_spirit',
           name: '社团自由',
-          description: '社团活动得到了保障，学生们的创造力被激发。',
+          description: '礼堂与空教室排出了固定的社团时段。申请表终于有了审批日期，学生们也开始自己负责器材、场地和散场后的清理。',
           type: 'positive',
           effects: { studentSanityDaily: 0.2, ppDaily: 0.1 }
         });
@@ -1771,7 +1771,7 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
         newSpirits.push({
           id: 'no_evening_study_spirit',
           name: '废除强制晚自习',
-          description: '学生们获得了更多的自由时间，但也面临着自律的考验。',
+          description: '晚自习不再由铃声强制开始。有人去操场，有人仍留在教室；每个人都要重新学着安排那几个原本不属于自己的小时。',
           type: 'positive',
           effects: { studentSanityDaily: 0.3, tprDaily: -0.2 }
         });
@@ -1808,7 +1808,7 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
         newSpirits.push({
           id: 'student_welfare_spirit',
           name: '学生福利提升',
-          description: '学校的硬件设施和生活条件得到了改善。',
+          description: '食堂窗口、宿舍空调和饮水机终于列进了同一份维修进度表。学生每天都能看见改变，也看得见哪些地方还没轮到。',
           type: 'positive',
           effects: { stabDaily: 0.2, allianceUnityDaily: 0.1 }
         });
@@ -1845,7 +1845,7 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
         newSpirits.push({
           id: 'transparent_finances_spirit',
           name: '财务公开',
-          description: '学校的财务状况变得透明，腐败得到了遏制。',
+          description: '采购和拨款账目开始定期公示。疑问不会因为贴出表格就消失，但每笔钱如今有了可以追问的去向。',
           type: 'positive',
           effects: { ppDaily: 0.2, capitalPenetrationDaily: -0.2 }
         });
@@ -1882,7 +1882,7 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
         newSpirits.push({
           id: 'curriculum_reform_spirit',
           name: '课程改革',
-          description: '选修课的增加让学生们能够更好地发展自己的兴趣。',
+          description: '课表上出现了真正可选的课程，教务处忙着协调教室与教师。学生第一次要为自己选的一节课负责，而不只是等下一张统一安排。',
           type: 'positive',
           effects: { studentSanityDaily: 0.2, tprDaily: -0.1 }
         });
@@ -1896,7 +1896,7 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
   mock_exam_success: {
     id: 'mock_exam_success',
     title: '二模大捷',
-    description: '出乎所有人的意料，我们在保持了高度自治和自由的同时，二模成绩不仅没有下滑，反而有所提升！这证明了我们的路线是正确的，学生的支持度和联盟的团结度空前高涨。',
+    description: '二模成绩贴上公告栏时，潘仁越先看见一张被红笔圈出的班级平均分：比上次高了三分。几名主张恢复晚自习管制的教师也挤在人群里，核对完数据后没有再说话。学生们带着卷子从图书馆出来，争论的仍是错题，而不是自治会会不会在下一次考试前被撤销。至少这一次，他们不必在成绩和课余时间之间交出一个。',
     buttonText: '伟大的胜利！',
     isStoryEvent: true,
     effectsText: ['宿舍1-4栋控制度 +5', '图书馆 +5'],
@@ -1910,14 +1910,14 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
   mock_exam_mediocre: {
     id: 'mock_exam_mediocre',
     title: '二模成绩平平',
-    description: '二模成绩公布了，虽然有所下滑，但还在可以接受的范围内。虽然有一些抱怨的声音，但整体局势依然可控。我们需要继续努力。',
+    description: '公告栏前没有欢呼，也没有人撕下成绩单。一些班级的平均分降了几分，另一些维持原状；等了许久的选修课仍被排在课表上。教师要求分析掉分的题型，学生代表担心这会成为恢复旧作息的借口。潘仁越把两份意见钉在同一块板上：下一次会议，谁也不能只拿自己喜欢的那半张成绩单说话。',
     buttonText: '继续前进。',
     isStoryEvent: true
   },
   mock_exam_fail: {
     id: 'mock_exam_fail',
     title: '二模惨败',
-    description: '二模成绩公布了，这是一场彻头彻尾的灾难。升学率断崖式下跌，学生们的恐慌情绪蔓延，联盟内部也出现了严重的分裂。我们必须立刻采取补救措施，否则一切都将化为乌有。',
+    description: '二模成绩单刚贴出来，宿舍楼下便有人把选修课表撕成了两半。几个本来支持改革的学生也来问：此前承诺的教学质量由谁负责？议会里，保守派要求恢复集中晚自习，自治派则拿出各班差异很大的失分表，反对一刀切。会议开到熄灯还没有结果。分数已经写在纸上，接下来必须有人把补救办法写上去。',
     buttonText: '局势正在失控...',
     isStoryEvent: true,
     effectsText: ['宿舍5-7栋控制度 -5', '食堂 -5'],
@@ -1931,21 +1931,21 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
   yang_mock_exam_success: {
     id: 'yang_mock_exam_success',
     title: '维稳与升学的双赢',
-    description: '成绩单上的数字令人振奋！不仅尖子生群体发挥稳定，整体一本率也稳中有升。更重要的是，在这个过程中，校园里没有发生任何大规模的群体性事件。\n\n封安宝校长亲自打来电话表扬了你：“杨特啊，这次二模打了个漂亮的翻身仗！你的‘软性维稳’还是有一套的嘛！”',
+    description: '杨玉乐把二模成绩单摊在保温杯旁，先核对尖子生，再看各班的一本率。几处小幅上涨足以让年级部松口气，而楼下的晚自习铃照常响起，没有新的冲突报告。封安宝的电话在这时打来：“杨特，成绩稳住了，校内也平静。后面的安排就照这个办法做。”杨玉乐应了声好，等电话挂断，才在几名连续缺考的学生旁边画了小圈。',
     buttonText: '一切都在掌控之中。',
     isStoryEvent: true
   },
   yang_mock_exam_mediocre: {
     id: 'yang_mock_exam_mediocre',
     title: '差强人意的答卷',
-    description: '成绩中规中矩，没有太大的惊喜，也没有彻底崩盘。虽然部分班级的成绩有所下滑，但考虑到最近校园里暗流涌动的局势，这个结果勉强可以接受。\n\n教育局的领导在视察时只是微微皱了皱眉，并没有多说什么。但你知道，留给你的时间不多了。',
+    description: '二模的总表看不出大问题，翻到班级明细却有几处下滑。视察的领导在那一页停了片刻，没有批注，只把表还给杨玉乐。走廊里有教师等着问下轮复习怎么调，学生则想知道压下来的休息时间会不会继续延长。杨玉乐把表带回办公室，没让人重印一张更好看的总表。',
     buttonText: '还能糊弄过去。',
     isStoryEvent: true
   },
   yang_mock_exam_fail: {
     id: 'yang_mock_exam_fail',
     title: '全盘崩溃',
-    description: '这是一场彻头彻尾的灾难！升学率断崖式下跌，甚至连几个一直被看好的清北苗子也发挥失常。更糟糕的是，由于你前期的维稳手段过于粗暴或软弱，学生们的怨气在考后彻底爆发了。\n\n封安宝把你叫到办公室，指着你的鼻子破口大骂：“杨玉乐！你就是这么给我维稳的？！成绩成绩搞不上去，学生学生管不住！你这个代理副校长还想不想干了？！”',
+    description: '二模分析会没有按时开始。几名被寄予厚望的学生考得失常，年级平均分也明显下滑；会议室外还有学生等着递交关于作息的意见。封安宝把成绩单拍在桌上，问杨玉乐：“你说先稳住学校，怎么连成绩也没守住？”杨玉乐没立刻答。他知道把责任推给学生的情绪很容易，却解释不了这张纸上的每一行。',
     buttonText: '封校，您听我解释...',
     isStoryEvent: true
   },
@@ -2075,42 +2075,42 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
   jidi_rnd_success: {
     id: 'jidi_rnd_success',
     title: '《考前绝密押题卷》大卖',
-    description: '及第教育的最新产品在市场上取得了巨大的成功！家长们疯狂抢购，学生们在题海中苦苦挣扎。及第派系在联合管理委员会中的影响力进一步提升。',
+    description: '《考前绝密押题卷》上市那天，校门外的领取队伍排到了公交站。家长对着广告上的“绝密”二字反复确认，学生拿到手后，发现封面的金色贴纸比答案解析还厚。及第的销售报表当晚送进联合管理委员会，方田把它放在议程最上面。下次分配教研经费时，没人再能假装看不见这个数字。',
     buttonText: '资本的胜利',
     isStoryEvent: true
   },
   jidi_rnd_fail: {
     id: 'jidi_rnd_fail',
     title: '《考前绝密押题卷》滞销',
-    description: '由于质量低劣或营销不力，及第教育的新产品遭遇了滑铁卢。家长们纷纷退货，及第派系在联合管理委员会中的威信受到了打击。',
+    description: '《考前绝密押题卷》的退货单比订货单先送到办公室。有人指出好几页题目与旧卷重复，销售部则怪宣传口径没让家长听懂“押题”的含义。仓库里还堆着没拆封的纸箱，联合管理委员会已经要求方田解释库存由谁承担。往常他只需摊开增长曲线，这回桌上只有一张退货清单。',
     buttonText: '需要反思',
     isStoryEvent: true
   },
   newOriental_rnd_success: {
     id: 'newOriental_rnd_success',
     title: '《新高考五三魔改版》大卖',
-    description: '新东方派系的教辅产品凭借其独特的“魔改”思路，成功吸引了大量学生。新东方派系在联合管理委员会中的话语权显著增强。',
+    description: '《新高考五三魔改版》的书脊在学生书桌上连成一排。几套变式题在考前恰好派上用场，年级群里很快有人转发购买链接。新东方代表在联合管理委员会上带来了复购数据，原本对这套编法颇有微词的其他派系，也开始问下一期能否挂上自己的名字。',
     buttonText: '创新就是生产力',
     isStoryEvent: true
   },
   newOriental_rnd_fail: {
     id: 'newOriental_rnd_fail',
     title: '《新高考五三魔改版》滞销',
-    description: '新东方派系的新产品过于超前，市场反响平平。大量的库存积压让新东方派系在联合管理委员会中抬不起头。',
+    description: '《新高考五三魔改版》的样书摆满了书店入口，翻看的人多，付款的人少。教师说题型改得过急，学生则抱怨答案解析比原题还难懂。新东方代表带着一摞滞销数据出席联合管理委员会，会议刚谈到下一批印量，便有人建议先把仓库里这批卖完。',
     buttonText: '市场不买账',
     isStoryEvent: true
   },
   teachers_rnd_success: {
     id: 'teachers_rnd_success',
     title: '《衡水体速成字帖》大卖',
-    description: '合一教师协会推出的字帖精准击中了阅卷老师的痛点，成为了学生们的必备神器。教师派系在联合管理委员会中的地位得到了巩固。',
+    description: '书店里的《衡水体速成字帖》被翻得卷了角。几位教师拿学生前后两次的卷面作比较，至少那些看不清的字母现在能辨认了。家长群开始团购，教师协会把订单送进联合管理委员会时，第一次没有附上一份请求保留经费的说明；销量替他们说了话。',
     buttonText: '卷面分也是分',
     isStoryEvent: true
   },
   teachers_rnd_fail: {
     id: 'teachers_rnd_fail',
     title: '《衡水体速成字帖》滞销',
-    description: '学生们对枯燥的练字感到厌烦，教师协会的新产品销量惨淡。教师派系在联合管理委员会中的影响力有所下降。',
+    description: '《衡水体速成字帖》发到班里，许多学生只填了姓名，后面的方格仍空着。教师协会原以为阅卷标准足以说服他们，却忽略了每天已经塞满的练习时间。退回的样本和卖不动的库存堆在办公室，联合管理委员会讨论下一笔研发款时，教师代表只能先解释这次判断为何落空。',
     buttonText: '时代变了',
     isStoryEvent: true
   },
@@ -2337,7 +2337,7 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
         title: '无',
         portrait: 'leader_vacant',
         ideology: '无',
-        description: '为卷豪报仇'
+        description: '席位暂时空着。委员会名册还停在卷豪的名字上，谁来接手他的工作，尚无人敢在会上提出。'
       }
     })
   },
@@ -2446,7 +2446,7 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
           title: '校长',
           portrait: 'feng_anbao',
           ideology: 'authoritarian',
-          description: '在保安队的刺刀拱卫下重返权力中心的校长。他相信，只要把造反的苗头按死在土里，合一就能永远运转下去。',
+          description: '封安宝回到行政楼，发现桌上的课表还停在他离开那天。保安队恢复了巡查，试卷也重新送进教室；可每份签名齐全的报告背后，都有他如今不得不亲自核对的缺席名单。',
           buffs: ['每日稳定度 +0.05', '每日卷子储备 -10']
         },
         stats: {

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { GameState } from '../types';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Stamp, Pill, Coffee, FileText, Terminal, Phone, BookOpen, Mic } from 'lucide-react';
-import { canDrawCampusDocument, drawCampusDocument } from '../engine/campusEvents';
+import { canDrawYangDeskDocument, drawYangDeskDocument } from '../engine/yangDeskDocuments';
 import { getMechanicImageUrl } from '../config/assets';
 
 interface YangYuleDecision {
@@ -26,7 +26,7 @@ export default function YangYuleDesk({ state, setGameState, onClose, triggerEven
   const [activeModal, setActiveModal] = useState<'stamp' | 'map' | null>(null);
   const yyState = state.yangYuleState;
   if (!yyState) return null;
-  const documentReady = canDrawCampusDocument(state);
+  const documentReady = canDrawYangDeskDocument(state);
 
   const YANG_YULE_DECISIONS: YangYuleDecision[] = [
     {
@@ -128,7 +128,7 @@ export default function YangYuleDesk({ state, setGameState, onClose, triggerEven
 
   const handleRandomDocument = () => {
     if (!documentReady) return;
-    setGameState(prev => drawCampusDocument(prev));
+    setGameState(prev => drawYangDeskDocument(prev));
     setActiveModal(null);
   };
 
@@ -650,7 +650,7 @@ export default function YangYuleDesk({ state, setGameState, onClose, triggerEven
                 <div className="mb-8 p-4 border border-tno-highlight bg-tno-highlight/10">
                   <h3 className="font-bold text-xl text-tno-highlight font-mono mb-2">特殊事务</h3>
                   <div className="flex justify-between items-center">
-                    <p className="text-sm text-tno-text/80">按校园现状筛选待办文件，每日最多一份；作出处理后计入批阅次数。</p>
+                    <p className="text-sm text-tno-text/80">每日批阅一份。杨特旧案与校园新事务按当前局势出现，同一旧案不会重复。</p>
                     <button
                       onClick={handleRandomDocument}
                       disabled={!documentReady}

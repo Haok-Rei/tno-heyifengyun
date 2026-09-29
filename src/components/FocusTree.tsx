@@ -24,7 +24,7 @@ const hasFocusRequirements = (node: FocusNode, completedFocuses: string[]) => {
 export const PHASE1_NODES: FocusNode[] = [
   { id: 'start_2023', title: '2023秋季开学典礼', description: '三千张年轻的面孔涌入滨湖校区。封安宝的致辞冰冷而精准，杨玉乐的保温杯冒着热气，及第教育的广告横幅在行政楼侧墙猎猎作响。这是合一——一座被高墙围拢的做题工厂，也是一张被各方势力反复拉扯的棋盘。', days: 5, x: 500, y: 50,
     onComplete: (s) => ({
-      nationalSpirits: [...s.nationalSpirits, { id: 'new_reform_cloud', name: '新教改的阴云', description: '稳定度每日 -0.1%', type: 'negative', effects: { stabDaily: -0.1 } }],
+      nationalSpirits: [...s.nationalSpirits, { id: 'new_reform_cloud', name: '新教改的阴云', description: '新课表还没有贴稳，走廊里已经传起了关于加课与减员的不同版本。教师等正式通知，学生则看着每一张被重新排过的时间表。', type: 'negative', effects: { stabDaily: -0.1 } }],
       activeEvent: FLAVOR_EVENTS.phase1_start_2023,
       flags: { ...s.flags, story_1_triggered: true }
     }),
@@ -42,7 +42,7 @@ export const PHASE1_NODES: FocusNode[] = [
   },
   { id: 'wu_patrol', title: '吴福军的走廊巡查', description: '教务督导吴福军——合一的纪律铁拳。硬底皮鞋每天七次巡视高三走廊，考勤本上密密麻麻记录着每一句交谈、每一次走动、每一张搜出的违禁品。', days: 10, x: 280, y: 380, requires: ['build_art'],
     onComplete: (s) => ({
-      nationalSpirits: s.nationalSpirits.concat({ id: 'wu_patrol_spirit', name: '走廊巡查', description: '吴福军的铁腕压制使校园表面平静，但地下暗流涌动。稳定度每日 +0.5%', type: 'negative', effects: { stabDaily: 0.5 } }),
+      nationalSpirits: s.nationalSpirits.concat({ id: 'wu_patrol_spirit', name: '走廊巡查', description: '吴福军的巡查表挂在走廊尽头，每节课间都有人签字。吵闹少了，学生也学会在他经过前收住半句话。', type: 'negative', effects: { stabDaily: 0.5 } }),
       stats: { ...s.stats, ss: s.stats.ss - 10 },
       activeEvent: FLAVOR_EVENTS.phase1_wu_patrol,
       flags: { ...s.flags, story_3_triggered: true }
@@ -143,11 +143,11 @@ export const TREE_A_NODES: FocusNode[] = [
       title: '联合革命委员会主席', 
       portrait: 'wang_zhaokai', 
       ideology: 'radical_socialism',
-      description: '作为“钢铁红蛤”的领袖，王照凯是一位坚定的马克思主义者。他主张通过彻底的革命推翻应试教育体制，建立一个由学生自我管理的红色校园。',
+      description: '王照凯把 B3 的值班表随身带到行政楼。夺下校门以后，他仍习惯在会上逐项分配任务，要求每个人说清何时完成。有人因此相信革委会能让学校运转下去，也有人担心，反对意见会被他当作拖延。',
       buffs: ['每日激进愤怒度 +0.5', '每日党内集权度 +0.5']
     },
     ideologies: { authoritarian: 10, reactionary: 5, liberal: 15, radical_socialism: 50, anarcho_capitalism: 5, deconstructivism: 5, test_taking: 10 },
-    nationalSpirits: s.nationalSpirits.filter(ns => ns.id !== 'exam_pressure').concat({ id: 'red_campus', name: '赤色校园', description: '每日PP +0.5，学生支持度每日 +0.2', type: 'positive', effects: { ppDaily: 0.5, ssDaily: 0.2 } }),
+    nationalSpirits: s.nationalSpirits.filter(ns => ns.id !== 'exam_pressure').concat({ id: 'red_campus', name: '赤色校园', description: 'B3 门口贴着新的值班表，学生代表轮流处理食堂、课表与印刷室的急事。支持革委会的人越来越多，他们现在也等着看承诺能否兑现。', type: 'positive', effects: { ppDaily: 0.5, ssDaily: 0.2 } }),
     activeEvent: FLAVOR_EVENTS.event_7_smolny,
     flags: { ...s.flags, united_committee_established: true }
   }), effectsText: ['更换领导人为：王照凯', '意识形态变为：真左派', '移除国家精神：一模的重压', '获得国家精神：赤色校园 (每日PP +0.5，学生支持度每日 +0.2)', '触发事件：斯莫尔尼宫的灯火'] },
@@ -161,21 +161,21 @@ export const TREE_A_NODES: FocusNode[] = [
 
   // Left Branch (Centralization)
   { id: 'purge_moderates', title: '清洗温和派', description: '革命不是请客吃饭。', days: 14, x: 200, y: 200, requires: ['declare_indep'], mutuallyExclusive: ['broad_coalition'], onComplete: (s) => ({ stats: { ...s.stats, partyCentralization: s.stats.partyCentralization + 20, allianceUnity: s.stats.allianceUnity - 20 } }), effectsText: ['党内集权度 +20', '联盟团结度 -20'] },
-  { id: 'establish_vanguard', title: '建立先锋队', description: '我们需要铁腕。', days: 14, x: 200, y: 350, requires: ['purge_moderates'], onComplete: (s) => ({ stats: { ...s.stats, partyCentralization: s.stats.partyCentralization + 10 }, nationalSpirits: s.nationalSpirits.concat({ id: 'vanguard_party', name: '先锋队', description: '每日TPR +2', type: 'positive', effects: { tprDaily: 2 } }) }), effectsText: ['党内集权度 +10', '获得国家精神：先锋队 (每日TPR +2)'] },
+  { id: 'establish_vanguard', title: '建立先锋队', description: '我们需要铁腕。', days: 14, x: 200, y: 350, requires: ['purge_moderates'], onComplete: (s) => ({ stats: { ...s.stats, partyCentralization: s.stats.partyCentralization + 10 }, nationalSpirits: s.nationalSpirits.concat({ id: 'vanguard_party', name: '先锋队', description: '先锋队把印刷、送卷和班级联络排成固定轮值。工作终于有人接手，名单之外的人却很难插进来表达意见。', type: 'positive', effects: { tprDaily: 2 } }) }), effectsText: ['党内集权度 +10', '获得国家精神：先锋队 (每日TPR +2)'] },
   { id: 'student_militia', title: '武装纠察队', description: '保卫我们的胜利果实。', days: 14, x: 200, y: 500, requires: ['establish_vanguard'], onComplete: (s) => {
     const newMap = { ...s.mapLocations };
     newMap.auditorium = { ...newMap.auditorium, studentControl: Math.min(100, newMap.auditorium.studentControl + 30) };
     newMap.playground = { ...newMap.playground, studentControl: Math.min(100, newMap.playground.studentControl + 30) };
-    return { mapLocations: newMap, nationalSpirits: s.nationalSpirits.concat({ id: 'armed_militia', name: '武装纠察队', description: '防御加成 +15%，稳定度每日 +0.1%', type: 'positive', effects: { defenseBonus: 0.15, stabDaily: 0.1 } }) };
+    return { mapLocations: newMap, nationalSpirits: s.nationalSpirits.concat({ id: 'armed_militia', name: '武装纠察队', description: '楼梯口有了固定哨位，夜间换班也不再靠临时喊人。街垒更难被冲破，巡查的脚步声却再次成了校园的一部分。', type: 'positive', effects: { defenseBonus: 0.15, stabDaily: 0.1 } }) };
   }, effectsText: ['大礼堂学生控制度 +30%', '操场学生控制度 +30%', '获得国家精神：武装纠察队 (防御加成 +15%，稳定度每日 +0.1%)'] },
 
   // Right Branch (Unity)
   { id: 'broad_coalition', title: '广泛的同盟', description: '团结一切可以团结的力量。', days: 14, x: 800, y: 200, requires: ['declare_indep'], mutuallyExclusive: ['purge_moderates'], onComplete: (s) => ({ stats: { ...s.stats, allianceUnity: s.stats.allianceUnity + 20, partyCentralization: s.stats.partyCentralization - 20 }, activeEvent: { id: 'broad_coalition_event', title: '大帐篷宣言', description: '在豪邦推动下，革委会发布统一战线宣言，温和派与基层互助组加入共同议程。', buttonText: '签署宣言', isStoryEvent: true } }), effectsText: ['联盟团结度 +20', '党内集权度 -20', '触发事件：大帐篷宣言'] },
-  { id: 'democratic_councils', title: '民主议事会', description: '让每个人都有发言权。', days: 14, x: 800, y: 350, requires: ['broad_coalition'], onComplete: (s) => ({ stats: { ...s.stats, allianceUnity: s.stats.allianceUnity + 10 }, nationalSpirits: s.nationalSpirits.concat({ id: 'democratic_councils_spirit', name: '民主议事会', description: '每日PP +0.2', type: 'positive', effects: { ppDaily: 0.2 } }), activeEvent: { id: 'democratic_councils_event', title: '议席之争', description: '各班推举代表进入议事会，路线分歧开始从地下争执转向制度化交锋。', buttonText: '宣布首轮席位', isStoryEvent: true } }), effectsText: ['联盟团结度 +10', '获得国家精神：民主议事会 (每日PP +0.2)', '触发事件：议席之争'] },
+  { id: 'democratic_councils', title: '民主议事会', description: '让每个人都有发言权。', days: 14, x: 800, y: 350, requires: ['broad_coalition'], onComplete: (s) => ({ stats: { ...s.stats, allianceUnity: s.stats.allianceUnity + 10 }, nationalSpirits: s.nationalSpirits.concat({ id: 'democratic_councils_spirit', name: '民主议事会', description: '各班有了固定的发言席，意见从走廊与群聊被带进会议记录。议事会无法让争论消失，却能让争论留下可追问的答复。', type: 'positive', effects: { ppDaily: 0.2 } }), activeEvent: { id: 'democratic_councils_event', title: '议席之争', description: '各班推举代表进入议事会，路线分歧开始从地下争执转向制度化交锋。', buttonText: '宣布首轮席位', isStoryEvent: true } }), effectsText: ['联盟团结度 +10', '获得国家精神：民主议事会 (每日PP +0.2)', '触发事件：议席之争'] },
   { id: 'unite_teachers', title: '团结进步教师', description: '争取广泛的同盟军。', days: 14, x: 800, y: 500, requires: ['democratic_councils'], onComplete: (s) => {
     const newMap = { ...s.mapLocations };
     newMap.b1b2 = { ...newMap.b1b2, studentControl: Math.min(100, newMap.b1b2.studentControl + 40) };
-    return { mapLocations: newMap, stats: { ...s.stats, ss: Math.min(100, s.stats.ss + 15) }, nationalSpirits: s.nationalSpirits.concat({ id: 'teacher_support', name: '教师同盟', description: '稳定度每日 +0.2%', type: 'positive', effects: { stabDaily: 0.2 } }), activeEvent: { id: 'unite_teachers_event', title: '教师公开表态', description: '一批教师在B1/B2公开支持革委会，教学资源调配权开始向学生侧倾斜。', buttonText: '成立联络组', isStoryEvent: true } };
+    return { mapLocations: newMap, stats: { ...s.stats, ss: Math.min(100, s.stats.ss + 15) }, nationalSpirits: s.nationalSpirits.concat({ id: 'teacher_support', name: '教师同盟', description: '一些教师开始在公开会议上替学生方案解释课时与资源的安排。新制度因此有了能走进教室执行的人，也有了愿意承担质疑的人。', type: 'positive', effects: { stabDaily: 0.2 } }), activeEvent: { id: 'unite_teachers_event', title: '教师公开表态', description: '一批教师在B1/B2公开支持革委会，教学资源调配权开始向学生侧倾斜。', buttonText: '成立联络组', isStoryEvent: true } };
   }, effectsText: ['B1&B2教学楼学生控制度 +40%', '学生支持度 (SS) +15', '获得国家精神：教师同盟 (稳定度每日 +0.2%)', '触发事件：教师公开表态'] },
 
   // Middle Branch (Pragmatic Action)
@@ -244,7 +244,7 @@ export const JIDI_TREE_NODES: FocusNode[] = [
       {
         id: 'jidi_corporate_rule',
         name: '企业化管理',
-        description: '学校现在像企业一样运作，一切以效率和利润为先。',
+        description: '课表、教辅和教室都进入同一套经营报表。设备更新得更快，申请一间教室却先要说明它能带来多少收益。',
         type: 'neutral',
         effects: { ppDaily: 0.5, tprDaily: 10, studentSanityDaily: -1, gdpGrowthMod: 0.05 }
       }
@@ -313,7 +313,7 @@ export const JIDI_TREE_NODES: FocusNode[] = [
       nationalSpirits: [...s.nationalSpirits, {
         id: 'jidi_minor_spirit_1',
         name: '微型商业化试点',
-        description: '在校园内进行小规模的商业化尝试，虽然收益微薄，但标志着资本的进一步渗透。',
+        description: '礼堂与教辅先试着按项目结算。每笔款项还不大，教师们却开始问：下一次增加的收入，会不会换来更高的指标？',
         type: 'neutral',
         effects: { ppDaily: 0.1, stabDaily: -0.1 }
       }],
@@ -378,7 +378,7 @@ export const JIDI_TREE_NODES: FocusNode[] = [
       nationalSpirits: [...s.nationalSpirits, {
         id: 'jidi_minor_spirit_2',
         name: '区域教育霸权',
-        description: '及第资本在区域内的垄断地位初步确立，能够更有效地将教育资源转化为GDP。',
+        description: '周边学校的采购单越来越多地流向及第。议价从两边的谈判变成对一家报价的等待，合一的教室也被写进扩张计划。',
         type: 'positive',
         effects: { ppDaily: 0.2, capitalPenetrationDaily: 0.5 }
       }],
@@ -478,7 +478,7 @@ export const JIDI_TREE_NODES: FocusNode[] = [
     nationalSpirits: [...s.nationalSpirits, {
       id: 'jidi_minor_spirit_3',
       name: '教育金融化',
-      description: '教育已经完全成为了一种金融产品，学生的成绩就是我们的股票代码。',
+      description: '成绩预测、课程套餐和分期付款被印在同一页说明书上。家长买的是一条通往升学的路，学生每天走的却是被重新标价的时间。',
       type: 'negative',
       effects: { studentSanityDaily: -0.5, capitalPenetrationDaily: 1.0 }
     }],
@@ -648,14 +648,14 @@ export const JIDI_TREE_NODES: FocusNode[] = [
       {
         id: 'jidi_corporate_utopia_spirit',
         name: '企业乌托邦',
-        description: '合肥一中已经成为了一个完美的企业，一个只为了提分和盈利而存在的乌托邦。',
+        description: '及第的系统准时生成成绩、考勤和收入报表。屏幕上每项指标都有负责人，唯独没人负责解释一个学生为什么从这套流程里消失。',
         type: 'positive',
         effects: { ppDaily: 2, tprDaily: 50, studentSanityDaily: -2, gdpGrowthMod: 0.15 }
       },
       {
         id: 'jidi_minor_spirit_4',
         name: 'GDP至上主义',
-        description: '一切为了GDP，GDP就是一切。',
+        description: '季度汇报先看增长，再看教室里发生了什么。看似无关的课间、社团与图书角，也被要求说明能为下一季贡献多少。',
         type: 'positive',
         effects: { capitalPenetrationDaily: 2.0 }
       }
@@ -669,7 +669,7 @@ export const JIDI_TREE_NODES: FocusNode[] = [
       {
         id: 'jidi_riot_spirit',
         name: '合一暴乱',
-        description: '学生长期理智度不够跳楼造反了，教育局纪委对事态极其不满。',
+        description: '教室里的课表还在照常显示，走廊却无人再照它行动。学生的抗议从 B3 扩散，教育局的调查通知与及第的停工单同时送进办公室。',
         type: 'negative',
         effects: { ppDaily: -5, tprDaily: -100, studentSanityDaily: -5 }
       }
@@ -694,7 +694,7 @@ export const GOUXIONG_TREE_NODES: FocusNode[] = [
       title: '赛博娱乐大统领',
       portrait: 'gouxiong',
       ideology: 'deconstructivism',
-      description: '曾经在校园权力缝隙里取乐的二次元解构派，如今意外坐上最高位置。他擅长煽动、破坏与戏仿，但在持续执政中不得不学习克制与治理。',
+      description: '狗熊坐上主席台后，仍会在严肃会议里突然换掉投影。笑声能使旧口号失效，也能让反对者不敢开口。散会时总有人留下来问：被改写的课表和处分记录，明天算不算数？',
       buffs: ['每日理智度 -0.25', '每日政治点数 +0.5']
     },
     ideologies: { authoritarian: 5, reactionary: 5, liberal: 8, radical_socialism: 8, anarcho_capitalism: 6, deconstructivism: 63, test_taking: 5 },
@@ -1352,7 +1352,7 @@ export const TREE_A_PAN_NODES: FocusNode[] = [
       title: '学生议会议长', 
       portrait: 'pan_renyue', 
       ideology: 'liberal',
-      description: '温和派的代表人物，主张通过渐进的民主改革来改善学生权益。他认为革命过于激进，更倾向于在现有框架内争取更多的自由和自治权。',
+      description: '潘仁越会把反对票也写进会议纪要。他知道程序不能替人修好宿舍的热水，却坚持让每一项拨款都有人提问、有人答复。支持者说他肯听；急着看到改变的人，则盯着桌上越积越高的待议文件。',
       buffs: ['每日联盟团结度 +0.5', '每日稳定度 +0.1']
     },
     ideologies: { authoritarian: 10, reactionary: 5, liberal: 50, radical_socialism: 15, anarcho_capitalism: 5, deconstructivism: 5, test_taking: 10 },
@@ -1403,7 +1403,7 @@ export const TREE_A_PAN_NODES: FocusNode[] = [
     nationalSpirits: s.nationalSpirits.concat({
       id: 'path_of_democracy',
       name: '民主之路（0/5）',
-      description: '民主的道路充满曲折，我们需要通过更多的法案来巩固它。',
+      description: '议会能通过决定，还不能保证每个班级都照着执行。旧校规尚未撤尽，新法案也要逐条落地；每一次表决之后，仍有教师和学生等着一个具体答复。',
       type: 'negative',
       effects: { ppDaily: -1, powerBalanceDaily: 0.5, tprDaily: -15, studentSanityDaily: -2.5 }
     }),
@@ -1839,7 +1839,7 @@ export const TREE_A_LU_BOHAN_NODES: FocusNode[] = [
         title: 'N.K.P.D.肃反委员会主席',
         portrait: 'lu_bohan',
         ideology: 'authoritarian',
-        description: '以肃反委员会名义重组政治局，主张通过高压与整编维持秩序。',
+        description: '吕波汉接管肃反委员会后，把每张出入证和每份会议记录都列入复核。命令传得比从前快，办公室也比从前安静。他把这种安静称作秩序；连赞成他的人，也开始在签字前多看一眼名单。',
         buffs: ['权力平衡每日向吕波汉侧移动 0.05']
       },
       stats: { ...s.stats, partyCentralization: Math.min(100, s.stats.partyCentralization + 12), stab: Math.max(0, s.stats.stab - 3) },
@@ -2245,7 +2245,7 @@ export const TREE_A_HAOBANG_NODES: FocusNode[] = [
           title: '联合革委会临时舵手',
           portrait: 'hao_bang',
           ideology: 'radical_socialism',
-          description: '在舵手逝世后接过重担，主张弥合分歧并继续做题大改革。',
+          description: '前任舵手去世后，豪邦把空出的座位留在会议桌旁。各派带来的名单和责问都得先经过他这一关。他仍想把做题改革推下去，却发现如今每让一个人坐回桌前，都要付出一次艰难的让步。',
           buffs: ['每周自社派忠诚度 +5']
         },
         redToadState: s.redToadState ? { ...s.redToadState, factions: newFactions } : undefined,
@@ -2558,7 +2558,7 @@ export const TREE_WU_NODES: FocusNode[] = [
         title: '校长',
         portrait: 'feng_anbao',
         ideology: 'authoritarian',
-        description: '在保安队的刺刀拱卫下重返权力中心的校长。他相信，只要把造反的苗头按死在土里，合一就能永远运转下去。',
+        description: '封安宝回到行政楼，发现桌上的课表还停在他离开那天。保安队恢复了巡查，试卷也重新送进教室；可每份签名齐全的报告背后，都有他如今不得不亲自核对的缺席名单。',
         buffs: ['每日稳定度 +0.05', '每日卷子储备 -10']
       },
       stats: { ...s.stats, stab: Math.min(100, s.stats.stab + 10), ss: Math.max(0, s.stats.ss - 20), radicalAnger: Math.max(0, s.stats.radicalAnger - 30) },
@@ -2584,7 +2584,7 @@ export const TREE_WU_NODES: FocusNode[] = [
         .concat({
           id: 'wu_martial_law_spirit',
           name: '戒严令',
-          description: '全校进入戒严状态。每日稳定度 +0.4，学生支持度 -0.5，学生愤怒 +0.3。',
+          description: '校门登记时间被提前，走廊的巡查次数写进新通知。秩序在点名册上恢复，学生却越来越少在办公室里说真话。',
           type: 'negative',
           effects: { stabDaily: 0.4, ssDaily: -0.5 }
         }),
@@ -2857,7 +2857,7 @@ export const TREE_WU_P2_FENG_NODES: FocusNode[] = [
         .concat({
           id: 'wu_rule_of_law_spirit',
           name: '法治化校规',
-          description: '戒严成果被写进校规，制度化取代了人治。每日稳定度 +0.2，学生支持度 -0.2，激进愤怒度 -0.2。',
+          description: '临时通行证和夜巡安排被编进正式校规，每一项处分都要找到对应条款。吴福军的口令少了，规章却会比他留得更久。',
           type: 'neutral',
           effects: { stabDaily: 0.2, ssDaily: -0.2, radicalAngerDaily: -0.2 }
         }),
@@ -3024,7 +3024,7 @@ export const TREE_WU_P2_COUP_NODES: FocusNode[] = [
         .concat({
           id: 'wu_expansion_spirit',
           name: '扩编保安队',
-          description: '五百人编制的保安队，在校园里已经是事实上的军事力量。每日政治点数 +0.3，学生支持度 -0.3。',
+          description: '护校队扩编到五百人，校门、操场和宿舍都有固定轮值。学生如今总能看见他们，也开始避开那些原本可以停下来谈话的地方。',
           type: 'negative',
           effects: { ppDaily: 0.3, ssDaily: -0.3 }
         }),
@@ -3061,7 +3061,7 @@ export const TREE_WU_P2_COUP_NODES: FocusNode[] = [
         .concat({
           id: 'wu_armed_guard_spirit',
           name: '武装护校队',
-          description: '护校队配发制式装备，镇压效率大幅提升。每日政治点数 +0.5，学生愤怒 +0.2。',
+          description: '新装备入库后，护校队在每个训练日清点盾牌与警棍。威慑更直观了，教师与学生路过操场时也越来越难把它当成普通的保安演练。',
           type: 'negative',
           effects: { ppDaily: 0.5 }
         }),
@@ -3104,7 +3104,7 @@ export const TREE_WU_P2_COUP_NODES: FocusNode[] = [
         .concat({
           id: 'wu_iron_curtain_spirit',
           name: '铁幕校规',
-          description: '戒严制度化。每日政治点数 +0.3，学生支持度 -0.5，残党实力 -0.1。',
+          description: '新版学生手册把戒严时期的临时命令编成了条文。执行者只需翻到页码，被处分的人却再也找不到一条尚未被规定的申诉路径。',
           type: 'negative',
           effects: { ppDaily: 0.3, ssDaily: -0.5 }
         }),

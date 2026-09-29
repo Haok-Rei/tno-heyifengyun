@@ -11,6 +11,7 @@ import { FocusArt, SpiritArt, LawArt } from './StrategicArt';
 import { FACTION_COLORS, getFactionDossier } from '../data/factionDossiers';
 import CharacterProfile from './CharacterProfile';
 import { getAdvisorProfile, getLeaderTraits } from '../data/characterProfiles';
+import { getHeyiLightSnapshot } from '../engine/heyiLight';
 
 interface LeftSidebarProps {
   state: GameState;
@@ -18,6 +19,7 @@ interface LeftSidebarProps {
   dismissAdvisor: (slotIndex: number) => void;
   cancelActiveFocus: () => void;
   onOpenFocus: () => void;
+  onOpenHeyiLight: () => void;
   triggerError: () => void;
   /** v8.11 切换校内法案（App 内扣除150 PP） */
   changeLaw: (categoryId: 'discipline' | 'schedule' | 'personnel' | 'education', levelId: string) => void;
@@ -180,7 +182,7 @@ const AVAILABLE_ADVISORS: Advisor[] = [
   }
 ];
 
-export default function LeftSidebar({ state, hireAdvisor, dismissAdvisor, cancelActiveFocus, onOpenFocus, triggerError, changeLaw }: LeftSidebarProps) {
+export default function LeftSidebar({ state, hireAdvisor, dismissAdvisor, cancelActiveFocus, onOpenFocus, onOpenHeyiLight, triggerError, changeLaw }: LeftSidebarProps) {
   const [selectedSlot, setSelectedSlot] = useState<number | null>(null);
   const [lawCategory, setLawCategory] = useState<string | null>(null);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -219,6 +221,7 @@ export default function LeftSidebar({ state, hireAdvisor, dismissAdvisor, cancel
 
   const conicGradient = totalIdeology > 0 ? `conic-gradient(${pieSegments.map(s => `${s.color} ${s.startAngle}% ${s.startAngle + s.percentage}%`).join(', ')})` : '#394144';
   const leadingFaction = pieSegments[0];
+  const heyiLight = getHeyiLightSnapshot(state);
   const activeFocusNode = getFocusNodes(state.currentFocusTree).find(node => node.id === state.activeFocus?.id);
 
   return (
@@ -288,6 +291,9 @@ export default function LeftSidebar({ state, hireAdvisor, dismissAdvisor, cancel
       <div className="nation-module nation-module--spirits p-3 border-b border-tno-border">
         <div className="nation-module-heading text-xs text-tno-text/60 mb-1.5 uppercase tracking-widest">国家精神</div>
         <div className="flex flex-wrap gap-1.5">
+          <HoverWindow width={280} estimateHeight={210} content={<div className="bg-tno-panel border border-[#c8a86f] p-3 shadow-lg shadow-black/70"><div className="text-[#e6c88c] font-bold mb-2">合一之光 · {Math.round(heyiLight.value)}/100</div><p className="text-xs leading-relaxed text-tno-text/85">{heyiLight.spirit.description}</p><div className="text-[10px] text-[#b7a17b] border-t border-[#8b7654]/40 mt-2 pt-2">观赏性国家精神 · 无数值加成 · 点击查看校门</div></div>}>
+            <button type="button" onClick={onOpenHeyiLight} aria-label="查看国家精神：合一之光" className="nation-spirit-icon border border-[#c8a86f] bg-[#172324] text-[#e6c88c] font-bold text-lg shadow-[0_0_14px_#c8a86f44]">光</button>
+          </HoverWindow>
           {state.nationalSpirits
             .filter(spirit => !spirit.id.startsWith('law_spirit_'))
             .map(spirit => (

@@ -587,7 +587,7 @@ export const DECISIONS: Decision[] = [
         title: '名师工作室代理校长',
         portrait: 'yang_yule',
         ideology: 'reactionary',
-        description: '老谋深算的保守派代表，擅长分化瓦解学生运动。',
+        description: '杨玉乐在讲台上讲了几十年课，能从一次答题听出学生哪里没学懂。接手行政楼后，他仍把成绩表压在手边，也开始学着读那些没有写在卷面上的不满。老师们信他的经验，学生们则等着看他愿不愿意听完。',
         buffs: ['老谋深算 (每日PP +0.25)']
       },
       flags: { ...state.flags, yang_yule_route_started: true },
