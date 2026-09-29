@@ -5,7 +5,7 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
   support_bill_event: {
     id: 'support_bill_event',
     title: '表态：支持议案',
-    description: '议案还差几票。你把它的修订稿摊在代表面前，准备逐班说明哪些条款会改变，哪些承诺能兑现。印材料、约人谈、把不同意见写进会议记录，都要耗费手里的政治资源；但这次表态会让犹豫的人知道，提案者愿意为它负责。',
+    description: '你决定在议会中公开表态支持当前的议案。这需要消耗一定的政治点数来进行游说和动员，但能显著增加该议案的通过几率。',
     choices: [
       {
         text: '全力支持！ (消耗 10 PP，赞同率 +15)',
@@ -36,7 +36,7 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
   oppose_bill_event: {
     id: 'oppose_bill_event',
     title: '表态：反对议案',
-    description: '表决前，你在议案边上写满了批注。反对票不会凭一声口号出现：还得把条款的漏洞讲给各班代表听，邀请他们提出修订，甚至说服原本支持它的人重新考虑。这些工作会消耗政治资源，也可能让赞成阵营失去一部分把握。',
+    description: '你决定在议会中公开表态反对当前的议案。这需要消耗一定的政治点数来组织反对力量，能显著降低该议案的通过几率。',
     choices: [
       {
         text: '坚决反对！ (消耗 10 PP，赞同率 -15)',
@@ -149,7 +149,7 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
   negotiate_pan: {
     id: 'negotiate_pan',
     title: '与潘仁越民主派交涉',
-    description: '潘仁越的代表没带口号，带来的是一份被退回三次的社团申请和两张处分申诉。她把材料放在法案草稿旁，问学生的知情、申诉与活动权能否写成可执行的条款。“如果只在序言里说尊重学生，”她说，“下一任负责人照样可以把这些纸压在抽屉里。”',
+    description: '潘仁越的追随者们希望你能在法案中加入更多保障学生基本权利的条款。',
     choices: [
       {
         text: '承诺保障学生权利',
@@ -330,7 +330,7 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
   bill_passed: {
     id: 'bill_passed',
     title: '法案通过！',
-    description: '计票员又数了一遍，赞成票仍然过半。刚才还在争论措辞的代表安静下来，等秘书把通过日期填进议案末页。有人开始问新规明天由哪个部门执行，也有人已经写好了第一份监督提问。表决结束了，议会第一次要为自己通过的文字负责。',
+    description: '经过激烈的辩论和投票，议案最终获得了多数代表的支持，正式成为合肥一中的新规。这是民主的胜利！',
     choices: [
       {
         text: '太好了！',
@@ -341,7 +341,7 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
             newSpirits.push({
               id: 'democratic_victory',
               name: '民主的胜利',
-              description: '议会已经证明，争执可以在桌边形成有约束力的决定。赞成票让人振奋；此后每一份执行报告，也会成为这场胜利的一部分。',
+              description: '学生议会成功通过了法案，民主的理念深入人心。',
               type: 'positive',
               icon: '📜',
               effects: { allianceUnityDaily: 0.5, stabDaily: 0.5 }
@@ -362,7 +362,7 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
   bill_failed: {
     id: 'bill_failed',
     title: '法案被否决',
-    description: '最后一张票唱完，议案仍差多数线几席。有人立刻起身离场，有人留下来逐条核对反对意见：经费、执行权和最初的承诺，三方说的不是同一件事。草稿退回提案委员会，下一次会议之前，联盟得先回答自己究竟愿意为哪些条款承担代价。',
+    description: '由于未能获得足够的赞同票，议案在学生议会中被否决。这表明我们的联盟内部还存在着巨大的分歧。',
     choices: [
       {
         text: '我们需要重新审视我们的策略...',
@@ -393,7 +393,7 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
             nationalSpirits: [...state.nationalSpirits, {
               id: 'angry_hefei_no1',
               name: '愤怒的合一',
-              description: '巡查表让走廊安静了下来，处分通知却一张张贴满公告栏。表面秩序在恢复，学生和校方之间的距离也在拉大。',
+              description: '吴福军的铁腕统治激起了学生们的愤怒。每日稳定度+0.5%，学生支持度-0.5%，激进愤怒度+0.5%',
               type: 'negative',
               effects: { stabDaily: 0.5, ssDaily: -0.5, radicalAngerDaily: 0.5 }
             }],
@@ -411,7 +411,7 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
             id: 'yang_yule',
             title: '特级教师',
             name: '杨玉乐',
-            description: '杨玉乐习惯先听完教师与学生各自的说法，再把能执行的部分写进教研安排。他让行政楼得到缓冲，也让反对者难以判断这份耐心究竟能持续多久。',
+            description: '老谋深算的保守派代表，擅长分化瓦解学生运动。每日稳定度 +0.05%，每日PP +0.5。',
             cost: 0,
             modifiers: { stabDaily: 0.05, ppDaily: 0.5 }
           };
@@ -1115,25 +1115,25 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
   enter_treeB: {
     id: 'enter_treeB',
     title: '名师的阴影',
-    description: 'B3的门锁换了，校内却迟迟没有一张大家都认可的课表。临时委员会争到深夜，第二天清晨仍无人安排食堂、值班和卷子。杨玉乐带着几名教师走进办公室，把积压的请假条和送印单分给各组处理；担心学校停摆的人先跟着他们干起来。等联合革委会派人来取公章，行政楼已经开始按另一套名单运转。',
+    description: 'B3教学楼虽然被攻下，但联盟内部却因为极低的稳定度和团结度而分崩离析。学生们陷入了混乱，各自为战。就在这时，以杨玉乐为首的保守派教师们趁虚而入。他们利用学生对无政府状态的恐惧，迅速组织起了“临时管理委员会”，并以“恢复秩序”为名，重新接管了校园的控制权。联合革命委员会的成员们被迫转入地下，或者躲进了名师工作室避风头。',
     buttonText: '革命尚未成功...'
   },
   enter_treeC: {
     id: 'enter_treeC',
     title: '二次元的狂欢',
-    description: 'B3被占领的第三天，礼堂里仍放着通宵未停的动画。有人把及第广告牌涂成舞台布景，更多人只是躺在座位上，不愿回到教室。狗熊拿起麦克风宣布取消联合革委会的例会，台下响起了比任何政治表决都热烈的欢呼。散会时却没人知道明天的食堂由谁开门。',
+    description: 'B3教学楼被攻下，但学生们的理智已经跌入谷底，而及第教育的资本渗透却达到了顶峰。在绝望与荒诞中，狗熊站了出来。他利用了学生们逃避现实的心理，将一场严肃的抗争变成了一场二次元的狂欢。联合革命委员会被彻底解构，取而代之的是一个充满低幼性压抑风格的“赛博娱乐国度”。',
     buttonText: '这...这是什么鬼？'
   },
   enter_treeD: {
     id: 'enter_treeD',
     title: '绝望的走廊巷战',
-    description: 'B3的储物柜一间间打开，只剩空纸箱和散落的订书钉。试卷补给断了，值守的学生也一天比一天少。校方保安队与及第雇来的人员趁夜重新进入楼梯间，潘仁越把最后几张课桌推到走廊转角。他让同伴先退到安全的教室，自己留在楼梯口点名：防线还剩多少人，必须当面数清。',
+    description: 'B3教学楼被攻下，但我们的试卷储备量已经彻底枯竭。没有了做题力作为支撑，我们无法建立新的秩序。校方保安队和及第教育的雇佣兵趁机发起了反扑。潘仁越带领着最后的抵抗军，在教学楼的走廊里展开了绝望的巷战。',
     buttonText: '战斗到最后一刻！'
   },
   enter_treeA: {
     id: 'enter_treeA',
     title: '联合革命委员会的胜利',
-    description: 'B3顶层的消防门重新打开时，王照凯和潘仁越把各班代表叫进同一间教室。黑板左边写着值守和补给，右边写着如何选出下一轮代表；两人对许多事仍有分歧，至少肯在同一块板上修改。会议结束前，联合革命委员会的第一张值班表贴到了门外。楼下等消息的学生终于知道明天该去哪里。',
+    description: 'B3教学楼被成功攻下！在王照凯和潘仁越的领导下，学生们保持了足够的理智和团结。我们成功建立了一个由学生自治的“联合革命委员会”，并开始着手制定新的校园秩序。',
     buttonText: '新时代的曙光！'
   },
   strike_b3_success: {
@@ -1160,7 +1160,7 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
   admin_takeover: {
     id: 'admin_takeover',
     title: '教务系统的瘫痪',
-    description: '教务处的电脑陆续弹出同一行字：“去你的内卷”。成绩排名和量化考核页面打不开了。走廊里有人笑着传消息，办公室却有人急着找出明天要用的班级名单。学生黑客在系统里留下了一道缺口，也把整所学校接下来如何记录成绩的问题摆上了桌面。',
+    description: '学生黑客成功入侵了学校的教务系统，所有的成绩排名、量化考核分数瞬间化为乌有。屏幕上只留下一行字：“去你的内卷”。\n\n教务处的老师们看着黑屏的电脑，陷入了前所未有的恐慌。而学生们则在私下里弹冠相庆。',
     buttonText: '数据霸权的终结！',
     effect: (state: GameState) => ({
       stats: { ...state.stats, stab: state.stats.stab - 10, pp: state.stats.pp + 20 }
@@ -1169,7 +1169,7 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
   broadcast_seized: {
     id: 'broadcast_seized',
     title: '校园广播站的新声音',
-    description: '午间广播的前奏响起时，食堂里有人先以为设备放错了磁带。熟悉的《运动员进行曲》没有出现，取而代之的是《国际歌》，随后一个学生的声音从喇叭里报出联合革委会的临时公告。值班教师抬头看向广播室，学生们则放慢脚步，等他念完最后一项安排。',
+    description: '原本每天准时播放《运动员进行曲》和校规校纪的广播站，今天突然换成了激昂的《国际歌》。\n\n“同学们，合肥一中的历史，将由我们自己来书写！”广播里传来的不再是教导主任冰冷的声音，而是学生代表充满激情的宣言。',
     buttonText: '让我们的声音传遍校园！',
     effect: (state: GameState) => ({
       stats: { ...state.stats, ss: Math.min(100, state.stats.ss + 15) }
@@ -1223,7 +1223,7 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
   march_on_admin: {
     id: 'march_on_admin',
     title: '进军行政楼',
-    description: '纠察队把旗插在行政楼台阶旁，前门终于开了一条缝。里面的人问谁有权接管档案室和电闸，领队没有立刻喊口号，而是拿出刚签字的临时委员会名单。楼下的学生还在等，今天要交接的东西比一面旗多得多。',
+    description: '纠察队的红旗已经插上了行政楼的台阶。旧官僚们瑟瑟发抖，属于我们的时代即将来临！',
     buttonText: '冲锋！',
     effect: (state: GameState) => ({
       stats: { ...state.stats, ss: Math.min(100, state.stats.ss + 20), stab: Math.min(100, state.stats.stab + 10) }

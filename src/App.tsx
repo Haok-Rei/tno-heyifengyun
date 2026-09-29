@@ -56,7 +56,7 @@ import RedToadPolitburo from './components/RedToadPolitburo';
 const INITIAL_EVENT: GameEvent = {
   id: 'school_starts',
   title: '新学期，新秩序',
-  description: '九月一日，合肥一中滨湖校区的伸缩门在七点整打开。门卫室旁多了一张巡查表：校服、学生证、迟到原因，每一栏都等着吴福军的签字。送孩子的车还没散，第一批学生已经在议论新贴出的周测安排。\n\nB3 楼梯口，一张要求调整作息的纸被人撕去半角；不久，又有人把它贴了回去。有人怕学校连剩下的自由也收走，有人怕一松手，成绩就先掉下去。教学楼里的铃照常响起，行政楼却收到了两份措辞相反的请愿。\n\n这一天仍要上课。等到放学，必须有人回答那两份请愿。',
+  description: '2023年9月1日，合肥一中迎来了新的学期。然而，平静的表面下暗流涌动。\n\n教务督导吴福军加强了对校园的巡查，试图将一切不稳定因素扼杀在摇篮中。学生群体内部也出现了分裂，激进派和保守派的矛盾日益尖锐。\n\n在这座被高墙围拢的“经天纬地”之城里，谁将主宰未来的秩序？是继续忍受高压的应试教育，还是掀起一场彻底的变革？\n\n命运的齿轮已经开始转动。',
   buttonText: '天佑做题家',
 };
 
@@ -191,7 +191,7 @@ const INITIAL_GAME_STATE: GameState = {
     title: '校长',
     portrait: 'feng_anbao',
     ideology: 'authoritarian',
-    description: '封安宝每天早晨先看年级排名，再看巡查记录。他能记住一次模考里下滑的每个班，却很少记得被叫进办公室的学生说了什么。行政楼的人熟悉他的要求：问题要在下一次铃响前处理好，成绩则要在下一次考试前给出解释。',
+    description: '合肥市第一中学的现任校长，以其强硬的管理风格和对升学率的极度追求而闻名。在他的治下，学校的纪律严明，但也压抑了学生们的个性发展。',
     buffs: ['每日稳定度 +0.05', '每日卷子储备 -10']
   },
   ideologies: {
@@ -207,7 +207,7 @@ const INITIAL_GAME_STATE: GameState = {
     {
       id: 'exam_pressure',
       name: '应试高压',
-      description: '每周成绩榜准时贴上走廊。有人在榜前找自己的名字，有人先看朋友有没有退步。年级组据此调整课时，学生则开始计算还能从睡眠里挪出多少时间。',
+      description: '升学率的阴影笼罩着整座校园。每一次周考的排名，都是悬在学生头顶的剑。',
       type: 'negative',
       effects: { stabDaily: -0.5, tprDaily: -0.5 } // Assuming base TPR is -10, +5% is -0.5
     },
@@ -2473,7 +2473,7 @@ export default function App() {
                     title: '赛博娱乐大统领',
                     portrait: 'gouxiong',
                     ideology: 'deconstructivism',
-                    description: '狗熊从 B3 的放映设备旁走到了主席台上。屏幕、笑话和突然改写的会议议程仍是他最顺手的工具；只是在被嘲弄者必须执行那些决定时，礼堂里的笑声就不那么整齐了。学生们开始问他，散场之后究竟由谁负责。'
+                    description: '曾经的B3教学楼革命者，如今的赛博娱乐大统领。他利用了学生们的愤怒和绝望，将学校变成了一个充满二次元低幼性压抑风格的游乐场。高二时偷女同学裤子的恶趣味，如今成了他统治的象征。'
                   },
                   // v8.11 狗熊撕毁一切旧法案：纪律全面自治、作息自由、人事学生评议会、教育素质教育
                   lawSystem: { discipline: 'full_autonomy', schedule: 'free_schedule', personnel: 'student_assembly_hr', education: 'quality_education', assessment: 'project_assessment', clubs: 'student_clubs' },
@@ -2541,7 +2541,7 @@ export default function App() {
                     title: '及第教育CEO',
                     portrait: 'feng_anxiang',
                     ideology: 'anarcho_capitalism',
-                    description: '封安祥第一次进校长办公室，先问的不是座次，而是印刷室和教辅仓库的成本。旧楼需要修，教师需要发工资，他确实能把钱带来；合同上的每一笔投入，也都附着下一季度必须兑现的增长目标。',
+                    description: '及第教育的掌舵人，将学校视为一台巨大的提分机器。他认为教育的本质就是一场可以被精确计算和无限压榨的商业游戏。',
                     buffs: ['每日GDP增长 +5%', '每日学生支持度 -0.5%']
                   },
                   // v8.11 及第接管：应试至上、衡水作息、校长一言堂
