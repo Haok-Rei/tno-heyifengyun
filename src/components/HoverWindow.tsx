@@ -73,7 +73,7 @@ export default function HoverWindow({ children, content, width = 300, estimateHe
 
   return (
     <>
-      <div ref={triggerRef} className="relative" onMouseEnter={scheduleOpen} onMouseLeave={scheduleClose}>
+      <div ref={triggerRef} className="relative" onMouseEnter={scheduleOpen} onMouseLeave={scheduleClose} onFocus={scheduleOpen} onBlur={scheduleClose}>
         {children}
       </div>
       {pos.show && createPortal(

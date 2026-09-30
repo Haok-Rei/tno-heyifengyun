@@ -629,7 +629,7 @@ export default function App() {
     const anchor = GUIDE_STEPS[tutorialStep].anchor;
     setGovernmentOpen(anchor.startsWith('[data-tour="nation-'));
     setShowFocusTree(anchor === '[data-tour="focus-tree"]');
-    setDecisionsOpen(anchor === '[data-tour="decisions"]');
+    setDecisionsOpen(anchor === '[data-tour="decisions"]' || anchor === '[data-tour="situation-metrics"]');
     setSelectedTileId(anchor === '[data-tour="map"]' || anchor === '[data-tour="workgroups"]' ? 'b3_tower' : null);
   }, [tutorialStep]);
   useEffect(() => {
@@ -5821,3 +5821,4 @@ export default function App() {
     </div>
   );
 }
+import './components/mechanismPanels.css';

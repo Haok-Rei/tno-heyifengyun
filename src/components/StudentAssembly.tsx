@@ -89,7 +89,7 @@ export default function StudentAssembly({ state, onClose, onInteract }: StudentA
 
   return (
     <div className="absolute inset-0 z-30 bg-black/80 backdrop-blur-sm flex items-center justify-center p-8">
-      <div className={`bg-zinc-900 border-2 border-tno-border w-full ${isDeluxeAssembly ? 'max-w-6xl' : 'max-w-4xl'} max-h-full flex flex-col shadow-2xl`}>
+      <div className={`assembly-panel bg-zinc-900 border-2 border-tno-border w-full ${isDeluxeAssembly ? 'max-w-6xl' : 'max-w-4xl'} max-h-full flex flex-col shadow-2xl`}>
         {/* Header */}
         <div className="p-4 border-b border-tno-border bg-black flex justify-between items-center">
           <h2 className="text-2xl font-bold tracking-widest text-tno-highlight">{isDeluxeAssembly ? '新学生代表大会' : (isUpgraded ? '合一学生议会' : '学生代表大会')}</h2>
@@ -223,20 +223,28 @@ export default function StudentAssembly({ state, onClose, onInteract }: StudentA
         <div className="flex-1 overflow-y-auto p-6 flex flex-col md:flex-row gap-8">
           {/* Left: Parliament View */}
           <div className="flex-1 flex flex-col items-center">
-            <h3 className="text-lg font-bold mb-6">议会席位分布 (100席)</h3>
-            <div className="w-full max-w-md aspect-square relative">
-              {/* Semi-circle arrangement */}
-              <div className="absolute inset-0 flex flex-wrap content-start justify-center gap-2 p-4">
-                {dots.map((dot, i) => (
-                  <div 
-                    key={i} 
-                    className={`w-4 h-4 rounded-full ${dot.color} border border-black/50 shadow-sm`}
-                    title={factionDetails.find(f => f.id === dot.id)?.name}
-                  />
-                ))}
-              </div>
+            <h3 className="text-lg font-bold mb-4">议会席位分布（{dots.length}席）</h3>
+            <div className="assembly-hemicycle">
+              <svg viewBox="0 0 360 215" role="img" aria-label={`学生代表大会，${dots.length}席`}>
+                {[62,87,112,137,162].map(r => <path key={r} d={`M${180-r} 180A${r} ${r} 0 0 1 ${180+r} 180`} stroke="#41565b" strokeWidth=".7" fill="none" />)}
+                {(() => {
+                  const colors: Record<string,string> = {orthodox:'#c67b72',bear:'#ad78a3',pan:'#7f9fc6',otherDem:'#72b5b8',testTaker:'#b1b6ae',conservativeDem:'#8988b3',jidiTutoring:'#c3a263'};
+                  const seats: {x:number;y:number;angle:number}[]=[];
+                  // Allocate the actual seat total across five curved rows; faction blocks follow angular order.
+                  let remaining=dots.length;
+                  [12,16,20,24,28].forEach((weight,row) => {
+                    const count=row===4?remaining:Math.round(dots.length*weight/100); remaining-=count;
+                    for(let j=0;j<count;j++) { const angle=Math.PI-(j+.5)*Math.PI/count; const r=62+row*25; seats.push({x:180+r*Math.cos(angle),y:180-r*Math.sin(angle),angle}); }
+                  });
+                  seats.sort((a,b)=>b.angle-a.angle);
+                  return seats.map((seat,i)=><rect key={i} x={seat.x-3.4} y={seat.y-3.4} width="6.8" height="6.8" rx="1" fill={colors[dots[i].id]} stroke="#e0e0c7" strokeWidth=".4"><title>{factionDetails.find(f=>f.id===dots[i].id)?.name}</title></rect>);
+                })()}
+                <path d="M143 182h74l-8 17h-58Z" fill="#1e3035" stroke="#a2afa1" />
+                <text x="180" y="194" textAnchor="middle" fontSize="8" fill="#d0c3a1" letterSpacing="3">主席台</text>
+              </svg>
+              <div className="assembly-legend">{factionDetails.filter(f=>f.count>0).map(f=><span key={f.id}><i className={f.color}/>{f.name} · {f.count}</span>)}</div>
             </div>
-            
+
             {state.parliamentState?.powerBalanceUnlocked && (
               <div className="mt-6 w-full max-w-md bg-black/50 p-4 border border-tno-border">
                 <div className="text-center font-bold text-tno-highlight mb-4 tracking-widest">权力平衡</div>

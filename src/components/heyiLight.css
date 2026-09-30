@@ -1,24 +1,24 @@
 .heyi-map-slot { flex: 1; min-height: 0; min-width: 0; position: relative; display: flex; overflow: hidden; }
 .heyi-light-v2 { position: absolute; inset: 0; z-index: 30; display: flex; flex-direction: column; min-width: 0; min-height: 0; overflow: hidden; color: #d7e2db; background: #030b0f; border: 1px solid #527780; box-shadow: inset 0 0 0 2px #09191e, 0 8px 30px #000b; font-family: 'Microsoft YaHei', sans-serif; }
-.heyi-light-v2__header { z-index: 2; flex: none; height: 76px; display: flex; align-items: center; gap: 18px; padding: 7px 14px 8px 19px; border-bottom: 1px solid #46717b; background: linear-gradient(90deg, #101b20, #11181b 55%, #081216); box-shadow: 0 3px 17px #000a; }
+.heyi-light-v2__header { z-index: 2; flex: none; height: 98px; display: flex; align-items: center; gap: 18px; padding: 7px 14px 8px 19px; border-bottom: 1px solid #46717b; background: linear-gradient(90deg, #101b20, #11181b 55%, #081216); box-shadow: 0 3px 17px #000a; }
 .heyi-light-v2__title { flex: 1; min-width: 0; }
 .heyi-light-v2__title span { display: block; color: #7ea5ac; font: 10px 'Courier New', monospace; letter-spacing: .16em; white-space: nowrap; }
 .heyi-light-v2__title h2 { margin: 3px 0 0; color: #e7e9dc; font: bold 22px 'SimSun', 'Songti SC', serif; letter-spacing: .2em; }
-.heyi-light-v2__value { flex: none; width: clamp(180px, 30%, 264px); padding: 5px 10px 4px; background: linear-gradient(135deg, #0c1b20, #061115); border: 1px solid #577b80; box-shadow: inset 0 0 0 1px #142c32, inset 0 8px 16px #16252a88, 0 2px 8px #0009; }
+.heyi-light-v2__value { flex: none; width: clamp(260px, 43%, 420px); padding: 5px 10px 4px; background: linear-gradient(135deg, #0c1b20, #061115); border: 1px solid #577b80; box-shadow: inset 0 0 0 1px #142c32, inset 0 8px 16px #16252a88, 0 2px 8px #0009; }
 .heyi-light-v2__readout { display: flex; align-items: center; gap: 5px; white-space: nowrap; }
 .heyi-light-v2__readout > span { color: #a2b6b5; font-size: 10px; letter-spacing: .1em; }
 .heyi-light-v2__readout small { display: block; color: #5f848b; font: 8px 'Courier New', monospace; letter-spacing: .06em; }
-.heyi-light-v2__readout strong { margin-left: auto; color: var(--heyi-gauge); font: bold 26px Georgia, serif; line-height: 1; font-variant-numeric: tabular-nums; text-shadow: 0 0 12px color-mix(in srgb, var(--heyi-gauge), transparent 45%); }
+.heyi-light-v2__readout strong { margin-left: auto; color: var(--heyi-gauge); font: bold 36px Georgia, serif; line-height: 1; font-variant-numeric: tabular-nums; text-shadow: 0 0 12px color-mix(in srgb, var(--heyi-gauge), transparent 45%); }
 .heyi-light-v2__trend { display: flex; align-items: center; gap: 2px; border-left: 1px solid #39545a; padding-left: 5px; }
-.heyi-light-v2__trend b { color: var(--heyi-gauge); font-size: 16px; }
-.heyi-light-v2__trend em { color: #aabfbb; font-size: 9px; font-style: normal; letter-spacing: .02em; }
+.heyi-light-v2__trend b { color: var(--heyi-gauge); font-size: 25px; }
+.heyi-light-v2__trend em { color: #aabfbb; font-size: 12px; font-style: normal; letter-spacing: .02em; }
 .heyi-light-v2__instrument { position: relative; margin-top: 4px; }
 .heyi-light-v2__ticks { display: flex; justify-content: space-between; height: 6px; margin: 0 1px 2px; }
 .heyi-light-v2__ticks i { width: 1px; height: 3px; background: #496e73; }
 .heyi-light-v2__ticks i.major { height: 6px; background: #a6c0ba; }
-.heyi-light-v2__scale { position: relative; height: 7px; border: 1px solid #5d7e82; background: repeating-linear-gradient(90deg, #12252b 0 4.6%, #274047 4.6% 5%); box-shadow: inset 0 2px 3px #000a; }
+.heyi-light-v2__scale { position: relative; height: 14px; border: 1px solid #5d7e82; background: repeating-linear-gradient(90deg, #12252b 0 4.6%, #274047 4.6% 5%); box-shadow: inset 0 2px 3px #000a; }
 .heyi-light-v2__scale > i { display: block; height: 100%; background: linear-gradient(90deg, #416e76, var(--heyi-gauge)); box-shadow: 0 0 11px var(--heyi-gauge); transition: width .7s ease; }
-.heyi-light-v2__scale > b { position: absolute; top: -3px; width: 2px; height: 11px; background: #edf4e5; box-shadow: 0 0 5px #c7e6df; transform: translateX(-1px); }
+.heyi-light-v2__scale > b { position: absolute; top: -3px; width: 2px; height: 19px; background: #edf4e5; box-shadow: 0 0 5px #c7e6df; transform: translateX(-1px); }
 .heyi-light-v2__scale > span { position: absolute; top: -4px; width: 6px; height: 6px; border: 1px solid #d3b995; background: #07151a; transform: rotate(45deg); box-shadow: 0 0 4px #d3b99588; }
 .heyi-light-v2__close { flex: none; display: grid; place-items: center; width: 31px; height: 31px; color: #b4c7c3; background: #111e23; border: 1px solid #52717a; cursor: pointer; }
 .heyi-light-v2__close:hover, .heyi-light-v2__close:focus-visible { color: white; border-color: #b8dce0; outline: 1px solid #76b5bd; }
@@ -61,3 +61,10 @@
 @keyframes heyi-smoke { from { translate: -4px 9px; opacity: .24; } to { translate: 11px -16px; opacity: .52; } }
 @media (max-width: 700px) { .heyi-light-v2__header { height: 66px; gap: 7px; padding: 5px 8px; } .heyi-light-v2__title span { display: none; } .heyi-light-v2__title h2 { font-size: 17px; } .heyi-light-v2__value { width: 156px; padding: 4px 6px; } .heyi-light-v2__readout strong { font-size: 20px; } .heyi-light-v2__readout small { display: none; } .heyi-light-v2__close { width: 28px; height: 28px; } }
 @media (prefers-reduced-motion: reduce) { .heyi-light-v2__scene .heyi-ember, .heyi-light-v2__scene .heyi-window__light, .heyi-light-v2__scene .heyi-person--walking, .heyi-light-v2__scene .heyi-person__leg, .heyi-light-v2__scene .heyi-distant-person, .heyi-light-v2__scene .heyi-tree__crown, .heyi-light-v2__scene .heyi-falling-leaf, .heyi-light-v2__scene .heyi-lamp__signal, .heyi-light-v2__scene .heyi-road-reflection, .heyi-light-v2__scene .heyi-cloth, .heyi-light-v2__scene .heyi-searchlight, .heyi-light-v2__scene .heyi-smoke { animation: none; } .heyi-light-v2__scale i { transition: none; } }
+
+.heyi-light-v2__scene .heyi-person__hit { fill:transparent; stroke:none; cursor:help; }
+.heyi-light-v2__scene .heyi-person.is-observed > g path { stroke:#63d9ed; filter:drop-shadow(0 0 2px #35cfff); }
+.heyi-light-v2__scene .heyi-person:has(.heyi-person__hit:focus-visible) > g path { stroke:#63d9ed; }
+.heyi-person__hit:focus { outline:none; }
+.heyi-light-v2__scene .heyi-campus { filter:drop-shadow(0 2px 2px #000); }
+@media(max-width:700px) { .heyi-light-v2__header {height:83px;} .heyi-light-v2__value {width:210px;} .heyi-light-v2__readout strong {font-size:28px;} .heyi-light-v2__trend em {font-size:10px;} }

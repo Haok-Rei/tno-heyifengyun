@@ -8,13 +8,11 @@ interface Props { state: GameState; onClose: () => void }
 type Snapshot = ReturnType<typeof getHeyiLightSnapshot>;
 type Point = { x: number; y: number };
 const HOTSPOTS: { id: HeyiZone; path: string; anchor: Point }[] = [
-  { id: 'building', path: 'M40 165L288 78L910 77L1160 165V432L910 352H288L40 432Z', anchor: {x: 600, y: 140} },
+  { id: 'building', path: 'M80 137L720 75L1160 127V386L720 435L80 377Z', anchor: {x: 600, y: 140} },
   { id: 'sign', path: 'M365 230H792V306L365 311Z', anchor: {x: 590, y: 270} },
   { id: 'gate', path: 'M365 311L792 305V500L365 529Z', anchor: {x: 590, y: 410} },
   { id: 'guard', path: 'M65 355L318 349L338 379V522L65 541Z', anchor: {x: 185, y: 430} },
   { id: 'trees', path: 'M1007 292Q999 251 1040 212Q1037 167 1080 170Q1102 133 1138 160Q1172 151 1184 192Q1214 223 1188 267Q1178 296 1133 299Q1097 317 1064 302Q1036 312 1007 292ZM1084 298L1105 301L1090 461L1081 461Z', anchor: {x: 1100, y: 270} },
-  { id: 'teachers', path: 'M858 468Q865 459 875 460Q888 462 889 477L901 493L904 546L890 556L882 533L872 558L850 557L844 506L854 487Z', anchor: {x: 875, y: 500} },
-  { id: 'students', path: 'M449 498Q463 483 477 498L488 518L501 526L502 571L491 591L473 589L466 563L456 591L437 589L435 536Z M534 509Q550 492 565 508L578 528L589 538L590 579L578 601L560 599L552 572L542 600L522 597L521 545Z M636 503Q651 488 667 504L679 524L690 534L692 575L680 597L662 595L654 569L645 596L624 593L623 540Z', anchor: {x: 570, y: 540} },
   { id: 'road', path: 'M-500 565L0 506L364 507L450 535L753 515L1200 497L1700 565V700H-500Z', anchor: {x: 700, y: 615} },
 ];
 const MARKS: Record<Snapshot['route'], [string, string]> = {
@@ -30,9 +28,10 @@ const MARKS: Record<Snapshot['route'], [string, string]> = {
   gouxiong: ['校内活动通知', '礼堂节目单又改了一遍'],
   wu: ['通行登记制度', '请出示证件并依次入校'],
 };
-function Person({ x, y, teacher = false, tired = false, stride = 0 }: { x: number; y: number; teacher?: boolean; tired?: boolean; stride?: number }) {
+function Person({ x, y, teacher = false, tired = false, stride = 0, active, snapshot, onZone, onPointer }: { x: number; y: number; teacher?: boolean; tired?: boolean; stride?: number; active: HeyiZone | null; snapshot: Snapshot; onZone: (zone: HeyiZone | null, anchor?: Point) => void; onPointer: (event: PointerEvent<SVGPathElement>, zone: HeyiZone) => void }) {
+  const zone: HeyiZone = teacher ? 'teachers' : 'students';
   const accent = teacher ? '#c6c8ae' : stride === 2 ? '#b9b393' : stride === 3 ? '#8da9b6' : '#8bbfbe';
-  return <g transform={'translate(' + x + ' ' + y + ')'} className={'heyi-person ' + (stride ? 'heyi-person--walking' : 'heyi-person--standing')} style={{ animationDelay: '-' + (stride * 1.13) + 's' }}>
+  return <g transform={'translate(' + x + ' ' + y + ')'} className={'heyi-person ' + (active === zone ? 'is-observed ' : '') + (stride ? 'heyi-person--walking' : 'heyi-person--standing')} style={{ animationDelay: '-' + (stride * 1.13) + 's' }}>
     <ellipse cx="2" cy="27" rx="24" ry="4" fill="#111d22" opacity=".8" stroke="none" />
     <g transform={tired ? 'rotate(7 0 -20)' : undefined}>
       <path className="heyi-person__leg heyi-person__leg--left" d="M-8-3L-14 19L-18 24L-10 26L-5 20L2 4Z" fill="#15242a" stroke={accent} strokeWidth="1.45" strokeLinejoin="round" />
@@ -51,92 +50,52 @@ function Person({ x, y, teacher = false, tired = false, stride = 0 }: { x: numbe
       {teacher ? <g><path d="M17-7h17v24H17Z" fill="#0d2026" stroke="#c7ccb9" strokeWidth="1.35" /><path d="M21-7v-4h10v4M20 0h11m-11 5h8" stroke="#8faeaa" strokeWidth="1" /></g> : <g><path d="M-14-34L-31-29L-27 1L-13 2Z" fill={stride === 2 ? '#2c302a' : '#122832'} stroke={accent} strokeWidth="1.5" /><path d="M-27-26l14-1m-13 10 12-2m-10 11 11-2" stroke="#698884" strokeWidth=".9" /><path d="M-15-29l5 5" stroke="#d5c6a5" strokeWidth="1.2" /><circle cx="-21" cy="-14" r="2" fill="#c6bb8e" stroke="none" /></g>}
       {stride === 2 && <g><path d="M19-6l13-5 5 18-16 3Z" fill="#192a2d" stroke="#c0cbbd" strokeWidth="1.2" /><path d="M22-3l10-3m-9 7 10-3m-9 7 10-3" stroke="#8fa8a8" strokeWidth=".8" /></g>}
     </g>
-  </g>;
-}
-function ClassroomWindow({ x, y, lit, cracked, index }: { x: number; y: number; lit: boolean; cracked: boolean; index: number }) {
-  const frame = 'M' + x + ' ' + y + 'h51v61h-51Z';
-  return <g className="heyi-window">
-    <path d={'M' + (x - 7) + ' ' + (y - 8) + 'h65v75h-65Z'} fill="#06171c" stroke="#5f8f98" strokeWidth="1" />
-    <path d={frame} fill={lit ? '#2c2c26' : '#071014'} stroke="#a8b9b2" strokeWidth="1.6" />
-    <g className={lit ? 'heyi-window__light' : ''} style={{ animationDelay: '-' + ((index % 7) * 1.7) + 's' }}>
-      {lit && <path d={'M' + (x + 2) + ' ' + (y + 3) + 'h47v54h-47Z'} fill={index % 4 === 0 ? '#a68d59' : '#6f765d'} opacity=".78" />}
-      {lit && <path d={'M' + (x + 4) + ' ' + (y + 5) + 'h42'} stroke="#e2d7b3" strokeWidth="1.2" opacity=".85" />}
-    </g>
-    <path d={'M' + (x + 25) + ' ' + y + 'v61M' + x + ' ' + (y + 31) + 'h51M' + (x - 5) + ' ' + (y + 65) + 'h61'} fill="none" stroke="#a2c5c6" strokeWidth="1.3" />
-    <path d={'M' + (x + 3) + ' ' + (y + 5) + 'l17 16m19-13 8 10'} stroke="#79a7a9" strokeWidth=".7" opacity=".6" />
-    {lit && <g fill="none" stroke="#89a8a5" strokeWidth=".8">
-      <path d={'M' + (x + 5) + ' ' + (y + 49) + 'h17l2 10m6-10h16l1 10'} />
-      <path d={'M' + (x + 9) + ' ' + (y + 45) + 'v-5h8v5m18-4 7-4v8'} />
-    </g>}
-    {index % 5 === 0 && <g><path d={'M' + (x + 13) + ' ' + (y + 71) + 'h25v13h-25Z'} fill="#092026" stroke="#96b1b1" strokeWidth="1" /><circle cx={x + 26} cy={y + 77} r="4" fill="none" stroke="#7d9e9f" strokeWidth=".9" /><path d={'M' + (x + 11) + ' ' + (y + 70) + 'h29'} stroke="#c4cfca" strokeWidth="1" /></g>}
-    {index % 6 === 2 && <path d={'M' + (x + 4) + ' ' + (y + 5) + 'v48m43-48v48'} stroke="#647e82" strokeWidth="2.5" opacity=".6" />}
-    {cracked && <path d={'M' + x + ' ' + y + 'l21 31-7 21m7-21 28 30'} fill="none" stroke="#d1856c" strokeWidth="2" />}
-  </g>;
-}
-function SideWindow({ x, y, right = false, lit = false, index }: { x: number; y: number; right?: boolean; lit?: boolean; index: number }) {
-  const direction = right ? -1 : 1;
-  const sx = (distance: number) => x + distance * direction;
-  return <g className="heyi-side-window">
-    <path d={`M${x} ${y}L${sx(33)} ${y - 9}V${y + 37}L${x} ${y + 48}Z`} fill={lit ? '#413c2c' : '#081418'} stroke="#a9bbb0" strokeWidth="1.3" />
-    <path className={lit ? 'heyi-window__light' : ''} style={{ animationDelay: `-${(index % 6) * 1.3}s` }} d={`M${sx(3)} ${y + 3}L${sx(30)} ${y - 4}V${y + 32}L${sx(3)} ${y + 42}Z`} fill={lit ? '#a18155' : '#0c1c20'} opacity={lit ? .8 : .5} />
-    <path d={`M${sx(16)} ${y - 4}V${y + 41}M${x} ${y + 24}L${sx(33)} ${y + 15}M${sx(-4)} ${y + 49}L${sx(36)} ${y + 35}`} stroke="#819d9c" fill="none" strokeWidth="1" />
-    <path d={`M${sx(4)} ${y + 5}L${sx(12)} ${y + 11}`} stroke="#d2d3bf" strokeWidth=".7" opacity=".7" />
+    <path className="heyi-person__hit" d="M-12-70Q0-77 13-68L16-41L25-17L38-10V22L12 31L0 15L-12 31L-22 28L-35 4L-36-34L-15-42Z"
+      role="button" tabIndex={0} aria-label={'观察'+snapshot.zones[zone].label}
+      onPointerEnter={e=>onPointer(e,zone)} onPointerMove={e=>onPointer(e,zone)} onPointerLeave={()=>onZone(null)}
+      onFocus={()=>onZone(zone,{x,y:y-35})} onBlur={()=>onZone(null)}
+      onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();onZone(zone,{x,y:y-35});}}} />
   </g>;
 }
 function SchoolCampus({ lit, unrest, route }: { lit: number; unrest: boolean; route: Snapshot['route'] }) {
-  const warm = route === 'democracy' || route === 'reform';
+  // Both facades converge on a shared horizon at y=260; the nearest corner is deliberately off-centre.
+  const corner = {x:720, top:75, bottom:435};
+  const faces = [{x:80,top:137,bottom:377,n:9},{x:1160,top:127,bottom:386,n:6}];
+  const point=(face:typeof faces[number],u:number,v:number):Point=>({x:corner.x+(face.x-corner.x)*u,y:corner.top+(face.top-corner.top)*u+v*((corner.bottom-corner.top)+(face.bottom-face.top-corner.bottom+corner.top)*u)});
+  const line=(points:Point[])=>'M'+points.map(q=>`${q.x.toFixed(2)} ${q.y.toFixed(2)}`).join('L');
   return <g className="heyi-campus">
-    <path d="M-500 0H1700V307L1160 165L910 78L288 78L40 165L-500 307Z" fill="url(#heyi-sky)" />
-    <path d="M-500 306L40 166L288 79L910 78L1160 166L1700 306V463L1160 432L910 351L288 351L40 432L-500 463Z" fill="#0d181c" />
-    <path d="M39 168L287 78L287 351L40 431Z" fill="#30302b" stroke="#b6baaa" strokeWidth="2" />
-    <path d="M910 78L1161 166V432L910 351Z" fill="#272d2a" stroke="#b6baaa" strokeWidth="2" />
-    <path d="M39 168L287 78L287 351L40 431Z M910 78L1161 166V432L910 351Z" fill="url(#heyi-brick)" opacity=".28" />
-    <path d="M288 78H910V351H288Z" fill="#222b2b" stroke="#d2cab0" strokeWidth="2" />
-    <path d="M296 92H902V341H296Z" fill="url(#heyi-brick)" opacity=".58" />
-    <path d="M42 175L282 90M42 193L282 108M42 261L282 207M42 347L282 322M43 422L285 346M913 90L1158 176M913 108L1158 194M913 207L1158 261M913 322L1158 349M913 346L1158 422" fill="none" stroke="#988f78" strokeWidth="2" />
-    <path d="M289 85H909M290 164H909M290 253H909M290 343H909" stroke="#777e76" strokeWidth="4" />
-    <path d="M289 91H909M289 170H909M289 259H909M289 350H909" stroke="#c3c2aa" strokeWidth="1.2" />
-    {[306, 382, 458, 534, 610, 686, 762, 838, 904].map(x => <g key={x}><path d={`M${x} 86V350`} stroke="#485e5e" strokeWidth="6" /><path d={`M${x + 3} 86V350`} stroke="#97a49a" strokeWidth="1" /></g>)}
-    {[0, 1, 2].map(floor => Array.from({ length: 8 }, (_, i) => {
-      const index = i + floor * 8;
-      return <g key={index}><ClassroomWindow x={312 + i * 73} y={98 + floor * 84} lit={(index * 7 + floor) % 12 < lit} cracked={unrest && (index === 4 || index === 18)} index={index} /></g>;
-    }))}
-    {[0, 1, 2].map(floor => [0, 1, 2, 3].map(i => <g key={`left-${floor}-${i}`}>
-      <SideWindow x={57 + i * 55} y={191 + floor * 70 - i * 18} lit={(i + floor * 3) % 9 < lit - 1} index={i + floor * 4} />
-      <SideWindow x={1142 - i * 55} y={191 + floor * 70 - i * 18} right lit={(i * 2 + floor * 3) % 9 < lit - 1} index={i + floor * 4 + 12} />
-    </g>))}
-    <path d="M544 351V292q53-31 108 0v59" fill="#0b181c" stroke="#c2c0aa" strokeWidth="2" />
-    <path d="M553 351v-54q46-25 90 0v54M598 287v64M546 351h104" fill="none" stroke="#9bad9d" strokeWidth="1.5" />
-    <path d="M547 292q51-43 103 0M557 301q41-26 83 0" fill="none" stroke="#d0c9ad" strokeWidth="1" />
-    <path d="M564 349v-47l34-11 34 11v47" fill="#122122" stroke="#788b7c" strokeWidth="1" />
-    <path d="M566 309l31-9m3 0 30 9M567 321l30-8m3 0 30 8" stroke="#a5a58a" strokeWidth=".8" />
-    <path d="M557 350l-17 8h115l-16-8Z" fill="#817f68" stroke="#d0c4a3" strokeWidth="1" />
-    <path d="M569 359l-16 8h92l-16-8Z" fill="#414a42" stroke="#9ea991" strokeWidth=".8" />
-    <path d="M40 167L284 75H914L1161 166M40 175L285 85H912L1161 175M40 430L285 354H913L1161 430" fill="none" stroke="#e0d4b4" strokeWidth="2.5" />
-    <path d="M27 170L285 68H914L1174 170M39 181L285 89H912L1161 181" fill="none" stroke="#596d67" strokeWidth="5" />
-    <path d="M520 77V52l16-11h124l18 11v25M536 41V24h124v17M552 24V10h92v14" fill="#28302d" stroke="#c7c2a6" strokeWidth="1.7" />
-    <path d="M530 55h139m-132 7h124m-109-28h94" stroke="#857f6b" strokeWidth="1" />
-    <circle cx="598" cy="41" r="12" fill="#131d1e" stroke="#d6c9a5" strokeWidth="1.5" />
-    <circle cx="598" cy="41" r="8" fill="#34372f" stroke="#a7a98e" strokeWidth=".8" />
-    <path d="M598 35v7l5 3" fill="none" stroke="#ddd4b7" strokeWidth="1.3" />
-    {[0, 1, 2, 3].map(i => <g key={i}><path d={`M${328+i*182} 77v-14h14v14`} fill="#293431" stroke="#a4ab98" strokeWidth="1" /><path d={`M${331+i*182} 64v-6h8v6`} fill="#171e1e" stroke="#8e9f91" strokeWidth=".8" /></g>)}
-    <path d="M162 390L288 351H910L1032 390L1185 487H-24Z" fill="#152020" stroke="#697d75" strokeWidth="1.5" />
-    <path d="M525 352h145l92 148H433Z" fill="#464438" stroke="#aaab8f" strokeWidth="1" opacity=".73" />
-    <path d="M536 367h127l12 20H522Zm-17 29h161l16 26H503Zm-22 37h205l21 34H476Z" fill="#515246" stroke="#b7b39c" strokeWidth=".8" opacity=".58" />
-    <path d="M548 353L486 500m165-147 63 147M598 356v142" stroke="#b6b299" strokeWidth="1" opacity=".45" />
-    <path d="M285 352L355 499M910 351L830 499M477 353L470 501M718 353L720 501" stroke="#a6aa91" strokeWidth="1.7" opacity=".65" />
-    <path d="M574 351L527 493M625 351L672 493" stroke="#5c716b" strokeWidth="1.2" />
-    <path d="M340 365L355 370M845 369L860 365M314 381L336 387M862 387L884 381" stroke="#c0aa7e" strokeWidth="1.4" />
-    <path d="M346 380l-33 5-12 30 47-12ZM850 380l35 5 12 30-49-12Z" fill="#223529" stroke="#94a97f" strokeWidth="1.2" />
-    {warm && <g fill="#789773" opacity=".74"><path d="M326 396q7-27 15 0m-4-1q10-23 17 0M855 396q7-27 15 0m-4-1q10-23 17 0" /></g>}
-    {[551, 638].map((x, i) => <g key={x} className="heyi-distant-person" style={{ animationDelay: `-${i * 2.3}s` }}>
-      <ellipse cx={x} cy={390 + i * 13} rx="9" ry="2.4" fill="#080f10" opacity=".65" />
-      <circle cx={x} cy={365 + i * 12} r="4" fill="#242d2a" stroke="#adb7a3" strokeWidth=".9" />
-      <path d={`M${x-5} ${371+i*12}l10 0 3 13-15 0Z`} fill={i ? '#34372c' : '#273939'} stroke="#a3b6a7" strokeWidth=".8" />
-      <path d={`M${x-4} ${384+i*12}l-4 7m11-7 5 7m-16-15-4 10m21-10 4 8`} stroke="#abb9a5" strokeWidth=".9" fill="none" />
+    <path d="M-500 0H1700V480H-500Z" fill="#040c10" />
+    <path d="M80 137L720 75L1160 127V386L720 435L80 377Z" fill="#060e12" stroke="#c2c9be" strokeWidth="1.4" />
+    <path d="M80 137L720 75L1160 127L1151 110L720 55L89 120Z" fill="#0a1317" stroke="#a5bcb9" strokeWidth="1" />
+    <path d="M80 145L720 87L1160 137M80 153L720 99L1160 146M80 374L720 429L1160 383" stroke="#6f969b" strokeWidth=".8" fill="none" />
+    {faces.map((face,side)=><g key={side}>
+      {[.02,.25,.5,.75,.98].map(v=><g key={v}><path d={line([point(face,0,v),point(face,1,v)])} fill="none" stroke="#abb6ad" strokeWidth="1.1" /><path d={line([point(face,0,v+.014),point(face,1,v+.014)])} fill="none" stroke="#467581" strokeWidth=".65" /></g>)}
+      {Array.from({length:face.n+1},(_,j)=>{const u=j/face.n;return <path key={j} d={line([point(face,u,.025),point(face,u,.98)])} stroke="#527d85" strokeWidth=".6" fill="none" />;})}
+      {[0,1,2,3].map(row=>Array.from({length:face.n},(_,col)=>{
+        const index=row*face.n+col+side*36;const u=(col+.18)/face.n, end=(col+.80)/face.n;const v=.055+row*.242, bottom=v+.165;
+        const corners=[point(face,u,v),point(face,end,v),point(face,end,bottom),point(face,u,bottom)];
+        const litWindow=(index*7+row)%16<lit*.7;
+        return <g key={index}>
+          <path d={line(corners)+'Z'} fill="#03090d" stroke="#c5d0c5" strokeWidth="1" />
+          {litWindow&&<path className="heyi-window__light" style={{animationDelay:`-${index%7*1.7}s`}} d={line([point(face,u+.015,v+.01),point(face,end-.015,v+.01),point(face,end-.015,bottom-.01),point(face,u+.015,bottom-.01)])+'Z'} fill={index%3?'#6e775a':'#ac9056'} opacity=".23" />}
+          <path d={line([point(face,(u+end)/2,v),point(face,(u+end)/2,bottom)])+line([point(face,u,(v+bottom)/2),point(face,end,(v+bottom)/2)])} fill="none" stroke="#739a9f" strokeWidth=".7" />
+          <path d={line([point(face,u-.012,bottom+.012),point(face,end+.012,bottom+.012),point(face,end+.012,bottom+.025),point(face,u-.012,bottom+.025)])+'Z'} fill="#101b1e" stroke="#b0bdb0" strokeWidth=".7" />
+          <path d={line([point(face,u+.035,v+.025),point(face,u+.10,v+.05)])} stroke="#799e9d" strokeWidth=".6" />
+          {unrest&&index%11===3&&<path d={line([corners[0],point(face,(u+end)/2,(v+bottom)/2),corners[2]])} stroke="#c17e69" strokeWidth="1.1" fill="none" />}
+          {row===3&&col%3===0&&<path d={line([point(face,u,bottom-.025),point(face,end,bottom-.025)])} stroke="#afab89" strokeWidth=".8" />}
+        </g>;
+      }))}
+      {Array.from({length:18},(_,i)=>{const v=.04+i*.052; return <path key={i} d={line([point(face,.91,v),point(face,1,v)])} stroke="#395d67" strokeWidth=".5" fill="none" />;})}
     </g>)}
-    <path d="M365 473L284 353M791 472L910 352" stroke="#687970" strokeWidth="1" strokeDasharray="8 12" />
-    <path d="M-500 463L40 431L285 351M1700 463L1160 432L910 351" fill="none" stroke="#485d5b" strokeWidth="1" />
+    <path d="M720 56V435M715 57V434M727 58V434" stroke="#c5cbb9" strokeWidth="1.1" />
+    <path d="M720 54V22L744 29V61L720 54ZM720 22L687 32V58L720 54" fill="#070e12" stroke="#afbcae" strokeWidth="1" />
+    <ellipse cx="706" cy="40" rx="8" ry="10" fill="#080f12" stroke="#c3b796" /><path d="M706 33V40L710 44" stroke="#ded4af" fill="none" />
+    <path d="M80 377L720 435L1160 386L1520 483L758 531L-230 477Z" fill="#070e11" stroke="#486d75" strokeWidth="1" />
+    <path d="M80 393L720 449L1160 401M80 407L720 463L1160 415M-150 446L720 485L1350 445M-350 484L720 516L1530 480" fill="none" stroke="#657d7d" strokeWidth=".65" />
+    <defs><clipPath id="heyi-courtyard-clip"><path d="M80 377L720 435L1160 386L1520 483L758 531L-230 477Z" /></clipPath></defs>
+    <path clipPath="url(#heyi-courtyard-clip)" d="M-280 474L-1200 260M165 487L-1200 260M525 507L-1200 260M770 530L2300 260M1010 516L2300 260M1325 496L2300 260" fill="none" stroke="#365762" strokeWidth=".6" />
+    <path d="M80 377L720 435L1160 386" fill="none" stroke="#c5b795" strokeWidth="1.2" />
+    <path d="M113 143V370M1124 137V381" stroke="#8caaa5" strokeWidth="1.1" />
   </g>;
 }
 function CampusPoster({ x, y, title, ink = '#bcb89f', paper = '#343630' }: { x: number; y: number; title: string; ink?: string; paper?: string }) {
@@ -155,7 +114,6 @@ function RouteArchitecture({ route }: { route: Snapshot['route'] }) {
     {[346, 426, 505, 664, 744, 823].map((x, i) => <path key={x} className="heyi-cloth" d={`M${x} ${97 + i % 2 * 8}l17 5-9 37-11-19Z`} fill={i % 2 ? '#355b50' : '#a89461'} stroke="#c8c4a4" strokeWidth="1" />)}
     <CampusPoster x={190} y={251} title="候选人" ink="#c1d3b7" paper="#263b32" />
     <CampusPoster x={924} y={251} title="投票须知" ink="#c1d3b7" paper="#263b32" />
-    <path d="M566 70l6-22h53l7 22M586 48v-17h23v17" fill="none" stroke="#c8c39e" strokeWidth="2" />
   </g>;
   if (route === 'revolution') return <g>
     <path className="heyi-cloth" d="M388 67V5l83 16-78 30Z" fill="#632e2e" stroke="#dc9681" strokeWidth="2" />
@@ -234,11 +192,9 @@ function RouteArchitecture({ route }: { route: Snapshot['route'] }) {
   </g>;
   return <g>
     <CampusPoster x={188} y={250} title="新学期" ink="#cbbd99" paper="#333630" />
-    <path d="M397 70v36m403-36v36" stroke="#aeb5a4" strokeWidth="2" />
-    <path d="M394 104h412" stroke="#968e72" strokeWidth="1.4" />
   </g>;
 }
-function RouteForeground({ route }: { route: Snapshot['route'] }) {
+function RouteForeground({ route, active, snapshot, onZone, onPointer }: { route: Snapshot['route']; active: HeyiZone | null; snapshot: Snapshot; onZone: (zone: HeyiZone | null, anchor?: Point) => void; onPointer: (event: PointerEvent<SVGPathElement>, zone: HeyiZone) => void }) {
   if (route === 'democracy') return <g className="heyi-route-props">
     <path d="M71 564l205-15 32 15-221 20Z" fill="#17221e" stroke="#8ba596" />
     <path d="M87 464l202-6v99l-202 11Z" fill="#273b32" stroke="#b8cab2" strokeWidth="2" />
@@ -260,7 +216,8 @@ function RouteForeground({ route }: { route: Snapshot['route'] }) {
     <path d="M839 493l124-5 6 51-136 7Z" fill="#3b2623" stroke="#cb8b76" strokeWidth="1.8" />
     <text x="901" y="524" textAnchor="middle" fill="#e2b0a0" fontSize="15" letterSpacing="4">临时委员会</text>
     <path d="M842 503l116-4m-113 37 118-5" stroke="#d29781" strokeWidth="1" />
-    <Person x={307} y={555} stride={1} />
+
+    <Person x={307} y={555} stride={1} active={active} snapshot={snapshot} onZone={onZone} onPointer={onPointer} />
   </g>;
   if (route === 'reform') return <g className="heyi-route-props">
     <path d="M82 564l230-16m506 11 175-10" stroke="#709778" strokeWidth="2" />
@@ -280,7 +237,7 @@ function RouteForeground({ route }: { route: Snapshot['route'] }) {
     <path d="M832 521l141-9v35l-141 7Z" fill="#3a2b26" stroke="#c5a88a" strokeWidth="1.3" />
     <path d="M842 534l121-8m-116 15 108-8" stroke="#d1b19a" strokeWidth="1" />
     <path d="M823 559v16m150-18v15" stroke="#a88c78" strokeWidth="2" />
-    <Person x={795} y={555} teacher />
+    <Person x={795} y={555} teacher active={active} snapshot={snapshot} onZone={onZone} onPointer={onPointer} />
   </g>;
   if (route === 'yang') return <g className="heyi-route-props">
     <path d="M72 567l210-16 25 14-225 20Z" fill="#29291f" stroke="#a69c76" />
@@ -300,7 +257,7 @@ function RouteForeground({ route }: { route: Snapshot['route'] }) {
     <path d="M811 553l168-13 22 14-174 16Z" fill="#2f291d" stroke="#c5af7a" />
     <path d="M837 515l138-5v35l-138 8Z" fill="#473a22" stroke="#d4bc7e" strokeWidth="1.3" />
     <text x="903" y="535" textAnchor="middle" fill="#e8d297" fontSize="15" letterSpacing="4">倒计时 60</text>
-    <Person x={772} y={572} tired stride={2} />
+    <Person x={772} y={572} tired stride={2} active={active} snapshot={snapshot} onZone={onZone} onPointer={onPointer} />
   </g>;
   if (route === 'jidi_riot') return <g className="heyi-route-props">
     <path d="M59 569l257-27 42 20-276 28Z" fill="#2d201e" stroke="#c37865" />
@@ -375,7 +332,7 @@ function Scene({ snapshot, month, viewBox, active, onZone, onPointer }: {
     <SchoolCampus lit={lit} unrest={unrest} route={route} />
     <RouteArchitecture route={route} />
     {mood === 'bright' && <g fill="none" stroke="#a8c8ad" strokeWidth="1.5"><path d="M198 408q13-21 26 0m10 0q12-17 23 0M1015 412q16-20 28 0" /><path d="M160 535l12-17 11 18m15-5 8-12 10 12" /></g>}
-    <path d="M0 419L58 390L365 405V527L0 514ZM791 396L1050 385L1200 418V500L791 520Z" fill="#292e2b" stroke="#a8ad9a" strokeWidth="1.4" />
+    <path d="M0 419L58 390L365 405V527L0 514ZM791 396L1050 385L1200 418V500L791 520Z" fill="#091316" stroke="#a8ad9a" strokeWidth="1.2" />
     <path d="M-500 565L0 514L365 507L450 535L753 515L1200 497L1700 567V700H-500Z" fill="url(#heyi-road)" stroke="#a1a99a" strokeWidth="1.6" />
     <path d="M0 531L451 550L750 530L1200 512M0 635L430 578M1200 633L778 572" fill="none" stroke="#396f78" strokeWidth="1" />
     <path d="M30 622L416 569L517 582L140 699H0ZM665 573L1191 527L1200 559L834 699H506Z" fill="#07151a" stroke="#659ba3" strokeWidth="1" />
@@ -424,7 +381,7 @@ function Scene({ snapshot, month, viewBox, active, onZone, onPointer }: {
     </g>
     <g>
       <path d="M365 230H792V500L365 529Z" fill="#071215" fillOpacity=".14" stroke="#b5d2cf" strokeWidth="2" />
-      <path d="M365 230H792V306L365 311Z" fill="#273230" stroke="#d7e4d8" strokeWidth="2" />
+      <path d="M365 230H792V306L365 311Z" fill="#081317" stroke="#d7e4d8" strokeWidth="1.5" />
       <path d="M365 230l17-19h394l16 19H365Z" fill="#68766a" stroke="#d8d0b5" strokeWidth="1.6" />
       <path d="M382 211l13-8h368l13 8Z" fill="#303b36" stroke="#b6b9a5" strokeWidth="1" />
       <path d="M365 230h427v13H365Z" fill="#1b2c2e" stroke="#c6cbb4" strokeWidth="1.2" />
@@ -480,18 +437,20 @@ function Scene({ snapshot, month, viewBox, active, onZone, onPointer }: {
       <circle className="heyi-lamp__signal" cx="52" cy="387" r="4" fill={!unrest && route !== 'wu' ? '#78a68d' : '#24443d'} stroke="#a3c3a9" strokeWidth="1" />
       <path d="M119 324q11 18 22 0" stroke={value > 65 ? '#d6c998' : '#53797f'} strokeWidth="1.8" />
     </g>
-    <RouteForeground route={route} />
-    <Person x={route === 'despair' ? 535 : 467} y={562} tired={mood === 'weary' || mood === 'ruin' || route === 'wu'} stride={1} />
-    {route !== 'despair' && <Person x={552} y={573} tired={mood === 'ruin' || route === 'jidi' || route === 'wu'} stride={2} />}
-    {route !== 'despair' && <Person x={654} y={568} tired={mood === 'weary' || mood === 'ruin' || route === 'jidi' || route === 'wu'} stride={3} />}
-    {route !== 'despair' && <Person x={868} y={531} teacher tired={route === 'jidi_riot' || route === 'wu'} />}
-    {unrest && <g className="heyi-ember"><path d="M719 406l8-32 11 22 10-39 9 50Z" fill="#8e382c" stroke="#d18b67" /><path d="M754 432l6-23 8 12 8-31 10 44Z" fill="#772b24" stroke="#cb7656" /></g>}
+
     <g className="heyi-hotspots">{HOTSPOTS.map(zone => <path key={zone.id} d={zone.path} className={active === zone.id ? 'is-active' : ''}
       role="button" tabIndex={0} aria-label={'观察' + snapshot.zones[zone.id].label + '：' + snapshot.zones[zone.id].description}
       onPointerEnter={event => onPointer(event, zone.id)} onPointerMove={event => onPointer(event, zone.id)}
       onPointerLeave={() => onZone(null)} onFocus={() => onZone(zone.id, zone.anchor)} onBlur={() => onZone(null)}
       onClick={() => onZone(zone.id, zone.anchor)}
       onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); event.stopPropagation(); onZone(zone.id, zone.anchor); } }} />)}</g>
+    <RouteForeground route={route} active={active} snapshot={snapshot} onZone={onZone} onPointer={onPointer} />
+    <Person x={route === 'despair' ? 535 : 467} y={562} tired={mood === 'weary' || mood === 'ruin' || route === 'wu'} stride={1} active={active} snapshot={snapshot} onZone={onZone} onPointer={onPointer} />
+    {route !== 'despair' && <Person x={552} y={573} tired={mood === 'ruin' || route === 'jidi' || route === 'wu'} stride={2} active={active} snapshot={snapshot} onZone={onZone} onPointer={onPointer} />}
+    {route !== 'despair' && <Person x={654} y={568} tired={mood === 'weary' || mood === 'ruin' || route === 'jidi' || route === 'wu'} stride={3} active={active} snapshot={snapshot} onZone={onZone} onPointer={onPointer} />}
+    {route !== 'despair' && <Person x={868} y={531} teacher tired={route === 'jidi_riot' || route === 'wu'} active={active} snapshot={snapshot} onZone={onZone} onPointer={onPointer} />}
+    {unrest && <g className="heyi-ember"><path d="M719 406l8-32 11 22 10-39 9 50Z" fill="#8e382c" stroke="#d18b67" /><path d="M754 432l6-23 8 12 8-31 10 44Z" fill="#772b24" stroke="#cb7656" /></g>}
+
   </svg>;
 }
 export default function HeyiLight({ state, onClose }: Props) {

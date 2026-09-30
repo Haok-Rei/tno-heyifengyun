@@ -72,16 +72,16 @@ export default function ReformCommittee({ state, setGameState, onClose, triggerE
   ];
 
   return (
-    <div className="absolute inset-0 z-50 bg-black/90 flex flex-col p-8 crt">
+    <div className="reform-panel absolute inset-0 z-50 flex flex-col crt">
       <div className="flex justify-between items-center mb-6 border-b-2 border-tno-highlight pb-4">
-        <h2 className="text-3xl font-bold text-tno-highlight tracking-widest">【庐州破晓：全面做题改革委员会】</h2>
+        <h2 className="text-3xl font-bold text-tno-highlight tracking-widest">全面做题改革委员会</h2>
         <button onClick={onClose} className="text-tno-red hover:text-white text-2xl font-bold">✕</button>
       </div>
 
       <div className="grid grid-cols-4 gap-4 mb-4">
         <div className="col-span-2 bg-black border border-tno-panel p-3">
           <h3 className="text-lg font-bold mb-1 text-white tracking-widest">总题改进度</h3>
-          <div className="w-full h-10 bg-zinc-900 border-2 border-gray-600 relative overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+          <div className="reform-progress w-full h-10 bg-zinc-900 border-2 border-gray-600 relative overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.5)]">
             <div 
               className={`absolute top-0 left-0 h-full transition-all duration-1000 ${progress < 30 ? 'bg-tno-red' : progress < 70 ? 'bg-yellow-500' : 'bg-tno-green'}`}
               style={{ width: `${progress}%` }}
@@ -96,7 +96,7 @@ export default function ReformCommittee({ state, setGameState, onClose, triggerE
         <div className="bg-black border border-tno-panel p-3 flex flex-col justify-center items-center relative overflow-hidden group">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(57,255,20,0.1)_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity"></div>
           <h3 className="text-md font-bold mb-1 text-gray-300 z-10">先锋党员</h3>
-          <div className="text-3xl font-black text-[#39FF14] drop-shadow-[0_0_8px_rgba(57,255,20,0.5)] z-10">{vanguardMembers}</div>
+          <div className="text-3xl font-black text-emerald-300  z-10">{vanguardMembers}</div>
           <p className="text-[10px] text-gray-500 mt-1 z-10">先锋党员 · 可用工作组 {freeTeams}/{getTeamCapacity(state)}</p>
           <p className="text-[10px] text-emerald-300 mt-1 z-10">基层筹备 {command.preparation?.reform || 0}/6 · 每次任务最多投入 2 份</p>
         </div>
@@ -109,7 +109,7 @@ export default function ReformCommittee({ state, setGameState, onClose, triggerE
             (state.reformState.juanhaoAttitude || 0) === 1 ? 'text-orange-500' :
             (state.reformState.juanhaoAttitude || 0) === 2 ? 'text-yellow-500' :
             (state.reformState.juanhaoAttitude || 0) === 3 ? 'text-green-400' :
-            'text-[#39FF14] animate-pulse'
+            'text-emerald-300 animate-pulse'
           }`}>
             {['敌视', '迷茫', '动摇', '理解', '先锋'][state.reformState.juanhaoAttitude || 0]}
           </div>
@@ -121,7 +121,7 @@ export default function ReformCommittee({ state, setGameState, onClose, triggerE
 
       <div className="flex-1 grid grid-cols-3 gap-6 overflow-hidden">
         <div className="col-span-1 border border-tno-panel bg-black/50 overflow-y-auto">
-          <div className="p-2 bg-tno-panel text-black font-bold text-center sticky top-0">派遣目标区域</div>
+          <div className="p-2 bg-[#1d2c31] text-[#cfc0a1] font-bold text-center sticky top-0">派遣目标区域</div>
           {regions.map(r => {
             const isActive = !!activeMissions[r.id];
             return (
@@ -131,6 +131,7 @@ export default function ReformCommittee({ state, setGameState, onClose, triggerE
                 className={`w-full text-left p-4 border-b border-gray-800 hover:bg-gray-900 transition-colors ${selectedRegion === r.id ? 'bg-gray-800 border-l-4 border-l-tno-highlight' : ''}`}
               >
                 <div className="font-bold text-blue-300">{r.name}</div>
+                <div className="region-resistance" aria-hidden="true"><i style={{width: `${Math.max(0,Math.min(100,regionalStubbornness[r.id] || 0))}%`}} /></div>
                 <div className="text-sm mt-1">做题派顽固度: <span className="text-red-400">{Math.round(regionalStubbornness[r.id] || 0)}%</span></div>
                 {isActive && <div className="text-xs text-tno-highlight mt-1 animate-pulse">任务执行中... (剩余 {activeMissions[r.id].daysLeft} 天)</div>}
               </button>
@@ -145,16 +146,16 @@ export default function ReformCommittee({ state, setGameState, onClose, triggerE
                 <h3 className="text-2xl font-bold text-white">{regions.find(r => r.id === selectedRegion)?.name}</h3>
                 <div className="group relative cursor-help flex items-center gap-2">
                   <span className="text-sm text-gray-400">预计成功率:</span>
-                  <span className={`text-3xl font-black ${getSuccessRate(selectedRegion) < 30 ? 'text-tno-red' : getSuccessRate(selectedRegion) < 70 ? 'text-yellow-500' : 'text-[#39FF14]'}`}>
+                  <span className={`text-3xl font-black ${getSuccessRate(selectedRegion) < 30 ? 'text-tno-red' : getSuccessRate(selectedRegion) < 70 ? 'text-yellow-500' : 'text-emerald-300'}`}>
                     {getSuccessRate(selectedRegion)}%
                   </span>
                   <div className="absolute top-full right-0 mt-2 w-64 bg-black border border-tno-panel p-3 hidden group-hover:block z-50 shadow-xl text-xs text-gray-300">
                     <div className="font-bold text-white mb-2 border-b border-gray-700 pb-1">成功率计算公式</div>
                     <div className="flex justify-between mb-1"><span>基础成功率:</span><span className="text-white">{baseSuccessRate}%</span></div>
                     <div className="flex justify-between mb-1"><span>区域顽固度惩罚:</span><span className="text-tno-red">-{Math.round(regionalStubbornness[selectedRegion] || 0)}%</span></div>
-                    <div className="flex justify-between mb-1"><span>党内集权加成:</span><span className="text-[#39FF14]">+{Math.round(state.stats.partyCentralization * 0.2)}%</span></div>
+                    <div className="flex justify-between mb-1"><span>党内集权加成:</span><span className="text-emerald-300">+{Math.round(state.stats.partyCentralization * 0.2)}%</span></div>
                     <div className="flex justify-between"><span>资本渗透惩罚:</span><span className="text-tno-red">-{Math.round(state.stats.capitalPenetration * 0.15)}%</span></div>
-                    <div className="flex justify-between"><span>工作组地区筹备（派遣时消耗）:</span><span className="text-[#39FF14]">+{Math.min(2, command.preparation?.reform || 0) * 8}%</span></div>
+                    <div className="flex justify-between"><span>工作组地区筹备（派遣时消耗）:</span><span className="text-emerald-300">+{Math.min(2, command.preparation?.reform || 0) * 8}%</span></div>
                   </div>
                 </div>
               </div>
@@ -303,7 +304,7 @@ export default function ReformCommittee({ state, setGameState, onClose, triggerE
 
 function ActionCard({ title, desc, costPP, costTPR, costMembers, days, onDispatch, canAfford }: any) {
   return (
-    <div className={`p-4 border ${canAfford ? 'border-gray-600 hover:border-tno-highlight bg-gray-900' : 'border-gray-800 bg-gray-950 opacity-60'} transition-colors`}>
+    <div className={`reform-action p-4 border ${canAfford ? 'border-gray-600 hover:border-tno-highlight bg-gray-900' : 'border-gray-800 bg-gray-950 opacity-60'} transition-colors`}>
       <div className="flex justify-between items-start mb-2">
         <h5 className="font-bold text-blue-200 text-lg">{title}</h5>
         <div className="text-xs font-mono text-gray-400">耗时: {days}天</div>

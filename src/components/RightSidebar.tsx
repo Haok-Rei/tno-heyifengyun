@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { AlertTriangle, Target, Book } from 'lucide-react';
 import { GameState, Decision, ALL_SUB_TILES } from '../types';
-import { getWuAttitude, WU_ATTITUDE_LABELS, WU_ATTITUDE_COLORS } from './WuCrackdownConsole';
+import SituationMetrics from './SituationMetrics';
 import { FLAVOR_EVENTS } from '../data/flavorEvents';
 import { STORY_EVENTS } from '../data/storyEvents';
 import RouteGuide from './RouteGuide';
@@ -1603,107 +1603,7 @@ export default function RightSidebar({ state, triggerDecision, triggerError }: R
   return (
     <div className="w-64 md:w-80 flex-shrink-0 tno-panel border-l border-tno-border h-full flex flex-col p-4 relative z-10" data-tour="decisions">
       
-      {/* Secondary Stats */}
-      <div className="mb-4">
-        <h2 className="text-tno-text/60 font-bold text-xs mb-2 border-b border-tno-border pb-1 tracking-widest uppercase">
-          局势动态
-        </h2>
-        {!!state.wuState && (
-        <div className="grid grid-cols-2 gap-1 text-[10px]">
-          <div className="flex justify-between items-center bg-zinc-900/50 p-1 border border-tno-border group relative cursor-help">
-            <span className="text-tno-text/80">残党实力</span>
-            <span className={state.wuState.guerrillaStrength > 70 ? 'text-tno-red font-bold crt-flicker' : 'text-tno-highlight font-bold'}>{state.wuState.guerrillaStrength.toFixed(1)}</span>
-            <div className="absolute top-full left-0 mt-1 bg-tno-bg border border-tno-border p-2 hidden group-hover:block z-50 w-48 text-[10px] shadow-lg text-left">
-              <div className="text-tno-highlight font-bold mb-1 border-b border-tno-border pb-1">残党实力</div>
-              <div className="text-tno-text/80 mb-1 whitespace-normal">革命残党的地下力量。满100将发动总反攻（本线失败结局）。</div>
-              <div className="flex justify-between"><span>每日变化:</span><span className={state.wuState.guerrillaStrength >= 50 ? 'text-tno-red' : 'text-tno-green'}>受学生愤怒与戒严等级影响</span></div>
-            </div>
-          </div>
-          <div className="flex justify-between items-center bg-zinc-900/50 p-1 border border-tno-border group relative cursor-help">
-            <span className="text-tno-text/80">吴福军态度</span>
-            <span className="font-bold" style={{ color: WU_ATTITUDE_COLORS[getWuAttitude(state.wuState)] }}>{WU_ATTITUDE_LABELS[getWuAttitude(state.wuState)]}</span>
-            <div className="absolute top-full right-0 mt-1 bg-tno-bg border border-tno-border p-2 hidden group-hover:block z-50 w-48 text-[10px] shadow-lg text-left">
-              <div className="text-tno-highlight font-bold mb-1 border-b border-tno-border pb-1">吴福军态度</div>
-              <div className="text-tno-text/80 mb-1 whitespace-normal">由野心指数与封校长信任推导。决定戒严行动效力与服从度；枪已上膛时会擅自行动。</div>
-              <div className="text-tno-text/60">可在戒严指挥部进行态度管理。</div>
-            </div>
-          </div>
-          <div className="flex justify-between items-center bg-zinc-900/50 p-1 border border-tno-border group relative cursor-help">
-            <span className="text-tno-text/80">戒严等级</span>
-            <span className="text-amber-400 font-bold">{'▮'.repeat(state.wuState.martialLawLevel)}{'▯'.repeat(Math.max(0, 3 - state.wuState.martialLawLevel))}</span>
-            <div className="absolute top-full left-0 mt-1 bg-tno-bg border border-tno-border p-2 hidden group-hover:block z-50 w-48 text-[10px] shadow-lg text-left">
-              <div className="text-tno-highlight font-bold mb-1 border-b border-tno-border pb-1">戒严等级 Lv{state.wuState.martialLawLevel}/3</div>
-              <div className="text-tno-text/80 mb-1 whitespace-normal">等级越高镇压越强，但学生愤怒与吴福军野心增长越快。</div>
-            </div>
-          </div>
-          <div className="flex justify-between items-center bg-zinc-900/50 p-1 border border-tno-border group relative cursor-help">
-            <span className="text-tno-text/80">学生愤怒</span>
-            <span className={state.wuState.studentAnger > 70 ? 'text-tno-red font-bold crt-flicker' : state.wuState.studentAnger > 45 ? 'text-orange-400 font-bold' : 'text-tno-highlight font-bold'}>{state.wuState.studentAnger.toFixed(1)}</span>
-            <div className="absolute top-full right-0 mt-1 bg-tno-bg border border-tno-border p-2 hidden group-hover:block z-50 w-48 text-[10px] shadow-lg text-left">
-              <div className="text-tno-highlight font-bold mb-1 border-b border-tno-border pb-1">学生愤怒</div>
-              <div className="text-tno-text/80 mb-1 whitespace-normal">高压之下的校园怒火。遇刺结局核心变量，过高会加速残党发展。</div>
-            </div>
-          </div>
-          <div className="flex justify-between items-center bg-zinc-900/50 p-1 border border-tno-border group relative cursor-help col-span-2">
-            <span className="text-tno-text/80">舆论压力 / 教师支持</span>
-            <span className="font-bold"><span className={state.wuState.publicOpinion >= 60 ? 'text-tno-red' : 'text-tno-highlight'}>{state.wuState.publicOpinion.toFixed(1)}</span><span className="text-tno-text/40"> / </span><span className={state.wuState.teacherSupport < 40 ? 'text-tno-red' : 'text-tno-green'}>{state.wuState.teacherSupport.toFixed(1)}</span></span>
-            <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-52 bg-tno-panel border border-tno-border p-2 hidden group-hover:block z-50">
-              <div className="font-bold text-tno-highlight mb-1 border-b border-tno-border pb-1">舆论压力 / 教师支持</div>
-              <div className="text-tno-text/80 mb-1">舆论 ≥80 教育局每日施压（稳定度 -0.2/日）；教师支持影响和谈推进速度与年度判定。</div>
-            </div>
-          </div>
-        </div>
-        )}
-        {!state.wuState && (
-        <div className="grid grid-cols-2 gap-1 text-[10px]">
-          <div className="flex justify-between items-center bg-zinc-900/50 p-1 border border-tno-border group relative cursor-help">
-            <span className="text-tno-text/80">资本渗透</span>
-            <span className={state.stats.capitalPenetration > 50 ? 'text-tno-red font-bold' : 'text-tno-highlight font-bold'}>{Math.floor(state.stats.capitalPenetration)}%</span>
-            <div className="absolute top-full left-0 mt-1 bg-tno-bg border border-tno-border p-2 hidden group-hover:block z-50 w-48 text-[10px] shadow-lg text-left">
-              <div className="text-tno-highlight font-bold mb-1 border-b border-tno-border pb-1">资本渗透度</div>
-              <div className="text-tno-text/80 mb-1 whitespace-normal">及第教育等外部资本对学校的控制程度。</div>
-              <div className="flex justify-between"><span>每日变化:</span><span className={state.modifiers.capitalPenetrationDaily >= 0 ? 'text-tno-red' : 'text-tno-green'}>{state.modifiers.capitalPenetrationDaily > 0 ? '+' : ''}{state.modifiers.capitalPenetrationDaily?.toFixed(1) || '0.0'}%</span></div>
-            </div>
-          </div>
-          <div className="flex justify-between items-center bg-zinc-900/50 p-1 border border-tno-border group relative cursor-help">
-            <span className="text-tno-text/80">激进愤怒</span>
-            <span className={state.stats.radicalAnger > 80 ? 'text-tno-red font-bold crt-flicker' : 'text-tno-highlight font-bold'}>{Math.floor(state.stats.radicalAnger)}%</span>
-            <div className="absolute top-full right-0 mt-1 bg-tno-bg border border-tno-border p-2 hidden group-hover:block z-50 w-48 text-[10px] shadow-lg text-left">
-              <div className="text-tno-highlight font-bold mb-1 border-b border-tno-border pb-1">激进愤怒度</div>
-              <div className="text-tno-text/80 mb-1 whitespace-normal">激进派学生对现状的不满程度。过高可能引发不可控的暴动。</div>
-              <div className="flex justify-between"><span>每日变化:</span><span className={state.modifiers.radicalAngerDaily >= 0 ? 'text-tno-red' : 'text-tno-green'}>{state.modifiers.radicalAngerDaily > 0 ? '+' : ''}{state.modifiers.radicalAngerDaily?.toFixed(1) || '0.0'}%</span></div>
-            </div>
-          </div>
-          <div className="flex justify-between items-center bg-zinc-900/50 p-1 border border-tno-border group relative cursor-help">
-            <span className="text-tno-text/80">联盟团结</span>
-            <span className={state.stats.allianceUnity < 40 ? 'text-tno-red font-bold' : state.stats.allianceUnity > 70 ? 'text-tno-green font-bold' : 'text-tno-highlight font-bold'}>{Math.floor(state.stats.allianceUnity)}%</span>
-            <div className="absolute top-full left-0 mt-1 bg-tno-bg border border-tno-border p-2 hidden group-hover:block z-50 w-48 text-[10px] shadow-lg text-left">
-              <div className="text-tno-highlight font-bold mb-1 border-b border-tno-border pb-1">联盟团结度</div>
-              <div className="text-tno-text/80 mb-1 whitespace-normal">代表“钢铁红蛤”与潘仁越的“自由民主派”及全校普通学生的共识程度。大于70才能进入真左派大团结或潘仁越民主线。</div>
-              <div className="flex justify-between"><span>每日变化:</span><span className={state.modifiers.allianceUnityDaily >= 0 ? 'text-tno-green' : 'text-tno-red'}>{state.modifiers.allianceUnityDaily > 0 ? '+' : ''}{state.modifiers.allianceUnityDaily?.toFixed(1) || '0.0'}%</span></div>
-            </div>
-          </div>
-          <div className="flex justify-between items-center bg-zinc-900/50 p-1 border border-tno-border group relative cursor-help">
-            <span className="text-tno-text/80">党内集权</span>
-            <span className={state.stats.partyCentralization < 40 ? 'text-tno-highlight font-bold' : state.stats.partyCentralization > 60 ? 'text-tno-red font-bold' : 'text-tno-text font-bold'}>{Math.floor(state.stats.partyCentralization)}%</span>
-            <div className="absolute top-full right-0 mt-1 bg-tno-bg border border-tno-border p-2 hidden group-hover:block z-50 w-48 text-[10px] shadow-lg text-left">
-              <div className="text-tno-highlight font-bold mb-1 border-b border-tno-border pb-1">党内集权度</div>
-              <div className="text-tno-text/80 mb-1 whitespace-normal">代表王照凯在“钢铁红蛤”内部的独裁程度以及对待校方的强硬度。极高进入大梦初醒线，极低进入平庸之乐线。</div>
-              <div className="flex justify-between"><span>每日变化:</span><span className={state.modifiers.partyCentralizationDaily >= 0 ? 'text-tno-highlight' : 'text-tno-text/80'}>{state.modifiers.partyCentralizationDaily > 0 ? '+' : ''}{state.modifiers.partyCentralizationDaily?.toFixed(1) || '0.0'}%</span></div>
-            </div>
-          </div>
-          <div className="flex justify-between items-center bg-zinc-900/50 p-1 border border-tno-border group relative cursor-help col-span-2">
-            <span className="text-tno-text/80">学生理智值</span>
-            <span className={state.stats.studentSanity < 30 ? 'text-tno-red font-bold' : 'text-tno-green font-bold'}>{Math.floor(state.stats.studentSanity)}%</span>
-            <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-48 bg-tno-panel border border-tno-border p-2 hidden group-hover:block z-50">
-              <div className="font-bold text-tno-highlight mb-1 border-b border-tno-border pb-1">学生理智值</div>
-              <div className="text-tno-text/80 mb-1">反映了学生群体对现实的认知程度。理智值过低可能导致不可预料的荒诞事件发生。</div>
-              <div className="flex justify-between text-[10px]"><span>每日变化:</span><span className={state.modifiers.studentSanityDaily < 0 ? 'text-tno-red' : 'text-tno-green'}>{state.modifiers.studentSanityDaily > 0 ? '+' : ''}{state.modifiers.studentSanityDaily?.toFixed(1) || '0.0'}%</span></div>
-            </div>
-          </div>
-        </div>
-        )}
-      </div>
+      <SituationMetrics state={state} />
 
       {/* Crises */}
        <div className="mb-4 flex flex-col max-h-64 min-h-0">

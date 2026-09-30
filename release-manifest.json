@@ -14,8 +14,8 @@
       "sha256": "177d20030d4dcc37eae9ef92865ec54dadce60e8f19e9a34a5d4f37502195a36"
     },
     "CHANGELOG.md": {
-      "bytes": 40612,
-      "sha256": "14bafdff987161419d9163965a09302fdbb4a6fed247da8826e70871804d8b31"
+      "bytes": 41332,
+      "sha256": "3821687110d53925a0cf351af74872d5fb49008d90286412855dec1585b32dfb"
     },
     "CHARACTERS.md": {
       "bytes": 9656,
@@ -554,8 +554,8 @@
       "sha256": "1954ca940740c612a12e7abf0a307b7394715964d66dc8037d503fdd5c1b6424"
     },
     "src/App.tsx": {
-      "bytes": 336619,
-      "sha256": "e9e2faed0b3acbec9d02d29bda71b2d7e3885654ba135a9588d6dd58776a8968"
+      "bytes": 342533,
+      "sha256": "69376f3b797c79d9e1225a8e05c7a28b54ffe4fe6627881528e03279b8026465"
     },
     "src/assets/flags/corporate.svg": {
       "bytes": 604,
@@ -2014,8 +2014,8 @@
       "sha256": "f47ca16c20449b2a21b97730ae12b84dd5ff5c5318aa7434aacacf5968bd4a5f"
     },
     "src/components/FocusTree.tsx": {
-      "bytes": 300154,
-      "sha256": "db71867eae29309b541d7271143f102448430cf428eac65b1ef2e634a08d2fdb"
+      "bytes": 300970,
+      "sha256": "634682e6a943781a9fe1681013e03b709a49565601b4436d85a662df9ac8624b"
     },
     "src/components/GameEndingScreen.tsx": {
       "bytes": 8001,
@@ -2026,16 +2026,16 @@
       "sha256": "208d8f9cf4ece3b39a626443de00e665a5cfd798722f9c2616ab604980622718"
     },
     "src/components/GuidedTutorial.tsx": {
-      "bytes": 8645,
-      "sha256": "ac38c3a3496228708b21cf7280919fe85da950e6477346987b14b06556942d2e"
+      "bytes": 9173,
+      "sha256": "d5896764a392d1646f713a6044a1ed3c9084a3ac17b6c2146d8f8ecfe272fdb9"
     },
     "src/components/HeyiLight.tsx": {
-      "bytes": 51593,
-      "sha256": "6f77372278e1f7b0bed121149bada8a6508e9891c6e83c5c9887d19e291da4ad"
+      "bytes": 48556,
+      "sha256": "efe4219c79f79d881f335ffebda48ffd589786ddbc80703a5466b08e95d3e212"
     },
     "src/components/HoverWindow.tsx": {
-      "bytes": 3444,
-      "sha256": "ec777b9d2e6b3644c3289adfe49f7d7adad664dfc5e4727636379a66a54d21da"
+      "bytes": 3490,
+      "sha256": "364b8572d93aaa58af3f5c882d4eb0fb0ed33e006f662b18d0dfa54ae27e4269"
     },
     "src/components/JidiCorporateUI.tsx": {
       "bytes": 61705,
@@ -2082,12 +2082,12 @@
       "sha256": "5be2f7dfe2fdab75adcbe0aa1039f804333e76719f87c767bca4c1c5cc447eb0"
     },
     "src/components/ReformCommittee.tsx": {
-      "bytes": 19634,
-      "sha256": "bc9acdc31d9fe763eeed171693322b1a6d603e9fb15fb7fc7569fa092e726051"
+      "bytes": 19789,
+      "sha256": "5b7e667735ca212152db1cc17e37b6ff648b7f174e208894ddd85097abeea995"
     },
     "src/components/RightSidebar.tsx": {
-      "bytes": 85648,
-      "sha256": "fd7069bcc1ab2d93e1a1d77489c781014587c920711af67d2b05bab845e95d88"
+      "bytes": 75959,
+      "sha256": "435974baf23fc918cd02cc2a6191526fea5cdaef19661405a4dbc276d23b208f"
     },
     "src/components/RouteGuide.tsx": {
       "bytes": 31157,
@@ -2096,6 +2096,10 @@
     "src/components/Settings.tsx": {
       "bytes": 17986,
       "sha256": "5dbd77b5ff8f9ddb6a95a28bb8652780fadcb428f247edb1100beae80ba69890"
+    },
+    "src/components/SituationMetrics.tsx": {
+      "bytes": 4779,
+      "sha256": "427ad7c2ea9caa24f0d79b4d7cd2416786c730d6291fe3118c73e85028ec1cfe"
     },
     "src/components/StartMenu.tsx": {
       "bytes": 8956,
@@ -2106,8 +2110,8 @@
       "sha256": "54398a1131d523d2fdfa7d64342fee42472d6afbee133ef7ab3aa441fdfa9762"
     },
     "src/components/StudentAssembly.tsx": {
-      "bytes": 30586,
-      "sha256": "7193f4f41af3fd424b4352bacc697e866eab3bab18cf3208406348c2a34b4768"
+      "bytes": 31918,
+      "sha256": "99e187b0f952739fb3a1f9599486dffcd925d1f93e5a40b68268a69eeefb6524"
     },
     "src/components/SuperEvent.tsx": {
       "bytes": 4519,
@@ -2150,8 +2154,12 @@
       "sha256": "3ff64f9bec8bb15ef171b9fbd46cf2f5bec7741ea07cd91435947728ebc0534e"
     },
     "src/components/heyiLight.css": {
-      "bytes": 9072,
-      "sha256": "2bac694ffc0d81ed7875fe93e37dcff3571547141fdbd32628c2f80355ec6150"
+      "bytes": 9759,
+      "sha256": "5ce76a510c99117900dd98acd277bc9509c0d9cc879cb1830d03a5c8bfc43ff8"
+    },
+    "src/components/mechanismPanels.css": {
+      "bytes": 3943,
+      "sha256": "451455f3af6d69a0b313a238dfd4421b09b497cd443c43e6921146a60a4d0e86"
     },
     "src/components/nationIdeology.css": {
       "bytes": 9596,
@@ -2394,8 +2402,8 @@
       "sha256": "c6537e268fb2d63ff090d11907624fa906caf888bcf757d3ce3b66dc2223e57b"
     },
     "tests/visualIdentity.test.ts": {
-      "bytes": 5073,
-      "sha256": "6b56fb96a15149128834be59f4b9f4ec3d8ec6df0206ba903f79f8b03a1bbbdc"
+      "bytes": 5094,
+      "sha256": "39708e620b8b198547e21ca5d6f88b7fdab160e1ceec6387b90cca1814074ab3"
     },
     "tsconfig.json": {
       "bytes": 508,
@@ -2414,6 +2422,6 @@
       "sha256": "ba7b6b13d17902bdf7a5e763017a6ea80a00d79e11a3ec00cec7328bdbe400fb"
     }
   },
-  "fileCount": 603,
-  "totalBytes": 254116462
+  "fileCount": 605,
+  "totalBytes": 254122677
 }

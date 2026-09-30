@@ -74,7 +74,7 @@ test('B3 focus is visible from the start and unlocks only above 80 radical anger
 
 test('guided campaign tour covers each operational surface and ends at replay button', () => {
   assert.ok(GUIDE_STEPS.length >= 12);
-  for (const anchor of ['resources', 'time', 'nation-overview', 'nation-focus', 'nation-cabinet', 'nation-laws', 'focus-tree', 'decisions', 'map', 'map-layers', 'workgroups', 'rail-tutorial']) {
+  for (const anchor of ['resources', 'time', 'nation-overview', 'nation-focus', 'nation-cabinet', 'nation-laws', 'focus-tree', 'decisions', 'situation-metrics', 'map', 'map-layers', 'workgroups', 'rail-tutorial']) {
     assert.ok(GUIDE_STEPS.some(step => step.anchor === `[data-tour="${anchor}"]`), anchor);
   }
   assert.equal(GUIDE_STEPS.at(-1)?.anchor, '[data-tour="rail-tutorial"]');
