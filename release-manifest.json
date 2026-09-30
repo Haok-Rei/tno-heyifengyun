@@ -2030,8 +2030,8 @@
       "sha256": "ac38c3a3496228708b21cf7280919fe85da950e6477346987b14b06556942d2e"
     },
     "src/components/HeyiLight.tsx": {
-      "bytes": 33249,
-      "sha256": "7e0c7af46a5c09eb98e57c98338d14f06be5c4213f65be7ba9b75bafa3e1dfb5"
+      "bytes": 51593,
+      "sha256": "6f77372278e1f7b0bed121149bada8a6508e9891c6e83c5c9887d19e291da4ad"
     },
     "src/components/HoverWindow.tsx": {
       "bytes": 3444,
@@ -2150,8 +2150,8 @@
       "sha256": "3ff64f9bec8bb15ef171b9fbd46cf2f5bec7741ea07cd91435947728ebc0534e"
     },
     "src/components/heyiLight.css": {
-      "bytes": 8218,
-      "sha256": "92252f4d7bda71fda4df94095bd54b8a949233b891dc333ad9180fa622f9d42b"
+      "bytes": 9072,
+      "sha256": "2bac694ffc0d81ed7875fe93e37dcff3571547141fdbd32628c2f80355ec6150"
     },
     "src/components/nationIdeology.css": {
       "bytes": 9596,
@@ -2415,5 +2415,5 @@
     }
   },
   "fileCount": 603,
-  "totalBytes": 254097264
+  "totalBytes": 254116462
 }

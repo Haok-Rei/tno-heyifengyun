@@ -24,8 +24,12 @@
 .heyi-light-v2__close:hover, .heyi-light-v2__close:focus-visible { color: white; border-color: #b8dce0; outline: 1px solid #76b5bd; }
 .heyi-light-v2__scene-wrap { position: relative; flex: 1; min-height: 0; overflow: hidden; display: grid; place-items: center; background: #020b10; }
 .heyi-light-v2__scene { display: block; width: 100%; height: 100%; }
-.heyi-light-v2__scene .heyi-window__light { animation: heyi-window-breathe 9s ease-in-out infinite alternate; }
-.heyi-light-v2__scene .heyi-person--walking { animation: heyi-step 3.2s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: center bottom; }
+.heyi-light-v2__scene .heyi-window__light { animation: heyi-window-breathe 6.8s ease-in-out infinite; filter: drop-shadow(0 0 5px #c5ad6d88); }
+.heyi-light-v2__scene .heyi-person--walking { animation: heyi-walk 8s linear infinite; }
+.heyi-light-v2__scene .heyi-person--walking .heyi-person__leg { transform-box: fill-box; transform-origin: 50% 6%; }
+.heyi-light-v2__scene .heyi-person--walking .heyi-person__leg--left { animation: heyi-left-step .75s ease-in-out infinite alternate; }
+.heyi-light-v2__scene .heyi-person--walking .heyi-person__leg--right { animation: heyi-right-step .75s ease-in-out infinite alternate; }
+.heyi-light-v2__scene .heyi-distant-person { animation: heyi-distant-walk 9s ease-in-out infinite alternate; }
 .heyi-light-v2__scene .heyi-tree__crown { animation: heyi-canopy 7s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: 50% 90%; }
 .heyi-light-v2__scene .heyi-falling-leaf { animation: heyi-leaf-fall 10s ease-in infinite; transform-box: fill-box; }
 .heyi-light-v2__scene .heyi-lamp__signal { animation: heyi-signal 5s ease-in-out infinite; }
@@ -43,8 +47,11 @@
 .heyi-light-v2__tooltip p { margin: 0; font-size: 12px; line-height: 1.6; }
 .heyi-light-v2__stamp { position: absolute; right: 13px; bottom: 10px; color: #77969b; font: 11px 'Courier New', monospace; letter-spacing: .1em; pointer-events: none; text-shadow: 0 1px 3px #000; }
 @keyframes heyi-ember { from { opacity: .65; transform: scaleY(.94); } to { opacity: 1; transform: scaleY(1.06); } }
-@keyframes heyi-window-breathe { 0%, 84%, 100% { opacity: 1; } 87% { opacity: .56; } }
-@keyframes heyi-step { from { translate: 0 0; } to { translate: 0 -2px; } }
+@keyframes heyi-window-breathe { 0%, 12%, 100% { opacity: .28; } 24%, 74% { opacity: 1; } 84% { opacity: .52; } }
+@keyframes heyi-walk { 0%, 100% { translate: -20px 0; } 45% { translate: 31px -1px; } 55% { translate: 31px -1px; } }
+@keyframes heyi-left-step { from { rotate: -13deg; } to { rotate: 13deg; } }
+@keyframes heyi-right-step { from { rotate: 13deg; } to { rotate: -13deg; } }
+@keyframes heyi-distant-walk { from { translate: -15px 0; } to { translate: 20px 0; } }
 @keyframes heyi-canopy { from { rotate: -.6deg; } to { rotate: .8deg; } }
 @keyframes heyi-leaf-fall { from { translate: 0 -10px; opacity: 0; rotate: 0deg; } 12% { opacity: .8; } to { translate: -58px 190px; opacity: 0; rotate: 135deg; } }
 @keyframes heyi-signal { 0%, 90%, 100% { opacity: 1; } 94% { opacity: .45; } }
@@ -53,4 +60,4 @@
 @keyframes heyi-searchlight { from { rotate: -7deg; opacity: .04; } to { rotate: 7deg; opacity: .12; } }
 @keyframes heyi-smoke { from { translate: -4px 9px; opacity: .24; } to { translate: 11px -16px; opacity: .52; } }
 @media (max-width: 700px) { .heyi-light-v2__header { height: 66px; gap: 7px; padding: 5px 8px; } .heyi-light-v2__title span { display: none; } .heyi-light-v2__title h2 { font-size: 17px; } .heyi-light-v2__value { width: 156px; padding: 4px 6px; } .heyi-light-v2__readout strong { font-size: 20px; } .heyi-light-v2__readout small { display: none; } .heyi-light-v2__close { width: 28px; height: 28px; } }
-@media (prefers-reduced-motion: reduce) { .heyi-light-v2__scene .heyi-ember, .heyi-light-v2__scene .heyi-window__light, .heyi-light-v2__scene .heyi-person--walking, .heyi-light-v2__scene .heyi-tree__crown, .heyi-light-v2__scene .heyi-falling-leaf, .heyi-light-v2__scene .heyi-lamp__signal, .heyi-light-v2__scene .heyi-road-reflection, .heyi-light-v2__scene .heyi-cloth, .heyi-light-v2__scene .heyi-searchlight, .heyi-light-v2__scene .heyi-smoke { animation: none; } .heyi-light-v2__scale i { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .heyi-light-v2__scene .heyi-ember, .heyi-light-v2__scene .heyi-window__light, .heyi-light-v2__scene .heyi-person--walking, .heyi-light-v2__scene .heyi-person__leg, .heyi-light-v2__scene .heyi-distant-person, .heyi-light-v2__scene .heyi-tree__crown, .heyi-light-v2__scene .heyi-falling-leaf, .heyi-light-v2__scene .heyi-lamp__signal, .heyi-light-v2__scene .heyi-road-reflection, .heyi-light-v2__scene .heyi-cloth, .heyi-light-v2__scene .heyi-searchlight, .heyi-light-v2__scene .heyi-smoke { animation: none; } .heyi-light-v2__scale i { transition: none; } }
