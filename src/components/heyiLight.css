@@ -67,4 +67,27 @@
 .heyi-light-v2__scene .heyi-person:has(.heyi-person__hit:focus-visible) > g path { stroke:#63d9ed; }
 .heyi-person__hit:focus { outline:none; }
 .heyi-light-v2__scene .heyi-campus { filter:drop-shadow(0 2px 2px #000); }
+.heyi-light-v2__scene .campus-observation { cursor:help; outline:none; }
+.heyi-light-v2__scene .campus-observation.is-observed > .campus-object > path,
+.heyi-light-v2__scene .campus-observation.is-observed > path,
+.heyi-light-v2__scene .campus-observation:focus-visible > path { stroke:#63d9ed; filter:drop-shadow(0 0 2px #35cfff); }
+.heyi-light-v2__scene .campus-observation[data-zone="trees"].is-observed path { stroke:#63d9ed; }
+.heyi-light-v2__scene .campus-route-scene path { vector-effect:non-scaling-stroke; }
+.heyi-light-v2__scene .campus-observation.is-observed .campus-route-scene .campus-object > path { stroke:#63d9ed; }
+.heyi-light-v2__scene .campus-person-shadow { fill:#000; opacity:.5; }
+.heyi-light-v2__scene .campus-screen-pulse,.heyi-light-v2__scene .heyi-screen-pulse { animation:campus-screen 5s ease-in-out infinite; }
+.heyi-light-v2__scene .campus-fire { animation:campus-flame 1.7s ease-in-out infinite alternate; transform-origin:0 0; }
+.heyi-light-v2__scene .campus-smoke { animation:campus-smoke-drift 8s ease-in-out infinite alternate; }
+.heyi-light-v2__scene .campus-festoon { animation:campus-screen 4s ease-in-out infinite; }
+.heyi-light-v2__scene .campus-steam { animation:campus-smoke-drift 5s ease-in-out infinite alternate; }
+.heyi-light-v2__scene .campus-water { animation:campus-water 4s ease-in-out infinite alternate; }
+.heyi-light-v2__scene .campus-search-beam { animation:campus-beam 9s ease-in-out infinite alternate; transform-origin:1084px 384px; }
+.heyi-light-v2__scene .campus-carrier { animation:campus-carry 12s ease-in-out infinite alternate; }
+@keyframes campus-screen { 0%,100% {opacity:.35;} 45%,70% {opacity:.8;} }
+@keyframes campus-flame { from {scale:.96 .88;} to {scale:1.03 1.08;} }
+@keyframes campus-smoke-drift { from {translate:-3px 3px;opacity:.35;} to {translate:8px -9px;opacity:.7;} }
+@keyframes campus-water { from {opacity:.25;} to {opacity:.65;} }
+@keyframes campus-beam { from {rotate:-5deg;opacity:.025;} to {rotate:5deg;opacity:.07;} }
+@keyframes campus-carry { from {translate:-7px 0;} to {translate:10px 0;} }
+@media(prefers-reduced-motion:reduce) { .heyi-light-v2__scene .campus-fire,.heyi-light-v2__scene .campus-smoke,.heyi-light-v2__scene .campus-steam,.heyi-light-v2__scene .campus-water,.heyi-light-v2__scene .campus-search-beam,.heyi-light-v2__scene .campus-carrier,.heyi-light-v2__scene .heyi-screen-pulse,.heyi-light-v2__scene .campus-festoon {animation:none;} }
 @media(max-width:700px) { .heyi-light-v2__header {height:83px;} .heyi-light-v2__value {width:210px;} .heyi-light-v2__readout strong {font-size:28px;} .heyi-light-v2__trend em {font-size:10px;} }

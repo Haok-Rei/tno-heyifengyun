@@ -14,8 +14,8 @@
       "sha256": "177d20030d4dcc37eae9ef92865ec54dadce60e8f19e9a34a5d4f37502195a36"
     },
     "CHANGELOG.md": {
-      "bytes": 41332,
-      "sha256": "3821687110d53925a0cf351af74872d5fb49008d90286412855dec1585b32dfb"
+      "bytes": 42718,
+      "sha256": "34391ca2a1b562a3a828546b0789e9767c45f1f3ea62b0a78f8b0fcf1d0ffc88"
     },
     "CHARACTERS.md": {
       "bytes": 9656,
@@ -1985,6 +1985,10 @@
       "bytes": 10074,
       "sha256": "35fbbaa61283289af5a3fa214139c2731e940623b8517da15e7de1cf96722d9e"
     },
+    "src/components/CampusEnvironment.tsx": {
+      "bytes": 41356,
+      "sha256": "256ee5fe83fc5ff197cad4a152de65e9a55012312cfe4be60c5ab96dbc7458d3"
+    },
     "src/components/CentralMap.tsx": {
       "bytes": 45696,
       "sha256": "21b7aeca71c86271c6e5dd6e0f6ff3f7e9bc36a1d0e791637aad4c8a40925ed7"
@@ -2030,8 +2034,8 @@
       "sha256": "d5896764a392d1646f713a6044a1ed3c9084a3ac17b6c2146d8f8ecfe272fdb9"
     },
     "src/components/HeyiLight.tsx": {
-      "bytes": 48556,
-      "sha256": "efe4219c79f79d881f335ffebda48ffd589786ddbc80703a5466b08e95d3e212"
+      "bytes": 17270,
+      "sha256": "3c1febeacd8d1f716f3832e6dd4c57b2ca2fd79c67f80d0467c050dde0139300"
     },
     "src/components/HoverWindow.tsx": {
       "bytes": 3490,
@@ -2154,8 +2158,8 @@
       "sha256": "3ff64f9bec8bb15ef171b9fbd46cf2f5bec7741ea07cd91435947728ebc0534e"
     },
     "src/components/heyiLight.css": {
-      "bytes": 9759,
-      "sha256": "5ce76a510c99117900dd98acd277bc9509c0d9cc879cb1830d03a5c8bfc43ff8"
+      "bytes": 12202,
+      "sha256": "3d6292ae6838aa9df34fe7baf4931ee5a256073b05c3fd40e41bc8d1d73f77b4"
     },
     "src/components/mechanismPanels.css": {
       "bytes": 3943,
@@ -2422,6 +2426,6 @@
       "sha256": "ba7b6b13d17902bdf7a5e763017a6ea80a00d79e11a3ec00cec7328bdbe400fb"
     }
   },
-  "fileCount": 605,
-  "totalBytes": 254122677
+  "fileCount": 606,
+  "totalBytes": 254136576
 }
