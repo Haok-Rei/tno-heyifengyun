@@ -3,7 +3,7 @@ import { X } from 'lucide-react';
 import type { GameState } from '../types';
 import { getHeyiLightSnapshot, type HeyiZone } from '../engine/heyiLight';
 import './heyiLight.css';
-import { CampusBuildingDetails, CampusGround, CampusGate, CampusGuard, CampusTrees, StreetFurniture, CampusRouteObjects } from './CampusEnvironment';
+import { CampusBuildingDetails, CampusGround, CampusGate, CampusGuard, CampusTrees, StreetFurniture, CampusRouteObjects, CampusEdges } from './CampusEnvironment';
 
 interface Props { state: GameState; onClose: () => void }
 type Snapshot = ReturnType<typeof getHeyiLightSnapshot>;
@@ -99,6 +99,7 @@ function Scene({ snapshot, month, viewBox, active, onZone, onPointer }: {
       onFocus={()=>onZone('building',{x:610,y:190})} onBlur={()=>onZone(null)}
       onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();onZone('building',{x:610,y:190});}}}/></g>
     <CampusGround observation={observation}/>
+    <CampusEdges observation={observation}/>
     <path d="M-500 423L356 450L360 470L-500 444M816 498L1700 376L1700 400L816 517" fill="#050d11" stroke="#849a97" strokeWidth=".8"/>
     <path d="M-500 436L356 464M816 512L1700 394" fill="none" stroke="#55767e" strokeWidth=".65"/>
     <CampusGuard observation={observation}/>

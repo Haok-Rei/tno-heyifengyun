@@ -4,6 +4,9 @@ import LeftSidebar, { WU_ROUTE_ADVISOR } from './components/LeftSidebar';
 import FocusTree from './components/FocusTree';
 import RightSidebar from './components/RightSidebar';
 import CentralMap from './components/CentralMap';
+import ActionReminders from './components/ActionReminders';
+import { getActionReminders, type ActionReminder } from './engine/actionReminders';
+import { DECISIONS } from './components/RightSidebar';
 import EventPopup from './components/EventPopup';
 import SuperEvent from './components/SuperEvent';
 import MinigameFrequencyWar, { FrequencyWarResult } from './components/MinigameFrequencyWar';
@@ -615,6 +618,8 @@ export default function App() {
   const [isChronicleOpen, setIsChronicleOpen] = useState(false);
   const [isHeyiLightOpen, setIsHeyiLightOpen] = useState(false);
   const [governmentOpen, setGovernmentOpen] = useState(false);
+  const [reminderEpoch, setReminderEpoch] = useState(0);
+  const [requestedNationSection, setRequestedNationSection] = useState<{section:'advisors'|'laws';nonce:number}>();
   const [decisionsOpen, setDecisionsOpen] = useState(false);
   const [selectedTileId, setSelectedTileId] = useState<string | null>(null);
   const [districtDockTarget, setDistrictDockTarget] = useState<HTMLDivElement | null>(null);
@@ -649,6 +654,7 @@ export default function App() {
   }, [appMode, gameState, gameState.date]);
 
   const handleRestart = () => {
+    setReminderEpoch(epoch => epoch + 1);
     setGameState(INITIAL_GAME_STATE);
     tutorialWasPausedRef.current = true;
     tutorialReplayViewRef.current = null;
@@ -5383,6 +5389,29 @@ export default function App() {
     { id: 'yang', label: '杨特办公桌', glyph: '案', unlocked: !!gameState.yangYuleState?.unlockedMechanics?.desk, open: () => setIsYangYuleDeskOpen(true), active: isYangYuleDeskOpen },
   ].filter(entry => entry.unlocked);
 
+  const reminders = getActionReminders(gameState, getFocusNodes(gameState.currentFocusTree), DECISIONS, featureEntries);
+  const openReminder = (reminder: ActionReminder) => {
+    setShowFocusTree(false);
+    setIsHeyiLightOpen(false);
+    setIsAssemblyOpen(false);
+    setIsReformCommitteeOpen(false);
+    setIsCyberDeconstructionOpen(false);
+    setIsGouxiongGalOpen(false);
+    setIsYangYuleDeskOpen(false);
+    setIsWuConsoleOpen(false);
+    setIsJidiCorporateUIOpen(false);
+    setIsRedToadPolitburoOpen(false);
+    setIsElectionUIOpen(false);
+    if (reminder.id === 'focus') setShowFocusTree(true);
+    if (reminder.id === 'decision') setDecisionsOpen(true);
+    if (reminder.id === 'advisor' || reminder.id === 'law') {
+      setGovernmentOpen(true);
+      setRequestedNationSection(prev => ({section:reminder.id==='advisor'?'advisors':'laws',nonce:(prev?.nonce||0)+1}));
+    }
+    if (reminder.id === 'team' && reminder.target) setSelectedTileId(reminder.target);
+    if (reminder.id === 'mechanic') featureEntries.find(entry=>entry.id===reminder.target)?.open();
+  };
+
   return (
     <div className={`command-shell w-screen h-screen relative flex flex-col overflow-hidden bg-tno-bg text-tno-text selection:bg-tno-highlight selection:text-black ${shake ? 'shake' : ''} ${gameState.activeSuperEvent ? 'animate-red-flash' : ''}`}>
       <TopBar
@@ -5428,6 +5457,8 @@ export default function App() {
 
         {governmentOpen && <div className="government-drawer"><LeftSidebar
           state={gameState}
+          requestedSection={requestedNationSection}
+          onSectionOpened={() => setRequestedNationSection(undefined)}
           hireAdvisor={hireAdvisor}
           dismissAdvisor={dismissAdvisor}
           cancelActiveFocus={cancelActiveFocus}
@@ -5440,6 +5471,7 @@ export default function App() {
         <div className="theater-main flex-1 min-w-0 relative overflow-hidden flex flex-col">
           <div className="heyi-map-slot">
           <CentralMap
+            reminders={<ActionReminders key={reminderEpoch} state={gameState} reminders={reminders} onOpen={openReminder} />}
             selectedTileId={selectedTileId}
             districtDockTarget={districtDockTarget}
             onSelectTile={setSelectedTileId}

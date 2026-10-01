@@ -7,6 +7,7 @@ import { getCommandRoute } from '../data/commandRoutes';
 import { getCommandState, getSupplyNetwork, hasSupplyAccess } from '../engine/commandSystem';
 
 interface CentralMapProps {
+  reminders?: React.ReactNode;
   state: GameState; setGameState: React.Dispatch<React.SetStateAction<GameState>>;
   triggerError: () => void; isElectionUIOpen?: boolean; setIsElectionUIOpen?: (v: boolean) => void;
   selectedTileId: string | null;
@@ -64,7 +65,7 @@ const Btn=({n,c,d,on,ok,cd}:{n:string;c:string;d:string;on:()=>void;ok:boolean;c
   </button>
 );
 
-export default function CentralMap({state,setGameState,triggerError,isElectionUIOpen,setIsElectionUIOpen,selectedTileId:sel,onSelectTile:setSel,districtDockTarget}:CentralMapProps){
+export default function CentralMap({state,setGameState,triggerError,isElectionUIOpen,setIsElectionUIOpen,selectedTileId:sel,onSelectTile:setSel,districtDockTarget,reminders}:CentralMapProps){
   const [mapLayer,setMapLayer]=useState<'control'|'supply'|'orders'>('control');
   const route = getCommandRoute(state);
   const supplyNetwork = getSupplyNetwork(state);
@@ -246,12 +247,7 @@ export default function CentralMap({state,setGameState,triggerError,isElectionUI
 
       </svg>
 
-      <aside className="map-side-note" aria-label="校园态势概览">
-        <span>HEFEI / {mapLayer.toUpperCase()} MAP</span>
-        <strong>{mapLayer==='control'?'校园态势':mapLayer==='supply'?'补给网络':'工作组部署'}</strong>
-        {mapLayer==='control'?<><p>学生主导 <b>{RGN.filter(r => tc(state,r.tid) >= 70).length}</b> 区</p><p>控制争夺 <b>{RGN.filter(r => tc(state,r.tid) >= 25 && tc(state,r.tid) < 70).length}</b> 区</p><p>校方主导 <b>{RGN.filter(r => tc(state,r.tid) < 25).length}</b> 区</p></>:mapLayer==='supply'?<><p>总部连通 <b>{supplyNetwork.size}</b> 区</p><p>前沿可达 <b>{RGN.filter(r=>!supplyNetwork.has(r.tid)&&hasSupplyAccess(state,r.tid)).length}</b> 区</p><p>交通隔绝 <b>{RGN.filter(r=>!hasSupplyAccess(state,r.tid)).length}</b> 区</p></>:<><p>驻扎工作组 <b>{deployed.length}</b> 支</p><p>待命工作组 <b>{teams.filter(t=>!t.order).length}</b> 支</p><p>已执行任务 <b>{getCommandState(state).completed}</b> 次</p></>}
-        <small>01 / 15 · BINHU CAMPUS</small>
-      </aside>
+      {reminders}
 
       {/* 缩放控件 */}
       <div className="map-zoom-controls" role="group" aria-label="地图缩放">

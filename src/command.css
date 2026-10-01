@@ -107,12 +107,6 @@ button:focus-visible,summary:focus-visible,[role=button]:focus-visible { outline
 .map-viewport { isolation:isolate; background:#0a0d10; }
 .map-viewport>svg { position:relative; z-index:1; }
 .map-viewport { container-type:inline-size; }
-.map-side-note { display:none; position:absolute; z-index:2; left:20px; top:26px; width:180px; border-top:2px solid #77302f; padding:15px; color:#b3b7b5; background:linear-gradient(90deg,#151719dd,#15171933); pointer-events:none; }
-.map-side-note>span { font:8px Consolas,monospace; color:#986d69; letter-spacing:1px; }
-.map-side-note>strong { display:block; color:#dedbd5; font:700 21px SimSun,serif; letter-spacing:3px; margin:9px 0 18px; }
-.map-side-note p { display:flex; justify-content:space-between; font-size:11px; margin:8px 0; border-bottom:1px solid #484344; padding-bottom:5px; }
-.map-side-note b { color:#d5b0a5; }.map-side-note small { display:block; font:8px Consolas,monospace; color:#747d7e; margin-top:20px; }
-@container (min-width:950px) { .map-side-note { display:block; } }
 .map-zoom-controls { position:absolute; z-index:80; right:14px; bottom:14px; display:flex; gap:4px; pointer-events:auto; filter:drop-shadow(0 3px 10px #000); }
 .map-zoom-button { width:34px; height:34px; background:#111315; color:#f3f1e9; border:1px solid #9b5550; font:700 18px Consolas,monospace; pointer-events:auto; }
 .map-zoom-button:hover { background:#713332; color:#fff; }
@@ -236,7 +230,6 @@ button:focus-visible,summary:focus-visible,[role=button]:focus-visible { outline
   .rail-feature-list button { min-height:44px; font-size:8px; }
   .rail-feature-list button>span { font-size:15px; }
 }
-@media(min-width:900px) and (max-width:1100px) { .map-side-note { display:block; } }
 @media(min-width:781px) and (max-width:1100px) {
   .game-workspace.has-government:not(.has-decisions) {
     grid-template-columns:58px minmax(320px,360px) minmax(0,1fr);

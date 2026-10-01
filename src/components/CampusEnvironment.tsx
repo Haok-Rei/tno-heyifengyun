@@ -240,12 +240,48 @@ export function CampusTrees({observation,month}:{observation:Observation;month:n
   </Observe>;
 }
 
+export function CampusEdges({observation}:{observation:Observation}) {
+  const {route,mood}=observation.snapshot;
+  const damaged=route==='despair'||route==='jidi_riot';
+  return <g className="campus-street-edges">
+    <Observe zone="road" anchor={{x:30,y:482}} observation={observation}>
+      {[-45,1320].map((x,i)=>{
+        const f=geometry(x,469,68,i?118:150,i?75:85), wall=i?f.left:f.right;
+        return <g key={x}>
+          <path d={path(wall,true)} fill={BLACK} stroke={EDGE} strokeWidth=".85"/>
+          <FaceLines face={wall} rows={5} columns={8} color="#425b5b"/>
+          <path d={path([at(wall,0,0),at(wall,1,0)])} stroke={INK} strokeWidth="1.2"/>
+          {[.1,.3,.5,.7,.9].map(u=>{
+            const p=at(wall,u,0);return <g key={u}><path d={`M${p.x} ${p.y}v-24l-2-4 2-4 2 4-2 4m-2 15h4`} stroke="#849e94" fill="none" strokeWidth=".7"/>
+              {!damaged&&<path d={`M${p.x-7} ${p.y+4}q-11-12-4-17q-8-9 3-13q2-10 10-4q12-1 10 10q10 9-4 15m-13-9 13 6m-9-13 6 9`} stroke={mood==='bright'?'#82967d':'#60776b'} fill="none" strokeWidth=".65"/>}</g>;
+          })}
+          <path d={path([at(wall,0,.08),at(wall,1,.08)])} stroke="#9d977c" strokeWidth=".5"/>
+          {damaged&&<path d={path([at(wall,.4,0),at(wall,.48,.22),at(wall,.42,.53),at(wall,.53,.79)])} stroke="#968775" fill="none" strokeWidth=".85"/>}
+        </g>;
+      })}
+      <Bench x={-30} y={497} broken={damaged}/><Bicycle x={-117} y={551} fallen={damaged}/>
+      <path d="M-182 497l134-13 84 9M-181 503l134-13 85 10M1210 524l152-16 120 13M1210 531l152-16 120 13" fill="none" stroke={EDGE} strokeWidth=".7"/>
+      {[-137,-63,1240,1320].map((x,i)=><g key={x}>
+        <path d={`M${x} ${i<2?511:539}v-22l8-3v24m-8-18 8-2m-8 12 8-2`} fill="none" stroke="#a6a792" strokeWidth=".9"/>
+      </g>)}
+      <Box x={1288} y={519} h={70} left={56} right={18}>{f=><><Plate face={inset(f.left,.08,.09,.82,.76)} label={route==='wu'?'門禁':damaged?'停用':'公交'} rows={2} color="#a4b4a5"/><path d={path(inset(f.right,.15,.1,.65,.6),true)} stroke={EDGE} fill="none"/></>}</Box>
+      <path d="M1275 521v13m-42-11v9" stroke={INK} fill="none"/>
+      <Bicycle x={1320} y={570} fallen={damaged}/>
+      {!damaged&&<SmallFigure x={1221} y={540} role="teacher"/>}
+      {route==='wu'&&<Barrier x={-77} y={549} width={79}/>}
+      {route==='gouxiong'&&<path d="M-171 430q74-16 156-10m1230 36q70 5 143-7" stroke="#ac93a6" fill="none" strokeWidth=".8"/>}
+    </Observe>
+  </g>;
+}
+
 export function StreetFurniture({observation}:{observation:Observation}) {
   const {route}=observation.snapshot;
   return <g>
     <Observe zone="road" anchor={{x:30,y:480}} observation={observation}>
-      <path d="M29 538V295l6-11 98 13M35 299l96 8M29 534l-7 5 15 1 6-6Z" fill={BLACK} stroke={INK} strokeWidth="1"/>
-      <path d="M123 300l-8 19 30 3-7-20ZM120 306l15 2M27 374l37 4m-2-2v-49" fill={BLACK} stroke={EDGE} strokeWidth=".8"/>
+      <path d="M29 538V295l6-11 98 13M35 299l96 8M27 374l37 4m-2-2v-49" fill="none" stroke={INK} strokeWidth="1"/>
+      <path d="M27 534V296l5-10m-2 246V299M29 534l-7 5 15 1 6-6Z" fill="none" stroke={EDGE} strokeWidth=".65"/>
+      <path d="M123 300l-8 19 30 3-7-20Z" fill={BLACK} stroke={EDGE} strokeWidth=".8"/>
+      <path d="M120 306l15 2" fill="none" stroke={INK} strokeWidth=".7"/>
       <path d="M53 330l19 2v58l-19-2Z" fill={BLACK} stroke={INK} strokeWidth=".8"/>
       {[0,1,2].map(i=><ellipse key={i} className={i===2?'heyi-lamp__signal':''} cx="62" cy={343+i*17} rx="4.5" ry="5" fill={(route==='wu'||route==='jidi_riot')?i===0?'#995e54':BLACK:i===2?'#88a78c':BLACK} stroke={i===0?'#a27e74':i===1?'#b49f7d':'#8fa994'} strokeWidth=".65"/>)}
       <Box x={1040} y={528} h={41} left={32} right={18}>{f=><><FaceLines face={f.left} rows={7}/><path d={path(inset(f.roof,.12,.18,.68,.45),true)} fill="#01080c" stroke={INK}/></>}</Box>

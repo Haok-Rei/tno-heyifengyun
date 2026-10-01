@@ -14,8 +14,8 @@
       "sha256": "177d20030d4dcc37eae9ef92865ec54dadce60e8f19e9a34a5d4f37502195a36"
     },
     "CHANGELOG.md": {
-      "bytes": 42718,
-      "sha256": "34391ca2a1b562a3a828546b0789e9767c45f1f3ea62b0a78f8b0fcf1d0ffc88"
+      "bytes": 43656,
+      "sha256": "874d2de36e615e21c54e23f985f43c3f4ecddfa9808627410062a69d83b4c9d5"
     },
     "CHARACTERS.md": {
       "bytes": 9656,
@@ -445,6 +445,10 @@
       "bytes": 1017,
       "sha256": "4c7e2b7c9c3c8c9955484bb23e6caa5934c9d07ef4e59975e2ea840da0aeccba"
     },
+    "docs/action-reminders.md": {
+      "bytes": 1212,
+      "sha256": "6e2dbd292afdc037ccbd279b3c6ccf0a991270cd39040d80e05afbf8c33961fd"
+    },
     "docs/event-writing-workflow.md": {
       "bytes": 4426,
       "sha256": "a66d8e2caaca7120c8331ef027ee9316b330d2a26127138991777048caa461b4"
@@ -474,8 +478,8 @@
       "sha256": "597b405fb645d25ab9ae44440871a73e900a8be7452d24f7081004170f7d5fb3"
     },
     "index.html": {
-      "bytes": 331,
-      "sha256": "a14e233366b01e993e3845fc62050125c867a8f4afb48593e4c45dce4bdfa63e"
+      "bytes": 326,
+      "sha256": "3455969e0d10085ed76f82f7ab8079ae1342b32281695eb2bce7adee64add9ea"
     },
     "music/丑陋的美国人.mp3": {
       "bytes": 2455574,
@@ -554,8 +558,8 @@
       "sha256": "1954ca940740c612a12e7abf0a307b7394715964d66dc8037d503fdd5c1b6424"
     },
     "src/App.tsx": {
-      "bytes": 342533,
-      "sha256": "69376f3b797c79d9e1225a8e05c7a28b54ffe4fe6627881528e03279b8026465"
+      "bytes": 344268,
+      "sha256": "2f20625adcd6ef1b68dac36285d68d4a3c637a48acec3d9d04db3d91d14e418c"
     },
     "src/assets/flags/corporate.svg": {
       "bytes": 604,
@@ -1974,8 +1978,12 @@
       "sha256": "73a3d9ff890eeb65cb5f566576529b488cb225a82af78dbcd2eecc098ca44c35"
     },
     "src/command.css": {
-      "bytes": 30783,
-      "sha256": "9b7d76aceb197bd1833b1207b7ada532f30888ae5c39ea8d639733147a71ec92"
+      "bytes": 29896,
+      "sha256": "e3fded72c24233ad2144eaef7263ec1dfcf1ada0e0d5d2caea89b45ea40666f8"
+    },
+    "src/components/ActionReminders.tsx": {
+      "bytes": 4320,
+      "sha256": "bb48af12b2e2a225c047a5fa1d655b6234b9d5ab6c515002e29593923f1fdd81"
     },
     "src/components/ArtRoom.tsx": {
       "bytes": 5967,
@@ -1986,12 +1994,12 @@
       "sha256": "35fbbaa61283289af5a3fa214139c2731e940623b8517da15e7de1cf96722d9e"
     },
     "src/components/CampusEnvironment.tsx": {
-      "bytes": 41356,
-      "sha256": "256ee5fe83fc5ff197cad4a152de65e9a55012312cfe4be60c5ab96dbc7458d3"
+      "bytes": 43957,
+      "sha256": "2b1dc04ff0ca8eaaf090020faaf8f0f326cba019ff7f6d13d70d925cc62ee831"
     },
     "src/components/CentralMap.tsx": {
-      "bytes": 45696,
-      "sha256": "21b7aeca71c86271c6e5dd6e0f6ff3f7e9bc36a1d0e791637aad4c8a40925ed7"
+      "bytes": 44784,
+      "sha256": "1a355eadfd79bf041c9052fed30da7daeaf4b3a89d6c976e4f5f20c8094a9afb"
     },
     "src/components/CharacterProfile.tsx": {
       "bytes": 1194,
@@ -2030,12 +2038,12 @@
       "sha256": "208d8f9cf4ece3b39a626443de00e665a5cfd798722f9c2616ab604980622718"
     },
     "src/components/GuidedTutorial.tsx": {
-      "bytes": 9173,
-      "sha256": "d5896764a392d1646f713a6044a1ed3c9084a3ac17b6c2146d8f8ecfe272fdb9"
+      "bytes": 9591,
+      "sha256": "cf827dbbf2f5483a861f6ade25f5dfa8e98258d9603f940b9d4f8ac1f7b663a9"
     },
     "src/components/HeyiLight.tsx": {
-      "bytes": 17270,
-      "sha256": "3c1febeacd8d1f716f3832e6dd4c57b2ca2fd79c67f80d0467c050dde0139300"
+      "bytes": 17326,
+      "sha256": "258a1be52a7a3e7b1c63c490c3015feab59586c3922be3847ebd629adfb699fc"
     },
     "src/components/HoverWindow.tsx": {
       "bytes": 3490,
@@ -2046,8 +2054,8 @@
       "sha256": "14c98b3523a94a2f225e0d0138749610356a7d0e600465e92482b7c873a2d2da"
     },
     "src/components/LeftSidebar.tsx": {
-      "bytes": 31541,
-      "sha256": "d835d71e06a61e381840d2dffe33eb41091e705df23919ddabeefe2e8a2ac142"
+      "bytes": 25825,
+      "sha256": "e3de80bd1dc68441c353519843fbf5b791067510f5783927b8a0c32c0f7f1e2d"
     },
     "src/components/LoadingScreen.tsx": {
       "bytes": 5362,
@@ -2141,6 +2149,10 @@
       "bytes": 39220,
       "sha256": "550d553dfa8da1deae626232ef60bc7e9cfa7f9c33085a27075a610fd5c425f8"
     },
+    "src/components/actionReminders.css": {
+      "bytes": 2451,
+      "sha256": "18813a3ee0ebe64622caef72b992be36661871d6f1d790a2d7360ca94e9ff9bb"
+    },
     "src/components/artRoom.css": {
       "bytes": 5004,
       "sha256": "11382acbc61f422e72f879e3baed949d2ff31ad6c79c3da844a41443e706576d"
@@ -2217,6 +2229,10 @@
       "bytes": 3695,
       "sha256": "89e804bb926408d62f2340019c73f0557a65e3c0253eda3f65f08754f1d5eb49"
     },
+    "src/data/advisors.ts": {
+      "bytes": 6723,
+      "sha256": "c8ffec00de423f2d1cefc44712dfb4540a4b52c43d0bed88bd93155040291ac4"
+    },
     "src/data/characterProfiles.ts": {
       "bytes": 5419,
       "sha256": "ab9d6b6aa3614433aee15d60cfafe577cdff62a030caabd5385f34a9fa33fd16"
@@ -2256,6 +2272,10 @@
     "src/data/storyEvents.ts": {
       "bytes": 415733,
       "sha256": "9809caff3221140b1d89db4debc036cf6c8bb7045910eeff65bab4455207d686"
+    },
+    "src/engine/actionReminders.ts": {
+      "bytes": 3649,
+      "sha256": "673878f10858e2cb6af03115a9ec4411e3d45dba1003012689c2e38f6512467d"
     },
     "src/engine/audioSettings.ts": {
       "bytes": 1250,
@@ -2357,6 +2377,10 @@
       "bytes": 38,
       "sha256": "65996936fbb042915f7b74a200fcdde7e410f32a669b1ab9597cfaa4b0faddb5"
     },
+    "tests/actionReminders.test.ts": {
+      "bytes": 3931,
+      "sha256": "a128edc3ddbf22a02553da853dc019dbf97a0d9fa7dc716b9911f12cfc0afa05"
+    },
     "tests/artCatalog.test.ts": {
       "bytes": 3028,
       "sha256": "6709353ae0a93d6b0bacf89fd1d54ee99b6f677abf1b0c789ffc1b520fd60f67"
@@ -2426,6 +2450,6 @@
       "sha256": "ba7b6b13d17902bdf7a5e763017a6ea80a00d79e11a3ec00cec7328bdbe400fb"
     }
   },
-  "fileCount": 606,
-  "totalBytes": 254136576
+  "fileCount": 612,
+  "totalBytes": 254157090
 }

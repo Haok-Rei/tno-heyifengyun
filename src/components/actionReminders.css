@@ -1,0 +1,14 @@
+.action-reminders { --reminder-gold:#c7b47f; position:absolute; left:12px; top:12px; z-index:12; display:flex; flex-wrap:wrap; gap:5px; max-width:calc(100% - 24px); pointer-events:none; }
+.action-reminder { position:relative; pointer-events:auto; color:var(--reminder-gold); }
+.action-reminder--decision { color:#afc3a2; }.action-reminder--advisor { color:#bdbaa5; }.action-reminder--team { color:#94c1c3; }.action-reminder--mechanic { color:#a9b8ce; }
+.action-reminder>button { position:relative; display:block; width:49px; height:49px; padding:2px; cursor:pointer; border:1px solid #8a826b; border-top-color:#b8ae8d; background:linear-gradient(135deg,#353d3c,#141b1c 48%,#20282a); box-shadow:inset 0 0 0 2px #0a0f10,inset 0 0 0 3px #444c46,2px 3px 5px #0009; transition:border-color .15s,background .15s; }
+.action-reminder>button:hover,.action-reminder>button:focus-visible { outline:none; border-color:currentColor; background:linear-gradient(135deg,#49524c,#202929 55%,#263032); box-shadow:inset 0 0 0 2px #101616,0 0 8px #b4a57744; }
+.action-reminder>button:active { transform:translateY(1px); }
+.action-reminder__icon { width:100%; height:100%; filter:drop-shadow(1px 2px 1px #000); }
+.action-reminder__count { position:absolute; right:2px; bottom:1px; font:10px Consolas,monospace; color:#e0d5b2; background:#101718; padding:0 2px; border:1px solid #595e51; line-height:12px; }
+.action-reminder__tooltip { position:absolute; top:56px; left:0; width:min(280px,calc(100vw - 32px)); max-height:230px; overflow:auto; padding:10px 12px; border:1px solid #827757; background:#101719f5; box-shadow:0 5px 16px #000b,inset 2px 0 #bba66b; color:#d0d3c8; font-size:11px; line-height:1.65; z-index:1; }
+.action-reminder__tooltip strong { display:block; color:#d4c391; font:700 14px SimSun,serif; padding-bottom:5px; border-bottom:1px solid #49514a; }
+.action-reminder__tooltip ul { list-style:none; padding:5px 0; margin:0; }.action-reminder__tooltip li::before { content:'◆'; color:#8c9c8b; font-size:7px; margin-right:6px; }
+.action-reminder__tooltip small { display:block; padding-top:5px; border-top:1px solid #38413c; color:#8e9b95; font-size:10px; }
+@media(max-width:640px) { .action-reminders { gap:3px; left:8px; top:8px; }.action-reminder>button { width:40px; height:40px; }.action-reminder__tooltip { position:fixed; left:70px; top:180px; width:250px; } }
+@media(prefers-reduced-motion:reduce) { .action-reminder>button { transition:none; } }
