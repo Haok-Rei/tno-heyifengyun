@@ -5403,12 +5403,12 @@ export default function App() {
     setIsRedToadPolitburoOpen(false);
     setIsElectionUIOpen(false);
     if (reminder.id === 'focus') setShowFocusTree(true);
-    if (reminder.id === 'decision') setDecisionsOpen(true);
-    if (reminder.id === 'advisor' || reminder.id === 'law') {
+    if (reminder.id === 'decision' || reminder.id === 'crisis') setDecisionsOpen(true);
+    if (reminder.id === 'advisor' || reminder.id === 'law' || reminder.id === 'papers') {
       setGovernmentOpen(true);
       setRequestedNationSection(prev => ({section:reminder.id==='advisor'?'advisors':'laws',nonce:(prev?.nonce||0)+1}));
     }
-    if (reminder.id === 'team' && reminder.target) setSelectedTileId(reminder.target);
+    if ((reminder.id === 'team' || reminder.id === 'stalled') && reminder.target) setSelectedTileId(reminder.target);
     if (reminder.id === 'mechanic') featureEntries.find(entry=>entry.id===reminder.target)?.open();
   };
 

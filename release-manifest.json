@@ -14,8 +14,8 @@
       "sha256": "177d20030d4dcc37eae9ef92865ec54dadce60e8f19e9a34a5d4f37502195a36"
     },
     "CHANGELOG.md": {
-      "bytes": 43656,
-      "sha256": "874d2de36e615e21c54e23f985f43c3f4ecddfa9808627410062a69d83b4c9d5"
+      "bytes": 44421,
+      "sha256": "c080c3c1b0cb3318af2c06b41834f4f6dd14e65ec79445b30528b0141d3083c0"
     },
     "CHARACTERS.md": {
       "bytes": 9656,
@@ -446,8 +446,8 @@
       "sha256": "4c7e2b7c9c3c8c9955484bb23e6caa5934c9d07ef4e59975e2ea840da0aeccba"
     },
     "docs/action-reminders.md": {
-      "bytes": 1212,
-      "sha256": "6e2dbd292afdc037ccbd279b3c6ccf0a991270cd39040d80e05afbf8c33961fd"
+      "bytes": 1568,
+      "sha256": "b4cb02eecbaa12bdf966b0a4e1092ebfee6337984f48d34ee93a2b08f6a21c5c"
     },
     "docs/event-writing-workflow.md": {
       "bytes": 4426,
@@ -558,8 +558,8 @@
       "sha256": "1954ca940740c612a12e7abf0a307b7394715964d66dc8037d503fdd5c1b6424"
     },
     "src/App.tsx": {
-      "bytes": 344268,
-      "sha256": "2f20625adcd6ef1b68dac36285d68d4a3c637a48acec3d9d04db3d91d14e418c"
+      "bytes": 344355,
+      "sha256": "68c78be8608cf9607a89d2a93962efc908bd52278698a6e22552205fd6ba8021"
     },
     "src/assets/flags/corporate.svg": {
       "bytes": 604,
@@ -1982,8 +1982,8 @@
       "sha256": "e3fded72c24233ad2144eaef7263ec1dfcf1ada0e0d5d2caea89b45ea40666f8"
     },
     "src/components/ActionReminders.tsx": {
-      "bytes": 4320,
-      "sha256": "bb48af12b2e2a225c047a5fa1d655b6234b9d5ab6c515002e29593923f1fdd81"
+      "bytes": 4980,
+      "sha256": "9005472a0d2527c9570e0febca284ad3776ad519aabba1c0aea0f72d55da783f"
     },
     "src/components/ArtRoom.tsx": {
       "bytes": 5967,
@@ -1994,8 +1994,8 @@
       "sha256": "35fbbaa61283289af5a3fa214139c2731e940623b8517da15e7de1cf96722d9e"
     },
     "src/components/CampusEnvironment.tsx": {
-      "bytes": 43957,
-      "sha256": "2b1dc04ff0ca8eaaf090020faaf8f0f326cba019ff7f6d13d70d925cc62ee831"
+      "bytes": 45543,
+      "sha256": "ddefd9cda425b5de90a17f7c642a49febe0c484cb38b5d23d4f2a998fde8f9b7"
     },
     "src/components/CentralMap.tsx": {
       "bytes": 44784,
@@ -2038,12 +2038,12 @@
       "sha256": "208d8f9cf4ece3b39a626443de00e665a5cfd798722f9c2616ab604980622718"
     },
     "src/components/GuidedTutorial.tsx": {
-      "bytes": 9591,
-      "sha256": "cf827dbbf2f5483a861f6ade25f5dfa8e98258d9603f940b9d4f8ac1f7b663a9"
+      "bytes": 9659,
+      "sha256": "37504b93f9531387a569a215f60e80ab0bfa37209137de0d02932a0b4e96e57b"
     },
     "src/components/HeyiLight.tsx": {
-      "bytes": 17326,
-      "sha256": "258a1be52a7a3e7b1c63c490c3015feab59586c3922be3847ebd629adfb699fc"
+      "bytes": 16323,
+      "sha256": "cd764d43c486d334842172354d2d6d68eebcd1c4f5c4686dc7a1de1844401b55"
     },
     "src/components/HoverWindow.tsx": {
       "bytes": 3490,
@@ -2150,8 +2150,8 @@
       "sha256": "550d553dfa8da1deae626232ef60bc7e9cfa7f9c33085a27075a610fd5c425f8"
     },
     "src/components/actionReminders.css": {
-      "bytes": 2451,
-      "sha256": "18813a3ee0ebe64622caef72b992be36661871d6f1d790a2d7360ca94e9ff9bb"
+      "bytes": 2564,
+      "sha256": "c884baa58cf972c0f290a115a5ba08bf9969ba8960ef9ebdd74b94d263cc3936"
     },
     "src/components/artRoom.css": {
       "bytes": 5004,
@@ -2274,8 +2274,8 @@
       "sha256": "9809caff3221140b1d89db4debc036cf6c8bb7045910eeff65bab4455207d686"
     },
     "src/engine/actionReminders.ts": {
-      "bytes": 3649,
-      "sha256": "673878f10858e2cb6af03115a9ec4411e3d45dba1003012689c2e38f6512467d"
+      "bytes": 4866,
+      "sha256": "b9643550312fca3602c24963fb60dc94d4c6b9906552a5b0c9fa1947e51579e9"
     },
     "src/engine/audioSettings.ts": {
       "bytes": 1250,
@@ -2378,8 +2378,8 @@
       "sha256": "65996936fbb042915f7b74a200fcdde7e410f32a669b1ab9597cfaa4b0faddb5"
     },
     "tests/actionReminders.test.ts": {
-      "bytes": 3931,
-      "sha256": "a128edc3ddbf22a02553da853dc019dbf97a0d9fa7dc716b9911f12cfc0afa05"
+      "bytes": 5454,
+      "sha256": "a8343ae12532cf768bf0420ee3817f60757d0d855a410a03c9d40be394a9c776"
     },
     "tests/artCatalog.test.ts": {
       "bytes": 3028,
@@ -2451,5 +2451,5 @@
     }
   },
   "fileCount": 612,
-  "totalBytes": 254157090
+  "totalBytes": 254162462
 }

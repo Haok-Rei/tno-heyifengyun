@@ -85,9 +85,10 @@ function Bench({x,y,broken=false}:{x:number;y:number;broken?:boolean}) {
   </g>;
 }
 function Table({x,y,label,items='papers'}:{x:number;y:number;label?:string;items?:'papers'|'ballot'|'books'|'printer'|'flowers'|'medical'}) {
+  const top=geometry(x,y,28,106,37),feet=geometry(x,y+25,0,106,37);
   return <g>
     <Box x={x} y={y} h={28} left={106} right={37}>{f=><>{label&&<Plate face={inset(f.left,.12,.10,.75,.67)} label={label} rows={0}/>}<FaceLines face={f.right} rows={2}/></>}</Box>
-    <path d={`M${x-89} ${y-5}v31m82-7v20m34-28v17`} stroke={INK} fill="none" strokeWidth="1.2"/>
+    {[{top:top.left,base:feet.left,u:.15},{top:top.left,base:feet.left,u:.94},{top:top.right,base:feet.right,u:.85}].map((leg,i)=><path key={i} d={path([at(leg.top,leg.u,1),at(leg.base,leg.u,1)])} stroke={INK} fill="none" strokeWidth="1.2"/>)}
     {items==='ballot'?<Box x={x-32} y={y-30} h={37} left={34} right={22} color="#adc7bd">{f=><><path d={path(inset(f.left,.12,.15,.76,.68),true)} fill="none" stroke={EDGE}/><path d={path([at(f.roof,.25,.5),at(f.roof,.8,.5)])} stroke="#cfbea1" strokeWidth="1.5"/><path d={path(inset(f.left,.4,.38,.35,.23),true)} fill="#d0c4a5" opacity=".25"/></>}</Box>:
       items==='printer'?<Box x={x-26} y={y-29} h={28} left={58} right={28}>{f=><><FaceLines face={f.left} rows={4}/><path d={path(inset(f.left,.13,.25,.7,.3),true)} fill="#121e21" stroke="#899f9a"/><path d={`M${x-50} ${y-61}l31 2 5 15-37-3Z`} fill={BLACK} stroke="#c8c1a2"/><Wheel x={x-5} y={y-40} r={9}/></>}</Box>:
       items==='flowers'?<g>{[0,1,2].map(i=><g key={i}><Box x={x-20-i*29} y={y-28+i*2} h={14} left={17} right={8}/><path d={`M${x-27-i*29} ${y-40+i*2}q-13-24-17-15m17 15q10-24 17-22m-17 22v-31`} fill="none" stroke="#a3b78b"/><circle cx={x-27-i*29} cy={y-71+i*2} r="3" fill="#bba181"/></g>)}</g>:
@@ -103,11 +104,12 @@ function Kiosk({x,y,label,color=INK,screen=false,broken=false}:{x:number;y:numbe
 }
 function Canopy({x,y,label,color=INK}:{x:number;y:number;label:string;color?:string}) {
   const f=geometry(x,y-113,25,140,51);
+  const feet=geometry(x,y,0,140,51);
   return <g>
     <path d={path(f.roof,true)} fill={BLACK} stroke={color}/><path d={path(f.left,true)} fill="#0a1417" stroke={color}/><path d={path(f.right,true)} fill={BLACK} stroke={EDGE}/>
     <Plate face={inset(f.left,.1,.05,.8,.9)} label={label} color={color} rows={0}/>
-    <path d={`M${x} ${y-114}V${y+4}M${x-138} ${f.left[3].y}V${y-22}M${x+50} ${f.right[2].y}V${y-11}`} fill="none" stroke={INK} strokeWidth="1.3"/>
-    <path d={`M${x-135} ${f.left[3].y+2}L${x} ${y-68}L${x+48} ${f.right[2].y+2}`} fill="none" stroke={EDGE} strokeWidth=".7"/>
+    <path d={path([f.left[2],feet.left[2]])+path([f.left[3],feet.left[3]])+path([f.right[2],feet.right[2]])} fill="none" stroke={INK} strokeWidth="1.3"/>
+    <path d={path([f.left[3],at(f.left,.97,1)])+path([at(f.right,.03,1),f.right[2]])} fill="none" stroke={EDGE} strokeWidth=".7"/>
   </g>;
 }
 function Cone({x,y}:{key?:number;x:number;y:number}) {
@@ -135,25 +137,45 @@ function SmallFigure({x,y,role='student',pose='stand'}:{x:number;y:number;role?:
   </g>;
 }
 
+// Ground edges and street furniture share the same horizon and vanishing points.
+function streetPoint(x:number,y:number):Point {
+  const vp=x<800?-1200:2300;
+  return {x,y:y+(HORIZON-y)*(x-800)/(vp-800)};
+}
+function streetLine(y:number) { return [streetPoint(-500,y),{x:800,y},streetPoint(1700,y)]; }
+function acrossStreet(p:Point,targetY:number):Point {
+  const own=p.x<800?-1200:2300,other=p.x<800?2300:-1200;
+  const a=(targetY-HORIZON)/(800-own),b=(p.y-HORIZON)/(p.x-other);
+  const x=(a*own-b*other)/(a-b);
+  return {x,y:HORIZON+a*(x-own)};
+}
 export function CampusGround({observation}:{observation:Observation}) {
   const {route,mood}=observation.snapshot;
   const ruined=route==='jidi_riot'||route==='despair';
+  const curb=streetLine(566), inner=streetLine(526), road=streetLine(582);
+  const strip=[...curb,...inner.slice().reverse()];
+  const crossLeft=streetPoint(390,603),crossRight=streetPoint(775,603);
+  const crossings:Face=[crossLeft,crossRight,acrossStreet(crossRight,728),acrossStreet(crossLeft,728)];
   return <Observe zone="road" anchor={{x:610,y:635}} observation={observation}>
-    <path d="M-500 507L330 471L800 521L1700 434V700H-500Z" fill="#060e12" stroke={EDGE} strokeWidth=".85"/>
-    <path d="M-500 519L331 485L801 536L1700 451M-500 531L331 497L801 549L1700 465" fill="none" stroke={INK} strokeWidth=".8"/>
-    <path d="M-500 542L330 510L801 562L1700 481M-500 564L330 531L801 585L1700 501" stroke={EDGE} strokeWidth=".55" fill="none"/>
-    {Array.from({length:23},(_,i)=>{const x=-350+i*90;return <path key={i} d={`M${x} ${x<330?528-x*.04:493+(x-330)*.11}l-8 15`} stroke="#597780" strokeWidth=".65" fill="none"/>;})}
-    <path d="M-500 635L800 579L1700 657M-500 649L800 594L1700 673" stroke="#adad94" strokeWidth=".85" fill="none"/>
-    {Array.from({length:7},(_,i)=>{const x=383+i*55; return <path key={i} d={`M${x} ${556+i*5.5}l22 2 48 102-29-2Z`} fill={ruined?'#263332':'#7b8880'} opacity=".55" stroke="#8a9e99" strokeWidth=".5"/>;})}
-    <path d="M-100 692L330 541M955 700L801 560M1150 691L865 552" stroke="#355965" strokeWidth=".7" fill="none"/>
+    <path d={path([{x:-500,y:340},{x:720,y:435},{x:1700,y:335},...inner.slice().reverse()],true)} fill="#070e11"/>
+    <path d={path([...curb,{x:1700,y:700},{x:-500,y:700}],true)} fill="#060e12"/>
+    <path d={path(strip,true)} fill="#0b1518" stroke={EDGE} strokeWidth=".7"/>
+    <defs><clipPath id="campus-walkway"><path d={path(strip,true)}/></clipPath></defs>
+    <g clipPath="url(#campus-walkway)" fill="none" stroke="#425c61" strokeWidth=".55">
+      {[536,546,556].map(y=><path key={y} d={path(streetLine(y))}/>)}
+      {Array.from({length:21},(_,i)=>{const p=streetPoint(-460+i*103,526);return <path key={i} d={path([p,acrossStreet(p,566)])}/>;})}
+    </g>
+    <path d={path(curb)} stroke={INK} strokeWidth="1" fill="none"/>
+    <path d={path(road)} stroke={EDGE} strokeWidth=".7" fill="none"/>
+    <path d={path(streetLine(662))} stroke="#aaab93" strokeWidth=".8" strokeDasharray="44 22" fill="none"/>
+    {Array.from({length:7},(_,i)=><path key={i} d={path(inset(crossings,i/7,.03,.048,.94),true)} fill={ruined?'#34413c':'#7b8880'} opacity=".55"/>)}
     <ellipse cx="211" cy="617" rx="28" ry="9" fill={BLACK} stroke={INK} strokeWidth=".8"/>
     <ellipse cx="211" cy="617" rx="24" ry="6.5" fill="none" stroke={EDGE} strokeWidth=".6"/>
     <path d="M191 615l39 2m-36 3 33-1m-24-9v13m10-12v12" stroke={EDGE} strokeWidth=".55" fill="none"/>
-    {[118,290,888,1112].map((x,i)=><path key={x} d={`M${x} ${590+i%2*23}l17-3 9 5-18 5Z`} fill="none" stroke="#61777a" strokeWidth=".65"/>)}
-    {(mood==='weary'||ruined)&&<g className="campus-puddle" fill="#101b1d" stroke="#667a7b" strokeWidth=".7"><path d="M83 573q57-11 105 2l-13 6-71 5-24-6Z"/><path d="M821 628q43-12 94-2l44 9-39 10-91-5Z"/><path d="M985 559l83-8 28 5-43 9Z"/></g>}
-    {ruined&&Array.from({length:24},(_,i)=>{const x=160+(i*137)%900,y=569+(i*43)%117;return <path key={i} d={`M${x} ${y}l${i%2?11:-9}-4 5 9-13 1Z`} fill={BLACK} stroke={i%3===0?'#b19a7c':'#7b9697'} strokeWidth=".65"/>;})}
-    {route==='gouxiong'&&<g fill="none" stroke="#b699ac" strokeWidth="1"><ellipse cx="933" cy="618" rx="40" ry="14"/><path d="M915 615v-4m32 1v4m-26 6q13 7 23 0M875 606l-16 4m149 9 17 6"/></g>}
-    {route==='wu'&&<path d="M120 549L780 578L1150 542M145 556L780 585L1142 550" stroke="#b8a678" strokeWidth="1.2" fill="none"/>}
+    {(mood==='weary'||ruined)&&<g className="campus-puddle" fill="#101b1d" stroke="#667a7b" strokeWidth=".7"><path d="M83 573q57-11 105 2l-13 6-71 5-24-6Z"/><path d="M821 628q43-12 94-2l44 9-39 10-91-5Z"/></g>}
+    {ruined&&Array.from({length:14},(_,i)=>{const x=160+(i*137)%900,y=595+(i*43)%94;return <path key={i} d={`M${x} ${y}l${i%2?11:-9}-4 5 9-13 1Z`} fill={BLACK} stroke={i%3===0?'#b19a7c':'#7b9697'} strokeWidth=".65"/>;})}
+    {route==='gouxiong'&&<g fill="none" stroke="#b699ac" strokeWidth="1"><ellipse cx="933" cy="618" rx="40" ry="14"/><path d="M915 615v-4m32 1v4m-26 6q13 7 23 0"/></g>}
+    {route==='wu'&&<path d={path(streetLine(600))+path(streetLine(607))} stroke="#b8a678" strokeWidth="1" fill="none"/>}
   </Observe>;
 }
 
@@ -209,9 +231,9 @@ export function CampusGuard({observation}:{observation:Observation}) {
       <path d={path(inset(f.right,.32,.36,.22,.45),true)} fill="none" stroke={INK}/>
       <path d={path(inset(f.roof,.05,.2,.84,.1),true)} fill="none" stroke={EDGE}/>
     </>}</Box>
-    <path d="M77 473L307 508L349 498M77 481L307 516L349 506" fill="none" stroke={INK} strokeWidth=".8"/>
+    <path d="M84 468L306 507L341 503M84 475L306 515L341 510" fill="none" stroke={INK} strokeWidth=".8"/>
     {route==='jidi'&&<Kiosk x={337} y={500} label="扫码" screen color="#c1ae7e"/>}
-    {route==='wu'&&<g><path d="M321 310v-56l38 7M345 254l22 5-5 10-23-6Z" fill={BLACK} stroke={INK}/><circle cx="358" cy="263" r="2" fill="#b87468"/><Plate face={geometry(100,478,42,36,6).left} label="证件" rows={0}/></g>}
+    {route==='wu'&&<g><path d="M321 310v-56l38 7" fill="none" stroke={INK}/><path d="M345 254l22 5-5 10-23-6Z" fill={BLACK} stroke={INK}/><circle cx="358" cy="263" r="2" fill="#b87468"/><Plate face={geometry(100,478,42,36,6).left} label="证件" rows={0}/></g>}
     {route==='despair'&&<path d="M99 375l70 75m-58-3 59-78" stroke="#ac8c73" strokeWidth="2"/>}
     {wreck&&<path d="M132 474l27 4 3 9-28-3m85-56 15 2-4 15-19-3" fill={BLACK} stroke="#a18e77"/>}
   </Observe>;
@@ -243,33 +265,35 @@ export function CampusTrees({observation,month}:{observation:Observation;month:n
 export function CampusEdges({observation}:{observation:Observation}) {
   const {route,mood}=observation.snapshot;
   const damaged=route==='despair'||route==='jidi_riot';
+  const boundary=geometry(800,520,26,1300,900);
+  const walls=[inset(boundary.left,0,0,.655,1),inset(boundary.right,.032,0,.968,1)];
   return <g className="campus-street-edges">
     <Observe zone="road" anchor={{x:30,y:482}} observation={observation}>
+      {walls.map((wall,i)=><g key={i}>
+        <path d={path(wall,true)} fill={BLACK} stroke={EDGE} strokeWidth=".8"/>
+        <FaceLines face={wall} rows={2} columns={14} color="#425b5b"/>
+        <path d={path([wall[0],wall[1]])} stroke={INK} strokeWidth="1"/>
+        {damaged&&<path d={path([at(wall,.48,0),at(wall,.50,.4),at(wall,.49,.8)])} stroke="#968775" fill="none" strokeWidth=".7"/>}
+      </g>)}
       {[-45,1320].map((x,i)=>{
-        const f=geometry(x,469,68,i?118:150,i?75:85), wall=i?f.left:f.right;
+        const y=streetPoint(x,495).y;
+        const f=geometry(x,y,52,i?115:110,i?42:60),wall=i?f.left:f.right;
         return <g key={x}>
-          <path d={path(wall,true)} fill={BLACK} stroke={EDGE} strokeWidth=".85"/>
-          <FaceLines face={wall} rows={5} columns={8} color="#425b5b"/>
-          <path d={path([at(wall,0,0),at(wall,1,0)])} stroke={INK} strokeWidth="1.2"/>
-          {[.1,.3,.5,.7,.9].map(u=>{
-            const p=at(wall,u,0);return <g key={u}><path d={`M${p.x} ${p.y}v-24l-2-4 2-4 2 4-2 4m-2 15h4`} stroke="#849e94" fill="none" strokeWidth=".7"/>
-              {!damaged&&<path d={`M${p.x-7} ${p.y+4}q-11-12-4-17q-8-9 3-13q2-10 10-4q12-1 10 10q10 9-4 15m-13-9 13 6m-9-13 6 9`} stroke={mood==='bright'?'#82967d':'#60776b'} fill="none" strokeWidth=".65"/>}</g>;
+          <path d={path(wall,true)} fill={BLACK} stroke={EDGE} strokeWidth=".75"/>
+          <FaceLines face={wall} rows={3} columns={7} color="#425b5b"/>
+          <path d={path(f.roof,true)} fill="#101a1a" stroke="#929981" strokeWidth=".6"/>
+          {!damaged&&[.12,.3,.48,.66,.84].map(u=>{
+            const q=at(wall,u,0),height=16+(i?u:1-u)*8;
+            return <g key={u}><path d={`M${q.x-8} ${q.y}q-8-8-3-${height/2}q-3-10 5-${height/2}q7-6 12 3q12-1 9 9q9 7-2 14`} stroke={mood==='bright'?'#81927b':'#60776b'} fill={BLACK} strokeWidth=".65"/><path d={`M${q.x} ${q.y}v-${height*.68}m0 5-5-4m5 9 7-5`} stroke={EDGE} fill="none" strokeWidth=".5"/></g>;
           })}
-          <path d={path([at(wall,0,.08),at(wall,1,.08)])} stroke="#9d977c" strokeWidth=".5"/>
-          {damaged&&<path d={path([at(wall,.4,0),at(wall,.48,.22),at(wall,.42,.53),at(wall,.53,.79)])} stroke="#968775" fill="none" strokeWidth=".85"/>}
         </g>;
       })}
-      <Bench x={-30} y={497} broken={damaged}/><Bicycle x={-117} y={551} fallen={damaged}/>
-      <path d="M-182 497l134-13 84 9M-181 503l134-13 85 10M1210 524l152-16 120 13M1210 531l152-16 120 13" fill="none" stroke={EDGE} strokeWidth=".7"/>
-      {[-137,-63,1240,1320].map((x,i)=><g key={x}>
-        <path d={`M${x} ${i<2?511:539}v-22l8-3v24m-8-18 8-2m-8 12 8-2`} fill="none" stroke="#a6a792" strokeWidth=".9"/>
-      </g>)}
-      <Box x={1288} y={519} h={70} left={56} right={18}>{f=><><Plate face={inset(f.left,.08,.09,.82,.76)} label={route==='wu'?'門禁':damaged?'停用':'公交'} rows={2} color="#a4b4a5"/><path d={path(inset(f.right,.15,.1,.65,.6),true)} stroke={EDGE} fill="none"/></>}</Box>
-      <path d="M1275 521v13m-42-11v9" stroke={INK} fill="none"/>
-      <Bicycle x={1320} y={570} fallen={damaged}/>
-      {!damaged&&<SmallFigure x={1221} y={540} role="teacher"/>}
-      {route==='wu'&&<Barrier x={-77} y={549} width={79}/>}
-      {route==='gouxiong'&&<path d="M-171 430q74-16 156-10m1230 36q70 5 143-7" stroke="#ac93a6" fill="none" strokeWidth=".8"/>}
+      <Bench x={-40} y={streetPoint(-40,548).y} broken={damaged}/>
+      <Bicycle x={-115} y={streetPoint(-115,586).y} fallen={damaged}/>
+      <Box x={1288} y={streetPoint(1288,553).y} h={62} left={48} right={14}>{f=><><Plate face={inset(f.left,.08,.09,.82,.76)} label={route==='wu'?'門禁':damaged?'停用':'公交'} rows={2} color="#a4b4a5"/><path d={path(inset(f.right,.15,.1,.65,.6),true)} stroke={EDGE} fill="none"/></>}</Box>
+      <Bicycle x={1330} y={streetPoint(1330,604).y} fallen={damaged}/>
+      {!damaged&&<SmallFigure x={1221} y={streetPoint(1221,574).y} role="teacher"/>}
+      {route==='wu'&&<Barrier x={-77} y={streetPoint(-77,585).y} width={72}/>}
     </Observe>
   </g>;
 }
@@ -295,7 +319,7 @@ function Flag({x,y,color='#ad7967',small=false}:{x:number;y:number;color?:string
   return <g transform={`translate(${x} ${y}) scale(${small?.65:1})`}><path d="M0 0V-106m-7 110 7-4 8 5m-8-1v7" stroke={INK} fill="none" strokeWidth="1"/><path className="heyi-cloth" d="M2-103Q29-112 60-94L59-57Q28-76 2-68Z" fill={BLACK} stroke={color} strokeWidth="1"/><path d="M8-98Q30-101 51-90M8-73Q31-83 51-63" stroke={color} opacity=".5" fill="none" strokeWidth=".6"/></g>;
 }
 function Chair({x,y}:{x:number;y:number}) {
-  return <g fill={BLACK} stroke={INK} strokeWidth=".8"><path d={`M${x} ${y}v-42l-25-4v37l25 9 17-6v-18M${x-25} ${y-9}v22m25-13v22m17-28v18M${x-25} ${y-9}l18-3 24 6`} /><path d={`M${x-22} ${y-39}l19 3m-19 4 19 3m-19 4 19 3`} stroke={EDGE}/></g>;
+  return <g fill="none" stroke={INK} strokeWidth=".8"><path d={`M${x} ${y}v-42l-25-4v37l25 9 17-6v-18M${x-25} ${y-9}v22m25-13v22m17-28v18M${x-25} ${y-9}l18-3 24 6`} /><path d={`M${x-22} ${y-39}l19 3m-19 4 19 3m-19 4 19 3`} stroke={EDGE}/></g>;
 }
 function Van({x,y,official=false}:{x:number;y:number;official?:boolean}) {
   return <g transform={`translate(${x} ${y})`}>
@@ -364,7 +388,7 @@ function RouteStreetScene({route}:{route:HeyiRoute}) {
       <Kiosk x={1118} y={562} label="升學指標" color="#c4b17f" screen/>
       <Box x={312} y={565} h={64} left={44} right={20}>{f=><><Plate face={inset(f.left,.08,.12,.85,.62)} label="07:00" color="#c4b17f" rows={0} lit/><FaceLines face={f.right} rows={6}/></>}</Box>
       {[915,962,1009].map((x,i)=><g key={x}><Box x={x} y={573-i*5} h={37} left={27} right={15}/><path d={`M${x-10} ${553-i*5}h9m-9 4h9`} stroke="#b9ab89"/></g>)}
-      <path d="M152 600l680 36M157 589l680 36M162 578l680 36" stroke="#887f63" strokeWidth=".65" fill="none"/>
+      {[612,624,636].map(y=><path key={y} d={path([streetPoint(152,y),streetPoint(800,y),streetPoint(846,y)])} stroke="#887f63" strokeWidth=".65" fill="none"/>)}
       <SmallFigure x={1108} y={567} role="teacher" pose="carry"/><SmallFigure x={866} y={574} pose="carry"/><SmallFigure x={908} y={568} pose="carry"/>
       <Box x={1096} y={609} h={31} left={70} right={28} rows={6}/>
     </g>;
@@ -395,7 +419,8 @@ function RouteStreetScene({route}:{route:HeyiRoute}) {
       {[145,365,917,998,1108].map((x,i)=><Cone key={x} x={x} y={591-i*7}/>)}
       <Kiosk x={964} y={558} label="巡查通報" color="#b3beb5"/>
       <SmallFigure x={286} y={577} role="steward"/><SmallFigure x={211} y={552} role="teacher" pose="sit"/><SmallFigure x={1060} y={570} role="steward"/>
-      <path d="M1120 518V384l-39-8M1075 369l44 9-7 11-44-9Z" fill={BLACK} stroke={INK}/>
+      <path d="M1120 518V384l-39-8" fill="none" stroke={INK}/>
+      <path d="M1075 369l44 9-7 11-44-9Z" fill={BLACK} stroke={INK}/>
       <path className="campus-search-beam" d="M1084 384L642 643L812 646Z" fill="#bfc3a3" opacity=".04"/>
       <path d="M271 487l25 3m-26 5 24 3m-25 5 23 3" stroke="#bfc5b3"/>
     </g>;
@@ -420,12 +445,24 @@ export function CampusBuildingDetails({route}:{route:HeyiRoute}) {
   const colors:Record<HeyiRoute,string>={opening:'#afa98e',democracy:'#9dbaa7',revolution:'#b97e6f',reform:'#afbb94',haobang:'#bca483',yang:'#bdaa8b',jidi:'#c6b580',jidi_riot:'#c38e73',gouxiong:'#b4a0b8',wu:'#aab9b7',despair:'#aa998a'};
   const color=colors[route];
   return <g className="campus-building-details">
-    <Plate face={inset(f.left,.10,.251,.66,.10)} label={titles[route]} rows={0} color={color}/>
+    <Plate face={inset(f.left,.10,.239,.66,.049)} label={titles[route]} rows={0} color={color}/>
     {route==='jidi'&&<><Plate face={inset(f.right,.13,.53,.67,.17)} label="C9 / 985" color={color} rows={3} lit/>{Array.from({length:12},(_,i)=><path key={i} d={path([at(f.right,.15+i*.053,.74),at(f.right,.15+i*.053,.87)])} stroke={color} strokeWidth={i%3?1:2.5}/>)}</>}
-    {route==='yang'&&<g><Plate face={inset(f.left,.09,.035,.085,.20)} rows={0} color="#c4bda2"/><path className="heyi-window__light" d={path(inset(f.left,.10,.055,.066,.16),true)} fill="#b19967" opacity=".35"/><path d={path([at(f.left,.105,.163),at(f.left,.156,.163)])} stroke="#bcb394"/><path d={path([at(f.left,.117,.159),at(f.left,.117,.122),at(f.left,.142,.122),at(f.left,.142,.159)])} fill="none" stroke={EDGE}/></g>}
+    {route==='yang'&&(()=>{const win=inset(f.left,1-7.8/9,.055,.62/9,.165);return <g>
+      <path d={path(win,true)} fill="#03090d" stroke="#c4bda2" strokeWidth="1"/>
+      <path className="heyi-window__light" d={path(inset(win,.04,.04,.92,.92),true)} fill="#b19967" opacity=".35"/>
+      <path d={path([at(win,.5,0),at(win,.5,1)])+path([at(win,0,.5),at(win,1,.5)])} stroke={EDGE} fill="none"/>
+      <path d={path([at(win,.12,.79),at(win,.87,.79)])} stroke="#bcb394"/>
+      <path d={path(inset(win,.32,.48,.34,.29),true)} fill={BLACK} stroke={EDGE}/>
+    </g>;})()}
     {route==='wu'&&[.10,.8].map((u,i)=>{const p=at(i?f.right:f.left,u,.47);return <g key={i}><path d={`M${p.x} ${p.y}v-11l20 4M${p.x+14} ${p.y-13}l18 4-3 7-18-4Z`} fill={BLACK} stroke={INK} strokeWidth=".8"/><circle cx={p.x+29} cy={p.y-5} r="1.5" fill="#a87164"/></g>;})}
     {(route==='despair'||route==='jidi_riot')&&[f.left,f.right].map((face,side)=><g key={side}>
-      {[0,1,2,3,4].map(i=>{const u=.15+i*.15,v=side?.53:.54;return <g key={i}><path d={path(inset(face,u,v,.08,.15),true)} fill="#02080b" stroke="#8e8e7c" strokeWidth=".65"/>{route==='despair'?<><path d={path([at(face,u,v+.015),at(face,u+.08,v+.14)])} stroke="#9e8a72" strokeWidth="2"/><path d={path([at(face,u,v+.13),at(face,u+.08,v+.02)])} stroke="#9e8a72" strokeWidth="1.6"/></>:<path d={path([at(face,u+.01,v),at(face,u+.05,v+.07),at(face,u+.01,v+.12)])} stroke="#a68d79" fill="none"/>}</g>;})}
+      {Array.from({length:side?6:9},(_,i)=>{const n=side?6:9,u=side?(i+.18)/n:1-(i+.80)/n,v=.055+2*.242,w=.62/n,h=.165;const win=inset(face,u,v,w,h);return <g key={i}>
+        <path d={path(inset(face,u-.014,v-.008,w+.028,h+.038),true)} fill="#060e12"/>
+        <path d={path(win,true)} fill="#02080b" stroke="#8e9a8c" strokeWidth=".8"/>
+        <path d={path([at(win,.5,0),at(win,.5,1)])} stroke={EDGE} strokeWidth=".6"/>
+        {route==='despair'?<><path d={path([at(win,.04,.06),at(win,.96,.94)])} stroke="#9e8a72" strokeWidth="2"/><path d={path([at(win,.04,.88),at(win,.96,.10)])} stroke="#9e8a72" strokeWidth="1.6"/></>:<path d={path([at(win,.07,0),at(win,.52,.44),at(win,.21,.73),at(win,.66,1)])} stroke="#a68d79" fill="none"/>}
+        <path d={path([at(win,-.1,1.08),at(win,1.1,1.08)])} stroke="#8e9a8c" strokeWidth=".7"/>
+      </g>;})}
     </g>)}
     {route==='revolution'&&<><Flag x={218} y={123} small/><Flag x={879} y={97} small/><path d={path([at(f.left,.09,.04),at(f.left,.2,.04),at(f.left,.16,.22),at(f.left,.12,.19)],true)} fill={BLACK} stroke={color}/></>}
     {route==='haobang'&&[.33,.43,.53].map((u,i)=><path key={i} d={path([at(f.left,u,.355),at(f.left,u+.03,.355),at(f.left,u+.018,.435),at(f.left,u,.423)],true)} fill={BLACK} stroke={i===1?'#94aba1':color} strokeWidth=".8"/>)}

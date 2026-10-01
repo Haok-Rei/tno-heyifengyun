@@ -46,7 +46,6 @@ function SchoolCampus({ lit, unrest, route }: { lit: number; unrest: boolean; ro
   const point=(face:typeof faces[number],u:number,v:number):Point=>({x:corner.x+(face.x-corner.x)*u,y:corner.top+(face.top-corner.top)*u+v*((corner.bottom-corner.top)+(face.bottom-face.top-corner.bottom+corner.top)*u)});
   const line=(points:Point[])=>'M'+points.map(q=>`${q.x.toFixed(2)} ${q.y.toFixed(2)}`).join('L');
   return <g className="heyi-campus">
-    <path d="M-500 0H1700V480H-500Z" fill="#040c10" />
     <path d="M80 137L720 75L1160 127V386L720 435L80 377Z" fill="#060e12" stroke="#c2c9be" strokeWidth="1.4" />
     <path d="M80 137L720 75L1160 127L1151 110L720 55L89 120Z" fill="#0a1317" stroke="#a5bcb9" strokeWidth="1" />
     <path d="M80 145L720 87L1160 137M80 153L720 99L1160 146M80 374L720 429L1160 383" stroke="#6f969b" strokeWidth=".8" fill="none" />
@@ -72,11 +71,6 @@ function SchoolCampus({ lit, unrest, route }: { lit: number; unrest: boolean; ro
     <path d="M720 56V435M715 57V434M727 58V434" stroke="#c5cbb9" strokeWidth="1.1" />
     <path d="M720 54V22L744 29V61L720 54ZM720 22L687 32V58L720 54" fill="#070e12" stroke="#afbcae" strokeWidth="1" />
     <ellipse cx="706" cy="40" rx="8" ry="10" fill="#080f12" stroke="#c3b796" /><path d="M706 33V40L710 44" stroke="#ded4af" fill="none" />
-    <path d="M80 377L720 435L1160 386L1520 483L758 531L-230 477Z" fill="#070e11" stroke="#486d75" strokeWidth="1" />
-    <path d="M80 393L720 449L1160 401M80 407L720 463L1160 415M-150 446L720 485L1350 445M-350 484L720 516L1530 480" fill="none" stroke="#657d7d" strokeWidth=".65" />
-    <defs><clipPath id="heyi-courtyard-clip"><path d="M80 377L720 435L1160 386L1520 483L758 531L-230 477Z" /></clipPath></defs>
-    <path clipPath="url(#heyi-courtyard-clip)" d="M-280 474L-1200 260M165 487L-1200 260M525 507L-1200 260M770 530L2300 260M1010 516L2300 260M1325 496L2300 260" fill="none" stroke="#365762" strokeWidth=".6" />
-    <path d="M80 377L720 435L1160 386" fill="none" stroke="#c5b795" strokeWidth="1.2" />
     <path d="M113 143V370M1124 137V381" stroke="#8caaa5" strokeWidth="1.1" />
   </g>;
 }
@@ -91,6 +85,7 @@ function Scene({ snapshot, month, viewBox, active, onZone, onPointer }: {
   const observation={snapshot,active,onZone,onPointer};
   return <svg className="heyi-light-v2__scene" viewBox={viewBox} preserveAspectRatio="xMidYMid meet" role="img" aria-label={'合肥一中校门：'+snapshot.headline}>
     <rect x="-500" width="2200" height="700" fill="#020b10" />
+    <CampusGround observation={observation}/>
     <SchoolCampus lit={lit} unrest={unrest} route={route}/>
     <CampusBuildingDetails route={route}/>
     <g className="heyi-hotspots"><path d="M80 137L720 75L1160 127V386L720 435L80 377Z" className={active==='building'?'is-active':''}
@@ -98,10 +93,7 @@ function Scene({ snapshot, month, viewBox, active, onZone, onPointer }: {
       onPointerEnter={e=>onPointer(e,'building')} onPointerMove={e=>onPointer(e,'building')} onPointerLeave={()=>onZone(null)}
       onFocus={()=>onZone('building',{x:610,y:190})} onBlur={()=>onZone(null)}
       onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();onZone('building',{x:610,y:190});}}}/></g>
-    <CampusGround observation={observation}/>
     <CampusEdges observation={observation}/>
-    <path d="M-500 423L356 450L360 470L-500 444M816 498L1700 376L1700 400L816 517" fill="#050d11" stroke="#849a97" strokeWidth=".8"/>
-    <path d="M-500 436L356 464M816 512L1700 394" fill="none" stroke="#55767e" strokeWidth=".65"/>
     <CampusGuard observation={observation}/>
     <CampusGate observation={observation}/>
     <CampusTrees observation={observation} month={month}/>
