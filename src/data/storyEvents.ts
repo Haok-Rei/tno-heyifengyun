@@ -210,14 +210,14 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
   gx_dabi_rooftop_invite_story_event: {
     id: 'gx_dabi_rooftop_invite_story_event',
     title: '达璧的天台邀约',
-    description: '在多轮看似温柔的对话后，达璧终于发来那句“今晚十二点，顶层天台，只要你一个人”。狗熊将其视为情感终章，却没有意识到，这更像一场被精心设计的战术会面。',
+    description: "此前几轮对话都温温吞吞，拿捏着一种近乎体贴的分寸，达璧忽然把话讲得极短：“今晚十二点，顶层天台，只要你一个人。”\n\n狗熊盯着这行字看了很久，心里那点悬着的东西终于落了地。他认定这是两人关系的最后一场，成或不成，今夜见分晓。他甚至已经在想该穿什么，见面第一句说什么。\n\n他没往另一个方向想过：只身、深夜、高处、无人。天台的见面，也可以是提前布好的战术会面。对方把话说得越干净，越像算好了退路。\n\n十二点之前还有几个小时。狗熊收起手机，只等动身。",
     buttonText: '赴约',
     isStoryEvent: true,
   },
   gx_wushuo_evidence_submit_story_event: {
     id: 'gx_wushuo_evidence_submit_story_event',
     title: '吴蒴提交录证',
-    description: '吴蒴将狗熊在聊天中关于“扣资料”“查水表”“强迫陪同”等关键言论整理成证据包，提交至学生代表大会与保安处联席邮箱。礼堂内部风向开始变化。',
+    description: "吴蒴没有再多说什么。她把狗熊在聊天里讲过的那些话一条条翻出来——“扣资料”“查水表”“强迫陪同”——按时间顺序归拢，做成了一个证据包，直接发进了学生代表大会与保安处的联席邮箱。\n\n这些东西原本散在私人对话里，谁都可以当玩笑听。可一旦并排放在一起，次序和口气就自己显出另一副样子：先卡材料，再借名目上门，最后要人陪着走。吴蒴在邮件里没加什么判断，只写了一句请查证。\n\n风声传得比邮件快。礼堂那头本来还在观望的人开始低声交换看法，原本替狗熊打圆场的话没人再接。风向在移，只是没人当众把话说破。狗熊还不知道，他手里那点私下说过的话，现在已经躺在别人的收件箱里。",
     buttonText: '查看后果',
     isStoryEvent: true,
     effect: (state) => ({
@@ -1607,7 +1607,7 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
         newSpirits.push({
           id: 'strict_discipline_spirit',
           name: '严格纪律',
-          description: '校园纪律得到了加强，但也压抑了学生的天性。',
+          description: "校园纪律得到加强，迟到、早退和课堂秩序被重新纳入严格管理。校方将这套安排解释为对学习环境的必要维护，认为松散的风气会拖垮整体的教学节奏。\n\n实际后果同样清楚：学生的自主空间被压缩，天性被压入统一的行为规范之中。服从变成默认要求，个性表达则成为需要额外解释的例外。纪律确实得到了巩固，但它换来的秩序感，是靠持续压抑另一部分东西维持的。",
           type: 'neutral',
           effects: { stabDaily: 0.2, studentSanityDaily: -0.1 }
         });
@@ -1645,7 +1645,7 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
         newSpirits.push({
           id: 'red_culture_spirit',
           name: '红色文化教育',
-          description: '红色文化在校园内广泛传播，增强了学生的集体荣誉感。',
+          description: "红色文化在校园内广泛传播，从课堂延伸到课外，成为集体荣誉感的重要来源。学生被鼓励从革命传统中寻找归属，把个人努力同集体、同更大的政治认同联系起来，而不是仅仅把学校当作考试通道。\n\n这套安排之所以能在校园站住脚，是因为它同时提供了一套解释：个人的位置从何而来，集体为何值得维护。荣誉感一旦建立，学生与学校之间的关系就不再只靠规章制度维系。",
           type: 'positive',
           effects: { allianceUnityDaily: 0.2, ppDaily: 0.1 }
         });
@@ -1682,7 +1682,7 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
         newSpirits.push({
           id: 'extra_mock_exams_spirit',
           name: '高频模拟考',
-          description: '频繁的模拟考试提高了学生的应试能力，但也极大地消耗了他们的理智。',
+          description: "模拟考的频次被大幅提高，校方的理由直接——只有反复实战才能把应试能力逼到稳定水平。分数波动被当作诊断工具，排名被当作改进依据。\n\n学生确实更熟悉题型和节奏了，但代价同样落在他们身上。精力被反复抽取，理智在连续考试中不断磨损。把考试密度当成提升手段，实际效果是应试熟练度上升与心理承受力下降同时发生。这套安排能培养出稳定的考生，却未必能培养出稳定的人。",
           type: 'negative',
           effects: { tprDaily: 5, studentSanityDaily: -0.5 }
         });
@@ -1734,7 +1734,7 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
         newSpirits.push({
           id: 'club_freedom_spirit',
           name: '社团自由',
-          description: '社团活动得到了保障，学生们的创造力被激发。',
+          description: "社团活动得到制度性保障，学生被允许在课程之外组织起来，把想法变成可操作的项目。校方将此视为对创造力的释放，官方口径强调这是校园活力的体现。\n\n创造力确实被激发出来，但社团自由并不自动解决资源分配问题。场地、时间和指导力量都有限，能维持下去的社团往往依赖成员自行协调。自由在这里是一块被划出来的空间，它给了学生发挥余地，也把维持运转的责任一并交给了他们。",
           type: 'positive',
           effects: { studentSanityDaily: 0.2, ppDaily: 0.1 }
         });
@@ -1771,7 +1771,7 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
         newSpirits.push({
           id: 'no_evening_study_spirit',
           name: '废除强制晚自习',
-          description: '学生们获得了更多的自由时间，但也面临着自律的考验。',
+          description: "强制晚自习被取消，学生在傍晚之后有了更多自行安排的时间。校方不再用统一的自习安排约束每一个人，代价是自律从此变成学生自己的事：有人把多出来的时间用于补弱科，也有人把它原样浪费掉。\n\n制度松绑本身不保证结果，它只是把选择权交还给了学生。自由时间越多，自律的考验就越具体，这一点不会因为规定取消而自动消失。",
           type: 'positive',
           effects: { studentSanityDaily: 0.3, tprDaily: -0.2 }
         });
@@ -1808,7 +1808,7 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
         newSpirits.push({
           id: 'student_welfare_spirit',
           name: '学生福利提升',
-          description: '学校的硬件设施和生活条件得到了改善。',
+          description: "学校在硬件设施和生活条件上有所改善，学生日常所处的环境不再像过去那样将就。这类投入不直接体现为成绩数字，但它是学校愿意把资源用于学生切身处境的一种表态；条件好转之后，学生对校园生活的要求也会随之提高。",
           type: 'positive',
           effects: { stabDaily: 0.2, allianceUnityDaily: 0.1 }
         });
@@ -1845,7 +1845,7 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
         newSpirits.push({
           id: 'transparent_finances_spirit',
           name: '财务公开',
-          description: '学校的财务状况变得透明，腐败得到了遏制。',
+          description: "财务公开使学校的钱花在哪里变得可查，腐败因此受到遏制。过去不透明的账目容易滋生揩油和人情开支，如今每一笔支出都要经得起追问。透明不会自动带来富足，但它至少让学生和教师知道，自己缴纳与争取来的资源没有被悄悄挪走。",
           type: 'positive',
           effects: { ppDaily: 0.2, capitalPenetrationDaily: -0.2 }
         });
@@ -1882,7 +1882,7 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
         newSpirits.push({
           id: 'curriculum_reform_spirit',
           name: '课程改革',
-          description: '选修课的增加让学生们能够更好地发展自己的兴趣。',
+          description: "课程改革增加了选修课，学生得以按自己的兴趣选择方向，而不必全部挤在同一条课表上。兴趣发展需要空间，也需要学生自己想清楚要什么；选课自由把这种判断交还给学生，同时要求学校提供足够多样的课程来承接它。",
           type: 'positive',
           effects: { studentSanityDaily: 0.2, tprDaily: -0.1 }
         });
@@ -1896,7 +1896,7 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
   mock_exam_success: {
     id: 'mock_exam_success',
     title: '二模大捷',
-    description: '出乎所有人的意料，我们在保持了高度自治和自由的同时，二模成绩不仅没有下滑，反而有所提升！这证明了我们的路线是正确的，学生的支持度和联盟的团结度空前高涨。',
+    description: "榜单是午休前贴出来的，看的人里里外外围了好几层。成绩比上一次还高，这是谁都没料到的。\n\n学校保留着高度的学生自治与自由。外头一直有人说这种管法迟早要出问题，可这回二模的数字摆在那里，反倒比前次更好看。\n\n学生中间提到路线的，语气明显硬了些。学生会的人聊天时说得直白：既然放开也没塌，那就没必要自己先慌。联盟那边碰头时，意见也少见地齐。\n\n当然有人提醒，一次考试说明不了太多，真正的仗还在后头。但眼下，支持这套走法的人多了，松动的说法少了。",
     buttonText: '伟大的胜利！',
     isStoryEvent: true,
     effectsText: ['宿舍1-4栋控制度 +5', '图书馆 +5'],
@@ -1910,14 +1910,14 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
   mock_exam_mediocre: {
     id: 'mock_exam_mediocre',
     title: '二模成绩平平',
-    description: '二模成绩公布了，虽然有所下滑，但还在可以接受的范围内。虽然有一些抱怨的声音，但整体局势依然可控。我们需要继续努力。',
+    description: "二模成绩公布以后，看榜单的人比往常多。数字确实有所下滑，但幅度还在能接受的范围内，没到乱套的地步。\n\n抱怨是有的。有学生对自己的名次下滑不满；也有老师私底下摇头，觉得再这么下去吃亏的还是学生。可这些话都还停留在抱怨，学生会照常运转，课也没人停。\n\n年级组碰头时，态度是把这次当成一次提醒，而不是转折。至于接下来往哪调、调多少，还没有定论。\n\n走廊里的气氛比上次考试后淡了些，但秩序还在，局势还在可控的范围内。",
     buttonText: '继续前进。',
     isStoryEvent: true
   },
   mock_exam_fail: {
     id: 'mock_exam_fail',
     title: '二模惨败',
-    description: '二模成绩公布了，这是一场彻头彻尾的灾难。升学率断崖式下跌，学生们的恐慌情绪蔓延，联盟内部也出现了严重的分裂。我们必须立刻采取补救措施，否则一切都将化为乌有。',
+    description: "成绩贴出来那天，教务处的走廊半天没散人。升学预期随着成绩急剧下滑，比上一次差了一大截，看到的人脸色都变了。\n\n恐慌蔓延得很快。学生里先是议论，接着就有家长打电话到学校，说这说明路线出了问题。联盟内部也吵起来了，例会上话越说越重，分歧摆到了明面上。\n\n日常也能感觉到不对。宿舍楼里讨论的声音多了，食堂里没人有心思说笑。补救是必须的，可怎么补、往哪个方向补，还没有人拍板。",
     buttonText: '局势正在失控...',
     isStoryEvent: true,
     effectsText: ['宿舍5-7栋控制度 -5', '食堂 -5'],
@@ -2446,7 +2446,7 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
           title: '校长',
           portrait: 'feng_anbao',
           ideology: 'authoritarian',
-          description: '在保安队的刺刀拱卫下重返权力中心的校长。他相信，只要把造反的苗头按死在土里，合一就能永远运转下去。',
+          description: "封安宝在保安队的刺刀拱卫下重返权力中心，重新坐上校长的位置。此前合一权力交替的剧烈动荡，被他归因为内部有人敢造反，而不是外部压力。整顿的逻辑因此十分直白：造反的苗头要按死在土里。吴福军的保安队提供的是武力，不是说服，吴福军最后通牒到期后全面接管校园，正是封安宝手中最实在的资本。他不打算和学生谈条件，秩序先于一切，秩序稳住，合一就能继续运转。这套办法也暴露出他的限度：他只能辨别造反与否，对忠诚以外的诉求几乎没有应对手段。铁腕时代由此开始，校园稳定由刺刀维持，代价由学生承担。",
           buffs: ['每日稳定度 +0.05', '每日卷子储备 -10']
         },
         stats: {
@@ -2468,7 +2468,7 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
           .concat({
             id: 'wu_martial_law_spirit',
             name: '戒严令',
-            description: '保安队接管了每一个路口。警报声替代了上课铃，校园安静得像一座军营。',
+            description: "保安队接管了每一个路口，校园里不再有可以随意走动的空间。这套戒严安排的背景并不复杂：校方认定常规管理已不足以维持秩序，于是把维持秩序的权力交给保安队，让后者直接控制出入与聚集。\n\n运行起来后，受影响最直接的是学生：活动范围被压缩，日常节奏被控制性的安排取代，原本属于校园的自主空间变成被看守的场所。校方或许会把这说成必要的安全措施，但对学生而言，这就是一种持续存在的约束。",
             type: 'negative',
             effects: { stabDaily: 0.4, ssDaily: -0.5 }
           }),

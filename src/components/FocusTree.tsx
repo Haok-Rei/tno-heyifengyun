@@ -24,7 +24,7 @@ const hasFocusRequirements = (node: FocusNode, completedFocuses: string[]) => {
 export const PHASE1_NODES: FocusNode[] = [
   { id: 'start_2023', title: '2023秋季开学典礼', description: '三千张年轻的面孔涌入滨湖校区。封安宝的致辞冰冷而精准，杨玉乐的保温杯冒着热气，及第教育的广告横幅在行政楼侧墙猎猎作响。这是合一——一座被高墙围拢的做题工厂，也是一张被各方势力反复拉扯的棋盘。', days: 5, x: 500, y: 50,
     onComplete: (s) => ({
-      nationalSpirits: [...s.nationalSpirits, { id: 'new_reform_cloud', name: '新教改的阴云', description: '新课表还没有贴稳，走廊里已经传起了关于加课与减员的不同版本。教师等正式通知，学生则看着每一张被重新排过的时间表。', type: 'negative', effects: { stabDaily: -0.1 } }],
+      nationalSpirits: [...s.nationalSpirits, { id: 'new_reform_cloud', name: '新教改的阴云', description: "2023年秋季开学，滨湖校区迎来三千名新生。封安宝的致辞没有给出具体安排，杨玉乐在场，及第教育的横幅已经挂上行政楼侧墙。新课表刚刚贴出，走廊里已流传加课与减员的多种版本，教师等正式通知，学生反复查看被重新排过的时间表，试图从课时变动中判断自己要付出什么代价。教改并未落地，不确定性本身已经构成压力。", type: 'negative', effects: { stabDaily: -0.1 } }],
       activeEvent: FLAVOR_EVENTS.phase1_start_2023,
       flags: { ...s.flags, story_1_triggered: true }
     }),
@@ -42,7 +42,7 @@ export const PHASE1_NODES: FocusNode[] = [
   },
   { id: 'wu_patrol', title: '吴福军的走廊巡查', description: '教务督导吴福军——合一的纪律铁拳。硬底皮鞋每天七次巡视高三走廊，考勤本上密密麻麻记录着每一句交谈、每一次走动、每一张搜出的违禁品。', days: 10, x: 280, y: 380, requires: ['build_art'],
     onComplete: (s) => ({
-      nationalSpirits: s.nationalSpirits.concat({ id: 'wu_patrol_spirit', name: '走廊巡查', description: '吴福军的巡查表挂在走廊尽头，每节课间都有人签字。吵闹少了，学生也学会在他经过前收住半句话。', type: 'negative', effects: { stabDaily: 0.5 } }),
+      nationalSpirits: s.nationalSpirits.concat({ id: 'wu_patrol_spirit', name: '走廊巡查', description: "吴福军的硬底皮鞋声已经成为课间计时器。高三走廊的巡查表上，每节课间都留下不同笔迹的签名，考勤本里则密密麻麻记满谈话、走动和收缴物品。学生早已学会在脚步声逼近前压低声音，甚至把半句玩笑咽回去。纪律被简化为可见的服从，走廊安静下来，却没有人说得清这是秩序还是恐惧。巡查本身成了日常，它的存在比任何校规都更直接地塑造着每个人的动作边界。", type: 'negative', effects: { stabDaily: 0.5 } }),
       stats: { ...s.stats, ss: s.stats.ss - 10 },
       activeEvent: FLAVOR_EVENTS.phase1_wu_patrol,
       flags: { ...s.flags, story_3_triggered: true }
@@ -143,11 +143,11 @@ export const TREE_A_NODES: FocusNode[] = [
       title: '联合革命委员会主席', 
       portrait: 'wang_zhaokai', 
       ideology: 'radical_socialism',
-      description: '作为“钢铁红蛤”的领袖，王照凯是一位坚定的马克思主义者。他主张通过彻底的革命推翻应试教育体制，建立一个由学生自我管理的红色校园。',
+      description: "王照凯现在是联合革命委员会主席，也是“钢铁红蛤”的领袖。他坚持用马克思主义的阶级斗争与先锋队逻辑看待校园冲突，认为只有彻底推翻应试教育体制，建立由学生自我管理的红色校园，才算真正的革命。他反对把反抗停留在口号和请愿，强调集中指挥、纪律和明确的政治纲领。支持者因此在他身上看到方向：一个不会在压力下摇摆的领导者。但这种坚定同样带来冷酷的划分，路线上的分歧很容易被他读成对革命本身的背叛。",
       buffs: ['每日激进愤怒度 +0.5', '每日党内集权度 +0.5']
     },
     ideologies: { authoritarian: 10, reactionary: 5, liberal: 15, radical_socialism: 50, anarcho_capitalism: 5, deconstructivism: 5, test_taking: 10 },
-    nationalSpirits: s.nationalSpirits.filter(ns => ns.id !== 'exam_pressure').concat({ id: 'red_campus', name: '赤色校园', description: 'B3 门口贴着新的值班表，学生代表轮流处理食堂、课表与印刷室的急事。支持革委会的人越来越多，他们现在也等着看承诺能否兑现。', type: 'positive', effects: { ppDaily: 0.5, ssDaily: 0.2 } }),
+    nationalSpirits: s.nationalSpirits.filter(ns => ns.id !== 'exam_pressure').concat({ id: 'red_campus', name: '赤色校园', description: "联合革命委员会成立后，B3门口贴出新的值班表，学生代表轮值处理食堂、课表与印刷室的急事。这套安排把原先分散的诉求收进一个常设机构，学生不再只靠临时聚集争取，而有了固定渠道。支持革委会的人随之增多，但他们并非无条件站队：承诺改善的每一项事务都成了检验，兑现与否决定这批新支持者留还是走。", type: 'positive', effects: { ppDaily: 0.5, ssDaily: 0.2 } }),
     activeEvent: FLAVOR_EVENTS.event_7_smolny,
     flags: { ...s.flags, united_committee_established: true }
   }), effectsText: ['更换领导人为：王照凯', '意识形态变为：真左派', '移除国家精神：一模的重压', '获得国家精神：赤色校园 (每日PP +0.5，学生支持度每日 +0.2)', '触发事件：斯莫尔尼宫的灯火'] },
@@ -156,33 +156,33 @@ export const TREE_A_NODES: FocusNode[] = [
     const flags = { ...s.flags, b3_advisors_unlocked: true };
     // 强化B3三块子地块控制度
     ['b3_a1a3', 'b3_b1b2', 'b3_tower'].forEach(tid => { flags[`tile_ctrl_${tid}`] = Math.min(100, (flags[`tile_ctrl_${tid}`] ?? 50) + 15); });
-    return { flags, stats: { ...s.stats, pp: s.stats.pp + 20, allianceUnity: Math.min(100, s.stats.allianceUnity + 4) }, activeEvent: { id: 'recruit_revolutionaries_event', title: '革委会扩编令', description: '联合革命委员会启动第一轮组织扩编，各班骨干开始分批接管校园运作节点。B3教学楼的所有出入口和走廊已被先锋队控制。', buttonText: '开列干部名册', isStoryEvent: true } };
+    return { flags, stats: { ...s.stats, pp: s.stats.pp + 20, allianceUnity: Math.min(100, s.stats.allianceUnity + 4) }, activeEvent: { id: 'recruit_revolutionaries_event', title: '革委会扩编令', description: "联合革命委员会发布通告，宣布启动第一轮组织扩编。各班骨干已按部署分批进入指定区域，接管校园运作节点。B3教学楼各出入口及走廊现由先锋队控制，控制权已全面巩固。后续各节点的人员安排与职责划分，将在本轮扩编中逐步明确。", buttonText: '开列干部名册', isStoryEvent: true } };
   }, effectsText: ['解锁顾问：王照凯、狗熊', 'PP +20, 联盟团结度 +4', 'B3三块子地块控制度各 +15'] },
 
   // Left Branch (Centralization)
   { id: 'purge_moderates', title: '清洗温和派', description: '革命不是请客吃饭。', days: 14, x: 200, y: 200, requires: ['declare_indep'], mutuallyExclusive: ['broad_coalition'], onComplete: (s) => ({ stats: { ...s.stats, partyCentralization: s.stats.partyCentralization + 20, allianceUnity: s.stats.allianceUnity - 20 } }), effectsText: ['党内集权度 +20', '联盟团结度 -20'] },
-  { id: 'establish_vanguard', title: '建立先锋队', description: '我们需要铁腕。', days: 14, x: 200, y: 350, requires: ['purge_moderates'], onComplete: (s) => ({ stats: { ...s.stats, partyCentralization: s.stats.partyCentralization + 10 }, nationalSpirits: s.nationalSpirits.concat({ id: 'vanguard_party', name: '先锋队', description: '先锋队把印刷、送卷和班级联络排成固定轮值。工作终于有人接手，名单之外的人却很难插进来表达意见。', type: 'positive', effects: { tprDaily: 2 } }) }), effectsText: ['党内集权度 +10', '获得国家精神：先锋队 (每日TPR +2)'] },
+  { id: 'establish_vanguard', title: '建立先锋队', description: '我们需要铁腕。', days: 14, x: 200, y: 350, requires: ['purge_moderates'], onComplete: (s) => ({ stats: { ...s.stats, partyCentralization: s.stats.partyCentralization + 10 }, nationalSpirits: s.nationalSpirits.concat({ id: 'vanguard_party', name: '先锋队', description: "先锋队把原先散乱的后勤任务固定成轮值表，印刷、送卷、班级通知都有人按点完成，不再出现卷子堆在办公室没人发的情况。但这些岗位只在先锋队内部流转，名单之外的学生想提意见，要么找不到对接人，要么被一句“按轮值办”挡回去。支持的人觉得效率提高了，被排除的人则认为这比原来的班委更难接近。", type: 'positive', effects: { tprDaily: 2 } }) }), effectsText: ['党内集权度 +10', '获得国家精神：先锋队 (每日TPR +2)'] },
   { id: 'student_militia', title: '武装纠察队', description: '保卫我们的胜利果实。', days: 14, x: 200, y: 500, requires: ['establish_vanguard'], onComplete: (s) => {
     const newMap = { ...s.mapLocations };
     newMap.auditorium = { ...newMap.auditorium, studentControl: Math.min(100, newMap.auditorium.studentControl + 30) };
     newMap.playground = { ...newMap.playground, studentControl: Math.min(100, newMap.playground.studentControl + 30) };
-    return { mapLocations: newMap, nationalSpirits: s.nationalSpirits.concat({ id: 'armed_militia', name: '武装纠察队', description: '楼梯口有了固定哨位，夜间换班也不再靠临时喊人。街垒更难被冲破，巡查的脚步声却再次成了校园的一部分。', type: 'positive', effects: { defenseBonus: 0.15, stabDaily: 0.1 } }) };
+    return { mapLocations: newMap, nationalSpirits: s.nationalSpirits.concat({ id: 'armed_militia', name: '武装纠察队', description: "武装纠察队成立后，楼梯口设起固定哨位，夜间换班不再靠临时喊人，街垒也比此前更难被冲破。这是学生一方把防御从临时应对变成常设组织的开始，大礼堂与操场的控制随之稳固。代价同样明确：巡查的脚步声重新成为校园日常的一部分，安全来自纪律，纪律也意味着学生自己的行动开始被自己的岗哨约束。", type: 'positive', effects: { defenseBonus: 0.15, stabDaily: 0.1 } }) };
   }, effectsText: ['大礼堂学生控制度 +30%', '操场学生控制度 +30%', '获得国家精神：武装纠察队 (防御加成 +15%，稳定度每日 +0.1%)'] },
 
   // Right Branch (Unity)
-  { id: 'broad_coalition', title: '广泛的同盟', description: '团结一切可以团结的力量。', days: 14, x: 800, y: 200, requires: ['declare_indep'], mutuallyExclusive: ['purge_moderates'], onComplete: (s) => ({ stats: { ...s.stats, allianceUnity: s.stats.allianceUnity + 20, partyCentralization: s.stats.partyCentralization - 20 }, activeEvent: { id: 'broad_coalition_event', title: '大帐篷宣言', description: '在豪邦推动下，革委会发布统一战线宣言，温和派与基层互助组加入共同议程。', buttonText: '签署宣言', isStoryEvent: true } }), effectsText: ['联盟团结度 +20', '党内集权度 -20', '触发事件：大帐篷宣言'] },
-  { id: 'democratic_councils', title: '民主议事会', description: '让每个人都有发言权。', days: 14, x: 800, y: 350, requires: ['broad_coalition'], onComplete: (s) => ({ stats: { ...s.stats, allianceUnity: s.stats.allianceUnity + 10 }, nationalSpirits: s.nationalSpirits.concat({ id: 'democratic_councils_spirit', name: '民主议事会', description: '各班有了固定的发言席，意见从走廊与群聊被带进会议记录。议事会无法让争论消失，却能让争论留下可追问的答复。', type: 'positive', effects: { ppDaily: 0.2 } }), activeEvent: { id: 'democratic_councils_event', title: '议席之争', description: '各班推举代表进入议事会，路线分歧开始从地下争执转向制度化交锋。', buttonText: '宣布首轮席位', isStoryEvent: true } }), effectsText: ['联盟团结度 +10', '获得国家精神：民主议事会 (每日PP +0.2)', '触发事件：议席之争'] },
+  { id: 'broad_coalition', title: '广泛的同盟', description: '团结一切可以团结的力量。', days: 14, x: 800, y: 200, requires: ['declare_indep'], mutuallyExclusive: ['purge_moderates'], onComplete: (s) => ({ stats: { ...s.stats, allianceUnity: s.stats.allianceUnity + 20, partyCentralization: s.stats.partyCentralization - 20 }, activeEvent: { id: 'broad_coalition_event', title: '大帐篷宣言', description: "宣言已经发出去了。豪邦把温和派和基层互助组拉到同一条议程上，两边过去各干各的：一边在班里发材料，一边管着借还登记和排班，谁也没正式认过对方是自己人。\n\n现在不一样了。两边的手续并到一张纸面上，日常的事照做，路线的争论也不再分头递话。共同议程使这些分散的力量第一次有了可以一起推进的事情。\n\n往后这套摊子归谁牵头、出了事怎么对，宣言里都留着口子。但此刻在场的没谁再说“这跟我们没关系”——加入了共同议程，就得一起把事情做下去。", buttonText: '签署宣言', isStoryEvent: true } }), effectsText: ['联盟团结度 +20', '党内集权度 -20', '触发事件：大帐篷宣言'] },
+  { id: 'democratic_councils', title: '民主议事会', description: '让每个人都有发言权。', days: 14, x: 800, y: 350, requires: ['broad_coalition'], onComplete: (s) => ({ stats: { ...s.stats, allianceUnity: s.stats.allianceUnity + 10 }, nationalSpirits: s.nationalSpirits.concat({ id: 'democratic_councils_spirit', name: '民主议事会', description: "起义后的校园里，走廊和群聊中的争吵无法自动形成决议。各班因此设立固定发言席，把分散的意见收进会议记录。议事会不制造共识，但让每一项主张都落到可追问的答复上。争论被制度化了：发言者必须留下记录，支持者必须公开表态。", type: 'positive', effects: { ppDaily: 0.2 } }), activeEvent: { id: 'democratic_councils_event', title: '议席之争', description: "各班推举的代表进了议事会。过去路线上的分歧都压在地下，几个人私下争对错，散场就回教室。从今天起，讲出来要当着别班代表的面，讲完还留在记录里。\n\n过去吵输了可以摔门走人，现在同席的代表必须听完对方的主张，也要让自己的意见留下记录。温和派的主张和基层互助组关心的值班、物资、联系名册，都必须带进公开讨论。", buttonText: '宣布首轮席位', isStoryEvent: true } }), effectsText: ['联盟团结度 +10', '获得国家精神：民主议事会 (每日PP +0.2)', '触发事件：议席之争'] },
   { id: 'unite_teachers', title: '团结进步教师', description: '争取广泛的同盟军。', days: 14, x: 800, y: 500, requires: ['democratic_councils'], onComplete: (s) => {
     const newMap = { ...s.mapLocations };
     newMap.b1b2 = { ...newMap.b1b2, studentControl: Math.min(100, newMap.b1b2.studentControl + 40) };
-    return { mapLocations: newMap, stats: { ...s.stats, ss: Math.min(100, s.stats.ss + 15) }, nationalSpirits: s.nationalSpirits.concat({ id: 'teacher_support', name: '教师同盟', description: '一些教师开始在公开会议上替学生方案解释课时与资源的安排。新制度因此有了能走进教室执行的人，也有了愿意承担质疑的人。', type: 'positive', effects: { stabDaily: 0.2 } }), activeEvent: { id: 'unite_teachers_event', title: '教师公开表态', description: '一批教师在B1/B2公开支持革委会，教学资源调配权开始向学生侧倾斜。', buttonText: '成立联络组', isStoryEvent: true } };
+    return { mapLocations: newMap, stats: { ...s.stats, ss: Math.min(100, s.stats.ss + 15) }, nationalSpirits: s.nationalSpirits.concat({ id: 'teacher_support', name: '教师同盟', description: "民主议事会运转后，部分教师不再保持沉默。他们在公开会议上替学生方案解释课时与资源的重新安排，把纸面决议带进教室执行。这些教师也承担了来自同事的质疑，成为新制度在日常教学里的实际执行者。", type: 'positive', effects: { stabDaily: 0.2 } }), activeEvent: { id: 'unite_teachers_event', title: '教师公开表态', description: "联合革命委员会发布通报：一批教师已在B1、B2教学楼公开表态支持本委员会。教学资源调配权开始向学生侧倾斜，相关交接工作正在按程序进行。委员会认为此举有利于巩固校园革命秩序，并请全体师生配合调配工作，维护正常教学运行。后续有关教师联络的事项将另行公布。", buttonText: '成立联络组', isStoryEvent: true } };
   }, effectsText: ['B1&B2教学楼学生控制度 +40%', '学生支持度 (SS) +15', '获得国家精神：教师同盟 (稳定度每日 +0.2%)', '触发事件：教师公开表态'] },
 
   // Middle Branch (Pragmatic Action)
   { id: 'disperse_guards', title: '驱散保安队', description: '吴福军的保安队是校方最后的武力依仗。把他们赶出校园，行政楼和操场的控制权将向革命者敞开。', days: 10, x: 400, y: 200, requires: ['declare_indep'], onComplete: (s) => {
     const flags = { ...s.flags };
     ['admin_main', 'admin_gym', 'canteen', 'track_field'].forEach(tid => { flags[`tile_ctrl_${tid}`] = Math.min(100, (flags[`tile_ctrl_${tid}`] ?? 30) + 10); });
-    return { flags, stats: { ...s.stats, stab: Math.min(100, s.stats.stab + 4), ss: Math.min(100, s.stats.ss + 3) }, activeEvent: { id: 'disperse_guards_event', title: '武装解除', description: '校园保安体系被迫撤离关键走廊，联合委员会接管治安值班表。行政楼和操场区域的控制得到显著提升。', buttonText: '接管值班', isStoryEvent: true } };
+    return { flags, stats: { ...s.stats, stab: Math.min(100, s.stats.stab + 4), ss: Math.min(100, s.stats.ss + 3) }, activeEvent: { id: 'disperse_guards_event', title: '武装解除', description: "保安队撤走的时候没有吹哨，也没有列队。吴福军手底下的人先是把楼道口的桌子搬开，随后一队人从侧门出去，岗亭里的东西留在原地没动。\n\n消息传得比人快。课间还没结束，走廊上已经有人站到了原来不许停留的位置，操场边的门也有人试着推了推。行政楼和操场之间那条一直被卡着的通路，头一回不是靠喊话而是用脚走通的。\n\n眼下要紧的不是欢呼，是夜里谁来看门、钥匙挂在哪儿、出了事先找谁。联合委员会把值班表拿出来，一个班一个班地对人。纸上的格子空着，就等人认领。", buttonText: '接管值班', isStoryEvent: true } };
   }, effectsText: ['稳定度 +4, SS +3', '行政楼+操场子地块控制度各 +10'] },
   { id: 'takeover_admin', title: '接管教务系统', description: '教务处掌握着全校学生的成绩数据和监控录像。拿下这里，就掌握了校方的信息命脉。', days: 10, x: 600, y: 200, requires: ['declare_indep'], onComplete: (s) => {
     const flags = { ...s.flags };
@@ -215,7 +215,7 @@ export const TREE_A_NODES: FocusNode[] = [
     nationalSpirits: s.nationalSpirits.concat({
       id: 'assembly_dynamics',
       name: '议会政治',
-      description: '议会成了全校最大的交易市场。每个派系都把手里的筹码押上谈判桌。',
+      description: "学生代表大会召开后，议会成了全校最大的交易市场，每个派系都把手里的筹码押上谈判桌。革命的声浪曾在广播站之争中统一口径，如今转为内部讨价还价：席位、支持者与主张都要在表决前交换。它带来的是稳定，因为分歧有了程序出口；但一致也靠妥协换来，尖锐的主张常在谈判中被一点点冲淡。",
       type: 'neutral',
       effects: {}
     })
@@ -244,7 +244,7 @@ export const JIDI_TREE_NODES: FocusNode[] = [
       {
         id: 'jidi_corporate_rule',
         name: '企业化管理',
-        description: '学校现在像企业一样运作，一切以效率和利润为先。',
+        description: "如今掌握学校的是及第资本。学校不再作为一所中学被管理，而被当作一项资产经营：课程、师资、作息，全部按投入与产出重新核算，目标是把它变成稳定产出的提分机器。\n\n效率与利润由此成为校内通用语言。能直接抬高分数的环节保留加码，不能的压缩。学生的处境随之改变，他们不再被当作需要成长的人，而是收益表上的一项变量。",
         type: 'neutral',
         effects: { ppDaily: 0.5, tprDaily: 10, studentSanityDaily: -1, gdpGrowthMod: 0.05 }
       }
@@ -313,7 +313,7 @@ export const JIDI_TREE_NODES: FocusNode[] = [
       nationalSpirits: [...s.nationalSpirits, {
         id: 'jidi_minor_spirit_1',
         name: '微型商业化试点',
-        description: '在校园内进行小规模的商业化尝试，虽然收益微薄，但标志着资本的进一步渗透。',
+        description: "教师收入与学生考试成绩直接挂钩，末位淘汰随之落地。及第资本把这种做法称作在校园里进行的小规模商业化尝试：先小范围试，看哪一种考核方式最能刺激产出，再决定推广的力度。\n\n在管理层看来，这不过是把市场竞争引入教学；在教师这一侧，它意味着每一次统考都可能决定谁留下。收益当时还谈不上丰厚，但它开了一个口子——从此学校的教学秩序按考核指标运转，考试成绩成为可以计量、可以交易的东西。",
         type: 'neutral',
         effects: { ppDaily: 0.1, stabDaily: -0.1 }
       }],
@@ -378,7 +378,7 @@ export const JIDI_TREE_NODES: FocusNode[] = [
       nationalSpirits: [...s.nationalSpirits, {
         id: 'jidi_minor_spirit_2',
         name: '区域教育霸权',
-        description: '及第资本在区域内的垄断地位初步确立，能够更有效地将教育资源转化为GDP。',
+        description: "经过并购与打压，及第资本在合肥乃至安徽的教育市场上取得了近乎唯一的位置。校内教材、教辅、培训的供给渠道被收拢到同一只手里，学校由此获得了把教育资源直接折算成经济产出的能力。\n\n垄断并不只是规模问题。当替代选项消失，家长和学生不再有议价空间，所谓“区域教育霸权”正是这个意思：合肥一中的牌子不再是教学声誉，而是一份覆盖全省的销售网络。",
         type: 'positive',
         effects: { ppDaily: 0.2, capitalPenetrationDaily: 0.5 }
       }],
@@ -478,7 +478,7 @@ export const JIDI_TREE_NODES: FocusNode[] = [
     nationalSpirits: [...s.nationalSpirits, {
       id: 'jidi_minor_spirit_3',
       name: '教育金融化',
-      description: '教育已经完全成为了一种金融产品，学生的成绩就是我们的股票代码。',
+      description: "到这一步，教育已不再被当作培养人的过程，而是一件金融产品：学生的成绩对应收益曲线，一届学生的分数就是一组可以变现的代码。及第资本追求的是把每一分潜力都榨取干净，转化为账面利润。\n\n这种榨取的代价由学生承担。课表被填满，休息与自主时间让位于刷题和考试；学校对外的说法是“挖掘潜力”，实际发生的是把学生的时间和精力提前兑换成当期收益。",
       type: 'negative',
       effects: { studentSanityDaily: -0.5, capitalPenetrationDaily: 1.0 }
     }],
@@ -648,14 +648,14 @@ export const JIDI_TREE_NODES: FocusNode[] = [
       {
         id: 'jidi_corporate_utopia_spirit',
         name: '企业乌托邦',
-        description: '合肥一中已经成为了一个完美的企业，一个只为了提分和盈利而存在的乌托邦。',
+        description: "在及第资本的叙述里，合肥一中已经成为一个完美的企业，一所只为提分和盈利而存在的乌托邦。秩序井然，指标稳定，冲突压到最低，因为所有人都在同一条产线上，被同一套标准衡量。\n\n它的稳定不是靠共识，而是靠整齐的企业管理维持。留在校内的人按分数和利润各就其位，每一处空间都服从同一目的。对管理层而言这是理想状态，对身处其中的人而言，这是没有出口的日常。",
         type: 'positive',
         effects: { ppDaily: 2, tprDaily: 50, studentSanityDaily: -2, gdpGrowthMod: 0.15 }
       },
       {
         id: 'jidi_minor_spirit_4',
         name: 'GDP至上主义',
-        description: '一切为了GDP，GDP就是一切。',
+        description: "在企业乌托邦里，一切为了GDP，GDP就是一切。学校的一切活动——教学、考试、招生、基建——都以能否抬高产出数字来衡量，操场用于商业展销，校园成为经营场所。\n\n这套原则并不掩饰自己的粗暴：它不讨论教育的目的是什么，只问一项安排能带来多少收益。分数、名次和营收相互换算，学生在这套账目里既是原料也是产品。办学的正当性被简化为数字增长，其余的都可以被划掉。",
         type: 'positive',
         effects: { capitalPenetrationDaily: 2.0 }
       }
@@ -669,7 +669,7 @@ export const JIDI_TREE_NODES: FocusNode[] = [
       {
         id: 'jidi_riot_spirit',
         name: '合一暴乱',
-        description: '学生长期理智度不够跳楼造反了，教育局纪委对事态极其不满。',
+        description: "企业乌托邦的底子从来不是共识，是学生长期在压迫之下勉力支撑。某天一个学生从楼上跳了下去，积在心口的东西一下子炸开，全校跟着造反。教育局纪委对事态极其不满。\n\n“企业乌托邦”那套说法已经挂不住，稳定滑到谷底。昔日用来证明企业化管理成功的秩序已经不复存在，校方还得面对学生的抗议与纪委的追问。",
         type: 'negative',
         effects: { ppDaily: -5, tprDaily: -100, studentSanityDaily: -5 }
       }
@@ -694,7 +694,7 @@ export const GOUXIONG_TREE_NODES: FocusNode[] = [
       title: '赛博娱乐大统领',
       portrait: 'gouxiong',
       ideology: 'deconstructivism',
-      description: '曾经在校园权力缝隙里取乐的二次元解构派，如今意外坐上最高位置。他擅长煽动、破坏与戏仿，但在持续执政中不得不学习克制与治理。',
+      description: "狗熊以赛博娱乐大统领的身份占据广播室，在彻夜噪音中面对校园的无政府情绪。他从红蛤时期就习惯戏仿与破坏，对治理没有耐心，唯一明确的动作是把艺术礼堂和B1B2变成不间断的二次元噪音来源。他掌权初期只控制这两块地盘，追随者主要出于对旧秩序的厌恶，而不是认同什么建设方案。狗熊不得不开始学习克制，因为每一次过火玩笑都可能耗掉自己仅剩的合法性；然而越是用娱乐掩盖问题，他越难说明除了持续解构之外还能做什么。",
       buffs: ['每日理智度 -0.25', '每日政治点数 +0.5']
     },
     ideologies: { authoritarian: 5, reactionary: 5, liberal: 8, radical_socialism: 8, anarcho_capitalism: 6, deconstructivism: 63, test_taking: 5 },
@@ -1208,7 +1208,7 @@ export const GOUXIONG_TREE_NODES: FocusNode[] = [
     nationalSpirits: s.nationalSpirits.filter(ns => ns.id !== 'eternal_ruin_spirit').concat({
       id: 'eternal_ruin_spirit',
       name: '永恒的赛博废墟',
-      description: '银幕永不熄灭。现实的废墟上，只剩下弹幕的荧光与循环播放的片头曲。',
+      description: "所有出口被封死之后，狗熊的统治进入永恒循环，无政府阶段宣告结束。他不再需要回应任何诉求，因为无人能够离开。银幕永不熄灭，弹幕成为唯一的交流方式，循环播放的片头曲取代了对时间的感知。现实的废墟上，只剩下荧光的秩序。",
       type: 'negative',
       effects: { ppDaily: 2, stabDaily: -1, studentSanityDaily: -3 }
     }),
@@ -1352,7 +1352,7 @@ export const TREE_A_PAN_NODES: FocusNode[] = [
       title: '学生议会议长', 
       portrait: 'pan_renyue', 
       ideology: 'liberal',
-      description: '温和派的代表人物，主张通过渐进的民主改革来改善学生权益。他认为革命过于激进，更倾向于在现有框架内争取更多的自由和自治权。',
+      description: "潘仁越是学生议会议长，也是温和派在委员会中的代表人物。他的政治立场始终围绕渐进改革展开：与其以激进手段推翻现有秩序，他更愿意在既有框架内为学生争取更多自由与自治。这种主张使他获得了一批不愿冒险、但对现状同样不满的学生的支持，也让他在委员会内逐渐积累起主导权。\n\n然而，温和派的局限同样明显。渐进路线依赖现有框架的容忍，一旦框架本身拒绝让步，改革便可能陷入僵局。潘仁越目前掌握的是主导权而非绝对权威，他的每一步推进都需要平衡内部不同意见，这既是他得以立足的原因，也是他难以迅速兑现承诺的根源。",
       buffs: ['每日联盟团结度 +0.5', '每日稳定度 +0.1']
     },
     ideologies: { authoritarian: 10, reactionary: 5, liberal: 50, radical_socialism: 15, anarcho_capitalism: 5, deconstructivism: 5, test_taking: 10 },
@@ -1403,7 +1403,7 @@ export const TREE_A_PAN_NODES: FocusNode[] = [
     nationalSpirits: s.nationalSpirits.concat({
       id: 'path_of_democracy',
       name: '民主之路（0/5）',
-      description: '民主的道路充满曲折，我们需要通过更多的法案来巩固它。',
+      description: "民主改革已被提上日程，但推进方式本身需要一系列法案来支撑。所谓民主之路，第一步是把各项民主制度逐项落实，让权力平衡机制真正进入运作，而不停留在口头承诺。\n\n这条路上必须处理素质教育与应试教育之间的权力平衡问题——它不会因为民主口号自动解决。改革者选择走这条路，就得接受它带来的摩擦与反复。",
       type: 'negative',
       effects: { ppDaily: -1, powerBalanceDaily: 0.5, tprDaily: -15, studentSanityDaily: -2.5 }
     }),
@@ -1672,7 +1672,7 @@ export const TREE_A_PAN_NODES: FocusNode[] = [
 
 export const TREE_A_PAN_DESPAIR_NODES: FocusNode[] = [
   { id: 'despair_street_fight', title: '绝望的走廊巷战', description: '最后的抵抗。', days: 7, x: 300, y: 50, onComplete: (s) => ({
-    nationalSpirits: s.nationalSpirits.concat({ id: 'desperate_defense', name: '绝望的抵抗', description: '最后的街垒已经筑起。没有人相信自己能赢，但所有人都决定不退。', type: 'neutral', effects: { defenseBonus: 0.2, stabDaily: -0.5 } }),
+    nationalSpirits: s.nationalSpirits.concat({ id: 'desperate_defense', name: '绝望的抵抗', description: "最后的街垒已经筑起。参与者清楚赢不了，但没有人打算退。绝望在此处不表现为崩溃，而表现为明知结局仍不撤离的防御姿态。\n\n这种抵抗能拖住进攻方，却无法带来任何政治出路。它以持续消耗自身为代价换取时间，每一刻都在削弱本就脆弱的稳定。走廊尽头的决定尚未作出，但街垒后面的人已经用行动表明了立场。", type: 'neutral', effects: { defenseBonus: 0.2, stabDaily: -0.5 } }),
     activeEvent: FLAVOR_EVENTS.despair_fight
   }), effectsText: ['获得国家精神：绝望的抵抗 (防御加成 +20%，稳定度每日 -0.5%)', '触发事件：绝望的走廊巷战'] },
   { id: 'telegram_six_schools', title: '六校联合的电报', description: '希望的曙光。', days: 7, x: 700, y: 50, effectsText: ['解锁后续国策'] },
@@ -1839,7 +1839,7 @@ export const TREE_A_LU_BOHAN_NODES: FocusNode[] = [
         title: 'N.K.P.D.肃反委员会主席',
         portrait: 'lu_bohan',
         ideology: 'authoritarian',
-        description: '以肃反委员会名义重组政治局，主张通过高压与整编维持秩序。',
+        description: "吕波汉以肃反委员会的名义重组政治局，接管政治保卫体系，使肃反机构成为校内秩序的主要执行者。他相信改革需要绝对意志，主张以高压与组织整编压平派系纷争，把纷争本身视为必须先清除的障碍，而不是可以通过商议解决的常态。",
         buffs: ['权力平衡每日向吕波汉侧移动 0.05']
       },
       stats: { ...s.stats, partyCentralization: Math.min(100, s.stats.partyCentralization + 12), stab: Math.max(0, s.stats.stab - 3) },
@@ -1853,7 +1853,7 @@ export const TREE_A_LU_BOHAN_NODES: FocusNode[] = [
         .concat({
           id: 'red_terror_nkpd',
           name: '红色恐怖',
-          description: '肃反委员会全面接管。每日稳定度 +0.3，每日政治点数 -0.5，每周总共识度 +5。',
+          description: "吕波汉接管政治保卫体系后，肃反委员会不再只是名义上的机构，它开始全面介入校内秩序的每一处缝隙。改革需要绝对意志——这套说辞把整肃变成日常，把异议变成可追查的线索，稳定由此被抬高到一切之上，而日常的政治运转则相应收紧。委员会的直接后果是：人人知道界限在哪，但没有人能确定界限明天会挪到哪。",
           type: 'negative',
           effects: { stabDaily: 0.3, ppDaily: -0.5 }
         }),
@@ -1973,7 +1973,7 @@ export const TREE_A_LU_BOHAN_NODES: FocusNode[] = [
           id: 'gouxiong_advisor',
           title: '二次元解构大师',
           name: '狗熊',
-          description: '狗熊被正式纳入中枢。其“赛博放映-私聊驯化”策略强化短期动员，但会持续侵蚀校园日常秩序。',
+          description: "狗熊被正式纳入中枢，身份来自肃反机构与抽象行动队之间的结盟。他擅长的“赛博放映—私聊驯化”不属于课堂或正式组织，而是在屏幕、私聊与圈层传播中完成动员：先制造话题与情绪，再从中筛出愿意跟随的人。这套办法在短期内确实提高了动员效率，却也直接侵蚀校园的日常秩序，把公共讨论拖进戏谑与攻击的循环。结盟双方各怀算计，一方要借他的动员能力扩权，他则换取正式身份与资源；收益立竿见影，代价却是由校园长期承受的。",
           cost: 0,
           modifiers: { stabDaily: -0.2, studentSanityDaily: -0.5 }
         };
@@ -2013,7 +2013,7 @@ export const TREE_A_LU_BOHAN_NODES: FocusNode[] = [
           .concat({
             id: 'two_chariots_distrust',
             name: '各怀鬼胎的两架马车',
-            description: '吕波汉与狗熊共享肃反机器，权力平衡将持续改写政治局收益与风险。',
+            description: "肃反机构与狗熊的“抽象行动队”结成同盟之后，同一套镇压机器有了两个操作者。吕波汉掌握名义上的体系，狗熊则带来另一套行事逻辑与人手；权力平衡不再由单一指令决定，而取决于两方谁能在政治局里占住上风。收益是行动能力加强，风险是任何一方的冒进都会让另一方的算盘落空——两架马车共拉一车，方向未必一致，但车已经在动。",
             type: 'neutral'
           }),
         flags: {
@@ -2245,7 +2245,7 @@ export const TREE_A_HAOBANG_NODES: FocusNode[] = [
           title: '联合革委会临时舵手',
           portrait: 'hao_bang',
           ideology: 'radical_socialism',
-          description: '在舵手逝世后接过重担，主张弥合分歧并继续做题大改革。',
+          description: "舵手逝世后，豪邦接过联合革委会的临时职责。他此前并非最高决策者，此时被推到前台，处境微妙：既要弥合各派分歧，又要继续推进做题大改革。面对这些分歧，他倾向以维持联合为优先，认为路线争论不该压过共同做事。",
           buffs: ['每周自社派忠诚度 +5']
         },
         redToadState: s.redToadState ? { ...s.redToadState, factions: newFactions } : undefined,
@@ -2253,7 +2253,7 @@ export const TREE_A_HAOBANG_NODES: FocusNode[] = [
         activeEvent: {
           id: 'haobang_succession_event',
           title: '舵手逝世',
-          description: '王照凯因伤势恶化离世。豪邦在混乱中接过政治局主导权。',
+          description: "王照凯因伤势恶化离世。消息传开时，会议还在开，不少人没有立刻反应过来，等到有人把原定由他过目的材料收走，会场才慢慢静下来。\n\n政治局的主导权在混乱中落到豪邦手上。\n\n散会后仍有人留在原地，想把王照凯留下的那份日程对着看完。眼下能确定的事只有两件：伤重的人已经走了，新的主导权已经易手。剩下要做的事，都压在眼前。",
           buttonText: '继承遗志'
         },
         stats: { ...s.stats, stab: Math.max(0, s.stats.stab - 20), allianceUnity: Math.min(100, s.stats.allianceUnity + 10) }
@@ -2462,7 +2462,7 @@ export const TREE_A_HAOBANG_NODES: FocusNode[] = [
       nationalSpirits: s.nationalSpirits.filter(ns => ns.id !== 'haobang_assembly_charter').concat({
         id: 'haobang_assembly_charter',
         name: '新学生代表大会',
-        description: '代议机制重启并升级。每日PP +0.3，每日稳定度 +0.2。',
+        description: "罢免与召回之后，原有的代议机制被重新搭建起来，不再只是一次性的表决机构。按新章，学生代表大会承担常态协商的职能，同时为可能出现的反扑预留紧急应对程序。\n\n这一安排并不等于所有议案都已通过、所有席位都已落定；它的意义在于把此前被中断的议事渠道恢复为常设制度。学校层面的日常运转，由此多了一个未必顺畅但始终存在的协商入口。",
         type: 'positive',
         effects: { ppDaily: 0.3, stabDaily: 0.2 }
       })
@@ -2494,7 +2494,7 @@ export const TREE_A_HAOBANG_NODES: FocusNode[] = [
       nationalSpirits: s.nationalSpirits.filter(ns => ns.id !== 'haobang_legacy_guard').concat({
         id: 'haobang_legacy_guard',
         name: '共护舵手遗产',
-        description: '政治局共同维护王照凯路线。每日稳定度 +0.2，每日学生支持度 +0.2。',
+        description: "政治局将“反压迫、反独裁、反旧秩序复辟”共同确认为底线，并把它明确为王照凯路线的政治遗产。\n\n这并非把舵手本人重新请回日常决策，而是把其路线固定为一套各派需要共同维护的框架。对仍在观望或试图修正旧账的力量而言，这构成一道集体划定的界线。",
         type: 'positive',
         effects: { stabDaily: 0.2, ssDaily: 0.2 }
       })
@@ -2537,7 +2537,7 @@ export const TREE_A_HAOBANG_NODES: FocusNode[] = [
       nationalSpirits: s.nationalSpirits.filter(ns => ns.id !== 'red_toad_politburo').concat({
         id: 'haobang_grand_reform',
         name: '继续前进的改革意志',
-        description: '豪邦把进步派重新捏合在一起。改革没有死，它换了一种更韧性的方式继续前进。',
+        description: "豪邦把进步派重新捏合在一起，左翼大帐篷顶住了这一轮反扑。六大地区公社的重建相继完成，组织网络不再各自为战。\n\n潘仁越回归钢铁红蛤，并重新进入学生代表大会，改革由此从一段将被清算的短暂插曲，变成布置在全校范围内的持续安排。它的方式是更灵活的组织与更纵深的联盟，而非一次性的表态。",
         type: 'positive',
         effects: { ppDaily: 0.5, stabDaily: 0.3, studentSanityDaily: 0.3 }
       }),
@@ -2558,7 +2558,7 @@ export const TREE_WU_NODES: FocusNode[] = [
         title: '校长',
         portrait: 'feng_anbao',
         ideology: 'authoritarian',
-        description: '在保安队的刺刀拱卫下重返权力中心的校长。他相信，只要把造反的苗头按死在土里，合一就能永远运转下去。',
+        description: "封安宝在保安队的刺刀拱卫下重返权力中心，重新坐上校长的位置。此前合一权力交替的剧烈动荡，被他归因为内部有人敢造反，而不是外部压力。整顿的逻辑因此十分直白：造反的苗头要按死在土里。吴福军的保安队提供的是武力，不是说服，吴福军最后通牒到期后全面接管校园，正是封安宝手中最实在的资本。他不打算和学生谈条件，秩序先于一切，秩序稳住，合一就能继续运转。这套办法也暴露出他的限度：他只能辨别造反与否，对忠诚以外的诉求几乎没有应对手段。铁腕时代由此开始，校园稳定由刺刀维持，代价由学生承担。",
         buffs: ['每日稳定度 +0.05', '每日卷子储备 -10']
       },
       stats: { ...s.stats, stab: Math.min(100, s.stats.stab + 10), ss: Math.max(0, s.stats.ss - 20), radicalAnger: Math.max(0, s.stats.radicalAnger - 30) },
@@ -2584,7 +2584,7 @@ export const TREE_WU_NODES: FocusNode[] = [
         .concat({
           id: 'wu_martial_law_spirit',
           name: '戒严令',
-          description: '全校进入戒严状态。每日稳定度 +0.4，学生支持度 -0.5，学生愤怒 +0.3。',
+          description: "吴福军的最后通牒到期后，保安队没有再留任何余地，全面接管了校园。所谓“秩序高于一切”，落到日常就是：集会不再被批准，异见不再被容忍，一切学务按保安队定的节奏运行。\n\n稳定确实稳住了，代价是学生支持度被搬走。恐惧换来的平静不会转化成认同，只会把不满压进暗处。",
           type: 'negative',
           effects: { stabDaily: 0.4, ssDaily: -0.5 }
         }),
@@ -2857,7 +2857,7 @@ export const TREE_WU_P2_FENG_NODES: FocusNode[] = [
         .concat({
           id: 'wu_rule_of_law_spirit',
           name: '法治化校规',
-          description: '戒严成果被写进校规，制度化取代了人治。每日稳定度 +0.2，学生支持度 -0.2，激进愤怒度 -0.2。',
+          description: "戒严的成果没有被留在保安队的口令里，而是被写进了校规。拳头会松，铜牌不会——这套法治化校规要做的，就是把铁腕时期的临时安排变成有据可依的长期秩序。\n\n对学生而言，处分从此不再取决于谁在场、谁发火，而是取决于条文；这既减少了随意性，也意味着反对空间被制度性地固定下来。人治退场，控制留下。",
           type: 'neutral',
           effects: { stabDaily: 0.2, ssDaily: -0.2, radicalAngerDaily: -0.2 }
         }),
@@ -3024,7 +3024,7 @@ export const TREE_WU_P2_COUP_NODES: FocusNode[] = [
         .concat({
           id: 'wu_expansion_spirit',
           name: '扩编保安队',
-          description: '五百人编制的保安队，在校园里已经是事实上的军事力量。每日政治点数 +0.3，学生支持度 -0.3。',
+          description: "教育局不置可否，这在校园政治里等于默许。吴福军抓住这个空档，把保安队扩编到五百人——这个规模已经很难再被称为校园安保，它是一支事实上的军事力量。\n\n建制越大，越需要持续供给，也越容易反过来绑架聘用它的机构。吴福军手里握着的，不再只是一份校内差事。",
           type: 'negative',
           effects: { ppDaily: 0.3, ssDaily: -0.3 }
         }),
@@ -3061,7 +3061,7 @@ export const TREE_WU_P2_COUP_NODES: FocusNode[] = [
         .concat({
           id: 'wu_armed_guard_spirit',
           name: '武装护校队',
-          description: '护校队配发制式装备，镇压效率大幅提升。每日政治点数 +0.5，学生愤怒 +0.2。',
+          description: "护校队开始配发制式装备。名义上仍是护校，实际装备水平和处置手段已按准武装单位的标准来配置，镇压效率随之大幅提升。\n\n威慑成了首要的维稳手段。学生面对的不再是临时抽调的校工，而是一支装备统一、能按命令行动的力量。校园里的异议没有被说服，只是被压低了音量。",
           type: 'negative',
           effects: { ppDaily: 0.5 }
         }),
@@ -3104,7 +3104,7 @@ export const TREE_WU_P2_COUP_NODES: FocusNode[] = [
         .concat({
           id: 'wu_iron_curtain_spirit',
           name: '铁幕校规',
-          description: '戒严制度化。每日政治点数 +0.3，学生支持度 -0.5，残党实力 -0.1。',
+          description: "戒严不再是临时措施，而被逐条写进校规，成为可以引用的条文。保安队据此把检查、登记、通报固定成每日流程，学生从入学起便被告知哪些行为算越界。\n\n校方声称这是为了在残党未清之前维持秩序；实际后果是，学生把服从练成了条件反射，而校规本身成了比课堂更硬的权威。",
           type: 'negative',
           effects: { ppDaily: 0.3, ssDaily: -0.5 }
         }),

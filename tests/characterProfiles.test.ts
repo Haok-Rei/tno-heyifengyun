@@ -11,5 +11,8 @@ test('character dossiers separate story descriptions from positive and negative 
   const profile = getAdvisorProfile(advisor);
   assert.match(profile.description, /巡查表/);
   assert.deepEqual(profile.traits.map(trait => trait.positive), [true, false]);
+  const martialAdvisor = { ...advisor, title: '戒严总指挥', description: '此时负责戒严的吴福军。' };
+  assert.equal(getAdvisorProfile(martialAdvisor).description, martialAdvisor.description);
+  assert.deepEqual(getAdvisorProfile(martialAdvisor).traits, profile.traits);
   assert.deepEqual(getLeaderTraits(['每日稳定度 +0.05', '每日卷子储备 -10']).map(trait => trait.positive), [true, false]);
 });

@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "writing": "node scripts/writing/editor.mjs",
     "dev": "vite --host 127.0.0.1 --port 3000",
     "build": "vite build && node scripts/check-deployment.mjs",
     "preview": "vite preview --host 127.0.0.1",

@@ -32,7 +32,7 @@ export const WU_ROUTE_ADVISOR: Advisor = {
   id: 'wu_fujun',
   title: '戒严总指挥',
   name: '吴福军',
-  description: '吴福军以戒严总指挥的身份掌管整个校园的巡查与纪律体系。雷厉风行的整顿能迅速恢复秩序，代价则由学生承担。',
+  description: "吴福军以戒严总指挥的身份掌管整个校园的巡查与纪律体系。他的主张不带任何粉饰：局面越乱，手段越要硬，动作越快，秩序回来得越早。巡查和纪律两条线由他直接抓，执行本身即是态度，不必另作声明。雷厉风行的整顿能迅速让秩序回笼，但代价落在学生身上，怨气不会因为管得紧就消失，只是被暂时压住。他能把校园按回纪律的框架，却做不到让被压的人心服。",
   cost: 0,
   modifiers: { stabDaily: 0.4, ssDaily: -0.4, radicalAngerDaily: -0.3, ppDaily: 0.3 }
 };
@@ -176,7 +176,7 @@ export default function LeftSidebar({ state, hireAdvisor, dismissAdvisor, cancel
                         {spirit.type === 'positive' ? '正面' : spirit.type === 'negative' ? '负面' : '中性'}
                       </span>
                     </div>
-                    <div className="text-xs text-tno-text/85 leading-relaxed mb-1.5">{spirit.description}</div>
+                    <div className="text-xs text-tno-text/85 leading-relaxed mb-1.5 whitespace-pre-line">{spirit.description}</div>
                     {spirit.effects && (
                       <div className="text-[11px] space-y-0.5 border-t border-tno-border/40 pt-1.5">
                         {Object.entries(spirit.effects).map(([effectKey, val]) => {

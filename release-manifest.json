@@ -6,16 +6,16 @@
       "sha256": "38f82a9c4bdf5084e8331285f6232e0bf2dd2b60123bf0bc7ad890f8bedab505"
     },
     ".gitignore": {
-      "bytes": 125,
-      "sha256": "b37d98a1543e6c4c8d2ffa77b060d9e2671b277d74f3227332f4b6209b00d8b6"
+      "bytes": 156,
+      "sha256": "e6e5c5340b6080eddc2b8c380f94db5abec3556f63c55dcddfb12dd1de085abd"
     },
     ".node-version": {
       "bytes": 8,
       "sha256": "177d20030d4dcc37eae9ef92865ec54dadce60e8f19e9a34a5d4f37502195a36"
     },
     "CHANGELOG.md": {
-      "bytes": 44421,
-      "sha256": "c080c3c1b0cb3318af2c06b41834f4f6dd14e65ec79445b30528b0141d3083c0"
+      "bytes": 45150,
+      "sha256": "915e84b786d9b8ba8c37429588baf47f420c03091eba5797249ec44f610c5ca8"
     },
     "CHARACTERS.md": {
       "bytes": 9656,
@@ -34,8 +34,8 @@
       "sha256": "eca4711d3e693351ae1e5aa5eb89e0f0408b5748cb1617d9b381f3a3ddc994d3"
     },
     "README.md": {
-      "bytes": 2857,
-      "sha256": "72221eb5a9c4173498d8287d7edbe9c9f38a9030fe63fb7f39afe25a845bc29e"
+      "bytes": 3098,
+      "sha256": "6dc8fde084ece06842e36e66c6125c7591802cbd15c6b4316aaf0f99d2f92796"
     },
     "SYSTEMIC_UPGRADE_DESIGN.md": {
       "bytes": 2552,
@@ -450,8 +450,8 @@
       "sha256": "b4cb02eecbaa12bdf966b0a4e1092ebfee6337984f48d34ee93a2b08f6a21c5c"
     },
     "docs/event-writing-workflow.md": {
-      "bytes": 4426,
-      "sha256": "a66d8e2caaca7120c8331ef027ee9316b330d2a26127138991777048caa461b4"
+      "bytes": 4439,
+      "sha256": "ee01ed8173a5a31433ba5f91a9ad88d3f12936762db14819109bd00db134ef42"
     },
     "docs/screenshots/focus-art-2026-09-27.png": {
       "bytes": 86795,
@@ -474,8 +474,40 @@
       "sha256": "357518b00a33189d85b7fd092fcae36ad6b8272c99d16da43381ef7e8fd20015"
     },
     "docs/text-writing-workflow-v2.md": {
-      "bytes": 6158,
-      "sha256": "597b405fb645d25ab9ae44440871a73e900a8be7452d24f7081004170f7d5fb3"
+      "bytes": 6324,
+      "sha256": "78cd6fab048553378b8eb82a2ffe5fee07d91892a9aba17dead2191f14eefffd"
+    },
+    "docs/writing/2026-10-03-polish.json": {
+      "bytes": 4110,
+      "sha256": "ccb54527536264d1bd76e465b89d710dd6927253aaa19c8f59b888cee5ceeb4e"
+    },
+    "docs/writing/2026-10-03-review.md": {
+      "bytes": 86701,
+      "sha256": "29b7a2e46a887bb594f4d3eed575870c3381ac2447d840762e0b791efc6b76bd"
+    },
+    "docs/writing/2026-10-03-rewrite.json": {
+      "bytes": 143558,
+      "sha256": "b6f6f4859e229dc2cec9bcc4d5c4d91c029ec35a1035b14ee2d53172ac45e58a"
+    },
+    "docs/writing/README.md": {
+      "bytes": 7658,
+      "sha256": "240500be3f33f3c86938c7e32ae811f48c5c348dfb53d9f7ede0761e598e1ae2"
+    },
+    "docs/writing/modes.json": {
+      "bytes": 2693,
+      "sha256": "58d6d0e1d1ad7713727dcebcbe5caeb83a8f12f4b35cf6a1e0ded172fec2a66b"
+    },
+    "docs/writing/reference-study.json": {
+      "bytes": 4870,
+      "sha256": "351d8b4ba6ba0774b718d68e412c4f6b57226081e37a7272e892949f949c55ba"
+    },
+    "docs/writing/selection.json": {
+      "bytes": 103337,
+      "sha256": "db852bc5b129706c72f6b03f3a8fb1e69d5bc3646434aba3f39b35b155ae1714"
+    },
+    "docs/writing/voices.json": {
+      "bytes": 2519,
+      "sha256": "28cbffa9e21623ccf03ce3ea29c52753bbbe53bbb030b406182c2640eb1876fa"
     },
     "index.html": {
       "bytes": 326,
@@ -522,8 +554,8 @@
       "sha256": "610c5ce28398158538cec39fd2861db9b071d17e5c754d4c367a5838b5540092"
     },
     "package.json": {
-      "bytes": 1063,
-      "sha256": "9b399f95cab9fb0b1893a499ba7586fcf354a3b0d9385efe8503ba978351e90c"
+      "bytes": 1113,
+      "sha256": "2a4c1d747e4c0cf7dc380a7b09dad5038920b66dd376f8d5c363ced093578906"
     },
     "public/_headers": {
       "bytes": 220,
@@ -557,9 +589,25 @@
       "bytes": 15,
       "sha256": "1954ca940740c612a12e7abf0a307b7394715964d66dc8037d503fdd5c1b6424"
     },
+    "scripts/writing/catalog.mjs": {
+      "bytes": 8334,
+      "sha256": "6e39fb37273ddae889a806718a43b105b8160a5098f14351df903b6bc61e824d"
+    },
+    "scripts/writing/deepseek.mjs": {
+      "bytes": 3847,
+      "sha256": "710d858e41de29e3fd6ddf30bb47259d36cca09f976daa3d49aaa959e9f0b8ef"
+    },
+    "scripts/writing/deepseek_transport.py": {
+      "bytes": 2001,
+      "sha256": "d246767486bd0adaca371a3367db51257c94e4eae45a89afa2edbc5026b12a2a"
+    },
+    "scripts/writing/editor.mjs": {
+      "bytes": 20946,
+      "sha256": "fafb6e3b58283a0d0a890bdda22ca05acdb45d4fa345a9f01c7c6a52616863cf"
+    },
     "src/App.tsx": {
-      "bytes": 344355,
-      "sha256": "68c78be8608cf9607a89d2a93962efc908bd52278698a6e22552205fd6ba8021"
+      "bytes": 350203,
+      "sha256": "8e020c5a00fcc14bb02c34c326048a815571696f4f46ec0be9aad2c8013183b5"
     },
     "src/assets/flags/corporate.svg": {
       "bytes": 604,
@@ -2026,8 +2074,8 @@
       "sha256": "f47ca16c20449b2a21b97730ae12b84dd5ff5c5318aa7434aacacf5968bd4a5f"
     },
     "src/components/FocusTree.tsx": {
-      "bytes": 300970,
-      "sha256": "634682e6a943781a9fe1681013e03b709a49565601b4436d85a662df9ac8624b"
+      "bytes": 314826,
+      "sha256": "ba647cdaca238e24991192b3fc6eb4be1a717c617d83b485f6c0d64a1bf080cc"
     },
     "src/components/GameEndingScreen.tsx": {
       "bytes": 8001,
@@ -2054,8 +2102,8 @@
       "sha256": "14c98b3523a94a2f225e0d0138749610356a7d0e600465e92482b7c873a2d2da"
     },
     "src/components/LeftSidebar.tsx": {
-      "bytes": 25825,
-      "sha256": "e3de80bd1dc68441c353519843fbf5b791067510f5783927b8a0c32c0f7f1e2d"
+      "bytes": 26183,
+      "sha256": "bc946e8d1451e433ed0d993242863c51237ddcbf9244f2802a2abbe3d0ee2050"
     },
     "src/components/LoadingScreen.tsx": {
       "bytes": 5362,
@@ -2098,8 +2146,8 @@
       "sha256": "5b7e667735ca212152db1cc17e37b6ff648b7f174e208894ddd85097abeea995"
     },
     "src/components/RightSidebar.tsx": {
-      "bytes": 75959,
-      "sha256": "435974baf23fc918cd02cc2a6191526fea5cdaef19661405a4dbc276d23b208f"
+      "bytes": 76724,
+      "sha256": "41247e070d271e9a2b8a313bef5d21902eae6ed8a1fbb917bf694a7a0735d9f1"
     },
     "src/components/RouteGuide.tsx": {
       "bytes": 31157,
@@ -2234,8 +2282,8 @@
       "sha256": "c8ffec00de423f2d1cefc44712dfb4540a4b52c43d0bed88bd93155040291ac4"
     },
     "src/data/characterProfiles.ts": {
-      "bytes": 5419,
-      "sha256": "ab9d6b6aa3614433aee15d60cfafe577cdff62a030caabd5385f34a9fa33fd16"
+      "bytes": 11786,
+      "sha256": "7e734034f9df70af630d228463b17c85f954273cf8d179560d110116e8bc6af3"
     },
     "src/data/commandRoutes.ts": {
       "bytes": 8071,
@@ -2250,12 +2298,16 @@
       "sha256": "8f9420d43a2a464867d74477b250cba1eba4cad295230e36f7227965348ddfcf"
     },
     "src/data/flavorEvents.ts": {
-      "bytes": 128081,
-      "sha256": "687a957827a5e7c14c0488e8f0b212c1071218ea007103e8c02e53e9cd79e77a"
+      "bytes": 130537,
+      "sha256": "bb4d10303a6cd15ae9a8cc4338e9a8fb30d81ad93262762fbc6fe218f9653d9a"
     },
     "src/data/laws.ts": {
       "bytes": 11631,
       "sha256": "c9218edf6e976d68c0aaa7d0b9a68ae31690277b707de1cf9d07b1d58bbd99f0"
+    },
+    "src/data/proseRevisions.json": {
+      "bytes": 77681,
+      "sha256": "19574367e0ef7fd2310e88412bed84b7b078f8554871cbb869c04cab27170bb6"
     },
     "src/data/redToadBills.ts": {
       "bytes": 8286,
@@ -2270,8 +2322,8 @@
       "sha256": "7dfbb4195ae13d474502ea42913d1239a3277d0b4167c477087ea0b37ef30927"
     },
     "src/data/storyEvents.ts": {
-      "bytes": 415733,
-      "sha256": "9809caff3221140b1d89db4debc036cf6c8bb7045910eeff65bab4455207d686"
+      "bytes": 421839,
+      "sha256": "692b0e0bb77918a9bffa2291c79aaa59ef440a290a60f0ea7d6383dec028e2cc"
     },
     "src/engine/actionReminders.ts": {
       "bytes": 4866,
@@ -2286,8 +2338,8 @@
       "sha256": "d1ba8acd6baa74ed21dcbfa4a7df12407396e8b5e519b13b33dcba35c8197009"
     },
     "src/engine/campusEvents.ts": {
-      "bytes": 24590,
-      "sha256": "1a7574090b8c3e1684ebb65f15570fe6a2ddc1378dfaf80d468793863d2a2d22"
+      "bytes": 27399,
+      "sha256": "209875ef83b2b58ac9f1618fe4119f41c61c04bdd0beae2a7fb69ae3e1232a0e"
     },
     "src/engine/commandSystem.ts": {
       "bytes": 13465,
@@ -2329,6 +2381,10 @@
       "bytes": 748,
       "sha256": "b47953aff5cc846f75565059e44476a4b79c8e478f9c5c1a753e10bdc841a532"
     },
+    "src/engine/proseRevisions.ts": {
+      "bytes": 1570,
+      "sha256": "6acf38146cc363ac47b57bc4fec5b13a7f3e16422d7b357a38e7848a5d193c63"
+    },
     "src/engine/routeSpirits.ts": {
       "bytes": 3596,
       "sha256": "026ecb8463b33fac8e09cf18ba4e227d0abc5ede0cd79e295b989879fd59f4a6"
@@ -2338,8 +2394,8 @@
       "sha256": "3528bb02a2edd61a56c130e17402a2b3332bbaa99ad8a147dd8a3dd522860d03"
     },
     "src/engine/saveSystem.ts": {
-      "bytes": 7405,
-      "sha256": "d74f5b75e869d65a0aa0db7dcf5f4d8813e693d70eba38b44461d09288c4bec1"
+      "bytes": 7498,
+      "sha256": "cf0e880c3cacf93d9271a817919d0e4aa95de895a6d6d99cb95a3e6524abb3c8"
     },
     "src/engine/superEventAudio.ts": {
       "bytes": 1770,
@@ -2390,8 +2446,8 @@
       "sha256": "52b22458d9cee63eba65dae6bf1a9140e7ca687fb516874572bfcafd0a8467bb"
     },
     "tests/characterProfiles.test.ts": {
-      "bytes": 813,
-      "sha256": "e37a7e42d409976e0bde949953702700602f9947be559488191d817b8bec70e7"
+      "bytes": 1099,
+      "sha256": "2d45c2f364a1c14044fe045951a1f392485dd3f94c467580ff12541168264c2f"
     },
     "tests/commandSystem.test.ts": {
       "bytes": 12589,
@@ -2417,6 +2473,10 @@
       "bytes": 859,
       "sha256": "0af3a657129d70e45428e9cf62b999d259d17b74bc02e5000638d10473a346ae"
     },
+    "tests/proseRevisions.test.ts": {
+      "bytes": 2667,
+      "sha256": "5aa0cfda26b70ce93041b1d1574bb4bd2a88f8caf16297f8a8950b6208ab1388"
+    },
     "tests/redToadState.test.ts": {
       "bytes": 790,
       "sha256": "6c27113bb46c4e5c4d51ac4ad64f0c82f9a34b0ea1eca970a870ababf4d16fbc"
@@ -2432,6 +2492,10 @@
     "tests/visualIdentity.test.ts": {
       "bytes": 5094,
       "sha256": "39708e620b8b198547e21ca5d6f88b7fdab160e1ceec6387b90cca1814074ab3"
+    },
+    "tests/writingWorkflow.test.ts": {
+      "bytes": 4493,
+      "sha256": "f610edaa4fdf2ae404355bac73dc3fe293ba7abc077fa83bc7c2089d4039cf13"
     },
     "tsconfig.json": {
       "bytes": 508,

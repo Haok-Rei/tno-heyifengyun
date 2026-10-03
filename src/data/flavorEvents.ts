@@ -341,7 +341,7 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
             newSpirits.push({
               id: 'democratic_victory',
               name: '民主的胜利',
-              description: '学生议会成功通过了法案，民主的理念深入人心。',
+              description: "学生议会成功通过法案，说明这套议事程序不再只是摆设，学生真的能借此改变与自己相关的规则。民主的理念由此在校园里变得具体：它意味着提案、辩论、表决和接受结果。一次成功不等于从此顺畅，但它证明了程序可以被用来办事。",
               type: 'positive',
               icon: '📜',
               effects: { allianceUnityDaily: 0.5, stabDaily: 0.5 }
@@ -393,7 +393,7 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
             nationalSpirits: [...state.nationalSpirits, {
               id: 'angry_hefei_no1',
               name: '愤怒的合一',
-              description: '吴福军的铁腕统治激起了学生们的愤怒。每日稳定度+0.5%，学生支持度-0.5%，激进愤怒度+0.5%',
+              description: "吴福军的铁腕统治在合一激起学生的愤怒。表面秩序靠压制维持，学生的支持却在流失，不满转为愤怒，短期内还看不到出口。这种愤怒未必形成有组织的反抗，但它持续积累，使校园看起来平静，内里却越来越紧张。铁腕能压住行为，压不住认同。",
               type: 'negative',
               effects: { stabDaily: 0.5, ssDaily: -0.5, radicalAngerDaily: 0.5 }
             }],
@@ -411,7 +411,7 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
             id: 'yang_yule',
             title: '特级教师',
             name: '杨玉乐',
-            description: '老谋深算的保守派代表，擅长分化瓦解学生运动。每日稳定度 +0.05%，每日PP +0.5。',
+            description: "杨玉乐是合肥一中的特级教师，校内保守派里一位老谋深算的代表。他长年立足课堂，处理校务讲究实效，惯于从学生内部寻找裂缝，再用日常教学的名义把局面收拢回可控范围。在他看来，学校的运转终究要靠成绩和纪律，一时的政治热情若压过课堂，秩序就会先垮。他对学生运动的判断因此偏向保守：这不是需要回应的诉求，而是需要化解的麻烦。这一立场使他在校内拥有一批同样看重稳定的教师，却也暴露出他的矛盾——他手里真正有效的工具只存在于课堂之内，一旦学生把问题提到课堂之外，他能做的其实不多。",
             cost: 0,
             modifiers: { stabDaily: 0.05, ppDaily: 0.5 }
           };
@@ -1306,7 +1306,7 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
           nationalSpirits: (state.nationalSpirits || []).filter(ns => ns.id !== 'wang_pan_pact').concat({
             id: 'wang_pan_pact',
             name: '王潘和解协定',
-            description: '两支曾经兵戎相向的力量签下停火书。办公桌上，红旗与选票并排摆着。',
+            description: "王照凯与潘仁越签下停火书，两支曾经兵戎相向的力量暂时搁置分歧。办公桌上红旗与选票并排摆着，谁也不曾真正说服谁，只是都承认继续对抗的代价高于妥协。和解是脆弱的，它依赖双方保持克制；一旦信任耗尽，这张纸随时可能被撕毁。",
             type: 'positive',
             effects: { allianceUnityDaily: 0.3, partyCentralizationDaily: -0.2 }
           }),
@@ -1322,7 +1322,7 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
           nationalSpirits: (state.nationalSpirits || []).filter(ns => ns.id !== 'wang_pan_pact').concat({
             id: 'wang_pan_pact',
             name: '王潘和解协定',
-            description: '两支曾经兵戎相向的力量签下停火书。办公桌上，红旗与选票并排摆着。',
+            description: "王照凯与潘仁越签下停火书，两支曾经兵戎相向的力量暂时搁置分歧。办公桌上红旗与选票并排摆着，谁也不曾真正说服谁，只是都承认继续对抗的代价高于妥协。和解是脆弱的，它依赖双方保持克制；一旦信任耗尽，这张纸随时可能被撕毁。",
             type: 'positive',
             effects: { allianceUnityDaily: 0.3, partyCentralizationDaily: -0.2 }
           }),
@@ -1519,7 +1519,7 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
           return {
             nationalSpirits: [...state.nationalSpirits, {
               id: 'angry_hefei_no1', name: '愤怒的合一',
-              description: '吴福军的铁腕统治激起了学生们的愤怒。',
+              description: "吴福军以铁腕管理合一，学生的不满由此而生。校方越依赖压制，学生的愤怒越难消解；表面上没有人公开对抗，私下的抵触却不断累积。这是一种制度性的对立：管理者用纪律换取服从，学生则在被压制的日常中失去对学校的认同。愤怒未必立刻爆发，但它已经是一种稳定的状态。",
               type: 'negative',
               effects: { stabDaily: 0.5, ssDaily: -0.5, radicalAngerDaily: 0.5 }
             }],
@@ -1535,7 +1535,7 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
           const emptySlotIndex = newAdvisors.findIndex(a => a === null);
           const yangYuleAdvisor = {
             id: 'yang_yule', title: '特级教师', name: '杨玉乐',
-            description: '老谋深算的保守派代表。每日稳定度 +0.05%，每日PP +0.5。',
+            description: "杨玉乐是合肥一中的特级教师，也是校内保守派教师的代表。他不大靠公开的行政姿态施压，而是凭多年积累的教学声望周旋于学生与校方之间，一边安抚情绪，一边寻找学生运动中可以被分化的位置。他相信学校最需要的是稳定，稳定的来源则是课堂、考试和既有的教师秩序，因此学生运动在他看来终究要被引回日常轨道。这样的角色使他在校内说话有分量，也让他在对立双方之间都保有一定的余地。问题在于，他的可信度恰恰建立在成绩与纪律之上；这使他惯于缓和对立，却难以触及学生诉求的根子，调解往往只是把冲突推迟。",
             cost: 0, modifiers: { stabDaily: 0.05, ppDaily: 0.5 }
           };
           if (emptySlotIndex !== -1) { newAdvisors[emptySlotIndex] = yangYuleAdvisor; }

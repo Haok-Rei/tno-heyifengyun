@@ -10,3 +10,5 @@ __pycache__/
 .DS_Store
 Thumbs.db
 Ultimate-HOI4-GFX-master/
+.writing-cache/
+.writing-work/

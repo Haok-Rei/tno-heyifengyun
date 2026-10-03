@@ -564,7 +564,7 @@ export const DECISIONS: Decision[] = [
       nationalSpirits: state.nationalSpirits.filter(ns => !['red_campus', 'student_council', 'awakened_binhu', 'assembly_dynamics', 'democratic_councils_spirit'].includes(ns.id)).concat({
         id: 'yang_yule_regime',
         name: '代理副校长',
-        description: '杨玉乐凭借老谋深算暂代副校长。保温杯所到之处，风波悄然平息。',
+        description: "杨玉乐没有正式接任副校长，暂代其职。这个位置给他的是处理日常事务的实权，而不是名分，因此他维持局面的方式更依赖个人判断。",
         type: 'positive',
         effects: { stabDaily: 0.2, ppDaily: 0.1 }
       }),
@@ -587,7 +587,7 @@ export const DECISIONS: Decision[] = [
         title: '名师工作室代理校长',
         portrait: 'yang_yule',
         ideology: 'reactionary',
-        description: '老谋深算的保守派代表，擅长分化瓦解学生运动。',
+        description: "杨玉乐是合肥一中的名师工作室负责人，同时代理校长职务。这一位置使他不必事事站到台前，也能凭借特级教师的资历介入校内事务。他是校内保守派的代表，老谋深算，面对学生运动更倾向于分化瓦解，而非正面压服：拆散学生内部的共识，把政治热情重新引回课堂与考试的正轨。在他看来，学校首先是维持秩序与成绩的机构，越出课本的动员只会让教学停摆，最终受损的仍是学生。这种立场在校内自有市场，也使他得以在风潮中保持影响力。但代理二字本身就说明他的权威并不完整：他能化解眼前的运动，却给不出比纪律和分数更有说服力的东西。",
         buffs: ['老谋深算 (每日PP +0.25)']
       },
       flags: { ...state.flags, yang_yule_route_started: true },

@@ -194,7 +194,7 @@ const INITIAL_GAME_STATE: GameState = {
     title: '校长',
     portrait: 'feng_anbao',
     ideology: 'authoritarian',
-    description: '合肥市第一中学的现任校长，以其强硬的管理风格和对升学率的极度追求而闻名。在他的治下，学校的纪律严明，但也压抑了学生们的个性发展。',
+    description: "封安宝是合肥一中现任校长，以强硬的管理风格和对升学率的极度追求而闻名。在他治下，学校纪律严明，分数成了最清楚的管理依据，学生的个性发展则被压到一边。他相信学校应当围绕升学运转，对教师强调考核，对学生要求服从。学生对这种管理的压抑感并未因此消失。封安宝把这些声音看作管理还不够紧，而不是方向有误。",
     buffs: ['每日稳定度 +0.05', '每日卷子储备 -10']
   },
   ideologies: {
@@ -210,14 +210,14 @@ const INITIAL_GAME_STATE: GameState = {
     {
       id: 'exam_pressure',
       name: '应试高压',
-      description: '升学率的阴影笼罩着整座校园。每一次周考的排名，都是悬在学生头顶的剑。',
+      description: "合一把升学率作为衡量一切的标尺，周考排名则是这把尺子的刻度。从入学起，学生就活在排名的比较中，分数的起伏被当成前途的信号。教师也被这套标尺推着走，不得不压缩课堂的余地，把教学转向应试。结果是学习从理解变成竞争，学生之间学会用名次彼此打量，压力层层传导，长期积累而得不到缓解。",
       type: 'negative',
       effects: { stabDaily: -0.5, tprDaily: -0.5 } // Assuming base TPR is -10, +5% is -0.5
     },
     {
       id: 'b3_fortress',
       name: 'B3堡垒',
-      description: 'B3教学楼的楼道被课桌与沙袋筑成街垒，红旗插在最顶层。这里是革命的火种，也是最后的阵地。',
+      description: "B3教学楼已被学生改造成校园内的革命据点。课桌和沙袋堆在楼道里，构成街垒；顶层始终插着一面红旗，远远就能看见。参与者把这栋楼当作组织核心，认为它既是革命起点的象征，也是必须守住到最后的地方。\n\n对支持者来说，守住B3就是守住已经夺得的空间；对校方来说，这栋楼已经不能用普通教学楼的方式管理。两边都清楚，只要街垒还在、红旗还挂着，校园里的力量对比就仍处在对峙状态。",
       type: 'neutral',
       effects: { defenseBonus: 0.1 }
     }
@@ -1147,7 +1147,7 @@ export default function App() {
         newState.activeEvent = {
           id: 'haobang_merge_bear_done',
           title: '并席完成：狗熊并红蛤',
-          description: '学生大会完成狗熊派并席整编，钢铁红蛤席位结构得到重组。',
+          description: "学生大会散场时，狗熊派并席整编的决定已经生效，钢铁红蛤的席位结构随之重组。原属两边的代表按新的席位就座，谁也没有另开一摊。\n\n并席不等于意见统一。刚坐进同一排的人还在低声计较先前的分歧：有人说席位重排只是名义上的变化，真正的分量要看接下来谁提的案能过；也有人提醒，既然进了钢铁红蛤的制度，两个派别就得在同一张桌子上把话说下去。狗熊的人收起了原来分开摆放的牌子，红蛤一侧则重新确认了议事顺序。\n\n会场外，等着消息的学生问里面到底定了什么。出来的代表只回了一句：并了，往后都在一个席里说话。没有人再喊口号，大家各自回去准备下一轮要提交的东西。",
           buttonText: '继续',
           isStoryEvent: true,
         };
@@ -1171,7 +1171,7 @@ export default function App() {
         newState.activeEvent = {
           id: 'haobang_merge_pan_done',
           title: '并席完成：潘并红蛤',
-          description: '学生大会通过并席条款，潘仁越派完成并入钢铁红蛤席位体系。',
+          description: "学生大会通过了并席条款，潘仁越派正式并入钢铁红蛤的席位体系。表决结束后，原来分设的席位被合并，潘仁越派不再单独列席。\n\n潘仁越派的人当天就开始按钢铁红蛤的议事规则登记发言顺序。几个原先只跟自己人碰头的干事，被安排去和红蛤那边对接名单和议程，两边对同一件事的排法并不完全一致，当场就有争论。有人问潘仁越本人以后还算不算一派之首，得到的答复是：并进来之后，席位体系里只有一个名分，剩下的看议事结果。\n\n宣布并席时台下掌声不算整齐。掌声之外，有人盯着新换的席位牌看了很久，像在确认自己以后该找谁说话。",
           buttonText: '继续',
           isStoryEvent: true,
         };
@@ -2421,7 +2421,7 @@ export default function App() {
             queueEvent({
               id: 'mock_exam_fail_initial',
               title: '一模成绩雪崩',
-              description: '由于缺乏组织和复习，一模考试成绩惨不忍睹。学生们陷入恐慌，稳定度大幅下降！',
+              description: "一模成绩贴出来时，走廊里挤满了人。前几名的名字被围住，更多的人扫一眼自己的分数就低下头，把答题卡折了又折。\n\n“复习没人组织，也没人管。”一个女生蹲在窗边打电话，声音越来越低，“这回真的完了。”电话那头大概是家长，她没再说下去。\n\n课间操的铃响了，没什么人动。几个班干部挨个教室喊人，喊到一半自己也没了底气。晚自习出奇地安静，翻书声比平时响，很多人却看不进去，有人趴在桌上反复写着“完了”。\n\n恐慌从几张成绩单蔓延到整条走廊，校园秩序受到严重冲击。",
               buttonText: '这下完了...'
             });
           } else if (c.id === 'alliance_collapse') {
@@ -2447,7 +2447,7 @@ export default function App() {
             queueEvent({
               id: 'reform_capital_fail',
               title: '资本的胜利',
-              description: '及第教育的资本成功渗透了改革委员会，大量改革成果被窃取或破坏。题改进度大幅倒退！',
+              description: "及第教育的资本成功渗透了改革委员会。原本该由学生自己推进的做题改革，如今被拆得七零八落。有人熬夜整理的方案被搁在一边，互助小组的进度也大幅倒退。\n\n“我们做的事，怎么忽然就不算数了？”一个先锋党员在走廊里拦下负责对接的同学问。对方只是低着头，说现在很多事不归他们管了。\n\n成果被窃取或破坏的消息在改革派中间传开。愤怒没有出口，题改进度大幅倒退。",
               buttonText: '可恶的资本家！'
             });
           } else if (c.id === 'reform_sanity_crisis') {
@@ -2459,7 +2459,7 @@ export default function App() {
             queueEvent({
               id: 'reform_sanity_fail',
               title: '群众的怒火',
-              description: '学生们无法承受过激的改革，爆发了抗议。先锋党员在冲突中流失，题改进度受挫。',
+              description: "学生们无法承受过激的改革。连日来，自习安排、动员任务和层层加码的要求压得人喘不过气，抵触终于从私下的抱怨变成了公开的抗议。\n\n抗议的人群堵在楼梯口和教室门前，举着手写的牌子，要求停止那些脱离实际的改动。先锋党员夹在中间，试图解释改革的必要，却被两边的人同时质问：“那你替我们做啊？”\n\n推搡中，有人把先锋党员的袖标扯了下来，有人干脆转身离开。原本靠这批人维持的动员链条断了几处。事后清点，流失的先锋党员让题改少了一批骨干，进度受挫。改革派内部开始争论到底该硬撑还是放缓，但眼下谁都没有答案。",
               buttonText: '我们需要更温和的手段...'
             });
           } else if (c.id === 'gouxiong_coup') {
@@ -2479,7 +2479,7 @@ export default function App() {
                     title: '赛博娱乐大统领',
                     portrait: 'gouxiong',
                     ideology: 'deconstructivism',
-                    description: '曾经的B3教学楼革命者，如今的赛博娱乐大统领。他利用了学生们的愤怒和绝望，将学校变成了一个充满二次元低幼性压抑风格的游乐场。高二时偷女同学裤子的恶趣味，如今成了他统治的象征。'
+                    description: "狗熊从红蛤时期的初创成员变成赛博娱乐大统领，靠的不是一套能解释校园秩序的政治纲领，而是把学生对旧权威的愤怒引向持续的解构狂欢。他认定严肃制度和宏大叙事已经失效，只有把学校彻底娱乐化、二次元化，才能让被压抑的人获得短暂归属。他高二时偷过女同学裤子，这种恶趣味后来成了他行使权力时的固定风格，既不严肃也不打算解释。他掌握广播室和艺术礼堂后，用动漫片头、网络迷因和粗俗玩笑维系忠诚，支持者围拢过来多半是为了在起哄中分到一点存在感。这种统治能拆解旧权威，却无法回答权力应当承担什么责任。"
                   },
                   // v8.11 狗熊撕毁一切旧法案：纪律全面自治、作息自由、人事学生评议会、教育素质教育
                   lawSystem: { discipline: 'full_autonomy', schedule: 'free_schedule', personnel: 'student_assembly_hr', education: 'quality_education', assessment: 'project_assessment', clubs: 'student_clubs' },
@@ -2488,7 +2488,7 @@ export default function App() {
                   nationalSpirits: state.nationalSpirits.filter(ns => !['red_campus', 'student_council', 'awakened_binhu', 'assembly_dynamics', 'democratic_councils_spirit'].includes(ns.id)).concat({
                     id: 'cyber_hedonism_rule',
                     name: '赛博娱乐统治',
-                    description: '学校变成了巨大的游乐场，荒诞与压抑并存。银幕昼夜不息，现实在片头曲里失重。',
+                    description: "学校的管理重心转向礼堂后，赛博娱乐便不再只是课余消遣。银幕昼夜播放，弹幕覆盖了原本用于讨论和集合的空间。学生们被要求持续参与这场互动，现实中的矛盾则被片头曲和动画片段一次次打断。荒诞在于人人都在笑，压抑在于不能停。",
                     type: 'negative',
                     effects: { ppDaily: 1, stabDaily: -2, studentSanityDaily: -5 }
                   }),
@@ -2547,7 +2547,7 @@ export default function App() {
                     title: '及第教育CEO',
                     portrait: 'feng_anxiang',
                     ideology: 'anarcho_capitalism',
-                    description: '及第教育的掌舵人，将学校视为一台巨大的提分机器。他认为教育的本质就是一场可以被精确计算和无限压榨的商业游戏。',
+                    description: "封安祥是及第教育的掌舵人。他把学校当作一台提分机器，认为教育本质是一场可以被精确计算、无限压榨的商业游戏。在他治下，教辅研发与标准化流程被推到前台，讲义和测验都指向可衡量的增量。他不必动用警棍，靠条款与利润就能约束各方，联合管理委员会里的企业利益乐意为这种秩序提供支持。\n\n问题也出在这里。封安祥擅长计算分数，却难以理解分数之外的失败。学生在他眼中先是客户，再是人；课堂一旦不能被计价，他就找不到改善的入口。及第接管之后，这种商业逻辑会被当作效率本身，但它与教育现实之间的裂缝，不会因为合同写得漂亮就自动弥合。",
                     buffs: ['每日GDP增长 +5%', '每日学生支持度 -0.5%']
                   },
                   // v8.11 及第接管：应试至上、衡水作息、校长一言堂
@@ -4959,13 +4959,13 @@ export default function App() {
             newStats.ss = Math.min(100, newStats.ss + 30);
             newStats.pp += 20;
             newStats.allianceUnity = Math.min(100, newStats.allianceUnity + 10);
-            newSpirits.push({ id: 'awakened_binhu', name: '被唤醒的滨湖', description: '广播站的频段被革命完美接管，午间的电波第一次站在了学生这边。', type: 'positive', effects: { ssDaily: 0.5, ppDaily: 0.3 } });
+            newSpirits.push({ id: 'awakened_binhu', name: '被唤醒的滨湖', description: "频率之争结束后，广播站不再由校方单独掌握，午间电波转而站在学生一边。这意味着通知渠道本身换了主人：过去由校方单向下达的内容，现在要经过革命力量的口径。它的意义不在某一次播音，而在于学生一方第一次拥有了覆盖全校的传声工具。", type: 'positive', effects: { ssDaily: 0.5, ppDaily: 0.3 } });
             newEvent = { id: 'freq_critical_evt', title: '电波响彻滨湖', description: `平均接管率${fr.avgFreq.toFixed(1)}%——完美！\n\n当王照凯的声音通过三个FM频段同时响起时，整个校园都安静了。吴福军愤怒地砸碎了保安室的收音机，杨玉乐在办公室里来回踱步，封安宝的电话线被打爆了。\n\n"合一的学生们，这里是联合革命委员会。旧的秩序已经终结，新的时代从此刻开始。"\n\n行政楼的控制得到了全面巩固，革命的电波势不可挡。`, buttonText: '这是我们的频率！', isStoryEvent: true, effectsText: ['行政楼地块控制度 +20', 'SS +30, PP +20, 团结 +10'] };
             break;
           case 'success': // 成功接管
             newStats.ss = Math.min(100, newStats.ss + 18);
             newStats.pp += 10;
-            newSpirits.push({ id: 'awakened_binhu', name: '被唤醒的滨湖', description: '广播站落入我们手中，晚自习的喇叭里第一次传出属于学生的声音。', type: 'positive', effects: { ssDaily: 0.3 } });
+            newSpirits.push({ id: 'awakened_binhu', name: '被唤醒的滨湖', description: "广播站落到学生手中之后，晚自习的喇叭不再只重复纪律与训话，属于学生自己的声音被放了出来。这一步看似只是设备易主，实际改变的是校园里的信息方向——管理层垄断的传声渠道被打开，学生的表达有了公共出口。", type: 'positive', effects: { ssDaily: 0.3 } });
             newEvent = { id: 'freq_success_evt', title: '频率之战告捷', description: `平均接管率${fr.avgFreq.toFixed(1)}%——成功。\n\n经过紧张的频率拉锯，广播站的主要频段已经落入我们手中。虽然中间一度被干扰，但先锋队员们最终稳住了阵脚。\n\n行政楼周边的学生开始聚集，他们听到了广播里的号召。`, buttonText: '继续推进！', isStoryEvent: true, effectsText: ['行政楼地块控制度 +12', 'SS +18, PP +10'] };
             break;
           case 'partial': // 部分成功
@@ -4976,7 +4976,7 @@ export default function App() {
           case 'failure': // 失败
             newStats.stab = Math.max(0, newStats.stab - 15);
             newStats.ss = Math.max(0, newStats.ss - 8);
-            newSpirits.push({ id: 'silenced_vanguard', name: '失声的先锋队', description: '广播站失守，先锋队的喇叭被卸了下来。走廊里只剩下保安队的脚步声。', type: 'negative', effects: { ppDaily: -0.2 } });
+            newSpirits.push({ id: 'silenced_vanguard', name: '失声的先锋队', description: "频率之争以失守告终，先锋队架起的喇叭被卸下，广播重新归校方控制。走廊里少了学生的播音，只剩下保安队的脚步声。先锋队失去的不只是设备，而是把声音递到全校的那条通道；一夜之间，公开动员退回地下，校园重新被校方的节奏填满。", type: 'negative', effects: { ppDaily: -0.2 } });
             newEvent = { id: 'freq_failure_evt', title: '电波沉寂', description: `平均接管率${fr.avgFreq.toFixed(1)}%——失败。\n\n吴福军的保安队成功守住了广播站。他们不仅切断了电源，还在广播室门口加派了双岗。一名试图翻窗进入的先锋队员被抓，现在正在保安室"接受教育"。\n\n行政楼的校方控制反而加强了。`, buttonText: '可恶...', isStoryEvent: true, effectsText: ['行政楼地块控制度 -8', '稳定度 -15, SS -8', '获得负面精神：失声的先锋队'] };
             break;
         }

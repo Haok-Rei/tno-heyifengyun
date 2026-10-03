@@ -40,6 +40,10 @@ npm run preview
 
 `check` 检查素材路径及大小写、TypeScript、回归测试和生产构建。`preview` 查看上一步生成的静态网站。
 
+## 文案开发
+
+[DeepSeek文案工作台](docs/writing/README.md)提供事件、新闻、人物、国家精神的分体裁写作、路线事实卡、编辑复核、安全入库和回退。API只用于本地开发，玩家端无需配置。
+
 ## 目录
 
 | 路径 | 内容 / 更新位置 |

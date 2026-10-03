@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "appliedAt": "2026-10-03T14:23:04.171Z",
+  "files": [
+    {
+      "file": "src/data/characterProfiles.ts",
+      "beforeHash": "47bd4552f6b756ea980c1a3660234ca71cfccedd83f0660ffd05c1cde1f6c44c",
+      "afterHash": "7e734034f9df70af630d228463b17c85f954273cf8d179560d110116e8bc6af3"
+    },
+    {
+      "file": "src/data/proseRevisions.json",
+      "beforeHash": "d46a4023dc388a5dafda570232f87d966aa6479d7867274651860adbfcb7d00d",
+      "afterHash": "19574367e0ef7fd2310e88412bed84b7b078f8554871cbb869c04cab27170bb6"
+    },
+    {
+      "file": "docs/writing/selection.json",
+      "beforeHash": "563685d6e74c226db92c55c3d8761b37737c2864a84b23146bb61d278b79ae5c",
+      "afterHash": "db852bc5b129706c72f6b03f3a8fb1e69d5bc3646434aba3f39b35b155ae1714"
+    }
+  ],
+  "items": [
+    {
+      "key": "d4fad6656770d4bf",
+      "id": "shi_ji",
+      "label": "时纪",
+      "kind": "person",
+      "route": "shared",
+      "before": "时纪是安那其派的协调者，主张让教学楼和社团自行决定日常事务。他的工作不是发号施令，而是扩大联盟的共同基础，让分散的声音坐到一起。\n\n地方自治能够争取更广泛的认同，也让中央的统一调度更加费力。时纪身上最直接的矛盾就在这里：他既能团结更多人，也让任何统一调度变得更费力。这不是执行上的疏漏，而是地方自治主张本身带来的后果。",
+      "after": "时纪是安那其派的协调者，主张让教学楼和社团自行决定日常事务。他的工作不是发号施令，而是扩大联盟的共同基础，让分散的声音坐到一起。\n\n地方自治能够争取更广泛的认同，也让中央的统一调度更加费力。时纪要做的，是让这些自治的教学楼与社团在共同事务上达成一致。",
+      "author": {
+        "model": "deepseek-flash",
+        "requestHash": "0ab983a384786754b14e9319394e5e36b2175d70180ae4575174cf49947b4f80"
+      },
+      "editor": "Codex",
+      "reviewNote": "末轮删去重复论点与空泛免责声明，保留人物的自治主张/商业动机和当前职务。",
+      "locations": [
+        {
+          "file": "src/data/characterProfiles.ts",
+          "line": 24
+        }
+      ]
+    },
+    {
+      "key": "b78294a3fbb68571",
+      "id": "jidi_ceo",
+      "label": "方田",
+      "kind": "person",
+      "route": "jidi",
+      "before": "方田是一名小企业投资人。他看中合肥一中已有的品牌、流量和可复制的课程体系——这些是现成的资产，不需要从零养成。他带来资金，也带来一套公司化的期待：学校应当按照企业的方式运转，投入要有回报，增长要看得见。\n\n在企业化管理的学校里，方田代表着扩张所需要的那类外部资金和商业视角。他关心的是品牌能否变现、课程能否复制、收益能否谈清。至于课堂上那些无法被量化的问题，他未必有耐心逐一处理。这未必意味着他对教育毫无想法，只是他的资金逻辑天然与学校的日常现实存在落差。",
+      "after": "方田是一名小企业投资人。他看中合肥一中已有的品牌、流量和可复制的课程体系——这些是现成的资产，不需要从零养成。他带来资金，也带来一套公司化的期待：学校应当按照企业的方式运转，投入要有回报，增长要看得见。\n\n在企业化管理的学校里，方田代表着扩张所需要的那类外部资金和商业视角。他关心的是品牌能否变现、课程能否复制、收益能否谈清。至于课堂上那些无法被量化的问题，他未必有耐心逐一处理。",
+      "author": {
+        "model": "deepseek-flash",
+        "requestHash": "1fc1adc8e0a0b57a5386e6cbfab55537a3e5a21c0d72aba3b5e4ccd7949e3a6c"
+      },
+      "editor": "Codex",
+      "reviewNote": "末轮删去重复论点与空泛免责声明，保留人物的自治主张/商业动机和当前职务。",
+      "locations": [
+        {
+          "file": "src/data/characterProfiles.ts",
+          "line": 20
+        }
+      ]
+    }
+  ]
+}
