@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { spawn } from 'node:child_process';
 import { ROOT, digest } from './catalog.mjs';
+import { parseModelJSON } from './json-output.mjs';
 
 export function settings() {
   const file=path.join(ROOT,'.env.deepseek.local');
@@ -40,13 +41,13 @@ export async function complete(messages,{model,maxTokens=4096,thinking=false,cac
   function invalid(message){
     const error=Object.assign(new Error(message),{usage:response.usage,model:response.model,requestHash:key});
     fs.mkdirSync(cacheDir,{recursive:true});
-    fs.writeFileSync(path.join(cacheDir,'rejected-'+key+'.json'),JSON.stringify({error:message,usage:response.usage,model:response.model,requestHash:key,generatedAt:new Date().toISOString()})+'\n');
+    fs.writeFileSync(path.join(cacheDir,'rejected-'+key+'.json'),JSON.stringify({error:message,usage:response.usage,model:response.model,requestHash:key,generatedAt:new Date().toISOString(),content:response.choices?.[0]?.message?.content||''})+'\n');
     throw error;
   }
   const choice=response.choices?.[0];
   if(choice?.finish_reason!=='stop'||!choice.message?.content)invalid('Empty or truncated completion. Lower batch size; source files unchanged.');
-  let data;try{data=JSON.parse(choice.message.content);}catch{invalid('Invalid JSON completion; source files unchanged.');}
-  const result={data,usage:response.usage,model:response.model,requestHash:key,generatedAt:new Date().toISOString()};
+  let parsed;try{parsed=parseModelJSON(choice.message.content);}catch{invalid('Invalid JSON completion; source files unchanged.');}
+  const result={...parsed,usage:response.usage,model:response.model,requestHash:key,generatedAt:new Date().toISOString()};
   fs.mkdirSync(cacheDir,{recursive:true});fs.writeFileSync(file,JSON.stringify(result,null,2)+'\n');
   return {...result,localCache:false};
 }

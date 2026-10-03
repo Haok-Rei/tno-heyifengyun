@@ -161,6 +161,7 @@ export function getAdvisorCost(state: GameState, advisor: Advisor) {
 
 export function getAvailableAdvisors(state: GameState): Advisor[] {
   return AVAILABLE_ADVISORS.filter(a => {
+              if (a.id === 'yang_yule' && state.flags.yang_yule_removed_by_trial) return false;
               if (a.id === 'zhou_chen' && !state.flags['chen_dong_veterans_unlocked'] && !state.flags['zhou_chen_unlocked']) return false;
               if (a.id === 'you_guanglei' && !state.flags['chen_dong_veterans_unlocked']) return false;
               if (a.id === 'li_jingkai' && !state.flags['li_jingkai_unlocked']) return false;

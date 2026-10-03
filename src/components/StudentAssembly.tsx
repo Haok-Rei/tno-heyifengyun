@@ -2,6 +2,7 @@ import React from 'react';
 import { Hammer, Ghost, Scale, Users, BookOpen, Shield, GraduationCap, ThumbsUp, ThumbsDown } from 'lucide-react';
 import { GameState } from '../types';
 import { getCommandState } from '../engine/commandSystem';
+import AssemblyBalance from './AssemblyBalance';
 
 interface StudentAssemblyProps {
   state: GameState;
@@ -308,16 +309,7 @@ export default function StudentAssembly({ state, onClose, onInteract }: StudentA
               </div>
             )}
 
-            <div className="mt-8 w-full grid grid-cols-2 gap-4 text-sm">
-              <div className="bg-black/50 p-3 border border-tno-border">
-                <div className="text-tno-text/60 mb-1">联盟团结度</div>
-                <div className="text-xl font-bold text-tno-highlight">{state.stats.allianceUnity}%</div>
-              </div>
-              <div className="bg-black/50 p-3 border border-tno-border">
-                <div className="text-tno-text/60 mb-1">党内集权度</div>
-                <div className="text-xl font-bold text-tno-highlight">{state.stats.partyCentralization}%</div>
-              </div>
-            </div>
+            <AssemblyBalance state={state} />
 
             {/* Special Actions */}
             {(hasTrueLeftSpecial || hasPanDemSpecial || canHaobangMergeBear || canHaobangMergePan || canHaobangCoordination) && (

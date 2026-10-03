@@ -13,6 +13,7 @@ import { restoreCampusEvent } from './campusEvents';
 import { FLAVOR_EVENTS } from '../data/flavorEvents';
 import { reconcileRouteSpirits } from './routeSpirits';
 import { refreshReviewedDescriptions } from './proseRevisions';
+import { cleanAssemblyCrises } from './assemblyPolitics';
 
 // ---- 类型定义 ----
 
@@ -82,7 +83,7 @@ export function deserializeGameState(raw: string): GameState | null {
       : FLAVOR_EVENTS[event.id] ? { ...FLAVOR_EVENTS[event.id], ...event, effect: FLAVOR_EVENTS[event.id].effect, choices: FLAVOR_EVENTS[event.id].choices } : event;
     state.activeEvent = state.activeEvent ? restore(state.activeEvent) : null;
     state.activeStoryEvents = (state.activeStoryEvents ?? []).map(restore);
-    return reconcileRouteSpirits(refreshReviewedDescriptions(state));
+    return reconcileRouteSpirits(cleanAssemblyCrises(refreshReviewedDescriptions(state)));
   } catch {
     return null;
   }

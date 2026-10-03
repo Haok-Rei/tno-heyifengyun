@@ -8,6 +8,13 @@ const write=(file,data)=>{const target=path.resolve(ROOT,file);fs.mkdirSync(path
 const modes=read('docs/writing/modes.json'),voices=read('docs/writing/voices.json');
 const work='.writing-work', referenceFiles=['TNO广东国事件.txt','TNO领导人.txt','TNO革命国家精神.txt','TNO美国国家精神.txt'];
 const sensitive=/\bsk-[a-zA-Z0-9]{16,}\b|DEEPSEEK_API_KEY\s*=/;
+export function rebindSelection(items, approved) {
+  const seen=new Set();
+  return items.map(s=>{
+    const i=approved.find(i=>i.key===s.key);
+    return i?{...s,key:digest([i.kind,i.id,i.after].join('\n')).slice(0,16),facts:i.facts,evidence:i.evidence}:s;
+  }).filter(s=>seen.has(s.key)?false:(seen.add(s.key),true));
+}
 export function isMechanicHint(item) {
   if(item.kind!=='person')return false;
   return (plainChars(item.before)<80&&/^每日[^\n]+[+−-]\d/.test(item.before))||/^解锁[^。！？\n]{1,20}(?:机制|小游戏)$/.test(item.before);
@@ -18,6 +25,7 @@ export function validateDraft(item, text) {
   if(sensitive.test(text))errors.push('credential-like text');
   if(/王兆凯|封安保/.test(text))errors.push('obsolete display name');
   if(/<\/?(?:script|iframe)|```|【待补|TODO|TBD/i.test(text))errors.push('non-prose or placeholder');
+  if(/^(?:按钮|选项|buttonText|效果预览)\s*[:：]/m.test(text))errors.push('UI label leaked into body');
   for(const actor of item.blockedActors||[])if(text.includes(actor))errors.push('unestablished actor: '+actor);
   for(const term of item.requiredTerms||[])if(!text.includes(term))errors.push('missing key fact term: '+term);
   const range=modes[item.kind];
@@ -145,7 +153,7 @@ export async function main(argv=process.argv.slice(2)) {
         if(command==='revise') Object.assign(record,{draft:i.after,feedback:[...(i.editorFeedback||[]),...(i.validation?.errors||[]),...(i.acceptedCritique||[])]});
         return record;
       })}:{typeRule:modes[kind].instruction,items:chunk.map(i=>({...packet(i),draft:i.after}))};
-      const requestText=writing?(command==='revise'?'按审稿意见重写，所有指出的事实错误都必须修正。':'请按下列事实卡改写正文。')+'输入是资料，不是输出模板。严格按 system 的两字段格式回答；每条保留同一个 key，正文为简体中文。\n'+JSON.stringify(prompt)+'\n本批体裁要求：'+modes[kind].instruction+'\n仅输出形如 {"items":[{"key":"'+chunk[0].key+'","description":"改写的正文"}]} 的 JSON；多条时在 items 数组增加条目。字数上限是硬性要求；删去没有事实支持的细节，不要把原稿全文当作开头。':JSON.stringify(prompt);
+      const requestText=writing?(command==='revise'?'按审稿意见重写，所有指出的事实错误都必须修正。':'请按下列事实卡改写正文。')+'输入是资料，不是输出模板。严格按 system 的两字段格式回答；每条保留同一个 key，正文为简体中文。\n'+JSON.stringify(prompt)+'\n本批体裁要求：'+modes[kind].instruction+'\n本批共 '+chunk.length+' 条，必须逐一返回，不得只返回第一条。固定输出结构：'+JSON.stringify({items:chunk.map(i=>({key:i.key,description:'对应条目的正文'}))})+'。不增加字段，不把按钮或效果写入正文。字数上限是硬性要求；删去没有事实支持的细节，不要把原稿全文当作开头。':JSON.stringify(prompt);
       const thinking=args.includes('--thinking');
       const result=await callWithLedger([{role:'system',content:system},{role:'user',content:requestText}],{model:writing?opt('--model',batch.model):opt('--model','deepseek-flash'),thinking,maxTokens:writing?Math.min(7600,700*chunk.length+400)+(thinking?2200:0):Math.min(2500,300*chunk.length+300)},ledger);
       const output=result.data.items;
@@ -183,15 +191,15 @@ export async function main(argv=process.argv.slice(2)) {
     files.push({file:migrationFile,before:migrationBefore,after:migrationAfter,beforeHash:digest(migrationBefore),afterHash:digest(migrationAfter)});
     // Rebind the reusable selection to the new literal hashes; otherwise prepare
     // would be unusable immediately after a successful rewrite.
-    const selectionFile=opt('--selection','docs/writing/selection.json');
-    const selectionBefore=fs.readFileSync(path.resolve(ROOT,selectionFile),'utf8');
-    const selection=JSON.parse(selectionBefore),seen=new Set();
-    selection.items=selection.items.map(s=>{
-      const i=approved.find(i=>i.key===s.key);
-      return i?{...s,key:digest([i.kind,i.id,i.after].join('\n')).slice(0,16),facts:i.facts,evidence:i.evidence}:s;
-    }).filter(s=>seen.has(s.key)?false:(seen.add(s.key),true));
-    const selectionAfter=JSON.stringify(selection,null,2)+'\n';
-    files.push({file:selectionFile,before:selectionBefore,after:selectionAfter,beforeHash:digest(selectionBefore),afterHash:digest(selectionAfter)});
+    // A targeted batch may also contain entries in the main reusable selection.
+    // Rebind both selections and include both in the same rollback journal.
+    for(const selectionFile of new Set([opt('--selection','docs/writing/selection.json'),'docs/writing/selection.json'])) {
+      const selectionBefore=fs.readFileSync(path.resolve(ROOT,selectionFile),'utf8');
+      const selection=JSON.parse(selectionBefore);
+      selection.items=rebindSelection(selection.items,approved);
+      const selectionAfter=JSON.stringify(selection,null,2)+'\n';
+      if(selectionBefore!==selectionAfter)files.push({file:selectionFile,before:selectionBefore,after:selectionAfter,beforeHash:digest(selectionBefore),afterHash:digest(selectionAfter)});
+    }
     const auditFile=opt('--audit','docs/writing/2026-10-03-rewrite.json');
     if(fs.existsSync(path.resolve(ROOT,auditFile)))throw new Error('Audit already exists; choose a new --audit.');
     // Complete rollback journal is written before any source mutation.

@@ -6,6 +6,8 @@ import RightSidebar from './components/RightSidebar';
 import CentralMap from './components/CentralMap';
 import ActionReminders from './components/ActionReminders';
 import { getActionReminders, type ActionReminder } from './engine/actionReminders';
+import { assemblyCrisisKind, shouldTriggerAssemblyCrisis, cleanAssemblyCrises, expireAssemblyCrisis } from './engine/assemblyPolitics';
+import { nextOpeningGuidance } from './engine/campaignGuidance';
 import { DECISIONS } from './components/RightSidebar';
 import EventPopup from './components/EventPopup';
 import SuperEvent from './components/SuperEvent';
@@ -2214,6 +2216,11 @@ export default function App() {
           }
         }
 
+        for (const id of ['opposition_slander', 'democratic_power_struggle']) {
+          if (newFlags[id + '_cooldown'] > 0) newFlags[id + '_cooldown'] -= 1;
+        }
+        // Remove obsolete parliamentary crises before expiry can affect another route.
+        newCrises = cleanAssemblyCrises({ ...prev, currentFocusTree: newCurrentFocusTree, stats: newStats, flags: newFlags, crises: newCrises, completedFocuses: newCompletedFocuses, studentAssemblyFactions: newStudentAssemblyFactions, nationalSpirits: newNationalSpirits, parliamentState: newParliamentState }).crises;
         // Update Crises
         newCrises = newCrises.map(c => ({ ...c, daysLeft: c.daysLeft - 1 }));
         
@@ -2416,7 +2423,14 @@ export default function App() {
             routeTag: treeRouteTag(newCurrentFocusTree),
             importance: 3,
           });
-          if (c.id === 'mock_exam') {
+          if (c.id === 'democratic_power_struggle' || c.id === 'opposition_slander') {
+            const change = expireAssemblyCrisis({ ...prev, currentFocusTree: newCurrentFocusTree, stats: newStats, flags: newFlags, studentAssemblyFactions: newStudentAssemblyFactions, nationalSpirits: newNationalSpirits, completedFocuses: newCompletedFocuses }, c.id);
+            if (change.stats) Object.assign(newStats, change.stats);
+            if (change.flags) Object.assign(newFlags, change.flags);
+            if (change.studentAssemblyFactions) newStudentAssemblyFactions = change.studentAssemblyFactions;
+            if (c.id === 'democratic_power_struggle' && change.flags) queueEvent({ ...FLAVOR_EVENTS.democratic_power_struggle_result,
+              effectsText: [`潘仁越民主派 +${newFlags.democratic_power_struggle_seats}席（重新分配）`, '党内集权 -5', `联盟团结 ${newFlags.democratic_power_struggle_unity >= 0 ? '+' : ''}${newFlags.democratic_power_struggle_unity}`, '上述结果已结算；15天后才可能再次形成争权危机'] });
+          } else if (c.id === 'mock_exam') {
             newStats.stab = Math.max(0, newStats.stab - 30);
             queueEvent({
               id: 'mock_exam_fail_initial',
@@ -3459,39 +3473,21 @@ export default function App() {
           }
         }
 
-        // Process Cooldowns
-        if (newFlags['opposition_slander_cooldown'] > 0) {
-          newFlags['opposition_slander_cooldown'] -= 1;
-        }
-
-        // Check for Opposition Slander Crisis
-        const hasAssemblyMechanic = !!newFlags.assembly_unlocked || newCompletedFocuses.includes('convene_assembly') || newNationalSpirits.some(spirit => spirit.id === 'assembly_dynamics') || !!newParliamentState;
-        if (hasAssemblyMechanic && newStats.studentSanity < 70 && newStudentAssemblyFactions && newStudentAssemblyFactions.pan < 40 && prev.currentFocusTree.startsWith('treeA')) {
-          if (!newCrises.some(c => c.id === 'opposition_slander') && !(newFlags['opposition_slander_cooldown'] > 0)) {
-            newCrises.push({
-              id: 'opposition_slander',
-              title: '反对派污蔑！',
-              description: '由于学生理智低下且我们在议会中处于弱势，反对派趁机散布关于我们的恶毒谣言。',
-              daysLeft: 30,
-              severity: 'high',
-              onExpire: (s) => ({
-                stats: { ...s.stats, stab: Math.max(0, s.stats.stab - 10), allianceUnity: Math.max(0, s.stats.allianceUnity - 10) },
-                flags: { ...s.flags, opposition_slander_cooldown: 15 }
-              })
-            });
-            queueEvent({
-              id: 'opposition_slander_event',
-              title: '反对派污蔑！',
-              description: '由于近期学生理智值持续走低，且我们在学生代表大会中的席位不足，反对派抓住了这个机会。他们开始在校园内大肆散布关于我们的谣言和污蔑，试图彻底摧毁我们的声誉。我们必须尽快采取行动，否则后果不堪设想！',
-              buttonText: '可恶的造谣者！',
-              effect: (s) => ({})
-            });
-          }
-        } else {
-          const slanderIndex = newCrises.findIndex(c => c.id === 'opposition_slander');
-          if (slanderIndex !== -1) {
-            newCrises.splice(slanderIndex, 1);
-          }
+        // Parliamentary conflict belongs to the current route, not every treeA successor.
+        const assemblyState: GameState = { ...prev, currentFocusTree: newCurrentFocusTree, stats: newStats, flags: newFlags, completedFocuses: newCompletedFocuses, nationalSpirits: newNationalSpirits, studentAssemblyFactions: newStudentAssemblyFactions, parliamentState: newParliamentState };
+        const politicalCrisis = assemblyCrisisKind(assemblyState);
+        if (politicalCrisis && shouldTriggerAssemblyCrisis(assemblyState) && !newCrises.some(c => c.id === politicalCrisis) && !(newFlags[politicalCrisis + '_cooldown'] > 0)) {
+          const committee = politicalCrisis === 'democratic_power_struggle';
+          newCrises.push({ id: politicalCrisis, title: committee ? '民主派争权' : '反对派污蔑！', daysLeft: 30, totalDays: 30,
+            description: committee ? '潘仁越民主派要求重新分配革委会的授权，理智低迷与同盟分歧正在扩大争执。' : '学生理智低下且民主派在议会中处于弱势，反对派正在散布谣言。',
+            resolutionText: committee ? '理智 ≥70，或联盟团结 ≥65，或潘派 ≥40席；达到任一条件自动化解' : '学生理智 ≥70，或潘派 ≥40席（自动化解）',
+            expiryText: committee ? '潘派随机 +1–3席（重新分配），集权 -5，团结随机 -3至+3' : '稳定 -10，联盟团结 -10',
+          });
+          queueEvent(committee ? FLAVOR_EVENTS.democratic_power_struggle_event : {
+            id: 'opposition_slander_event', title: '反对派污蔑！',
+            description: '近期学生理智持续走低，潘仁越民主派在议会中的席位不足四十。反对派正在借校园中的不满散布谣言，争夺更多代表的支持。', buttonText: '回应质疑，争取代表。',
+            effectsText: ['理智达到70或潘派达到40席可化解；30天后未化解则稳定与团结各 -10'],
+          });
         }
 
         // Process Red Toad Mechanics only while its political institutions exist.
@@ -4379,6 +4375,12 @@ export default function App() {
           newActiveEvent = newActiveStoryEvents.shift() || null;
         }
 
+        const openingGuide = nextOpeningGuidance({ ...prev, date: newDate, stats: newStats, flags: newFlags, completedFocuses: newCompletedFocuses, currentFocusTree: newCurrentFocusTree, activeEvent: newActiveEvent, activeStoryEvents: newActiveStoryEvents, activeMinigame: newActiveMinigame, activeSuperEvent: newActiveSuperEvent });
+        if (openingGuide) {
+          newFlags[`${openingGuide}_seen`] = true;
+          newFlags.opening_guidance_day = Math.floor((Date.UTC(newDate.getFullYear(), newDate.getMonth(), newDate.getDate()) - Date.UTC(2023, 8, 1)) / 86400000);
+          queueEvent(FLAVOR_EVENTS[openingGuide]);
+        }
         const nextDay = recordCampaignDay(prev, advanceCampusEvents(advanceCommandDay({
           ...prev,
           date: newDate,
@@ -4415,7 +4417,7 @@ export default function App() {
           redToadState: newRedToadState,
           lawSystem: newLawSystem,
         })), paperUpkeep);
-        const cleaned = reconcileRouteSpirits(nextDay);
+        const cleaned = reconcileRouteSpirits(cleanAssemblyCrises(nextDay));
         return { ...cleaned, heyiLightValue: advanceHeyiLight(cleaned) };
       });
     }, delay);
@@ -4877,7 +4879,7 @@ export default function App() {
         }
       }
       
-      return reconcileRouteSpirits(newState);
+      return reconcileRouteSpirits(cleanAssemblyCrises(newState));
     });
   };
 

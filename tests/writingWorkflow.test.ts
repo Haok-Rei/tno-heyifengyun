@@ -4,7 +4,16 @@ import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
 import { catalog, planEdits, mechanicsFingerprint } from '../scripts/writing/catalog.mjs';
-import { validateDraft, assertReferenceStudy, isMechanicHint } from '../scripts/writing/editor.mjs';
+import { validateDraft, assertReferenceStudy, isMechanicHint, rebindSelection } from '../scripts/writing/editor.mjs';
+import { parseModelJSON } from '../scripts/writing/json-output.mjs';
+
+test('JSON cleanup removes only structural trailing commas, preserving quoted prose', () => {
+  const prose = '正文包含逗号, } 和引号“句子”。';
+  const parsed = parseModelJSON('{"items":[{"description":'+JSON.stringify(prose)+',},],}');
+  assert.equal(parsed.data.items[0].description, prose);
+  assert.equal(parsed.formatRepairs, 3);
+  assert.throws(() => parseModelJSON('{"description":"未闭合'));
+});
 
 test('mechanic-only advisor hints are excluded without excluding narrative openings', () => {
   assert.equal(isMechanicHint({kind:'person',before:'每日试卷储备量 +20，B3教学楼所有任务成功率固定 +30%。'}), true);
@@ -52,6 +61,19 @@ test('catalog exposes per-stage prose with exact sources and never selects dynam
   assert.ok(items.every(i => i.id !== 'heyi_light'));
   assert.ok(items.some(i => i.kind === 'event' && i.lockedUI.choices));
   assert.ok(items.some(i => i.route === 'commune' && i.trigger));
+  assert.ok(items.some(i => i.id === 'phase1_hengshui_schedule' && i.route === 'opening' && i.trigger?.id === 'perfect_hengshui'));
+  assert.ok(items.some(i => i.id === 'event_8_trial' && i.route === 'revolution' && i.trigger?.id === 'trial_yang'));
+});
+
+test('targeted rewrites rebind overlapping reusable selections and preserve unrelated cards', () => {
+  const draft = { key: 'old', kind: 'event', id: 'trial', after: '新正文', facts: ['已完成公审'], evidence: ['国策'] };
+  const untouched = { key: 'other', facts: ['其他剧情'] };
+  const result = rebindSelection([{key:'old', stage:'联合革委会'}, untouched], [draft]);
+  assert.notEqual(result[0].key, 'old');
+  assert.deepEqual(result[0].facts, draft.facts);
+  assert.equal(result[0].stage, '联合革委会');
+  assert.equal(result[1], untouched);
+  assert.equal(rebindSelection([{key:'old'}, {key:'old'}], [draft]).length, 1);
 });
 
 test('model study cannot approve itself or reuse a changed reference corpus', () => {

@@ -3,6 +3,7 @@
 /* Layered national focus and spirit artwork */
 @import "./components/strategicArt.css";
 @import "./components/nationIdeology.css";
+@import "./components/assemblyPolitics.css";
 
 @theme {
   --font-mono: "Courier New", "SimSun", Courier, monospace;

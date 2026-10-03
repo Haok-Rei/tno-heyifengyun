@@ -1,7 +1,75 @@
 import { GameState, GameEvent } from '../types';
 import { applyTileCtrlDeltas } from '../engine/tileHelpers';
+import { applyYangSettlement, getCrossroadsOutcome, CROSSROADS_RULES } from '../engine/assemblyPolitics';
 
 export const FLAVOR_EVENTS: Record<string, GameEvent> = {
+  phase1_hengshui_schedule: {
+    id: 'phase1_hengshui_schedule', title: '挤掉的午休', isStoryEvent: true,
+    description: "新的作息表贴在了每间教室的门后。午休那一栏被划掉了，一整天从早读到晚自习，每个课间只剩五分钟。\n\n“这哪是课间？打个水都要跑。”\n\n走廊里有人这么嘟囔。上课铃一响，人就得坐回位子上。晚自习结束后，班干部把新安排带回寝室，熄灯前还有人在问：“明天中午真的没有休息？”\n\n没人回答。被压缩的时间不会退回来。",
+    buttonText: '这张课表没有留给我们喘气的时间。',
+    effectsText: ['激进愤怒度 +8；B3起义需要激进愤怒度 >80'],
+    effect: s => ({ stats: { ...s.stats, radicalAnger: Math.min(100, s.stats.radicalAnger + 8) } }),
+  },
+  phase1_returned_petition: {
+    id: 'phase1_returned_petition', title: '退回的联名信', isStoryEvent: true,
+    description: "联名信由班里传起来，一圈名字签下去。最后几行写得很挤，签名一个接一个落在纸边上。信交上去不久又回到班级。纸上没有批复，只加了一行字：先完成学业。\n\n拿到信的人把它合上。有几个人围过来，其中一个说：“这样不算答复。”\n\n“那怎么办？还找他们？还是让别的班也看看？”\n\n信还躺在桌上。",
+    choices: [
+      { text: '把原信传给其他班级。', previewText: '激进愤怒 +12，学生支持 +2', effect: s => ({ stats: { ...s.stats, radicalAnger: Math.min(100, s.stats.radicalAnger + 12), ss: Math.min(100, s.stats.ss + 2) } }) },
+      { text: '仍然争取一次正式答复。', previewText: '联盟团结 +3，激进愤怒 +4', effect: s => ({ stats: { ...s.stats, allianceUnity: Math.min(100, s.stats.allianceUnity + 3), radicalAnger: Math.min(100, s.stats.radicalAnger + 4) } }) },
+    ],
+  },
+  phase1_recess_dispute: {
+    id: 'phase1_recess_dispute', title: '课间也要计时', isStoryEvent: true,
+    description: "扣分表不是贴在公告栏里的，是巡查人员拿在手里，走到人前才亮出来的。高二三班门口那个穿蓝袖章的先对着教室后门喊了一声“都回座位”，接着又补了一句“课间不要串班交谈”。走廊上几个还在翻练习册的学生抬起头，互相看了一眼，没有人动。\n\n靠窗的男生把半截话咽下去，转身进了教室。他听见隔壁班有女生说“我们班根本没说话”，但巡查的人已经走到下一扇门前。\n\n这周被记过的三个班，都觉得自己没做错什么。有人去年级组问过，得到的答复是“课间纪律是统一要求”。问的人回来后只说了句：“他们按表扣分，扣完才告诉我们。”\n\n走廊里的抱怨从一个班传到另一个班。几个课代表商量，下次巡查再来，先把各个班被扣分的记录要来看一看。",
+    buttonText: '我们都遇到过这张扣分表。', effectsText: ['激进愤怒 +10，学生理智 -2；仅在开局阶段出现一次'],
+    effect: s => ({ stats: { ...s.stats, radicalAnger: Math.min(100, s.stats.radicalAnger + 10), studentSanity: Math.max(0, s.stats.studentSanity - 2) } }),
+  },
+  phase1_shared_leaflet: {
+    id: 'phase1_shared_leaflet', title: '第二份传单', isStoryEvent: true,
+    description: "书是寝室熄灯后传看的，查寝的人只拿走了书，没搜到夹在枕头底下的几页纸。上面抄着几段话，边角又添了两个人的作息表和本周被记过的规定。\n\n王照凯是在去食堂的路上看到传单的。一张从作业本撕下来的纸，折成很小的方块，塞在窗户缝里。他展开后半截，认出了其中一段抄的是同一本课外书。传单下边有人用蓝笔补了一行：“下一间教室也看看。”\n\n几个女生站在走廊另一头低声说，她们班也有人被记了课间说话，只是没往那本子上抄过什么。王照凯把手里那半张旧传单重新折好，没有问是谁贴的。",
+    buttonText: '让下一间教室也读到它。', effectsText: ['激进愤怒 +12，学生支持 +3；愤怒 >80后可直接选择B3起义'],
+    effect: s => ({ stats: { ...s.stats, radicalAnger: Math.min(100, s.stats.radicalAnger + 12), ss: Math.min(100, s.stats.ss + 3) } }),
+  },
+  committee_purge_moderates: {
+    id: 'committee_purge_moderates', title: '缺席的代表', isStoryEvent: true,
+    description: "指挥会议开始前，温和派的人发现自己没有接到通知。王照凯在会上说，行动必须统一调度，再各干各的只会乱套。潘仁越不同意，说路线分歧不该用排除的办法解决。\n\n通知发到各班，名字上面没有温和派的人。命令集中了，但联络名单还握在那些没到场的人手里。谁要传话，谁要替班，仍然得找他们。\n\n散会以后，有人把新指挥名单贴在旧通知旁边。名单不长，争议不会因为贴出来就结束。",
+    buttonText: '执行新的指挥名单。', effectsText: ['国策完成时已结算：集权 +20，团结 -20', '十字路口会同时检查席位、团结与集权'],
+  },
+  committee_vanguard: {
+    id: 'committee_vanguard', title: '谁来下达下一道命令', isStoryEvent: true,
+    description: "宣布轮值安排时，值日表终于不再从各班的代表手里传来传去。白纸上印着统一的送卷时间和联络人，先锋队的人站在讲台边，说以后急事直接找轮值的人，不必再挨个签字。坐在后排的几个学生问，要是不在名单上的人有事怎么办？讲台上的回答是：“按新表走。”\n\n名单之外的人确实没有说话的地方。散会后有人在走廊拦住先锋队的成员，问下一道命令由谁下，对方只让他看公告栏。新印出来的安排还带着油墨味，但权力的路径已经比昨天更直了。",
+    buttonText: '按新的轮值表执行。', effectsText: ['国策完成时已结算：集权 +10，获得先锋队精神', '真左路线仍需要保住至少55的联盟团结'],
+  },
+  committee_militia: {
+    id: 'committee_militia', title: '岗哨后面的教室', isStoryEvent: true,
+    description: "晚自习前，礼堂东门的岗哨换下来两个学生。他们站了一下午，核对来往的人员，也听着有人抱怨“进自己班还要被查”。操场上另一组人在搬运路障，风把登记本吹得哗哗响。\n\n有人问隔壁楼的检查什么时候减，岗哨只说还没接到通知。礼堂和操场守住了，但地图上画的阵地不等于各班都听招呼。一位纠察队员蹲在花坛边给附近班级写条子，问他们能不能明早派人来校门换岗——答复得等晚自习铃响后才带回来。",
+    buttonText: '把换岗和通行安排告诉各班。', effectsText: ['礼堂与操场控制提升，获得武装纠察队精神', '地区行动与工作组可持续巩固控制、争取支持'],
+  },
+  committee_print_network: {
+    id: 'committee_print_network', title: '油墨还没有干', isStoryEvent: true,
+    description: "实验楼三楼的楼梯拐角堆着两摞纸，晚上送进来的。负责油印的学生正在数份数，旁边的人说三班还差二十张，五班需要多留一包。\n\n第一次调试已经结束，但纸是分几次运来的，下一批由谁去拿、送到哪几间教室还没定。有人把旧的联络名单摊在地上，发现两个班的接应人已经换了，只能明天中午再跑一趟。传单能印出来是一回事，让它们按时到人手里是另一回事。",
+    buttonText: '接上各班的联络。', effectsText: ['实验楼地块控制额外 +5，小游戏表现另行结算', '派工作组定期印制传单或联络地区，仍消耗原行动资源'],
+  },
+  committee_posters: {
+    id: 'committee_posters', title: '墙上的下一张海报', isStoryEvent: true,
+    description: "行政楼西侧的公告栏前围了几个人，新贴上去的纸边角已经卷起来。一个学生说昨晚看见有人拿水刷往下揭，另一个说隔壁班的人看都没看。\n\n负责宣传的女生把浆糊桶放在脚边，从书包里抽出备用的几张。她没争辩，只说明天早点来，把被撕掉的位置重新贴上。有人问她是不是每晚都要来，她蹲下去涂浆糊，说不然明天墙上就什么都没有了。",
+    buttonText: '宣传不能只做一晚。', effectsText: ['行政楼地块控制额外 +5，小游戏表现另行结算', '地区控制与支持需要持续行动；留意工作组的资源与任务报告'],
+  },
+  committee_assembly_opening: {
+    id: 'committee_assembly_opening', title: '同坐一间教室', isStoryEvent: true,
+    description: "教学楼大厅的黑板前挤满了各派代表，粉笔字重叠在一起。王照凯的提案写在最上面：所有行动小组归总指挥部统一调度，不要再各自为战。他把粉笔搁回槽里，转身对几个犹豫的做题派代表说：“革命不能停在广播站，现在需要的是一个声音。”\n\n潘仁越没有正面反驳，只在黑板上画了三个并列的方格，分别填上“调查”“宣传”“恢复上课”。他指着这些方格：“不同主张也得有地方说话。革委会不能把所有人的嘴都堵上。”\n\n做题派的代表站在角落，手里夹着三角板和油印的课程表。他们更想问的是，走廊被占领之后，那些准备模拟考的人怎么办。大厅外的雨声混着广播里循环的革命口号。\n\n推翻旧秩序是一回事，可新秩序到底长什么样，代表们自己还没吵出结果。",
+    buttonText: '先让代表们坐下来。', effectsText: ['已解锁学生代表大会：左侧入口调整派系关系', '集权决定指挥集中程度，团结决定各派能否继续合作', '十字路口确认时检查席位与这两个数值', ...CROSSROADS_RULES],
+  },
+  democratic_power_struggle_event: {
+    id: 'democratic_power_struggle_event', title: '民主派争权', isStoryEvent: true,
+    description: "潘仁越的代表在大会门口拦住了几个刚散会的委员。他们手里拿着油印的提案草稿，要求重新讨论革委会的授权范围。走廊里，一个女生正把从各班收集来的意见条贴到墙上，纸条上写着“为什么处分没有经过我们讨论”“同意统一调动的举手”。\n\n会议桌旁，原先接受统一安排的人开始追问，指挥部的命令是否需要代表逐条签字。潘仁越没有走到讲台上，只是站在代表中间说：“如果所有决定都是几个人定的，那还要大会干什么？”\n\n争论仍然在同盟内部，但已经改变了谁能决定下一步。",
+    buttonText: '把争议带回大会。', effectsText: ['30天内提高理智至70、团结至65或潘派至40席可化解', '到期：潘派席位随机 +1–3（重新分配）、集权 -5、团结随机 -3至+3'],
+  },
+  democratic_power_struggle_result: {
+    id: 'democratic_power_struggle_result', title: '授权的让步', isStoryEvent: true,
+    description: "新一轮争执没有定于一尊。一些原本坐在中间的班级代表把票投给了潘仁越，要求大会对指挥部的决定拥有更直接的约束。会场的黑板旁，负责记录表决结果的女生反复擦拭粉笔数字，又改了一次。\n\n革委会仍然存在，但发出同一道命令之前，需要争取的人更多了。有人把这当作合作的开始，认为至少各方愿意把分歧拿到台面上；也有人认为原来的安排已无法坚持，下一步只会更难。",
+    buttonText: '记录这次席位变化。',
+  },
   support_bill_event: {
     id: 'support_bill_event',
     title: '表态：支持议案',
@@ -1160,7 +1228,7 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
   admin_takeover: {
     id: 'admin_takeover',
     title: '教务系统的瘫痪',
-    description: '学生黑客成功入侵了学校的教务系统，所有的成绩排名、量化考核分数瞬间化为乌有。屏幕上只留下一行字：“去你的内卷”。\n\n教务处的老师们看着黑屏的电脑，陷入了前所未有的恐慌。而学生们则在私下里弹冠相庆。',
+    description: "行政楼第三层，教务处的几台电脑在同一时间黑屏。所有电子表格一片空白：年级排名、班级评比、量化考核分数全部消失了。有人把服务器上的数据删得干干净净，又在屏幕上留了一行字：去你的内卷。\n\n教务处的老师坐不住，找计算机老师来查。两名老师在办公室门口低声问：“这事要不要报告？”\n\n楼下通道里，几个学生经过时没有停步，有人笑出了声。",
     buttonText: '数据霸权的终结！',
     effect: (state: GameState) => ({
       stats: { ...state.stats, stab: state.stats.stab - 10, pp: state.stats.pp + 20 }
@@ -1169,7 +1237,7 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
   broadcast_seized: {
     id: 'broadcast_seized',
     title: '校园广播站的新声音',
-    description: '原本每天准时播放《运动员进行曲》和校规校纪的广播站，今天突然换成了激昂的《国际歌》。\n\n“同学们，合肥一中的历史，将由我们自己来书写！”广播里传来的不再是教导主任冰冷的声音，而是学生代表充满激情的宣言。',
+    description: "下午第二节课刚下，走廊里准时响起的《运动员进行曲》被一段嘈杂的电流声打断。几秒后，铜管乐被《国际歌》盖了过去。\n\n“同学们，合肥一中的历史，将由我们自己来书写！”\n\n声音从行政楼广播站传出来，不是教导主任的腔调。底楼楼道里，几个学生抱着课本停下来，有人往楼上的方向探头。保安室的门开了一条缝，又迅速关上。",
     buttonText: '让我们的声音传遍校园！',
     effect: (state: GameState) => ({
       stats: { ...state.stats, ss: Math.min(100, state.stats.ss + 15) }
@@ -1196,10 +1264,10 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
   secret_compromise: {
     id: 'secret_compromise',
     title: '深夜的密谈',
-    description: '在行政楼的一间隐秘办公室里，学生代表与校方高层达成了一项秘密协议。校方承诺放松部分管制，而学生则同意停止过激的抗议活动。\n\n“这只是暂时的妥协，为了更长远的利益。”学生代表在日记中写道。然而，许多激进派学生对此表示强烈不满，认为这是对革命的背叛。',
+    description: "行政楼三楼最靠里的办公室，窗帘拉得不紧，空调外机在窗外嗡嗡响。杨玉乐坐在靠墙的沙发里，手边摆着一杯泡过多次的茶。学生代表坐在对面，没有动桌上的矿泉水。\n\n“校方会放松部分管制。”杨玉乐说，“顾问这个身份我继续挂着，该提意见时我会提。”\n\n学生代表点头，语气平稳：“我们这边停止过激抗议。潘仁越民主派的代表和做题派的代表已经沟通过，多数人认可这次安排。”\n\n办公桌上放着两摞刚收上来的意见表。代表说：“温和派与做题派已经拿到了新增名额。”\n\n杨玉乐没有多问。走廊外传来学生小声说话的动静，很快又安静下去。",
     buttonText: '政治就是妥协的艺术。',
     effect: (state: GameState) => ({
-      stats: { ...state.stats, stab: Math.min(100, state.stats.stab + 20), radicalAnger: state.stats.radicalAnger - 30 }
+      ...applyYangSettlement(state, 'compromise')
     })
   },
   olive_branch: {
@@ -1232,7 +1300,7 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
   event_7_smolny: {
     id: 'event_7_smolny',
     title: '斯莫尔尼宫的会议桌',
-    description: 'B3教学楼被占领后，联合革命委员会在顶层会议室召开了第一次扩大会议。王照凯坐在主位，潘仁越和各班代表分列两旁。胜利的喜悦还未散去，关于未来路线的争论已经开始。\n\n“我们需要建立一个强有力的先锋队来巩固胜利，”王照凯敲着桌子，“不能让一盘散沙毁了我们的成果。”\n\n潘仁越则反驳：“我们的初衷是打破独裁，如果只是换了一批人来发号施令，那我们和吴福军有什么区别？我们需要广泛的民主。”',
+    description: "B3教学楼顶层会议室里，几张课桌拼成临时长桌，各班的代表挤坐在长凳上。联合革命委员会刚成立，王照凯坐在一端，潘仁越和其他班代表分坐两侧。\n\n“现在最要紧的是别散架。”王照凯说，“楼我们是占下了，可操场、食堂、大门那边还没谈完。如果每个班都自己定规矩，我们需要一个统一的指挥组，所有行动先报到这里。”\n\n潘仁越接着说：“统一的指挥组我也赞成。但成立委员会的时候，我们说的是打破独裁。如果刚换上来就变成一个人定名单、一个人批条子，我们又改变了什么？各班代表必须有权否决指挥组的决定。”\n\n争论很快转到具体的人手问题上。王照凯提出，派去操场和食堂方向联络的人，应该由他直接指定。潘仁越反对，主张由各班代表去谈，情况再带回会议讨论。联络人选仍没谈妥。",
     buttonText: '路线的分歧已经显现...',
     effect: (state: GameState) => {
       // v8.0 地图效果：革委会成立，B3与礼堂声势大振
@@ -1247,16 +1315,16 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
   event_8_trial: {
     id: 'event_8_trial',
     title: '老保的审判与阶级立场',
-    description: '在对杨玉乐等前校方管理人员的“公审”中，学生内部再次爆发了激烈的冲突。一部分激进的“钢铁红蛤”成员要求进行严厉的清算，甚至提出要“肉体消灭”；而潘仁越等温和派则主张宽大处理，认为“他们也是体制的受害者”。\n\n王照凯站在台上，冷冷地看着这一切。他知道，这是确立自己权威的绝佳机会。',
+    description: "大会在礼堂西侧的小报告厅开。杨玉乐被撤去顾问职务后，第一个议程就是追究旧管理人员在强制管控期间的责任。\n\n几名“钢铁红蛤”成员挤在听众前两排，有人直接喊出“肉体消灭”。王照凯站在台上，没有打断，也没有接话。潘仁越从代表席站起来，说：“他们也是体制的受害者，清算不能变成报复。”\n\n场内安静了片刻，后排响起几点嘘声。免职的事已成定局，更多代表转向了王照凯这边，但原先的温和盟友明显坐得远了些。争论集中在怎么处理旧管理人员，以及后续的监督由谁负责。王照凯低头翻了翻发言顺序，才把麦克风重新打开。",
     buttonText: '必须有人付出代价！',
     effect: (state: GameState) => ({
-      stats: { ...state.stats, allianceUnity: state.stats.allianceUnity - 10, partyCentralization: state.stats.partyCentralization + 10, radicalAnger: Math.min(100, state.stats.radicalAnger + 15) }
+      ...applyYangSettlement(state, 'trial')
     })
   },
   event_9_rectify_order: {
     id: 'event_9_rectify_order',
     title: '整顿校内秩序',
-    description: '夺取B3教学楼和行政楼只是第一步，现在整个校园处于一种无政府的狂欢状态。走廊里到处是散落的试卷，广播里整天播放着震耳欲聋的摇滚乐，甚至有学生在操场上烧毁了教辅资料。\n\n“自由不是放纵！”王照凯在学生代表大会上拍着桌子吼道。但潘仁越等温和派则认为，这是长期压抑后的正常释放，不应过度干涉。\n\n我们必须尽快建立起新的秩序，否则这场“革命”将演变成一场闹剧，甚至给外部资本介入的借口。',
+    description: "夺取教学楼和行政楼之后，控制权暂时落在学生手里，但没有人真正接过管理。走廊上散落着试卷，广播从早到晚播放摇滚乐，操场边的教辅资料被点着了，纸灰飘到跑道上。\n\n王照凯在学生代表大会上拍了桌子：“自由不是放纵！门口、广播、物资都没有人管，教室也没有恢复上课，外面的人会怎么看我们？”潘仁越没有反驳拍桌子的动作，只说宣泄是长期压抑后的反应，过度干涉会先失去基础。\n\n两人的分歧没有当场解决。散会后，王照凯要求各楼层报告物资和广播的值守情况，不少班级回答说还在等代表给办法；也有地方已经自行排班，但没有向会议汇报。秩序还没有重建起来，下一步要明确由谁指挥、怎样把已经拿下的地方管起来。",
     buttonText: '必须重建秩序...',
     effect: (state: GameState) => ({
       stats: { ...state.stats, stab: Math.min(100, state.stats.stab + 10), tpr: Math.max(0, state.stats.tpr - 50) }
@@ -1265,27 +1333,16 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
   event_10_crossroads: {
     id: 'event_10_crossroads',
     title: '命运的十字路口',
-    description: '所有的矛盾都在这一刻爆发。联盟的团结度、党内的集权度，以及全校学生的民意，将共同决定合肥一中最终的命运。\n\n历史的车轮滚滚向前，没有人能够置身事外。',
+    description: "代表们即将对主导权作最后表态。礼堂里，各派别的人都在低声核对席位，有人反复确认联盟内部的团结程度和党内的集权程度。会前的最后一步，是让同盟方面明确是否接受当前的指挥方式。\n\n表态还没有正式作出，分歧也没有消失。王照凯坐在前排，面前摊着发言名单，没有回头去看身后那些交头接耳的代表。谁会成为最终的胜者，要等这一轮表态结束才能知道。",
     buttonText: '见证最终的胜者...',
     effect: (state: GameState) => {
-      const factions = state.studentAssemblyFactions || { orthodox: 30, bear: 20, pan: 20, otherDem: 15, testTaker: 15 };
-      
-      const isPanHighest = factions.pan > 30;
-      const isOrthodoxHighest = factions.orthodox > factions.bear && factions.orthodox > factions.pan && factions.orthodox > factions.otherDem && factions.orthodox > factions.testTaker;
-
-      if (isPanHighest && state.stats.allianceUnity > 70 && state.stats.partyCentralization < 30) {
-        return { currentFocusTree: 'treeA_pan' };
-      } else if (isOrthodoxHighest && state.stats.allianceUnity > 70 && state.stats.partyCentralization > 60) {
-        return { currentFocusTree: 'treeA_true_left' };
-      } else if (factions.pan > 25 && factions.orthodox > 25 && state.stats.allianceUnity > 60 && state.stats.partyCentralization >= 30 && state.stats.partyCentralization <= 70) {
-        // v8.7 真左大团结金线：两派势均力敌 + 高度团结 + 集权适中 → 王潘签署和解协定，继续游戏
-        return { activeEvent: FLAVOR_EVENTS.true_left_union_choice_event };
-      } else if (state.stats.allianceUnity < 40 && state.stats.partyCentralization > 80) {
-        return { gameEnding: 'great_awakening' };
-      } else if (state.stats.partyCentralization < 40) {
-        return { gameEnding: 'pleasure_of_mediocrity' };
-      } else {
-        return { gameEnding: 'gouxiong_usurpation' };
+      switch (getCrossroadsOutcome(state)) {
+        case 'democracy': return { currentFocusTree: 'treeA_pan' };
+        case 'true_left': return { currentFocusTree: 'treeA_true_left' };
+        case 'union': return { activeEvent: FLAVOR_EVENTS.true_left_union_choice_event };
+        case 'great_awakening': return { gameEnding: 'great_awakening' };
+        case 'pleasure_of_mediocrity': return { gameEnding: 'pleasure_of_mediocrity' };
+        default: return { gameEnding: 'gouxiong_usurpation' };
       }
     }
   },
@@ -1439,14 +1496,14 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
   phase1_start_2023: {
     id: 'phase1_start_2023',
     title: '滨湖的齿轮开始转动',
-    description: '九月的合肥，梧桐叶还没开始变黄，滨湖校区的铁栅栏门已经吞进了三千张年轻的面孔。开学典礼上，封安宝校长的致辞简短而冰冷——\u201C本届高三的一本率，必须突破百分之九十二。做不到，相关负责人自己写辞职报告。\u201D台下鸦雀无声，只有杨玉乐坐在主席台侧边，端着保温杯，用那双浑浊却精明的眼睛扫视着每一张或麻木、或不安的学生脸。\n\n吴福军站在操场入口，手拿考勤本，正在清点各班的迟到人数。及第教育的广告横幅不知何时已经挂在了行政楼的侧墙上——\u201C签约保一本，不过全额退\u201D。几个高二的女生路过时小声议论：\u201C听说封校长的弟弟就是及第的老板...\u201D\n\n而你，无论你是谁——是埋头刷题的做题家，是蠢蠢欲动的反抗者，还是想在夹缝中生存的普通人——都将在这座被称为合一的高墙之内，做出你的选择。',
+    description: "九月的合肥，梧桐叶还没转黄，滨湖校区的大门已经吞进三千张年轻的面孔。开学典礼上，封安宝的致辞简短而冰冷：“本届高三的一本率，必须突破百分之九十二。做不到，相关负责人自己写辞职报告。”台下没有声音。杨玉乐坐在主席台侧边，端着保温杯，眼睛扫过一张张或麻木或不安的学生脸。\n\n操场入口，吴福军拿着考勤本清点各班迟到人数。行政楼侧墙，及第教育的广告横幅新挂上去——“签约保一本，不过全额退”。几个高二女生路过，小声说：“听说封校长的弟弟就是及第的老板……”",
     buttonText: '新学期开始了。这一次，会不一样吗？',
   },
 
   phase1_build_art: {
     id: 'phase1_build_art',
     title: '水泥里的交易',
-    description: '封安宝的办公室里，茶香与烟味混在一起。坐在他对面的是一个西装革履的中年男人——及第教育CEO封安祥。\u201C大哥，艺术礼堂的翻修工程，我们及第全资赞助。\u201D封安祥的笑容和封安宝一样冷，\u201C条件是：礼堂地下层改造成及第的周末补习中心。教育局那边，你帮我们摆平。\u201D\n\n封安宝没有立刻回答。他走到窗边，看着楼下正在施工的B3教学楼扩建工地——那也是及第出的钱。他用及第的钱修楼、买设备、发奖金，而及第用他的校舍开补习班、卖教辅、收割家长的钱包。这是一笔完美的交易。\n\n\u201C地下层可以给你们。\u201D封安宝转过身，\u201C但是，所有在及第兼职的教师，校内考评一律加五分。\u201D\n\n封安祥笑了。他知道，他哥哥不是在帮教师争取利益——而是在用考评这根绳子，把更多的教师捆进及第的利益链条里。',
+    description: "封安宝办公室里，茶香和烟味混在一起。封安祥坐在对面，西装革履，笑容和他哥哥一样冷。“大哥，艺术礼堂的翻修工程，我们及第全资赞助。”封安祥说，“条件是：礼堂地下层改造成及第的周末补习中心。教育局那边，你帮我们摆平。”\n\n封安宝没有立刻回答。他走到窗边，楼下B3教学楼扩建工地正在施工——那也是及第出的钱。他用及第的钱修楼、买设备、发奖金，及第用他的校舍开补习班、卖教辅。这是一笔完美的交易。\n\n“地下层可以给你们。”封安宝转过身，“但是，所有在及第兼职的教师，校内考评一律加五分。”\n\n封安祥笑了。他知道，这不是给教师争取利益，而是用考评这根绳子把更多教师捆进及第的利益链条里。",
     buttonText: '利益的齿轮完美咬合。',
     effect: (state) => ({ stats: { ...state.stats, capitalPenetration: Math.min(100, state.stats.capitalPenetration + 5) } })
   },
@@ -1454,7 +1511,7 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
   phase1_wu_patrol: {
     id: 'phase1_wu_patrol',
     title: '走廊尽头的脚步声',
-    description: '吴福军的皮鞋声是合一最恐怖的音效。硬底、铁掌，每一步都像在敲丧钟。他每天七次巡视高三走廊——早读前、每节课间、午休、晚自习前、晚自习后。他的考勤本上密密麻麻记录着每一句走廊交谈、每一次课间走动、每一张从课桌里搜出的违禁品。\n\n\u201C你，站住。\u201D他叫住一个刚从厕所出来的男生，\u201C课间只有七分钟，你上厕所用了四分钟。叫什么名字？哪个班的？\u201D男生吓得浑身发抖，报出了自己的名字。吴福军在本子上记下，然后抬起头：\u201C下次再被我抓到，叫家长。\u201D\n\n在他的世界观里，走廊不是通道，是需要被清理的风险区域。学生不是人，是需要被管束的不稳定因素。而他那句\u201C我这是在救你们\u201D，是全合一最令人作呕的谎言——也是最有效的谎言。因为总有一些学生，在被骂哭之后，真的会相信。',
+    description: "鞋跟敲击水磨石地面的声音从走廊东头传来，比下课铃更准时。一个男生刚从厕所出来，吴福军已经走到他跟前。\n\n“课间只有七分钟，你上厕所用了四分钟。”吴福军翻开考勤本，笔尖悬在纸页上方，“叫什么名字？哪个班的？”\n\n男生报出名字时声音发飘。吴福军写完后抬头看他，又说：“下次再被我抓到，叫家长。”\n\n他没有等对方回答，转身继续往前走。硬底皮鞋每步都像在数秒，从高三（七）班门口经过时，他的目光扫过靠墙那排课桌。两个学生原本在低声说话，看见他立刻分开。\n\n吴福军拐进楼梯口，把考勤本合上。走廊两侧的窗户都关着，日光灯管有几根在闪。他还有六次巡视。",
     buttonText: '恐惧，是最廉价的统治工具。',
     effect: (state) => ({ stats: { ...state.stats, ss: Math.max(0, state.stats.ss - 5) } })
   },
@@ -1462,7 +1519,7 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
   phase1_fake_five_edu: {
     id: 'phase1_fake_five_edu',
     title: '检查团的闹剧',
-    description: '市教育局的五育并举检查团要来合一视察。封安宝连夜召开了行政会议。\u201C美术教室的石膏像全部搬到走廊，音乐教室的钢琴擦干净——检查团走后恢复原样。\u201D\n\n杨玉乐主动请缨，负责准备汇报材料。他花了一整个下午，把过去三年从学生社团活动照片中抠出来的素材拼凑成了一份精美的PPT。\u201C德育，升旗仪式照片一组。体育，跑操航拍一组。美育，去年艺术节剩的几张画。劳育，食堂勤工俭学学生合影。\u201D他一边喝着枸杞茶一边安排。\n\n检查团在合一待了两个小时。他们参观了精心布置的美术教室，观看了提前排练的社团表演，翻阅了大量注水的汇报材料。临走时，带队领导握住封安宝的手：\u201C合一的素质教育走在了全市前列。\u201D\n\n检查团的车刚开出校门，吴福军就开始把走廊里的石膏像往仓库里搬。一切恢复原样。',
+    description: "“美术教室的石膏像全部搬到走廊，音乐教室的钢琴擦干净。”这句话他昨晚在行政会上说过一次，今天早上又对总务处重复了一遍。检查团来看过了，钢琴盖还开着，椅套上留着刚才学生坐过的褶皱。\n\n杨玉乐坐在电脑前整理材料。三年前社团活动的旧照片仍占了汇报PPT的大半。\n\n检查团在合一待了两个小时。参观完美术教室，又看了一场提前排练的社团表演，检查团给合一打了满分。临走时，带队领导握住封安宝的手说：“合一的素质教育走在了全市前列。”\n\n车队刚出校门，吴福军就带着两个后勤工人走到走廊。他指了指石膏像：“先搬这两座，仓库左排空出来了。”\n\n走廊里的宣传板还都是新换的，但检查团不会再回头看了。",
     buttonText: '在这个系统里，表演是一门必修课。',
     effect: (state) => ({ stats: { ...state.stats, stab: Math.min(100, state.stats.stab + 5) } })
   },
@@ -1470,7 +1527,7 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
   phase1_ban_books: {
     id: 'phase1_ban_books',
     title: '禁书与禁思',
-    description: '吴福军的违禁品清单越来越长了。除了手机、MP3、漫画书之外，现在连一些课外读物也被列入了没收范围。《南方周末》被定性为\u201C散布焦虑\u201D，《读者》上的杂文被标注为\u201C消极避世\u201D。而最让学校警惕的，是一本在学生之间悄悄流传的《共产党宣言》手抄本。\n\n\u201C查！给我查源头！\u201D吴福军在保安队例会上拍着桌子，\u201C这不是普通的违纪，这是思想犯罪！\u201D保安队开始突击检查寝室，翻箱倒柜地搜寻违禁读物。\n\n然而，每一次没收都像是在给干柴堆浇油。一摞被撕毁的《南方周末》，会让更多学生开始好奇：那份报纸上到底写了什么，让学校如此恐惧？\n\n实验楼顶层的老教师周晨，把自己收藏了几十年的书籍锁进了铁皮柜。她透过窗户，看着楼下正在焚烧违禁书刊的火堆，叹了口气：\u201C烧得掉纸，烧不掉纸上的字。\u201D',
+    description: "保安队例会上，吴福军把新印的违禁品清单拍在桌上：手机、MP3、漫画书下面，添了《南方周末》——“散布焦虑”；《读者》上几篇杂文——“消极避世”。最末一行用红笔圈着：《共产党宣言》手抄本，来源不明。\n\n“这不是普通违纪，是思想犯罪。”他说，“查源头。”\n\n当晚突击检查寝室。保安队翻床板、开衣柜，课本码在走廊上。没收的刊物被收走。第二天，班上有人小声问：《南方周末》上到底写了什么？问的人越来越多。",
     buttonText: '思想的火种，越是扑打，越是四溅。',
     effect: (state) => ({ stats: { ...state.stats, radicalAnger: Math.min(100, state.stats.radicalAnger + 10) } })
   },
@@ -1478,7 +1535,7 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
   phase1_dorm_talks: {
     id: 'phase1_dorm_talks',
     title: '熄灯后的频率',
-    description: '晚上十一点半，寝室准时熄灯。走廊里宿管大爷的手电筒光束扫过最后一轮，整个世界陷入了黑暗。但对于合肥一中的学生来说，真正的社交时间才刚刚开始。\n\n上铺传来轻微的翻身声，然后是一个压低到极限的耳语：\u201C你们知道吗，今天吴福军又没收了一个女生的《百年孤独》。\u201D下铺立刻回应：\u201C那书里写什么了？至于吗？\u201D隔床插话：\u201C我有个高二的哥们说，他搞到了一份及第的内部财报——他们去年在合一的营业额，超过了一千万。\u201D短暂的沉默后，不知谁在黑暗中说了一句：\u201C我们这样活着，到底是为了什么？\u201D\n\n没有人回答这个问题。但每个人都在心里咀嚼着它。在这个被摄像头和考勤本覆盖的校园里，熄灯后的寝室是最后一个不受监控的空间。在这里，愤怒在黑暗中发酵，思想在耳语中传播。',
+    description: "晚上十一点半，寝室准时熄灯。宿管大爷的手电筒光束扫过最后一轮走廊，整个世界陷入黑暗。上铺传来轻微的翻身声，然后是一个压低到极限的耳语：“你们知道吗，今天吴福军又没收了一个女生的《百年孤独》。”下铺立刻回应：“那书里写什么了？至于吗？”隔床插话：“我有个高二的哥们说，他搞到了一份及第的内部财报——他们去年在合一的营业额，超过了一千万。”\n\n短暂的沉默后，不知谁在黑暗中说了一句：“我们这样活着，到底是为了什么？”没有人回答。被窝里有人递过来一部旧手机，屏幕上是一个叫钢铁红蛤的群聊。",
     buttonText: '黑暗中，新的频率正在生成。',
     effect: (state) => ({ stats: { ...state.stats, ss: Math.min(100, state.stats.ss + 3) } })
   },
@@ -1486,7 +1543,7 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
   phase1_contact_pan: {
     id: 'phase1_contact_pan',
     title: '实验班的另一种声音',
-    description: '潘仁越是少数几个敢在封安宝的合一把\u201C民主\u201D两个字说出口的学生。他是理科实验班的班长，成绩稳定在年级前十——这意味着他有资本任性。\n\n他组织的自由党在每个班都有两三个信众。他们的活动方式不同于王照凯那种地下群聊，而是更合法——学生会提案、校长信箱、家长委员会。潘仁越相信通过这些渠道，可以逐步争取到更大的自主权。\u201C暴力只会换来更大的暴力，\u201D他在一次秘密聚会上说，\u201C我们需要的是一场不流血的制度变革。\u201D\n\n但吴福军不吃这套。当潘仁越代表学生自治会提出课间延长至十五分钟的提案时，吴福军当场把提案撕成两半。\u201C你们是来上学的，不是来享受的。不爽就转学。\u201D\n\n潘仁越看着被撕碎的提案，脸上的表情没有愤怒，只有一种更深的、酝酿中的决心。他对身边的人说：\u201C总有一天，他会自己把这份提案粘回去。\u201D',
+    description: "潘仁越在封安宝的合一说出“民主”时，周围几个学生不自觉地压低了呼吸。他是理科实验班班长，年级前十，这份成绩让他有底气把话讲得清楚，而不是像王照凯那样把群聊藏在手机深处。\n\n他组织的自由党在每个班都有两三个人。方式看似温和：写学生会提案，投校长信箱，找家长委员会沟通。在一次秘密聚会上，他说：“暴力只会换来更大的暴力，我们需要的是一场不流血的制度变革。”\n\n课间延长至十五分钟的提案，是潘仁越代表学生自治会递上去的。吴福军接过去，只扫了一眼，当场撕成两半：“你们是来上学的，不是来享受的。不爽就转学。”\n\n纸片落在地上，潘仁越没有去捡，也没有提高声音。他看着吴福军的脸，对身边的人说：“总有一天，他会自己把这份提案粘回去。”",
     buttonText: '理想主义者的耐心，是这个系统最无法消化的东西。',
     effect: (state) => ({ stats: { ...state.stats, allianceUnity: Math.min(100, state.stats.allianceUnity + 5) } })
   },
@@ -1494,7 +1551,7 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
   phase1_protest_privilege: {
     id: 'phase1_protest_privilege',
     title: '走廊里的正面对峙',
-    description: '冲突终于从暗处走到了明处。起因是学生自治会——封安宝设立的傀儡组织——突然宣布了一条新规：所有课间活动必须在教室内进行，走廊逗留超过三十秒即扣量化分。\n\n当自治会的巡查员拿着扣分本从每个教室门口经过时，28班的王照凯站了起来。他没有大喊大叫，只是走到巡查员面前，用平静得可怕的语气问：\u201C这条规定是谁制定的？有没有经过学生表决？\u201D巡查员愣了一下：\u201C这是...吴主任定的。\u201D\n\n\u201C那这个自治会，自治了什么？\u201D\n\n走廊里安静了几秒钟。越来越多的人从教室里探出头。巡查员的脸涨得通红，他飞快地在本子上记下了王照凯的名字，然后逃一般地离开了。\n\n那天下午，走廊里出现了一张用粉笔写在墙上的字：\u201C我们不是囚犯。\u201D吴福军派人擦掉了。第二天，同样的字又出现在了另一面墙上。第三天，变成了五面墙。',
+    description: "自治会的新规贴在每层楼的公告栏上：课间活动一律在教室内进行，走廊逗留超过三十秒即扣量化分。巡查员们拿着扣分本从28班门口经过时，王照凯从座位上站起来。他没有提高嗓门，走到巡查员面前问：“这条规定是谁制定的？有没有经过学生表决？”\n\n巡查员愣了一下，说：“这是……吴主任定的。”\n\n“那这个自治会，自治了什么？”\n\n走廊里安静了几秒。各班门口陆续有人探出头来。巡查员的脸涨得通红，飞快在本子上记下王照凯的名字，转身走了。\n\n当天下午，28班外墙上出现一行粉笔字：“我们不是囚犯。”吴福军派人擦掉了。第二天，同样的字出现在另一面墙上。第三天，变成了五面墙。",
     buttonText: '擦得掉粉笔字，擦不掉拒绝低头的姿态。',
     effect: (state) => ({ stats: { ...state.stats, radicalAnger: Math.min(100, state.stats.radicalAnger + 10) } })
   },
@@ -1502,7 +1559,7 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
   phase1_before_charge: {
     id: 'phase1_before_charge',
     title: '临界点',
-    description: '所有矛盾汇聚到了B3教学楼。吴福军的保安队在楼下集结，杨玉乐在办公室里反复拨打封安宝的电话——占线。走廊里的对峙已经持续了三个小时。\n\n潘仁越的自由党学生们把课桌椅堆成街垒，堵住了B3三楼的两个楼梯口。他们举着自制的标语：\u201C还我自由\u201D\u201C废除量化考核\u201D。但王照凯一眼就看出了问题——没有组织、没有后勤、没有清晰的诉求。\u201C这是一场必败的冲锋。\u201D他对身边的室友说。\n\n然而，就在所有人都以为这场抗议将像之前无数次一样被保安队冲散时，一个意外发生了：保安队的一名队员在推搡中推倒了一个女生。女生的额头撞在走廊的消防栓上，鲜红的血顺着她的脸颊流了下来。\n\n全场安静了一秒。然后，像是什么东西被彻底打破了一样——不是那个女生的额头，是所有人心里最后一丝对秩序的畏惧。',
+    description: "B3教学楼前，吴福军的保安队已经集合，深蓝制服，橡胶棍，但没人下令上楼。三楼走廊里，学生们把课桌椅堆成街垒，堵住两个楼梯口。潘仁越的自由党学生举着自制标语：“还我自由”“废除量化考核”。王照凯对室友说：“没有组织，没有后勤，诉求也写不实。这样冲，吃亏的是他们自己。”\n\n杨玉乐在办公室拨第六遍电话，封安宝的号码占线。他扣回听筒，走到窗前。楼下黑压压的人头，保安队之外还围了一圈看热闹的学生。\n\n对峙持续三个小时，双方都等着对方先动。\n\n保安队开始往上走。一名保安队员推搡学生，一个女生趔趄着摔出去，额头撞在消防栓上。她靠着墙滑坐下去，血从指缝间流下来，在蓝白校服上洇开一小片。\n\n全场安静一秒。随后响起桌椅被猛地推开的声音，几十双脚同时踩在水泥地上。",
     buttonText: '血的代价一旦付出，就再也没有回头路。',
     effect: (state) => ({ stats: { ...state.stats, radicalAnger: Math.min(100, state.stats.radicalAnger + 15), ss: Math.min(100, state.stats.ss + 10) } })
   },

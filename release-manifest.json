@@ -14,8 +14,8 @@
       "sha256": "177d20030d4dcc37eae9ef92865ec54dadce60e8f19e9a34a5d4f37502195a36"
     },
     "CHANGELOG.md": {
-      "bytes": 45150,
-      "sha256": "915e84b786d9b8ba8c37429588baf47f420c03091eba5797249ec44f610c5ca8"
+      "bytes": 46550,
+      "sha256": "dc03dae68dd50ea4c7a1e9139987a386e70b9b072af210aacc2a8c90e0a3e50f"
     },
     "CHARACTERS.md": {
       "bytes": 9656,
@@ -477,6 +477,18 @@
       "bytes": 6324,
       "sha256": "78cd6fab048553378b8eb82a2ffe5fee07d91892a9aba17dead2191f14eefffd"
     },
+    "docs/writing/2026-10-03-opening-events.json": {
+      "bytes": 65728,
+      "sha256": "ae1b8a86cf342459cada3fd09fbec9f3c28b8d68992843ffb4abf2f67d3705cb"
+    },
+    "docs/writing/2026-10-03-opening-review.md": {
+      "bytes": 50300,
+      "sha256": "c99ff6d39b097fad380e6b03f5563f2efad762174b1036ab94402bb3a8714324"
+    },
+    "docs/writing/2026-10-03-opening-selection.json": {
+      "bytes": 40637,
+      "sha256": "7fa8a316d332e28cad38e81b4bf86d7f5d9b3ab9aed448f2a6e33e2f7819fef5"
+    },
     "docs/writing/2026-10-03-polish.json": {
       "bytes": 4110,
       "sha256": "ccb54527536264d1bd76e465b89d710dd6927253aaa19c8f59b888cee5ceeb4e"
@@ -490,8 +502,8 @@
       "sha256": "b6f6f4859e229dc2cec9bcc4d5c4d91c029ec35a1035b14ee2d53172ac45e58a"
     },
     "docs/writing/README.md": {
-      "bytes": 7658,
-      "sha256": "240500be3f33f3c86938c7e32ae811f48c5c348dfb53d9f7ede0761e598e1ae2"
+      "bytes": 8702,
+      "sha256": "9a40c235ff2ef6394d461cb0c596f7484169bb1868a35d52385c96d060a9e1b0"
     },
     "docs/writing/modes.json": {
       "bytes": 2693,
@@ -502,8 +514,8 @@
       "sha256": "351d8b4ba6ba0774b718d68e412c4f6b57226081e37a7272e892949f949c55ba"
     },
     "docs/writing/selection.json": {
-      "bytes": 103337,
-      "sha256": "db852bc5b129706c72f6b03f3a8fb1e69d5bc3646434aba3f39b35b155ae1714"
+      "bytes": 102332,
+      "sha256": "ae6e19eacdb91cfa3fef6ef4f7afae236bd82bb21fdea4a84d6376a576a9d803"
     },
     "docs/writing/voices.json": {
       "bytes": 2519,
@@ -590,24 +602,28 @@
       "sha256": "1954ca940740c612a12e7abf0a307b7394715964d66dc8037d503fdd5c1b6424"
     },
     "scripts/writing/catalog.mjs": {
-      "bytes": 8334,
-      "sha256": "6e39fb37273ddae889a806718a43b105b8160a5098f14351df903b6bc61e824d"
+      "bytes": 9262,
+      "sha256": "6c76efb7b200d4ada9ef3d20b15338b482f68ad8c4afedcbfe841bf02c60dc11"
     },
     "scripts/writing/deepseek.mjs": {
-      "bytes": 3847,
-      "sha256": "710d858e41de29e3fd6ddf30bb47259d36cca09f976daa3d49aaa959e9f0b8ef"
+      "bytes": 3964,
+      "sha256": "4da73846129c99d325804736288d3648bbd3ec6377af7687808ce3201d670974"
     },
     "scripts/writing/deepseek_transport.py": {
       "bytes": 2001,
       "sha256": "d246767486bd0adaca371a3367db51257c94e4eae45a89afa2edbc5026b12a2a"
     },
     "scripts/writing/editor.mjs": {
-      "bytes": 20946,
-      "sha256": "fafb6e3b58283a0d0a890bdda22ca05acdb45d4fa345a9f01c7c6a52616863cf"
+      "bytes": 21529,
+      "sha256": "a1cbed0bd985f4226a005768a97142d2004e17d2ca72d55fb74a0409fcbef42f"
+    },
+    "scripts/writing/json-output.mjs": {
+      "bytes": 863,
+      "sha256": "a6078029af16878feaa9364effaa1a10222b1d8766b12a480fd77064839e5e05"
     },
     "src/App.tsx": {
-      "bytes": 350203,
-      "sha256": "8e020c5a00fcc14bb02c34c326048a815571696f4f46ec0be9aad2c8013183b5"
+      "bytes": 346836,
+      "sha256": "a27e6fcc9481515b7b8ed3625784b10dfcf605f0b0295339762d91f96b120ab8"
     },
     "src/assets/flags/corporate.svg": {
       "bytes": 604,
@@ -2037,6 +2053,10 @@
       "bytes": 5967,
       "sha256": "8a61875a4928811c95f1a1d660c3a263a95b2505b8013acda2ded864ffc50275"
     },
+    "src/components/AssemblyBalance.tsx": {
+      "bytes": 3303,
+      "sha256": "36dfc4dc658cf24e9202126c51d10f1fc7cd2b8737b001cd1c76df16cc6be90a"
+    },
     "src/components/AudioDock.tsx": {
       "bytes": 10074,
       "sha256": "35fbbaa61283289af5a3fa214139c2731e940623b8517da15e7de1cf96722d9e"
@@ -2073,9 +2093,13 @@
       "bytes": 6937,
       "sha256": "f47ca16c20449b2a21b97730ae12b84dd5ff5c5318aa7434aacacf5968bd4a5f"
     },
+    "src/components/FocusHoverCard.tsx": {
+      "bytes": 1587,
+      "sha256": "5a77ccef6f4e91328c706ec3b7e2f7de07a5bd37a6eeae9538e57426c295fc77"
+    },
     "src/components/FocusTree.tsx": {
-      "bytes": 314826,
-      "sha256": "ba647cdaca238e24991192b3fc6eb4be1a717c617d83b485f6c0d64a1bf080cc"
+      "bytes": 318189,
+      "sha256": "98efe5379107b716d6a3868fa7bef4996a438d13d82e09d4a07e0c8b5b26e656"
     },
     "src/components/GameEndingScreen.tsx": {
       "bytes": 8001,
@@ -2086,8 +2110,8 @@
       "sha256": "208d8f9cf4ece3b39a626443de00e665a5cfd798722f9c2616ab604980622718"
     },
     "src/components/GuidedTutorial.tsx": {
-      "bytes": 9659,
-      "sha256": "37504b93f9531387a569a215f60e80ab0bfa37209137de0d02932a0b4e96e57b"
+      "bytes": 9885,
+      "sha256": "a111f5d9043e06f0d11cf289bade6253ccde233cd23247eaf87157ad86d321b2"
     },
     "src/components/HeyiLight.tsx": {
       "bytes": 16323,
@@ -2170,8 +2194,8 @@
       "sha256": "54398a1131d523d2fdfa7d64342fee42472d6afbee133ef7ab3aa441fdfa9762"
     },
     "src/components/StudentAssembly.tsx": {
-      "bytes": 31918,
-      "sha256": "99e187b0f952739fb3a1f9599486dffcd925d1f93e5a40b68268a69eeefb6524"
+      "bytes": 31352,
+      "sha256": "fc597f1888fd6ee73d903fca09a732cbefcc7d6e3f9330455ddba8d2179d3389"
     },
     "src/components/SuperEvent.tsx": {
       "bytes": 4519,
@@ -2204,6 +2228,10 @@
     "src/components/artRoom.css": {
       "bytes": 5004,
       "sha256": "11382acbc61f422e72f879e3baed949d2ff31ad6c79c3da844a41443e706576d"
+    },
+    "src/components/assemblyPolitics.css": {
+      "bytes": 1928,
+      "sha256": "921185b9757cb311bc099976add628c94df240890906c48e21ef208cbdd799c9"
     },
     "src/components/audioDock.css": {
       "bytes": 4181,
@@ -2278,8 +2306,8 @@
       "sha256": "89e804bb926408d62f2340019c73f0557a65e3c0253eda3f65f08754f1d5eb49"
     },
     "src/data/advisors.ts": {
-      "bytes": 6723,
-      "sha256": "c8ffec00de423f2d1cefc44712dfb4540a4b52c43d0bed88bd93155040291ac4"
+      "bytes": 6818,
+      "sha256": "a7598cb927f94be9e77846afe503bd7801998d10bf3e7d98e1feb800ec0f1bd4"
     },
     "src/data/characterProfiles.ts": {
       "bytes": 11786,
@@ -2298,16 +2326,16 @@
       "sha256": "8f9420d43a2a464867d74477b250cba1eba4cad295230e36f7227965348ddfcf"
     },
     "src/data/flavorEvents.ts": {
-      "bytes": 130537,
-      "sha256": "bb4d10303a6cd15ae9a8cc4338e9a8fb30d81ad93262762fbc6fe218f9653d9a"
+      "bytes": 141390,
+      "sha256": "76b01d35d13041bb2fb172f4b4c61e718e22cd4db61ebe78c8eb85c4094ba265"
     },
     "src/data/laws.ts": {
       "bytes": 11631,
       "sha256": "c9218edf6e976d68c0aaa7d0b9a68ae31690277b707de1cf9d07b1d58bbd99f0"
     },
     "src/data/proseRevisions.json": {
-      "bytes": 77681,
-      "sha256": "19574367e0ef7fd2310e88412bed84b7b078f8554871cbb869c04cab27170bb6"
+      "bytes": 120177,
+      "sha256": "d2f19762d6a085c4be77eafe9a3c37a7f4f2a7041ec56bc563f7d6cac883b4d9"
     },
     "src/data/redToadBills.ts": {
       "bytes": 8286,
@@ -2329,9 +2357,17 @@
       "bytes": 4866,
       "sha256": "b9643550312fca3602c24963fb60dc94d4c6b9906552a5b0c9fa1947e51579e9"
     },
+    "src/engine/assemblyPolitics.ts": {
+      "bytes": 6428,
+      "sha256": "6acab619259d63e9cafd3b7a364ce4cc2cfa6eaa2b2e2c60625ef4dcdf46e338"
+    },
     "src/engine/audioSettings.ts": {
       "bytes": 1250,
       "sha256": "9772a5099dd8416b3285c68bc6da25294f1da2e71a81b08b3fc7fecbbd730a12"
+    },
+    "src/engine/campaignGuidance.ts": {
+      "bytes": 1203,
+      "sha256": "aef3b49518101bb9b9f6db05f334ad886075dd4f9de25151cb217e7743a382b7"
     },
     "src/engine/campaignStats.ts": {
       "bytes": 2802,
@@ -2394,8 +2430,8 @@
       "sha256": "3528bb02a2edd61a56c130e17402a2b3332bbaa99ad8a147dd8a3dd522860d03"
     },
     "src/engine/saveSystem.ts": {
-      "bytes": 7498,
-      "sha256": "cf0e880c3cacf93d9271a817919d0e4aa95de895a6d6d99cb95a3e6524abb3c8"
+      "bytes": 7577,
+      "sha256": "d7ca2994ff17212d8bf1c0d41ddc00ca04edbc0d5f94c97c20bbe529c6dab352"
     },
     "src/engine/superEventAudio.ts": {
       "bytes": 1770,
@@ -2404,6 +2440,10 @@
     "src/engine/tileHelpers.ts": {
       "bytes": 5788,
       "sha256": "256bda4f784e3a3cee3b47a66e2e19cd9d72bc29fba18821d0b2cf560ace181a"
+    },
+    "src/engine/tooltipPosition.ts": {
+      "bytes": 782,
+      "sha256": "382fde00ca94d6df82a25b7dec063d663106b54c58eccfdea4167defcef57206"
     },
     "src/engine/uiSounds.ts": {
       "bytes": 1639,
@@ -2418,8 +2458,8 @@
       "sha256": "9d44ff85ab00fa36f44b0e21c1e5ab67545d15c4612dc48ea13df3165f151774"
     },
     "src/index.css": {
-      "bytes": 4244,
-      "sha256": "22a1d4bc37274515240a6444c2d125638a2555950c12b5123443870f4365822b"
+      "bytes": 4289,
+      "sha256": "5aa129fcd5ae14a911d8db1326ec5deb32c922f18b8bc3de63ca1fc427746ddc"
     },
     "src/main.tsx": {
       "bytes": 301,
@@ -2440,6 +2480,10 @@
     "tests/artCatalog.test.ts": {
       "bytes": 3028,
       "sha256": "6709353ae0a93d6b0bacf89fd1d54ee99b6f677abf1b0c789ffc1b520fd60f67"
+    },
+    "tests/assemblyPolitics.test.ts": {
+      "bytes": 9184,
+      "sha256": "ca824b9dc7e20b861bc951a4904a0157f1d0cd8f2a40de706e39336b3f667f49"
     },
     "tests/campusEvents.test.ts": {
       "bytes": 10570,
@@ -2494,8 +2538,8 @@
       "sha256": "39708e620b8b198547e21ca5d6f88b7fdab160e1ceec6387b90cca1814074ab3"
     },
     "tests/writingWorkflow.test.ts": {
-      "bytes": 4493,
-      "sha256": "f610edaa4fdf2ae404355bac73dc3fe293ba7abc077fa83bc7c2089d4039cf13"
+      "bytes": 5908,
+      "sha256": "41365d6ad99643deceb29907800edf25721f0b6df238636d8356fea79427454d"
     },
     "tsconfig.json": {
       "bytes": 508,
@@ -2514,6 +2558,6 @@
       "sha256": "ba7b6b13d17902bdf7a5e763017a6ea80a00d79e11a3ec00cec7328bdbe400fb"
     }
   },
-  "fileCount": 612,
-  "totalBytes": 254162462
+  "fileCount": 639,
+  "totalBytes": 254919270
 }

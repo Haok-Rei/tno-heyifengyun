@@ -3,6 +3,8 @@ import { GameState, FocusNode, ALL_SUB_TILES } from '../types';
 import { FocusArt, ART_KIND_LABELS, getStrategicArtKind } from './StrategicArt';
 import { FLAVOR_EVENTS } from '../data/flavorEvents';
 import { STORY_EVENTS } from '../data/storyEvents';
+import { applyYangSettlement, CROSSROADS_RULES, CROSSROADS_LABELS, getCrossroadsOutcome } from '../engine/assemblyPolitics';
+import FocusHoverCard from './FocusHoverCard';
 
 interface FocusTreeProps {
   state: GameState;
@@ -68,9 +70,10 @@ export const PHASE1_NODES: FocusNode[] = [
   { id: 'perfect_hengshui', title: '打造完美衡水流水线', description: '作息精确到分钟，课间压缩到五分钟，午休取消。合一的做题机器运转到极限——机器越完美，零件的摩擦声就越刺耳。', days: 14, x: 280, y: 720, requires: ['fake_five_edu', 'ban_books'],
     onComplete: (s) => ({
       stats: { ...s.stats, tpr: s.stats.tpr + 400, studentSanity: Math.max(0, s.stats.studentSanity - 5), stab: Math.min(100, s.stats.stab + 5) },
-      flags: { ...s.flags, story_6_triggered: true }
+      flags: { ...s.flags, story_6_triggered: true },
+      activeEvent: FLAVOR_EVENTS.phase1_hengshui_schedule
     }),
-    effectsText: ['TPR +400', '学生理智值 -5', '稳定度 +5', '解锁冲上B3的条件之一']
+    effectsText: ['TPR +400', '学生理智值 -5', '稳定度 +5', '触发事件：挤掉的午休；B3起义只需激进愤怒度 >80']
   },
 
   // ===== 右路：学生反抗路线 =====
@@ -156,33 +159,33 @@ export const TREE_A_NODES: FocusNode[] = [
     const flags = { ...s.flags, b3_advisors_unlocked: true };
     // 强化B3三块子地块控制度
     ['b3_a1a3', 'b3_b1b2', 'b3_tower'].forEach(tid => { flags[`tile_ctrl_${tid}`] = Math.min(100, (flags[`tile_ctrl_${tid}`] ?? 50) + 15); });
-    return { flags, stats: { ...s.stats, pp: s.stats.pp + 20, allianceUnity: Math.min(100, s.stats.allianceUnity + 4) }, activeEvent: { id: 'recruit_revolutionaries_event', title: '革委会扩编令', description: "联合革命委员会发布通告，宣布启动第一轮组织扩编。各班骨干已按部署分批进入指定区域，接管校园运作节点。B3教学楼各出入口及走廊现由先锋队控制，控制权已全面巩固。后续各节点的人员安排与职责划分，将在本轮扩编中逐步明确。", buttonText: '开列干部名册', isStoryEvent: true } };
+    return { flags, stats: { ...s.stats, pp: s.stats.pp + 20, allianceUnity: Math.min(100, s.stats.allianceUnity + 4) }, activeEvent: { id: 'recruit_revolutionaries_event', title: '革委会扩编令', description: "联合革命委员会今日发布通告，宣布启动第一轮组织扩编。各班骨干已按部署分批进入指定区域，接管校园运作节点。\n\n通告称，B3教学楼各出入口及走廊现由先锋队控制，控制权已全面巩固。委员会将逐步明确后续各节点的人员安排与职责划分，并呼吁全体成员服从调度。", buttonText: '开列干部名册', isStoryEvent: true } };
   }, effectsText: ['解锁顾问：王照凯、狗熊', 'PP +20, 联盟团结度 +4', 'B3三块子地块控制度各 +15'] },
 
   // Left Branch (Centralization)
-  { id: 'purge_moderates', title: '清洗温和派', description: '革命不是请客吃饭。', days: 14, x: 200, y: 200, requires: ['declare_indep'], mutuallyExclusive: ['broad_coalition'], onComplete: (s) => ({ stats: { ...s.stats, partyCentralization: s.stats.partyCentralization + 20, allianceUnity: s.stats.allianceUnity - 20 } }), effectsText: ['党内集权度 +20', '联盟团结度 -20'] },
-  { id: 'establish_vanguard', title: '建立先锋队', description: '我们需要铁腕。', days: 14, x: 200, y: 350, requires: ['purge_moderates'], onComplete: (s) => ({ stats: { ...s.stats, partyCentralization: s.stats.partyCentralization + 10 }, nationalSpirits: s.nationalSpirits.concat({ id: 'vanguard_party', name: '先锋队', description: "先锋队把原先散乱的后勤任务固定成轮值表，印刷、送卷、班级通知都有人按点完成，不再出现卷子堆在办公室没人发的情况。但这些岗位只在先锋队内部流转，名单之外的学生想提意见，要么找不到对接人，要么被一句“按轮值办”挡回去。支持的人觉得效率提高了，被排除的人则认为这比原来的班委更难接近。", type: 'positive', effects: { tprDaily: 2 } }) }), effectsText: ['党内集权度 +10', '获得国家精神：先锋队 (每日TPR +2)'] },
+  { id: 'purge_moderates', title: '清洗温和派', description: '革命不是请客吃饭。', days: 14, x: 200, y: 200, requires: ['declare_indep'], mutuallyExclusive: ['broad_coalition'], onComplete: (s) => ({ stats: { ...s.stats, partyCentralization: Math.min(100, s.stats.partyCentralization + 20), allianceUnity: Math.max(0, s.stats.allianceUnity - 20) }, activeEvent: FLAVOR_EVENTS.committee_purge_moderates }), effectsText: ['党内集权度 +20', '联盟团结度 -20', '触发事件：缺席的代表'] },
+  { id: 'establish_vanguard', title: '建立先锋队', description: '我们需要铁腕。', days: 14, x: 200, y: 350, requires: ['purge_moderates'], onComplete: (s) => ({ stats: { ...s.stats, partyCentralization: Math.min(100, s.stats.partyCentralization + 10) }, activeEvent: FLAVOR_EVENTS.committee_vanguard, nationalSpirits: s.nationalSpirits.concat({ id: 'vanguard_party', name: '先锋队', description: "先锋队把原先散乱的后勤任务固定成轮值表，印刷、送卷、班级通知都有人按点完成，不再出现卷子堆在办公室没人发的情况。但这些岗位只在先锋队内部流转，名单之外的学生想提意见，要么找不到对接人，要么被一句“按轮值办”挡回去。支持的人觉得效率提高了，被排除的人则认为这比原来的班委更难接近。", type: 'positive', effects: { tprDaily: 2 } }) }), effectsText: ['党内集权度 +10', '获得国家精神：先锋队 (每日TPR +2)'] },
   { id: 'student_militia', title: '武装纠察队', description: '保卫我们的胜利果实。', days: 14, x: 200, y: 500, requires: ['establish_vanguard'], onComplete: (s) => {
     const newMap = { ...s.mapLocations };
     newMap.auditorium = { ...newMap.auditorium, studentControl: Math.min(100, newMap.auditorium.studentControl + 30) };
     newMap.playground = { ...newMap.playground, studentControl: Math.min(100, newMap.playground.studentControl + 30) };
-    return { mapLocations: newMap, nationalSpirits: s.nationalSpirits.concat({ id: 'armed_militia', name: '武装纠察队', description: "武装纠察队成立后，楼梯口设起固定哨位，夜间换班不再靠临时喊人，街垒也比此前更难被冲破。这是学生一方把防御从临时应对变成常设组织的开始，大礼堂与操场的控制随之稳固。代价同样明确：巡查的脚步声重新成为校园日常的一部分，安全来自纪律，纪律也意味着学生自己的行动开始被自己的岗哨约束。", type: 'positive', effects: { defenseBonus: 0.15, stabDaily: 0.1 } }) };
+    return { mapLocations: newMap, activeEvent: FLAVOR_EVENTS.committee_militia, nationalSpirits: s.nationalSpirits.concat({ id: 'armed_militia', name: '武装纠察队', description: "武装纠察队成立后，楼梯口设起固定哨位，夜间换班不再靠临时喊人，街垒也比此前更难被冲破。这是学生一方把防御从临时应对变成常设组织的开始，大礼堂与操场的控制随之稳固。代价同样明确：巡查的脚步声重新成为校园日常的一部分，安全来自纪律，纪律也意味着学生自己的行动开始被自己的岗哨约束。", type: 'positive', effects: { defenseBonus: 0.15, stabDaily: 0.1 } }) };
   }, effectsText: ['大礼堂学生控制度 +30%', '操场学生控制度 +30%', '获得国家精神：武装纠察队 (防御加成 +15%，稳定度每日 +0.1%)'] },
 
   // Right Branch (Unity)
-  { id: 'broad_coalition', title: '广泛的同盟', description: '团结一切可以团结的力量。', days: 14, x: 800, y: 200, requires: ['declare_indep'], mutuallyExclusive: ['purge_moderates'], onComplete: (s) => ({ stats: { ...s.stats, allianceUnity: s.stats.allianceUnity + 20, partyCentralization: s.stats.partyCentralization - 20 }, activeEvent: { id: 'broad_coalition_event', title: '大帐篷宣言', description: "宣言已经发出去了。豪邦把温和派和基层互助组拉到同一条议程上，两边过去各干各的：一边在班里发材料，一边管着借还登记和排班，谁也没正式认过对方是自己人。\n\n现在不一样了。两边的手续并到一张纸面上，日常的事照做，路线的争论也不再分头递话。共同议程使这些分散的力量第一次有了可以一起推进的事情。\n\n往后这套摊子归谁牵头、出了事怎么对，宣言里都留着口子。但此刻在场的没谁再说“这跟我们没关系”——加入了共同议程，就得一起把事情做下去。", buttonText: '签署宣言', isStoryEvent: true } }), effectsText: ['联盟团结度 +20', '党内集权度 -20', '触发事件：大帐篷宣言'] },
-  { id: 'democratic_councils', title: '民主议事会', description: '让每个人都有发言权。', days: 14, x: 800, y: 350, requires: ['broad_coalition'], onComplete: (s) => ({ stats: { ...s.stats, allianceUnity: s.stats.allianceUnity + 10 }, nationalSpirits: s.nationalSpirits.concat({ id: 'democratic_councils_spirit', name: '民主议事会', description: "起义后的校园里，走廊和群聊中的争吵无法自动形成决议。各班因此设立固定发言席，把分散的意见收进会议记录。议事会不制造共识，但让每一项主张都落到可追问的答复上。争论被制度化了：发言者必须留下记录，支持者必须公开表态。", type: 'positive', effects: { ppDaily: 0.2 } }), activeEvent: { id: 'democratic_councils_event', title: '议席之争', description: "各班推举的代表进了议事会。过去路线上的分歧都压在地下，几个人私下争对错，散场就回教室。从今天起，讲出来要当着别班代表的面，讲完还留在记录里。\n\n过去吵输了可以摔门走人，现在同席的代表必须听完对方的主张，也要让自己的意见留下记录。温和派的主张和基层互助组关心的值班、物资、联系名册，都必须带进公开讨论。", buttonText: '宣布首轮席位', isStoryEvent: true } }), effectsText: ['联盟团结度 +10', '获得国家精神：民主议事会 (每日PP +0.2)', '触发事件：议席之争'] },
+  { id: 'broad_coalition', title: '广泛的同盟', description: '团结一切可以团结的力量。', days: 14, x: 800, y: 200, requires: ['declare_indep'], mutuallyExclusive: ['purge_moderates'], onComplete: (s) => ({ stats: { ...s.stats, allianceUnity: s.stats.allianceUnity + 20, partyCentralization: s.stats.partyCentralization - 20 }, activeEvent: { id: 'broad_coalition_event', title: '大帐篷宣言', description: "宣言张贴在公告栏的时候，豪邦正带着几个人把最后一页对齐。纸张边缘卷着，风从走廊尽头吹来，得有人用手掌按住才能看全。\n\n温和派的人站在左边，手里还拿着装订好的材料；基层互助组的人站在右边，借还登记簿在课桌上摊着。两边原本各管各的，今天头一回在同一张纸上找自己的名字。排班、联系名册、物资清单，一项项并排写在一起，没有谁临时反悔。\n\n有人问，往后出了分歧，到底听谁的。豪邦没接话，只是指了指宣言末尾的空白。那里没有指定牵头人，也没写清责任。但此刻没人说“这跟我们没关系”。纸已经贴出去了，从今天起，谁都在这张议程上。", buttonText: '签署宣言', isStoryEvent: true } }), effectsText: ['联盟团结度 +20', '党内集权度 -20', '触发事件：大帐篷宣言'] },
+  { id: 'democratic_councils', title: '民主议事会', description: '让每个人都有发言权。', days: 14, x: 800, y: 350, requires: ['broad_coalition'], onComplete: (s) => ({ stats: { ...s.stats, allianceUnity: s.stats.allianceUnity + 10 }, nationalSpirits: s.nationalSpirits.concat({ id: 'democratic_councils_spirit', name: '民主议事会', description: "起义后的校园里，走廊和群聊中的争吵无法自动形成决议。各班因此设立固定发言席，把分散的意见收进会议记录。议事会不制造共识，但让每一项主张都落到可追问的答复上。争论被制度化了：发言者必须留下记录，支持者必须公开表态。", type: 'positive', effects: { ppDaily: 0.2 } }), activeEvent: { id: 'democratic_councils_event', title: '议席之争', description: "议事会的桌子是几张课桌拼起来的，代表们绕圈坐下，膝盖碰着桌腿。过去路线上的分歧只在教室后门说，今天要当着别班代表的面讲。\n\n温和派的代表把材料铺开，从组织纪律讲起。基层互助组的人没打断，等他说完，才把值班表推过去，问物资调配到底按什么顺序。两边的问题都记在纸上，谁也不能摔门走人。\n\n有人低头记笔记，有人盯着代表名单。记录本传到靠窗的位置时，那个人犹豫了一下，还是写下了自己的意见。散场后，记录留在桌上，等着下轮接着看。", buttonText: '宣布首轮席位', isStoryEvent: true } }), effectsText: ['联盟团结度 +10', '获得国家精神：民主议事会 (每日PP +0.2)', '触发事件：议席之争'] },
   { id: 'unite_teachers', title: '团结进步教师', description: '争取广泛的同盟军。', days: 14, x: 800, y: 500, requires: ['democratic_councils'], onComplete: (s) => {
     const newMap = { ...s.mapLocations };
     newMap.b1b2 = { ...newMap.b1b2, studentControl: Math.min(100, newMap.b1b2.studentControl + 40) };
-    return { mapLocations: newMap, stats: { ...s.stats, ss: Math.min(100, s.stats.ss + 15) }, nationalSpirits: s.nationalSpirits.concat({ id: 'teacher_support', name: '教师同盟', description: "民主议事会运转后，部分教师不再保持沉默。他们在公开会议上替学生方案解释课时与资源的重新安排，把纸面决议带进教室执行。这些教师也承担了来自同事的质疑，成为新制度在日常教学里的实际执行者。", type: 'positive', effects: { stabDaily: 0.2 } }), activeEvent: { id: 'unite_teachers_event', title: '教师公开表态', description: "联合革命委员会发布通报：一批教师已在B1、B2教学楼公开表态支持本委员会。教学资源调配权开始向学生侧倾斜，相关交接工作正在按程序进行。委员会认为此举有利于巩固校园革命秩序，并请全体师生配合调配工作，维护正常教学运行。后续有关教师联络的事项将另行公布。", buttonText: '成立联络组', isStoryEvent: true } };
+    return { mapLocations: newMap, stats: { ...s.stats, ss: Math.min(100, s.stats.ss + 15) }, nationalSpirits: s.nationalSpirits.concat({ id: 'teacher_support', name: '教师同盟', description: "民主议事会运转后，部分教师不再保持沉默。他们在公开会议上替学生方案解释课时与资源的重新安排，把纸面决议带进教室执行。这些教师也承担了来自同事的质疑，成为新制度在日常教学里的实际执行者。", type: 'positive', effects: { stabDaily: 0.2 } }), activeEvent: { id: 'unite_teachers_event', title: '教师公开表态', description: "联合革命委员会发布通报：一批教师已在B1、B2教学楼公开表态支持本委员会。教学资源调配权开始向学生侧倾斜，相关交接工作正在按程序进行。\n\n委员会认为此举有利于巩固校园革命秩序，并请全体师生配合调配工作，维护正常教学运行。后续有关教师联络的事项将另行公布。", buttonText: '成立联络组', isStoryEvent: true } };
   }, effectsText: ['B1&B2教学楼学生控制度 +40%', '学生支持度 (SS) +15', '获得国家精神：教师同盟 (稳定度每日 +0.2%)', '触发事件：教师公开表态'] },
 
   // Middle Branch (Pragmatic Action)
   { id: 'disperse_guards', title: '驱散保安队', description: '吴福军的保安队是校方最后的武力依仗。把他们赶出校园，行政楼和操场的控制权将向革命者敞开。', days: 10, x: 400, y: 200, requires: ['declare_indep'], onComplete: (s) => {
     const flags = { ...s.flags };
     ['admin_main', 'admin_gym', 'canteen', 'track_field'].forEach(tid => { flags[`tile_ctrl_${tid}`] = Math.min(100, (flags[`tile_ctrl_${tid}`] ?? 30) + 10); });
-    return { flags, stats: { ...s.stats, stab: Math.min(100, s.stats.stab + 4), ss: Math.min(100, s.stats.ss + 3) }, activeEvent: { id: 'disperse_guards_event', title: '武装解除', description: "保安队撤走的时候没有吹哨，也没有列队。吴福军手底下的人先是把楼道口的桌子搬开，随后一队人从侧门出去，岗亭里的东西留在原地没动。\n\n消息传得比人快。课间还没结束，走廊上已经有人站到了原来不许停留的位置，操场边的门也有人试着推了推。行政楼和操场之间那条一直被卡着的通路，头一回不是靠喊话而是用脚走通的。\n\n眼下要紧的不是欢呼，是夜里谁来看门、钥匙挂在哪儿、出了事先找谁。联合委员会把值班表拿出来，一个班一个班地对人。纸上的格子空着，就等人认领。", buttonText: '接管值班', isStoryEvent: true } };
+    return { flags, stats: { ...s.stats, stab: Math.min(100, s.stats.stab + 4), ss: Math.min(100, s.stats.ss + 3) }, activeEvent: { id: 'disperse_guards_event', title: '武装解除', description: "保安队撤走时没有列队。吴福军手底下的人先把楼道口的桌子搬开，接着一队人从侧门出去，岗亭里的杯子和登记册原样放着。\n\n消息比脚步声快。课间还没结束，走廊上已经有人走到原先不让停留的位置，操场边的门被试了试，从行政楼到操场那条路，第一次不用喊话就走通了。\n\n但值班表还空着。联合委员会把每班的人找来，对着表一个个核：半夜谁在楼道，钥匙挂在哪儿，出事找谁。有人觉得该高兴，有人只问宵夜怎么解决。格子一个个写上去，还没填满。", buttonText: '接管值班', isStoryEvent: true } };
   }, effectsText: ['稳定度 +4, SS +3', '行政楼+操场子地块控制度各 +10'] },
   { id: 'takeover_admin', title: '接管教务系统', description: '教务处掌握着全校学生的成绩数据和监控录像。拿下这里，就掌握了校方的信息命脉。', days: 10, x: 600, y: 200, requires: ['declare_indep'], onComplete: (s) => {
     const flags = { ...s.flags };
@@ -198,7 +201,7 @@ export const TREE_A_NODES: FocusNode[] = [
     onComplete: (s) => {
       const flags = { ...s.flags };
       ['intl_dept', 'lib_area'].forEach(tid => { flags[`tile_ctrl_${tid}`] = Math.min(100, (flags[`tile_ctrl_${tid}`] as number ?? 45) + 5); });
-      return { flags };
+      return { flags, activeEvent: FLAVOR_EVENTS.committee_print_network };
     },
     effectsText: ['触发地下印刷所小游戏（4级结算）', '成功则提升实验楼控制度和SS', '国策完成后实验楼地块控制度额外+5'] },
   { id: 'poster_campaign', title: '校园海报战', description: '占领行政楼后，把革命标语贴满校园的每一面墙。保安队会疯狂撕海报——我们需要覆盖六大建筑区让所有人都看到。', days: 7, x: 700, y: 350, requires: ['takeover_admin'],
@@ -206,12 +209,14 @@ export const TREE_A_NODES: FocusNode[] = [
     onComplete: (s) => {
       const flags = { ...s.flags };
       ['admin_main', 'admin_gym'].forEach(tid => { flags[`tile_ctrl_${tid}`] = Math.min(100, (flags[`tile_ctrl_${tid}`] as number ?? 5) + 5); });
-      return { flags };
+      return { flags, activeEvent: FLAVOR_EVENTS.committee_posters };
     },
     effectsText: ['触发校园海报战小游戏（4级结算）', '成功则大幅提升行政楼控制度和SS', '国策完成后行政楼地块控制度额外+5'] },
   { id: 'convene_assembly', title: '召开学生代表大会', description: '广播站已经拿下，革命的声浪传遍了校园。是时候召集全体代表，决定联盟的未来了。', days: 12, x: 500, y: 520, requires: ['seize_mouthpiece'], onComplete: (s) => ({
     stats: { ...s.stats, stab: Math.min(100, s.stats.stab + 10) },
     flags: { ...s.flags, assembly_unlocked: true },
+    activeEvent: FLAVOR_EVENTS.committee_assembly_opening,
+    studentAssemblyFactions: s.studentAssemblyFactions ?? { orthodox: 30, bear: 20, pan: 20, otherDem: 15, testTaker: 15 },
     nationalSpirits: s.nationalSpirits.concat({
       id: 'assembly_dynamics',
       name: '议会政治',
@@ -222,12 +227,12 @@ export const TREE_A_NODES: FocusNode[] = [
   }), effectsText: ['解锁学生代表大会小游戏', '获得动态国家精神：议会政治', '稳定度 +10'] },
   
   // Crossroads
-  { id: 'trial_yang', title: '公审杨玉乐', description: '清算旧账。', days: 21, x: 400, y: 650, requires: ['convene_assembly'], mutuallyExclusive: ['secret_compromise'], onComplete: (s) => ({ activeEvent: FLAVOR_EVENTS.event_8_trial }), effectsText: ['触发事件：公审杨玉乐'] },
-  { id: 'secret_compromise', title: '秘密妥协，恢复秩序', description: '为了大局。', days: 21, x: 600, y: 650, requires: ['convene_assembly'], mutuallyExclusive: ['trial_yang'], onComplete: (s) => ({ activeEvent: FLAVOR_EVENTS.secret_compromise }), effectsText: ['触发事件：秘密妥协'] },
+  { id: 'trial_yang', title: '公审杨玉乐', description: '撤去杨玉乐的顾问职务，公开追究旧管理的责任。清算将增强红蛤在大会的地位，也会使温和盟友离心。', days: 21, x: 400, y: 650, requires: ['convene_assembly'], mutuallyExclusive: ['secret_compromise'], onComplete: (s) => ({ ...applyYangSettlement(s, 'trial'), activeEvent: FLAVOR_EVENTS.event_8_trial }), effectsText: ['杨玉乐退出顾问名单，不能再次任命', '正统派 +6席（从其他派重新分配）', '集权 +10，团结 -10，激进愤怒 +15', '触发事件：公审杨玉乐'] },
+  { id: 'secret_compromise', title: '秘密妥协，恢复秩序', description: '保留与旧教务人员的合作，允许温和派和做题派扩大代表权。秩序与同盟可以恢复，集中指挥则需让步。', days: 21, x: 600, y: 650, requires: ['convene_assembly'], mutuallyExclusive: ['trial_yang'], onComplete: (s) => ({ ...applyYangSettlement(s, 'compromise'), activeEvent: FLAVOR_EVENTS.secret_compromise }), effectsText: ['潘仁越民主派 +4席，做题派 +3席（重新分配）', '团结 +15，集权 -10，稳定 +20，激进愤怒 -30', '保留杨玉乐顾问资格', '触发事件：秘密妥协'] },
   
   // Final Showdown
   { id: 'rectify_campus_order', title: '整顿校内秩序', description: '虽然夺取了控制权，但校园内一片混乱。我们需要重新建立秩序。', days: 14, x: 500, y: 800, requires: ['trial_yang', 'secret_compromise'], onComplete: (s) => ({ activeEvent: FLAVOR_EVENTS.event_9_rectify_order }), effectsText: ['触发事件：整顿校内秩序'] },
-  { id: 'crossroads_of_fate', title: '命运的十字路口', description: '决定合肥一中的最终命运。', days: 7, x: 500, y: 950, requires: ['rectify_campus_order'], onComplete: (s) => ({ activeEvent: FLAVOR_EVENTS.event_10_crossroads }), effectsText: ['触发事件：命运的十字路口', '根据当前局势决定最终路线或结局'] },
+  { id: 'crossroads_of_fate', title: '命运的十字路口', description: '七天后，代表们将确认谁来主导革委会。席位、联盟团结和党内集权共同决定道路；进入这项国策之前，先确认同盟能否接受你的指挥方式。', days: 7, x: 500, y: 950, requires: ['rectify_campus_order'], onComplete: (s) => ({ activeEvent: FLAVOR_EVENTS.event_10_crossroads }), effectsText: ['完成后出现判定事件，确认时以届时数值和席位分流', ...CROSSROADS_RULES] },
 ];
 
 export const JIDI_TREE_NODES: FocusNode[] = [
@@ -3184,6 +3189,11 @@ export default function FocusTree({ state, startFocus, triggerError, isSuperEven
   const [startY, setStartY] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const [scrollTop, setScrollTop] = useState(0);
+  const [hovered, setHovered] = useState<{ id: string; anchor: HTMLElement } | null>(null);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const cancelClose = () => { if (closeTimer.current) clearTimeout(closeTimer.current); };
+  const scheduleClose = () => { cancelClose(); closeTimer.current = setTimeout(() => setHovered(null), 120); };
+  useEffect(() => { setHovered(null); return cancelClose; }, [state.currentFocusTree]);
 
   // Center the view initially
   useEffect(() => {
@@ -3193,6 +3203,8 @@ export default function FocusTree({ state, startFocus, triggerError, isSuperEven
   }, []);
 
   const handleMouseDown = (e: React.MouseEvent) => {
+    cancelClose();
+    setHovered(null);
     setIsDragging(true);
     setStartX(e.pageX - (containerRef.current?.offsetLeft || 0));
     setStartY(e.pageY - (containerRef.current?.offsetTop || 0));
@@ -3245,6 +3257,8 @@ export default function FocusTree({ state, startFocus, triggerError, isSuperEven
       <div className="focus-tree-status absolute top-4 left-4 z-10 bg-tno-panel border border-tno-border p-2" data-tour="focus-tree">
         <h2 className="text-tno-highlight font-bold tracking-widest">国家焦点</h2>
         <div className="focus-tree-legend" aria-label="国策状态图例"><span className="is-available">可选择</span><span className="is-locked">未解锁</span><span className="is-active">进行中</span><span className="is-completed">已完成</span></div>
+        {state.currentFocusTree === 'phase1' && <div className="focus-route-hint"><strong>B3起义 · 愤怒 {state.stats.radicalAnger.toFixed(1)} / &gt;80</strong><br/>禁书、抗议国策与一次性校园事件会提高激进愤怒；达到条件即可选择起义，无需完成整棵树。</div>}
+        {state.currentFocusTree === 'treeA' && <div className="focus-route-hint"><strong>十字路口预判：{CROSSROADS_LABELS[getCrossroadsOutcome(state)]}</strong><br/>确认结算事件时按席位、团结与集权分流。可在代表大会查看条件；礼堂社团、演讲和工作组帮助维系地图上的支持。</div>}
         {state.activeFocus && (
           <div className="mt-2 text-xs">
             <div className="text-tno-text mb-1">正在研究: {currentNodes.find(n => n.id === state.activeFocus?.id)?.title}</div>
@@ -3320,6 +3334,10 @@ export default function FocusTree({ state, startFocus, triggerError, isSuperEven
                 aria-label={`${node.title}：${status}`}
                 data-focus-status={status}
                 data-sound={isAvailable ? 'focus' : isCompleted || isActive ? 'none' : 'error'}
+                onMouseEnter={event => { cancelClose(); if (!isDragging) setHovered({ id: node.id, anchor: event.currentTarget }); }}
+                onMouseLeave={scheduleClose}
+                onFocus={event => { cancelClose(); setHovered({ id: node.id, anchor: event.currentTarget }); }}
+                onBlur={scheduleClose}
                 onClick={() => handleNodeClick(node)}
                 onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); handleNodeClick(node); } }}
                 className={`focus-art-node absolute select-none z-10 group hover:z-[100] ${isCompleted ? 'focus-art-node--completed' : isActive ? 'focus-art-node--active' : isAvailable ? 'focus-art-node--available cursor-pointer' : 'focus-art-node--locked'}`}
@@ -3333,13 +3351,13 @@ export default function FocusTree({ state, startFocus, triggerError, isSuperEven
                   <div className="focus-art-node__progress" style={{ width: `${((state.activeFocus!.totalDays - state.activeFocus!.daysLeft) / state.activeFocus!.totalDays) * 100}%` }}></div>
                 )}
 
-                {/* Tooltip */}
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 bg-tno-panel border border-tno-border p-3 hidden group-hover:block z-[100] pointer-events-none shadow-lg shadow-black/70">
+                {/* A portal avoids clipping at the bottom of very large trees. */}
+                {hovered?.id === node.id && !isDragging && <FocusHoverCard anchor={hovered.anchor} onEnter={cancelClose} onLeave={scheduleClose}>
                   <div className="flex items-center gap-2 mb-2 border-b border-tno-border pb-2">
                     <FocusArt node={node} compact />
                     <div className="min-w-0 flex-1"><div className="font-bold text-sm text-tno-text">{node.title}</div><div className="text-[10px] text-tno-text/60">{ART_KIND_LABELS[getStrategicArtKind(node.id, node.title)]} · 研究 {node.days} 天</div></div>
                   </div>
-                  <div className="text-[11px] text-tno-text/80 mb-2 leading-relaxed">{node.description}</div>
+                  <div className="text-[11px] text-tno-text/80 mb-2 leading-relaxed whitespace-pre-line">{node.description}</div>
 
                   {node.requires && node.requires.length > 0 && (
                     <div className="mb-1.5">
@@ -3387,7 +3405,7 @@ export default function FocusTree({ state, startFocus, triggerError, isSuperEven
                       <span className="font-bold">互斥:</span> {node.mutuallyExclusive.map(ex => currentNodes.find(n => n.id === ex)?.title ?? ex).join('、')}
                     </div>
                   )}
-                </div>
+                </FocusHoverCard>}
               </div>
             );
           })}

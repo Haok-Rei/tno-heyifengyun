@@ -26,6 +26,18 @@ function routeOf(id, ancestors) {
 }
 export function catalog(root=ROOT) {
   const groups=new Map();
+  const focusLinks=new Map();
+  const focusSource=ts.createSourceFile('FocusTree.tsx',fs.readFileSync(path.join(root,'src/components/FocusTree.tsx'),'utf8'),ts.ScriptTarget.Latest,true,ts.ScriptKind.TSX);
+  function collectFocusLinks(n,ancestors=[]) {
+    if(ts.isObjectLiteralExpression(n)) {
+      const f=fields(n);
+      if(f.days&&string(f.id))for(const match of (f.onComplete?.getText(focusSource)||'').matchAll(/FLAVOR_EVENTS\.(\w+)/g)) {
+        focusLinks.set(match[1],{route:routeOf(string(f.id),ancestors),trigger:{id:string(f.id),title:string(f.title),description:string(f.description),requires:f.requires?.getText(focusSource),effects:f.effectsText?.getText(focusSource)}});
+      }
+    }
+    ts.forEachChild(n,child=>collectFocusLinks(child,[...ancestors,n]));
+  }
+  collectFocusLinks(focusSource);
   const advisorSource=ts.createSourceFile('advisors.ts',fs.readFileSync(path.join(root,'src/data/advisors.ts'),'utf8'),ts.ScriptTarget.Latest,true);
   const advisors=new Map();
   function collectAdvisors(n){if(ts.isObjectLiteralExpression(n)){const f=fields(n);if(f.modifiers&&string(f.id))advisors.set(string(f.id),{name:string(f.name),role:string(f.title),modifiers:f.modifiers.getText(advisorSource)});}ts.forEachChild(n,collectAdvisors);}
@@ -50,13 +62,14 @@ export function catalog(root=ROOT) {
         if (kind && identifier !== 'heyi_light' && label !== '空缺') {
           const parentObjects=ancestors.filter(ts.isObjectLiteralExpression).map(fields).filter(p=>p.days&&p.id);
           const focus=parentObjects.at(-1);
-          const route=routeOf(identifier||string(f.portrait)||'',ancestors);
+          const link=file.endsWith('flavorEvents.ts')?focusLinks.get(identifier):null;
+          const route=link?.route||routeOf(identifier||string(f.portrait)||'',ancestors);
           const identity=identifier||[label,string(f.title),string(f.portrait)].join('/');
           const key=[kind,identity,before].join('\n');
           const locator={file,start:property.getStart(ast),end:property.getEnd(),before,line:ast.getLineAndCharacterOfPosition(property.getStart(ast)).line+1};
           const existing=groups.get(key);
           if (existing) { existing.locations.push(locator); if (existing.route==='shared'&&route!=='shared') existing.route=route; }
-          else groups.set(key,{key:digest(key).slice(0,16),id:identity,label,kind,route,before,role:advisor?.role||string(f.title),portrait:string(f.portrait),effects:advisor?.modifiers||f.effects?.getText(ast),lockedUI:{button:string(f.buttonText),effects:f.effectsText?.getText(ast),choices:choiceSummaries(f.choices||f.options)},guards:ancestors.filter(ts.isIfStatement).map(a=>{const child=ancestors[ancestors.indexOf(a)+1]||node;const expression=a.expression.getText(ast).slice(0,300);return a.elseStatement===child?'!('+expression+')':expression;}),trigger:focus?{id:string(focus.id),title:string(focus.title),description:string(focus.description),requires:focus.requires?.getText(ast),effects:focus.effectsText?.getText(ast)}:null,context:node.getText(ast).slice(0,8500),locations:[locator]});
+          else groups.set(key,{key:digest(key).slice(0,16),id:identity,label,kind,route,before,role:advisor?.role||string(f.title),portrait:string(f.portrait),effects:advisor?.modifiers||f.effects?.getText(ast),lockedUI:{button:string(f.buttonText),effects:f.effectsText?.getText(ast),choices:choiceSummaries(f.choices||f.options)},guards:ancestors.filter(ts.isIfStatement).map(a=>{const child=ancestors[ancestors.indexOf(a)+1]||node;const expression=a.expression.getText(ast).slice(0,300);return a.elseStatement===child?'!('+expression+')':expression;}),trigger:focus?{id:string(focus.id),title:string(focus.title),description:string(focus.description),requires:focus.requires?.getText(ast),effects:focus.effectsText?.getText(ast)}:link?.trigger??null,context:node.getText(ast).slice(0,8500),locations:[locator]});
         }
       }
       ts.forEachChild(node,child=>visit(child,[...ancestors,node]));
