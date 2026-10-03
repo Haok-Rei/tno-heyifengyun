@@ -27,7 +27,7 @@ export function availableMapActions(state: GameState, tileId: string): MapAction
   if (state.flags.yang_yule_route_started || route === 'yang') return [action('yy_coord','教师驻点协调','20 PP','教师支持 +3，信任 +2，健康 -1')];
   if (state.flags.jidi_new_era_active || route === 'jidi') return [action('jd_optimize','教学产线优化','20 PP','卷子 +80，GDP +1，理智 -2')];
   if (state.flags.polling_stations_unlocked || state.electionState?.isActive) return [action('campaign','区域拉票','25 PP',state.electionState?.isActive?'选战期间定期拉票，逐步改变选情':'选前小规模宣传，逐步改变选情')];
-  if (state.flags.map_phase_ended || route === 'reform') return [];
+  if (state.flags.map_phase_ended) return [];
   if (state.flags.map_struggle_ended) return [];
   if (!state.flags.rebellion_started) return [];
   return [...common, ...(byBuilding[tile.buildingId] || []).filter(a => a.id !== 'aud_salon' || state.completedFocuses.includes('expand_assembly') || state.completedFocuses.includes('democratic_reforms'))];

@@ -6,6 +6,7 @@ import './actionReminders.css';
 function ReminderIcon({kind}:{kind:ReminderKind}) {
   return <svg viewBox="0 0 48 48" aria-hidden="true" className="action-reminder__icon" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round">
     <path d="M5 38h38M8 41h32" stroke="#6e766e" strokeWidth=".6"/>
+    {kind==='heyi'&&<><path d="M9 36V17L24 12L39 17V36M9 17V12L24 7L39 12V17M14 36V22L24 19L34 22V36M19 22v14m10-14v14M9 12 24 17 39 12" fill="#182c30"/><path d="M24 5V1l10 2-2 3-8-1" fill="#724038" stroke="#d7a090"/><path d="M6 6 3 3m36 3 3-3M4 22H1m43 0h3" stroke="#9fd0c7"/><path d="M21 31h6v5h-6Z" fill="#a7bea2" stroke="#bbd1b5"/></>}
     {kind==='focus'&&<><path d="M14 35V9m0 1 21-3-4 9 4 6-21 3" fill="#54482e"/><path d="m19 13 10-2-3 5 3 3-10 2M9 35h12l3 3H6Z"/><circle cx="14" cy="7" r="2"/><path d="m28 28 2 4 5 .5-4 3 1 5-4-2.5-4 2.5 1-5-4-3 5-.5Z" fill="#af9762"/></>}
     {kind==='decision'&&<><path d="M13 7h23v29H13Z" fill="#26362f"/><path d="M10 11v28h23M17 13h15m-15 4h15m-15 4h9m-9 4h7M17 30h5"/><path d="m25 33 12-14 3 3-12 14-5 2Z" fill="#b6a170"/><path d="m35 22 3 3"/></>}
     {kind==='advisor'&&<><path d="M19 8q9-4 11 5v7l-5 5-6-5Z" fill="#59675f"/><path d="M17 14q6-6 14-1M20 24l-9 6-2 7h30l-2-7-8-6M20 25l5 6 4-6m-4 6v6m-10-8 3 6m16-6-3 6"/><path d="M7 9h7M10.5 5.5v7" stroke="#8cac98"/><path d="m34 8 2 3 4 .5-3 2 .8 4-3-2-3 2 .8-4-3-2 4-.5Z"/></>}

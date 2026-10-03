@@ -5,8 +5,9 @@ import { getAvailableAdvisors, getAdvisorCost } from '../data/advisors';
 import { getCommandState, getTeamCapacity } from './commandSystem';
 import { availableMapActions } from './mapActions';
 import { getPaperUpkeep } from './campaignStats';
+import { getHeyiSceneChanges } from './heyiLight';
 
-export type ReminderKind = 'focus' | 'decision' | 'advisor' | 'law' | 'team' | 'mechanic' | 'crisis' | 'papers' | 'stalled';
+export type ReminderKind = 'focus' | 'decision' | 'advisor' | 'law' | 'team' | 'mechanic' | 'crisis' | 'papers' | 'stalled' | 'heyi';
 export const REMINDER_IGNORE_DAYS = 30;
 export interface ActionReminder {
   id: ReminderKind;
@@ -23,6 +24,8 @@ export const campaignDay = (date: Date) => Math.floor(Date.UTC(date.getFullYear(
 export function getActionReminders(state: GameState, focuses: FocusNode[], decisions: Decision[], mechanics: MechanicEntry[]): ActionReminder[] {
   if (state.gameEnding || state.stats.pp < 0) return [];
   const result: ActionReminder[] = [];
+  const sceneChange = getHeyiSceneChanges(state);
+  if (sceneChange) result.push({ id: 'heyi', title: '合一之光 · 校园景象有变化', entries: sceneChange.entries, keys: [sceneChange.key], target: 'heyi-light' });
   const add = (id: ReminderKind, title: string, items: {id: string; label: string}[], target?: string) => {
     if (items.length) result.push({id,title,entries:items.map(x=>x.label),keys:items.map(x=>x.id).sort(),target});
   };

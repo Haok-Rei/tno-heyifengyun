@@ -6,7 +6,9 @@ import RightSidebar from './components/RightSidebar';
 import CentralMap from './components/CentralMap';
 import ActionReminders from './components/ActionReminders';
 import { getActionReminders, type ActionReminder } from './engine/actionReminders';
-import { assemblyCrisisKind, shouldTriggerAssemblyCrisis, cleanAssemblyCrises, expireAssemblyCrisis } from './engine/assemblyPolitics';
+import { cleanAssemblyCrises, expireAssemblyCrisis } from './engine/assemblyPolitics';
+import { syncAssemblyConflict } from './engine/assemblyConflict';
+import { enqueueEvent } from './engine/eventQueue';
 import { nextOpeningGuidance } from './engine/campaignGuidance';
 import { DECISIONS } from './components/RightSidebar';
 import EventPopup from './components/EventPopup';
@@ -37,7 +39,7 @@ import StartMenu from './components/StartMenu';
 import ArtRoom from './components/ArtRoom';
 import GuidedTutorial, { GUIDE_STEPS } from './components/GuidedTutorial';
 import HeyiLight from './components/HeyiLight';
-import { advanceHeyiLight } from './engine/heyiLight';
+import { advanceHeyiLight, getHeyiSceneKey, getHeyiRoute, observeHeyiLight } from './engine/heyiLight';
 import { reconcileRouteSpirits } from './engine/routeSpirits';
 import './components/guidedTutorial.css';
 import Settings from './components/Settings';
@@ -212,14 +214,14 @@ const INITIAL_GAME_STATE: GameState = {
     {
       id: 'exam_pressure',
       name: '应试高压',
-      description: "合一把升学率作为衡量一切的标尺，周考排名则是这把尺子的刻度。从入学起，学生就活在排名的比较中，分数的起伏被当成前途的信号。教师也被这套标尺推着走，不得不压缩课堂的余地，把教学转向应试。结果是学习从理解变成竞争，学生之间学会用名次彼此打量，压力层层传导，长期积累而得不到缓解。",
+      description: "合一用升学率作为衡量一切的标尺，周考排名成为刻度。教师被迫压缩课堂余地，把教学转向应试；学生从入学起就活在比较中，分数起伏被当作前途信号。后果是学习从理解变成竞争，学生之间用名次彼此打量，压力层层传导且长期无从缓解。",
       type: 'negative',
       effects: { stabDaily: -0.5, tprDaily: -0.5 } // Assuming base TPR is -10, +5% is -0.5
     },
     {
       id: 'b3_fortress',
       name: 'B3堡垒',
-      description: "B3教学楼已被学生改造成校园内的革命据点。课桌和沙袋堆在楼道里，构成街垒；顶层始终插着一面红旗，远远就能看见。参与者把这栋楼当作组织核心，认为它既是革命起点的象征，也是必须守住到最后的地方。\n\n对支持者来说，守住B3就是守住已经夺得的空间；对校方来说，这栋楼已经不能用普通教学楼的方式管理。两边都清楚，只要街垒还在、红旗还挂着，校园里的力量对比就仍处在对峙状态。",
+      description: "B3教学楼被改造成革命据点：楼道堆着课桌沙袋组成街垒，顶层红旗高挂。参与者视其为组织核心，既是革命起点的象征，也是必须守住的阵地。校方无法再用普通教学楼的方式管理这里。只要街垒还在、红旗还挂着，校园里的力量对比就仍处于对峙。",
       type: 'neutral',
       effects: { defenseBonus: 0.1 }
     }
@@ -1224,13 +1226,10 @@ export default function App() {
         newDate.setDate(newDate.getDate() + 1);
         const dateStr = newDate.toISOString().split('T')[0];
 
-        const queueEvent = (event: any) => {
-          if (event.id && (newActiveEvent?.id === event.id || newActiveStoryEvents.some(e => e.id === event.id))) return;
-          if (!newActiveEvent) {
-            newActiveEvent = event;
-          } else {
-            newActiveStoryEvents.push(event);
-          }
+        const queueEvent = (event: GameEvent, priority = false) => {
+          const queue = enqueueEvent({ activeEvent: newActiveEvent, activeStoryEvents: newActiveStoryEvents }, event, priority);
+          newActiveEvent = queue.activeEvent;
+          newActiveStoryEvents = queue.activeStoryEvents;
         };
 
         let newStudentAssemblyFactions = prev.studentAssemblyFactions ? { ...prev.studentAssemblyFactions } : undefined;
@@ -2084,6 +2083,7 @@ export default function App() {
             if (node && node.onComplete) {
               const currentState: GameState = {
                 ...prev,
+                date: newDate,
                 chronicle: newChronicle,
                 stats: newStats,
                 modifiers: newModifiers,
@@ -2126,7 +2126,7 @@ export default function App() {
                   newFlags.yang_yule_condition_met = true;
                 }
               }
-              if (effectPartial.activeEvent) queueEvent(effectPartial.activeEvent);
+              if (effectPartial.activeEvent) queueEvent(effectPartial.activeEvent, true);
               if (effectPartial.leader) newLeader = effectPartial.leader;
               if (effectPartial.ideologies) newIdeologies = effectPartial.ideologies;
               if (effectPartial.mapLocations) newMapLocations = effectPartial.mapLocations;
@@ -2139,7 +2139,7 @@ export default function App() {
               if (effectPartial.gouxiongState) newGouxiongState = effectPartial.gouxiongState;
               if (effectPartial.unlockedMinigames) newUnlockedMinigames = effectPartial.unlockedMinigames;
               if (effectPartial.crises) newCrises = effectPartial.crises;
-              if (effectPartial.activeStoryEvents) newActiveStoryEvents = effectPartial.activeStoryEvents;
+              if (effectPartial.activeStoryEvents) effectPartial.activeStoryEvents.forEach(event => queueEvent(event));
               if (effectPartial.studentAssemblyFactions) newStudentAssemblyFactions = effectPartial.studentAssemblyFactions;
               if (effectPartial.parliamentState) newParliamentState = effectPartial.parliamentState;
               if (effectPartial.advisors) newAdvisors = effectPartial.advisors;
@@ -2614,7 +2614,7 @@ export default function App() {
               title: '长夜的最后通牒',
               description: '“江南十校春季联合模考”的阴影，如同水银泻地般压垮了B3教学楼最后的一丝理智。随着联考日期的逼近，豪邦苦心孤诣维持的互助组在巨大的升学恐慌面前，如同阳光下的雪人般迅速消融。在这场极端的压力测试中，深植于骨髓的“衡水病毒”迎来了最猛烈的反扑。\n\n危机的引爆点是一桩令人发指的丑闻。就在联考前夜，下乡工作队在天花板的通风管道里，查获了整整三大箱由校外资本及第教育高价走私进来的十校联考绝密押题卷。而囤积这些试卷的，正是以王卷豪为首的一批曾经的高分做题家。为了在模考中彻底碾压其他阶层，这群患上重度体制斯德哥尔摩综合征的学生不仅互相包庇、秘密刷题，甚至在深夜剪断了竞争对手寝室的照明电线。这场丑闻彻底撕碎了“学生自治与互助”的遮羞布，证明了在没有外部强力干预的情况下，做题家阶级会毫不犹豫地踩着同窗的尸体向上爬。\n\n深夜的政治局会议室里，空气冷得能凝结出冰渣。几份被搜缴的绝密试卷被狠狠甩在王照凯的脸上，纸张边缘甚至还沾着纠察队在冲突中留下的血迹。\n\n“这就是你那可笑的‘大帐篷’！这就是你优柔寡断、纵容温和派的下场！”吕波汉像一头嗜血的狼般撑在办公桌上，他的双眼闪烁着疯狂而病态的兴奋，“事实证明，那些做题蛆的灵魂早就在题海里烂透了！豪邦的互助组只是给他们提供了结党营私的温床！王主席，你还要继续你那软弱的改良梦吗？”\n\n在吕波汉的身后，戴着歪斜红袖章的狗熊发出了一阵极度刺耳的狂笑，他手里把玩着一根警棍，正用它有节奏地敲击着门框，门外的走廊里站满了全副武装的特别纠察队。王照凯瘫坐在椅子上，面对着做题家们赤裸裸的背叛和彻底破产的温和路线，他一直以来的摇摆不定终于迎来了反噬。他失去了所有的理论自信，连握笔的手都在颤抖。吕波汉不需要王照凯的回答，他一把夺过桌上的最高指令广播麦克风。在这个彻底失去信任的漫长冬夜里，极权主义的屠刀，终于找到了最完美的挥舞理由。',
               buttonText: '当温和的阳光无法融化冰川，我们只能召唤地狱的烈火。',
-              effectText: '改革破产，吕波汉与狗熊发动政变，进入极权派路线',
+              effectsText: ['改革破产，吕波汉与狗熊发动政变，进入极权派路线'],
               isStoryEvent: true,
               effect: (state) => {
                 return {
@@ -3473,22 +3473,13 @@ export default function App() {
           }
         }
 
-        // Parliamentary conflict belongs to the current route, not every treeA successor.
-        const assemblyState: GameState = { ...prev, currentFocusTree: newCurrentFocusTree, stats: newStats, flags: newFlags, completedFocuses: newCompletedFocuses, nationalSpirits: newNationalSpirits, studentAssemblyFactions: newStudentAssemblyFactions, parliamentState: newParliamentState };
-        const politicalCrisis = assemblyCrisisKind(assemblyState);
-        if (politicalCrisis && shouldTriggerAssemblyCrisis(assemblyState) && !newCrises.some(c => c.id === politicalCrisis) && !(newFlags[politicalCrisis + '_cooldown'] > 0)) {
-          const committee = politicalCrisis === 'democratic_power_struggle';
-          newCrises.push({ id: politicalCrisis, title: committee ? '民主派争权' : '反对派污蔑！', daysLeft: 30, totalDays: 30,
-            description: committee ? '潘仁越民主派要求重新分配革委会的授权，理智低迷与同盟分歧正在扩大争执。' : '学生理智低下且民主派在议会中处于弱势，反对派正在散布谣言。',
-            resolutionText: committee ? '理智 ≥70，或联盟团结 ≥65，或潘派 ≥40席；达到任一条件自动化解' : '学生理智 ≥70，或潘派 ≥40席（自动化解）',
-            expiryText: committee ? '潘派随机 +1–3席（重新分配），集权 -5，团结随机 -3至+3' : '稳定 -10，联盟团结 -10',
-          });
-          queueEvent(committee ? FLAVOR_EVENTS.democratic_power_struggle_event : {
-            id: 'opposition_slander_event', title: '反对派污蔑！',
-            description: '近期学生理智持续走低，潘仁越民主派在议会中的席位不足四十。反对派正在借校园中的不满散布谣言，争夺更多代表的支持。', buttonText: '回应质疑，争取代表。',
-            effectsText: ['理智达到70或潘派达到40席可化解；30天后未化解则稳定与团结各 -10'],
-          });
-        }
+        // First authorization dispute is guaranteed; subsequent crises follow politics.
+        const assemblyState = syncAssemblyConflict({ ...prev, date: newDate, currentFocusTree: newCurrentFocusTree, stats: newStats, flags: newFlags, completedFocuses: newCompletedFocuses, nationalSpirits: newNationalSpirits, studentAssemblyFactions: newStudentAssemblyFactions, parliamentState: newParliamentState, crises: newCrises, activeEvent: newActiveEvent, activeStoryEvents: newActiveStoryEvents });
+        newCrises = assemblyState.crises;
+        newFlags = assemblyState.flags;
+        newActiveEvent = assemblyState.activeEvent;
+        newActiveStoryEvents = assemblyState.activeStoryEvents;
+        if (newActiveEvent) newIsPaused = true;
 
         // Process Red Toad Mechanics only while its political institutions exist.
         if (newRedToadState && redToadRouteActive) {
@@ -4563,6 +4554,13 @@ export default function App() {
     if (tutorialStep !== null) return;
     setGameState(prev => ({ ...prev, isPaused: !prev.isPaused }));
   };
+  const heyiSceneKey = getHeyiSceneKey(gameState);
+  const observedHeyiKey = gameState.flags.heyi_light_observation?.key;
+  useEffect(() => {
+    if (appMode !== 'game') return;
+    if (isHeyiLightOpen || !observedHeyiKey && getHeyiRoute(gameState) === 'opening') setGameState(observeHeyiLight);
+  }, [appMode, isHeyiLightOpen, heyiSceneKey, observedHeyiKey]);
+
   const toggleFocusTree = () => setShowFocusTree(prev => !prev);
 
   const hireAdvisor = (slotIndex: number, advisor: Advisor) => {
@@ -4770,7 +4768,7 @@ export default function App() {
     setGameState(prev => {
       if (!prev.activeEvent) return prev;
       if (choice?.disabled?.(prev)) return prev;
-      let newState = { ...prev, activeEvent: null, isPaused: false };
+      let newState = { ...prev, activeEvent: null, isPaused: false, flags: { ...prev.flags, ['event_seen_' + prev.activeEvent.id]: true } };
       const effectToApply = choice?.effect || prev.activeEvent?.effect;
       if (effectToApply) {
         const effectPartial = effectToApply(prev);
@@ -4793,7 +4791,7 @@ export default function App() {
         if ('cyberDeconstruction' in effectPartial) newState.cyberDeconstruction = effectPartial.cyberDeconstruction;
         if ('gouxiongState' in effectPartial) newState.gouxiongState = effectPartial.gouxiongState;
         if (effectPartial.jidiCorporateState) newState.jidiCorporateState = effectPartial.jidiCorporateState;
-        if (effectPartial.activeStoryEvents) newState.activeStoryEvents = effectPartial.activeStoryEvents;
+        if (effectPartial.activeStoryEvents) effectPartial.activeStoryEvents.forEach(event => { newState = { ...newState, ...enqueueEvent(newState, event) }; });
         if (effectPartial.advisors) newState.advisors = effectPartial.advisors;
         if (effectPartial.activeMinigame !== undefined) newState.activeMinigame = effectPartial.activeMinigame;
         if (effectPartial.studentAssemblyFactions) newState.studentAssemblyFactions = effectPartial.studentAssemblyFactions;
@@ -4879,7 +4877,7 @@ export default function App() {
         }
       }
       
-      return reconcileRouteSpirits(cleanAssemblyCrises(newState));
+      return reconcileRouteSpirits(syncAssemblyConflict(newState));
     });
   };
 
@@ -4961,13 +4959,13 @@ export default function App() {
             newStats.ss = Math.min(100, newStats.ss + 30);
             newStats.pp += 20;
             newStats.allianceUnity = Math.min(100, newStats.allianceUnity + 10);
-            newSpirits.push({ id: 'awakened_binhu', name: '被唤醒的滨湖', description: "频率之争结束后，广播站不再由校方单独掌握，午间电波转而站在学生一边。这意味着通知渠道本身换了主人：过去由校方单向下达的内容，现在要经过革命力量的口径。它的意义不在某一次播音，而在于学生一方第一次拥有了覆盖全校的传声工具。", type: 'positive', effects: { ssDaily: 0.5, ppDaily: 0.3 } });
+            newSpirits.push({ id: 'awakened_binhu', name: '被唤醒的滨湖', description: "频率之争后，校方不再垄断广播。学生的诉求和行动通知可以直接传遍校园，各班不必再靠口耳相传维持联系。夺下设备只是第一步：广播的口径由谁决定、哪些声音能够播出，将成为学生组织自己的责任。", type: 'positive', effects: { ssDaily: 0.5, ppDaily: 0.3 } });
             newEvent = { id: 'freq_critical_evt', title: '电波响彻滨湖', description: `平均接管率${fr.avgFreq.toFixed(1)}%——完美！\n\n当王照凯的声音通过三个FM频段同时响起时，整个校园都安静了。吴福军愤怒地砸碎了保安室的收音机，杨玉乐在办公室里来回踱步，封安宝的电话线被打爆了。\n\n"合一的学生们，这里是联合革命委员会。旧的秩序已经终结，新的时代从此刻开始。"\n\n行政楼的控制得到了全面巩固，革命的电波势不可挡。`, buttonText: '这是我们的频率！', isStoryEvent: true, effectsText: ['行政楼地块控制度 +20', 'SS +30, PP +20, 团结 +10'] };
             break;
           case 'success': // 成功接管
             newStats.ss = Math.min(100, newStats.ss + 18);
             newStats.pp += 10;
-            newSpirits.push({ id: 'awakened_binhu', name: '被唤醒的滨湖', description: "广播站落到学生手中之后，晚自习的喇叭不再只重复纪律与训话，属于学生自己的声音被放了出来。这一步看似只是设备易主，实际改变的是校园里的信息方向——管理层垄断的传声渠道被打开，学生的表达有了公共出口。", type: 'positive', effects: { ssDaily: 0.3 } });
+            newSpirits.push({ id: 'awakened_binhu', name: '被唤醒的滨湖', description: "频率之争后，校方不再垄断广播。学生的诉求和行动通知可以直接传遍校园，各班不必再靠口耳相传维持联系。夺下设备只是第一步：广播的口径由谁决定、哪些声音能够播出，将成为学生组织自己的责任。", type: 'positive', effects: { ssDaily: 0.3 } });
             newEvent = { id: 'freq_success_evt', title: '频率之战告捷', description: `平均接管率${fr.avgFreq.toFixed(1)}%——成功。\n\n经过紧张的频率拉锯，广播站的主要频段已经落入我们手中。虽然中间一度被干扰，但先锋队员们最终稳住了阵脚。\n\n行政楼周边的学生开始聚集，他们听到了广播里的号召。`, buttonText: '继续推进！', isStoryEvent: true, effectsText: ['行政楼地块控制度 +12', 'SS +18, PP +10'] };
             break;
           case 'partial': // 部分成功
@@ -5411,7 +5409,7 @@ export default function App() {
       setRequestedNationSection(prev => ({section:reminder.id==='advisor'?'advisors':'laws',nonce:(prev?.nonce||0)+1}));
     }
     if ((reminder.id === 'team' || reminder.id === 'stalled') && reminder.target) setSelectedTileId(reminder.target);
-    if (reminder.id === 'mechanic') featureEntries.find(entry=>entry.id===reminder.target)?.open();
+    if (reminder.id === 'mechanic' || reminder.id === 'heyi') featureEntries.find(entry=>entry.id===reminder.target)?.open();
   };
 
   return (

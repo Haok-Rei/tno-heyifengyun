@@ -1,5 +1,5 @@
 import type { ReactNode, PointerEvent } from 'react';
-import type { HeyiLightSnapshot, HeyiRoute, HeyiZone } from '../engine/heyiLight';
+import type { HeyiLightSnapshot, HeyiRoute, HeyiZone, UprisingStage } from '../engine/heyiLight';
 
 type Point = { x: number; y: number };
 type Face = [Point, Point, Point, Point];
@@ -193,6 +193,7 @@ export function CampusGate({observation}:{observation:Observation}) {
       <Plate face={inset(top,.07,.09,.86,.83)} label="合肥一中" rows={0}/>
       {ruined&&<path d={path([at(top,.51,.01),at(top,.56,.38),at(top,.50,.62),at(top,.56,.96)])} stroke="#b58670" fill="none"/>}
       {route==='haobang'&&<g transform="translate(789 277)"><circle r="12" fill={BLACK} stroke="#ba8d75"/><path d="M-6 6L0-8L6 6M-7 2H7" fill="none" stroke="#ba8d75"/></g>}
+      {route==='uprising'&&<g className="campus-uprising-gate"><Flag x={373} y={326} color="#ca8673" small/><Flag x={797} y={320} color="#ca8673" small/></g>}
     </Observe>
     <Observe zone="gate" anchor={{x:655,y:412}} observation={observation}>
       {[.0,.97].map((u,i)=>{const pt=at(face,u,0),base=at(face,u,1);return <Box key={i} x={pt.x+7} y={base.y+5} h={base.y-pt.y+5} left={17} right={17} rows={7}/>;})}
@@ -216,6 +217,7 @@ export function CampusGate({observation}:{observation:Observation}) {
       </g>}
       {route==='jidi'&&[536,612,688].map(x=><g key={x}><Box x={x} y={504+(x-536)*.09} h={38} left={30} right={14}/><path d={`M${x} 477l-29-7m29 7 22 4m-22-4v20`} stroke="#c3ac78" fill="none"/></g>)}
       {route==='wu'&&<path d="M777 383L494 420M760 381L488 413" stroke="#a69075" strokeWidth="1.1" fill="none"/>}
+      {route==='uprising'&&<Plate face={inset(face,.65,.77,.24,.15)} label="各班聯絡" rows={1} color="#c5a989"/>}
     </Observe>
   </g>;
 }
@@ -224,7 +226,7 @@ export function CampusGuard({observation}:{observation:Observation}) {
   const {route}=observation.snapshot;const wreck=route==='jidi_riot';
   return <Observe zone="guard" anchor={{x:208,y:418}} observation={observation}>
     <Box x={306} y={494} h={166} left={222} right={35}>{f=><>
-      <Plate face={inset(f.left,.04,.025,.92,.12)} label={route==='wu'?'勤务室':route==='revolution'?'保卫组':route==='gouxiong'?'值班管理员':'门卫室'} rows={0}/>
+      <Plate face={inset(f.left,.04,.025,.92,.12)} label={route==='wu'?'勤务室':route==='uprising'?'糾察崗':route==='revolution'?'保卫组':route==='gouxiong'?'值班管理员':'门卫室'} rows={0}/>
       {[.09,.53].map((u,i)=>{const win=inset(f.left,u,.25,.37,.43);return <g key={u}><path d={path(win,true)} fill={BLACK} stroke={INK}/><FaceLines face={win} rows={1} columns={1}/>{wreck?<path d={path([at(win,0,0),at(win,.52,.56),at(win,.28,1)])+path([at(win,1,0),at(win,.4,.55),at(win,1,1)])} stroke="#b78573" fill="none"/>:<><path className="heyi-window__light" d={path(inset(win,.03,.06,.44,.39),true)} fill={route==='wu'?'#93b2b4':'#aa9564'} opacity=".18"/><path d={path([at(win,.06,.78),at(win,.95,.78)])} stroke="#879e99"/><path d={path(inset(win,.18,.55,.44,.20),true)} fill="none" stroke={EDGE}/>{i===0&&route!=='despair'&&<SmallFigure x={at(win,.70,.78).x} y={at(win,.70,.78).y} role="teacher" pose="sit"/>}</>}</g>;})}
       <FaceLines face={inset(f.left,.04,.8,.93,.18)} rows={2}/>
       <Plate face={inset(f.right,.15,.22,.70,.70)} rows={2}/>
@@ -236,6 +238,7 @@ export function CampusGuard({observation}:{observation:Observation}) {
     {route==='wu'&&<g><path d="M321 310v-56l38 7" fill="none" stroke={INK}/><path d="M345 254l22 5-5 10-23-6Z" fill={BLACK} stroke={INK}/><circle cx="358" cy="263" r="2" fill="#b87468"/><Plate face={geometry(100,478,42,36,6).left} label="证件" rows={0}/></g>}
     {route==='despair'&&<path d="M99 375l70 75m-58-3 59-78" stroke="#ac8c73" strokeWidth="2"/>}
     {wreck&&<path d="M132 474l27 4 3 9-28-3m85-56 15 2-4 15-19-3" fill={BLACK} stroke="#a18e77"/>}
+    {route==='uprising'&&<><Plate face={geometry(342,489,60,30,7).left} label="輪值" color="#c5a989" rows={3}/><SmallFigure x={338} y={513} role="steward" pose="talk"/></>}
   </Observe>;
 }
 
@@ -256,6 +259,7 @@ export function CampusTrees({observation,month}:{observation:Observation;month:n
       {(winter||damaged)&&<path d="M1034 285l-21-28m22 29-1-24m26 49-21-3m29-21 9-16m-6-3-25-25m58 54 3-21m32-6 9-25m-9 25 23-3m-53-29-5-28m-11 9 10-12" stroke={damaged?'#a88e78':INK}/>} 
     </g>
     {route==='revolution'&&[1058,1128].map(x=><path key={x} className="heyi-cloth" d={`M${x} 288l4 1-3 38-7-9Z`} fill="#301717" stroke="#b67c6b" strokeWidth=".8"/>)}
+    {route==='uprising'&&<g><path className="heyi-cloth" d="M1090 336l7 1-2 45-7-8Z" fill="#301717" stroke="#c58c76" strokeWidth=".8"/><Plate face={geometry(1086,404,31,29,6).left} label="聯絡" rows={2} color="#c4b292"/><path d="M1057 312l13 2 3 18-15-3Zm2 5 9 2m-8 4 9 2M1120 294l14 2-4 17-15-2Zm0 5 9 1m-11 4 9 2" fill={BLACK} stroke="#b5a88c" strokeWidth=".6"/></g>}
     {route==='gouxiong'&&<g><path d="M1045 280l14 58m49-57 14 60" stroke={EDGE}/><Plate face={geometry(1068,357,29,27,5).left} label="社团" rows={0}/><Plate face={geometry(1140,359,29,27,5).left} label="演出" rows={0}/></g>}
     {month>=8&&month<=10&&!trimmed&&!damaged&&[0,1,2,3].map(i=><path key={i} className="heyi-falling-leaf" style={{animationDelay:`-${i*2.3}s`}} d={`M${1034+i*35} ${300+i%2*12}q7-6 11 0q-5 7-11 0`} fill={BLACK} stroke="#b89f74" strokeWidth=".8"/>)}
     {mood==='bright'&&<g fill="none" stroke="#98aa8a" strokeWidth=".7"><path d="M1055 470q-12-14-9-21m13 21q6-14 11-15m41 19q9-18 17-11m-14 11-4-19"/></g>}
@@ -309,7 +313,7 @@ export function StreetFurniture({observation}:{observation:Observation}) {
       <path d="M53 330l19 2v58l-19-2Z" fill={BLACK} stroke={INK} strokeWidth=".8"/>
       {[0,1,2].map(i=><ellipse key={i} className={i===2?'heyi-lamp__signal':''} cx="62" cy={343+i*17} rx="4.5" ry="5" fill={(route==='wu'||route==='jidi_riot')?i===0?'#995e54':BLACK:i===2?'#88a78c':BLACK} stroke={i===0?'#a27e74':i===1?'#b49f7d':'#8fa994'} strokeWidth=".65"/>)}
       <Box x={1040} y={528} h={41} left={32} right={18}>{f=><><FaceLines face={f.left} rows={7}/><path d={path(inset(f.roof,.12,.18,.68,.45),true)} fill="#01080c" stroke={INK}/></>}</Box>
-      <Box x={972} y={510} h={105} left={127} right={13}>{f=><Plate face={inset(f.left,.05,.08,.90,.85)} label={{opening:'校務公告',democracy:'議事日程',revolution:'臨時公報',reform:'課程徵集',haobang:'聯席會議',yang:'教師評審',jidi:'升學指標',jidi_riot:'緊急疏散',gouxiong:'社團活動',wu:'通行條例',despair:'停止開放'}[route]} color={observation.snapshot.accent}/>}</Box>
+      <Box x={972} y={510} h={105} left={127} right={13}>{f=><Plate face={inset(f.left,.05,.08,.90,.85)} label={{opening:'校務公告',uprising:observation.snapshot.uprisingStage==='assembly'?'大會議程':observation.snapshot.uprisingStage==='committee'?'聯合公報':'革命告示',democracy:'議事日程',revolution:'臨時公報',reform:'課程徵集',haobang:'聯席會議',yang:'教師評審',jidi:'升學指標',jidi_riot:'緊急疏散',gouxiong:'社團活動',wu:'通行條例',despair:'停止開放'}[route]} color={observation.snapshot.accent}/>}</Box>
       <path d="M875 516v19m94-11v17" stroke={INK}/>
     </Observe>
   </g>;
@@ -334,8 +338,23 @@ function Van({x,y,official=false}:{x:number;y:number;official?:boolean}) {
 function Speaker({x,y}:{x:number;y:number}) {
   return <Box x={x} y={y} h={66} left={32} right={18}>{f=><>{[.3,.7].map(v=><ellipse key={v} cx={at(f.left,.5,v).x} cy={at(f.left,.5,v).y} rx="9" ry="11" fill="none" stroke={INK} strokeWidth=".8"/>)}<FaceLines face={f.right} rows={9}/></>}</Box>;
 }
-function RouteStreetScene({route}:{route:HeyiRoute}) {
+function RouteStreetScene({route,stage}:{route:HeyiRoute;stage?:UprisingStage}) {
   switch(route) {
+    case 'uprising': return <g className="campus-uprising" data-stage={stage}>
+      <Flag x={124} y={577} color="#cc8b76"/>
+      <Table x={256} y={553} label="手寫傳單" items="papers"/>
+      <Box x={182} y={568} h={32} left={43} right={22} rows={4}>{f=><Plate face={inset(f.left,.12,.2,.74,.6)} label="油墨" rows={0} color="#c4ae91"/>}</Box>
+      <Speaker x={303} y={559}/><Chair x={194} y={556}/>
+      <SmallFigure x={233} y={535} pose="sit"/><SmallFigure x={278} y={569} role="steward" pose="talk"/>
+      <g className="campus-uprising-courier"><SmallFigure x={160} y={589} pose="carry"/><Bicycle x={97} y={608}/></g>
+      <Table x={1133} y={565} label={stage==='assembly'?'議案登記':'各班聯絡'} items="papers"/>
+      <Chair x={1097} y={561}/><SmallFigure x={1110} y={548} role="steward" pose="sit"/>
+      <SmallFigure x={1056} y={582} pose="talk"/><SmallFigure x={1088} y={588} role="teacher" pose="talk"/>
+      <Flag x={1182} y={560} color="#cc8b76" small/>
+      {stage==='assembly'?<><Chair x={1048} y={548}/><Chair x={1030} y={558}/><Box x={963} y={591} h={18} left={36} right={18} rows={4}/></>:<><Bench x={1056} y={542}/><Box x={1126} y={604} h={24} left={52} right={26} rows={3}/></>}
+      <g fill="none" stroke="#c6b79d" strokeWidth=".7"><path d="M235 509l17 3-3 7-18-3ZM239 505l15 2M251 507l-3 9M1116 525l12 2-2 9-14-2Zm2 4 9 1m-10 3 8 1"/><path className="campus-broadcast" d="M319 497q8 6 0 14m4-18q15 10 0 23m6-27q21 14 0 30"/></g>
+      <path d="M199 638l27-2 10 4-28 3M1140 625l21 3-8 5-23-4" fill={BLACK} stroke="#b2a88f" strokeWidth=".6"/>
+    </g>;
     case 'opening': return <g>
       <Canopy x={252} y={559} label="早點" color="#b6aa89"/><Table x={241} y={548} items="flowers"/>
       <Box x={171} y={540} h={42} left={40} right={17}>{f=><><FaceLines face={f.left} rows={5}/><ellipse cx="161" cy="498" rx="18" ry="5" fill={BLACK} stroke={INK}/><path className="campus-steam" d="M153 492q-6-12 2-17q7-9 0-18m10 34q8-10 1-18" fill="none" stroke={EDGE}/></>}</Box>
@@ -436,16 +455,27 @@ function RouteStreetScene({route}:{route:HeyiRoute}) {
   }
 }
 export function CampusRouteObjects({observation}:{observation:Observation}) {
-  return <Observe zone={observation.snapshot.route==='yang'?'teachers':'students'} anchor={{x:280,y:543}} observation={observation}><g className="campus-route-scene" data-route={observation.snapshot.route}><RouteStreetScene route={observation.snapshot.route}/></g></Observe>;
+  return <Observe zone={observation.snapshot.route==='yang'?'teachers':'students'} anchor={{x:280,y:543}} observation={observation}><g className="campus-route-scene" data-route={observation.snapshot.route}><RouteStreetScene route={observation.snapshot.route} stage={observation.snapshot.uprisingStage}/></g></Observe>;
 }
 
-export function CampusBuildingDetails({route}:{route:HeyiRoute}) {
+export function CampusBuildingDetails({route,stage}:{route:HeyiRoute;stage?:UprisingStage}) {
   const f=geometry(720,435,360,640,440);
-  const titles:Record<HeyiRoute,string>={opening:'新學期',democracy:'學生代表選舉',revolution:'臨時委員會',reform:'互助學習與課程改革',haobang:'各派聯席會議',yang:'教學與職稱評審',jidi:'升學衝刺',jidi_riot:'緊急疏散',gouxiong:'校園文化週',wu:'校園秩序公報',despair:'暫停使用'};
-  const colors:Record<HeyiRoute,string>={opening:'#afa98e',democracy:'#9dbaa7',revolution:'#b97e6f',reform:'#afbb94',haobang:'#bca483',yang:'#bdaa8b',jidi:'#c6b580',jidi_riot:'#c38e73',gouxiong:'#b4a0b8',wu:'#aab9b7',despair:'#aa998a'};
+  const titles:Record<HeyiRoute,string>={opening:'新學期',uprising:stage==='assembly'?'學生代表大會':stage==='committee'?'聯合革命委員會':'B3臨時聯絡處',democracy:'學生代表選舉',revolution:'臨時委員會',reform:'互助學習與課程改革',haobang:'各派聯席會議',yang:'教學與職稱評審',jidi:'升學衝刺',jidi_riot:'緊急疏散',gouxiong:'校園文化週',wu:'校園秩序公報',despair:'暫停使用'};
+  const colors:Record<HeyiRoute,string>={opening:'#afa98e',uprising:'#cb9d81',democracy:'#9dbaa7',revolution:'#b97e6f',reform:'#afbb94',haobang:'#bca483',yang:'#bdaa8b',jidi:'#c6b580',jidi_riot:'#c38e73',gouxiong:'#b4a0b8',wu:'#aab9b7',despair:'#aa998a'};
   const color=colors[route];
-  return <g className="campus-building-details">
+  return <g className="campus-building-details" data-route={route}>
     <Plate face={inset(f.left,.10,.239,.66,.049)} label={titles[route]} rows={0} color={color}/>
+    {route==='uprising'&&<>
+      <Plate face={inset(f.left,.13,.474,.72,.052)} label="團結各班　保衛校園" rows={0} color="#bd7d6c"/>
+      <Plate face={inset(f.right,.13,.474,.71,.052)} label={stage==='assembly'?'代表在此開會':'广播與聯絡'} rows={0} color={color}/>
+      <Flag x={714} y={91} color="#cf8d79" small/>
+      {[[f.left,.84],[f.right,.12]].map(([face,u],i)=>{const p=at(face as Face,u as number,.475);return <g key={i}><path d={`M${p.x} ${p.y}l-3-12m3 1 18 3-1 8-18-3Z`} fill={BLACK} stroke={INK} strokeWidth=".7"/><path className="campus-broadcast" d={`M${p.x+20} ${p.y-9}q7 5 0 11m4-15q12 9 0 19`} stroke={color} fill="none" strokeWidth=".7"/></g>;})}
+      {[6,3].map((col,i)=>{const win=inset(f.left,1-(col+.8)/9,.055,.62/9,.165),p=at(win,.5,1.35),clip=`uprising-window-${i}`;return <g key={col}>
+        <defs><clipPath id={clip}><path d={path(inset(win,.025,.025,.95,.95),true)}/></clipPath></defs>
+        <g clipPath={`url(#${clip})`}><SmallFigure x={p.x} y={p.y} role={i?'teacher':'steward'} pose="talk"/></g>
+        <path d={path([at(win,.5,0),at(win,.5,1)])+path([at(win,0,.5),at(win,1,.5)])} stroke="#739a9f" strokeWidth=".7" fill="none"/>
+      </g>;})}
+    </>}
     {route==='jidi'&&<><Plate face={inset(f.right,.13,.53,.67,.17)} label="C9 / 985" color={color} rows={3} lit/>{Array.from({length:12},(_,i)=><path key={i} d={path([at(f.right,.15+i*.053,.74),at(f.right,.15+i*.053,.87)])} stroke={color} strokeWidth={i%3?1:2.5}/>)}</>}
     {route==='yang'&&(()=>{const win=inset(f.left,1-7.8/9,.055,.62/9,.165);return <g>
       <path d={path(win,true)} fill="#03090d" stroke="#c4bda2" strokeWidth="1"/>

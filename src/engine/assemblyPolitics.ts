@@ -1,4 +1,5 @@
 import type { GameState } from '../types';
+import { promotePendingEvent } from './eventQueue';
 
 export const INITIAL_ASSEMBLY = { orthodox: 30, bear: 20, pan: 20, otherDem: 15, testTaker: 15 };
 export const TRUE_LEFT_UNITY_MIN = 55;
@@ -66,20 +67,26 @@ export function assemblyCrisisKind(state: GameState): 'opposition_slander' | 'de
 }
 export function shouldTriggerAssemblyCrisis(state: GameState): boolean {
   const kind = assemblyCrisisKind(state);
-  return !!kind && state.stats.studentSanity < 70 && (state.studentAssemblyFactions?.pan ?? 20) < 40
-    && (kind !== 'democratic_power_struggle' || state.stats.allianceUnity < 65);
+  if (kind === 'democratic_power_struggle') {
+    if (!state.flags.committee_authority_crisis_started) return true;
+    return (state.studentAssemblyFactions?.pan ?? 20) < 40 && state.stats.partyCentralization > 25
+      && !(state.stats.allianceUnity >= 80 && state.stats.partyCentralization <= 40);
+  }
+  return kind === 'opposition_slander' && state.stats.studentSanity < 70 && (state.studentAssemblyFactions?.pan ?? 20) < 40;
 }
+export const assemblyDateKey = (date: Date) => `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
 export function cleanAssemblyCrises(state: GameState): GameState {
   const kind = assemblyCrisisKind(state);
-  const allowed = (id: string) => !['opposition_slander', 'democratic_power_struggle'].includes(id) || (id === kind && shouldTriggerAssemblyCrisis(state));
+  const openedToday = kind === 'democratic_power_struggle' && state.flags.committee_authority_crisis_day === assemblyDateKey(state.date);
+  const allowed = (id: string) => !['opposition_slander', 'democratic_power_struggle'].includes(id) || (id === kind && (openedToday || shouldTriggerAssemblyCrisis(state)));
   const allowEvent = (id: string) => {
     if (id === 'opposition_slander_event') return kind === 'opposition_slander';
     if (id === 'democratic_power_struggle_event' || id === 'democratic_power_struggle_result') return kind === 'democratic_power_struggle';
     return true;
   };
-  return { ...state, crises: (state.crises ?? []).filter(c => allowed(c.id)),
+  return promotePendingEvent({ ...state, crises: (state.crises ?? []).filter(c => allowed(c.id)),
     activeEvent: state.activeEvent && allowEvent(state.activeEvent.id) ? state.activeEvent : null,
-    activeStoryEvents: (state.activeStoryEvents ?? []).filter(e => allowEvent(e.id)) };
+    activeStoryEvents: (state.activeStoryEvents ?? []).filter(e => allowEvent(e.id)) });
 }
 export function expireAssemblyCrisis(state: GameState, id: string, random = Math.random): Partial<GameState> {
   if (id !== assemblyCrisisKind(state)) return {};

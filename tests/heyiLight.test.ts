@@ -1,10 +1,12 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import type { GameState } from '../src/types';
-import { advanceHeyiLight, getHeyiLightSnapshot, getHeyiLightTarget, getHeyiRoute } from '../src/engine/heyiLight';
+import { advanceHeyiLight, getHeyiLightSnapshot, getHeyiLightTarget, getHeyiRoute, getHeyiSceneChanges, observeHeyiLight } from '../src/engine/heyiLight';
+import { isReminderDismissed, campaignDay } from '../src/engine/actionReminders';
 
 function makeState(overrides: Partial<GameState> = {}): GameState {
   return {
+    date: new Date(2023,8,1),
     currentFocusTree: 'phase1', completedFocuses: [], flags: {}, gameEnding: undefined,
     heyiLightValue: 50,
     stats: { pp: 50, stab: 50, ss: 50, tpr: 50, capitalPenetration: 0, radicalAnger: 50, allianceUnity: 50, partyCentralization: 50, studentSanity: 50 },
@@ -26,6 +28,34 @@ test('route observations change across democratic victory, authoritarian school,
   assert.notEqual(democratic.accent, riot.accent);
   assert.equal(getHeyiLightSnapshot(makeState({ currentFocusTree: 'treeA_pan', gameEnding: 'game_over_pan', heyiLightValue: 35 })).democraticVictory, true);
   assert.equal(getHeyiRoute(makeState({ currentFocusTree: 'jidi_tree', flags: { jidi_riot_active: true }, gameEnding: 'game_over_jidi_1' })), 'jidi');
+});
+
+test('B3 uprising has three early variants distinct from the final true-left scene',()=>{
+  const s=makeState({flags:{rebellion_started:true}});
+  assert.equal(getHeyiRoute(s),'uprising');
+  assert.equal(getHeyiLightSnapshot(s).uprisingStage,'barricades');
+  const committee={...s,currentFocusTree:'treeA'};
+  assert.equal(getHeyiLightSnapshot(committee).uprisingStage,'committee');
+  const assembly={...committee,completedFocuses:['convene_assembly']};
+  assert.equal(getHeyiLightSnapshot(assembly).zones.building.status,'代表共议');
+  assert.equal(getHeyiRoute({...assembly,currentFocusTree:'treeA_true_left'}),'revolution');
+});
+
+test('scene notifications persist until observed, ignore fractional drift, and reset dismissal for a new variant',()=>{
+  const initial=makeState(); assert.equal(getHeyiSceneChanges(initial),null);
+  const baseline=observeHeyiLight(initial);
+  assert.equal(getHeyiSceneChanges({...baseline,heyiLightValue:50.15}),null);
+  const uprising={...baseline,currentFocusTree:'treeA',flags:{...baseline.flags,rebellion_started:true}};
+  const change=getHeyiSceneChanges(uprising)!;assert.ok(change.entries.some(e=>e.includes('联席指挥')));
+  assert.equal(getHeyiSceneChanges(observeHeyiLight(uprising)),null);
+  const reminder={id:'heyi' as const,title:'新景象',entries:change.entries,keys:[change.key],target:'heyi-light'};
+  const ignored={keys:reminder.keys,until:campaignDay(uprising.date)+30,route:uprising.currentFocusTree};
+  assert.equal(isReminderDismissed(reminder,ignored,uprising),true);
+  const changed={...uprising,completedFocuses:['convene_assembly']};
+  const newer=getHeyiSceneChanges(changed)!;
+  assert.equal(isReminderDismissed({...reminder,keys:[newer.key]},ignored,changed),false);
+  assert.equal(isReminderDismissed(reminder,ignored,{...uprising,date:new Date(2023,9,1)}),false);
+  assert.ok(getHeyiSceneChanges({...uprising,flags:{rebellion_started:true}}),'old saves without an observation still announce non-opening scenes');
 });
 
 test('old saves begin at 50 and law differences move the target without abrupt jumps', () => {

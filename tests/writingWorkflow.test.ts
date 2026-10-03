@@ -4,8 +4,15 @@ import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
 import { catalog, planEdits, mechanicsFingerprint } from '../scripts/writing/catalog.mjs';
-import { validateDraft, assertReferenceStudy, isMechanicHint, rebindSelection } from '../scripts/writing/editor.mjs';
+import { validateDraft, assertReferenceStudy, isMechanicHint, rebindSelection, proseRange } from '../scripts/writing/editor.mjs';
 import { parseModelJSON } from '../scripts/writing/json-output.mjs';
+
+test('a targeted longer event uses its fact-card range without relaxing short spirit limits',()=>{
+  const event={kind:'event',before:'旧稿',lengthRange:{minChars:350,maxChars:580}};
+  assert.equal(validateDraft(event,'情'.repeat(500)).errors.length,0);
+  assert.ok(validateDraft({...event,kind:'spirit',lengthRange:{minChars:65,maxChars:135}},'情'.repeat(150)).errors.length);
+  assert.throws(()=>proseRange({...event,lengthRange:{minChars:100,maxChars:901}}));
+});
 
 test('JSON cleanup removes only structural trailing commas, preserving quoted prose', () => {
   const prose = '正文包含逗号, } 和引号“句子”。';

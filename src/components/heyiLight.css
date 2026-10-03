@@ -91,3 +91,14 @@
 @keyframes campus-carry { from {translate:-7px 0;} to {translate:10px 0;} }
 @media(prefers-reduced-motion:reduce) { .heyi-light-v2__scene .campus-fire,.heyi-light-v2__scene .campus-smoke,.heyi-light-v2__scene .campus-steam,.heyi-light-v2__scene .campus-water,.heyi-light-v2__scene .campus-search-beam,.heyi-light-v2__scene .campus-carrier,.heyi-light-v2__scene .heyi-screen-pulse,.heyi-light-v2__scene .campus-festoon {animation:none;} }
 @media(max-width:700px) { .heyi-light-v2__header {height:83px;} .heyi-light-v2__value {width:210px;} .heyi-light-v2__readout strong {font-size:28px;} .heyi-light-v2__trend em {font-size:10px;} }
+
+/* 联合革委会：铜色仪表、暗红织物与原有冷色建筑线稿。 */
+.heyi-light-v2--uprising { border-color: #906c50; }
+.heyi-light-v2--uprising .heyi-light-v2__header { background: linear-gradient(110deg, #1c1717, #10191d 65%); border-bottom-color: #956d51; }
+.heyi-light-v2--uprising .heyi-light-v2__title > span { color: #c3a186; }
+.campus-uprising-courier { animation: uprising-courier 12s ease-in-out infinite; }
+.campus-broadcast { animation: uprising-broadcast 2.8s ease-in-out infinite; }
+@keyframes uprising-courier { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(10px, -2px); } }
+@keyframes uprising-broadcast { 0%, 100% { opacity: .22; } 48% { opacity: .95; } }
+@media (prefers-reduced-motion: reduce) { .campus-uprising-courier, .campus-broadcast { animation: none; } }
+.campus-uprising .heyi-cloth, .campus-uprising-gate .heyi-cloth, .campus-building-details[data-route="uprising"] .heyi-cloth { fill: #251615; }

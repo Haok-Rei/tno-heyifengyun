@@ -2,7 +2,8 @@ import type { GameState, NationalSpirit } from '../types';
 import { getLawSystem, LAW_CATEGORIES } from '../data/laws';
 
 export type HeyiZone = 'sign' | 'gate' | 'building' | 'students' | 'teachers' | 'road' | 'trees' | 'guard';
-export type HeyiRoute = 'opening' | 'democracy' | 'revolution' | 'despair' | 'reform' | 'haobang' | 'yang' | 'jidi' | 'jidi_riot' | 'gouxiong' | 'wu';
+export type HeyiRoute = 'opening' | 'uprising' | 'democracy' | 'revolution' | 'despair' | 'reform' | 'haobang' | 'yang' | 'jidi' | 'jidi_riot' | 'gouxiong' | 'wu';
+export type UprisingStage = 'barricades' | 'committee' | 'assembly';
 export type HeyiMood = 'ruin' | 'weary' | 'restless' | 'bright';
 export type HeyiStatusTone = 'danger' | 'strained' | 'unsettled' | 'good';
 
@@ -11,6 +12,7 @@ export interface HeyiLightSnapshot {
   target: number;
   route: HeyiRoute;
   mood: HeyiMood;
+  uprisingStage: UprisingStage;
   democraticVictory: boolean;
   headline: string;
   overview: string;
@@ -34,7 +36,7 @@ export function getHeyiRoute(state: GameState): HeyiRoute {
   if (tree === 'treeA_lu_bohan' || tree.startsWith('wu_tree') || state.flags.wu_route_active) return 'wu';
   if (tree === 'treeA_true_left' || ['true_left_good', 'great_awakening', 'game_over_wang'].includes(ending)) return 'revolution';
   if (tree === 'treeA_pan' || ['game_over_pan', 'game_over_xu', 'game_over_juanhao'].includes(ending)) return 'democracy';
-  if (tree === 'treeA' || tree === 'treeA_haobang_pre') return 'reform';
+  if (tree === 'treeA' || tree === 'treeA_haobang_pre' || tree === 'phase1' && state.flags.rebellion_started) return 'uprising';
   return 'opening';
 }
 
@@ -42,6 +44,19 @@ const ROUTE_SCENES: Record<HeyiRoute, {
   headline: string; overview: string; accent: string; target: number;
   descriptions: Record<HeyiZone, string>;
 }> = {
+  uprising: {
+    headline: '街垒后的第一天', overview: 'B3顶层挂出了红旗。校门仍通向同一条路，进出的人却不再等主任点头。', accent: '#d09672', target: 61,
+    descriptions: {
+      sign: '红布沿校门的檐口展开，避开了“合肥一中”四个字。两名学生踩着梯子，把松开的扎带重新系紧。',
+      gate: '伸缩门退到了轨道尽头。纠察员用课桌留出一条通道，送饭和送纸的学生不断从这里经过。',
+      building: 'B3楼道里的桌椅还没搬回教室，顶层窗口垂下红旗。楼下的人仰头听广播，有人拿着新写的值守表往上跑。',
+      students: '昨日还隔着班级各自抱怨的学生，今天站在一起分传单。一包纸拆开，几双手伸过去接，发完的人又赶往下一栋楼。',
+      teachers: '老师在校门口停了一会儿，向值守的学生问哪条路能进教室。有人带路，也有人留下来，和纠察队一起核对班级名单。',
+      road: '路障靠着路缘堆放，正中留出通道。自行车载着印好的传单穿过去，后座的人举着手，叫站在路中的同学让一让。',
+      trees: '树枝上系着短短的红布。树下几个人给告示刷浆糊，背着书包的学生停下来，把最上面一行读给同伴听。',
+      guard: '旧值班表被摘下，纠察员在门卫室里排下一轮岗。登记簿仍在桌上，写进来的却是领纸、换班和送饭的安排。',
+    },
+  },
   opening: {
     headline: '一座还在上课的学校', overview: '清晨七点，校门照常开启。谁也不知道这一天会从哪间教室开始失控。', accent: '#c18b55', target: 49,
     descriptions: {
@@ -216,6 +231,7 @@ const MOOD_STATUS: Record<HeyiMood, Record<HeyiZone, Status>> = {
   },
 };
 const ROUTE_STATUS: Partial<Record<HeyiRoute, Partial<Record<HeyiZone, Status>>>> = {
+  uprising: { sign: ['红旗初展', 'good'], gate: ['街垒轮值', 'unsettled'], building: ['广播初响', 'unsettled'], students: ['群情振奋', 'good'], teachers: ['观望联络', 'unsettled'], road: ['奔走联络', 'unsettled'], trees: ['布告满枝', 'unsettled'], guard: ['纠察换岗', 'unsettled'] },
   democracy: { sign: ['众议留名', 'good'], building: ['灯下辩论', 'good'], students: ['各抒己见', 'good'], teachers: ['平席共议', 'good'] },
   revolution: { sign: ['红旗高悬', 'unsettled'], gate: ['纠察轮值', 'unsettled'], students: ['奔走相告', 'unsettled'], road: ['粉笔指路', 'unsettled'] },
   despair: { gate: ['门户洞开', 'danger'], building: ['人去楼空', 'danger'], road: ['路障横陈', 'danger'] },
@@ -233,6 +249,7 @@ function zoneStatus(state: GameState, route: HeyiRoute, mood: HeyiMood, zone: He
   if (zone === 'students' && safeNumber(state.stats.studentSanity, 50) < 25) return ['行尸走肉', 'danger'];
   if (zone === 'road' && safeNumber(state.stats.stab, 50) < 20) return ['满地狼藉', 'danger'];
   if (mood === 'ruin') return MOOD_STATUS.ruin[zone];
+  if (route === 'uprising') return ROUTE_STATUS.uprising?.[zone] ?? MOOD_STATUS[mood][zone];
   if (mood === 'bright' && route !== 'wu' && route !== 'jidi' && route !== 'yang') return MOOD_STATUS.bright[zone];
   return ROUTE_STATUS[route]?.[zone] ?? MOOD_STATUS[mood][zone];
 }
@@ -281,6 +298,7 @@ export function getHeyiLightSnapshot(state: GameState): HeyiLightSnapshot {
   const route = getHeyiRoute(state);
   const mood: HeyiMood = value < 25 ? 'ruin' : value < 48 ? 'weary' : value < 72 ? 'restless' : 'bright';
   const scene = ROUTE_SCENES[route];
+  const uprisingStage: UprisingStage = state.completedFocuses.includes('convene_assembly') ? 'assembly' : route === 'uprising' && state.currentFocusTree !== 'phase1' ? 'committee' : 'barricades';
   const zones = Object.fromEntries((Object.keys(ZONE_LABELS) as HeyiZone[]).map(zone => {
     const [status, tone] = zoneStatus(state, route, mood, zone);
     return [zone, {
@@ -288,12 +306,38 @@ export function getHeyiLightSnapshot(state: GameState): HeyiLightSnapshot {
       status, tone,
     }];
   })) as HeyiLightSnapshot['zones'];
+  if (route === 'uprising' && uprisingStage !== 'barricades' && mood !== 'ruin') {
+    zones.building = { ...zones.building, status: uprisingStage === 'assembly' ? '代表共议' : '联席指挥',
+      description: uprisingStage === 'assembly' ? '各班代表走进B3会场，楼道里贴出了发言顺序。宣传、值守与复课的安排仍在争论，窗边的记录员一页一页整理意见。' : '临时委员会在B3顶层办公。广播员戴上耳机，窗边的人把各栋楼送来的报告摊开，门外仍有班级代表等着询问下一班岗。' };
+    zones.guard = { ...zones.guard, status: '联络登记', description: '各班联络员把轮值表送到门卫室。领纸的人留下班级，换岗的人划掉前一班的名字；这间小屋成了校门与B3之间的接头点。' };
+  }
   return {
-    value, target: getHeyiLightTarget(state), route, mood, democraticVictory: state.gameEnding === 'game_over_pan', headline: scene.headline,
+    value, target: getHeyiLightTarget(state), route, mood, uprisingStage, democraticVictory: state.gameEnding === 'game_over_pan', headline: route === 'uprising' && uprisingStage !== 'barricades' ? uprisingStage === 'assembly' ? '同一面红旗下的争论' : '联合革命委员会' : scene.headline,
     overview: scene.overview, accent: scene.accent, zones,
     spirit: {
       id: 'heyi_light', name: '合一之光', type: 'neutral', icon: 'campus',
       description: `合一值 ${value}/100。校门内外的景象随校园生活缓慢变化。`,
     },
   };
+}
+
+/** Visible variants, not every fractional daily index change. */
+export function getHeyiSceneKey(state: GameState): string {
+  const snapshot = getHeyiLightSnapshot(state);
+  return JSON.stringify([snapshot.route, snapshot.mood, snapshot.route === 'uprising' ? snapshot.uprisingStage : '', state.date.getMonth() === 11 || state.date.getMonth() < 2,
+    Object.values(snapshot.zones).map(z => [z.status, z.tone])]);
+}
+export function observeHeyiLight(state: GameState): GameState {
+  const key = getHeyiSceneKey(state);
+  if (state.flags.heyi_light_observation?.key === key) return state;
+  const snapshot = getHeyiLightSnapshot(state);
+  return { ...state, flags: { ...state.flags, heyi_light_observation: { key, headline: snapshot.headline, zones: Object.fromEntries(Object.entries(snapshot.zones).map(([zone, z]) => [zone, z.status])) } } };
+}
+export function getHeyiSceneChanges(state: GameState): { key: string; entries: string[] } | null {
+  const snapshot = getHeyiLightSnapshot(state);
+  const previous = state.flags.heyi_light_observation;
+  const key = getHeyiSceneKey(state);
+  if (previous?.key === key || !previous && snapshot.route === 'opening') return null;
+  const changes = Object.entries(snapshot.zones).filter(([zone, z]) => previous?.zones?.[zone] !== z.status).map(([, z]) => `${z.label} · ${z.status}`);
+  return { key, entries: [snapshot.headline, ...changes] };
 }

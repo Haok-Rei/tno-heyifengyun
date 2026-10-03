@@ -110,3 +110,9 @@ npm run writing -- rollback --audit docs/writing/日期-改写.json
 实装人物32条、固定国家精神48条、短事件/通告24条。另两条纯数值/解锁提示保留，后续 `prepare` 会自动排除。相同人物的不同任职阶段单独核对；同ID但不同描述也不合并。及第长事件、杨玉乐办公桌原有文件及动态合一之光读数保留。旧新稿、编辑修正和已知用量见 [本轮审稿记录](2026-10-03-review.md)，机器可读记录见 [首批入库审计](2026-10-03-rewrite.json) 和 [末轮删重](2026-10-03-polish.json)。回退顺序与入库相反。这轮是首批，未覆盖所有事件或运行时动态精神。
 
 API格式依据：[DeepSeek JSON输出](https://api-docs.deepseek.com/guides/json_mode/)、[思考模式](https://api-docs.deepseek.com/guides/thinking_mode/)。
+
+## 针对性长度与剧情复核
+
+选稿项可带 `lengthRange: { minChars, maxChars }`，范围优先于体裁默认值，最多900字。普通精神仍应简练；需要呈现交涉与因果的日常事件可单独提高篇幅。字数不是验收目标，先检查触发条件、选择尚未发生的结果及对白是否推进事情。
+
+`apply` 会更新 `docs/writing/` 中已有的 `*selection.json` 正文键值，使同一条目在早先选稿清单中也能继续使用；全部纳入同一个回滚日志。模型审稿不能代替主编辑对照：2026-10-04修订拒收了首稿中的道具重复、凭空规章与停火误写，保留了具体编辑修正记录。

@@ -2,6 +2,7 @@
 .action-reminder { position:relative; pointer-events:auto; color:var(--reminder-gold); }
 .action-reminder--decision { color:#afc3a2; }.action-reminder--advisor { color:#bdbaa5; }.action-reminder--team { color:#94c1c3; }.action-reminder--mechanic { color:#a9b8ce; }
 .action-reminder--crisis { color:#db9683; }.action-reminder--papers,.action-reminder--stalled { color:#d3b38a; }
+.action-reminder--heyi { color:#a0c7bf; }.action-reminder--heyi>button { border-color:#8ca99c; background:linear-gradient(135deg,#46534a,#17252a 50%,#273836); }
 .action-reminder>button { position:relative; display:block; width:49px; height:49px; padding:2px; cursor:pointer; border:1px solid #8a826b; border-top-color:#b8ae8d; background:linear-gradient(135deg,#353d3c,#141b1c 48%,#20282a); box-shadow:inset 0 0 0 2px #0a0f10,inset 0 0 0 3px #444c46,2px 3px 5px #0009; transition:border-color .15s,background .15s; }
 .action-reminder>button:hover,.action-reminder>button:focus-visible { outline:none; border-color:currentColor; background:linear-gradient(135deg,#49524c,#202929 55%,#263032); box-shadow:inset 0 0 0 2px #101616,0 0 8px #b4a57744; }
 .action-reminder>button:active { transform:translateY(1px); }

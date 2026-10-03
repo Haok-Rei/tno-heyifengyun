@@ -72,9 +72,11 @@ test('only committee and democratic routes get their respective political crisis
   const state = fixture();
   assert.equal(assemblyCrisisKind(state), 'democratic_power_struggle');
   assert.equal(shouldTriggerAssemblyCrisis(state), true);
-  state.stats.allianceUnity = 65;
+  state.stats.allianceUnity = 90; state.stats.studentSanity = 100;
+  assert.equal(shouldTriggerAssemblyCrisis(state), true, 'first assembly dispute is guaranteed');
+  state.flags.committee_authority_crisis_started = true; state.stats.partyCentralization = 40;
   assert.equal(shouldTriggerAssemblyCrisis(state), false);
-  state.stats.allianceUnity = 50;
+  state.stats.allianceUnity = 50; state.stats.partyCentralization = 60;
   const legacy = { id: 'opposition_slander', title: '旧危机', description: '', daysLeft: 1 };
   for (const tree of ['treeA_true_left', 'treeA_haobang', 'treeA_lu_bohan', 'phase1', 'jidi_tree', 'treeB', 'wu_tree', 'gouxiong_tree']) {
     const old = { ...state, currentFocusTree: tree, crises: [legacy], activeEvent: { id: 'opposition_slander_event', title: '', description: '' },
@@ -105,7 +107,7 @@ test('committee conflict has random bounded seats and both signs of unity change
 });
 
 test('opening guidance is spaced, once-only, plot-gated, and never follows a route switch', () => {
-  const state = { ...fixture(), currentFocusTree: 'phase1', completedFocuses: ['start_2023', 'dorm_talks', 'read_marx'] };
+  const state = { ...fixture(), currentFocusTree: 'phase1', completedFocuses: ['start_2023', 'dorm_talks', 'read_marx', 'wu_patrol'] };
   assert.equal(nextOpeningGuidance(state), 'phase1_returned_petition');
   state.flags.phase1_returned_petition_seen = true;
   assert.equal(nextOpeningGuidance(state), 'phase1_recess_dispute');

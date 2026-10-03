@@ -30,6 +30,7 @@ function Person({ x, y, teacher = false, tired = false, stride = 0, active, snap
       <path d="M-4-50l2 1m6-1 2 1M-2-44q3 1 6 0" stroke="#b9baae" strokeWidth=".8" />
       </g>
       {teacher ? <g><path d="M17-7h17v24H17Z" fill="#0d2026" stroke="#c7ccb9" strokeWidth="1.35" /><path d="M21-7v-4h10v4M20 0h11m-11 5h8" stroke="#8faeaa" strokeWidth="1" /></g> : <g><path d="M-14-34L-31-29L-27 1L-13 2Z" fill="#071216" stroke={accent} strokeWidth="1.5" /><path d="M-27-26l14-1m-13 10 12-2m-10 11 11-2" stroke="#698884" strokeWidth=".9" /><path d="M-15-29l5 5" stroke="#d5c6a5" strokeWidth="1.2" /><circle cx="-21" cy="-14" r="2" fill="#c6bb8e" stroke="none" /></g>}
+      {!teacher && snapshot.route === 'uprising' && <g><path d="M-17-27l7-4 3 5-8 4Z" fill="#713e35" stroke="#ce9379" strokeWidth=".8"/><path d="M20-10l13-3 3 12-13 3Z" fill="#101719" stroke="#c5b79b"/><path d="M24-8l7-2m-6 5 7-2m-6 5 6-2" stroke="#a99d87" strokeWidth=".65"/></g>}
       {stride === 2 && <g><path d="M19-6l13-5 5 18-16 3Z" fill="#192a2d" stroke="#c0cbbd" strokeWidth="1.2" /><path d="M22-3l10-3m-9 7 10-3m-9 7 10-3" stroke="#8fa8a8" strokeWidth=".8" /></g>}
     </g>
     <path className="heyi-person__hit" d="M-12-70Q0-77 13-68L16-41L25-17L38-10V22L12 31L0 15L-12 31L-22 28L-35 4L-36-34L-15-42Z"
@@ -87,7 +88,7 @@ function Scene({ snapshot, month, viewBox, active, onZone, onPointer }: {
     <rect x="-500" width="2200" height="700" fill="#020b10" />
     <CampusGround observation={observation}/>
     <SchoolCampus lit={lit} unrest={unrest} route={route}/>
-    <CampusBuildingDetails route={route}/>
+    <CampusBuildingDetails route={route} stage={snapshot.uprisingStage}/>
     <g className="heyi-hotspots"><path d="M80 137L720 75L1160 127V386L720 435L80 377Z" className={active==='building'?'is-active':''}
       role="button" tabIndex={0} aria-label={'观察教学楼：'+snapshot.zones.building.description}
       onPointerEnter={e=>onPointer(e,'building')} onPointerMove={e=>onPointer(e,'building')} onPointerLeave={()=>onZone(null)}
@@ -154,9 +155,9 @@ export default function HeyiLight({ state, onClose }: Props) {
   const trendText = trend === '↗' ? '缓慢回升' : trend === '↘' ? '持续下行' : '基本平稳';
   const gaugeColor = snapshot.value < 25 ? '#c56f63' : snapshot.value < 48 ? '#c4a079' : snapshot.value < 72 ? '#89c2c5' : '#a9d2b1';
   const toneColor = active ? snapshot.zones[active].tone === 'danger' ? '#d47870' : snapshot.zones[active].tone === 'strained' ? '#d2a77f' : snapshot.zones[active].tone === 'good' ? '#a8d3b0' : '#81c9d4' : '#81c9d4';
-  return <section className="heyi-light-v2" role="region" aria-labelledby="heyi-light-title">
+  return <section className={"heyi-light-v2 heyi-light-v2--"+snapshot.route} role="region" aria-labelledby="heyi-light-title">
     <header className="heyi-light-v2__header">
-      <div className="heyi-light-v2__title"><span>档案 / CAMPUS OBSERVATION</span><h2 id="heyi-light-title">合一之光</h2></div>
+      <div className="heyi-light-v2__title"><span>{snapshot.route==='uprising'?snapshot.headline+' / B3':'档案 / CAMPUS OBSERVATION'}</span><h2 id="heyi-light-title">合一之光</h2></div>
       <div className="heyi-light-v2__value" role="meter" aria-label="合一值" aria-valuemin={0} aria-valuemax={100} aria-valuenow={snapshot.value} aria-valuetext={snapshot.value + '，' + trendText} style={{ '--heyi-gauge': gaugeColor } as CSSProperties}>
         <div className="heyi-light-v2__readout"><span>合一值 <small>HE YI INDEX</small></span><strong>{snapshot.value.toString().padStart(2, '0')}</strong><div className="heyi-light-v2__trend"><b>{trend}</b><em>{trendText}</em></div></div>
         <div className="heyi-light-v2__instrument">

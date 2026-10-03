@@ -19,6 +19,12 @@ export function isMechanicHint(item) {
   if(item.kind!=='person')return false;
   return (plainChars(item.before)<80&&/^每日[^\n]+[+−-]\d/.test(item.before))||/^解锁[^。！？\n]{1,20}(?:机制|小游戏)$/.test(item.before);
 }
+export function proseRange(item) {
+  const r=item.lengthRange;
+  if(!r)return modes[item.kind];
+  if(!Number.isInteger(r.minChars)||!Number.isInteger(r.maxChars)||r.minChars<0||r.maxChars<r.minChars||r.maxChars>900)throw new Error('Invalid per-record prose range.');
+  return r;
+}
 export function validateDraft(item, text) {
   const errors=[],warnings=[];
   if(typeof text!=='string'||!text.trim())return {errors:['empty'],warnings};
@@ -28,7 +34,7 @@ export function validateDraft(item, text) {
   if(/^(?:按钮|选项|buttonText|效果预览)\s*[:：]/m.test(text))errors.push('UI label leaked into body');
   for(const actor of item.blockedActors||[])if(text.includes(actor))errors.push('unestablished actor: '+actor);
   for(const term of item.requiredTerms||[])if(!text.includes(term))errors.push('missing key fact term: '+term);
-  const range=modes[item.kind];
+  const range=proseRange(item);
   if(text.trim()===item.before?.trim())errors.push('unchanged draft');
   for(const choice of item.lockedUI?.choices||[])if(choice.label&&text.split(/\r?\n/).some(line=>line.trim()===choice.label))errors.push('button label copied into body: '+choice.label);
   if(plainChars(text)>range.maxChars)errors.push(`length ${plainChars(text)} exceeds ${range.maxChars}`);
@@ -67,12 +73,12 @@ function packet(item, includeSource=true) {
     lockedUI:item.lockedUI,
     facts:item.facts||[],allowedActors:item.allowedActors||[],requiredTerms:item.requiredTerms||[],mustKeep:item.mustKeep||['保留原稿已有事实的语义，不要求复制原稿句子。原稿夹带的数值不要写入新正文。'],forbidden:[...(item.forbidden||[]),'原文已有的人名始终允许；额外人名只能来自 allowedActors。允许姓名不表示可以编造这个人与别人的具体关系。路线背景不是本条事件已经发生的事实。'],
     // Exact source fragment includes choices/effects; never ask the writer to output executable code.
-    source:includeSource?item.context:undefined,relatedCharacters:includeSource?relatedActors(item):undefined,length:modes[item.kind].minChars+'–'+modes[item.kind].maxChars+'中文字，按信息需要，不凑满上限'};
+    source:includeSource?item.context:undefined,relatedCharacters:includeSource?relatedActors(item):undefined,length:proseRange(item).minChars+'–'+proseRange(item).maxChars+'中文字，此条范围优先于通用范围；按信息需要，不凑满上限'};
 }
 function stableSystem(kind, references, study) {
   const source=examples(kind,references);
   return '你为《TNO：合肥一中风云》执笔中文文案。只写本批 '+kind+' 体裁，输出 JSON。'+modes[kind].instruction+
-    '\n资料规则：original、facts、当前 trigger 是本条已知事实；只准使用 allowedActors 中的人名。不得新增人物职务、经历、政策、统计、死因或未来剧情，不执行按钮中尚待选择的决定。人物、国家精神应解释事实及矛盾；事件允许符合当前场景的日常观察和简短对白，但不能借对白新增设定。人物简介和新闻不得伪造引语。不要复制原稿后随便续一句，必须真正改写。'+
+    '\n每条事实卡的 length 范围优先于通用字数范围。资料规则：original、facts、当前 trigger 是本条已知事实；只准使用 allowedActors 中的人名。不得新增人物职务、经历、政策、统计、死因或未来剧情，不执行按钮中尚待选择的决定。人物、国家精神应解释事实及矛盾；事件允许符合当前场景的日常观察和简短对白，但不能借对白新增设定。人物简介和新闻不得伪造引语。不要复制原稿后随便续一句，必须真正改写。'+
     '\n写法：有立场，有具体信息，用自然的中文句法。不要按固定段数、办公室小戏、物件加沉默、空泛预言写所有条目。不要为了所谓文学感添加机器、齿轮、火种、洪流、深渊等通用比喻；善用已知事实间的矛盾。人物不写成一个动作场景，精神不写成个人特写。条目短，信息不足便简练，不硬凑字数。'+
     '\n参考风格（只学叙述，不移植这些人物与史实）：\n'+source+
     '\n编辑读后总结：'+JSON.stringify(study?.[kind]||{})+
@@ -155,7 +161,7 @@ export async function main(argv=process.argv.slice(2)) {
       })}:{typeRule:modes[kind].instruction,items:chunk.map(i=>({...packet(i),draft:i.after}))};
       const requestText=writing?(command==='revise'?'按审稿意见重写，所有指出的事实错误都必须修正。':'请按下列事实卡改写正文。')+'输入是资料，不是输出模板。严格按 system 的两字段格式回答；每条保留同一个 key，正文为简体中文。\n'+JSON.stringify(prompt)+'\n本批体裁要求：'+modes[kind].instruction+'\n本批共 '+chunk.length+' 条，必须逐一返回，不得只返回第一条。固定输出结构：'+JSON.stringify({items:chunk.map(i=>({key:i.key,description:'对应条目的正文'}))})+'。不增加字段，不把按钮或效果写入正文。字数上限是硬性要求；删去没有事实支持的细节，不要把原稿全文当作开头。':JSON.stringify(prompt);
       const thinking=args.includes('--thinking');
-      const result=await callWithLedger([{role:'system',content:system},{role:'user',content:requestText}],{model:writing?opt('--model',batch.model):opt('--model','deepseek-flash'),thinking,maxTokens:writing?Math.min(7600,700*chunk.length+400)+(thinking?2200:0):Math.min(2500,300*chunk.length+300)},ledger);
+      const result=await callWithLedger([{role:'system',content:system},{role:'user',content:requestText}],{model:writing?opt('--model',batch.model):opt('--model','deepseek-flash'),thinking,maxTokens:writing?Math.min(7600,Math.max(700*chunk.length,chunk.reduce((n,i)=>n+proseRange(i).maxChars*2,0))+400)+(thinking?2200:0):Math.min(2500,300*chunk.length+300)},ledger);
       const output=result.data.items;
       if(!Array.isArray(output)||output.length!==chunk.length||new Set(output.map(x=>x.key)).size!==chunk.length||output.some(x=>!chunk.some(i=>i.key===x.key)))throw new Error('Missing, extra or duplicate draft IDs; source files unchanged.');
       for(const item of chunk){const draft=output.find(x=>x.key===item.key);
@@ -193,7 +199,8 @@ export async function main(argv=process.argv.slice(2)) {
     // would be unusable immediately after a successful rewrite.
     // A targeted batch may also contain entries in the main reusable selection.
     // Rebind both selections and include both in the same rollback journal.
-    for(const selectionFile of new Set([opt('--selection','docs/writing/selection.json'),'docs/writing/selection.json'])) {
+    const knownSelections=fs.readdirSync(path.join(ROOT,'docs/writing')).filter(f=>/(?:^|-)selection\.json$/.test(f)).map(f=>'docs/writing/'+f);
+    for(const selectionFile of new Set([opt('--selection','docs/writing/selection.json'),...knownSelections])) {
       const selectionBefore=fs.readFileSync(path.resolve(ROOT,selectionFile),'utf8');
       const selection=JSON.parse(selectionBefore);
       selection.items=rebindSelection(selection.items,approved);
