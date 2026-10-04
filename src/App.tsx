@@ -70,7 +70,7 @@ const INITIAL_EVENT: GameEvent = {
 const GAME_OVER_SCHOOL: SuperEventData = {
   id: 'game_over_school',
   title: '全面镇压',
-  quote: '“秩序，高于一切。”',
+  quote: '秩序，高于一切。',
   author: '吴福军',
   color: '#FF3333'
 };
@@ -78,7 +78,7 @@ const GAME_OVER_SCHOOL: SuperEventData = {
 const GAME_OVER_ANARCHY: SuperEventData = {
   id: 'game_over_anarchy',
   title: '升学率雪崩',
-  quote: '“我们自由了，然后呢？”',
+  quote: '我们自由了，然后呢？',
   author: '佚名做题家',
   color: '#39FF14'
 };
@@ -94,63 +94,63 @@ const FOCUS_COMPLETION_SUPER_EVENTS: Record<string, SuperEventData> = {
   jidi_corporate_utopia: {
     id: 'jidi_empire_super',
     title: '及第帝国',
-    quote: '“在利润面前，教育会被改写成生产线。”',
-    author: '及第联合管理委员会',
+    quote: '不要你的金，不要你的银，只要你的心。',
+    author: '陶行知',
     color: '#f59e0b',
   },
   jidi_hidden_riot: {
     id: 'jidi_riot_super',
     title: '及第暴乱',
-    quote: '“在你身边，路虽远亦未倦。”',
+    quote: '在你身边，路虽远亦未倦。',
     author: '漫步人生路',
     color: '#ef4444',
   },
   start_reform: {
     id: 'true_left_reform_super',
     title: '做题改革启动',
-    quote: '“革命不是换一张试卷，而是换一套命运。”',
+    quote: '革命不是换一张试卷，而是换一套命运。',
     author: '王照凯',
     color: '#f43f5e',
   },
   lu_bohan_start: {
     id: 'lu_authoritarian_super',
     title: '极权派上台',
-    quote: '“合一做题蛆太多，我们图蛆太少。”',
+    quote: '合一做题蛆太多，我们图蛆太少。',
     author: '吕波汉',
     color: '#ef4444',
   },
   gouxiong_accident: {
     id: 'haobang_rise_super',
     title: '自社派上台',
-    quote: '“团结不是退让，是为了更美好世界的梦想。”',
+    quote: '团结不是退让，是为了更美好世界的梦想。',
     author: '豪邦',
     color: '#38bdf8',
   },
   gx_start: {
     id: 'gx_auditorium_split_super',
     title: '艺术礼堂分裂',
-    quote: '“银幕升起的那一刻，旧同盟也被撕成两半。”',
-    author: '礼堂值夜记录',
+    quote: '我们当时所持的观点只是一个幻想。',
+    author: '恩格斯',
     color: '#a855f7',
   },
   gx_redeem_settlement: {
     id: 'gx_redeem_super',
     title: '浪子回头',
-    quote: '“把面具摘下，才有资格谈明天。”',
-    author: '狗熊',
+    quote: '现实是，你可以一步一步地改变。',
+    author: '科恩-本迪特',
     color: '#22c55e',
   },
   gx_embarrass_settlement: {
     id: 'gx_embarrass_super',
     title: '丢人现眼',
-    quote: '“当聚光灯照向现实，小丑无处可逃。”',
+    quote: '当聚光灯照向现实，小丑无处可逃。',
     author: '达璧',
     color: '#ef4444',
   },
   gx_ruin_settlement: {
     id: 'gx_ruin_super',
     title: '永恒的赛博废墟',
-    quote: '“当现实被按下暂停键，废墟也会长出荧光。”',
+    quote: '当现实被按下暂停键，废墟也会长出荧光。',
     author: '弹幕纪元记录',
     color: '#ec4899',
   },
@@ -160,8 +160,8 @@ const FOCUS_START_SUPER_EVENTS: Record<string, SuperEventData> = {
   first_democratic_election: {
     id: 'first_democratic_election_super',
     title: '第一次合一普选',
-    quote: '“让每一张选票，都比口号更响亮。”',
-    author: '合一学生议会',
+    quote: '抱负不要变，未来是你们的。',
+    author: '陈栋',
     color: '#22c55e',
   },
 };
@@ -198,7 +198,7 @@ const INITIAL_GAME_STATE: GameState = {
     title: '校长',
     portrait: 'feng_anbao',
     ideology: 'authoritarian',
-    description: "封安宝是合肥一中现任校长，以强硬的管理风格和对升学率的极度追求而闻名。在他治下，学校纪律严明，分数成了最清楚的管理依据，学生的个性发展则被压到一边。他相信学校应当围绕升学运转，对教师强调考核，对学生要求服从。学生对这种管理的压抑感并未因此消失。封安宝把这些声音看作管理还不够紧，而不是方向有误。",
+    description: "封安保也许是这所百年名校历史上最高效，也最冷酷的独裁者。作为合肥一中的现任最高统帅，他以钢铁手腕推行了衡水模式，将陈栋时期引以为傲的民主传统无情碾碎，把校园重塑为一座运转着衡水极权模式的全景监狱。\n\n在这位校长的宏大蓝图中，教育早已剥离了启蒙的温情伪装，沦为一条剔除个性的残酷工业流水线。在他治下，升学率是这套官僚机器唯一承认的合法性来源，分数是衡量个人生存价值的绝对货币，而无条件服从则是师生必须恪守的最高宪法。他用严苛的绩效考核勒紧了教职员工的咽喉，又用密不透风的纪律网与冰冷的量化扣分，无情绞杀着学子们的青春。\n\n然而，极致的高压并未能彻底抽干所有的反抗之血。面对B3教学楼走廊里日益蔓延的窒息感与绝望的低语，封安保那被威权主义深度异化的心智从未产生过半分动摇。坐在行政楼的权力顶端，他俯瞰着这片充满怨气的领地，得出了一个可怕的结论：那些微弱的悲鸣与反抗，绝不是他路线错误的警钟——那仅仅证明了，纪律的螺丝拧得还不够紧，权力的锁链还需再多加一环。",
     buffs: ['每日稳定度 +0.05', '每日卷子储备 -10']
   },
   ideologies: {
@@ -2493,7 +2493,7 @@ export default function App() {
                     title: '赛博娱乐大统领',
                     portrait: 'gouxiong',
                     ideology: 'deconstructivism',
-                    description: "狗熊从红蛤时期的初创成员变成赛博娱乐大统领，靠的不是一套能解释校园秩序的政治纲领，而是把学生对旧权威的愤怒引向持续的解构狂欢。他认定严肃制度和宏大叙事已经失效，只有把学校彻底娱乐化、二次元化，才能让被压抑的人获得短暂归属。他高二时偷过女同学裤子，这种恶趣味后来成了他行使权力时的固定风格，既不严肃也不打算解释。他掌握广播室和艺术礼堂后，用动漫片头、网络迷因和粗俗玩笑维系忠诚，支持者围拢过来多半是为了在起哄中分到一点存在感。这种统治能拆解旧权威，却无法回答权力应当承担什么责任。"
+                    description: "狗熊从红蛤时期的初创成员变成赛博娱乐大统领，靠的不是一套能解释校园秩序的政治纲领，而是把学生对旧权威的愤怒引向持续的解构狂欢。他认定严肃制度和宏大叙事已经失效，只有把学校彻底娱乐化、二次元化，才能让被压抑的人获得短暂归属。据传说他高二时偷过女同学裤子，这种恶趣味后来成了他行使权力时的固定风格，既不严肃也不打算解释。他掌握广播室和艺术礼堂后，用动漫片头、网络迷因和粗俗玩笑维系忠诚，支持者围拢过来多半是为了在起哄中分到一点存在感。这种统治能拆解旧权威，却无法回答权力应当承担什么责任。"
                   },
                   // v8.11 狗熊撕毁一切旧法案：纪律全面自治、作息自由、人事学生评议会、教育素质教育
                   lawSystem: { discipline: 'full_autonomy', schedule: 'free_schedule', personnel: 'student_assembly_hr', education: 'quality_education', assessment: 'project_assessment', clubs: 'student_clubs' },
@@ -2561,7 +2561,7 @@ export default function App() {
                     title: '及第教育CEO',
                     portrait: 'feng_anxiang',
                     ideology: 'anarcho_capitalism',
-                    description: "封安祥是及第教育的掌舵人。他把学校当作一台提分机器，认为教育本质是一场可以被精确计算、无限压榨的商业游戏。在他治下，教辅研发与标准化流程被推到前台，讲义和测验都指向可衡量的增量。他不必动用警棍，靠条款与利润就能约束各方，联合管理委员会里的企业利益乐意为这种秩序提供支持。\n\n问题也出在这里。封安祥擅长计算分数，却难以理解分数之外的失败。学生在他眼中先是客户，再是人；课堂一旦不能被计价，他就找不到改善的入口。及第接管之后，这种商业逻辑会被当作效率本身，但它与教育现实之间的裂缝，不会因为合同写得漂亮就自动弥合。",
+                    description: "对于及第教育的掌舵人封安祥而言，在这场暗流涌动的资本渗透中，合肥一中从来不是什么百年学府，而是一台亟待优化的提分机器，一张可以被无限压榨出利润的资产负债表。\n\n在资本与校方官僚合流的阴影下，他将教育的本质降维成了一场极其冷酷、且被精确计算的商业游戏。教辅研发与标准化流水线被推上了前台，每一份讲义、每一次测验，都必须严格指向可被严密衡量的分数增量。封安祥不需要像吴福军那样在走廊里挥舞警棍，他只需依靠冰冷的商业条款与绩效分红，就能将各方势力牢牢约束在资本的轨道上。在由他一手操控的联合管理委员会里，贪婪的企业利益集团正弹冠相庆，心甘情愿地为这种高效的“新秩序”保驾护航。\n\n然而，这套看似完美无瑕的商业逻辑，正是埋葬一中灵魂的坟墓。封安祥精通于算计分数的涨跌与盈亏，却对电子表格之外的“失败”一无所知。在这个男人的眼中，学生首先是待变现的客户，其次才是活生生的人；一旦课堂上的思想启蒙无法被转化为可计价的KPI，他便会毫不留情地将其从系统中剔除。及第教育全面接管后，这种资本的剥削逻辑被公然粉饰为“绝对效率”，但那份写得再漂亮的商业合同，也永远无法弥合资本逐利与教育现实之间那道深不见底的裂缝。当最后一个做题家被榨干剩余价值时，这座建立在合同与利润之上的提分帝国，终将迎来它的总清算。",
                     buffs: ['每日GDP增长 +5%', '每日学生支持度 -0.5%']
                   },
                   // v8.11 及第接管：应试至上、衡水作息、校长一言堂
@@ -4959,13 +4959,13 @@ export default function App() {
             newStats.ss = Math.min(100, newStats.ss + 30);
             newStats.pp += 20;
             newStats.allianceUnity = Math.min(100, newStats.allianceUnity + 10);
-            newSpirits.push({ id: 'awakened_binhu', name: '被唤醒的滨湖', description: "频率之争后，校方不再垄断广播。学生的诉求和行动通知可以直接传遍校园，各班不必再靠口耳相传维持联系。夺下设备只是第一步：广播的口径由谁决定、哪些声音能够播出，将成为学生组织自己的责任。", type: 'positive', effects: { ssDaily: 0.5, ppDaily: 0.3 } });
+            newSpirits.push({ id: 'awakened_binhu', name: '被唤醒的滨湖', description: "校方不再垄断广播。学生的诉求和行动通知可以直接传遍校园，各班不必再靠口耳相传维持联系。夺下设备只是第一步：广播的口径由谁决定、哪些声音能够播出，将成为学生组织自己的责任。", type: 'positive', effects: { ssDaily: 0.5, ppDaily: 0.3 } });
             newEvent = { id: 'freq_critical_evt', title: '电波响彻滨湖', description: `平均接管率${fr.avgFreq.toFixed(1)}%——完美！\n\n当王照凯的声音通过三个FM频段同时响起时，整个校园都安静了。吴福军愤怒地砸碎了保安室的收音机，杨玉乐在办公室里来回踱步，封安宝的电话线被打爆了。\n\n"合一的学生们，这里是联合革命委员会。旧的秩序已经终结，新的时代从此刻开始。"\n\n行政楼的控制得到了全面巩固，革命的电波势不可挡。`, buttonText: '这是我们的频率！', isStoryEvent: true, effectsText: ['行政楼地块控制度 +20', 'SS +30, PP +20, 团结 +10'] };
             break;
           case 'success': // 成功接管
             newStats.ss = Math.min(100, newStats.ss + 18);
             newStats.pp += 10;
-            newSpirits.push({ id: 'awakened_binhu', name: '被唤醒的滨湖', description: "频率之争后，校方不再垄断广播。学生的诉求和行动通知可以直接传遍校园，各班不必再靠口耳相传维持联系。夺下设备只是第一步：广播的口径由谁决定、哪些声音能够播出，将成为学生组织自己的责任。", type: 'positive', effects: { ssDaily: 0.3 } });
+            newSpirits.push({ id: 'awakened_binhu', name: '被唤醒的滨湖', description: "校方不再垄断广播。学生的诉求和行动通知可以直接传遍校园，各班不必再靠口耳相传维持联系。夺下设备只是第一步：广播的口径由谁决定、哪些声音能够播出，将成为学生组织自己的责任。", type: 'positive', effects: { ssDaily: 0.3 } });
             newEvent = { id: 'freq_success_evt', title: '频率之战告捷', description: `平均接管率${fr.avgFreq.toFixed(1)}%——成功。\n\n经过紧张的频率拉锯，广播站的主要频段已经落入我们手中。虽然中间一度被干扰，但先锋队员们最终稳住了阵脚。\n\n行政楼周边的学生开始聚集，他们听到了广播里的号召。`, buttonText: '继续推进！', isStoryEvent: true, effectsText: ['行政楼地块控制度 +12', 'SS +18, PP +10'] };
             break;
           case 'partial': // 部分成功
