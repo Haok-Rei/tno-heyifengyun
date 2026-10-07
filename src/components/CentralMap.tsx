@@ -2,9 +2,10 @@ import React, { useState, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { GameState, SubTile, ALL_SUB_TILES } from '../types';
 import CommandPanel from './CommandPanel';
-import { executeMapAction } from '../engine/mapActions';
+import { availableMapActions, executeMapAction } from '../engine/mapActions';
 import { getCommandRoute } from '../data/commandRoutes';
 import { getCommandState, getSupplyNetwork, hasSupplyAccess } from '../engine/commandSystem';
+import { formatControl, getBuildingControl, getMapMode, getTileControl } from '../engine/mapState';
 
 interface CentralMapProps {
   reminders?: React.ReactNode;
@@ -15,8 +16,8 @@ interface CentralMapProps {
   onSelectTile: (id: string | null) => void;
 }
 
-function tc(state: GameState, tid: string) { return (state.flags['tile_ctrl_'+tid] as number|undefined) ?? ALL_SUB_TILES.find(t=>t.id===tid)?.studentControl ?? 50; }
-function bc(state: GameState, bid: string) { const ts=ALL_SUB_TILES.filter(t=>t.buildingId===bid); return ts.length?Math.round(ts.reduce((s,t)=>s+tc(state,t.id),0)/ts.length):0; }
+const tc = getTileControl;
+const bc = getBuildingControl;
 
 // TNO风格颜色映射
 function ctrlColor(ctrl: number): string { if(ctrl>=70)return'#91bdc3';if(ctrl>=45)return'#b8aa87';if(ctrl>=25)return'#bb786b';return'#a94340'; }
@@ -58,12 +59,16 @@ function pollPie(poll: Record<string, number>) {
 }
 
 // 按钮
-const Btn=({n,c,d,on,ok,cd}:{n:string;c:string;d:string;on:()=>void;ok:boolean;cd?:boolean})=>(
+const MapActionContext = React.createContext<ReadonlySet<string>>(new Set());
+const Btn=({actionId,n,c,d,on,ok,cd}:{actionId:string;n:string;c:string;d:string;on:()=>void;ok:boolean;cd?:boolean})=>{
+  const allowed = React.useContext(MapActionContext);
+  return allowed.has(actionId) ? (
   <button onClick={on} disabled={!ok||cd} className={`w-full text-left p-2 border text-xs ${ok&&!cd?'border-[#ff4444]/50 hover:bg-[#ff4444]/20 text-white':'border-gray-700 text-gray-500 cursor-not-allowed'} transition-colors`}>
     <div className="font-bold text-sm">{n}{cd&&<span className="text-red-400 text-[10px] ml-1">(今日已执行)</span>}</div>
     <div className="text-[11px] mt-0.5 opacity-70">{d} · {c}</div>
   </button>
-);
+  ) : null;
+};
 
 export default function CentralMap({state,setGameState,triggerError,isElectionUIOpen,setIsElectionUIOpen,selectedTileId:sel,onSelectTile:setSel,districtDockTarget,reminders}:CentralMapProps){
   const [mapLayer,setMapLayer]=useState<'control'|'supply'|'orders'>('control');
@@ -74,13 +79,15 @@ export default function CentralMap({state,setGameState,triggerError,isElectionUI
   const [isPan,setIsPan]=useState(false); const [ps,setPs]=useState({x:0,y:0});
   const today=state.date.toISOString().split('T')[0];
 
-  const isReb=state.flags['rebellion_started']; const isGx=!!state.flags['gx_anarchy_phase'];
-  const isLu=state.flags['lu_purge_map_phase']; const isCm=state.flags['haobang_commune_map_phase'];
-  const isRf=state.flags['map_phase_ended'] && !isLu && !isCm; const isEnd=state.flags['map_struggle_ended'];
-  const isYy=state.flags['yang_yule_route_started']; const isJd=state.flags['jidi_new_era_active'];
+  const mode = getMapMode(state);
+  const actionIds = new Set(availableMapActions(state, sel ?? '').map(action => action.id));
+  const isReb=mode === 'struggle'; const isGx=mode === 'gouxiong';
+  const isLu=mode === 'purge'; const isCm=mode === 'commune';
+  const isRf=mode === 'reform'; const isEnd=mode === 'peace' || mode === 'election';
+  const isYy=mode === 'yang'; const isJd=mode === 'jidi';
   // v8.5 吴福军镇压线：戒严校园阶段
-  const isWu=state.flags['wu_crackdown_map_phase'] && !!state.flags['wu_route_active'];
-  const isPoll=state.flags['polling_stations_unlocked']; const isEl=state.electionState?.isActive;
+  const isWu=mode === 'wu';
+  const isPoll=mode === 'election' && state.flags['polling_stations_unlocked']; const isEl=mode === 'election' && state.electionState?.isActive;
   const cd=(aid:string)=>state.flags[`map_action_${aid}_${sel}_last_date`]===today;
   // 做题改革：区域顽固度到建筑ID的映射
   const reformBidMap:Record<string,string>={B3:'b3',B1_B2:'b1b2',Admin:'admin',ArtHall:'auditorium',Lab:'lab',Playground:'playground'};
@@ -137,6 +144,7 @@ export default function CentralMap({state,setGameState,triggerError,isElectionUI
   const mapSubtitle = mapLayer==='control' ? 'CONTROL / 地区控制与争夺态势' : mapLayer==='supply' ? 'SUPPLY / 总部交通线与前沿可达范围' : 'DEPLOYMENT / 工作组定期任务与驻扎点';
 
   return(
+    <MapActionContext.Provider value={actionIds}>
     <div className="campus-map-layout" data-tour="map">
       <div className="campus-map-stage">
       <div className="map-toolbar"><div><span className="eyebrow">{route.chapter} · {route.title}</span><strong>{modeTitle}</strong><small>{mapSubtitle}</small></div><div className="map-layers" data-tour="map-layers">{([{id:'control',label:'势力'},{id:'supply',label:'补给'},{id:'orders',label:'部署'}] as const).map(l=><button key={l.id} aria-pressed={mapLayer===l.id} className={mapLayer===l.id?'selected':''} onClick={()=>setMapLayer(l.id)}>{l.label}</button>)}</div></div>
@@ -204,9 +212,9 @@ export default function CentralMap({state,setGameState,triggerError,isElectionUI
         {RGN.map(r=>{
           const ctrl=tc(state,r.tid); const color=rgnColor(r); const isSel=sel===r.tid;
           const isAdj=selTile?.adjacentTo.includes(r.tid); const isLow=ctrl<25;
-          const status=mapLayer==='supply'?(supplyNetwork.has(r.tid)?'连通':hasSupplyAccess(state,r.tid)?'前沿':'断供'):mapLayer==='orders'?(deployed.some(t=>t.order?.tileId===r.tid)?'驻扎':'未部署'):`${Math.round(ctrl)}%`;
+          const status=mapLayer==='supply'?(supplyNetwork.has(r.tid)?'连通':hasSupplyAccess(state,r.tid)?'前沿':'断供'):mapLayer==='orders'?(deployed.some(t=>t.order?.tileId===r.tid)?'驻扎':'未部署'):`${formatControl(ctrl)}%`;
           return(
-            <g key={r.tid} role="button" tabIndex={0} aria-label={`${r.lb}，学生控制${Math.round(ctrl)}%`} onKeyDown={e=>{if(e.key==='Enter'){e.preventDefault();setSel(r.tid===sel?null:r.tid);}}} onClick={()=>setSel(r.tid===sel?null:r.tid)} style={{cursor:'pointer'}}>
+            <g key={r.tid} role="button" tabIndex={0} aria-label={`${r.lb}，学生控制${formatControl(ctrl)}%`} onKeyDown={e=>{if(e.key==='Enter'){e.preventDefault();setSel(r.tid===sel?null:r.tid);}}} onClick={()=>setSel(r.tid===sel?null:r.tid)} style={{cursor:'pointer'}}>
               {/* 底色 */}
               <rect x={r.x+5} y={r.y+7} width={r.w} height={r.h} rx={r.rx??2} fill="#080e0f" opacity=".55"/>
               <rect x={r.x} y={r.y} width={r.w} height={r.h} rx={r.rx??2} fill="#05080d" fillOpacity="0.7"
@@ -224,7 +232,7 @@ export default function CentralMap({state,setGameState,triggerError,isElectionUI
               {/* 标签 */}
               <text x={r.x+r.w/2} y={r.y+r.h/2+(r.h<35?3:-6)} textAnchor="middle" fontSize={r.w<75?11:13} fontWeight="bold" fill="#d9dfd7" style={{textShadow:'0 1px 3px #000'}}>{SHORT_LABELS[r.tid]||r.lb}</text>
               {r.h>=35&&<text x={r.x+r.w/2} y={r.y+r.h/2+15} textAnchor="middle" fontSize={mapLayer==='control'?17:12} fontWeight="bold" fill={mapLayer==='supply'?'#d1eadd':mapLayer==='orders'?'#c9dce0':color}>
-                {mapLayer==='control' ? `${isYy ? (state.yangYuleState ? Math.round((state.yangYuleState.fengFavor + state.yangYuleState.teacherSupport + state.stats.stab) / 3) : 50) : isRf ? reformCtrl(r.tid) : Math.round(ctrl)}%` : status}
+                {mapLayer==='control' ? `${isYy ? (state.yangYuleState ? Math.round((state.yangYuleState.fengFavor + state.yangYuleState.teacherSupport + state.stats.stab) / 3) : 50) : isRf ? reformCtrl(r.tid) : formatControl(ctrl)}%` : status}
               </text>}
               {route.hq===r.tid&&<g><rect x={r.x-5} y={r.y-11} width="28" height="15" fill="#c9b481"/><text x={r.x+9} y={r.y} textAnchor="middle" fill="#172022" fontSize="9" fontWeight="bold">HQ</text></g>}
               {teams.filter(t=>t.order?.tileId===r.tid).map(t=><g key={t.id}><rect x={r.x+r.w-32} y={r.y+r.h-9} width="39" height="19" fill="#cbb888" stroke="#293331"/><text x={r.x+r.w-12} y={r.y+r.h+4} textAnchor="middle" fill="#182020" fontSize="10" fontWeight="bold">{t.order!.reformRegion ? `${t.order!.remaining}天` : mapLayer==='orders'?`${t.order!.repeats}次`:'定期'}</text></g>)}
@@ -268,7 +276,8 @@ export default function CentralMap({state,setGameState,triggerError,isElectionUI
           </div>
 
           <div className="text-xs text-gray-400 mb-2">
-            {BN[selTile.buildingId]} | 全建筑控制度 <span style={{color:ctrlColor(bc(state,selTile.buildingId))}} className="font-bold">{Math.round(bc(state,selTile.buildingId))}%</span>
+            {BN[selTile.buildingId]} | 全建筑控制度 <span style={{color:ctrlColor(bc(state,selTile.buildingId))}} className="font-bold">{formatControl(bc(state,selTile.buildingId))}%</span>
+            <div className="mt-1">本地区控制度 <strong style={{color:ctrlColor(selCtrl)}}>{formatControl(selCtrl)}%</strong>{isReb && selCtrl === 100 && state.flags.united_committee_established && <span className="ml-2 text-[#a2c4bc]">已巩固</span>}</div>
           </div>
 
           {/* 邻接地块 */}
@@ -278,7 +287,7 @@ export default function CentralMap({state,setGameState,triggerError,isElectionUI
               const adj=ALL_SUB_TILES.find(t=>t.id===aid);const ar=RGN.find(r=>r.tid===aid);
               if(!adj||!ar)return null;const ac=tc(state,aid);
               return(<div key={aid} className="flex justify-between text-xs py-0.5 cursor-pointer hover:text-[#ff4444] hover:bg-[#ff4444]/5 px-1 rounded" onClick={()=>setSel(aid)}>
-                <span className="text-gray-400">{ar.lb}</span><span className="font-bold" style={{color:ctrlColor(ac)}}>{Math.round(ac)}%</span>
+                <span className="text-gray-400">{ar.lb}</span><span className="font-bold" style={{color:ctrlColor(ac)}}>{formatControl(ac)}%</span>
               </div>);
             })}
           </div>
@@ -286,51 +295,51 @@ export default function CentralMap({state,setGameState,triggerError,isElectionUI
           {/* 行动 */}
           <details className="legacy-actions" open><summary>地区行动与机构</summary><div className="space-y-1.5">
             {!isReb&&!isGx&&!isLu&&!isCm&&!isWu&&!isRf&&!isEnd&&!isYy&&!isJd&&!isEl&&!isPoll&&(<>
-              {selTile.buildingId==='b3'&&<Btn n="地下串联" c="20 卷子" d="控制度+10，支持+2" on={()=>act(sel,'b3_under')} ok={state.stats.tpr>=20} cd={cd('b3_under')}/>}
-              {selTile.buildingId==='auditorium'&&<Btn n="拉拢社团" c="20 PP" d="控制度+10，团结+5" on={()=>act(sel,'aud_coop')} ok={state.stats.pp>=20} cd={cd('aud_coop')}/>}
-              {selTile.buildingId==='playground'&&<Btn n="组织体育活动" c="10 PP" d="控制度+10，理智+5" on={()=>act(sel,'pl_sports')} ok={state.stats.pp>=10} cd={cd('pl_sports')}/>}
+              {selTile.buildingId==='b3'&&<Btn actionId="b3_under" n="地下串联" c="20 卷子" d="控制度+10，支持+2" on={()=>act(sel,'b3_under')} ok={state.stats.tpr>=20} cd={cd('b3_under')}/>}
+              {selTile.buildingId==='auditorium'&&<Btn actionId="aud_coop" n="拉拢社团" c="20 PP" d="控制度+10，团结+5" on={()=>act(sel,'aud_coop')} ok={state.stats.pp>=20} cd={cd('aud_coop')}/>}
+              {selTile.buildingId==='playground'&&<Btn actionId="pl_sports" n="组织体育活动" c="10 PP" d="控制度+10，理智+5" on={()=>act(sel,'pl_sports')} ok={state.stats.pp>=10} cd={cd('pl_sports')}/>}
             </>)}
             {isReb&&!isGx&&!isLu&&!isCm&&!isWu&&!isRf&&!isEnd&&!isYy&&!isJd&&!isEl&&!isPoll&&(<>
-              <Btn n="增强控制" c="15 PP" d="控制度+12" on={()=>act(sel,'boost')} ok={state.stats.pp>=15} cd={cd('boost')}/>
-              <Btn n="设置防御工事" c="30 PP" d="7天免疫AI渗透" on={()=>act(sel,'defend')} ok={state.stats.pp>=30} cd={cd('defend')}/>
-              <Btn n="动员宣传" c="10 PP" d="控制度+8, SS+3" on={()=>act(sel,'rally')} ok={state.stats.pp>=10} cd={cd('rally')}/>
+              <Btn actionId="boost" n="增强控制" c="15 PP" d="控制度+12" on={()=>act(sel,'boost')} ok={state.stats.pp>=15} cd={cd('boost')}/>
+              <Btn actionId="defend" n="设置防御工事" c="30 PP" d="7天免疫AI渗透" on={()=>act(sel,'defend')} ok={state.stats.pp>=30} cd={cd('defend')}/>
+              <Btn actionId="rally" n="动员宣传" c="10 PP" d="控制度+8, SS+3" on={()=>act(sel,'rally')} ok={state.stats.pp>=10} cd={cd('rally')}/>
 
               {selTile.buildingId==='b3'&&<>
                 <div className="text-[11px] text-[#39FF14] border-t border-[#39FF14]/20 pt-1.5 mt-1.5">— B3革命中枢 —</div>
-                <Btn n="地下串联" c="20 TPR" d="控制度+10, SS+2" on={()=>act(sel,'b3_under')} ok={state.stats.tpr>=20} cd={cd('b3_under')}/>
-                <Btn n="死守楼道" c="50 PP" d="14天防御" on={()=>act(sel,'b3_fort')} ok={state.stats.pp>=50} cd={cd('b3_fort')}/>
-                <Btn n="散发传单" c="25 PP" d="控制度+8, 愤怒+5, SS+4" on={()=>act(sel,'b3_leaf')} ok={state.stats.pp>=25} cd={cd('b3_leaf')}/>
+                <Btn actionId="b3_under" n="地下串联" c="20 TPR" d="控制度+10, SS+2" on={()=>act(sel,'b3_under')} ok={state.stats.tpr>=20} cd={cd('b3_under')}/>
+                <Btn actionId="b3_fort" n="死守楼道" c="50 PP" d="14天防御" on={()=>act(sel,'b3_fort')} ok={state.stats.pp>=50} cd={cd('b3_fort')}/>
+                <Btn actionId="b3_leaf" n="散发传单" c="25 PP" d="控制度+8, 愤怒+5, SS+4" on={()=>act(sel,'b3_leaf')} ok={state.stats.pp>=25} cd={cd('b3_leaf')}/>
               </>}
 
               {selTile.buildingId==='admin'&&<>
                 <div className="text-[11px] text-[#f97316] border-t border-[#f97316]/20 pt-1.5 mt-1.5">— 行政楼渗透 —</div>
-                <Btn n="渗透行政" c="30 PP" d="控制度+5, 资本渗透+10" on={()=>act(sel,'adm_infil')} ok={state.stats.pp>=30} cd={cd('adm_infil')}/>
-                <Btn n="黑入广播网" c="80 PP" d="风险:SS判定+20/稳-15" on={()=>act(sel,'adm_hack')} ok={state.stats.pp>=80} cd={cd('adm_hack')}/>
+                <Btn actionId="adm_infil" n="渗透行政" c="30 PP" d="控制度+5, 资本渗透+10" on={()=>act(sel,'adm_infil')} ok={state.stats.pp>=30} cd={cd('adm_infil')}/>
+                <Btn actionId="adm_hack" n="黑入广播网" c="80 PP" d="风险:SS判定+20/稳-15" on={()=>act(sel,'adm_hack')} ok={state.stats.pp>=80} cd={cd('adm_hack')}/>
               </>}
 
               {selTile.buildingId==='b1b2'&&<>
                 <div className="text-[11px] text-[#3B82F6] border-t border-[#3B82F6]/20 pt-1.5 mt-1.5">— 群众动员 —</div>
-                <Btn n="发表演讲" c="20 PP" d="控制度+10, SS+5" on={()=>act(sel,'speech')} ok={state.stats.pp>=20} cd={cd('speech')}/>
-                <Btn n="唤醒做题家" c="30 PP" d="转化20%控→SS" on={()=>act(sel,'b12_awk')} ok={state.stats.pp>=30} cd={cd('b12_awk')}/>
-                <Btn n="倾销教辅" c="5 稳定度" d="+300 TPR, 稳-5" on={()=>act(sel,'b12_dump')} ok={state.stats.stab>=5} cd={cd('b12_dump')}/>
+                <Btn actionId="speech" n="发表演讲" c="20 PP" d="控制度+10, SS+5" on={()=>act(sel,'speech')} ok={state.stats.pp>=20} cd={cd('speech')}/>
+                <Btn actionId="b12_awk" n="唤醒做题家" c="30 PP" d="转化20%控→SS" on={()=>act(sel,'b12_awk')} ok={state.stats.pp>=30} cd={cd('b12_awk')}/>
+                <Btn actionId="b12_dump" n="倾销教辅" c="5 稳定度" d="+300 TPR, 稳-5" on={()=>act(sel,'b12_dump')} ok={state.stats.stab>=5} cd={cd('b12_dump')}/>
               </>}
 
               {selTile.buildingId==='auditorium'&&<>
                 <div className="text-[11px] text-[#c084fc] border-t border-[#c084fc]/20 pt-1.5 mt-1.5">— 宣传阵地 —</div>
-                <Btn n="拉拢社团" c="20 PP" d="控制度+10, 团结+5" on={()=>act(sel,'aud_coop')} ok={state.stats.pp>=20} cd={cd('aud_coop')}/>
-                {state.completedFocuses.includes('expand_assembly')&&<Btn n="民主沙龙" c="40 PP" d="控制度+15, 团结+5" on={()=>act(sel,'aud_salon')} ok={state.stats.pp>=40} cd={cd('aud_salon')}/>}
+                <Btn actionId="aud_coop" n="拉拢社团" c="20 PP" d="控制度+10, 团结+5" on={()=>act(sel,'aud_coop')} ok={state.stats.pp>=20} cd={cd('aud_coop')}/>
+                {(state.completedFocuses.includes('expand_assembly')||state.completedFocuses.includes('democratic_reforms'))&&<Btn actionId="aud_salon" n="民主沙龙" c="40 PP" d="控制度+15, 团结+5" on={()=>act(sel,'aud_salon')} ok={state.stats.pp>=40} cd={cd('aud_salon')}/>}
               </>}
 
               {selTile.buildingId==='lab'&&<>
                 <div className="text-[11px] text-[#06B6D4] border-t border-[#06B6D4]/20 pt-1.5 mt-1.5">— 技术情报 —</div>
-                <Btn n="占领设施" c="20 PP" d="控制度+10, TPR+50" on={()=>act(sel,'lab_occ')} ok={state.stats.pp>=20} cd={cd('lab_occ')}/>
-                <Btn n="印制传单" c="50 TPR" d="PP+20" on={()=>act(sel,'lab_print')} ok={state.stats.tpr>=50} cd={cd('lab_print')}/>
+                <Btn actionId="lab_occ" n="占领设施" c="20 PP" d="控制度+10, TPR+50" on={()=>act(sel,'lab_occ')} ok={state.stats.pp>=20} cd={cd('lab_occ')}/>
+                <Btn actionId="lab_print" n="印制传单" c="50 TPR" d="PP+20" on={()=>act(sel,'lab_print')} ok={state.stats.tpr>=50} cd={cd('lab_print')}/>
               </>}
 
               {selTile.buildingId==='playground'&&<>
                 <div className="text-[11px] text-[#22c55e] border-t border-[#22c55e]/20 pt-1.5 mt-1.5">— 集会动员 —</div>
-                <Btn n="组织体育活动" c="10 PP" d="控制度+10, 理智+5" on={()=>act(sel,'pl_sports')} ok={state.stats.pp>=10} cd={cd('pl_sports')}/>
-                <Btn n="全校总罢操" c="30 PP+10稳" d="全图控+5, 稳-10" on={()=>act(sel,'pl_strike')} ok={state.stats.pp>=30&&state.stats.stab>=10} cd={cd('pl_strike')}/>
+                <Btn actionId="pl_sports" n="组织体育活动" c="10 PP" d="控制度+10, 理智+5" on={()=>act(sel,'pl_sports')} ok={state.stats.pp>=10} cd={cd('pl_sports')}/>
+                <Btn actionId="pl_strike" n="全校总罢操" c="30 PP+10稳" d="全图控+5, 稳-10" on={()=>act(sel,'pl_strike')} ok={state.stats.pp>=30&&state.stats.stab>=10} cd={cd('pl_strike')}/>
               </>}
             </>)}
             {!isReb&&!isGx&&!isLu&&!isCm&&!isWu&&!isRf&&!isEnd&&!isYy&&!isJd&&!isEl&&!isPoll&&<div className="text-red-400/70 text-center text-xs mt-4">起义前仅开放课间、社团与地下联络行动。</div>}
@@ -339,23 +348,23 @@ export default function CentralMap({state,setGameState,triggerError,isElectionUI
                 🐻 狗熊无政府战区 | 理智度: {state.gouxiongState?.sanity||0}/{state.gouxiongState?.maxSanity||100}
               </div>
               {state.flags[`gx_anarchy_action_tile_${sel}`]&&(<>
-                <Btn n="放映番剧渗透" c="10 PP" d="控制度+8, 理智度+3, SS+2" on={()=>act(sel,'gx_anime')} ok={state.stats.pp>=10} cd={cd('gx_anime')}/>
-                <Btn n="抽象烂梗轰炸" c="5 理智度" d="控制度+12, 40%几率夺取所有权" on={()=>act(sel,'gx_meme')} ok={(state.gouxiongState?.sanity||0)>=5} cd={cd('gx_meme')}/>
-                <Btn n="突击夺权" c="15 PP" d="控制度+10, 30%几率夺取所有权" on={()=>act(sel,'gx_raid')} ok={state.stats.pp>=15} cd={cd('gx_raid')}/>
+                <Btn actionId="gx_anime" n="放映番剧渗透" c="10 PP" d="控制度+8, 理智度+3, SS+2" on={()=>act(sel,'gx_anime')} ok={state.stats.pp>=10} cd={cd('gx_anime')}/>
+                <Btn actionId="gx_meme" n="抽象烂梗轰炸" c="5 理智度" d="控制度+12, 40%几率夺取所有权" on={()=>act(sel,'gx_meme')} ok={(state.gouxiongState?.sanity||0)>=5} cd={cd('gx_meme')}/>
+                <Btn actionId="gx_raid" n="突击夺权" c="15 PP" d="控制度+10, 30%几率夺取所有权" on={()=>act(sel,'gx_raid')} ok={state.stats.pp>=15} cd={cd('gx_raid')}/>
                 {/* 进阶行动：根据解锁的旗标等级显示 */}
-                {state.flags[`gx_anarchy_action_tile_${sel}_cutwire`]&&<Btn n="断电战术" c="15 PP" d="控制度+15, 50%几率夺取, 该校地块-5" on={()=>act(sel,'gx_cutwire')} ok={state.stats.pp>=15} cd={cd('gx_cutwire')}/>}
-                {state.flags[`gx_anarchy_action_tile_${sel}_swarm`]&&<Btn n="蜂群快闪" c="8 理智度" d="控制度+18, 相邻敌占地块-8" on={()=>act(sel,'gx_swarm')} ok={(state.gouxiongState?.sanity||0)>=8} cd={cd('gx_swarm')}/>}
-                {state.flags[`gx_anarchy_action_tile_${sel}_strike`]&&<Btn n="突袭占线" c="20 PP" d="控制度+20, 60%几率夺取所有权" on={()=>act(sel,'gx_strike')} ok={state.stats.pp>=20} cd={cd('gx_strike')}/>}
-                {state.flags[`gx_anarchy_action_tile_${sel}_backdoor`]&&<Btn n="后门注入" c="12 PP" d="控制度+12, 40%几率夺取, 相邻同方+5" on={()=>act(sel,'gx_backdoor')} ok={state.stats.pp>=12} cd={cd('gx_backdoor')}/>}
+                {state.flags[`gx_anarchy_action_tile_${sel}_cutwire`]&&<Btn actionId="gx_cutwire" n="断电战术" c="15 PP" d="控制度+15, 50%几率夺取, 该校地块-5" on={()=>act(sel,'gx_cutwire')} ok={state.stats.pp>=15} cd={cd('gx_cutwire')}/>}
+                {state.flags[`gx_anarchy_action_tile_${sel}_swarm`]&&<Btn actionId="gx_swarm" n="蜂群快闪" c="8 理智度" d="控制度+18, 相邻敌占地块-8" on={()=>act(sel,'gx_swarm')} ok={(state.gouxiongState?.sanity||0)>=8} cd={cd('gx_swarm')}/>}
+                {state.flags[`gx_anarchy_action_tile_${sel}_strike`]&&<Btn actionId="gx_strike" n="突袭占线" c="20 PP" d="控制度+20, 60%几率夺取所有权" on={()=>act(sel,'gx_strike')} ok={state.stats.pp>=20} cd={cd('gx_strike')}/>}
+                {state.flags[`gx_anarchy_action_tile_${sel}_backdoor`]&&<Btn actionId="gx_backdoor" n="后门注入" c="12 PP" d="控制度+12, 40%几率夺取, 相邻同方+5" on={()=>act(sel,'gx_backdoor')} ok={state.stats.pp>=12} cd={cd('gx_backdoor')}/>}
               </>)}
               {!state.flags[`gx_anarchy_action_tile_${sel}`]&&<div className="text-pink-400 text-center text-sm mt-2">该地块尚未解锁 — 通过国策解锁区域行动</div>}
             </div>)}
             {isLu&&(<>
-              {state.flags[`lu_purge_action_tile_${sel}`]&&<Btn n={`执行清洗 (Lv${Number(state.flags['lu_purge_zone_level_tile_'+sel]||0)}/3)`} c="20 PP" d="清洗度+1, 控制度+5" on={()=>act(sel,'lu_purge')} ok={state.stats.pp>=20&&Number(state.flags['lu_purge_zone_level_tile_'+sel]||0)<3} cd={cd('lu_purge')}/>}
+              {state.flags[`lu_purge_action_tile_${sel}`]&&<Btn actionId="lu_purge" n={`执行清洗 (Lv${Number(state.flags['lu_purge_zone_level_tile_'+sel]||0)}/3)`} c="20 PP" d="清洗度+1, 控制度+5" on={()=>act(sel,'lu_purge')} ok={state.stats.pp>=20&&Number(state.flags['lu_purge_zone_level_tile_'+sel]||0)<3} cd={cd('lu_purge')}/>}
               {!state.flags[`lu_purge_action_tile_${sel}`]&&<div className="text-red-400 text-center text-sm mt-6">该地块尚未授权清洗 — 需先完成分支国策</div>}
             </>)}
             {isCm&&(<>
-              {state.flags[`haobang_commune_action_tile_${sel}`]&&<Btn n={`建设公社 (Lv${Number(state.flags['haobang_commune_zone_level_tile_'+sel]||0)}/3)`} c="25 PP" d="建设度+1, 控制度+8, SS+2" on={()=>act(sel,'cm_build')} ok={state.stats.pp>=25&&Number(state.flags['haobang_commune_zone_level_tile_'+sel]||0)<3} cd={cd('cm_build')}/>}
+              {state.flags[`haobang_commune_action_tile_${sel}`]&&<Btn actionId="cm_build" n={`建设公社 (Lv${Number(state.flags['haobang_commune_zone_level_tile_'+sel]||0)}/3)`} c="25 PP" d="建设度+1, 控制度+8, SS+2" on={()=>act(sel,'cm_build')} ok={state.stats.pp>=25&&Number(state.flags['haobang_commune_zone_level_tile_'+sel]||0)<3} cd={cd('cm_build')}/>}
               {!state.flags[`haobang_commune_action_tile_${sel}`]&&<div className="text-green-400 text-center text-sm mt-6">该地块尚未解锁 — 需先完成分支国策</div>}
             </>)}
             {isWu&&(<div className="space-y-2 mt-2">
@@ -365,10 +374,10 @@ export default function CentralMap({state,setGameState,triggerError,isElectionUI
               {state.flags['wu_cell_'+sel]!==undefined&&<div className="text-red-400 text-xs text-center p-2 border border-red-500/20 bg-red-500/5 rounded">
                 ⚠️ 残党细胞活跃中（第{state.flags['wu_cell_'+sel]}天）！5天内不清除将夺占该地块，并触发本区域造反事件
               </div>}
-              <Btn n="巡逻扫荡" c="10 PP" d="校方控制+12, 残党-1, 愤怒+1" on={()=>act(sel,'wu_patrol')} ok={state.stats.pp>=10} cd={cd('wu_patrol')}/>
-              <Btn n="设卡封锁" c="20 PP" d="清除残党细胞, 封锁5天, 愤怒+2" on={()=>act(sel,'wu_checkpoint')} ok={state.stats.pp>=20} cd={cd('wu_checkpoint')}/>
-              <Btn n="情报收集" c="15 PP" d="清除残党细胞或残党-1" on={()=>act(sel,'wu_intel')} ok={state.stats.pp>=15} cd={cd('wu_intel')}/>
-              {state.flags.wu_arrest_unlocked&&<Btn n="定点抓捕" c="25 PP" d="清除残党细胞, 残党-3, 愤怒+3" on={()=>act(sel,'wu_arrest')} ok={state.stats.pp>=25} cd={cd('wu_arrest')}/>}
+              <Btn actionId="wu_patrol" n="巡逻扫荡" c="10 PP" d="校方控制+12, 残党-1, 愤怒+1" on={()=>act(sel,'wu_patrol')} ok={state.stats.pp>=10} cd={cd('wu_patrol')}/>
+              <Btn actionId="wu_checkpoint" n="设卡封锁" c="20 PP" d="清除残党细胞, 封锁5天, 愤怒+2" on={()=>act(sel,'wu_checkpoint')} ok={state.stats.pp>=20} cd={cd('wu_checkpoint')}/>
+              <Btn actionId="wu_intel" n="情报收集" c="15 PP" d="清除残党细胞或残党-1" on={()=>act(sel,'wu_intel')} ok={state.stats.pp>=15} cd={cd('wu_intel')}/>
+              {state.flags.wu_arrest_unlocked&&<Btn actionId="wu_arrest" n="定点抓捕" c="25 PP" d="清除残党细胞, 残党-3, 愤怒+3" on={()=>act(sel,'wu_arrest')} ok={state.stats.pp>=25} cd={cd('wu_arrest')}/>}
               <div className="text-[#c9a86a]/50 text-[10px] text-center">愤怒: {(state.wuState?.studentAnger??0).toFixed(2)} | 野心: {(state.wuState?.wuAmbition??0).toFixed(2)} | 舆论: {(state.wuState?.publicOpinion??0).toFixed(2)}</div>
             </div>)}
             {isYy&&(<div className="space-y-2 mt-2">
@@ -385,7 +394,7 @@ export default function CentralMap({state,setGameState,triggerError,isElectionUI
                 </div>
               )}
               <div className="text-amber-400/40 text-[10px] text-center">在办公桌界面查看全局维稳态势</div>
-              <Btn n="教师驻点协调" c="20 PP" d="教师支持+3，信任+2，工作室成果+1，健康-1" on={()=>act(sel,'yy_coord')} ok={state.stats.pp>=20&&!!state.yangYuleState} cd={cd('yy_coord')}/>
+              <Btn actionId="yy_coord" n="教师驻点协调" c="20 PP" d="教师支持+3，信任+2，工作室成果+1，健康-1" on={()=>act(sel,'yy_coord')} ok={state.stats.pp>=20&&!!state.yangYuleState} cd={cd('yy_coord')}/>
             </div>)}
             {isRf&&(<div className="space-y-2 mt-2">
               <div className="text-[#ff6b6b] text-center text-xs border-b border-[#ff6b6b]/20 pb-1">— 做题改革阶段 —</div>
@@ -393,7 +402,7 @@ export default function CentralMap({state,setGameState,triggerError,isElectionUI
             </div>)}
             {(isEl||isPoll)&&(<div className="space-y-2 mt-2">
               <div className={`text-xs border-b pb-1 text-center ${isEl?'text-blue-400 border-blue-400/20':'text-blue-300 border-blue-300/20'}`}>{isEl?'— 大选进行中 —':'— 选举准备阶段 —'}</div>
-              <Btn n="区域拉票" c="25 PP" d={`为${FN[state.electionState?.playerCandidate||'pan']||'候选人'}拉票（${isEl?'选战加成':'选前小规模宣传'}）；可派工作组定期执行`} on={()=>act(sel,'campaign')} ok={state.stats.pp>=25} cd={cd('campaign')}/>
+              <Btn actionId="campaign" n="区域拉票" c="25 PP" d={`为${FN[state.electionState?.playerCandidate||'pan']||'候选人'}拉票（${isEl?'选战加成':'选前小规模宣传'}）；可派工作组定期执行`} on={()=>act(sel,'campaign')} ok={state.stats.pp>=25} cd={cd('campaign')}/>
               {/* 显示民调数据 */}
               {selTile&&(()=>{
                 const bid=selTile.buildingId;
@@ -420,7 +429,7 @@ export default function CentralMap({state,setGameState,triggerError,isElectionUI
               <div className="text-[#87CEEB] text-center text-xs border-b border-[#87CEEB]/20 pb-1">— 和平重建阶段 —</div>
               <div className="text-[#87CEEB]/70 text-center text-xs">校园已和平控制，所有冲突结束</div>
             </div>)}
-            {isJd&&<div className="space-y-2"><div className="text-yellow-400 text-center text-sm">及第模式 · 地区教学产线</div><Btn n="教学产线优化" c="20 PP" d="卷子+80，GDP+1，理智-2" on={()=>act(sel,'jd_optimize')} ok={state.stats.pp>=20&&!!state.jidiCorporateState} cd={cd('jd_optimize')}/></div>}
+            {isJd&&<div className="space-y-2"><div className="text-yellow-400 text-center text-sm">及第模式 · 地区教学产线</div><Btn actionId="jd_optimize" n="教学产线优化" c="20 PP" d="卷子+80，GDP+1，理智-2" on={()=>act(sel,'jd_optimize')} ok={state.stats.pp>=20&&!!state.jidiCorporateState} cd={cd('jd_optimize')}/></div>}
           </div></details>
           <CommandPanel state={state} tileId={sel!} setGameState={setGameState} />
 
@@ -471,5 +480,6 @@ export default function CentralMap({state,setGameState,triggerError,isElectionUI
         </div>
       )}
     </div>
+    </MapActionContext.Provider>
   );
 }

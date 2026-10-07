@@ -1,7 +1,7 @@
 import { ALL_SUB_TILES, type GameState } from '../types';
-import { getCommandRoute } from '../data/commandRoutes';
 import { shiftPoll } from './electionCampaign';
 import { recordOpeningFieldwork } from './openingCampaign';
+import { getMapMode, getTileControl, syncMapLocations } from './mapState';
 
 export interface MapAction { id: string; name: string; cost: string; description: string }
 const action = (id: string, name: string, cost: string, description: string): MapAction => ({ id, name, cost, description });
@@ -19,22 +19,21 @@ const wu = [action('wu_patrol','巡逻扫荡','10 PP','校方控制 +12'),action
 export function availableMapActions(state: GameState, tileId: string): MapAction[] {
   const tile = ALL_SUB_TILES.find(t => t.id === tileId);
   if (!tile || state.gameEnding) return [];
-  const route = getCommandRoute(state).id;
-  if (route === 'opening') return tile.buildingId === 'playground' ? [byBuilding.playground[0]] : tile.buildingId === 'auditorium' ? [byBuilding.auditorium[0]] : tile.buildingId === 'b3' ? [byBuilding.b3[0]] : [];
-  if (state.flags.gx_anarchy_phase || route === 'gouxiong') return state.flags[`gx_anarchy_action_tile_${tileId}`] ? gx.filter(a => ['gx_anime','gx_meme','gx_raid'].includes(a.id) || state.flags[`gx_anarchy_action_tile_${tileId}_${a.id.slice(3)}`]) : [];
-  if (state.flags.lu_purge_map_phase || route === 'purge') return state.flags[`lu_purge_action_tile_${tileId}`] && Number(state.flags[`lu_purge_zone_level_tile_${tileId}`] || 0) < 3 ? [action('lu_purge','执行清洗','20 PP','清洗等级 +1')] : [];
-  if (state.flags.haobang_commune_map_phase || route === 'commune') return state.flags[`haobang_commune_action_tile_${tileId}`] && Number(state.flags[`haobang_commune_zone_level_tile_${tileId}`] || 0) < 3 ? [action('cm_build','建设公社','25 PP','建设等级 +1')] : [];
-  if (state.flags.wu_crackdown_map_phase || route === 'wu') return wu.filter(a => a.id !== 'wu_arrest' || state.flags.wu_arrest_unlocked);
-  if (state.flags.yang_yule_route_started || route === 'yang') return [action('yy_coord','教师驻点协调','20 PP','教师支持 +3，信任 +2，健康 -1')];
-  if (state.flags.jidi_new_era_active || route === 'jidi') return [action('jd_optimize','教学产线优化','20 PP','卷子 +80，GDP +1，理智 -2')];
-  if (state.flags.polling_stations_unlocked || state.electionState?.isActive) return [action('campaign','区域拉票','25 PP',state.electionState?.isActive?'选战期间定期拉票，逐步改变选情':'选前小规模宣传，逐步改变选情')];
-  if (state.flags.map_phase_ended) return [];
-  if (state.flags.map_struggle_ended) return [];
+  const mode = getMapMode(state);
+  if (mode === 'opening') return tile.buildingId === 'playground' ? [byBuilding.playground[0]] : tile.buildingId === 'auditorium' ? [byBuilding.auditorium[0]] : tile.buildingId === 'b3' ? [byBuilding.b3[0]] : [];
+  if (mode === 'gouxiong') return state.flags[`gx_anarchy_action_tile_${tileId}`] ? gx.filter(a => ['gx_anime','gx_meme','gx_raid'].includes(a.id) || state.flags[`gx_anarchy_action_tile_${tileId}_${a.id.slice(3)}`]) : [];
+  if (mode === 'purge') return state.flags[`lu_purge_action_tile_${tileId}`] && Number(state.flags[`lu_purge_zone_level_tile_${tileId}`] || 0) < 3 ? [action('lu_purge','执行清洗','20 PP','清洗等级 +1')] : [];
+  if (mode === 'commune') return state.flags[`haobang_commune_action_tile_${tileId}`] && Number(state.flags[`haobang_commune_zone_level_tile_${tileId}`] || 0) < 3 ? [action('cm_build','建设公社','25 PP','建设等级 +1')] : [];
+  if (mode === 'wu') return wu.filter(a => a.id !== 'wu_arrest' || state.flags.wu_arrest_unlocked);
+  if (mode === 'yang') return [action('yy_coord','教师驻点协调','20 PP','教师支持 +3，信任 +2，健康 -1')];
+  if (mode === 'jidi') return [action('jd_optimize','教学产线优化','20 PP','卷子 +80，GDP +1，理智 -2')];
+  if (mode === 'election') return [action('campaign','区域拉票','25 PP',state.electionState?.isActive?'选战期间定期拉票，逐步改变选情':'选前小规模宣传，逐步改变选情')];
+  if (mode === 'reform' || mode === 'peace') return [];
   if (!state.flags.rebellion_started) return [];
   return [...common, ...(byBuilding[tile.buildingId] || []).filter(a => a.id !== 'aud_salon' || state.completedFocuses.includes('expand_assembly') || state.completedFocuses.includes('democratic_reforms'))];
 }
 
-function tileControl(s: GameState, tid: string) { return (s.flags['tile_ctrl_'+tid] as number|undefined) ?? ALL_SUB_TILES.find(t=>t.id===tid)?.studentControl ?? 50; }
+const tileControl = getTileControl;
 export function executeMapAction(prev: GameState, tid: string, aid: string, source: 'manual' | 'workgroup' = 'manual'): { state: GameState; executed: boolean } {
   if (!availableMapActions(prev, tid).some(a => a.id === aid)) return { state: prev, executed: false };
   const today = prev.date.toISOString().split('T')[0];
@@ -101,9 +100,5 @@ export function executeMapAction(prev: GameState, tid: string, aid: string, sour
     const prior = prev.campaignStats ?? { days: 0, papersUsed: 0, papersPrinted: 0, clubEvents: 0, learningScoreTotal: 0 };
     ns.campaignStats = { ...prior, clubEvents: prior.clubEvents + 1 };
   }
-  for (const bid of ['b3','admin','b1b2','auditorium','lab','playground']) {
-    const tiles = ALL_SUB_TILES.filter(t=>t.buildingId===bid);
-    ns.mapLocations[bid] = { ...ns.mapLocations[bid], studentControl: Math.round(tiles.reduce((sum,t)=>sum+tileControl(ns,t.id),0)/tiles.length) };
-  }
-  return { state: recordOpeningFieldwork(prev, ns, tid, aid, source), executed: true };
+  return { state: recordOpeningFieldwork(prev, syncMapLocations(ns), tid, aid, source), executed: true };
 }

@@ -11,6 +11,7 @@ import { syncAssemblyConflict } from './engine/assemblyConflict';
 import { enqueueEvent } from './engine/eventQueue';
 import { nextOpeningGuidance } from './engine/campaignGuidance';
 import { snapshotOpeningEvent } from './engine/openingCampaign';
+import { getTileControl } from './engine/mapState';
 import { DECISIONS } from './components/RightSidebar';
 import EventPopup from './components/EventPopup';
 import SuperEvent from './components/SuperEvent';
@@ -3999,17 +4000,15 @@ export default function App() {
 
           // Penetration (School AI attacks) — 写入地块级控制度旗标（v8.5: 铁腕时代校方即为玩家，无渗透攻击）
           const penetrationTargets = ['b1b2', 'b3', 'auditorium', 'lab'];
-          if (!newFlags.wu_route_active) {
+          if (!newFlags.wu_route_active && !newFlags.map_struggle_ended) {
             penetrationTargets.forEach(bid => {
               ALL_SUB_TILES.filter(t => t.buildingId === bid).forEach(tile => {
                 const defKey = `tile_def_${tile.id}`;
                 const ctrlKey = `tile_ctrl_${tile.id}`;
                 const tileDef = (newFlags[defKey] as number | undefined) ?? 0;
-                if (tileDef > 0) {
-                  newFlags[defKey] = tileDef - 1;
-                } else {
-                  const currentCtrl = (newFlags[ctrlKey] as number | undefined) ?? tile.studentControl;
-                  if (!(prev.flags['united_committee_established'] && currentCtrl >= 100)) {
+                if (tileDef <= 0) {
+                  const currentCtrl = getTileControl({ flags: newFlags }, tile.id);
+                  if (!(newFlags['united_committee_established'] && currentCtrl >= 100)) {
                     const decay = bid === 'lab' ? 0.2 : 0.5;
                     newFlags[ctrlKey] = Math.max(0, currentCtrl - decay);
                   }
@@ -4043,7 +4042,7 @@ export default function App() {
           ALL_SUB_TILES.forEach((tile) => {
             const tileCtrlKey = `tile_ctrl_${tile.id}`;
             const tileDefKey = `tile_def_${tile.id}`;
-            let currentCtrl = (newFlags[tileCtrlKey] as number | undefined) ?? tile.studentControl;
+            let currentCtrl = getTileControl({ flags: newFlags }, tile.id);
 
             // 防御天数递减
             if (((newFlags[tileDefKey] as number | undefined) ?? 0) > 0) {
@@ -4051,8 +4050,7 @@ export default function App() {
             } else {
               // AI渗透衰减
               if (newFlags.rebellion_started && !newFlags.map_struggle_ended) {
-                const bCtrl = newMapLocations[tile.buildingId]?.studentControl;
-                if (!(newFlags.united_committee_established && bCtrl && bCtrl >= 100)) {
+                if (!(newFlags.united_committee_established && currentCtrl >= 100)) {
                   currentCtrl = Math.max(0, currentCtrl - 0.3);
                 }
               }

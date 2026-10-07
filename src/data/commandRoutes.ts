@@ -57,6 +57,7 @@ export function getCommandRoute(s: GameState): RouteDoctrine {
   };
   // 当前国策树优先于历史旗标和选举产生的领袖名称。
   if (known[tree]) return DOCTRINES[known[tree]];
+  if (tree === 'phase1') return s.flags.rebellion_started ? DOCTRINES.revolution : DOCTRINES.opening;
   if (tree.startsWith('wu_tree') || s.flags.wu_route_active) return DOCTRINES.wu;
   if (tree === 'jidi_tree' || s.leader.name === '封安祥') return DOCTRINES.jidi;
   if (tree === 'gouxiong_tree' || s.leader.name === '狗熊') return DOCTRINES.gouxiong;

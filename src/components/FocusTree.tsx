@@ -5,6 +5,7 @@ import { FLAVOR_EVENTS } from '../data/flavorEvents';
 import { STORY_EVENTS } from '../data/storyEvents';
 import { applyYangSettlement, CROSSROADS_RULES, CROSSROADS_LABELS, getCrossroadsOutcome } from '../engine/assemblyPolitics';
 import FocusHoverCard from './FocusHoverCard';
+import { formatControl, getCampusControlProgress, getTileControl } from '../engine/mapState';
 
 interface FocusTreeProps {
   state: GameState;
@@ -1415,10 +1416,8 @@ export const TREE_A_PAN_NODES: FocusNode[] = [
     activeEvent: FLAVOR_EVENTS.democratic_reforms_event 
   }), effectsText: ['党内集权度 -20', '稳定度 -20', '解锁机制：素质教育与应试教育权力平衡', '获得动态国家精神：民主之路 (每日TPR -15)', '触发事件：全面民主改革'] },
   { id: 'reclaim_democracy', title: '重拾民主...', description: '我们必须完全控制校园，才能真正推行民主。', days: 14, x: 500, y: 350, requires: ['expand_assembly', 'democratic_reforms'], 
-    canStart: (s) => ALL_SUB_TILES.every(t => {
-      const ctrl = (s.flags[`tile_ctrl_${t.id}`] as number | undefined) ?? t.studentControl;
-      return ctrl >= 100;
-    }),
+    canStart: (s) => getCampusControlProgress(s).remaining.length === 0,
+    requiresText: ['全校15个地区的实际学生控制度达到100%'],
     onComplete: (s) => {
       const newFlags = { ...s.flags, map_struggle_ended: true };
       ALL_SUB_TILES.forEach(t => { newFlags[`tile_ctrl_${t.id}`] = 100; });
@@ -1707,10 +1706,8 @@ export const TREE_A_TRUE_LEFT_NODES: FocusNode[] = [
   { id: 'final_revolution', title: '最终革命', description: '将革命进行到底。', days: 14, x: 700, y: 200, requires: ['true_left_consolidation'], onComplete: (s) => ({ stats: { ...s.stats, allianceUnity: s.stats.allianceUnity + 10 }, activeEvent: FLAVOR_EVENTS.final_revolution_event }), effectsText: ['联盟团结度 +10', '触发事件：最终革命'] },
   
   { id: 'declare_victory', title: '宣告全校夺取胜利', description: '我们已经控制了整个校园，是时候结束军事阶段，转向全面建设了。', days: 7, x: 500, y: 350, requires: ['orthodox_dominance', 'final_revolution'],
-    canStart: (s) => ALL_SUB_TILES.every(t => {
-      const ctrl = (s.flags[`tile_ctrl_${t.id}`] as number | undefined) ?? t.studentControl;
-      return ctrl >= 100;
-    }),
+    canStart: (s) => getCampusControlProgress(s).remaining.length === 0,
+    requiresText: ['全校15个地区的实际学生控制度达到100%'],
     onComplete: (s) => ({
       flags: { ...s.flags, 'map_phase_ended': true, 'red_toad_politburo_unlocked': true },
       redToadState: {
@@ -2618,7 +2615,7 @@ export const TREE_WU_NODES: FocusNode[] = [
     effectsText: ['稳定度 +5，卷子储备 +200', '教师支持 +5，学生愤怒 +3']
   },
   { id: 'wu_secure_perimeter', title: '肃清制高点', description: '把十五个区域重新置于校方绝对控制之下，不给残党任何藏身之地。', days: 14, x: 500, y: 330, requires: ['wu_resume_classes'],
-    canStart: (s) => ALL_SUB_TILES.every(t => ((s.flags[`tile_ctrl_${t.id}`] as number | undefined) ?? t.studentControl) <= 40),
+    canStart: (s) => ALL_SUB_TILES.every(t => getTileControl(s, t.id) <= 40),
     onComplete: (s) => ({
       wuState: s.wuState ? { ...s.wuState, guerrillaStrength: Math.max(0, s.wuState.guerrillaStrength - 15), fengTrust: Math.min(100, s.wuState.fengTrust + 10), studentAnger: Math.min(100, s.wuState.studentAnger + 5) } : undefined,
       stats: { ...s.stats, stab: Math.min(100, s.stats.stab + 5) },
@@ -3383,6 +3380,13 @@ export default function FocusTree({ state, startFocus, triggerError, isSuperEven
                       <span className="font-bold text-amber-300">需要条件: </span>{node.requiresText.join('；')}
                     </div>
                   )}
+                  {['reclaim_democracy', 'declare_victory'].includes(node.id) && (() => {
+                    const progress = getCampusControlProgress(state);
+                    return <div className={`text-[11px] mb-2 ${progress.remaining.length ? 'text-tno-red' : 'text-tno-green'}`} data-campus-control-progress>
+                      <strong>全校控制：{progress.controlled}/{progress.total}</strong>
+                      {progress.remaining.length > 0 && <p className="mt-1">尚未完成：{progress.remaining.slice(0, 5).map(tile => `${tile.name} ${formatControl(tile.control)}%`).join('；')}{progress.remaining.length > 5 ? `；另有${progress.remaining.length - 5}处` : ''}</p>}
+                    </div>;
+                  })()}
                   {node.canStart && !node.requiresText?.length && (
                     <div className="text-[10px] text-amber-200/70 mb-1.5">
                       <span className="font-bold text-amber-300/80">隐藏条件: </span>另有数值判定（悬浮不可见，达成后解锁）

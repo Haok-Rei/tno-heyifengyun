@@ -4,6 +4,7 @@ import { ROUTE_OPERATIONS } from '../data/routeOperations';
 import { getLawSystem } from '../data/laws';
 import { availableMapActions, executeMapAction } from './mapActions';
 import type { CommandState, FieldOrder } from './commandTypes';
+import { getTileControl } from './mapState';
 
 const day = (date: Date) => Math.floor(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) / 86400000);
 const regionTile: Record<string, string> = { B3: 'b3_tower', B1_B2: 'dorm_1_4', Admin: 'admin_main', ArtHall: 'aud_hall', Lab: 'intl_dept', Playground: 'track_field' };
@@ -115,12 +116,20 @@ export function getTeamCapacity(state: GameState): number {
 export function getCommandState(state: GameState): CommandState {
   const stored = state.command;
   const capacity = getTeamCapacity(state);
+  const route = getCommandRoute(state).id;
+  const retired: FieldOrder[] = [];
   const teams = Array.from({ length: Math.max(capacity, stored?.teams?.length || 0) }, (_, i) => {
     const old = stored?.teams?.[i];
-    const order = old?.order && 'actionId' in old.order ? old.order as FieldOrder : null;
+    let order = old?.order && 'actionId' in old.order ? old.order as FieldOrder : null;
+    if (order && (order.route !== route || (!order.reformRegion && !availableMapActions(state, order.tileId).some(action => action.id === order!.actionId)))) {
+      retired.push(order);
+      order = null;
+    }
     return { ...newTeam(i), order };
   });
-  return { version: 2, nextId: stored?.nextId || 1, lastTick: stored?.version === 2 ? stored.lastTick : day(state.date), teams, reports: stored?.reports || [], completed: stored?.completed || 0, preparation: routePreparation(state) };
+  const nextId = stored?.nextId || 1;
+  const reports = retired.map((order, index) => ({ id: nextId + index, date: state.date.getTime(), title: '工作组撤回', text: '路线或地区授权发生改变，定期任务自动终止。', outcome: '无额外损失', tileId: order.tileId }));
+  return { version: 2, nextId: nextId + retired.length, lastTick: stored?.version === 2 ? stored.lastTick : day(state.date), teams, reports: retired.length ? [...reports, ...(stored?.reports || [])].slice(0, 10) : stored?.reports || [], completed: stored?.completed || 0, preparation: routePreparation(state) };
 }
 
 export function getSupplyNetwork(state: GameState): Set<string> {
@@ -134,7 +143,7 @@ export function getSupplyNetwork(state: GameState): Set<string> {
       if (connected.has(neighbor)) continue;
       const tile = ALL_SUB_TILES.find(t => t.id === neighbor);
       if (!tile) continue;
-      const control = (state.flags[`tile_ctrl_${neighbor}`] as number | undefined) ?? tile?.studentControl ?? 50;
+      const control = getTileControl(state, neighbor);
       if (getCommandRoute(state).schoolSide ? control <= 50 : control >= 50) { connected.add(neighbor); queue.push(neighbor); }
     }
   }
@@ -178,7 +187,10 @@ export function advanceCommandDay(state: GameState): GameState {
   if (state.gameEnding) return state;
   const current = getCommandState(state);
   const today = day(state.date);
-  if (today <= current.lastTick) return state.command?.version === 2 ? state : { ...state, command: current };
+  if (today <= current.lastTick) {
+    const retired = state.command?.teams.some((team, index) => team.order && !current.teams[index]?.order);
+    return state.command?.version === 2 && !retired ? state : { ...state, command: current };
+  }
   const command: CommandState = { ...current, lastTick: today, teams: current.teams.map(t => ({ ...t, order: t.order ? { ...t.order } : null })), reports: [...current.reports] };
   let next: GameState = { ...state, command };
   for (const team of command.teams) {

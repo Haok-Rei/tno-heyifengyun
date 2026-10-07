@@ -14,6 +14,8 @@ import { FLAVOR_EVENTS } from '../data/flavorEvents';
 import { reconcileRouteSpirits } from './routeSpirits';
 import { refreshReviewedDescriptions } from './proseRevisions';
 import { syncAssemblyConflict } from './assemblyConflict';
+import { restoreMapState } from './mapState';
+import { getCommandState } from './commandSystem';
 
 // ---- 类型定义 ----
 
@@ -83,7 +85,8 @@ export function deserializeGameState(raw: string): GameState | null {
       : FLAVOR_EVENTS[event.id] ? { ...FLAVOR_EVENTS[event.id], ...event, effect: FLAVOR_EVENTS[event.id].effect, choices: FLAVOR_EVENTS[event.id].choices } : event;
     state.activeEvent = state.activeEvent ? restore(state.activeEvent) : null;
     state.activeStoryEvents = (state.activeStoryEvents ?? []).map(restore);
-    return reconcileRouteSpirits(syncAssemblyConflict(refreshReviewedDescriptions(state)));
+    const restored = restoreMapState(reconcileRouteSpirits(syncAssemblyConflict(refreshReviewedDescriptions(state))));
+    return restored.command ? { ...restored, command: getCommandState(restored) } : restored;
   } catch {
     return null;
   }
