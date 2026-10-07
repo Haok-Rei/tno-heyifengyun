@@ -49,6 +49,7 @@ export default function EventPopup({ event, onConfirm, date, state }: EventPopup
                 {/* Text */}
                 <div className="event-body z-10 text-left text-[15px] text-tno-text/90 whitespace-pre-wrap font-serif w-full">
                   {event.description}
+                  {event.openingEcho && <p className="mt-5" data-opening-echo>{event.openingEcho}</p>}
                 </div>
               </div>
             </div>
@@ -65,6 +66,7 @@ export default function EventPopup({ event, onConfirm, date, state }: EventPopup
                 <h2 className="text-2xl font-bold text-white mb-4 leading-tight">{event.title}</h2>
                 <div className="event-body text-sm text-tno-text/90 whitespace-pre-wrap flex-1 font-serif overflow-y-auto max-h-[50vh] pr-2">
                   {event.description}
+                  {event.openingEcho && <p className="mt-4" data-opening-echo>{event.openingEcho}</p>}
                 </div>
               </div>
             </>

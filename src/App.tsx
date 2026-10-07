@@ -10,6 +10,7 @@ import { cleanAssemblyCrises, expireAssemblyCrisis } from './engine/assemblyPoli
 import { syncAssemblyConflict } from './engine/assemblyConflict';
 import { enqueueEvent } from './engine/eventQueue';
 import { nextOpeningGuidance } from './engine/campaignGuidance';
+import { snapshotOpeningEvent } from './engine/openingCampaign';
 import { DECISIONS } from './components/RightSidebar';
 import EventPopup from './components/EventPopup';
 import SuperEvent from './components/SuperEvent';
@@ -42,6 +43,7 @@ import HeyiLight from './components/HeyiLight';
 import { advanceHeyiLight, getHeyiSceneKey, getHeyiRoute, observeHeyiLight } from './engine/heyiLight';
 import { reconcileRouteSpirits } from './engine/routeSpirits';
 import './components/guidedTutorial.css';
+import './components/openingCampaign.css';
 import Settings from './components/Settings';
 import LoadingScreen from './components/LoadingScreen';
 import { GameState, Advisor, Decision, GameEvent, SuperEventData, EventChoice, NationalSpirit, RedToadFaction, ALL_SUB_TILES, ChronicleEntry } from './types';
@@ -2126,7 +2128,7 @@ export default function App() {
                   newFlags.yang_yule_condition_met = true;
                 }
               }
-              if (effectPartial.activeEvent) queueEvent(effectPartial.activeEvent, true);
+              if (effectPartial.activeEvent) queueEvent(snapshotOpeningEvent(currentState, effectPartial.activeEvent), true);
               if (effectPartial.leader) newLeader = effectPartial.leader;
               if (effectPartial.ideologies) newIdeologies = effectPartial.ideologies;
               if (effectPartial.mapLocations) newMapLocations = effectPartial.mapLocations;

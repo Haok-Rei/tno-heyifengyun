@@ -1,0 +1,21 @@
+.opening-brief { --chapter-brass:#c9b481; --chapter-muted:#a5aaa4; color:#dfded3; border:1px solid #625449; background:linear-gradient(115deg,#252827,#171d20 75%); box-shadow:inset 0 0 0 2px #101516; margin-bottom:14px; }
+.opening-brief header { display:flex; align-items:center; gap:13px; padding:12px 16px; }
+.chapter-seal { width:55px; height:55px; flex:none; color:var(--chapter-brass); }
+.opening-brief header small { color:var(--chapter-brass); font-size:10px; letter-spacing:.18em; }
+.opening-brief h3 { margin:3px 0 5px; font:600 15px/1.4 'Microsoft YaHei',sans-serif; letter-spacing:.08em; }
+.opening-brief header p { margin:0; color:var(--chapter-muted); font-size:12px; line-height:1.7; }
+.opening-chapter-track { display:flex; list-style:none; padding:0 16px 10px; margin:0; gap:0; }
+.opening-chapter-track li { display:flex; align-items:center; flex:1; gap:8px; color:#7b8786; font-size:11px; }
+.opening-chapter-track li:not(:last-child)::after { content:''; flex:1; height:1px; background:#45504b; margin-right:10px; }
+.opening-chapter-track i { height:6px; width:6px; border:1px solid currentColor; transform:rotate(45deg); flex:none; }
+.opening-chapter-track .past { color:#a8bba9; }.opening-chapter-track .past i { background:currentColor; }
+.opening-chapter-track .current { color:var(--chapter-brass); font-weight:600; }
+.opening-chapter-track .current i { background:currentColor; box-shadow:0 0 0 3px #c9b48112; }
+.opening-brief-details { border-top:1px solid #46453e; padding:8px 16px; }
+.opening-brief-details summary { cursor:pointer; color:var(--chapter-brass); font-size:11px; }
+.opening-brief-details ul { list-style:none; margin:10px 0; padding:0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+.opening-brief-details li b { color:#d5cbb4; font-size:12px; }.opening-brief-details .done b { color:#b4d0b7; }
+.opening-brief-details li p { font-size:11px; line-height:1.75; color:var(--chapter-muted); margin:5px 0 0; }
+.opening-memory { border-top:1px solid #3f4742; padding-top:8px; color:#a6b7ab; font:11px/1.7 'Microsoft YaHei',sans-serif; }
+.opening-memory p { margin:3px 0; }
+@media(max-width:650px) { .opening-brief-details ul { grid-template-columns:1fr; gap:10px; }.opening-brief header { padding:10px; gap:8px; }.chapter-seal { width:42px; height:42px; }.opening-chapter-track { padding:0 10px 10px; }.opening-chapter-track li { font-size:10px; gap:5px; } }

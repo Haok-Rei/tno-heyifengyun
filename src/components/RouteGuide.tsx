@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import type { GameState } from '../types';
+import OpeningCampaignBrief from './OpeningCampaignBrief';
 import { ChevronRight, ChevronDown, Flag, AlertTriangle, Sparkles, Route as RouteIcon, ScrollText } from 'lucide-react';
 import { ENDING_BY_ID, IMPLEMENTED_ENDING_COUNT } from '../data/endings';
 
@@ -418,7 +420,7 @@ function GuideTreeNode({ node, depth, expanded, onToggle }: {
   );
 }
 
-export default function RouteGuide() {
+export default function RouteGuide({ state }: { state?: GameState } = {}) {
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
 
   const collectIds = (node: GuideNode, acc: string[] = []): string[] => {
@@ -462,6 +464,7 @@ export default function RouteGuide() {
 
       {/* 思维导图树 */}
       <div className="flex-1 overflow-y-auto pr-2">
+        {state && <OpeningCampaignBrief state={state} />}
         <GuideTreeNode node={ROUTE_TREE} depth={0} expanded={expanded} onToggle={(id) => setExpanded(prev => ({ ...prev, [id]: !(prev[id] ?? true) }))} />
       </div>
     </div>

@@ -113,6 +113,8 @@ export interface EventChoice {
 }
 
 export interface GameEvent {
+  /** 入队时定格的开局/革委会前史回声；不改变原事件正文、选项与效果。 */
+  openingEcho?: string;
   campusSituation?: { family: string; variant: string; route: string; channel: 'daily' | 'document' };
   id: string;
   title: string;
@@ -332,6 +334,8 @@ export interface GameState {
   campaignStats?: { days: number; papersUsed: number; papersPrinted: number; clubEvents: number; learningScoreTotal: number };
   /** 战区指挥：纯数据，可直接随原有存档序列化。 */
   command?: import('./engine/commandTypes').CommandState;
+  /** 开局与革委会地区行动的前史，仅用于剧情反馈与指南。 */
+  openingCampaign?: import('./engine/openingCampaign').OpeningCampaignHistory;
   date: Date;
   isPaused: boolean;
   gameSpeed: number;

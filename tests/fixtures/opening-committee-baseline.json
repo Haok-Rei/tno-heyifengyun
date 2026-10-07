@@ -1,0 +1,263 @@
+{
+  "source": "8d77090",
+  "trees": {
+    "phase1": [
+      {
+        "id": "start_2023",
+        "days": 5,
+        "requires": [],
+        "mutuallyExclusive": []
+      },
+      {
+        "id": "build_art",
+        "days": 10,
+        "requires": [
+          "start_2023"
+        ],
+        "mutuallyExclusive": []
+      },
+      {
+        "id": "wu_patrol",
+        "days": 10,
+        "requires": [
+          "build_art"
+        ],
+        "mutuallyExclusive": []
+      },
+      {
+        "id": "fake_five_edu",
+        "days": 10,
+        "requires": [
+          "wu_patrol"
+        ],
+        "mutuallyExclusive": []
+      },
+      {
+        "id": "ban_books",
+        "days": 10,
+        "requires": [
+          "wu_patrol"
+        ],
+        "mutuallyExclusive": []
+      },
+      {
+        "id": "perfect_hengshui",
+        "days": 14,
+        "requires": [
+          "fake_five_edu",
+          "ban_books"
+        ],
+        "mutuallyExclusive": []
+      },
+      {
+        "id": "dorm_talks",
+        "days": 10,
+        "requires": [
+          "start_2023"
+        ],
+        "mutuallyExclusive": []
+      },
+      {
+        "id": "contact_pan",
+        "days": 10,
+        "requires": [
+          "dorm_talks"
+        ],
+        "mutuallyExclusive": []
+      },
+      {
+        "id": "read_marx",
+        "days": 10,
+        "requires": [
+          "dorm_talks"
+        ],
+        "mutuallyExclusive": []
+      },
+      {
+        "id": "rally_classes",
+        "days": 10,
+        "requires": [
+          "contact_pan"
+        ],
+        "mutuallyExclusive": []
+      },
+      {
+        "id": "protest_privilege",
+        "days": 10,
+        "requires": [
+          "read_marx"
+        ],
+        "mutuallyExclusive": []
+      },
+      {
+        "id": "steel_toad",
+        "days": 14,
+        "requires": [
+          "rally_classes",
+          "protest_privilege"
+        ],
+        "mutuallyExclusive": []
+      },
+      {
+        "id": "charge_b3",
+        "days": 5,
+        "requires": [],
+        "mutuallyExclusive": []
+      }
+    ],
+    "treeA": [
+      {
+        "id": "declare_indep",
+        "days": 7,
+        "requires": [],
+        "mutuallyExclusive": []
+      },
+      {
+        "id": "recruit_revolutionaries",
+        "days": 7,
+        "requires": [
+          "declare_indep"
+        ],
+        "mutuallyExclusive": []
+      },
+      {
+        "id": "purge_moderates",
+        "days": 14,
+        "requires": [
+          "declare_indep"
+        ],
+        "mutuallyExclusive": [
+          "broad_coalition"
+        ]
+      },
+      {
+        "id": "establish_vanguard",
+        "days": 14,
+        "requires": [
+          "purge_moderates"
+        ],
+        "mutuallyExclusive": []
+      },
+      {
+        "id": "student_militia",
+        "days": 14,
+        "requires": [
+          "establish_vanguard"
+        ],
+        "mutuallyExclusive": []
+      },
+      {
+        "id": "broad_coalition",
+        "days": 14,
+        "requires": [
+          "declare_indep"
+        ],
+        "mutuallyExclusive": [
+          "purge_moderates"
+        ]
+      },
+      {
+        "id": "democratic_councils",
+        "days": 14,
+        "requires": [
+          "broad_coalition"
+        ],
+        "mutuallyExclusive": []
+      },
+      {
+        "id": "unite_teachers",
+        "days": 14,
+        "requires": [
+          "democratic_councils"
+        ],
+        "mutuallyExclusive": []
+      },
+      {
+        "id": "disperse_guards",
+        "days": 10,
+        "requires": [
+          "declare_indep"
+        ],
+        "mutuallyExclusive": []
+      },
+      {
+        "id": "takeover_admin",
+        "days": 10,
+        "requires": [
+          "declare_indep"
+        ],
+        "mutuallyExclusive": []
+      },
+      {
+        "id": "seize_mouthpiece",
+        "days": 7,
+        "requires": [
+          "disperse_guards",
+          "takeover_admin"
+        ],
+        "mutuallyExclusive": []
+      },
+      {
+        "id": "underground_print",
+        "days": 7,
+        "requires": [
+          "disperse_guards"
+        ],
+        "mutuallyExclusive": []
+      },
+      {
+        "id": "poster_campaign",
+        "days": 7,
+        "requires": [
+          "takeover_admin"
+        ],
+        "mutuallyExclusive": []
+      },
+      {
+        "id": "convene_assembly",
+        "days": 12,
+        "requires": [
+          "seize_mouthpiece"
+        ],
+        "mutuallyExclusive": []
+      },
+      {
+        "id": "trial_yang",
+        "days": 21,
+        "requires": [
+          "convene_assembly"
+        ],
+        "mutuallyExclusive": [
+          "secret_compromise"
+        ]
+      },
+      {
+        "id": "secret_compromise",
+        "days": 21,
+        "requires": [
+          "convene_assembly"
+        ],
+        "mutuallyExclusive": [
+          "trial_yang"
+        ]
+      },
+      {
+        "id": "rectify_campus_order",
+        "days": 14,
+        "requires": [
+          "trial_yang",
+          "secret_compromise"
+        ],
+        "mutuallyExclusive": []
+      },
+      {
+        "id": "crossroads_of_fate",
+        "days": 7,
+        "requires": [
+          "rectify_campus_order"
+        ],
+        "mutuallyExclusive": []
+      }
+    ]
+  }
+}

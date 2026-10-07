@@ -1332,6 +1332,23 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
       stats: { ...state.stats, stab: Math.min(100, state.stats.stab + 10), tpr: Math.max(0, state.stats.tpr - 50) }
     })
   },
+  // Short, conditional continuations of existing events. Never queued as separate popups.
+  phase1_echo_handover: {
+    id: 'phase1_echo_handover', title: 'B3联络的后续', isStoryEvent: true,
+    description: "去操场联络的人还没定下，起义前在B3串联的几个同学已经等在门口。他们知道哪些班愿意帮忙，担心的是出去以后该传什么话。\n\n“先报到指挥组，行动统一安排。”王照凯说。潘仁越接着问：“各班托他们带来的意见，谁听？”来的人索性也搬来凳子：“那先把这件事说清楚。我们总不能出去以后，一个班一个说法。”",
+  },
+  phase1_echo_clubs: {
+    id: 'phase1_echo_clubs', title: '社团联络的后续', isStoryEvent: true,
+    description: "礼堂社团的学生也到了B3。他们起义前帮着联络，现在想问周末的活动该找谁协调。\n\n“等全校的安排。”一位代表答道。\n\n“原来等教务处，现在等委员会？”来人追问。有人说眼下顾不上这些，旁边的代表却不同意：“请他们帮忙的时候，可没说社团自己的事不算事。”社团的人仍愿意继续联络，只要求有人把礼堂什么时候能用说明白。",
+  },
+  committee_echo_trial: {
+    id: 'committee_echo_trial', title: '公审后的教务', isStoryEvent: true,
+    description: "一个班委说，老师愿意回来排课，却不知道现在该找谁签字。杨玉乐已经撤职，这次不能照旧送到他那里。\n\n“让各班先报上来，我们定。”正统派的代表说。\n\n潘仁越追问，教师的意见怎么进来，班里不同意又找谁。班委不愿等他们把整套制度争完：“明天的课上不上？先找人把这事接过去，别让我们又等一星期。”",
+  },
+  committee_echo_compromise: {
+    id: 'committee_echo_compromise', title: '妥协后的教务', isStoryEvent: true,
+    description: "一个做题派代表提议，排课表和发通知先请旧教务人员帮忙，各班派人核对。\n\n“核对完不同意呢？还是他们说了算？”旁边的人问。\n\n潘派的学生接过话：“备忘录都签了，也不能什么事都拿盖章堵回来。班里的意见得有人听。”正统派要求先说清哪些事还交给杨玉乐。做题派的代表催他们：“这些都得谈，可明天的课表总得先排出来。”",
+  },
   event_10_crossroads: {
     id: 'event_10_crossroads',
     isStoryEvent: true,

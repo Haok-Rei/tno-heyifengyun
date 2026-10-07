@@ -6,6 +6,7 @@ import { getCommandState, getTeamCapacity } from './commandSystem';
 import { availableMapActions } from './mapActions';
 import { getPaperUpkeep } from './campaignStats';
 import { getHeyiSceneChanges } from './heyiLight';
+import { getChapterBrief } from './openingCampaign';
 
 export type ReminderKind = 'focus' | 'decision' | 'advisor' | 'law' | 'team' | 'mechanic' | 'crisis' | 'papers' | 'stalled' | 'heyi';
 export const REMINDER_IGNORE_DAYS = 30;
@@ -37,6 +38,9 @@ export function getActionReminders(state: GameState, focuses: FocusNode[], decis
     !state.completedFocuses.includes(n.id) && !n.isHidden?.(state) && hasFocusRequirements(n,state.completedFocuses)
     && !n.mutuallyExclusive?.some(id=>state.completedFocuses.includes(id)) && (!n.canStart || n.canStart(state))
   ).map(n=>({id:n.id,label:n.title})));
+  const chapter = getChapterBrief(state);
+  const focusReminder = result.find(reminder => reminder.id === 'focus');
+  if (chapter && focusReminder) focusReminder.entries.unshift(chapter.goal);
   add('decision','可以执行决议',decisions.filter(d => !d.id.startsWith('debug_')
     && (!d.isVisible || d.isVisible(state)) && (state.decisionCooldowns[d.id]||0)<=0
     && state.stats.pp>=d.costPP && (!d.canAfford || d.canAfford(state))

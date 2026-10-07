@@ -9,7 +9,7 @@ import RouteGuide from './RouteGuide';
 import HoverWindow from './HoverWindow';
 import { getCommandRoute } from '../data/commandRoutes';
 import { ROUTE_OPERATIONS } from '../data/routeOperations';
-import { getCommandState } from '../engine/commandSystem';
+import { getCommandState, getPreparationPreview } from '../engine/commandSystem';
 
 interface RightSidebarProps {
   state: GameState;
@@ -1670,6 +1670,7 @@ export default function RightSidebar({ state, triggerDecision, triggerError }: R
           {DECISIONS.filter(d => d.isVisible ? d.isVisible(state) : true).map(decision => {
             const route = getCommandRoute(state).id;
             const linkedPreparation = decision.id === ROUTE_OPERATIONS[route].decision ? Math.min(3, getCommandState(state).preparation?.[route] || 0) : 0;
+            const preparationPreview = linkedPreparation > 0 ? getPreparationPreview(state) : null;
             const cooldown = state.decisionCooldowns[decision.id] || 0;
             const canAffordPP = state.stats.pp >= decision.costPP;
             const canAffordCustom = decision.canAfford ? decision.canAfford(state) : true;
@@ -1699,7 +1700,7 @@ export default function RightSidebar({ state, triggerDecision, triggerError }: R
                       </div>
                     )}
                     <div className="text-sm text-tno-text/90 leading-relaxed mb-2">{decision.description}</div>
-                    {linkedPreparation > 0 && <div className="text-xs text-tno-green mb-2">工作组地区筹备：执行时投入 {linkedPreparation} 份，强化{ROUTE_OPERATIONS[route].result}</div>}
+                    {preparationPreview && <div className="text-xs text-tno-green mb-2">地区筹备投入 {linkedPreparation} 份：{preparationPreview.result}最多 {preparationPreview.maximumDelta >= 0 ? '+' : ''}{preparationPreview.maximumDelta}，受数值上限限制</div>}
                     {(decision.costPP > 0 || decision.costText) && (
                       <div className="text-sm mb-1.5">
                         <span className="font-bold text-tno-highlight">消耗: </span>
@@ -1798,7 +1799,7 @@ export default function RightSidebar({ state, triggerDecision, triggerError }: R
               </button>
             </div>
             <div className="p-4 text-sm text-tno-text/90 flex-1 min-h-0">
-              <RouteGuide />
+              <RouteGuide state={state} />
             </div>
           </div>
         </div>,

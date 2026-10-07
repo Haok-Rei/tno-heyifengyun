@@ -67,9 +67,38 @@ export function consumeRoutePreparation(state: GameState, route: ReturnType<type
   else if (route === 'yang' && next.yangYuleState) next.yangYuleState = { ...next.yangYuleState, teacherSupport: Math.min(100, next.yangYuleState.teacherSupport + spent * 2) };
   else if (route === 'jidi' && next.jidiCorporateState) next.jidiCorporateState = { ...next.jidiCorporateState, gdp: next.jidiCorporateState.gdp + spent };
   else if (route === 'gouxiong' && next.gouxiongState) next.gouxiongState = { ...next.gouxiongState, sanity: Math.min(next.gouxiongState.maxSanity, next.gouxiongState.sanity + spent * 2) };
-  const outcome = `${ROUTE_OPERATIONS[route].preparationUse}投入${stage === 'decision' ? '决议' : '小游戏'}：消耗 ${spent} 份，${ROUTE_OPERATIONS[route].result}${route === 'wu' ? ' -' : ' +'}${route === 'jidi' ? spent : spent * 2}`;
+  const actual = Number((preparationValue(next, route) - preparationValue(state, route)).toFixed(2));
+  const outcome = `${ROUTE_OPERATIONS[route].preparationUse}投入${stage === 'decision' ? '决议' : '小游戏'}：消耗 ${spent} 份，${ROUTE_OPERATIONS[route].result} ${actual >= 0 ? '+' : ''}${actual}；剩余 ${command.preparation[route]}/6`;
   command.reports = [{ id: command.nextId++, date: state.date.getTime(), title: stage === 'decision' ? '工作组支援决议' : '工作组支援行动', text: ROUTE_OPERATIONS[route].decisionName, outcome, tileId: getCommandRoute(state).hq }, ...command.reports].slice(0, 10);
   return { state: next, spent, outcome };
+}
+
+function preparationValue(state: GameState, route: ReturnType<typeof getCommandRoute>['id']): number {
+  if (route === 'opening' || route === 'revolution') return state.stats.ss;
+  if (route === 'democracy' || route === 'commune') return state.stats.allianceUnity;
+  if (route === 'purge') return state.stats.partyCentralization;
+  if (route === 'wu') return state.wuState?.guerrillaStrength ?? 0;
+  if (route === 'reform') return state.reformState?.progress ?? 0;
+  if (route === 'yang') return state.yangYuleState?.teacherSupport ?? 0;
+  if (route === 'jidi') return state.jidiCorporateState?.gdp ?? 0;
+  return state.gouxiongState?.sanity ?? 0;
+}
+
+/** A forecast of the existing capped reward; reading this never consumes preparation. */
+export function getPreparationPreview(state: GameState) {
+  const route = getCommandRoute(state).id;
+  const stored = getCommandState(state).preparation?.[route] || 0;
+  const spent = Math.min(3, stored);
+  const before = preparationValue(state, route);
+  const hasTarget = route === 'wu' ? !!state.wuState : route === 'reform' ? !!state.reformState
+    : route === 'yang' ? !!state.yangYuleState : route === 'jidi' ? !!state.jidiCorporateState : route === 'gouxiong' ? !!state.gouxiongState : true;
+  const maximumDelta = route === 'jidi' ? spent : route === 'wu' ? -spent * 2 : spent * 2;
+  const delta = !hasTarget ? 0 : route === 'jidi' ? spent : route === 'wu' ? -Math.min(before, spent * 2)
+    : Math.max(0, Math.min(route === 'gouxiong' ? state.gouxiongState?.maxSanity ?? 100 : 100, before + spent * 2) - before);
+  const uses = route === 'opening' ? '起义后最多继承3份，可支援传单决议和革命小游戏'
+    : route === 'revolution' ? '传单决议；频率之战、地下印刷所、海报战与B3保卫战'
+    : `${ROUTE_OPERATIONS[route].decisionName}${['commune', 'wu'].includes(route) ? '与相关小游戏' : ''}`;
+  return { spent, delta, maximumDelta, stored, result: ROUTE_OPERATIONS[route].result, uses, inherits: route === 'opening' };
 }
 
 export function getTeamCapacity(state: GameState): number {
@@ -177,7 +206,7 @@ export function advanceCommandDay(state: GameState): GameState {
     }
     if (today < order.nextRunDay) continue;
     const name = availableMapActions(next, order.tileId).find(a => a.id === order.actionId)!.name;
-    const result = executeMapAction(next, order.tileId, order.actionId);
+    const result = executeMapAction(next, order.tileId, order.actionId, 'workgroup');
     order.nextRunDay = today + (result.executed ? getOrderCadence(next, order.tileId, order.interval, order.repeats, order.actionId) : 1);
     if (!result.executed) {
       command.reports.unshift({ id: command.nextId++, date: next.date.getTime(), title: `${name} · 暂缓`, text: '所需资源不足或今天已经执行过；工作组明日重试。', outcome: '未扣资源', tileId: order.tileId });

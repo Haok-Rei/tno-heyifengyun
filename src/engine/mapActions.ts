@@ -1,6 +1,7 @@
 import { ALL_SUB_TILES, type GameState } from '../types';
 import { getCommandRoute } from '../data/commandRoutes';
 import { shiftPoll } from './electionCampaign';
+import { recordOpeningFieldwork } from './openingCampaign';
 
 export interface MapAction { id: string; name: string; cost: string; description: string }
 const action = (id: string, name: string, cost: string, description: string): MapAction => ({ id, name, cost, description });
@@ -34,7 +35,7 @@ export function availableMapActions(state: GameState, tileId: string): MapAction
 }
 
 function tileControl(s: GameState, tid: string) { return (s.flags['tile_ctrl_'+tid] as number|undefined) ?? ALL_SUB_TILES.find(t=>t.id===tid)?.studentControl ?? 50; }
-export function executeMapAction(prev: GameState, tid: string, aid: string): { state: GameState; executed: boolean } {
+export function executeMapAction(prev: GameState, tid: string, aid: string, source: 'manual' | 'workgroup' = 'manual'): { state: GameState; executed: boolean } {
   if (!availableMapActions(prev, tid).some(a => a.id === aid)) return { state: prev, executed: false };
   const today = prev.date.toISOString().split('T')[0];
   if (prev.flags[`map_action_${aid}_${tid}_last_date`] === today) return { state: prev, executed: false };
@@ -104,5 +105,5 @@ export function executeMapAction(prev: GameState, tid: string, aid: string): { s
     const tiles = ALL_SUB_TILES.filter(t=>t.buildingId===bid);
     ns.mapLocations[bid] = { ...ns.mapLocations[bid], studentControl: Math.round(tiles.reduce((sum,t)=>sum+tileControl(ns,t.id),0)/tiles.length) };
   }
-  return { state: ns, executed: true };
+  return { state: recordOpeningFieldwork(prev, ns, tid, aid, source), executed: true };
 }
