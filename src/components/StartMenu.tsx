@@ -20,7 +20,7 @@ const MENU_ITEMS = [
     key: 'art',
     label: '美术室',
     subtitle: 'Art Room / Route CG',
-    hoverText: '翻阅各条路线的超事件画面、载入图与校园美术。',
+    hoverText: '体验不同路线，收集超事件画面与校园美术。未解锁画作可查看收录条件。',
     image: ASSET_URLS.ui_thumbnail_2,
   },
   {

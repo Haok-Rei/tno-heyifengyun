@@ -39,6 +39,7 @@ import YangYuleDesk from './components/YangYuleDesk';
 import WuCrackdownConsole, { getWuAttitude } from './components/WuCrackdownConsole';
 import StartMenu from './components/StartMenu';
 import ArtRoom from './components/ArtRoom';
+import ArtworkUnlockToast from './components/ArtworkUnlockToast';
 import GuidedTutorial, { GUIDE_STEPS } from './components/GuidedTutorial';
 import HeyiLight from './components/HeyiLight';
 import { advanceHeyiLight, getHeyiSceneKey, getHeyiRoute, observeHeyiLight } from './engine/heyiLight';
@@ -5849,6 +5850,7 @@ export default function App() {
           }}
         />
       )}
+      <ArtworkUnlockToast progress={gameState} suspended={tutorialStep !== null} />
       {tutorialStep !== null && <GuidedTutorial step={tutorialStep} onStep={setTutorialStep} onFinish={finishTutorial} />}
     </div>
   );

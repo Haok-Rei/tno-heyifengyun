@@ -74,3 +74,10 @@ Super-event illustrations in this update come from the project's `art/载入图`
 
 
 art 与 music：项目作者提供的原始文件；此整理不为其添加新的授权声明。
+
+--- 新增校园CG（2026-10-09）---
+「滨湖晨光」「端馥晚照」：使用内置 image_gen 重新绘制的游戏插画。
+建筑参考为合肥一中官网公开校园照片，照片本身未声明开放授权，未直接作为新增CG发布。
+滨湖校门参考：https://www.hfyz.net/xwgk/xydt/288676.html
+端馥堂参考：https://www.hfyz.net/dyyd/dyzx/xwzl/290449.html
+源图、完整生成提示词及参考图片地址：art/载入图/CAMPUS_CG_SOURCES.md。

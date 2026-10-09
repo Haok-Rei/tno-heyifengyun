@@ -1,5 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { LOADING_ART_URLS } from '../config/assets';
+import { LOADING_ART } from '../config/loadingArtwork';
+import { ARTWORKS } from '../data/artGallery';
+import { getArtUnlocks, pickLoadingArtwork } from '../engine/artGallery';
 
 interface LoadingScreenProps {
   onComplete: () => void;
@@ -13,8 +15,6 @@ const LOADING_QUOTES = [
   { text: '秩序是自由的第一条件。', author: '黑格尔' },
   { text: '世界属于青年，就像黎明属于朝阳。', author: '毛泽东' },
 ] as const;
-
-const LOADING_BACKGROUNDS = LOADING_ART_URLS;
 
 function shuffleArray<T>(items: readonly T[]): T[] {
   const cloned = [...items];
@@ -32,7 +32,14 @@ export default function LoadingScreen({ onComplete, durationMs = 10000 }: Loadin
   const animationFrameRef = useRef<number | null>(null);
   const isCompletedRef = useRef(false);
   const shuffledQuotes = useMemo(() => shuffleArray(LOADING_QUOTES), []);
-  const shuffledBackgrounds = useMemo(() => shuffleArray(LOADING_BACKGROUNDS), []);
+  const shuffledBackgrounds = useMemo(() => {
+    const unlocks = getArtUnlocks();
+    const picked = pickLoadingArtwork(unlocks);
+    // Choose the category once per loading session: sensitive CGs occur in at most 2% of sessions.
+    const pool = ARTWORKS.filter(work => picked.scenery ? work.scenery
+      : !work.scenery && !!work.sensitive === !!picked.sensitive && unlocks[work.name]);
+    return shuffleArray(pool).map(work => ({ name: work.name, url: LOADING_ART[work.name] }));
+  }, []);
 
   const cycleLength = useMemo(
     () => Math.max(shuffledQuotes.length, shuffledBackgrounds.length),
@@ -86,9 +93,9 @@ export default function LoadingScreen({ onComplete, durationMs = 10000 }: Loadin
       <div className="absolute inset-0">
         {shuffledBackgrounds.map((bg, index) => (
           <img
-            key={`${bg}_${index}`}
-            src={bg}
-            alt="Loading Background"
+            key={bg.name}
+            src={bg.url}
+            alt={bg.name}
             className={`absolute inset-0 h-full w-full object-cover brightness-[1.08] contrast-[1.08] saturate-[1.06] transition-opacity duration-1000 ${
               index === currentBgIndex ? 'opacity-100' : 'opacity-0'
             }`}

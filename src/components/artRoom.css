@@ -32,4 +32,12 @@
 .art-room__shelf b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #d9e3df; font-size: 12px; }
 .art-room__shelf small { color: #8ea9a9; font-size: 10px; }
 .art-room__shelf i { margin-left: auto; align-self: start; color: #89b9bd; font-size: 10px; font-style: normal; }
+.art-room__canvas.is-locked { background: radial-gradient(ellipse, #182931, #070e13 72%); }
+.art-room__sealed { display: flex; align-items: center; flex-direction: column; gap: 16px; padding: 24px; text-align: center; color: #718c94; }
+.art-room__sealed > span { font: 13px 'SimSun', serif; letter-spacing: .3em; color: #c0d0cd; }
+.art-room__sealed p { margin: 0; font: 14px 'SimSun', serif; color: #abbcb6; }
+.art-room__sealed small { font-size: 11px; line-height: 1.6; }
+.art-room__locked-thumb { width: 94px; height: 65px; flex: none; display: grid; place-items: center; color: #58717a; background: repeating-linear-gradient(135deg, #0d1a21 0 5px, #12222a 5px 6px); border: 1px solid #294149; }
+.art-room__shelf > button.is-locked b { color: #94a5a8; }
+@media(max-width: 700px) { .art-room__locked-thumb { width: 57px; } .art-room__sealed { gap: 10px; } }
 @media(max-width: 700px) { .art-room__header { min-height: 74px; gap: 8px; padding: 9px 12px; } .art-room__header p, .art-room__header > div:first-child > span { display: none; } .art-room__header h1 { font-size: 23px; } .art-room__count strong { font-size: 18px; } .art-room__count span { font-size: 9px; } .art-room__back { padding: 7px; font-size: 10px; } .art-room__filters { padding: 7px 12px; } .art-room__content { display: flex; flex-direction: column; gap: 8px; padding: 8px 12px 12px; } .art-room__viewer { flex: 1; } .art-room__caption { padding: 7px 10px; } .art-room__caption h2 { font-size: 17px; } .art-room__shelf { flex: none; display: flex; height: 86px; overflow-x: auto; overflow-y: hidden; } .art-room__shelf > button { width: 130px; flex: none; } .art-room__shelf img { width: 57px; height: 65px; } }

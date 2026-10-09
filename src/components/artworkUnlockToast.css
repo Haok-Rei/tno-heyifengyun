@@ -1,0 +1,12 @@
+.art-unlock { position: fixed; z-index: 140; right: max(18px, env(safe-area-inset-right)); bottom: max(18px, env(safe-area-inset-bottom)); width: min(370px, calc(100vw - 36px)); display: flex; align-items: center; gap: 12px; min-height: 92px; padding: 12px 28px 12px 12px; color: #dce6df; background: linear-gradient(130deg, #1d3034f5, #0a131afc); border: 1px solid #8b9d7c; box-shadow: 0 0 0 3px #0b1114, 0 12px 36px #000b, inset 0 1px #cfdec327; font-family: 'SimSun', serif; animation: art-unlock-enter .35s ease-out; }
+.art-unlock__preview { width: 83px; height: 60px; flex: none; object-fit: cover; border: 1px solid #91a08c80; filter: saturate(.8); }
+.art-unlock__body { min-width: 0; }
+.art-unlock__body > span { display: flex; align-items: center; gap: 6px; color: #adc5a3; font-size: 10px; letter-spacing: .12em; }
+.art-unlock__body strong { display: block; margin-top: 5px; font-size: 16px; font-weight: normal; color: #f0e8c8; }
+.art-unlock__body p { margin: 4px 0 0; color: #9caeae; font-size: 10px; line-height: 1.5; }
+.art-unlock > button { position: absolute; top: 7px; right: 7px; padding: 3px; background: transparent; border: 0; color: #8fa3a5; cursor: pointer; }
+.art-unlock > button:hover, .art-unlock > button:focus-visible { color: #fff; outline: 1px solid #a5bda8; }
+.art-unlock__timer { position: absolute; bottom: 0; left: 0; height: 2px; width: 100%; transform-origin: left; background: #a7bc91; animation: art-unlock-timer 6.5s linear forwards; }
+@keyframes art-unlock-enter { from { opacity: 0; transform: translateX(25px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes art-unlock-timer { to { transform: scaleX(0); } }
+@media (prefers-reduced-motion: reduce) { .art-unlock { animation: none; } .art-unlock__timer { animation: none; } }
