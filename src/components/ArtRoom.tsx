@@ -60,7 +60,7 @@ export default function ArtRoom({ onBack }: Props) {
     <div className="art-room__content">
       <section className="art-room__viewer" aria-label="画作预览">
         <div className={`art-room__canvas ${isUnlocked ? '' : 'is-locked'}`}>
-          {isUnlocked ? <img src={LOADING_ART[current.name]} alt={current.name} /> : <div className="art-room__sealed"><LockKeyhole size={42} strokeWidth={1} /><span>尚未收录</span><p>{current.unlockHint}</p><small>体验对应剧情后，画作将自动保存至美术室。</small></div>}
+          {isUnlocked ? <img src={LOADING_ART[current.name]} alt={current.name} /> : <div className="art-room__sealed"><LockKeyhole size={42} strokeWidth={1} /><span>尚未收录</span><p>{current.unlockHint}</p><small>体验对应剧情后自动收录；载入预览不计入收藏。</small></div>}
           <span className="art-room__corner art-room__corner--tl" /><span className="art-room__corner art-room__corner--br" />
         </div>
         <div className="art-room__caption"><div><span>馆藏 {String(WORKS.indexOf(current) + 1).padStart(2, '0')} / {WORKS.length} · {current.route}</span><h2>{current.name}</h2><p>{isUnlocked ? current.note : current.unlockHint}</p></div><div className="art-room__arrows"><button type="button" onClick={() => move(-1)} aria-label="上一张">‹</button><button type="button" onClick={() => move(1)} aria-label="下一张">›</button></div></div>

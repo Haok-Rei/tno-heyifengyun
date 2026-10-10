@@ -7,6 +7,8 @@ export type ArtUnlocks = Record<string, number>;
 type ArtStorage = Pick<Storage, 'getItem' | 'setItem'>;
 export type ArtProgress = Pick<GameState, 'currentFocusTree' | 'completedFocuses' | 'activeEvent' | 'activeSuperEvent' | 'gameEnding' | 'chronicle'>;
 const knownNames = new Set(ARTWORKS.map(work => work.name));
+// Scenery is available even before the first campaign, without granting route art.
+const initialUnlocks: ArtUnlocks = Object.fromEntries(ARTWORKS.filter(work => work.scenery).map(work => [work.name, 1]));
 let sessionUnlocks: ArtUnlocks = {};
 const storageSessions = new WeakMap<ArtStorage, ArtUnlocks>();
 const sessionFor = (storage?: ArtStorage) => storage ? storageSessions.get(storage) ?? {} : sessionUnlocks;
@@ -20,7 +22,7 @@ export function getEarnedArtwork(progress: ArtProgress): Artwork[] {
   const events = new Set([progress.activeEvent?.id, progress.activeSuperEvent?.id]);
   // A route transition already recorded in an old save also counts as played.
   const tags = new Set((progress.chronicle ?? []).filter(entry => entry.type === 'route').map(entry => entry.routeTag));
-  return ARTWORKS.filter(work => work.opening
+  return ARTWORKS.filter(work => work.scenery || work.opening
     || work.trees?.includes(progress.currentFocusTree)
     || work.focuses?.some(id => progress.completedFocuses.includes(id))
     || work.events?.some(id => events.has(id))
@@ -34,9 +36,9 @@ function artworksForEnding(id: string): Artwork[] {
   return ARTWORKS.filter(work => work.opening || work.endings?.includes(id) || work.routeTags?.includes(route));
 }
 
-/** Opening the gallery never grants art; historical ending records are valid proof. */
+/** Scenery is initially open; route art requires progress or historical ending proof. */
 export function getArtUnlocks(storage = browserStorage()): ArtUnlocks {
-  const result: ArtUnlocks = { ...sessionFor(storage) };
+  const result: ArtUnlocks = { ...initialUnlocks, ...sessionFor(storage) };
   try {
     const parsed = JSON.parse(storage?.getItem(ART_UNLOCK_KEY) ?? '{}');
     for (const [name, date] of Object.entries(parsed)) {
@@ -65,15 +67,20 @@ export function unlockEarnedArtwork(progress: ArtProgress, storage = browserStor
   return fresh;
 }
 
-/** Each draw: 90% scenery, 8% other collected art, at most 2% sensitive story CGs. */
+/** Each visible loading image: 30% uncollected previews, 70% collected art. No unlock is written. */
 export function pickLoadingArtwork(unlocks: ArtUnlocks, random = Math.random, previous?: string): Artwork {
-  const scenery = ARTWORKS.filter(work => work.scenery);
-  const ordinary = ARTWORKS.filter(work => !work.scenery && !work.sensitive && unlocks[work.name]);
-  const sensitive = ARTWORKS.filter(work => work.sensitive && unlocks[work.name]);
-  const roll = random();
-  const pool = roll < .9 ? scenery : roll < .98 ? ordinary : sensitive;
-  const available = pool.length ? pool : scenery;
+  const unlocked = ARTWORKS.filter(work => work.scenery || unlocks[work.name]);
+  const locked = ARTWORKS.filter(work => !work.scenery && !unlocks[work.name]);
+  const pool = random() < .3 ? locked : unlocked;
+  const available = pool.length ? pool : unlocked.length ? unlocked : locked;
   const different = available.filter(work => work.name !== previous);
   const choices = different.length ? different : available;
   return choices[Math.min(choices.length - 1, Math.max(0, Math.floor(random() * choices.length)))];
+}
+
+/** Preload only the frames used during this load, rather than the entire collection. */
+export function createLoadingArtworkSequence(unlocks: ArtUnlocks, count = 5, random = Math.random): Artwork[] {
+  const sequence: Artwork[] = [];
+  for (let i = 0; i < count; i++) sequence.push(pickLoadingArtwork(unlocks, random, sequence.at(-1)?.name));
+  return sequence;
 }

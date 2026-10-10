@@ -1,9 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { ARTWORKS } from '../src/data/artGallery';
 import { ENDING_BY_ID } from '../src/data/endings';
 import { LOADING_ART } from '../src/config/loadingArtwork';
-import { getArtUnlocks, getEarnedArtwork, unlockEarnedArtwork, pickLoadingArtwork, ART_UNLOCK_KEY, type ArtProgress } from '../src/engine/artGallery';
+import { getArtUnlocks, getEarnedArtwork, unlockEarnedArtwork, pickLoadingArtwork, createLoadingArtworkSequence, ART_UNLOCK_KEY, type ArtProgress } from '../src/engine/artGallery';
 
 const progress = (changes: Partial<ArtProgress> = {}): ArtProgress => ({ currentFocusTree: 'phase1', completedFocuses: [], activeEvent: null, activeSuperEvent: null, chronicle: [], ...changes });
 const names = (state: ArtProgress) => getEarnedArtwork(state).map(work => work.name);
@@ -14,13 +15,25 @@ function memoryStorage(seed: Record<string, string> = {}, rejectWrites = false) 
 
 test('catalog covers every bundled CG exactly once and uses real ending identifiers', () => {
   assert.deepEqual(ARTWORKS.map(work => work.name).sort(), Object.keys(LOADING_ART).sort());
+  const focusIds = new Set([...readFileSync(new URL('../src/components/FocusTree.tsx', import.meta.url), 'utf8').matchAll(/\bid:\s*'([^']+)'\s*,\s*title:/g)].map(match => match[1]));
+  for (const work of ARTWORKS) for (const id of work.focuses ?? []) assert.ok(focusIds.has(id), `${work.name}: unknown focus ${id}`);
   for (const work of ARTWORKS) for (const id of work.endings ?? []) assert.ok(ENDING_BY_ID[id], `${work.name}: unknown ending ${id}`);
 });
 
 test('gallery visits and obsolete viewed records never unlock unplayed routes', () => {
   const storage = memoryStorage({ heyi_art_room_viewed_v1: JSON.stringify(ARTWORKS.map(work => work.name)) });
-  assert.deepEqual(getArtUnlocks(storage), {});
-  assert.deepEqual(names(progress()), ['滨湖晨光', '端馥晚照', '行政楼', '军训', '陈栋', '陈栋与合一']);
+  const unlocked = getArtUnlocks(storage);
+  assert.deepEqual(Object.keys(unlocked), ARTWORKS.filter(work => work.scenery).map(work => work.name));
+  assert.ok(!unlocked['行政楼']); assert.ok(!unlocked['合一之春2']);
+  assert.deepEqual(names(progress()), ARTWORKS.filter(work => work.scenery || work.opening).map(work => work.name));
+});
+
+test('at least five scenery CGs are available on a new device before any campaign', () => {
+  const storage = memoryStorage();
+  const scenery = ARTWORKS.filter(work => work.scenery);
+  assert.ok(scenery.length >= 5);
+  for (const work of scenery) assert.ok(getArtUnlocks(storage)[work.name]);
+  assert.equal(storage.getItem(ART_UNLOCK_KEY), null, 'initial scenery needs no storage write');
 });
 
 test('playing one branch never reveals another branch or its alternate ending', () => {
@@ -43,6 +56,12 @@ test('milestone art requires completed focus, actual event or its specific endin
   assert.ok(names(progress({ activeSuperEvent: { id: 'yang_yule_fail', title: '评定失败', quote: '', author: '' } })).includes('特级0'));
   const ruin = names(progress({ gameEnding: 'game_over_gouxiong' }));
   assert.ok(ruin.includes('校园涂鸦1')); assert.ok(!ruin.includes('校园涂鸦2'));
+  assert.ok(!names(progress({ currentFocusTree: 'treeA_pan' })).includes('第一张选票'));
+  assert.ok(names(progress({ completedFocuses: ['first_democratic_election'] })).includes('第一张选票'));
+  assert.ok(!names(progress({ currentFocusTree: 'jidi_tree' })).includes('企业学校的黄昏'));
+  assert.ok(names(progress({ completedFocuses: ['jidi_corporate_utopia'] })).includes('企业学校的黄昏'));
+  assert.ok(!names(progress({ currentFocusTree: 'treeA_true_left' })).includes('课桌上的改革'));
+  assert.ok(names(progress({ completedFocuses: ['reform_focus_3'] })).includes('课桌上的改革'));
 });
 
 test('old save route history and existing ending archive retain earned artwork', () => {
@@ -55,36 +74,63 @@ test('old save route history and existing ending archive retain earned artwork',
 
 test('unlock is once per device across saves, new games and repeated React effects', () => {
   const storage = memoryStorage();
-  assert.equal(unlockEarnedArtwork(progress(), storage, 1000).length, 6);
+  assert.equal(unlockEarnedArtwork(progress(), storage, 1000).length, 4);
   assert.equal(unlockEarnedArtwork(progress(), storage, 2000).length, 0);
-  assert.deepEqual(unlockEarnedArtwork(progress({ currentFocusTree: 'treeB' }), storage, 3000).map(work => work.name), ['特级教师']);
+  assert.deepEqual(unlockEarnedArtwork(progress({ currentFocusTree: 'treeB' }), storage, 3000).map(work => work.name), ['特级教师', '保温杯与红批']);
   assert.equal(unlockEarnedArtwork(progress(), storage, 4000).length, 0);
   assert.equal(getArtUnlocks(storage)['特级教师'], 3000);
 });
 
 test('unavailable/quota-full storage preserves session progress without duplicate popups', () => {
   const storage = memoryStorage({}, true);
-  assert.equal(unlockEarnedArtwork(progress(), storage, 1000).length, 6);
+  assert.equal(unlockEarnedArtwork(progress(), storage, 1000).length, 4);
   assert.equal(unlockEarnedArtwork(progress(), storage, 2000).length, 0);
-  assert.equal(Object.keys(getArtUnlocks(storage)).length, 6);
+  assert.equal(Object.keys(getArtUnlocks(storage)).length, ARTWORKS.filter(work => work.scenery || work.opening).length);
   const broken = memoryStorage({ [ART_UNLOCK_KEY]: 'not json' });
   assert.doesNotThrow(() => unlockEarnedArtwork(progress(), broken, 1000));
 });
 
-test('loading selection never shows locked route CGs, even for a rare-category roll', () => {
-  for (const roll of [0, .9, .979, .98, .999]) assert.ok(pickLoadingArtwork({}, () => roll).scenery);
-  const unlocked = { '特级教师': 1 };
-  const random = [ .95, 0 ];
-  assert.equal(pickLoadingArtwork(unlocked, () => random.shift()!).name, '特级教师');
+test('locked loading previews do not unlock art and the category boundary is 30 percent', () => {
+  const storage = memoryStorage();
+  const unlocked = getArtUnlocks(storage);
+  for (const roll of [0, .1, .299999]) {
+    let calls = 0;
+    const work = pickLoadingArtwork(unlocked, () => calls++ === 0 ? roll : .5);
+    assert.ok(!unlocked[work.name], `roll ${roll} should preview uncollected art`);
+  }
+  for (const roll of [.3, .7, .99999]) {
+    let calls = 0;
+    const work = pickLoadingArtwork(unlocked, () => calls++ === 0 ? roll : .5);
+    assert.ok(unlocked[work.name], `roll ${roll} should show collected art`);
+  }
+  assert.equal(storage.getItem(ART_UNLOCK_KEY), null);
+  assert.deepEqual(getArtUnlocks(storage), unlocked);
 });
 
-test('fully unlocked loading distribution is precisely 90/8/2 percent by category', () => {
-  const unlocked = Object.fromEntries(ARTWORKS.map(work => [work.name, 1]));
-  const counts = { scenery: 0, ordinary: 0, sensitive: 0 };
+test('loading distribution is precisely 30 percent locked and 70 percent unlocked', () => {
+  const unlocked = { ...getArtUnlocks(memoryStorage()), '特级教师': 123 };
+  const counts = { locked: 0, unlocked: 0 };
   for (let i = 0; i < 10000; i++) {
     let calls = 0;
     const work = pickLoadingArtwork(unlocked, () => calls++ === 0 ? i / 10000 : .5);
-    counts[work.scenery ? 'scenery' : work.sensitive ? 'sensitive' : 'ordinary']++;
+    counts[unlocked[work.name] ? 'unlocked' : 'locked']++;
   }
-  assert.deepEqual(counts, { scenery: 9000, ordinary: 800, sensitive: 200 });
+  assert.deepEqual(counts, { locked: 3000, unlocked: 7000 });
+});
+
+test('loading falls back after full collection and avoids consecutive repeated artwork', () => {
+  const all = Object.fromEntries(ARTWORKS.map(work => [work.name, 1]));
+  const sequence = createLoadingArtworkSequence(all, 5, () => 0);
+  assert.equal(sequence.length, 5);
+  for (const [index, work] of sequence.entries()) {
+    assert.ok(all[work.name]);
+    if (index) assert.notEqual(work.name, sequence[index - 1].name);
+  }
+  // Scenery remains initially open even if a caller provides no persisted unlocks.
+  assert.ok(pickLoadingArtwork({}, () => .5).scenery);
+  const mixed = createLoadingArtworkSequence(getArtUnlocks(memoryStorage()), 5, () => .1);
+  for (const [index, work] of mixed.entries()) {
+    assert.ok(!work.scenery);
+    if (index) assert.notEqual(work.name, mixed[index - 1].name);
+  }
 });

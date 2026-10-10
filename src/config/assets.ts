@@ -84,12 +84,12 @@ export const ASSET_URLS: Record<AssetKey, string> = {
   ending_game_over_yang_yule_success: 'https://picsum.photos/seed/case/800/400?grayscale',
   ending_game_over_school: 'https://picsum.photos/seed/suppression/800/400?grayscale',
   ending_game_over_anarchy: 'https://picsum.photos/seed/anarchy/800/400?grayscale',
-  ending_game_over_jidi_1: 'https://picsum.photos/seed/money/800/400?grayscale',
+  ending_game_over_jidi_1: loadingArt('企业学校的黄昏'),
   ending_game_over_jidi_2: 'https://picsum.photos/seed/riot/800/400?grayscale',
   ending_game_over_gouxiong: 'https://picsum.photos/seed/anime_ruin/800/400?grayscale',
   ending_game_over_gouxiong_embarrass: 'https://picsum.photos/seed/gx_embarrass_ending/800/400?grayscale',
   ending_game_over_gouxiong_redeem: 'https://picsum.photos/seed/gx_redeem_ending/800/400?grayscale',
-  ending_game_over_despair: 'https://picsum.photos/seed/despair/800/400?grayscale&blur=2',
+  ending_game_over_despair: loadingArt('最后一间教室'),
   ending_game_over_midnight: 'https://picsum.photos/seed/midnight_ruin/800/400?grayscale',
   ending_game_over_lu_sole_helmsman: 'https://picsum.photos/seed/sole_helmsman/800/400?grayscale',
   ending_game_over_haobang: 'https://picsum.photos/seed/haobang_rebirth/800/400?grayscale',
@@ -148,6 +148,14 @@ export const ASSET_URLS: Record<AssetKey, string> = {
 
   ...(NEWS_EVENT_ASSET_URLS as Record<AssetKey, string>),
   ...(STORY_EVENT_ASSET_URLS as Record<AssetKey, string>),
+
+  // Chapter CGs also illustrate their related events; keep original super-event artwork.
+  news_expand_assembly_event: loadingArt('议场初开'),
+  storyevent_expand_assembly_event: loadingArt('议场初开'),
+  storyevent_election_outcome_event: loadingArt('第一张选票'),
+  storyevent_haobang_commune_pilot_event: loadingArt('公社的长桌'),
+  storyevent_jidi_rnd_department_event: loadingArt('密卷流水线'),
+  storyevent_yang_yule_desk_unlocked: loadingArt('保温杯与红批'),
 };
 
 export const GOUXIONG_AVATAR_ASSETS = {

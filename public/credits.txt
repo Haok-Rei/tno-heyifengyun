@@ -81,3 +81,11 @@ art 与 music：项目作者提供的原始文件；此整理不为其添加新�
 滨湖校门参考：https://www.hfyz.net/xwgk/xydt/288676.html
 端馥堂参考：https://www.hfyz.net/dyyd/dyzx/xwzl/290449.html
 源图、完整生成提示词及参考图片地址：art/载入图/CAMPUS_CG_SOURCES.md。
+
+--- CG扩充（2026-10-10）---
+使用内置 image_gen 新绘18幅游戏插画：雨过校门、图书长廊、操场晚晴、梧桐秋径、B3夜读、街垒黎明、油印机之夜、议场初开、第一张选票、课桌上的改革、公社的长桌、名单之外、保温杯与红批、密卷流水线、企业学校的黄昏、银幕仍亮、熄灯后的脚步、最后一间教室。
+风格参考为项目既有「滨湖晨光」；部分建筑、场地和食堂布局参考合肥一中官网照片，仅用于重绘参考，未直接发布原照片。
+滨湖操场：https://www.hfyz.net/xwgk/xydt/291369.html
+小亭与B2教学楼：https://www.hfyz.net/dyyd/dyzx/xwzl/290449.html
+校门与食堂：https://www.hfyz.net/xwgk/xydt/288676.html
+全部PNG源图、WebP版本、收录节点与完整提示词：art/载入图/CG_EXPANSION_2026-10-10.md。

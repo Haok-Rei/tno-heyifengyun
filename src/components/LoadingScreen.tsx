@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { LOADING_ART } from '../config/loadingArtwork';
-import { ARTWORKS } from '../data/artGallery';
-import { getArtUnlocks, pickLoadingArtwork } from '../engine/artGallery';
+import { getArtUnlocks, createLoadingArtworkSequence } from '../engine/artGallery';
 
 interface LoadingScreenProps {
   onComplete: () => void;
@@ -33,13 +32,10 @@ export default function LoadingScreen({ onComplete, durationMs = 10000 }: Loadin
   const isCompletedRef = useRef(false);
   const shuffledQuotes = useMemo(() => shuffleArray(LOADING_QUOTES), []);
   const shuffledBackgrounds = useMemo(() => {
+    const count = Math.max(1, Math.ceil(durationMs / 2400));
     const unlocks = getArtUnlocks();
-    const picked = pickLoadingArtwork(unlocks);
-    // Choose the category once per loading session: sensitive CGs occur in at most 2% of sessions.
-    const pool = ARTWORKS.filter(work => picked.scenery ? work.scenery
-      : !work.scenery && !!work.sensitive === !!picked.sensitive && unlocks[work.name]);
-    return shuffleArray(pool).map(work => ({ name: work.name, url: LOADING_ART[work.name] }));
-  }, []);
+    return createLoadingArtworkSequence(unlocks, count).map(work => ({ name: work.name, url: LOADING_ART[work.name], collected: !!unlocks[work.name] }));
+  }, [durationMs]);
 
   const cycleLength = useMemo(
     () => Math.max(shuffledQuotes.length, shuffledBackgrounds.length),
@@ -93,7 +89,7 @@ export default function LoadingScreen({ onComplete, durationMs = 10000 }: Loadin
       <div className="absolute inset-0">
         {shuffledBackgrounds.map((bg, index) => (
           <img
-            key={bg.name}
+            key={`${bg.name}-${index}`}
             src={bg.url}
             alt={bg.name}
             className={`absolute inset-0 h-full w-full object-cover brightness-[1.08] contrast-[1.08] saturate-[1.06] transition-opacity duration-1000 ${
@@ -115,7 +111,7 @@ export default function LoadingScreen({ onComplete, durationMs = 10000 }: Loadin
           />
         </div>
         <div className="mt-2 flex items-center justify-between text-[10px] uppercase tracking-[0.22em] text-cyan-100/90 md:text-xs">
-          <span>Bootstrapping Campus Order...</span>
+          <span>{shuffledBackgrounds[currentBgIndex].name}{shuffledBackgrounds[currentBgIndex].collected ? '' : ' · 未收录预览'}</span>
           <span>{Math.floor(progress)}%</span>
         </div>
       </div>
