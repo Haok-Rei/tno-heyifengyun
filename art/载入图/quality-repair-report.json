@@ -1,0 +1,947 @@
+{
+  "date": "2026-10-10",
+  "skill_repository": "https://github.com/linsahdkadsa/repair-ai-image-quality",
+  "skill_files_sha256": {
+    "scripts/gpt_demaze.py": "8a6f20c5e774ddfcd4537699938566ed7de3d34f7ae5cc14186dd8a8bd041d9b",
+    "scripts/models/gpt_maze_unet.onnx": "c8c9515c2d7e18e4d08e7b867e92bfff75ab357aaaa6dfbb48920d685dca5f09"
+  },
+  "original_git_revision": "e3fc4cd",
+  "scope": "20 AI-generated CGs; 22 author-provided CGs unchanged",
+  "default_detection": "All 20 skipped at default GPT threshold 0.02; broad painted canvas texture, not characteristic labyrinth noise",
+  "pipeline": "Skill learned filter, explicit force at 40; additional edge-aware luminance surface cleanup at 0.85",
+  "metrics_note": "Surface RMS measures high-frequency luminance in the lowest 55% of object-scale gradient pixels, not total noise or subjective quality. Edge correlation is correlation, not a percentage of preserved pixels. Skill maze metrics are sparse-signature diagnostics and are not the main criterion for these paintings.",
+  "images": [
+    {
+      "name": "保温杯与红批",
+      "source_sha256": "42f74183d97b8a7b223bfcfc816a3eedf3b3c550e0688880f2de3c63d0109e48",
+      "output_sha256": "cfc7adcdd336db0c2fc3acff1c040d79f9479d44df4c7155529511364886bf94",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "skill": {
+        "route": "gpt-demaze",
+        "strength": 40,
+        "gpt_hint": true,
+        "maze_score": 0.001068691037735849,
+        "maze_area_fraction": 0.0010298295454545454,
+        "decision": "forced",
+        "grid": {
+          "fold_z_before": {
+            "2": 0.9,
+            "4": 2.6,
+            "8": 1.5
+          },
+          "phase_consistency": 0.511,
+          "applied": false
+        },
+        "method": "unet",
+        "presence_fraction": 1.0,
+        "action": "demaze",
+        "maze_bump_before": 12.22,
+        "maze_bump_after": 7.61,
+        "edge_preservation": 1.0,
+        "luma_mae_255": 0.017
+      },
+      "surface_cleanup": {
+        "method": "edge-aware bilateral luminance",
+        "strength": 0.85,
+        "sigma_color": 20,
+        "sigma_space": 5,
+        "low_gradient_high_frequency_rms_before": 6.1991,
+        "low_gradient_high_frequency_rms_after": 4.4467,
+        "edge_correlation": 0.99925,
+        "luma_mae_255": 2.1849,
+        "texture_rms_reduction_fraction": 0.2827
+      },
+      "source": "art/载入图/保温杯与红批.png",
+      "web_image": "src/assets/loading/保温杯与红批.webp",
+      "web_sha256": "3f8c59493f00f8438c7a0f97dab4d937024fc9c84673de349d97594603a3ad33"
+    },
+    {
+      "name": "滨湖晨光",
+      "source_sha256": "25239116c274a06f8dedd77bc53e2331729aa02b3737e09f0d40649532b0f852",
+      "output_sha256": "1ebe8d8f7706efba6cb5917505c7680978c4d4eff2ace453549b31080fd3e7e0",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "skill": {
+        "route": "gpt-demaze",
+        "strength": 40,
+        "gpt_hint": true,
+        "maze_score": 0.0003642721841760163,
+        "maze_area_fraction": 0.0003551136363636364,
+        "decision": "forced",
+        "grid": {
+          "fold_z_before": {
+            "2": 1.1,
+            "4": 2.9,
+            "8": 2.0
+          },
+          "phase_consistency": 0.516,
+          "applied": false
+        },
+        "method": "unet",
+        "presence_fraction": 1.0,
+        "action": "demaze",
+        "maze_bump_before": 8.7,
+        "maze_bump_after": 8.57,
+        "edge_preservation": 1.0,
+        "luma_mae_255": 0.058
+      },
+      "surface_cleanup": {
+        "method": "edge-aware bilateral luminance",
+        "strength": 0.85,
+        "sigma_color": 20,
+        "sigma_space": 5,
+        "low_gradient_high_frequency_rms_before": 12.6238,
+        "low_gradient_high_frequency_rms_after": 10.8082,
+        "edge_correlation": 0.998889,
+        "luma_mae_255": 2.1162,
+        "texture_rms_reduction_fraction": 0.1438
+      },
+      "source": "art/载入图/滨湖晨光.png",
+      "web_image": "src/assets/loading/滨湖晨光.webp",
+      "web_sha256": "0d6f8eefebad13b5f1a34931469d1b666c3d8a1225f9bff4f2c974d844f86f18"
+    },
+    {
+      "name": "操场晚晴",
+      "source_sha256": "beef263b59ea443c3af33b7d7bb15cecb89d7b13b8bfd377e6c9af2243cfe073",
+      "output_sha256": "5801082f8adf3c37b32717b2d10ad568f844cfe9407e8465813464e09a172772",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "skill": {
+        "route": "gpt-demaze",
+        "strength": 40,
+        "gpt_hint": true,
+        "maze_score": 0.000145623998835008,
+        "maze_area_fraction": 0.00014204545454545454,
+        "decision": "forced",
+        "grid": {
+          "fold_z_before": {
+            "2": 1.2,
+            "4": 1.7,
+            "8": 1.2
+          },
+          "phase_consistency": 0.511,
+          "applied": false
+        },
+        "method": "unet",
+        "presence_fraction": 1.0,
+        "action": "demaze",
+        "maze_bump_before": 3.31,
+        "maze_bump_after": 2.42,
+        "edge_preservation": 1.0,
+        "luma_mae_255": 0.03
+      },
+      "surface_cleanup": {
+        "method": "edge-aware bilateral luminance",
+        "strength": 0.85,
+        "sigma_color": 20,
+        "sigma_space": 5,
+        "low_gradient_high_frequency_rms_before": 10.9369,
+        "low_gradient_high_frequency_rms_after": 8.8103,
+        "edge_correlation": 0.998534,
+        "luma_mae_255": 2.4081,
+        "texture_rms_reduction_fraction": 0.1944
+      },
+      "source": "art/载入图/操场晚晴.png",
+      "web_image": "src/assets/loading/操场晚晴.webp",
+      "web_sha256": "009e4514569462fa4fe003b61db1cbb13b31daa88ab38ff9de3392be1953b03c"
+    },
+    {
+      "name": "第一张选票",
+      "source_sha256": "3ba5b139738c2acbffa2d1ece8a70f4039cd91f9d824fb3ca7052f04493085c1",
+      "output_sha256": "99b1429f7799481470ff170ab5ebb9642561b4f6d838fe43e1c131b2ad5b5f56",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "skill": {
+        "route": "gpt-demaze",
+        "strength": 40,
+        "gpt_hint": true,
+        "maze_score": 0.00021844395092292568,
+        "maze_area_fraction": 0.0002130681818181818,
+        "decision": "forced",
+        "grid": {
+          "fold_z_before": {
+            "2": 0.4,
+            "4": 1.3,
+            "8": 1.6
+          },
+          "phase_consistency": 0.516,
+          "applied": false
+        },
+        "method": "unet",
+        "presence_fraction": 1.0,
+        "action": "demaze",
+        "maze_bump_before": 4.93,
+        "maze_bump_after": 4.93,
+        "edge_preservation": 1.0,
+        "luma_mae_255": 0.034
+      },
+      "surface_cleanup": {
+        "method": "edge-aware bilateral luminance",
+        "strength": 0.85,
+        "sigma_color": 20,
+        "sigma_space": 5,
+        "low_gradient_high_frequency_rms_before": 6.1992,
+        "low_gradient_high_frequency_rms_after": 4.8352,
+        "edge_correlation": 0.999505,
+        "luma_mae_255": 1.8155,
+        "texture_rms_reduction_fraction": 0.22
+      },
+      "source": "art/载入图/第一张选票.png",
+      "web_image": "src/assets/loading/第一张选票.webp",
+      "web_sha256": "2b780e62797335502112c7b595f70f94d1657c67607301efe8cc59c342d45d3a"
+    },
+    {
+      "name": "端馥晚照",
+      "source_sha256": "2189bcbbc33113a1fc46681bc1439694ff3a2061cf0c42213c40bb47727e91f8",
+      "output_sha256": "a4e0bd199161f24e2ca10aa524b404c1c6a1d7808f908bc497de2c4434b2982f",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "skill": {
+        "route": "gpt-demaze",
+        "strength": 40,
+        "gpt_hint": true,
+        "maze_score": 0.0002548605548678366,
+        "maze_area_fraction": 0.00024857954545454543,
+        "decision": "forced",
+        "grid": {
+          "fold_z_before": {
+            "2": 0.2,
+            "4": 1.9,
+            "8": 1.4
+          },
+          "phase_consistency": 0.511,
+          "applied": false
+        },
+        "method": "unet",
+        "presence_fraction": 1.0,
+        "action": "demaze",
+        "maze_bump_before": 4.17,
+        "maze_bump_after": 4.17,
+        "edge_preservation": 1.0,
+        "luma_mae_255": 0.013
+      },
+      "surface_cleanup": {
+        "method": "edge-aware bilateral luminance",
+        "strength": 0.85,
+        "sigma_color": 20,
+        "sigma_space": 5,
+        "low_gradient_high_frequency_rms_before": 6.3737,
+        "low_gradient_high_frequency_rms_after": 4.7121,
+        "edge_correlation": 0.998758,
+        "luma_mae_255": 1.937,
+        "texture_rms_reduction_fraction": 0.2607
+      },
+      "source": "art/载入图/端馥晚照.png",
+      "web_image": "src/assets/loading/端馥晚照.webp",
+      "web_sha256": "2de1a85109776d9be9daa4e026c80167d4f76a56f07bf50b6be5a6707ff86213"
+    },
+    {
+      "name": "公社的长桌",
+      "source_sha256": "442ee4aea79311e8694963acfc4f9c60f3efd18e17816e3032afc12eb6837da8",
+      "output_sha256": "b66a169fb771d32ccc58e95a2bf30698b9300b58eaa0b7e045576c8875cf39ff",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "skill": {
+        "route": "gpt-demaze",
+        "strength": 40,
+        "gpt_hint": true,
+        "maze_score": 0.0,
+        "maze_area_fraction": 0.0,
+        "decision": "forced",
+        "grid": {
+          "fold_z_before": {
+            "2": 1.0,
+            "4": 1.4,
+            "8": 1.7
+          },
+          "phase_consistency": 0.503,
+          "applied": false
+        },
+        "method": "unet",
+        "presence_fraction": 1.0,
+        "action": "demaze",
+        "edge_preservation": 1.0,
+        "luma_mae_255": 0.011
+      },
+      "surface_cleanup": {
+        "method": "edge-aware bilateral luminance",
+        "strength": 0.85,
+        "sigma_color": 20,
+        "sigma_space": 5,
+        "low_gradient_high_frequency_rms_before": 6.4112,
+        "low_gradient_high_frequency_rms_after": 4.8829,
+        "edge_correlation": 0.999336,
+        "luma_mae_255": 1.8851,
+        "texture_rms_reduction_fraction": 0.2384
+      },
+      "source": "art/载入图/公社的长桌.png",
+      "web_image": "src/assets/loading/公社的长桌.webp",
+      "web_sha256": "af97fc7fb3d148b5a298259afefa020ee9d60fe5e21202b1f6b6dc708fb250ee"
+    },
+    {
+      "name": "街垒黎明",
+      "source_sha256": "a198ec6ac204f19c57d7a00cb9a43b10fc8f36e7f9392abb4070f52f56efc8f6",
+      "output_sha256": "eed7e2a6db82519f3a7ccc00769502a2283b3d405293392321f355f836226a32",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "skill": {
+        "route": "gpt-demaze",
+        "strength": 40,
+        "gpt_hint": true,
+        "maze_score": 0.000582495995340032,
+        "maze_area_fraction": 0.0005681818181818182,
+        "decision": "forced",
+        "grid": {
+          "fold_z_before": {
+            "2": 0.8,
+            "4": 1.5,
+            "8": 1.6
+          },
+          "phase_consistency": 0.511,
+          "applied": false
+        },
+        "method": "unet",
+        "presence_fraction": 1.0,
+        "action": "demaze",
+        "maze_bump_before": 6.73,
+        "maze_bump_after": 5.16,
+        "edge_preservation": 1.0,
+        "luma_mae_255": 0.111
+      },
+      "surface_cleanup": {
+        "method": "edge-aware bilateral luminance",
+        "strength": 0.85,
+        "sigma_color": 20,
+        "sigma_space": 5,
+        "low_gradient_high_frequency_rms_before": 8.6861,
+        "low_gradient_high_frequency_rms_after": 6.9321,
+        "edge_correlation": 0.998619,
+        "luma_mae_255": 2.3017,
+        "texture_rms_reduction_fraction": 0.2019
+      },
+      "source": "art/载入图/街垒黎明.png",
+      "web_image": "src/assets/loading/街垒黎明.webp",
+      "web_sha256": "b0a576d4e38b72aec04056bb25243beaa764105f60a65abff303d99d2c1c67e7"
+    },
+    {
+      "name": "课桌上的改革",
+      "source_sha256": "7e570848bd13280130dc8cc21291bef5ed9417de49d2dac162ca94cdea845484",
+      "output_sha256": "0045ac639b85ac8c596e03bcd7ee8522dd34411cc6737685b7661ffd5b2e4afa",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "skill": {
+        "route": "gpt-demaze",
+        "strength": 40,
+        "gpt_hint": true,
+        "maze_score": 0.00011790135586559245,
+        "maze_area_fraction": 0.0001065340909090909,
+        "decision": "forced",
+        "grid": {
+          "fold_z_before": {
+            "2": 0.1,
+            "4": 2.2,
+            "8": 1.5
+          },
+          "phase_consistency": 0.527,
+          "applied": false
+        },
+        "method": "unet",
+        "presence_fraction": 1.0,
+        "action": "demaze",
+        "edge_preservation": 1.0,
+        "luma_mae_255": 0.013
+      },
+      "surface_cleanup": {
+        "method": "edge-aware bilateral luminance",
+        "strength": 0.85,
+        "sigma_color": 20,
+        "sigma_space": 5,
+        "low_gradient_high_frequency_rms_before": 4.5797,
+        "low_gradient_high_frequency_rms_after": 3.3624,
+        "edge_correlation": 0.999546,
+        "luma_mae_255": 1.5984,
+        "texture_rms_reduction_fraction": 0.2658
+      },
+      "source": "art/载入图/课桌上的改革.png",
+      "web_image": "src/assets/loading/课桌上的改革.webp",
+      "web_sha256": "72bff1c8085903bb89be1ae2ce0300a0e9bf0c6ce880eff61e899aab29957ab3"
+    },
+    {
+      "name": "密卷流水线",
+      "source_sha256": "3faf8a9e8f8166cddfa9ad66d7e761624e6dc6997a1e1415a58ad16b5e4a5b7a",
+      "output_sha256": "4da7d2d84a4be0d19d7a8efe128b60db4e337bc24c98806b513a5a218b85e3c0",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "skill": {
+        "route": "gpt-demaze",
+        "strength": 40,
+        "gpt_hint": true,
+        "maze_score": 7.730364873222017e-05,
+        "maze_area_fraction": 7.102272727272727e-05,
+        "decision": "forced",
+        "grid": {
+          "fold_z_before": {
+            "2": 0.7,
+            "4": 1.3,
+            "8": 1.2
+          },
+          "phase_consistency": 0.503,
+          "applied": false
+        },
+        "method": "unet",
+        "presence_fraction": 1.0,
+        "action": "demaze",
+        "edge_preservation": 1.0,
+        "luma_mae_255": 0.017
+      },
+      "surface_cleanup": {
+        "method": "edge-aware bilateral luminance",
+        "strength": 0.85,
+        "sigma_color": 20,
+        "sigma_space": 5,
+        "low_gradient_high_frequency_rms_before": 10.2805,
+        "low_gradient_high_frequency_rms_after": 8.7848,
+        "edge_correlation": 0.999429,
+        "luma_mae_255": 1.7769,
+        "texture_rms_reduction_fraction": 0.1455
+      },
+      "source": "art/载入图/密卷流水线.png",
+      "web_image": "src/assets/loading/密卷流水线.webp",
+      "web_sha256": "70cc262d81f19c8630e4942745871b3f56ef9b908e7ce38e155d0857fc9c2502"
+    },
+    {
+      "name": "名单之外",
+      "source_sha256": "d0f01405d29ea72dc6b2ee0301241b880f4f50751043d970fe13ebc3baa1e51d",
+      "output_sha256": "a6ca920060417abfbf3ddae6cae3cfb70085675dbd3bc6fbbf3991b18089c9d5",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "skill": {
+        "route": "gpt-demaze",
+        "strength": 40,
+        "gpt_hint": true,
+        "maze_score": 0.0001223790487068614,
+        "maze_area_fraction": 0.0001065340909090909,
+        "decision": "forced",
+        "grid": {
+          "fold_z_before": {
+            "2": 1.6,
+            "4": 1.1,
+            "8": 1.7
+          },
+          "phase_consistency": 0.497,
+          "applied": false
+        },
+        "method": "unet",
+        "presence_fraction": 1.0,
+        "action": "demaze",
+        "maze_bump_before": 3.52,
+        "maze_bump_after": 2.6,
+        "edge_preservation": 1.0,
+        "luma_mae_255": 0.008
+      },
+      "surface_cleanup": {
+        "method": "edge-aware bilateral luminance",
+        "strength": 0.85,
+        "sigma_color": 20,
+        "sigma_space": 5,
+        "low_gradient_high_frequency_rms_before": 4.2138,
+        "low_gradient_high_frequency_rms_after": 2.6929,
+        "edge_correlation": 0.999447,
+        "luma_mae_255": 1.867,
+        "texture_rms_reduction_fraction": 0.3609
+      },
+      "source": "art/载入图/名单之外.png",
+      "web_image": "src/assets/loading/名单之外.webp",
+      "web_sha256": "e2aa2c7645910d1612a8ed1167add30bca77e0f2fab986dc41e13a03f9470c49"
+    },
+    {
+      "name": "企业学校的黄昏",
+      "source_sha256": "e3acdb498d25d486a91a4a1e05b117f76f71b2897c4f51593289cdcded648446",
+      "output_sha256": "e2e80e95121ac8d0d86329b959e870d967cfd763dbc7666b3063ed7c05d54767",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "skill": {
+        "route": "gpt-demaze",
+        "strength": 40,
+        "gpt_hint": true,
+        "maze_score": 0.0001458470064901918,
+        "maze_area_fraction": 0.00014204545454545454,
+        "decision": "forced",
+        "grid": {
+          "fold_z_before": {
+            "2": 0.5,
+            "4": 1.7,
+            "8": 1.3
+          },
+          "phase_consistency": 0.495,
+          "applied": false
+        },
+        "method": "unet",
+        "presence_fraction": 1.0,
+        "action": "demaze",
+        "maze_bump_before": 18.92,
+        "maze_bump_after": 18.88,
+        "edge_preservation": 1.0,
+        "luma_mae_255": 0.031
+      },
+      "surface_cleanup": {
+        "method": "edge-aware bilateral luminance",
+        "strength": 0.85,
+        "sigma_color": 20,
+        "sigma_space": 5,
+        "low_gradient_high_frequency_rms_before": 9.7297,
+        "low_gradient_high_frequency_rms_after": 7.7389,
+        "edge_correlation": 0.99888,
+        "luma_mae_255": 2.3617,
+        "texture_rms_reduction_fraction": 0.2046
+      },
+      "source": "art/载入图/企业学校的黄昏.png",
+      "web_image": "src/assets/loading/企业学校的黄昏.webp",
+      "web_sha256": "cbe951a4f22901b493bc5f6f482bb1a071c379c05e8606f74777a98e399f753e"
+    },
+    {
+      "name": "图书长廊",
+      "source_sha256": "ac777109d4a0753aa58f8b44d51a05b799d2d013faf6fc12ea03916e701e5339",
+      "output_sha256": "0a5536ab9279d68dd52ae3e8ea53d7cb526c9c289d23b203e567a4783c99dd83",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "skill": {
+        "route": "gpt-demaze",
+        "strength": 40,
+        "gpt_hint": true,
+        "maze_score": 0.004189435336976321,
+        "maze_area_fraction": 0.004083806818181818,
+        "decision": "forced",
+        "grid": {
+          "fold_z_before": {
+            "2": 1.3,
+            "4": 2.4,
+            "8": 1.6
+          },
+          "phase_consistency": 0.525,
+          "applied": false
+        },
+        "method": "unet",
+        "presence_fraction": 1.0,
+        "action": "demaze",
+        "maze_bump_before": 6.63,
+        "maze_bump_after": 6.46,
+        "edge_preservation": 1.0,
+        "luma_mae_255": 0.113
+      },
+      "surface_cleanup": {
+        "method": "edge-aware bilateral luminance",
+        "strength": 0.85,
+        "sigma_color": 20,
+        "sigma_space": 5,
+        "low_gradient_high_frequency_rms_before": 11.1874,
+        "low_gradient_high_frequency_rms_after": 9.4993,
+        "edge_correlation": 0.999398,
+        "luma_mae_255": 2.0221,
+        "texture_rms_reduction_fraction": 0.1509
+      },
+      "source": "art/载入图/图书长廊.png",
+      "web_image": "src/assets/loading/图书长廊.webp",
+      "web_sha256": "b3fd16c3b822ac3c59ca71ad98ac62c3688db97eab1061c3dd282dd788ec4179"
+    },
+    {
+      "name": "梧桐秋径",
+      "source_sha256": "de440d221faa60486aaef667d174cbe18587e075871d2838bf866ff7dfdf56b8",
+      "output_sha256": "6c2185174629cb72a4aaeca343f3d7b37ebcbc2d3f02f1c40dabe0c1972d2fd4",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "skill": {
+        "route": "gpt-demaze",
+        "strength": 40,
+        "gpt_hint": true,
+        "maze_score": 0.0018202999854376,
+        "maze_area_fraction": 0.0017755681818181818,
+        "decision": "forced",
+        "grid": {
+          "fold_z_before": {
+            "2": 0.5,
+            "4": 1.1,
+            "8": 1.1
+          },
+          "phase_consistency": 0.492,
+          "applied": false
+        },
+        "method": "unet",
+        "presence_fraction": 1.0,
+        "action": "demaze",
+        "maze_bump_before": 5.07,
+        "maze_bump_after": 5.0,
+        "edge_preservation": 1.0,
+        "luma_mae_255": 0.138
+      },
+      "surface_cleanup": {
+        "method": "edge-aware bilateral luminance",
+        "strength": 0.85,
+        "sigma_color": 20,
+        "sigma_space": 5,
+        "low_gradient_high_frequency_rms_before": 14.594,
+        "low_gradient_high_frequency_rms_after": 13.0017,
+        "edge_correlation": 0.998896,
+        "luma_mae_255": 2.0469,
+        "texture_rms_reduction_fraction": 0.1091
+      },
+      "source": "art/载入图/梧桐秋径.png",
+      "web_image": "src/assets/loading/梧桐秋径.webp",
+      "web_sha256": "24586e3afe5c5aa2540d40e237517f5e4c3a2a0de7a48528a367c4c7ecab2fb6"
+    },
+    {
+      "name": "熄灯后的脚步",
+      "source_sha256": "93e4e20a5bd1f1f53d5373bbb688f7a2ade272cf5a819f9e5cf3ac25118f5775",
+      "output_sha256": "194a6f19641215e21793f6665c7d375be03b31fbd17265745df2f43ed1f947d3",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "skill": {
+        "route": "gpt-demaze",
+        "strength": 40,
+        "gpt_hint": true,
+        "maze_score": 0.0007645259938837921,
+        "maze_area_fraction": 0.0007457386363636364,
+        "decision": "forced",
+        "grid": {
+          "fold_z_before": {
+            "2": 0.6,
+            "4": 1.5,
+            "8": 1.4
+          },
+          "phase_consistency": 0.516,
+          "applied": false
+        },
+        "method": "unet",
+        "presence_fraction": 1.0,
+        "action": "demaze",
+        "maze_bump_before": 4.55,
+        "maze_bump_after": 4.3,
+        "edge_preservation": 1.0,
+        "luma_mae_255": 0.057
+      },
+      "surface_cleanup": {
+        "method": "edge-aware bilateral luminance",
+        "strength": 0.85,
+        "sigma_color": 20,
+        "sigma_space": 5,
+        "low_gradient_high_frequency_rms_before": 5.0957,
+        "low_gradient_high_frequency_rms_after": 3.1974,
+        "edge_correlation": 0.997449,
+        "luma_mae_255": 2.4041,
+        "texture_rms_reduction_fraction": 0.3725
+      },
+      "source": "art/载入图/熄灯后的脚步.png",
+      "web_image": "src/assets/loading/熄灯后的脚步.webp",
+      "web_sha256": "13884f2ad01dc2bc7b1be6455a25629a3f6b7a3f8d54b764300c570a06328acb"
+    },
+    {
+      "name": "议场初开",
+      "source_sha256": "43df47de98bafc0b4cef8dc18f03b249cee3a287ace0666fa925ec2ef416d9fb",
+      "output_sha256": "b640e33f6a6f4977f5b2058cf38c75071238d6af6d113b83503dff9aab25893f",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "skill": {
+        "route": "gpt-demaze",
+        "strength": 40,
+        "gpt_hint": true,
+        "maze_score": 0.0,
+        "maze_area_fraction": 0.0,
+        "decision": "forced",
+        "grid": {
+          "fold_z_before": {
+            "2": 0.5,
+            "4": 0.9,
+            "8": 1.1
+          },
+          "phase_consistency": 0.503,
+          "applied": false
+        },
+        "method": "unet",
+        "presence_fraction": 1.0,
+        "action": "demaze",
+        "edge_preservation": 1.0,
+        "luma_mae_255": 0.013
+      },
+      "surface_cleanup": {
+        "method": "edge-aware bilateral luminance",
+        "strength": 0.85,
+        "sigma_color": 20,
+        "sigma_space": 5,
+        "low_gradient_high_frequency_rms_before": 4.3407,
+        "low_gradient_high_frequency_rms_after": 2.9525,
+        "edge_correlation": 0.999181,
+        "luma_mae_255": 1.7409,
+        "texture_rms_reduction_fraction": 0.3198
+      },
+      "source": "art/载入图/议场初开.png",
+      "web_image": "src/assets/loading/议场初开.webp",
+      "web_sha256": "ca75850ec2878537e6b4909aba7a1392fb2685f5e5e9e59b662ca2d90170e40e"
+    },
+    {
+      "name": "银幕仍亮",
+      "source_sha256": "bb62b7d0337b3f7f32e80bcc67c6bc20663c090d819c68acf99b53091981169d",
+      "output_sha256": "72dfbfb8db69abd51cc4a3c2c093f6d85a3d5a5e1572b9cd065f5384b0df415e",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "skill": {
+        "route": "gpt-demaze",
+        "strength": 40,
+        "gpt_hint": true,
+        "maze_score": 0.00037107128279342464,
+        "maze_area_fraction": 0.0003551136363636364,
+        "decision": "forced",
+        "grid": {
+          "fold_z_before": {
+            "2": 2.0,
+            "4": 2.1,
+            "8": 1.3
+          },
+          "phase_consistency": 0.519,
+          "applied": false
+        },
+        "method": "unet",
+        "presence_fraction": 1.0,
+        "action": "demaze",
+        "maze_bump_before": 4.3,
+        "maze_bump_after": 4.3,
+        "edge_preservation": 1.0,
+        "luma_mae_255": 0.005
+      },
+      "surface_cleanup": {
+        "method": "edge-aware bilateral luminance",
+        "strength": 0.85,
+        "sigma_color": 20,
+        "sigma_space": 5,
+        "low_gradient_high_frequency_rms_before": 4.8896,
+        "low_gradient_high_frequency_rms_after": 3.5875,
+        "edge_correlation": 0.999076,
+        "luma_mae_255": 1.9828,
+        "texture_rms_reduction_fraction": 0.2663
+      },
+      "source": "art/载入图/银幕仍亮.png",
+      "web_image": "src/assets/loading/银幕仍亮.webp",
+      "web_sha256": "69f82d057304eea40e9d385b360e6e1c7bd60fff33d61ea1eee2447ef937a22e"
+    },
+    {
+      "name": "油印机之夜",
+      "source_sha256": "849feabbca4b2bb465b716cc6774dbad19aa64d2a9e16b787c0fc389045843b4",
+      "output_sha256": "18b3e40c4b09b189820eb039ca22fe50e62dcd673e4d8484d62bfe1ced1c6336",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "skill": {
+        "route": "gpt-demaze",
+        "strength": 40,
+        "gpt_hint": true,
+        "maze_score": 0.00030876109610189115,
+        "maze_area_fraction": 0.0002840909090909091,
+        "decision": "forced",
+        "grid": {
+          "fold_z_before": {
+            "2": 1.4,
+            "4": 1.2,
+            "8": 1.1
+          },
+          "phase_consistency": 0.492,
+          "applied": false
+        },
+        "method": "unet",
+        "presence_fraction": 1.0,
+        "action": "demaze",
+        "maze_bump_before": 13.92,
+        "maze_bump_after": 11.8,
+        "edge_preservation": 1.0,
+        "luma_mae_255": 0.016
+      },
+      "surface_cleanup": {
+        "method": "edge-aware bilateral luminance",
+        "strength": 0.85,
+        "sigma_color": 20,
+        "sigma_space": 5,
+        "low_gradient_high_frequency_rms_before": 4.2107,
+        "low_gradient_high_frequency_rms_after": 2.8857,
+        "edge_correlation": 0.999218,
+        "luma_mae_255": 1.9119,
+        "texture_rms_reduction_fraction": 0.3147
+      },
+      "source": "art/载入图/油印机之夜.png",
+      "web_image": "src/assets/loading/油印机之夜.webp",
+      "web_sha256": "c6f084fad79a2fb2a69ebeecbda0e13bc68940783072f31e5b0257efbaa1182d"
+    },
+    {
+      "name": "雨过校门",
+      "source_sha256": "fa656e165b2a9796c4288a8e04e588945659b6dc8394a7db1cdcf5ac2f6d7b4d",
+      "output_sha256": "ce4edd4dd92f5b16b855d2da51e936ba023ac6ff593b6ffe423e88d0960267c9",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "skill": {
+        "route": "gpt-demaze",
+        "strength": 40,
+        "gpt_hint": true,
+        "maze_score": 0.000800931993592544,
+        "maze_area_fraction": 0.00078125,
+        "decision": "forced",
+        "grid": {
+          "fold_z_before": {
+            "2": 0.2,
+            "4": 1.0,
+            "8": 1.3
+          },
+          "phase_consistency": 0.492,
+          "applied": false
+        },
+        "method": "unet",
+        "presence_fraction": 1.0,
+        "action": "demaze",
+        "maze_bump_before": 5.84,
+        "maze_bump_after": 5.79,
+        "edge_preservation": 1.0,
+        "luma_mae_255": 0.113
+      },
+      "surface_cleanup": {
+        "method": "edge-aware bilateral luminance",
+        "strength": 0.85,
+        "sigma_color": 20,
+        "sigma_space": 5,
+        "low_gradient_high_frequency_rms_before": 13.5306,
+        "low_gradient_high_frequency_rms_after": 11.5645,
+        "edge_correlation": 0.998781,
+        "luma_mae_255": 2.3593,
+        "texture_rms_reduction_fraction": 0.1453
+      },
+      "source": "art/载入图/雨过校门.png",
+      "web_image": "src/assets/loading/雨过校门.webp",
+      "web_sha256": "4573460e2e1bdc50d09d29466093929767a8de8129de4b8f7b874d8215474eef"
+    },
+    {
+      "name": "最后一间教室",
+      "source_sha256": "5d204bb1f541a72438d453abfdb4b8a9462ddae93627971676cb0af13c1d4693",
+      "output_sha256": "a3bcf8cd37dcda782ca4c81dac305f8e220a9dd3b54d0aea9ff75c5caa6426e8",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "skill": {
+        "route": "gpt-demaze",
+        "strength": 40,
+        "gpt_hint": true,
+        "maze_score": 7.521624670928921e-05,
+        "maze_area_fraction": 7.102272727272727e-05,
+        "decision": "forced",
+        "grid": {
+          "fold_z_before": {
+            "2": 1.0,
+            "4": 4.3,
+            "8": 2.6
+          },
+          "phase_consistency": 0.541,
+          "applied": false
+        },
+        "method": "unet",
+        "presence_fraction": 1.0,
+        "action": "demaze",
+        "maze_bump_before": 7.18,
+        "maze_bump_after": 6.68,
+        "edge_preservation": 1.0,
+        "luma_mae_255": 0.005
+      },
+      "surface_cleanup": {
+        "method": "edge-aware bilateral luminance",
+        "strength": 0.85,
+        "sigma_color": 20,
+        "sigma_space": 5,
+        "low_gradient_high_frequency_rms_before": 6.2025,
+        "low_gradient_high_frequency_rms_after": 4.7066,
+        "edge_correlation": 0.999166,
+        "luma_mae_255": 1.9798,
+        "texture_rms_reduction_fraction": 0.2412
+      },
+      "source": "art/载入图/最后一间教室.png",
+      "web_image": "src/assets/loading/最后一间教室.webp",
+      "web_sha256": "632795040a81377f19653fbd0d24d03f7d36870da1fe3248e0fab21b2b288531"
+    },
+    {
+      "name": "B3夜读",
+      "source_sha256": "1d067ed00c45f773b2374d724e5b857d20079c35ad0ecf6eee2d3a197de50786",
+      "output_sha256": "8a61e1db493e41001e64771e873009bce79d27e587323781d2d6bb6b00a8ceb7",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "skill": {
+        "route": "gpt-demaze",
+        "strength": 40,
+        "gpt_hint": true,
+        "maze_score": 0.00025484199796126404,
+        "maze_area_fraction": 0.00024857954545454543,
+        "decision": "forced",
+        "grid": {
+          "fold_z_before": {
+            "2": 1.9,
+            "4": 1.1,
+            "8": 1.0
+          },
+          "phase_consistency": 0.511,
+          "applied": false
+        },
+        "method": "unet",
+        "presence_fraction": 1.0,
+        "action": "demaze",
+        "maze_bump_before": 6.58,
+        "maze_bump_after": 6.56,
+        "edge_preservation": 1.0,
+        "luma_mae_255": 0.042
+      },
+      "surface_cleanup": {
+        "method": "edge-aware bilateral luminance",
+        "strength": 0.85,
+        "sigma_color": 20,
+        "sigma_space": 5,
+        "low_gradient_high_frequency_rms_before": 9.4995,
+        "low_gradient_high_frequency_rms_after": 7.7824,
+        "edge_correlation": 0.999348,
+        "luma_mae_255": 2.2384,
+        "texture_rms_reduction_fraction": 0.1808
+      },
+      "source": "art/载入图/B3夜读.png",
+      "web_image": "src/assets/loading/B3夜读.webp",
+      "web_sha256": "fb427b3c0beefd7fec3e092860a872a3de3be5edf6ebe3f026980693e7707dfa"
+    }
+  ]
+}

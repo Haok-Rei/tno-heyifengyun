@@ -89,3 +89,8 @@ art 与 music：项目作者提供的原始文件；此整理不为其添加新�
 小亭与B2教学楼：https://www.hfyz.net/dyyd/dyzx/xwzl/290449.html
 校门与食堂：https://www.hfyz.net/xwgk/xydt/288676.html
 全部PNG源图、WebP版本、收录节点与完整提示词：art/载入图/CG_EXPANSION_2026-10-10.md。
+
+--- AI CG质量修复（2026-10-10）---
+20幅AI生成CG使用repair-ai-image-quality的本地学习滤波器，并配合项目的保护边缘亮度清理，减轻过重的表面细纹。
+工具作者及MIT许可证：https://github.com/linsahdkadsa/repair-ai-image-quality
+逐图记录、处理参数、原图版本及对比：art/载入图/CG_QUALITY_REPAIR_2026-10-10.md。
