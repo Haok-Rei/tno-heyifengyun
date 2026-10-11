@@ -22,7 +22,11 @@ export default function EventPopup({ event, onConfirm, date, state }: EventPopup
   const previewId = useId();
   const news = getEventPresentation(event) === 'news';
   const submitted = event.campusSituation?.channel === 'document' || event.id.startsWith('yang_desk_');
-  const kind = news ? '校园电讯' : submitted ? '来件批阅' : '校园纪事';
+  const kind = news ? '合一新闻网' : submitted ? '来件批阅' : '校园纪事';
+  const newsSection = event.id.startsWith('bill_') ? '代表大会' : event.id.startsWith('jidi_') ? '校园经营'
+    : event.id.startsWith('gx_') || event.id === 'enter_treeC' ? '社团文化'
+    : event.id.startsWith('enter_tree') || event.id === 'march_on_admin' ? '校园政局'
+    : event.id === 'broadcast_seized' ? '校园广播' : '校园动态';
   const image = news ? getNewsEventImageUrl(event.id) : getStoryEventImageUrl(event.id);
   const fallback = news ? getNewsEventImageUrl(null) : getStoryEventImageUrl(null);
   const choices = event.choices?.length ? event.choices : null;
@@ -72,7 +76,7 @@ export default function EventPopup({ event, onConfirm, date, state }: EventPopup
         <GripHorizontal size={16} className="event-titlebar__grip" aria-hidden="true"/>
       </header>
       <div className="event-heading">
-        {news && <div className="event-dateline"><span>合肥一中 · 校园报道</span><time>{dateText}</time></div>}
+        {news && <div className="event-dateline"><span className="event-news-section">{newsSection}</span><span className="event-news-edition">HEFEI · CAMPUS NEWS</span><time>{dateText}</time></div>}
         <h2 id={titleId} className="event-headline">{event.title}</h2>
       </div>
       {news ? <div className="event-news-reading">{photo}{body}</div> : <div className="event-story-reading">{body}</div>}

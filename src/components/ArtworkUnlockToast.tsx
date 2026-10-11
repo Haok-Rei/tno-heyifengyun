@@ -11,7 +11,7 @@ export default function ArtworkUnlockToast({ progress, suspended }: { progress: 
   useEffect(() => {
     const fresh = unlockEarnedArtwork(progress);
     if (fresh.length) setQueue(previous => [...previous, fresh]);
-  }, [progress.currentFocusTree, progress.completedFocuses, progress.activeEvent?.id, progress.activeSuperEvent?.id, progress.gameEnding, progress.chronicle]);
+  }, [progress.currentFocusTree, progress.completedFocuses, progress.activeEvent?.id, progress.activeSuperEvent?.id, progress.gameEnding, progress.chronicle, progress.flags]);
 
   useEffect(() => {
     if (!batch || suspended) return;

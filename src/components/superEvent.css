@@ -8,8 +8,8 @@
   box-shadow: 0 0 0 5px #080a0b, 0 0 0 6px #6e6658, 0 25px 90px #000;
 }
 .super-event-image {
-  opacity: .88;
-  filter: saturate(.76) contrast(1.15) brightness(.85);
+  opacity: .96;
+  filter: saturate(.9) contrast(1.04);
   transform: scale(1.025);
   animation: super-event-image-in 15s ease-out both;
 }

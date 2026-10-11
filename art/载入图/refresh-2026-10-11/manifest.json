@@ -1,0 +1,696 @@
+{
+  "date": "2026-10-11",
+  "generator": "built-in image_gen",
+  "quality_tool": "repair-ai-image-quality",
+  "quality_settings": {
+    "strength": 60,
+    "force": false,
+    "color": false
+  },
+  "previous_count": 42,
+  "old_refreshed": 6,
+  "new_count": 12,
+  "total_count": 54,
+  "initial_scenery_count": 11,
+  "images": [
+    {
+      "name": "军训",
+      "kind": "edit",
+      "prompt": "Create one finished premium CG for the fictional school narrative strategy game TNO: The Hefei Order. Mature cinematic editorial illustration, realistic Chinese school architecture and natural body proportions, precisely drawn contours and restrained smooth digital paint. Harmonious slate blue, charcoal, muted brick red and warm amber. Readable small shapes, coherent perspective, sharp structural edges, rich clear shadows. CLEAN SURFACES: no canvas weave, impasto, stippling, gritty grain, worm/maze microtexture, muddy blur or oversharpened halos. No cartoon, no chibi, no futuristic redesign. No UI, frame, watermark, collage seam or extra legible writing. Keep the main subject away from the extreme edges; unobtrusive bottom 18 percent for loading overlays. This is an illustration of fictional game events, not a real news photograph. EDIT the provided military-training CG. Preserve the recognizable broad white curved three-storey campus building, flags, camera position and saluting trainee ranks. Replace thick oil-paint ridges and canvas with crisp fine architectural drawing and soft controlled shading. Resolve the students' arms, shoulders, caps and fingers naturally; rebuild orderly ranks rather than blurry piles. Fresh afternoon blue sky, slightly muted colour, detailed window grids and clean uniform cloth. Landscape 16:9.",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "generated_sha256": "e7da74384ba25be3a6e1ac49a309144fe9ef34fd2f5b5c43ba7b67b56bbaacdf",
+      "source_sha256": "e7da74384ba25be3a6e1ac49a309144fe9ef34fd2f5b5c43ba7b67b56bbaacdf",
+      "quality_check": [
+        {
+          "route": "gpt-demaze",
+          "strength": 60,
+          "gpt_hint": true,
+          "maze_score": 3.905944848058745e-05,
+          "maze_area_fraction": 3.5511363636363635e-05,
+          "decision": "GPT 图但几乎没有迷宫纹（maze_score=0.000）",
+          "grid": {
+            "fold_z_before": {
+              "2": 0.4,
+              "4": 3.1,
+              "8": 2.7
+            },
+            "phase_consistency": 0.538,
+            "applied": false
+          },
+          "method": "spectral",
+          "action": "no-op"
+        }
+      ],
+      "quality_check_changed_image": false,
+      "color_matching": false,
+      "previous_sha256": "2b65a757006a6100b8f46b412a71f0703d794730d1801229dd1d89d5d13e04d9",
+      "webp_sha256": "f1749aef0cd2fb06315cc817f5084de19f54af9ae32da178e5740fe398441303",
+      "webp_bytes": 217822
+    },
+    {
+      "name": "合一之春",
+      "kind": "edit",
+      "prompt": "Create one finished premium CG for the fictional school narrative strategy game TNO: The Hefei Order. Mature cinematic editorial illustration, realistic Chinese school architecture and natural body proportions, precisely drawn contours and restrained smooth digital paint. Harmonious slate blue, charcoal, muted brick red and warm amber. Readable small shapes, coherent perspective, sharp structural edges, rich clear shadows. CLEAN SURFACES: no canvas weave, impasto, stippling, gritty grain, worm/maze microtexture, muddy blur or oversharpened halos. No cartoon, no chibi, no futuristic redesign. No UI, frame, watermark, collage seam or extra legible writing. Keep the main subject away from the extreme edges; unobtrusive bottom 18 percent for loading overlays. This is an illustration of fictional game events, not a real news photograph. EDIT the provided classroom assembly CG. Preserve its groups debating around desks, flying paper, central delegate and room perspective, but refine it into a convincing contemporary Chinese school assembly. The attendees should be Chinese students in pale modern school jackets; detailed natural faces and hands. Cool window light enters the left side, with a warm central ceiling lamp. Preserve the conflicted animated energy and the communal reform theme, remove yellow mud, crude brushstrokes, canvas texture and faceless outlines. Wide 16:9.",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "generated_sha256": "e713eba3b51c466c740556d1a64a50c385cada48faf4a605ab36dc4dae23b2ba",
+      "source_sha256": "e713eba3b51c466c740556d1a64a50c385cada48faf4a605ab36dc4dae23b2ba",
+      "quality_check": [
+        {
+          "route": "gpt-demaze",
+          "strength": 60,
+          "gpt_hint": true,
+          "maze_score": 0.0,
+          "maze_area_fraction": 0.0,
+          "decision": "GPT 图但几乎没有迷宫纹（maze_score=0.000）",
+          "grid": {
+            "fold_z_before": {
+              "2": 0.4,
+              "4": 1.5,
+              "8": 1.4
+            },
+            "phase_consistency": 0.503,
+            "applied": false
+          },
+          "method": "spectral",
+          "action": "no-op"
+        }
+      ],
+      "quality_check_changed_image": false,
+      "color_matching": false,
+      "previous_sha256": "502dca786a76e124cd8e85717b3d4b3e614d8c4c7ac6e9c5d3ac38911fc683f7",
+      "webp_sha256": "4679500adba64d9f3350009e3fdbfabcd2849b85b4d61a0be155e0605083f3a3",
+      "webp_bytes": 204136
+    },
+    {
+      "name": "特级教师",
+      "kind": "edit",
+      "prompt": "Create one finished premium CG for the fictional school narrative strategy game TNO: The Hefei Order. Mature cinematic editorial illustration, realistic Chinese school architecture and natural body proportions, precisely drawn contours and restrained smooth digital paint. Harmonious slate blue, charcoal, muted brick red and warm amber. Readable small shapes, coherent perspective, sharp structural edges, rich clear shadows. CLEAN SURFACES: no canvas weave, impasto, stippling, gritty grain, worm/maze microtexture, muddy blur or oversharpened halos. No cartoon, no chibi, no futuristic redesign. No UI, frame, watermark, collage seam or extra legible writing. Keep the main subject away from the extreme edges; unobtrusive bottom 18 percent for loading overlays. This is an illustration of fictional game events, not a real news photograph. EDIT the provided portrait-and-desk CG. Preserve the recognizable older man's face, round glasses, receding hair, tired wary gaze, posture, red desk phone at left and formidable piles of school documents. Replace crude olive strokes with finely resolved cinematic illustrated anatomy, clean skin shading, precise paper edges and subtle wood. Maintain moody amber desk light and cold deep background, retain the distinctive portrait identity; no replacement with a generic young person. Wide 16:9.",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "generated_sha256": "f5c9d8d74e0ba088c4a14738c07031c79bb388533a9253723940f86b383ba3e2",
+      "source_sha256": "f5c9d8d74e0ba088c4a14738c07031c79bb388533a9253723940f86b383ba3e2",
+      "quality_check": [
+        {
+          "route": "gpt-demaze",
+          "strength": 60,
+          "gpt_hint": true,
+          "maze_score": 0.00018527439137362435,
+          "maze_area_fraction": 0.0001775568181818182,
+          "decision": "GPT 图但几乎没有迷宫纹（maze_score=0.000）",
+          "grid": {
+            "fold_z_before": {
+              "2": 0.9,
+              "4": 0.7,
+              "8": 1.0
+            },
+            "phase_consistency": 0.495,
+            "applied": false
+          },
+          "method": "spectral",
+          "action": "no-op"
+        }
+      ],
+      "quality_check_changed_image": false,
+      "color_matching": false,
+      "previous_sha256": "8f31d60aa10bd1e331ca82923671e0e061e841be16c27eb91be0594625a30529",
+      "webp_sha256": "7abf5caabb4bdb647701d814fd49d5f8f6be7531efcf04b41dbceb74bc0151b1",
+      "webp_bytes": 159350
+    },
+    {
+      "name": "内卷",
+      "kind": "edit",
+      "prompt": "Create one finished premium CG for the fictional school narrative strategy game TNO: The Hefei Order. Mature cinematic editorial illustration, realistic Chinese school architecture and natural body proportions, precisely drawn contours and restrained smooth digital paint. Harmonious slate blue, charcoal, muted brick red and warm amber. Readable small shapes, coherent perspective, sharp structural edges, rich clear shadows. CLEAN SURFACES: no canvas weave, impasto, stippling, gritty grain, worm/maze microtexture, muddy blur or oversharpened halos. No cartoon, no chibi, no futuristic redesign. No UI, frame, watermark, collage seam or extra legible writing. Keep the main subject away from the extreme edges; unobtrusive bottom 18 percent for loading overlays. This is an illustration of fictional game events, not a real news photograph. EDIT the provided exhausted-student CG. Preserve the student bowed onto crossed arms at the central desk, towering stacks of examination sheets, winter branches outside and school lintel above. Improve visibility in shadows: daylight outlines layered paper and sleeve folds; gentle amber desk reflection, neutral skin and dark blue jacket. Make the oppression readable rather than nearly black. Keep detailed yet smooth surfaces, do not change the pose or make it happy. Existing school lettering may remain, don't add new slogans. Wide 16:9.",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "generated_sha256": "75861738ef59eac7b885c015905c041f2493f9a0d72a939782851a5b3d87e373",
+      "source_sha256": "75861738ef59eac7b885c015905c041f2493f9a0d72a939782851a5b3d87e373",
+      "quality_check": [
+        {
+          "route": "gpt-demaze",
+          "strength": 60,
+          "gpt_hint": true,
+          "maze_score": 0.005133993591610836,
+          "maze_area_fraction": 0.0050071022727272724,
+          "decision": "GPT 图但几乎没有迷宫纹（maze_score=0.005）",
+          "grid": {
+            "fold_z_before": {
+              "2": 0.6,
+              "4": 4.7,
+              "8": 2.6
+            },
+            "phase_consistency": 0.547,
+            "applied": false
+          },
+          "method": "spectral",
+          "action": "no-op"
+        }
+      ],
+      "quality_check_changed_image": false,
+      "color_matching": false,
+      "previous_sha256": "4b7afb1010d801639b474f77ccd9cf0562faf271cac933b8387baa5c44544ef7",
+      "webp_sha256": "c3300f60fb8947a7a9a9d93c3c597c5b1d1fb2a64ee4d6d6c66adce844aa8ff2",
+      "webp_bytes": 297926
+    },
+    {
+      "name": "特级",
+      "kind": "edit",
+      "prompt": "Create one finished premium CG for the fictional school narrative strategy game TNO: The Hefei Order. Mature cinematic editorial illustration, realistic Chinese school architecture and natural body proportions, precisely drawn contours and restrained smooth digital paint. Harmonious slate blue, charcoal, muted brick red and warm amber. Readable small shapes, coherent perspective, sharp structural edges, rich clear shadows. CLEAN SURFACES: no canvas weave, impasto, stippling, gritty grain, worm/maze microtexture, muddy blur or oversharpened halos. No cartoon, no chibi, no futuristic redesign. No UI, frame, watermark, collage seam or extra legible writing. Keep the main subject away from the extreme edges; unobtrusive bottom 18 percent for loading overlays. This is an illustration of fictional game events, not a real news photograph. EDIT the provided promotion-success CG into a coherent finely drawn illustrated school award ceremony. Preserve the CENTRAL MAN'S recognizable face, age, rectangular glasses, hairstyle, white shirt, smiling expression and raised-arm composition. Harmonize his lighting and outline with all other attendees so it no longer looks like a pasted head. Preserve a restrained red celebratory institutional backdrop and colleagues applauding, include a modest award certificate on a nearby lectern. Natural facial shading and fabric, detailed eyes but no plastic pores. Wide 16:9.",
+      "dimensions": [
+        1670,
+        942
+      ],
+      "generated_sha256": "59472bdb0a5c29aa38f78b9d7ff83cc91f1d4ff20a0eae2117e1d1319fd152f5",
+      "source_sha256": "59472bdb0a5c29aa38f78b9d7ff83cc91f1d4ff20a0eae2117e1d1319fd152f5",
+      "quality_check": [
+        {
+          "route": "gpt-demaze",
+          "strength": 60,
+          "gpt_hint": true,
+          "maze_score": 0.0001568812017100051,
+          "maze_area_fraction": 0.00014204545454545454,
+          "decision": "GPT 图但几乎没有迷宫纹（maze_score=0.000）",
+          "grid": {
+            "fold_z_before": {
+              "2": 0.3,
+              "4": 1.1,
+              "8": 1.2
+            },
+            "phase_consistency": 0.522,
+            "applied": false
+          },
+          "method": "spectral",
+          "action": "no-op"
+        }
+      ],
+      "quality_check_changed_image": false,
+      "color_matching": false,
+      "previous_sha256": "91190e590882f396e81283e596ef876e2f43aa43ad7d8bf0421c9dfe42efeef1",
+      "webp_sha256": "362abc6ea963bc2cf5f9fd6f0d74b20290bc4aec22dd35cf52874b4f2b8787da",
+      "webp_bytes": 139142
+    },
+    {
+      "name": "特级0",
+      "kind": "edit",
+      "prompt": "Create one finished premium CG for the fictional school narrative strategy game TNO: The Hefei Order. Mature cinematic editorial illustration, realistic Chinese school architecture and natural body proportions, precisely drawn contours and restrained smooth digital paint. Harmonious slate blue, charcoal, muted brick red and warm amber. Readable small shapes, coherent perspective, sharp structural edges, rich clear shadows. CLEAN SURFACES: no canvas weave, impasto, stippling, gritty grain, worm/maze microtexture, muddy blur or oversharpened halos. No cartoon, no chibi, no futuristic redesign. No UI, frame, watermark, collage seam or extra legible writing. Keep the main subject away from the extreme edges; unobtrusive bottom 18 percent for loading overlays. This is an illustration of fictional game events, not a real news photograph. EDIT the provided promotion-failure CG into a genuine contrasting failure scene. Preserve the CENTRAL MAN'S recognizable facial identity, age, rectangular glasses, hair and white shirt, and his tense disappointed gaze. Move the setting naturally to a cold school meeting room after a failed academic-title review: the same man now seated with lowered hands, rejected nomination papers on the table, empty chairs receding behind him, muted red noticeboard in background. No celebration or waving flags. Keep his identity, remove collage edges and render coherent light and perspective throughout. Wide 16:9.",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "generated_sha256": "588f69ef83b368fee77643bd007ade785a9d69d8d5baa0e81a65db219940e0db",
+      "source_sha256": "588f69ef83b368fee77643bd007ade785a9d69d8d5baa0e81a65db219940e0db",
+      "quality_check": [
+        {
+          "route": "gpt-demaze",
+          "strength": 60,
+          "gpt_hint": true,
+          "maze_score": 0.0,
+          "maze_area_fraction": 0.0,
+          "decision": "GPT 图但几乎没有迷宫纹（maze_score=0.000）",
+          "grid": {
+            "fold_z_before": {
+              "2": 0.7,
+              "4": 1.9,
+              "8": 1.4
+            },
+            "phase_consistency": 0.505,
+            "applied": false
+          },
+          "method": "spectral",
+          "action": "no-op"
+        }
+      ],
+      "quality_check_changed_image": false,
+      "color_matching": false,
+      "previous_sha256": "7c740deadf27d55e9dc702769157fe64df50e2a8232c6ded8f816f6e9415921c",
+      "webp_sha256": "376f38bc83fd156745d0f04f1d0b6c845a72d46b30f9f6ece40093168f767bd0",
+      "webp_bytes": 95566
+    },
+    {
+      "name": "退回的联名信",
+      "kind": "event",
+      "prompt": "Create one finished premium CG for the fictional school narrative strategy game TNO: The Hefei Order. Mature cinematic editorial illustration, realistic Chinese school architecture and natural body proportions, precisely drawn contours and restrained smooth digital paint. Harmonious slate blue, charcoal, muted brick red and warm amber. Readable small shapes, coherent perspective, sharp structural edges, rich clear shadows. CLEAN SURFACES: no canvas weave, impasto, stippling, gritty grain, worm/maze microtexture, muddy blur or oversharpened halos. No cartoon, no chibi, no futuristic redesign. No UI, frame, watermark, collage seam or extra legible writing. Keep the main subject away from the extreme edges; unobtrusive bottom 18 percent for loading overlays. This is an illustration of fictional game events, not a real news photograph. Landscape 3:2. Scene: the students' joint petition asking for normal rest has been returned with a dismissive red annotation. View diagonally across a modern Chinese school classroom lectern after afternoon lessons. Three anonymous uniformed students look at a folded handwritten sheet placed on the lectern, a classmate leaning at the door; hands and the red annotation are the visual focus, writing abstract and unreadable. Backpack and exercise books on nearby desks, an empty noticeboard, amber light with cold corridor beyond. Quiet anger and restrained resolve, no riot or red flags.",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "generated_sha256": "05d23d10abe7f8413648901fb533b77d9af594a2706e7674f4525d1a58af72c7",
+      "source_sha256": "59652587de1dadfa89a1cd128cd65a54741d9af61add002ae9d378ab2e6e9952",
+      "quality_check": [
+        {
+          "route": "gpt-demaze",
+          "strength": 60,
+          "gpt_hint": true,
+          "maze_score": 0.0,
+          "maze_area_fraction": 0.0,
+          "decision": "GPT 图但几乎没有迷宫纹（maze_score=0.000）",
+          "grid": {
+            "fold_z_before": {
+              "2": 26.1,
+              "4": 13.6,
+              "8": 7.1
+            },
+            "phase_consistency": 1.0,
+            "applied": true,
+            "fold_z_after": {
+              "2": 0.2,
+              "4": 0.2,
+              "8": 0.4
+            },
+            "mean_change_255": 0.293
+          },
+          "method": "spectral",
+          "action": "degrid"
+        }
+      ],
+      "quality_check_changed_image": true,
+      "color_matching": false,
+      "webp_sha256": "f6d447d0d67399a5ea7821dc092cfb78a99cf0f92f7237aaa54e563d0d923752",
+      "webp_bytes": 127452
+    },
+    {
+      "name": "课间的争执",
+      "kind": "event",
+      "prompt": "Create one finished premium CG for the fictional school narrative strategy game TNO: The Hefei Order. Mature cinematic editorial illustration, realistic Chinese school architecture and natural body proportions, precisely drawn contours and restrained smooth digital paint. Harmonious slate blue, charcoal, muted brick red and warm amber. Readable small shapes, coherent perspective, sharp structural edges, rich clear shadows. CLEAN SURFACES: no canvas weave, impasto, stippling, gritty grain, worm/maze microtexture, muddy blur or oversharpened halos. No cartoon, no chibi, no futuristic redesign. No UI, frame, watermark, collage seam or extra legible writing. Keep the main subject away from the extreme edges; unobtrusive bottom 18 percent for loading overlays. This is an illustration of fictional game events, not a real news photograph. Landscape 3:2. Scene: two student class representatives ask a uniformed student inspector to explain discipline deductions during recess. Three anonymous school-age figures on a tiled open corridor, inspector closes a clipboard while two representatives calmly but stubbornly block his path, other students glance out through classroom doors. No fighting. Convincing diagonal corridor perspective, clean window grids, modern blue-and-white school jackets, daylight and warm patches on wall. Hands on the clipboard are clear, not a political rally.",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "generated_sha256": "5cebbb64f352c6a30aa17c53eaf77ca990599b35d65e4eafbbdbfb648376084e",
+      "source_sha256": "3cff44f824e960218130c5cdc3625b9b7353fe137327f0d6f53e41d4765adc26",
+      "quality_check": [
+        {
+          "route": "gpt-demaze",
+          "strength": 60,
+          "gpt_hint": true,
+          "maze_score": 0.0,
+          "maze_area_fraction": 0.0,
+          "decision": "GPT 图但几乎没有迷宫纹（maze_score=0.000）",
+          "grid": {
+            "fold_z_before": {
+              "2": 23.2,
+              "4": 12.1,
+              "8": 6.3
+            },
+            "phase_consistency": 0.992,
+            "applied": true,
+            "fold_z_after": {
+              "2": 0.1,
+              "4": 0.4,
+              "8": 0.7
+            },
+            "mean_change_255": 0.352
+          },
+          "method": "spectral",
+          "action": "degrid"
+        }
+      ],
+      "quality_check_changed_image": true,
+      "color_matching": false,
+      "webp_sha256": "0f1ca8b340a7630bf967c3944fdb3e16309aa090dedec9a32c75c5aef43b946b",
+      "webp_bytes": 147528
+    },
+    {
+      "name": "雪中的来函",
+      "kind": "event",
+      "prompt": "Create one finished premium CG for the fictional school narrative strategy game TNO: The Hefei Order. Mature cinematic editorial illustration, realistic Chinese school architecture and natural body proportions, precisely drawn contours and restrained smooth digital paint. Harmonious slate blue, charcoal, muted brick red and warm amber. Readable small shapes, coherent perspective, sharp structural edges, rich clear shadows. CLEAN SURFACES: no canvas weave, impasto, stippling, gritty grain, worm/maze microtexture, muddy blur or oversharpened halos. No cartoon, no chibi, no futuristic redesign. No UI, frame, watermark, collage seam or extra legible writing. Keep the main subject away from the extreme edges; unobtrusive bottom 18 percent for loading overlays. This is an illustration of fictional game events, not a real news photograph. Landscape 3:2. Scene: a heavy-snow warning reaches the deputy principal's desk; class teachers await a decision about cancelling classes. Interior office near a large window, snow falling onto a Chinese campus courtyard. Two teachers in coats wait in the doorway. On the foreground desk an unreadable weather warning sheet, thermos flask, telephone and school timetable. The desk owner is suggested by one hand holding the letter, no identifiable face. Cold blue snow contrasts with warm reading lamp, fine natural snowflakes and believable glass reflections.",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "generated_sha256": "0644e1f9add2315e74aa5caa45b163c02381075dbb989543719d51f10ec0ab7a",
+      "source_sha256": "e4de72d2ec2bbcdd119f13db45bc12c86d8fc20096f08f8c51bf78de1f736eee",
+      "quality_check": [
+        {
+          "route": "gpt-demaze",
+          "strength": 60,
+          "gpt_hint": true,
+          "maze_score": 0.00048752742341756725,
+          "maze_area_fraction": 0.0004201680672268908,
+          "decision": "GPT 图但几乎没有迷宫纹（maze_score=0.000）",
+          "grid": {
+            "fold_z_before": {
+              "2": 29.0,
+              "4": 14.7,
+              "8": 7.6
+            },
+            "phase_consistency": 0.984,
+            "applied": true,
+            "fold_z_after": {
+              "2": 0.0,
+              "4": 0.1,
+              "8": 0.3
+            },
+            "mean_change_255": 0.455
+          },
+          "method": "spectral",
+          "action": "degrid"
+        }
+      ],
+      "quality_check_changed_image": true,
+      "color_matching": false,
+      "webp_sha256": "7f62480b8ffdcd049235f332e17a893b51a2d173788dd92e8697088c2e031761",
+      "webp_bytes": 185786
+    },
+    {
+      "name": "灯下的协议",
+      "kind": "event",
+      "prompt": "Create one finished premium CG for the fictional school narrative strategy game TNO: The Hefei Order. Mature cinematic editorial illustration, realistic Chinese school architecture and natural body proportions, precisely drawn contours and restrained smooth digital paint. Harmonious slate blue, charcoal, muted brick red and warm amber. Readable small shapes, coherent perspective, sharp structural edges, rich clear shadows. CLEAN SURFACES: no canvas weave, impasto, stippling, gritty grain, worm/maze microtexture, muddy blur or oversharpened halos. No cartoon, no chibi, no futuristic redesign. No UI, frame, watermark, collage seam or extra legible writing. Keep the main subject away from the extreme edges; unobtrusive bottom 18 percent for loading overlays. This is an illustration of fictional game events, not a real news photograph. Landscape 3:2. Scene: a secret compromise keeps an old teacher in an advisory role while moderate student factions gain influence. Late-evening modern school office, three anonymous figures seen mostly from side/back: older teacher with glasses sits opposite two uniformed student delegates. Hands mark a modest agreement beside a staffing roster, sealed thermos, tea glasses and exam bundles; through glass a deserted corridor. A restrained handshake halfway across the table, ambivalent pragmatic atmosphere, amber lamp and cool corridor. No arbitrary leader likeness, no military uniforms or national flags.\nRevise the scene to match the actual secret-compromise story exactly. Only TWO attendees: the older school administrator on a worn fabric sofa at left and ONE male student negotiator seen mostly from behind on a folding chair at right. Remove the female delegate, replace the handshake with the old administrator pressing a round school seal onto the paper agreement on a low desk between them. This is an abandoned archives office at midnight: closed heavy curtains, old electric fan, uneven stacks of archives, scratched desk, narrow warm task lamp, thermos with goji tea. Remove the visible bright active corridor. Preserve the clean fine cinematic drawing and restrained lighting, no extra readable text. Keep faces unobtrusive. Landscape 3:2.",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "generated_sha256": "6c9a6c4e3944449bb8545c903c05ac87f73973eab6dd586c183ab0325ce13aaa",
+      "source_sha256": "6562fa0f61759cd2b159a459678abeffe1d882590315344f6bc9f4f0345a2df3",
+      "quality_check": [
+        {
+          "route": "gpt-demaze",
+          "strength": 60,
+          "gpt_hint": true,
+          "maze_score": 0.0002872030525581586,
+          "maze_area_fraction": 0.00024509803921568627,
+          "decision": "GPT 图但几乎没有迷宫纹（maze_score=0.000）",
+          "grid": {
+            "fold_z_before": {
+              "2": 26.1,
+              "4": 13.5,
+              "8": 6.9
+            },
+            "phase_consistency": 0.992,
+            "applied": true,
+            "fold_z_after": {
+              "2": 0.0,
+              "4": 0.0,
+              "8": 0.1
+            },
+            "mean_change_255": 0.248
+          },
+          "method": "spectral",
+          "action": "degrid"
+        }
+      ],
+      "quality_check_changed_image": true,
+      "color_matching": false,
+      "webp_sha256": "8d709a71a119a4c12ad04b68465d7370367644871c9d83c8f485b5d18d457016",
+      "webp_bytes": 114408
+    },
+    {
+      "name": "六十日之约",
+      "kind": "super",
+      "prompt": "Create one finished premium CG for the fictional school narrative strategy game TNO: The Hefei Order. Mature cinematic editorial illustration, realistic Chinese school architecture and natural body proportions, precisely drawn contours and restrained smooth digital paint. Harmonious slate blue, charcoal, muted brick red and warm amber. Readable small shapes, coherent perspective, sharp structural edges, rich clear shadows. CLEAN SURFACES: no canvas weave, impasto, stippling, gritty grain, worm/maze microtexture, muddy blur or oversharpened halos. No cartoon, no chibi, no futuristic redesign. No UI, frame, watermark, collage seam or extra legible writing. Keep the main subject away from the extreme edges; unobtrusive bottom 18 percent for loading overlays. This is an illustration of fictional game events, not a real news photograph. Landscape panoramic 16:9. Scene: the first campus democratic election begins, sixty days of campaigns. School courtyard at early morning, modest campaign tables placed across the right-hand plaza, several distinct coloured abstract placards, uniformed students gathering leaflets, a transparent sealed ballot box on a clerk's registration desk. Chinese modern teaching blocks, authentic pedestrian scale. The MAIN ACTIVITY on the right two-thirds, leave the LEFT THIRD mostly quiet architecture and pale shadow for a super-event title. Precise details and hopeful but restrained atmosphere, no adult national politicians or flags.",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "generated_sha256": "3bb2dab2511894ed79db162feb248ddfc06011a6f9413af945cbb306ac5fdca8",
+      "source_sha256": "3bb2dab2511894ed79db162feb248ddfc06011a6f9413af945cbb306ac5fdca8",
+      "quality_check": [
+        {
+          "route": "gpt-demaze",
+          "strength": 60,
+          "gpt_hint": true,
+          "maze_score": 0.0007011846329852014,
+          "maze_area_fraction": 0.0006747159090909091,
+          "decision": "GPT 图但几乎没有迷宫纹（maze_score=0.001）",
+          "grid": {
+            "fold_z_before": {
+              "2": 0.4,
+              "4": 1.3,
+              "8": 1.5
+            },
+            "phase_consistency": 0.53,
+            "applied": false
+          },
+          "method": "spectral",
+          "action": "no-op"
+        }
+      ],
+      "quality_check_changed_image": false,
+      "color_matching": false,
+      "webp_sha256": "85d19e39f8c495a701f9994c6a845231d847160d7b25754d70bd638a5031a4e7",
+      "webp_bytes": 271728
+    },
+    {
+      "name": "春回滨湖",
+      "kind": "super",
+      "prompt": "Create one finished premium CG for the fictional school narrative strategy game TNO: The Hefei Order. Mature cinematic editorial illustration, realistic Chinese school architecture and natural body proportions, precisely drawn contours and restrained smooth digital paint. Harmonious slate blue, charcoal, muted brick red and warm amber. Readable small shapes, coherent perspective, sharp structural edges, rich clear shadows. CLEAN SURFACES: no canvas weave, impasto, stippling, gritty grain, worm/maze microtexture, muddy blur or oversharpened halos. No cartoon, no chibi, no futuristic redesign. No UI, frame, watermark, collage seam or extra legible writing. Keep the main subject away from the extreme edges; unobtrusive bottom 18 percent for loading overlays. This is an illustration of fictional game events, not a real news photograph. Landscape panoramic 16:9. Scene: reconciliation and local communes renew everyday school life under the Haobang reform route. A modern Chinese high-school courtyard in early spring: students on the right put away a makeshift barrier, teachers and student delegates reopen a classroom and post a joint duty roster, one student carries flowering branches toward a club table. Pale flowering trees and warm late-afternoon light, muted red cloth folded instead of waved. Main figures on right two-thirds, left quiet building corner in shade for title. Natural anatomy, constructive calm, no war victory parade.",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "generated_sha256": "644e3993f727311a87bd33f16b4becd3c83e2d218fd683018723e5aa295e1316",
+      "source_sha256": "644e3993f727311a87bd33f16b4becd3c83e2d218fd683018723e5aa295e1316",
+      "quality_check": [
+        {
+          "route": "gpt-demaze",
+          "strength": 60,
+          "gpt_hint": true,
+          "maze_score": 0.0026602529062351955,
+          "maze_area_fraction": 0.0025923295454545457,
+          "decision": "GPT 图但几乎没有迷宫纹（maze_score=0.003）",
+          "grid": {
+            "fold_z_before": {
+              "2": 0.2,
+              "4": 1.5,
+              "8": 1.0
+            },
+            "phase_consistency": 0.522,
+            "applied": false
+          },
+          "method": "spectral",
+          "action": "no-op"
+        }
+      ],
+      "quality_check_changed_image": false,
+      "color_matching": false,
+      "webp_sha256": "b3ea37e57e1bdaa16a1dc2135be23ce6630106deda8a8016fe757b29d8ef3875",
+      "webp_bytes": 264922
+    },
+    {
+      "name": "价格牌下的风暴",
+      "kind": "super",
+      "prompt": "Create one finished premium CG for the fictional school narrative strategy game TNO: The Hefei Order. Mature cinematic editorial illustration, realistic Chinese school architecture and natural body proportions, precisely drawn contours and restrained smooth digital paint. Harmonious slate blue, charcoal, muted brick red and warm amber. Readable small shapes, coherent perspective, sharp structural edges, rich clear shadows. CLEAN SURFACES: no canvas weave, impasto, stippling, gritty grain, worm/maze microtexture, muddy blur or oversharpened halos. No cartoon, no chibi, no futuristic redesign. No UI, frame, watermark, collage seam or extra legible writing. Keep the main subject away from the extreme edges; unobtrusive bottom 18 percent for loading overlays. This is an illustration of fictional game events, not a real news photograph. Landscape panoramic 16:9. Scene: Jidi's commercialized campus faces a student revolt against fees and relentless examinations. Modern school canteen exterior at dusk: on the right uniformed students crowd around a newly raised price board and closed payment turnstile, raised exercise books and crumpled fee notices, one overturned plastic barrier in foreground, contractor behind glass, dramatic amber light in serving windows. Anger readable through posture, no weapons, injuries or huge fire. Left third is shadowed school architecture with spacious paving for a super-event title, cold corporate blue with muted red accents.",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "generated_sha256": "7e5cbb23b09e468a1270f8b4cd9e3d8dcfb9228754ba908bdf9e7de2add77e5b",
+      "source_sha256": "7e5cbb23b09e468a1270f8b4cd9e3d8dcfb9228754ba908bdf9e7de2add77e5b",
+      "quality_check": [
+        {
+          "route": "gpt-demaze",
+          "strength": 60,
+          "gpt_hint": true,
+          "maze_score": 0.0011328753106271013,
+          "maze_area_fraction": 0.0011008522727272727,
+          "decision": "GPT 图但几乎没有迷宫纹（maze_score=0.001）",
+          "grid": {
+            "fold_z_before": {
+              "2": 1.5,
+              "4": 2.2,
+              "8": 1.9
+            },
+            "phase_consistency": 0.519,
+            "applied": false
+          },
+          "method": "spectral",
+          "action": "no-op"
+        }
+      ],
+      "quality_check_changed_image": false,
+      "color_matching": false,
+      "webp_sha256": "94bdee512baecb75d43044e9c0dfbbf4dee76ffb1ad23a9688f7804f1b82a57b",
+      "webp_bytes": 279914
+    },
+    {
+      "name": "总攻前夜",
+      "kind": "super",
+      "prompt": "Create one finished premium CG for the fictional school narrative strategy game TNO: The Hefei Order. Mature cinematic editorial illustration, realistic Chinese school architecture and natural body proportions, precisely drawn contours and restrained smooth digital paint. Harmonious slate blue, charcoal, muted brick red and warm amber. Readable small shapes, coherent perspective, sharp structural edges, rich clear shadows. CLEAN SURFACES: no canvas weave, impasto, stippling, gritty grain, worm/maze microtexture, muddy blur or oversharpened halos. No cartoon, no chibi, no futuristic redesign. No UI, frame, watermark, collage seam or extra legible writing. Keep the main subject away from the extreme edges; unobtrusive bottom 18 percent for loading overlays. This is an illustration of fictional game events, not a real news photograph. Landscape panoramic 16:9. Scene: Wu Fujun prepares the campus crackdown. In a modern high-school security duty room at night, on the right a commanding staff member seen from back studies a campus plan while guards in ordinary school-security uniforms receive orders. Radios, closed attendance ledger, flashlight and coats on hooks; rainy courtyard visible through window, two approaching patrol silhouettes. No firearms, national-army battlefield or graphic violence. Left third shadowed door frame and vacant wall for title; tense clean cyan-dark and amber lighting, clear controls and map markings without legible writing.",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "generated_sha256": "6bc2043e0c4a1dc69d462a0adbd220f2de5c90cd3b47b85b91989823195b357e",
+      "source_sha256": "6bc2043e0c4a1dc69d462a0adbd220f2de5c90cd3b47b85b91989823195b357e",
+      "quality_check": [
+        {
+          "route": "gpt-demaze",
+          "strength": 60,
+          "gpt_hint": true,
+          "maze_score": 0.00011157601115760112,
+          "maze_area_fraction": 7.102272727272727e-05,
+          "decision": "GPT 图但几乎没有迷宫纹（maze_score=0.000）",
+          "grid": {
+            "fold_z_before": {
+              "2": 1.4,
+              "4": 1.0,
+              "8": 1.3
+            },
+            "phase_consistency": 0.522,
+            "applied": false
+          },
+          "method": "spectral",
+          "action": "no-op"
+        }
+      ],
+      "quality_check_changed_image": false,
+      "color_matching": false,
+      "webp_sha256": "9ee04ac182ce0faf1d8f17470d3f004ec5b876892c0255e59e4483fa5d894f81",
+      "webp_bytes": 111096
+    },
+    {
+      "name": "廊桥课间",
+      "kind": "scenery",
+      "prompt": "Create one finished premium CG for the fictional school narrative strategy game TNO: The Hefei Order. Mature cinematic editorial illustration, realistic Chinese school architecture and natural body proportions, precisely drawn contours and restrained smooth digital paint. Harmonious slate blue, charcoal, muted brick red and warm amber. Readable small shapes, coherent perspective, sharp structural edges, rich clear shadows. CLEAN SURFACES: no canvas weave, impasto, stippling, gritty grain, worm/maze microtexture, muddy blur or oversharpened halos. No cartoon, no chibi, no futuristic redesign. No UI, frame, watermark, collage seam or extra legible writing. Keep the main subject away from the extreme edges; unobtrusive bottom 18 percent for loading overlays. This is an illustration of fictional game events, not a real news photograph. Landscape panoramic 16:9. A quiet recess on an elevated glazed pedestrian corridor connecting two modern Chinese high-school teaching blocks, inspired by Hefei No.1 Binhu campus. Convincing two-point perspective with red structural beams, cream tile, clear glass railings, courtyard planting below. A few distant students in blue-white jackets walk with books or pause near open windows. Soft bright morning sky, cool shade, warm sun on the railings, naturally inhabited and dignified. No banners, flags, leaders or political imagery.",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "generated_sha256": "692ad063038e2a2d51357369b4c3b5483e4083e5c44770cb21a6f081c83bcc67",
+      "source_sha256": "692ad063038e2a2d51357369b4c3b5483e4083e5c44770cb21a6f081c83bcc67",
+      "quality_check": [
+        {
+          "route": "gpt-demaze",
+          "strength": 60,
+          "gpt_hint": true,
+          "maze_score": 0.0006681266471177759,
+          "maze_area_fraction": 0.0006392045454545455,
+          "decision": "GPT 图但几乎没有迷宫纹（maze_score=0.001）",
+          "grid": {
+            "fold_z_before": {
+              "2": 0.6,
+              "4": 3.5,
+              "8": 2.2
+            },
+            "phase_consistency": 0.516,
+            "applied": false
+          },
+          "method": "spectral",
+          "action": "no-op"
+        }
+      ],
+      "quality_check_changed_image": false,
+      "color_matching": false,
+      "webp_sha256": "7fdce71df5e843eea525ca11fb12c03463a44deb2d33e7456615274c2f19ce17",
+      "webp_bytes": 202960
+    },
+    {
+      "name": "教室晨光",
+      "kind": "scenery",
+      "prompt": "Create one finished premium CG for the fictional school narrative strategy game TNO: The Hefei Order. Mature cinematic editorial illustration, realistic Chinese school architecture and natural body proportions, precisely drawn contours and restrained smooth digital paint. Harmonious slate blue, charcoal, muted brick red and warm amber. Readable small shapes, coherent perspective, sharp structural edges, rich clear shadows. CLEAN SURFACES: no canvas weave, impasto, stippling, gritty grain, worm/maze microtexture, muddy blur or oversharpened halos. No cartoon, no chibi, no futuristic redesign. No UI, frame, watermark, collage seam or extra legible writing. Keep the main subject away from the extreme edges; unobtrusive bottom 18 percent for loading overlays. This is an illustration of fictional game events, not a real news photograph. Landscape panoramic 16:9. A modern Hefei-style high-school classroom before first lesson: orderly wooden desks with blue chairs, large open windows, a blackboard with only faint unreadable notes, backpack on a chair, a student opening a curtain while others prepare books at a distance. Clear architectural perspective from rear corner, golden morning light across desks, cool slate shadows, tiny pale dust only in sun shafts, clean fine surfaces and natural cloth. An optimistic everyday campus image, no flags, slogans, discipline patrol or politics.",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "generated_sha256": "0083ea3ed4f95f3345c8267010fea3c3adc4a11cb6d797b8103e00271ba398cf",
+      "source_sha256": "0083ea3ed4f95f3345c8267010fea3c3adc4a11cb6d797b8103e00271ba398cf",
+      "quality_check": [
+        {
+          "route": "gpt-demaze",
+          "strength": 60,
+          "gpt_hint": true,
+          "maze_score": 0.00012304158805676317,
+          "maze_area_fraction": 0.0001065340909090909,
+          "decision": "GPT 图但几乎没有迷宫纹（maze_score=0.000）",
+          "grid": {
+            "fold_z_before": {
+              "2": 0.3,
+              "4": 3.2,
+              "8": 2.0
+            },
+            "phase_consistency": 0.519,
+            "applied": false
+          },
+          "method": "spectral",
+          "action": "no-op"
+        }
+      ],
+      "quality_check_changed_image": false,
+      "color_matching": false,
+      "webp_sha256": "0f06434aec65493c816729d6325547983e03e3c339e37579c66ed3a1e5d64d67",
+      "webp_bytes": 173750
+    },
+    {
+      "name": "食堂晚灯",
+      "kind": "scenery",
+      "prompt": "Create one finished premium CG for the fictional school narrative strategy game TNO: The Hefei Order. Mature cinematic editorial illustration, realistic Chinese school architecture and natural body proportions, precisely drawn contours and restrained smooth digital paint. Harmonious slate blue, charcoal, muted brick red and warm amber. Readable small shapes, coherent perspective, sharp structural edges, rich clear shadows. CLEAN SURFACES: no canvas weave, impasto, stippling, gritty grain, worm/maze microtexture, muddy blur or oversharpened halos. No cartoon, no chibi, no futuristic redesign. No UI, frame, watermark, collage seam or extra legible writing. Keep the main subject away from the extreme edges; unobtrusive bottom 18 percent for loading overlays. This is an illustration of fictional game events, not a real news photograph. Landscape panoramic 16:9. Modern Chinese high-school cafeteria at early evening, clean broad hall and long orderly service counters, a few blue-white-uniformed students eat at shared tables while a staff member stacks trays. Large windows reveal twilight campus trees, warm pendant lights softly reflected on clean tiled flooring, believable two-point perspective. Emphasize inhabited ordinary life, crisp architectural linework, subtle warm-cool balance, no corporate advertisements, money terminals, flags, politics or crowds.",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "generated_sha256": "1728975656f49bc31bbc986a3279c409900f511e8fb663d1f9b2641926e582b9",
+      "source_sha256": "1728975656f49bc31bbc986a3279c409900f511e8fb663d1f9b2641926e582b9",
+      "quality_check": [
+        {
+          "route": "gpt-demaze",
+          "strength": 60,
+          "gpt_hint": true,
+          "maze_score": 0.000145623998835008,
+          "maze_area_fraction": 0.00014204545454545454,
+          "decision": "GPT 图但几乎没有迷宫纹（maze_score=0.000）",
+          "grid": {
+            "fold_z_before": {
+              "2": 0.2,
+              "4": 3.1,
+              "8": 2.1
+            },
+            "phase_consistency": 0.514,
+            "applied": false
+          },
+          "method": "spectral",
+          "action": "no-op"
+        }
+      ],
+      "quality_check_changed_image": false,
+      "color_matching": false,
+      "webp_sha256": "0e43a622dd1ac40363e4e47350e5405332f1c49f0f7697e327d6400a3d6b5d6a",
+      "webp_bytes": 220774
+    },
+    {
+      "name": "秋雨连廊",
+      "kind": "scenery",
+      "prompt": "Create one finished premium CG for the fictional school narrative strategy game TNO: The Hefei Order. Mature cinematic editorial illustration, realistic Chinese school architecture and natural body proportions, precisely drawn contours and restrained smooth digital paint. Harmonious slate blue, charcoal, muted brick red and warm amber. Readable small shapes, coherent perspective, sharp structural edges, rich clear shadows. CLEAN SURFACES: no canvas weave, impasto, stippling, gritty grain, worm/maze microtexture, muddy blur or oversharpened halos. No cartoon, no chibi, no futuristic redesign. No UI, frame, watermark, collage seam or extra legible writing. Keep the main subject away from the extreme edges; unobtrusive bottom 18 percent for loading overlays. This is an illustration of fictional game events, not a real news photograph. Landscape panoramic 16:9. Autumn rain along a sheltered walkway beside modern Hefei-style school buildings: red pillars and cream concrete roof recede in perspective, delicate sycamore leaves, puddles reflect a few warm classroom windows, small groups of anonymous uniformed students with umbrellas at the far end. Moody but welcoming blue-grey evening, restrained amber window light, clearly resolved wet paving and masonry, no blurring blanket of fog. No banners, flags, identifiable leaders or political scenes.",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "generated_sha256": "410d08102a7547abd328e2e048ac52381027bccc5de48915a20d532e95b627e7",
+      "source_sha256": "410d08102a7547abd328e2e048ac52381027bccc5de48915a20d532e95b627e7",
+      "quality_check": [
+        {
+          "route": "gpt-demaze",
+          "strength": 60,
+          "gpt_hint": true,
+          "maze_score": 0.0023723033582919418,
+          "maze_area_fraction": 0.0022727272727272726,
+          "decision": "GPT 图但几乎没有迷宫纹（maze_score=0.002）",
+          "grid": {
+            "fold_z_before": {
+              "2": 0.9,
+              "4": 1.3,
+              "8": 1.6
+            },
+            "phase_consistency": 0.495,
+            "applied": false
+          },
+          "method": "spectral",
+          "action": "no-op"
+        }
+      ],
+      "quality_check_changed_image": false,
+      "color_matching": false,
+      "webp_sha256": "843b3e8b13d8808ce44f1a82613b4d1f2db761f91e882d5452ae1fbdfaf72689",
+      "webp_bytes": 296816
+    }
+  ],
+  "previous_git_commit": "66d1a4f"
+}

@@ -1,0 +1,464 @@
+[
+  {
+    "name": "B3夜读",
+    "size": [
+      1672,
+      941
+    ],
+    "bytes": 2712207,
+    "source_sha256": "8a61e1db493e41001e64771e873009bce79d27e587323781d2d6bb6b00a8ceb7",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  },
+  {
+    "name": "B3革命",
+    "size": [
+      2752,
+      1536
+    ],
+    "bytes": 2482726,
+    "source_sha256": "8dcf68fb08464b61a44f75c02407a379a23ae91f2507a04c40e89c581592c514",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  },
+  {
+    "name": "企业学校的黄昏",
+    "size": [
+      1672,
+      941
+    ],
+    "bytes": 2682831,
+    "source_sha256": "e2e80e95121ac8d0d86329b959e870d967cfd763dbc7666b3063ed7c05d54767",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  },
+  {
+    "name": "保温杯与红批",
+    "size": [
+      1672,
+      941
+    ],
+    "bytes": 2232510,
+    "source_sha256": "cfc7adcdd336db0c2fc3acff1c040d79f9479d44df4c7155529511364886bf94",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  },
+  {
+    "name": "公社的长桌",
+    "size": [
+      1672,
+      941
+    ],
+    "bytes": 2423455,
+    "source_sha256": "b66a169fb771d32ccc58e95a2bf30698b9300b58eaa0b7e045576c8875cf39ff",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  },
+  {
+    "name": "内卷",
+    "size": [
+      1672,
+      941
+    ],
+    "bytes": 2037344,
+    "source_sha256": "4b7afb1010d801639b474f77ccd9cf0562faf271cac933b8387baa5c44544ef7",
+    "decision": "refresh",
+    "reason": "暗部可读性不足，保留伏案学生、试卷和冬日背景，重新梳理层次。"
+  },
+  {
+    "name": "军训",
+    "size": [
+      2752,
+      1536
+    ],
+    "bytes": 3450212,
+    "source_sha256": "2b65a757006a6100b8f46b412a71f0703d794730d1801229dd1d89d5d13e04d9",
+    "decision": "refresh",
+    "reason": "厚重油画笔触使制服、人物队列和窗格难辨，保留建筑与敬礼构图后细化。"
+  },
+  {
+    "name": "及第之梦",
+    "size": [
+      2718,
+      1529
+    ],
+    "bytes": 6527313,
+    "source_sha256": "ec5057acd0e293e82a58b1bf94ee2fe56e25e66b6498ed92c8155f749776d14b",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  },
+  {
+    "name": "合一之春",
+    "size": [
+      2752,
+      1536
+    ],
+    "bytes": 3553088,
+    "source_sha256": "502dca786a76e124cd8e85717b3d4b3e614d8c4c7ac6e9c5d3ac38911fc683f7",
+    "decision": "refresh",
+    "reason": "粗笔触与旧时代服装不协调，保留课堂争论主题，改为校园人物与清楚的室内光影。"
+  },
+  {
+    "name": "合一之春2",
+    "size": [
+      1672,
+      941
+    ],
+    "bytes": 2844977,
+    "source_sha256": "1a459f39ada6e4cdd2d623a3c3a4ffbc0ab9889cea89b5958b35a7a1d43d2e3a",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  },
+  {
+    "name": "合一文革",
+    "size": [
+      1536,
+      1024
+    ],
+    "bytes": 3222014,
+    "source_sha256": "0744250a752a3020012fa21f242ec01a312af6ae923a23d9033957e660530755",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  },
+  {
+    "name": "合一文革2",
+    "size": [
+      1536,
+      1024
+    ],
+    "bytes": 2858295,
+    "source_sha256": "2f5b2993f3ead216bcc081602c789cccbb70e8b77d84331154139d9f83f3cee2",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  },
+  {
+    "name": "合一陨落",
+    "size": [
+      2752,
+      1536
+    ],
+    "bytes": 2901651,
+    "source_sha256": "c0b40809a275691bcb78a42f4979f46353930b9db4f75377dad4c27e5288eee4",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  },
+  {
+    "name": "名单之外",
+    "size": [
+      1672,
+      941
+    ],
+    "bytes": 1845641,
+    "source_sha256": "a6ca920060417abfbf3ddae6cae3cfb70085675dbd3bc6fbbf3991b18089c9d5",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  },
+  {
+    "name": "图书长廊",
+    "size": [
+      1672,
+      941
+    ],
+    "bytes": 2791880,
+    "source_sha256": "0a5536ab9279d68dd52ae3e8ea53d7cb526c9c289d23b203e567a4783c99dd83",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  },
+  {
+    "name": "密卷流水线",
+    "size": [
+      1672,
+      941
+    ],
+    "bytes": 2516843,
+    "source_sha256": "4da7d2d84a4be0d19d7a8efe128b60db4e337bc24c98806b513a5a218b85e3c0",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  },
+  {
+    "name": "封安宝时代",
+    "size": [
+      2752,
+      1536
+    ],
+    "bytes": 2744070,
+    "source_sha256": "75b4a49f40b02a9e58bcf489918b6179d442c159928bb17461fd0880c863611d",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  },
+  {
+    "name": "批斗",
+    "size": [
+      1672,
+      941
+    ],
+    "bytes": 2055001,
+    "source_sha256": "e5be64c1521634b414c86b1157cd83e29ba48e9fdda0b34063752fcd8f206914",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  },
+  {
+    "name": "操场晚晴",
+    "size": [
+      1672,
+      941
+    ],
+    "bytes": 2846567,
+    "source_sha256": "5801082f8adf3c37b32717b2d10ad568f844cfe9407e8465813464e09a172772",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  },
+  {
+    "name": "最后一间教室",
+    "size": [
+      1672,
+      941
+    ],
+    "bytes": 2194316,
+    "source_sha256": "a3bcf8cd37dcda782ca4c81dac305f8e220a9dd3b54d0aea9ff75c5caa6426e8",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  },
+  {
+    "name": "校园涂鸦1",
+    "size": [
+      2048,
+      1152
+    ],
+    "bytes": 4721071,
+    "source_sha256": "e81500fb1d63f3edf562309fa0450ac52706c7c1adfd9a732bd765baef753638",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  },
+  {
+    "name": "校园涂鸦2",
+    "size": [
+      2048,
+      1152
+    ],
+    "bytes": 5202129,
+    "source_sha256": "a1e6d84c0891eef08c302a6797414c0bef2d201687360bd444bdddbaf63436fe",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  },
+  {
+    "name": "梧桐秋径",
+    "size": [
+      1672,
+      941
+    ],
+    "bytes": 3190079,
+    "source_sha256": "6c2185174629cb72a4aaeca343f3d7b37ebcbc2d3f02f1c40dabe0c1972d2fd4",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  },
+  {
+    "name": "油印机之夜",
+    "size": [
+      1672,
+      941
+    ],
+    "bytes": 2010996,
+    "source_sha256": "18b3e40c4b09b189820eb039ca22fe50e62dcd673e4d8484d62bfe1ced1c6336",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  },
+  {
+    "name": "清场",
+    "size": [
+      1672,
+      941
+    ],
+    "bytes": 1974017,
+    "source_sha256": "7be9a6eea5589462991a459dc85045c6d81c797706c904851c3f39dda0e2e1b7",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  },
+  {
+    "name": "滨湖晨光",
+    "size": [
+      1672,
+      941
+    ],
+    "bytes": 2967917,
+    "source_sha256": "1ebe8d8f7706efba6cb5917505c7680978c4d4eff2ace453549b31080fd3e7e0",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  },
+  {
+    "name": "熄灯后的脚步",
+    "size": [
+      1672,
+      941
+    ],
+    "bytes": 2168649,
+    "source_sha256": "194a6f19641215e21793f6665c7d375be03b31fbd17265745df2f43ed1f947d3",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  },
+  {
+    "name": "特级",
+    "size": [
+      2722,
+      1536
+    ],
+    "bytes": 5795116,
+    "source_sha256": "91190e590882f396e81283e596ef876e2f43aa43ad7d8bf0421c9dfe42efeef1",
+    "decision": "refresh",
+    "reason": "原有人物拼贴痕迹明显，统一人物、服装和典礼场景的光照。"
+  },
+  {
+    "name": "特级0",
+    "size": [
+      1672,
+      941
+    ],
+    "bytes": 1935250,
+    "source_sha256": "7c740deadf27d55e9dc702769157fe64df50e2a8232c6ded8f816f6e9415921c",
+    "decision": "refresh",
+    "reason": "原失败图与成功图过于相似且有拼贴感，保留人物辨识特征，改为落选后空会议室。"
+  },
+  {
+    "name": "特级教师",
+    "size": [
+      2752,
+      1536
+    ],
+    "bytes": 2797916,
+    "source_sha256": "8f31d60aa10bd1e331ca82923671e0e061e841be16c27eb91be0594625a30529",
+    "decision": "refresh",
+    "reason": "粗糙笔触、橄榄色暗部遮蔽人物和文件，保留辨识特征与办公桌构图。"
+  },
+  {
+    "name": "端馥晚照",
+    "size": [
+      1672,
+      941
+    ],
+    "bytes": 2492947,
+    "source_sha256": "a4e0bd199161f24e2ca10aa524b404c1c6a1d7808f908bc497de2c4434b2982f",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  },
+  {
+    "name": "第一张选票",
+    "size": [
+      1672,
+      941
+    ],
+    "bytes": 2378517,
+    "source_sha256": "99b1429f7799481470ff170ab5ebb9642561b4f6d838fe43e1c131b2ad5b5f56",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  },
+  {
+    "name": "红色风暴",
+    "size": [
+      1536,
+      1024
+    ],
+    "bytes": 3015870,
+    "source_sha256": "4b8e03c6fa82866d9dad362918d380f38b33c5745fb5ec1371e7cde7394d0452",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  },
+  {
+    "name": "行政楼",
+    "size": [
+      2752,
+      1536
+    ],
+    "bytes": 2954428,
+    "source_sha256": "0e4280866a0a141340b636ea9aa164076113a9549c5357ee84575a71522c0bc8",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  },
+  {
+    "name": "街垒黎明",
+    "size": [
+      1672,
+      941
+    ],
+    "bytes": 2689702,
+    "source_sha256": "eed7e2a6db82519f3a7ccc00769502a2283b3d405293392321f355f836226a32",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  },
+  {
+    "name": "裤熊逢春",
+    "size": [
+      2752,
+      1536
+    ],
+    "bytes": 2673897,
+    "source_sha256": "278b2ff35fc082ec337a29ad1a4bed68da0964ce3cc518a90b0f0acc5ffe727f",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  },
+  {
+    "name": "议场初开",
+    "size": [
+      1672,
+      941
+    ],
+    "bytes": 2170951,
+    "source_sha256": "b640e33f6a6f4977f5b2058cf38c75071238d6af6d113b83503dff9aab25893f",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  },
+  {
+    "name": "课桌上的改革",
+    "size": [
+      1672,
+      941
+    ],
+    "bytes": 2200943,
+    "source_sha256": "0045ac639b85ac8c596e03bcd7ee8522dd34411cc6737685b7661ffd5b2e4afa",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  },
+  {
+    "name": "银幕仍亮",
+    "size": [
+      1672,
+      941
+    ],
+    "bytes": 2133897,
+    "source_sha256": "72dfbfb8db69abd51cc4a3c2c093f6d85a3d5a5e1572b9cd065f5384b0df415e",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  },
+  {
+    "name": "陈栋",
+    "size": [
+      2048,
+      1152
+    ],
+    "bytes": 4240344,
+    "source_sha256": "0c62b49f13b25c6d6a0bfa73136c31bc6946a8b3086915d9b4cce9d079b42c3c",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  },
+  {
+    "name": "陈栋与合一",
+    "size": [
+      2048,
+      1152
+    ],
+    "bytes": 4591446,
+    "source_sha256": "6430c71c9a50453f81490395897cb1a0465eb2c70f1a13e1978db0fb6a4954ae",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  },
+  {
+    "name": "雨过校门",
+    "size": [
+      1672,
+      941
+    ],
+    "bytes": 3015612,
+    "source_sha256": "ce4edd4dd92f5b16b855d2da51e936ba023ac6ff593b6ffe423e88d0960267c9",
+    "decision": "retain",
+    "reason": "原尺寸下主体、人物和建筑可辨，画风与其路线情境相符，保留已有艺术处理。"
+  }
+]

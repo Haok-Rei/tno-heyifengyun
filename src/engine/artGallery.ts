@@ -5,7 +5,7 @@ import { ENDING_BY_ID } from '../data/endings';
 export const ART_UNLOCK_KEY = 'heyi_art_unlocks_v1';
 export type ArtUnlocks = Record<string, number>;
 type ArtStorage = Pick<Storage, 'getItem' | 'setItem'>;
-export type ArtProgress = Pick<GameState, 'currentFocusTree' | 'completedFocuses' | 'activeEvent' | 'activeSuperEvent' | 'gameEnding' | 'chronicle'>;
+export type ArtProgress = Pick<GameState, 'currentFocusTree' | 'completedFocuses' | 'activeEvent' | 'activeSuperEvent' | 'gameEnding' | 'chronicle'> & { flags?: GameState['flags'] };
 const knownNames = new Set(ARTWORKS.map(work => work.name));
 // Scenery is available even before the first campaign, without granting route art.
 const initialUnlocks: ArtUnlocks = Object.fromEntries(ARTWORKS.filter(work => work.scenery).map(work => [work.name, 1]));
@@ -25,7 +25,7 @@ export function getEarnedArtwork(progress: ArtProgress): Artwork[] {
   return ARTWORKS.filter(work => work.scenery || work.opening
     || work.trees?.includes(progress.currentFocusTree)
     || work.focuses?.some(id => progress.completedFocuses.includes(id))
-    || work.events?.some(id => events.has(id))
+    || work.events?.some(id => events.has(id) || progress.flags?.[`event_seen_${id}`] === true)
     || work.endings?.includes(progress.gameEnding ?? '')
     || work.routeTags?.some(tag => tags.has(tag)));
 }

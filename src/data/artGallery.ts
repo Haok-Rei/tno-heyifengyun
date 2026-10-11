@@ -58,6 +58,18 @@ export const ARTWORKS: Artwork[] = [
   { name: '银幕仍亮', route: '狗熊', note: '艺术礼堂 · 赛博档案', unlockHint: '完成“艺术礼堂争夺战”国策', focuses: ['gx_cyber_archive_war'] },
   { name: '熄灯后的脚步', route: '吴福军', note: '铁腕时代 · 夜间巡查', unlockHint: '完成“夜巡纠察队”国策', focuses: ['wu_night_patrol'] },
   { name: '最后一间教室', route: '绝望', note: '绝望路线 · 空旷的校园', unlockHint: '进入绝望路线', trees: ['treeA_pan_despair'], routeTags: ['绝望线'], endings: ['game_over_despair'] },
+  { name: '廊桥课间', route: '校园', note: '教学连廊 · 课间十分钟', unlockHint: '初始开放', scenery: true },
+  { name: '教室晨光', route: '校园', note: '第一节课之前', unlockHint: '初始开放', scenery: true },
+  { name: '食堂晚灯', route: '校园', note: '食堂 · 晚餐之后', unlockHint: '初始开放', scenery: true },
+  { name: '秋雨连廊', route: '校园', note: '秋雨中的归途', unlockHint: '初始开放', scenery: true },
+  { name: '退回的联名信', route: '序章', note: '联名信 · 退回教室', unlockHint: '经历“退回的联名信”事件', events: ['phase1_returned_petition'] },
+  { name: '课间的争执', route: '序章', note: '扣分表 · 走廊争执', unlockHint: '经历“课间也要计时”事件', events: ['phase1_recess_dispute'] },
+  { name: '雪中的来函', route: '杨玉乐', note: '办公桌 · 暴雪预警', unlockHint: '处理暴雪停课来件', events: ['yang_desk_snow_day'] },
+  { name: '灯下的协议', route: '联合革命', note: '档案室 · 秘密妥协', unlockHint: '完成“秘密妥协”国策', focuses: ['secret_compromise'], events: ['secret_compromise'] },
+  { name: '六十日之约', route: '民主与豪邦', note: '第一次民主普选 · 竞选启幕', unlockHint: '开启第一次民主普选', events: ['start_democratic_election_event', 'first_democratic_election_super'], focuses: ['first_democratic_election'] },
+  { name: '春回滨湖', route: '民主与豪邦', note: '豪邦改革 · 校园和解', unlockHint: '见证豪邦改革的超事件', events: ['haobang_rise_super'], endings: ['game_over_haobang'] },
+  { name: '价格牌下的风暴', route: '及第', note: '商业校园 · 暴乱', unlockHint: '经历及第暴乱', events: ['jidi_riot_super'], focuses: ['jidi_hidden_riot'], endings: ['game_over_jidi_2'] },
+  { name: '总攻前夜', route: '吴福军', note: '铁腕时代 · 命令下达之前', unlockHint: '经历“总攻令”超事件', events: ['wu_crackdown'], sensitive: true },
 ];
 
 export const ART_ROUTES: Array<ArtRoute | '全部'> = ['全部', '校园', '序章', '联合革命', '做题改革', 'N.K.P.D.', '民主与豪邦', '及第', '杨玉乐', '狗熊', '吴福军', '绝望', '终局'];
