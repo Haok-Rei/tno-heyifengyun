@@ -14,6 +14,7 @@ import { snapshotOpeningEvent } from './engine/openingCampaign';
 import { getTileControl } from './engine/mapState';
 import { DECISIONS } from './components/RightSidebar';
 import EventPopup from './components/EventPopup';
+import './components/eventPopup.css';
 import SuperEvent from './components/SuperEvent';
 import MinigameFrequencyWar, { FrequencyWarResult } from './components/MinigameFrequencyWar';
 import MinigameSiege from './components/MinigameSiege';
@@ -66,6 +67,7 @@ import RedToadPolitburo from './components/RedToadPolitburo';
 
 const INITIAL_EVENT: GameEvent = {
   id: 'school_starts',
+  presentation: 'news',
   title: '新学期，新秩序',
   description: '2023年9月1日，合肥一中迎来了新的学期。然而，平静的表面下暗流涌动。\n\n教务督导吴福军加强了对校园的巡查，试图将一切不稳定因素扼杀在摇篮中。学生群体内部也出现了分裂，激进派和保守派的矛盾日益尖锐。\n\n在这座被高墙围拢的“经天纬地”之城里，谁将主宰未来的秩序？是继续忍受高压的应试教育，还是掀起一场彻底的变革？\n\n命运的齿轮已经开始转动。',
   buttonText: '天佑做题家',
@@ -5850,7 +5852,7 @@ export default function App() {
           }}
         />
       )}
-      <ArtworkUnlockToast progress={gameState} suspended={tutorialStep !== null} />
+      <ArtworkUnlockToast progress={gameState} suspended={tutorialStep !== null || !!gameState.activeEvent || !!gameState.activeSuperEvent || !!gameState.activeMinigame || isInGameMenuOpen} />
       {tutorialStep !== null && <GuidedTutorial step={tutorialStep} onStep={setTutorialStep} onFinish={finishTutorial} />}
     </div>
   );

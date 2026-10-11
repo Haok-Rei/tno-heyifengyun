@@ -121,6 +121,8 @@ export interface GameEvent {
   description: string;
   buttonText?: string;
   effectsText?: string[];
+  /** Visual format, independent of the legacy chronicle/plot flag. */
+  presentation?: 'news' | 'story';
   isStoryEvent?: boolean;
   effect?: (state: GameState) => Partial<GameState>;
   choices?: EventChoice[];

@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
-import { GameEvent, EventChoice, GameState } from '../types';
-import { motion } from 'motion/react';
+import React, { useEffect, useId, useRef, useState } from 'react';
+import type { GameEvent, EventChoice, GameState } from '../types';
+import { motion, useDragControls, useReducedMotion } from 'motion/react';
+import { Radio, FileText, GripHorizontal, ChevronRight, Lock } from 'lucide-react';
 import { getNewsEventImageUrl, getStoryEventImageUrl } from '../config/assets';
+import { getEventPresentation } from '../engine/eventPresentation';
 
 interface EventPopupProps {
   event: GameEvent;
@@ -11,122 +13,96 @@ interface EventPopupProps {
 }
 
 export default function EventPopup({ event, onConfirm, date, state }: EventPopupProps) {
-  const [hoveredChoiceIndex, setHoveredChoiceIndex] = useState<number | null>(null);
-  const newsImageUrl = getNewsEventImageUrl(event.id);
-  const storyImageUrl = getStoryEventImageUrl(event.id);
+  const [hovered, setHovered] = useState<number | null>(null);
+  const bounds = useRef<HTMLDivElement>(null);
+  const dialog = useRef<HTMLDivElement>(null);
+  const drag = useDragControls();
+  const reducedMotion = useReducedMotion();
+  const titleId = useId();
+  const previewId = useId();
+  const news = getEventPresentation(event) === 'news';
+  const submitted = event.campusSituation?.channel === 'document' || event.id.startsWith('yang_desk_');
+  const kind = news ? '校园电讯' : submitted ? '来件批阅' : '校园纪事';
+  const image = news ? getNewsEventImageUrl(event.id) : getStoryEventImageUrl(event.id);
+  const fallback = news ? getNewsEventImageUrl(null) : getStoryEventImageUrl(null);
+  const choices = event.choices?.length ? event.choices : null;
+  const preview = hovered === null ? [] : hovered === -1 ? event.effectsText ?? []
+    : event.choices?.[hovered]?.previewText ? [event.choices[hovered].previewText!] : [];
+  const dateText = date && Number.isFinite(date.getTime())
+    ? date.getFullYear()+'年'+String(date.getMonth()+1).padStart(2,'0')+'月'+String(date.getDate()).padStart(2,'0')+'日' : '';
 
-  const formatDate = (d: Date) => {
-    return `${d.getFullYear()}年${String(d.getMonth() + 1).padStart(2, '0')}月${String(d.getDate()).padStart(2, '0')}日`;
+  useEffect(() => {
+    setHovered(null);
+    dialog.current?.focus({ preventScroll: true });
+  }, [event.id]);
+
+  const trapFocus = (e: React.KeyboardEvent) => {
+    if (e.key !== 'Tab') return;
+    const buttons: HTMLElement[] = dialog.current ? Array.from<HTMLElement>(dialog.current.querySelectorAll<HTMLElement>('button:not(:disabled), [tabindex="0"]')) : [];
+    const first = buttons[0], last = buttons.at(-1);
+    if (!first || !last) return;
+    if (e.shiftKey && (document.activeElement === first || document.activeElement === dialog.current)) {
+      e.preventDefault(); last.focus();
+    } else if (!e.shiftKey && (document.activeElement === last || document.activeElement === dialog.current)) {
+      e.preventDefault(); first.focus();
+    }
   };
+  const photo = <figure className="event-photo">
+    <img key={image} src={image} alt={event.title+'配图'} decoding="async" draggable={false}
+      onError={e => {
+        if (e.currentTarget.dataset.fallback) return;
+        e.currentTarget.dataset.fallback = 'true'; e.currentTarget.src = fallback;
+      }} />
+  </figure>;
+  const body = <div className="event-prose" tabIndex={0}>
+    {event.description.split(/\n\s*\n/).map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+    {event.openingEcho && <p className="event-echo" data-opening-echo>{event.openingEcho}</p>}
+  </div>;
 
-  return (
-    <div className="fixed inset-0 z-50 pointer-events-none flex items-center justify-center p-4">
-      <motion.div 
-        drag
-        dragMomentum={false}
-        className={`event-document ${event.campusSituation ? 'campus-event' : ''} bg-tno-panel border-4 border-double border-tno-border shadow-2xl shadow-black relative flex flex-col pointer-events-auto ${event.isStoryEvent ? 'w-[650px]' : 'max-w-xl w-full'}`}
-      >
-        {/* Header */}
-        {!event.isStoryEvent && (
-          <div className="bg-zinc-900 border-b border-tno-border p-3 flex justify-between items-center cursor-move">
-            <div className="font-bold text-tno-highlight tracking-widest text-lg uppercase">校园电讯</div>
-            <div className="text-xs text-tno-text/60">合肥一中广播站</div>
-          </div>
-        )}
-
-        {/* Content */}
-        <div className={`event-content p-6 flex gap-6 ${event.isStoryEvent ? 'flex-col h-full' : 'flex-col md:flex-row'}`}>
-          {event.isStoryEvent ? (
-            <div className="flex flex-col h-full relative">
-              {date && (
-                <div className="absolute top-0 right-0 z-20 text-[11px] text-tno-text/50 tracking-widest border border-tno-border/50 px-2 py-0.5 bg-black/40">
-                  {formatDate(date)}
-                </div>
-              )}
-              <h2 className="text-3xl font-bold text-white mb-6 leading-tight border-b border-tno-border pb-4 z-10 tracking-widest">{event.title}</h2>
-              
-              <div className="flex-1 relative flex flex-col items-start justify-start pt-2 overflow-y-auto pr-2">
-                {/* Text */}
-                <div className="event-body z-10 text-left text-[15px] text-tno-text/90 whitespace-pre-wrap font-serif w-full">
-                  {event.description}
-                  {event.openingEcho && <p className="mt-5" data-opening-echo>{event.openingEcho}</p>}
-                </div>
-              </div>
-            </div>
-          ) : (
-            <>
-              {/* Image */}
-              <div className="w-full md:w-1/3 flex-shrink-0 border border-tno-border relative bg-zinc-900 h-48 md:h-auto overflow-hidden">
-                  <div className="absolute inset-0 bg-cover bg-center opacity-80 mix-blend-luminosity" style={{ backgroundImage: `url('${newsImageUrl}')` }}></div>
-                 <div className="absolute inset-0 bg-tno-highlight/10 mix-blend-overlay"></div>
-              </div>
-
-              {/* Text */}
-              <div className="flex-1 flex flex-col">
-                <h2 className="text-2xl font-bold text-white mb-4 leading-tight">{event.title}</h2>
-                <div className="event-body text-sm text-tno-text/90 whitespace-pre-wrap flex-1 font-serif overflow-y-auto max-h-[50vh] pr-2">
-                  {event.description}
-                  {event.openingEcho && <p className="mt-4" data-opening-echo>{event.openingEcho}</p>}
-                </div>
-              </div>
-            </>
-          )}
-        </div>
-
-        {/* Footer / Button */}
-        <div className={`event-actions p-4 border-t border-tno-border bg-zinc-900/50 relative ${event.isStoryEvent ? 'mt-auto flex flex-row items-end gap-4' : 'flex flex-col gap-2 justify-end'}`}>
-          {event.isStoryEvent && (
-            <div className="w-32 aspect-[4/3] border border-tno-border p-1 bg-black shadow-lg flex-shrink-0 relative">
-              <div className="absolute inset-0 bg-cover bg-center opacity-60 mix-blend-luminosity" style={{ backgroundImage: `url('${storyImageUrl}')` }}></div>
-              <div className="absolute inset-0 bg-tno-highlight/10 mix-blend-overlay"></div>
-            </div>
-          )}
-          
-          <div className={`flex flex-col gap-2 flex-1 ${event.isStoryEvent ? 'items-end' : ''}`}>
-            {hoveredChoiceIndex !== null && event.choices?.[hoveredChoiceIndex]?.previewText && (
-              <div className="absolute bottom-full left-0 mb-2 w-full bg-tno-panel border border-tno-highlight p-3 text-sm text-tno-text shadow-lg z-10">
-                <span className="font-bold text-tno-highlight block mb-1">效果预览：</span>
-                {event.choices[hoveredChoiceIndex].previewText}
-              </div>
-            )}
-            {hoveredChoiceIndex === -1 && event.effectsText && event.effectsText.length > 0 && (
-              <div className="absolute bottom-full left-0 mb-2 w-full bg-tno-panel border border-tno-highlight p-3 text-sm text-tno-text shadow-lg z-10">
-                <span className="font-bold text-tno-highlight block mb-1">效果预览：</span>
-                <ul className="list-disc list-inside">
-                  {event.effectsText.map((text, i) => (
-                    <li key={i}>{text}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-            {event.choices ? (
-              event.choices.map((choice, index) => (
-                <button 
-                  key={index}
-                  data-sound="event"
-                  disabled={!!state && !!choice.disabled?.(state)}
-                  onClick={() => onConfirm(choice)}
-                  onMouseEnter={() => setHoveredChoiceIndex(index)}
-                  onMouseLeave={() => setHoveredChoiceIndex(null)}
-                  className={`border border-tno-highlight text-tno-highlight px-6 py-2 hover:bg-tno-highlight hover:text-black disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-tno-highlight transition-colors font-bold tracking-wider relative text-left ${event.isStoryEvent ? 'w-2/3' : 'w-full'}`}
-                >
-                  {choice.text}
-                </button>
-              ))
-            ) : (
-              <button 
-                data-sound="event"
-                onClick={() => onConfirm()}
-                onMouseEnter={() => setHoveredChoiceIndex(-1)}
-                onMouseLeave={() => setHoveredChoiceIndex(null)}
-                className={`border border-tno-highlight text-tno-highlight px-6 py-2 hover:bg-tno-highlight hover:text-black transition-colors font-bold tracking-wider ${event.isStoryEvent ? 'w-2/3 text-left' : 'self-end'}`}
-              >
-                {event.buttonText || '确认'}
+  return <div ref={bounds} className="event-overlay">
+    <motion.div key={event.id} ref={dialog} role="dialog" aria-modal="true" aria-labelledby={titleId}
+      tabIndex={-1} onKeyDown={trapFocus} data-event-id={event.id} data-presentation={news ? 'news' : 'story'}
+      className={'event-document tno-event-window event-window--'+(news ? 'news' : 'story')}
+      drag dragControls={drag} dragListener={false} dragConstraints={bounds} dragElastic={0} dragMomentum={false}
+      initial={reducedMotion ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: reducedMotion ? 0 : .18 }}>
+      <header className="event-titlebar" onPointerDown={e => drag.start(e)}>
+        <span className="event-titlebar__kind">{news ? <Radio size={14}/> : <FileText size={14}/>} {kind}</span>
+        <span className="event-titlebar__source">{news ? '合肥一中广播站' : dateText}</span>
+        <GripHorizontal size={16} className="event-titlebar__grip" aria-hidden="true"/>
+      </header>
+      <div className="event-heading">
+        {news && <div className="event-dateline"><span>合肥一中 · 校园报道</span><time>{dateText}</time></div>}
+        <h2 id={titleId} className="event-headline">{event.title}</h2>
+      </div>
+      {news ? <div className="event-news-reading">{photo}{body}</div> : <div className="event-story-reading">{body}</div>}
+      <footer className="event-choice-footer">
+        {!news && photo}
+        <div className="event-choice-list">
+          {preview.length > 0 && <div id={previewId} role="tooltip" className="event-choice-preview">
+            <strong>选项效果</strong>{preview.map((text, i) => <p key={i}>{text}</p>)}
+          </div>}
+          {choices ? choices.map((choice, index) => {
+            const disabled = !!state && !!choice.disabled?.(state);
+            return <div key={choice.id ?? index} className="event-choice-wrap"
+              onMouseEnter={() => setHovered(index)} onMouseLeave={() => setHovered(null)}>
+              <button type="button" data-sound="event" disabled={disabled}
+                aria-describedby={hovered === index && preview.length ? previewId : undefined}
+                onFocus={() => setHovered(index)} onBlur={() => setHovered(null)}
+                onClick={() => onConfirm(choice)}>
+                {disabled ? <Lock size={13} aria-hidden="true"/> : <ChevronRight size={14} aria-hidden="true"/>}
+                <span>{choice.text}</span>
               </button>
-            )}
-          </div>
+            </div>;
+          }) : <div className="event-choice-wrap" onMouseEnter={() => setHovered(-1)} onMouseLeave={() => setHovered(null)}>
+            <button type="button" data-sound="event" onClick={() => onConfirm()}
+              aria-describedby={hovered === -1 && preview.length ? previewId : undefined}
+              onFocus={() => setHovered(-1)} onBlur={() => setHovered(null)}>
+              <ChevronRight size={14} aria-hidden="true"/><span>{event.buttonText || '确认'}</span>
+            </button>
+          </div>}
         </div>
-      </motion.div>
-    </div>
-  );
+      </footer>
+    </motion.div>
+  </div>;
 }

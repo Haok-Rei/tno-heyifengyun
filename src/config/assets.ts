@@ -2,6 +2,7 @@ import { FLAVOR_EVENTS } from '../data/flavorEvents';
 import { STORY_EVENTS } from '../data/storyEvents';
 import { LOCAL_GOUXIONG_PORTRAIT, LOCAL_PORTRAIT_URLS } from './localPortraits';
 import { LOADING_ART, LOADING_ART_URLS } from './loadingArtwork';
+import { NEWS_ARTWORK } from './newsArtwork';
 export { LOADING_ART_URLS } from './loadingArtwork';
 
 type AssetDomain = 'leader' | 'advisor' | 'faction' | 'ending' | 'superevent' | 'news' | 'storyevent' | 'mechanic' | 'ui' | 'placeholder';
@@ -23,20 +24,32 @@ const ABSOLUTE_URL_RE = /^(?:https?:)?\/\//i;
 const loadingArt = (name: string): string => LOADING_ART[name] || LOADING_ART_URLS[0];
 
 const NEWS_EVENT_ASSET_URLS: Partial<Record<AssetKey, string>> = Object.keys(FLAVOR_EVENTS).reduce((acc, eventId) => {
-  acc[`news_${eventId}` as AssetKey] = `https://picsum.photos/seed/news_${eventId}/400/600?grayscale`;
+  acc[`news_${eventId}` as AssetKey] = loadingArt('行政楼');
   return acc;
 }, {} as Partial<Record<AssetKey, string>>);
 
-const STORY_EVENT_ASSET_URLS: Partial<Record<AssetKey, string>> = Object.keys(STORY_EVENTS).reduce((acc, eventId) => {
-  acc[`storyevent_${eventId}` as AssetKey] = `https://picsum.photos/seed/story_${eventId}/400/300?grayscale`;
+const storyIllustration = (id: string): string => {
+  if (/^(yang_|yy_|enter_treeB)/.test(id)) return loadingArt('保温杯与红批');
+  if (/^(jidi_|enter_treeD)/.test(id)) return loadingArt('企业学校的黄昏');
+  if (/^(gx_|gouxiong_|enter_treeC)/.test(id)) return loadingArt('银幕仍亮');
+  if (/^(negotiate_|support_bill|oppose_bill|pan_|democratic_|expand_assembly|reclaim_democracy)/.test(id)) return loadingArt('议场初开');
+  if (/^lu_/.test(id)) return loadingArt('名单之外');
+  if (/^wu_/.test(id)) return loadingArt('熄灯后的脚步');
+  if (/^haobang_/.test(id)) return loadingArt('公社的长桌');
+  if (/leaflet|print_network/.test(id)) return loadingArt('油印机之夜');
+  if (/^(committee_|strike_b3)/.test(id)) return loadingArt('街垒黎明');
+  return loadingArt('B3夜读');
+};
+const STORY_EVENT_ASSET_URLS: Partial<Record<AssetKey, string>> = [...Object.keys(STORY_EVENTS), ...Object.keys(FLAVOR_EVENTS)].reduce((acc, eventId) => {
+  acc[`storyevent_${eventId}` as AssetKey] = storyIllustration(eventId);
   return acc;
 }, {} as Partial<Record<AssetKey, string>>);
 
 export const ASSET_URLS: Record<AssetKey, string> = {
   placeholder_default: 'https://picsum.photos/seed/asset_fallback/800/500?grayscale',
 
-  news_default: 'https://picsum.photos/seed/news_default/400/600?grayscale',
-  storyevent_default: 'https://picsum.photos/seed/story_default/400/300?grayscale',
+  news_default: NEWS_ARTWORK.schoolOpening,
+  storyevent_default: loadingArt('B3夜读'),
 
   leader_feng_anbao: 'https://i.postimg.cc/0KD1kzvY/feng-an-bao.png',
   leader_wang_zhaokai: 'https://i.postimg.cc/CKzd8r22/wang-zhao-kai4.png',
@@ -148,6 +161,21 @@ export const ASSET_URLS: Record<AssetKey, string> = {
 
   ...(NEWS_EVENT_ASSET_URLS as Record<AssetKey, string>),
   ...(STORY_EVENT_ASSET_URLS as Record<AssetKey, string>),
+
+  news_school_starts: NEWS_ARTWORK.schoolOpening,
+  news_enter_treeA: NEWS_ARTWORK.committeeFounded,
+  news_enter_treeB: loadingArt('保温杯与红批'),
+  news_enter_treeC: NEWS_ARTWORK.entertainmentInauguration,
+  news_enter_treeD: loadingArt('及第之梦'),
+  news_bill_passed: NEWS_ARTWORK.assemblyVote,
+  news_bill_failed: loadingArt('议场初开'),
+  news_broadcast_seized: NEWS_ARTWORK.broadcastSeized,
+  news_march_on_admin: loadingArt('街垒黎明'),
+  news_jidi_profit_event: NEWS_ARTWORK.commercialCampus,
+  news_jidi_suppress_event: loadingArt('清场'),
+  news_jidi_feng_anbao_event: loadingArt('封安宝时代'),
+  news_gx_start_event: NEWS_ARTWORK.entertainmentInauguration,
+  news_gx_anime_event: loadingArt('裤熊逢春'),
 
   // Chapter CGs also illustrate their related events; keep original super-event artwork.
   news_expand_assembly_event: loadingArt('议场初开'),

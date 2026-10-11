@@ -1,4 +1,5 @@
 import { GameState, GameEvent } from '../types';
+import { PUBLIC_NEWS_EVENT_IDS } from './eventKinds';
 import { applyTileCtrlDeltas } from '../engine/tileHelpers';
 import { applyYangSettlement, getCrossroadsOutcome, CROSSROADS_RULES } from '../engine/assemblyPolitics';
 
@@ -1740,3 +1741,9 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
     effectsText: ['稳定度 +2', '学生理智 -3']
   },
 };
+
+// Visual metadata does not change effects, triggers or chronicle logging.
+const publicNews = new Set<string>(PUBLIC_NEWS_EVENT_IDS);
+Object.values(FLAVOR_EVENTS).forEach(event => {
+  event.presentation ??= publicNews.has(event.id) ? 'news' : 'story';
+});

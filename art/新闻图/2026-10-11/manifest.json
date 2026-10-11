@@ -1,0 +1,230 @@
+[
+  {
+    "id": "school-opening",
+    "generator": "image_gen.imagegen",
+    "prompt": "Use case: illustration-story. Asset type: dedicated campus newspaper picture for the fictional narrative strategy game TNO: The Hefei Order. Produce one finished landscape 3:2 composition, no interface, frame, captions, watermark or legible writing. Mature editorial documentary illustration with realistic modern Chinese school architecture and natural body proportions, clean finely drawn outlines, restrained smooth digital paint, rich but controlled shadows. CRITICAL: clean surfaces and soft tonal transitions; NO canvas weave, impasto, stippling, gritty film grain, noise, worm patterns, dirty microtexture, oversharpening, cartoon or anime drawing style. Keep the main subject legible at 320 pixels wide; restrained blue-grey, warm paper, muted amber and brick red palette. This is a fictional school scene, not a real news photograph. News: a new school year at Hefei No.1 High School, 1 September 2023, order imposed behind a calm facade. Show a broad red rectangular campus gate with a pale stone lintel and distant administrative block, in fresh morning light. Small groups of uniformed students entering with backpacks, a duty teacher holding a clipboard at the side, new timetables being attached to a noticeboard. Eye-level three-quarter view, everyday school atmosphere with a faint institutional tension. Avoid dramatic revolt, banners, violence, readable signs, flags or identifiable portraits.",
+    "native": "art/新闻图/2026-10-11/school-opening.png",
+    "web": "src/assets/events/news/school-opening.webp",
+    "native_size": [
+      1536,
+      1024
+    ],
+    "web_size": [
+      1200,
+      800
+    ],
+    "sha256": "2fb5b86f038a8d7925ccf17cd01800e78a4380467ab2c74a6c27ac1ff7c3cfa5",
+    "repair_steps": [
+      {
+        "route": "gpt-demaze",
+        "strength": 60,
+        "gpt_hint": false,
+        "maze_score": 0.00037178867531694983,
+        "maze_area_fraction": 0.00035014005602240897,
+        "decision": "未检测到明显 GPT 迷宫纹（maze_score=0.000）",
+        "grid": {
+          "fold_z_before": {
+            "2": 33.2,
+            "4": 16.9,
+            "8": 8.6
+          },
+          "phase_consistency": 0.995,
+          "applied": false
+        },
+        "method": "spectral",
+        "action": "no-op"
+      }
+    ],
+    "repaired": false
+  },
+  {
+    "id": "committee-founded",
+    "generator": "image_gen.imagegen",
+    "prompt": "Use case: illustration-story. Asset type: dedicated campus newspaper picture for the fictional narrative strategy game TNO: The Hefei Order. Produce one finished landscape 3:2 composition, no interface, frame, captions, watermark or legible writing. Mature editorial documentary illustration with realistic modern Chinese school architecture and natural body proportions, clean finely drawn outlines, restrained smooth digital paint, rich but controlled shadows. CRITICAL: clean surfaces and soft tonal transitions; NO canvas weave, impasto, stippling, gritty film grain, noise, worm patterns, dirty microtexture, oversharpening, cartoon or anime drawing style. Keep the main subject legible at 320 pixels wide; restrained blue-grey, warm paper, muted amber and brick red palette. This is a fictional school scene, not a real news photograph. News: after the students captured B3, the joint revolutionary committee has been established by two allied student factions. Show the exterior of a modern pale six-storey Chinese teaching block marked only by an abstract blue identification plaque, an improvised desk at its entrance where uniformed student delegates coordinate attendance, folded desks at the side from recently cleared barricades, a few plain red flags overhead and students gathered around a freshly posted announcement with unreadable text. Late dawn amber light after a tense night, purposeful organized relief rather than violent mob. Three-quarter architecture, convincing campus depth. No weapons, fire, injury or real political emblems.",
+    "native": "art/新闻图/2026-10-11/committee-founded.png",
+    "web": "src/assets/events/news/committee-founded.webp",
+    "native_size": [
+      1536,
+      1024
+    ],
+    "web_size": [
+      1200,
+      800
+    ],
+    "sha256": "8182c66a105611ac4acc0d7bc86d778ab75247640ae7a2a3bbbdaaee5714e579",
+    "repair_steps": [
+      {
+        "route": "gpt-demaze",
+        "strength": 60,
+        "gpt_hint": false,
+        "maze_score": 0.0002185792349726776,
+        "maze_area_fraction": 0.0002100840336134454,
+        "decision": "未检测到明显 GPT 迷宫纹（maze_score=0.000）",
+        "grid": {
+          "fold_z_before": {
+            "2": 33.3,
+            "4": 16.8,
+            "8": 8.6
+          },
+          "phase_consistency": 0.997,
+          "applied": false
+        },
+        "method": "spectral",
+        "action": "no-op"
+      }
+    ],
+    "repaired": false
+  },
+  {
+    "id": "assembly-vote",
+    "generator": "image_gen.imagegen",
+    "prompt": "Use case: illustration-story. Asset type: dedicated campus newspaper picture for the fictional narrative strategy game TNO: The Hefei Order. Produce one finished landscape 3:2 composition, no interface, frame, captions, watermark or legible writing. Mature editorial documentary illustration with realistic modern Chinese school architecture and natural body proportions, clean finely drawn outlines, restrained smooth digital paint, rich but controlled shadows. CRITICAL: clean surfaces and soft tonal transitions; NO canvas weave, impasto, stippling, gritty film grain, noise, worm patterns, dirty microtexture, oversharpening, cartoon or anime drawing style. Keep the main subject legible at 320 pixels wide; restrained blue-grey, warm paper, muted amber and brick red palette. This is a fictional school scene, not a real news photograph. News: a campus bill has won the student assembly vote after debate. View a modern school auditorium from the rear side, looking across several orderly rows of uniformed student representatives raising voting cards above their heads, a student clerk at the front desk tallying the result and a chair at a modest podium. Documents and glasses of water on desks, faction placards without legible writing. Broad confident window light, dignified procedural atmosphere. The image should clearly express a school representative assembly reaching a decision; no country parliament, national flags, adult politicians or election ballot box as the main subject.",
+    "native": "art/新闻图/2026-10-11/assembly-vote.png",
+    "web": "src/assets/events/news/assembly-vote.webp",
+    "native_size": [
+      1536,
+      1024
+    ],
+    "web_size": [
+      1200,
+      800
+    ],
+    "sha256": "e470c3649e30a85c2bb5998ac9db0df8e75627a0a0a69e1303699794fd0d977e",
+    "repair_steps": [
+      {
+        "route": "gpt-demaze",
+        "strength": 60,
+        "gpt_hint": false,
+        "maze_score": 0.00029058906554859065,
+        "maze_area_fraction": 0.00024509803921568627,
+        "decision": "未检测到明显 GPT 迷宫纹（maze_score=0.000）",
+        "grid": {
+          "fold_z_before": {
+            "2": 18.6,
+            "4": 9.8,
+            "8": 5.5
+          },
+          "phase_consistency": 0.982,
+          "applied": false
+        },
+        "method": "spectral",
+        "action": "no-op"
+      }
+    ],
+    "repaired": false
+  },
+  {
+    "id": "broadcast-seized",
+    "generator": "image_gen.imagegen",
+    "prompt": "Use case: illustration-story. Asset type: dedicated campus newspaper picture for the fictional narrative strategy game TNO: The Hefei Order. Produce one finished landscape 3:2 composition, no interface, frame, captions, watermark or legible writing. Mature editorial documentary illustration with realistic modern Chinese school architecture and natural body proportions, clean finely drawn outlines, restrained smooth digital paint, rich but controlled shadows. CRITICAL: clean surfaces and soft tonal transitions; NO canvas weave, impasto, stippling, gritty film grain, noise, worm patterns, dirty microtexture, oversharpening, cartoon or anime drawing style. Keep the main subject legible at 320 pixels wide; restrained blue-grey, warm paper, muted amber and brick red palette. This is a fictional school scene, not a real news photograph. News: the school radio suddenly interrupts the routine exercise march with a student's new address. Depict a cramped third-floor campus broadcast studio: one uniformed student speaks into a wired desk microphone while another watches the mixer and audio meters, a third pins the freshly prepared announcement next to the door. Through the glass one sees students pausing on an outdoor corridor, listening. Morning light with muted green instrument glow, clear physical cables, analogue and modern school audio gear, no weapons. The students are anonymous, natural and serious. Show a cooperative radio intervention, not a commercial recording studio or a night concert.",
+    "native": "art/新闻图/2026-10-11/broadcast-seized.png",
+    "web": "src/assets/events/news/broadcast-seized.webp",
+    "native_size": [
+      1536,
+      1024
+    ],
+    "web_size": [
+      1200,
+      800
+    ],
+    "sha256": "d9311a61ed6093199484b012bff38a88572e9810da2e22e0be88cd51167e71d2",
+    "repair_steps": [
+      {
+        "route": "gpt-demaze",
+        "strength": 60,
+        "gpt_hint": false,
+        "maze_score": 0.0010952488858675126,
+        "maze_area_fraction": 0.001015406162464986,
+        "decision": "未检测到明显 GPT 迷宫纹（maze_score=0.001）",
+        "grid": {
+          "fold_z_before": {
+            "2": 23.2,
+            "4": 12.0,
+            "8": 6.3
+          },
+          "phase_consistency": 0.969,
+          "applied": false
+        },
+        "method": "spectral",
+        "action": "no-op"
+      }
+    ],
+    "repaired": false
+  },
+  {
+    "id": "commercial-campus",
+    "generator": "image_gen.imagegen",
+    "prompt": "Use case: illustration-story. Asset type: dedicated campus newspaper picture for the fictional narrative strategy game TNO: The Hefei Order. Produce one finished landscape 3:2 composition, no interface, frame, captions, watermark or legible writing. Mature editorial documentary illustration with realistic modern Chinese school architecture and natural body proportions, clean finely drawn outlines, restrained smooth digital paint, rich but controlled shadows. CRITICAL: clean surfaces and soft tonal transitions; NO canvas weave, impasto, stippling, gritty film grain, noise, worm patterns, dirty microtexture, oversharpening, cartoon or anime drawing style. Keep the main subject legible at 320 pixels wide; restrained blue-grey, warm paper, muted amber and brick red palette. This is a fictional school scene, not a real news photograph. News: Jidi Education has fully commercialized campus life, raising canteen prices and charging for library seats. Show a school canteen at lunch seen diagonally down the service counter: uniformed students pause before a new price placard with abstract illegible entries and a small electronic payment terminal, while a suited administrative contractor supervises the counter. Through glazing, a sleek blue-white promotional lightbox and a paid study-seat kiosk are visible in the background, without readable logos. Restrained cold corporate light with small warm food-serving lamps. Focus on monetized everyday student life, not a factory, boardroom, futuristic dystopia, crowds screaming or political symbols.",
+    "native": "art/新闻图/2026-10-11/commercial-campus.png",
+    "web": "src/assets/events/news/commercial-campus.webp",
+    "native_size": [
+      1536,
+      1024
+    ],
+    "web_size": [
+      1200,
+      800
+    ],
+    "sha256": "303a4bbb39c827d2fd8c1efb1d2643f4b80a6e8be10614e48c3be57d66c3551a",
+    "repair_steps": [
+      {
+        "route": "gpt-demaze",
+        "strength": 60,
+        "gpt_hint": false,
+        "maze_score": 0.00018535681186283596,
+        "maze_area_fraction": 0.00017507002801120448,
+        "decision": "未检测到明显 GPT 迷宫纹（maze_score=0.000）",
+        "grid": {
+          "fold_z_before": {
+            "2": 24.0,
+            "4": 12.5,
+            "8": 6.4
+          },
+          "phase_consistency": 0.997,
+          "applied": false
+        },
+        "method": "spectral",
+        "action": "no-op"
+      }
+    ],
+    "repaired": false
+  },
+  {
+    "id": "entertainment-inauguration",
+    "generator": "image_gen.imagegen",
+    "prompt": "Use case: illustration-story. Asset type: dedicated campus newspaper picture for the fictional narrative strategy game TNO: The Hefei Order. Produce one finished landscape 3:2 composition, no interface, frame, captions, watermark or legible writing. Mature editorial documentary illustration with realistic modern Chinese school architecture and natural body proportions, clean finely drawn outlines, restrained smooth digital paint, rich but controlled shadows. CRITICAL: clean surfaces and soft tonal transitions; NO canvas weave, impasto, stippling, gritty film grain, noise, worm patterns, dirty microtexture, oversharpening, cartoon or anime drawing style. Keep the main subject legible at 320 pixels wide; restrained blue-grey, warm paper, muted amber and brick red palette. This is a fictional school scene, not a real news photograph. News: the new entertainment leader inaugurates a bizarre campus order and promises no morning reading or evening study. Show the school arts auditorium in daytime, an anonymous young student figure with a small playful cat-ear headband speaking at a lectern, tiny stage crew working beside projectors, students below reacting with a mix of cheering and perplexity. The projection contains only abstract colored music shapes and animated-looking silhouettes, no copyrighted characters or legible slogans. Use subdued violet and amber stage lighting balanced with grey daylight; mature documentary composition capturing the absurdity, no chibi characters, cartoon people, rave neon flooding the whole picture or national flags.",
+    "native": "art/新闻图/2026-10-11/entertainment-inauguration.png",
+    "web": "src/assets/events/news/entertainment-inauguration.webp",
+    "native_size": [
+      1536,
+      1024
+    ],
+    "web_size": [
+      1200,
+      800
+    ],
+    "sha256": "6f2227c2f9d1324a7030ef4a58ee233f4cbf22ca1f668237556cc91f67eb30e8",
+    "repair_steps": [
+      {
+        "route": "gpt-demaze",
+        "strength": 60,
+        "gpt_hint": false,
+        "maze_score": 0.0,
+        "maze_area_fraction": 0.0,
+        "decision": "未检测到明显 GPT 迷宫纹（maze_score=0.000）",
+        "grid": {
+          "fold_z_before": {
+            "2": 22.5,
+            "4": 11.9,
+            "8": 6.0
+          },
+          "phase_consistency": 0.99,
+          "applied": false
+        },
+        "method": "spectral",
+        "action": "no-op"
+      }
+    ],
+    "repaired": false
+  }
+]
