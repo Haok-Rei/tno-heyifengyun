@@ -4,6 +4,7 @@ import { motion, useDragControls, useReducedMotion } from 'motion/react';
 import { Radio, FileText, GripHorizontal, ChevronRight, Lock } from 'lucide-react';
 import { getNewsEventImageUrl, getStoryEventImageUrl } from '../config/assets';
 import { getEventPresentation } from '../engine/eventPresentation';
+import EventIllustration from './EventIllustration';
 
 interface EventPopupProps {
   event: GameEvent;
@@ -52,11 +53,7 @@ export default function EventPopup({ event, onConfirm, date, state }: EventPopup
     }
   };
   const photo = <figure className="event-photo">
-    <img key={image} src={image} alt={event.title+'配图'} decoding="async" draggable={false}
-      onError={e => {
-        if (e.currentTarget.dataset.fallback) return;
-        e.currentTarget.dataset.fallback = 'true'; e.currentTarget.src = fallback;
-      }} />
+    <EventIllustration event={event} legacyImage={image} fallback={fallback}/>
   </figure>;
   const body = <div className="event-prose" tabIndex={0}>
     {event.description.split(/\n\s*\n/).map((paragraph, index) => <p key={index}>{paragraph}</p>)}

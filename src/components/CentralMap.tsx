@@ -272,7 +272,6 @@ export default function CentralMap({state,setGameState,triggerError,isElectionUI
         <div className="territory-dock">
           <div className="territory-heading">
             <div><h3>{selRgn.lb}</h3></div>
-            <button onClick={()=>setSel(null)} aria-label="关闭地区面板">✕</button>
           </div>
 
           <div className="text-xs text-gray-400 mb-2">

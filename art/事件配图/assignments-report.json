@@ -1,0 +1,4001 @@
+{
+  "count": 445,
+  "distinctVisuals": 443,
+  "singleUse": 441,
+  "focusLinked": 114,
+  "portraitCount": 34,
+  "repeated": [
+    [
+      "entertainmentInauguration",
+      [
+        "enter_treeC",
+        "gx_start_event"
+      ]
+    ],
+    [
+      "Paper / Clock",
+      [
+        "jidi_rnd_product_3",
+        "mock_exam"
+      ]
+    ]
+  ],
+  "events": [
+    {
+      "id": "academic_competition_sponsorship_event",
+      "title": "收买做题机器的筹码",
+      "source": "catalog",
+      "primary": "Box Open2",
+      "secondary": "Paper",
+      "theme": "letter",
+      "reason": "关联国策美术；letter / paper"
+    },
+    {
+      "id": "admin_takeover",
+      "title": "教务系统的瘫痪",
+      "source": "catalog",
+      "primary": "House",
+      "secondary": "Clock",
+      "theme": "power",
+      "reason": "关联国策美术；power / time"
+    },
+    {
+      "id": "alliance_collapse",
+      "title": "联盟濒临瓦解",
+      "source": "src/App.tsx",
+      "primary": "Hands Shaking",
+      "secondary": "Documents",
+      "theme": "negotiation",
+      "reason": "negotiation / paper"
+    },
+    {
+      "id": "anime_chaos",
+      "title": "二次元的狂欢",
+      "source": "catalog",
+      "primary": "Magician",
+      "secondary": "Officer",
+      "theme": "cinema",
+      "reason": "cinema / security"
+    },
+    {
+      "id": "b3_defeat",
+      "title": "防线崩溃",
+      "source": "src/App.tsx",
+      "primary": "Denied",
+      "secondary": "Officer",
+      "theme": "failure",
+      "reason": "failure / security"
+    },
+    {
+      "id": "b3_drill_defeat",
+      "title": "城防演习暴露短板",
+      "source": "src/App.tsx",
+      "primary": "Denied",
+      "secondary": "Soldier Pointing",
+      "theme": "failure",
+      "reason": "failure / security"
+    },
+    {
+      "id": "b3_drill_victory",
+      "title": "城防演习圆满成功",
+      "source": "src/App.tsx",
+      "primary": "Pedestal",
+      "secondary": "Officer",
+      "theme": "awards",
+      "reason": "awards / security"
+    },
+    {
+      "id": "b3_victory",
+      "title": "B3保卫战胜利",
+      "source": "src/App.tsx",
+      "primary": "Pedestal",
+      "secondary": "Hands Shaking",
+      "theme": "awards",
+      "reason": "awards / negotiation"
+    },
+    {
+      "id": "bear_victory_event",
+      "title": "致抽象乐子人 狗熊的信",
+      "source": "catalog",
+      "portrait": "leader_gouxiong",
+      "secondary": "Envelope",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "letter"
+    },
+    {
+      "id": "bill_abolish_evening_study_failed",
+      "title": "《废除强制晚自习法案》被否决",
+      "source": "catalog",
+      "primary": "Parliament",
+      "secondary": "Denied",
+      "theme": "meeting",
+      "reason": "meeting / failure"
+    },
+    {
+      "id": "bill_abolish_evening_study_passed",
+      "title": "《废除强制晚自习法案》通过",
+      "source": "catalog",
+      "primary": "Parliament",
+      "secondary": "Paper",
+      "theme": "meeting",
+      "reason": "meeting / paper"
+    },
+    {
+      "id": "bill_club_freedom_failed",
+      "title": "《社团自由法案》被否决",
+      "source": "catalog",
+      "primary": "Parliament",
+      "secondary": "Star Broken",
+      "theme": "meeting",
+      "reason": "meeting / failure"
+    },
+    {
+      "id": "bill_club_freedom_passed",
+      "title": "《社团自由法案》通过",
+      "source": "catalog",
+      "primary": "Parliament",
+      "secondary": "Bird Freed",
+      "theme": "meeting",
+      "reason": "meeting / freedom"
+    },
+    {
+      "id": "bill_conservative_discipline_event",
+      "title": "保守派提出《加强纪律法案》",
+      "source": "catalog",
+      "primary": "Crown2",
+      "secondary": "Officer",
+      "theme": "meeting",
+      "reason": "关联国策美术；meeting / security"
+    },
+    {
+      "id": "bill_conservative_discipline_failed",
+      "title": "《加强纪律法案》被否决",
+      "source": "catalog",
+      "primary": "Parliament",
+      "secondary": "Crown Broken",
+      "theme": "meeting",
+      "reason": "meeting / failure"
+    },
+    {
+      "id": "bill_conservative_discipline_passed",
+      "title": "《加强纪律法案》通过",
+      "source": "catalog",
+      "primary": "Parliament",
+      "secondary": "Officer",
+      "theme": "meeting",
+      "reason": "meeting / security"
+    },
+    {
+      "id": "bill_curriculum_reform_failed",
+      "title": "《课程改革法案》被否决",
+      "source": "catalog",
+      "primary": "Parliament",
+      "secondary": "Champagne Shattered",
+      "theme": "meeting",
+      "reason": "meeting / failure"
+    },
+    {
+      "id": "bill_curriculum_reform_passed",
+      "title": "《课程改革法案》通过",
+      "source": "catalog",
+      "primary": "Parliament",
+      "secondary": "Clock",
+      "theme": "meeting",
+      "reason": "meeting / time"
+    },
+    {
+      "id": "bill_failed",
+      "title": "法案被否决",
+      "source": "catalog",
+      "primary": "Parliament",
+      "secondary": "Paper Torn",
+      "theme": "meeting",
+      "reason": "meeting / failure"
+    },
+    {
+      "id": "bill_orthodox_red_culture_event",
+      "title": "正统派提出《红色教育法案》",
+      "source": "catalog",
+      "primary": "Lightbulb Broken",
+      "secondary": "Hands Shaking",
+      "theme": "meeting",
+      "reason": "关联国策美术；meeting / negotiation"
+    },
+    {
+      "id": "bill_orthodox_red_culture_failed",
+      "title": "《红色文化教育法案》被否决",
+      "source": "catalog",
+      "primary": "Ballot",
+      "secondary": "Denied",
+      "theme": "meeting",
+      "reason": "meeting / failure"
+    },
+    {
+      "id": "bill_orthodox_red_culture_passed",
+      "title": "《红色文化教育法案》通过",
+      "source": "catalog",
+      "primary": "Parliament",
+      "secondary": "Rebellion",
+      "theme": "meeting",
+      "reason": "meeting / revolution"
+    },
+    {
+      "id": "bill_passed",
+      "title": "法案通过！",
+      "source": "catalog",
+      "news": "assemblyVote",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "meeting"
+    },
+    {
+      "id": "bill_student_welfare_failed",
+      "title": "《学生福利法案》被否决",
+      "source": "catalog",
+      "primary": "Parliament",
+      "secondary": "Arrow Broken",
+      "theme": "meeting",
+      "reason": "meeting / failure"
+    },
+    {
+      "id": "bill_student_welfare_passed",
+      "title": "《学生福利法案》通过",
+      "source": "catalog",
+      "primary": "Parliament",
+      "secondary": "Hands Shaking",
+      "theme": "meeting",
+      "reason": "meeting / negotiation"
+    },
+    {
+      "id": "bill_test_taker_mock_exams_event",
+      "title": "做题派提出《增加模拟考法案》",
+      "source": "catalog",
+      "primary": "Officer",
+      "secondary": "Paper",
+      "theme": "meeting",
+      "reason": "关联国策美术；meeting / paper"
+    },
+    {
+      "id": "bill_test_taker_mock_exams_failed",
+      "title": "《增加模拟考法案》被否决",
+      "source": "catalog",
+      "primary": "Ballot",
+      "secondary": "Star Broken",
+      "theme": "meeting",
+      "reason": "meeting / failure"
+    },
+    {
+      "id": "bill_test_taker_mock_exams_passed",
+      "title": "《增加模拟考法案》通过",
+      "source": "catalog",
+      "primary": "Parliament",
+      "secondary": "Book",
+      "theme": "meeting",
+      "reason": "meeting / paper"
+    },
+    {
+      "id": "bill_transparent_finances_failed",
+      "title": "《财务公开法案》被否决",
+      "source": "catalog",
+      "primary": "Bills",
+      "secondary": "Parliament",
+      "theme": "money",
+      "reason": "money / meeting"
+    },
+    {
+      "id": "bill_transparent_finances_passed",
+      "title": "《财务公开法案》通过",
+      "source": "catalog",
+      "primary": "Bills",
+      "secondary": "Ballot",
+      "theme": "money",
+      "reason": "money / meeting"
+    },
+    {
+      "id": "broadcast_seized",
+      "title": "校园广播站的新声音",
+      "source": "catalog",
+      "news": "broadcastSeized",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "media"
+    },
+    {
+      "id": "campus_alumni",
+      "title": "校友寄来的设备清单",
+      "source": "campus family",
+      "primary": "Factories2",
+      "secondary": "Spy",
+      "theme": "industry",
+      "reason": "industry / surveillance"
+    },
+    {
+      "id": "campus_authorship",
+      "title": "教案上空着的署名",
+      "source": "campus family",
+      "primary": "Hand Writing",
+      "secondary": "Building",
+      "theme": "teacher",
+      "reason": "teacher / campus"
+    },
+    {
+      "id": "campus_books",
+      "title": "图书角的去留",
+      "source": "campus family",
+      "primary": "Book Open",
+      "secondary": "Building",
+      "theme": "book",
+      "reason": "book / campus"
+    },
+    {
+      "id": "campus_canteen",
+      "title": "食堂窗口的账本",
+      "source": "campus family",
+      "primary": "Bowl Cracked",
+      "secondary": "Bills",
+      "theme": "food",
+      "reason": "food / money"
+    },
+    {
+      "id": "campus_clubs",
+      "title": "社团活动申请的最后一页",
+      "source": "campus family",
+      "primary": "Building",
+      "secondary": "Bills",
+      "theme": "campus",
+      "reason": "campus / money"
+    },
+    {
+      "id": "campus_contraband",
+      "title": "没收物品的清单",
+      "source": "campus family",
+      "primary": "Spy",
+      "secondary": "Building",
+      "theme": "surveillance",
+      "reason": "surveillance / campus"
+    },
+    {
+      "id": "campus_exams",
+      "title": "另一套试卷",
+      "source": "campus family",
+      "primary": "Paper",
+      "secondary": "Building",
+      "theme": "paper",
+      "reason": "paper / campus"
+    },
+    {
+      "id": "campus_health",
+      "title": "医务室的提醒",
+      "source": "campus family",
+      "primary": "Vial",
+      "secondary": "Building",
+      "theme": "health",
+      "reason": "health / campus"
+    },
+    {
+      "id": "campus_informants",
+      "title": "没有证据的举报单",
+      "source": "campus family",
+      "primary": "Spy",
+      "secondary": "House",
+      "theme": "surveillance",
+      "reason": "surveillance / campus"
+    },
+    {
+      "id": "campus_infrastructure_upgrade_event",
+      "title": "选票换来的空调冷气",
+      "source": "catalog",
+      "primary": "Dice",
+      "secondary": "Building",
+      "theme": "meeting",
+      "reason": "关联国策美术；meeting / campus"
+    },
+    {
+      "id": "campus_letters",
+      "title": "意见箱里的未署名信",
+      "source": "campus family",
+      "primary": "Hand Writing",
+      "secondary": "Envelope",
+      "theme": "teacher",
+      "reason": "teacher / letter"
+    },
+    {
+      "id": "campus_mockery",
+      "title": "传阅的英语讲义",
+      "source": "campus family",
+      "primary": "Book Open",
+      "secondary": "House",
+      "theme": "book",
+      "reason": "book / campus"
+    },
+    {
+      "id": "campus_petition",
+      "title": "家长群里的联名请求",
+      "source": "campus family",
+      "primary": "Envelope",
+      "secondary": "Building",
+      "theme": "letter",
+      "reason": "letter / campus"
+    },
+    {
+      "id": "campus_rally",
+      "title": "誓师大会的空白节目单",
+      "source": "campus family",
+      "primary": "Woman Dancing",
+      "secondary": "Rebellion",
+      "theme": "music",
+      "reason": "music / revolution"
+    },
+    {
+      "id": "campus_retirement",
+      "title": "抽屉里的退休申请",
+      "source": "campus family",
+      "primary": "Bird Freed",
+      "secondary": "Building",
+      "theme": "freedom",
+      "reason": "freedom / campus"
+    },
+    {
+      "id": "campus_sports",
+      "title": "体育课没有响起的哨声",
+      "source": "campus family",
+      "primary": "Citizen2",
+      "secondary": "Building",
+      "theme": "sport",
+      "reason": "sport / campus"
+    },
+    {
+      "id": "campus_staff",
+      "title": "办公室里的空椅子",
+      "source": "campus family",
+      "primary": "Building",
+      "secondary": "Clock",
+      "theme": "campus",
+      "reason": "campus / time"
+    },
+    {
+      "id": "campus_standing",
+      "title": "站着读完的早自习",
+      "source": "campus family",
+      "primary": "Clock",
+      "secondary": "Building",
+      "theme": "time",
+      "reason": "time / campus"
+    },
+    {
+      "id": "campus_supply",
+      "title": "印刷室最后一箱纸",
+      "source": "campus family",
+      "primary": "Factories2",
+      "secondary": "Building",
+      "theme": "industry",
+      "reason": "industry / campus"
+    },
+    {
+      "id": "campus_textbooks",
+      "title": "课本夹页里的报价单",
+      "source": "campus family",
+      "primary": "Bills",
+      "secondary": "Book Open",
+      "theme": "money",
+      "reason": "money / book"
+    },
+    {
+      "id": "campus_thermos",
+      "title": "留在讲台上的保温杯",
+      "source": "campus family",
+      "primary": "Building",
+      "secondary": "Hand Writing",
+      "theme": "campus",
+      "reason": "campus / teacher"
+    },
+    {
+      "id": "campus_tutoring",
+      "title": "围墙外的补课广告",
+      "source": "campus family",
+      "primary": "Building",
+      "secondary": "Megaphone",
+      "theme": "campus",
+      "reason": "campus / media"
+    },
+    {
+      "id": "campus_unrest",
+      "title": "熄灯后的走廊",
+      "source": "campus family",
+      "primary": "Building",
+      "secondary": "Moon",
+      "theme": "campus",
+      "reason": "campus / night"
+    },
+    {
+      "id": "campus_winter",
+      "title": "结冰的上学路",
+      "source": "campus family",
+      "primary": "Cloud Dark",
+      "secondary": "Building",
+      "theme": "weather",
+      "reason": "weather / campus"
+    },
+    {
+      "id": "committee_assembly_opening",
+      "title": "同坐一间教室",
+      "source": "catalog",
+      "primary": "Citizen2",
+      "secondary": "Parliament",
+      "theme": "campus",
+      "reason": "关联国策美术；campus / meeting"
+    },
+    {
+      "id": "committee_echo_compromise",
+      "title": "妥协后的教务",
+      "source": "catalog",
+      "primary": "Hands Shaking",
+      "secondary": "Parliament",
+      "theme": "negotiation",
+      "reason": "negotiation / meeting"
+    },
+    {
+      "id": "committee_echo_trial",
+      "title": "公审后的教务",
+      "source": "catalog",
+      "primary": "Handcuffs",
+      "secondary": "Parliament",
+      "theme": "repression",
+      "reason": "repression / meeting"
+    },
+    {
+      "id": "committee_militia",
+      "title": "岗哨后面的教室",
+      "source": "catalog",
+      "primary": "Rifle",
+      "secondary": "Magician",
+      "theme": "campus",
+      "reason": "关联国策美术；campus / cinema"
+    },
+    {
+      "id": "committee_posters",
+      "title": "墙上的下一张海报",
+      "source": "catalog",
+      "primary": "Megaphone3",
+      "secondary": "Building",
+      "theme": "media",
+      "reason": "关联国策美术；media / campus"
+    },
+    {
+      "id": "committee_print_network",
+      "title": "油墨还没有干",
+      "source": "catalog",
+      "primary": "Cog Wheel",
+      "secondary": "Megaphone",
+      "theme": "industry",
+      "reason": "关联国策美术；industry / media"
+    },
+    {
+      "id": "committee_purge_moderates",
+      "title": "缺席的代表",
+      "source": "catalog",
+      "primary": "Handcuffs Broken",
+      "secondary": "Handcuffs",
+      "theme": "meeting",
+      "reason": "关联国策美术；meeting / repression"
+    },
+    {
+      "id": "committee_vanguard",
+      "title": "谁来下达下一道命令",
+      "source": "catalog",
+      "primary": "Spy3",
+      "secondary": "Clock",
+      "theme": "security",
+      "reason": "关联国策美术；security / time"
+    },
+    {
+      "id": "day_14_event",
+      "title": "自治会负责人的抉择",
+      "source": "catalog",
+      "primary": "Officer",
+      "secondary": "Spy",
+      "theme": "security",
+      "reason": "security / surveillance"
+    },
+    {
+      "id": "democratic_power_struggle_event",
+      "title": "民主派争权",
+      "source": "catalog",
+      "primary": "Parliament",
+      "secondary": "Documents",
+      "theme": "meeting",
+      "reason": "meeting / paper"
+    },
+    {
+      "id": "democratic_power_struggle_result",
+      "title": "授权的让步",
+      "source": "catalog",
+      "primary": "Parliament",
+      "secondary": "Computer",
+      "theme": "meeting",
+      "reason": "meeting / computer"
+    },
+    {
+      "id": "democratic_reforms_event",
+      "title": "全面民主改革",
+      "source": "catalog",
+      "primary": "Crown",
+      "secondary": "Officer",
+      "theme": "meeting",
+      "reason": "关联国策美术；meeting / security"
+    },
+    {
+      "id": "despair_fight",
+      "title": "最后的防线",
+      "source": "catalog",
+      "primary": "Grim Reaper",
+      "secondary": "Rebellion",
+      "theme": "security",
+      "reason": "关联国策美术；security / revolution"
+    },
+    {
+      "id": "education_marketization_event",
+      "title": "沉船上镀金的救生圈",
+      "source": "catalog",
+      "primary": "Bulldozer",
+      "secondary": "Hands Shaking",
+      "theme": "meeting",
+      "reason": "关联国策美术；meeting / negotiation"
+    },
+    {
+      "id": "election_outcome_event",
+      "title": "大选落幕",
+      "source": "catalog",
+      "scene": "第一张选票",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "meeting"
+    },
+    {
+      "id": "empower_student_unions_event",
+      "title": "摘下传声筒的木偶",
+      "source": "catalog",
+      "primary": "Bear2",
+      "secondary": "Rebellion",
+      "theme": "meeting",
+      "reason": "关联国策美术；meeting / revolution"
+    },
+    {
+      "id": "enter_treeA",
+      "title": "联合革命委员会的胜利",
+      "source": "catalog",
+      "news": "committeeFounded",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "meeting"
+    },
+    {
+      "id": "enter_treeA_pan_despair",
+      "title": "绝望的走廊巷战",
+      "source": "src/App.tsx",
+      "scene": "最后一间教室",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "campus"
+    },
+    {
+      "id": "enter_treeB",
+      "title": "名师的阴影",
+      "source": "catalog",
+      "primary": "Hand Writing",
+      "secondary": "Parliament",
+      "theme": "teacher",
+      "reason": "teacher / meeting"
+    },
+    {
+      "id": "enter_treeC",
+      "title": "二次元的狂欢",
+      "source": "catalog",
+      "news": "entertainmentInauguration",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "cinema"
+    },
+    {
+      "id": "enter_treeD",
+      "title": "绝望的走廊巷战",
+      "source": "catalog",
+      "primary": "Building",
+      "secondary": "Paper",
+      "theme": "campus",
+      "reason": "campus / paper"
+    },
+    {
+      "id": "event_10_crossroads",
+      "title": "命运的十字路口",
+      "source": "catalog",
+      "primary": "Bell",
+      "secondary": "Hands Shaking",
+      "theme": "meeting",
+      "reason": "关联国策美术；meeting / negotiation"
+    },
+    {
+      "id": "event_7_smolny",
+      "title": "斯莫尔尼宫的会议桌",
+      "source": "catalog",
+      "primary": "Banner",
+      "secondary": "Hands Shaking",
+      "theme": "meeting",
+      "reason": "关联国策美术；meeting / negotiation"
+    },
+    {
+      "id": "event_8_trial",
+      "title": "审判“套中人”",
+      "source": "catalog",
+      "primary": "Lantern",
+      "secondary": "Paper",
+      "theme": "repression",
+      "reason": "关联国策美术；repression / paper"
+    },
+    {
+      "id": "event_9_rectify_order",
+      "title": "整顿校内秩序",
+      "source": "catalog",
+      "primary": "Plant",
+      "secondary": "Parliament",
+      "theme": "paper",
+      "reason": "关联国策美术；paper / meeting"
+    },
+    {
+      "id": "expand_assembly_event",
+      "title": "扩大学生代表大会",
+      "source": "catalog",
+      "primary": "Briefcase",
+      "secondary": "Rebellion",
+      "theme": "meeting",
+      "reason": "关联国策美术；meeting / revolution"
+    },
+    {
+      "id": "extracurricular_activities_fund_event",
+      "title": "倒计时牌下的狂欢节",
+      "source": "catalog",
+      "primary": "Cherry Blossom",
+      "secondary": "Bills",
+      "theme": "time",
+      "reason": "关联国策美术；time / money"
+    },
+    {
+      "id": "final_revolution_event",
+      "title": "最终革命",
+      "source": "catalog",
+      "primary": "Fire2",
+      "secondary": "Hands Shaking",
+      "theme": "revolution",
+      "reason": "关联国策美术；revolution / negotiation"
+    },
+    {
+      "id": "gouxiong_coup",
+      "title": "内奸？？",
+      "source": "src/App.tsx",
+      "primary": "Karl Marx",
+      "secondary": "Documents",
+      "theme": "philosophy",
+      "reason": "philosophy / paper"
+    },
+    {
+      "id": "gouxiong_coup_success",
+      "title": "撕裂的红旗",
+      "source": "src/App.tsx",
+      "primary": "Rebellion",
+      "secondary": "Pedestal",
+      "theme": "revolution",
+      "reason": "revolution / awards"
+    },
+    {
+      "id": "gx_anime_event",
+      "title": "教材焚毁运动",
+      "source": "catalog",
+      "primary": "Citizen2",
+      "secondary": "Magician",
+      "theme": "sport",
+      "reason": "sport / cinema"
+    },
+    {
+      "id": "gx_coup_10_days_warning_event",
+      "title": "潘多拉的信封",
+      "source": "catalog",
+      "primary": "Envelope",
+      "secondary": "Rebellion",
+      "theme": "letter",
+      "reason": "letter / revolution"
+    },
+    {
+      "id": "gx_cyber_complete_aot",
+      "title": "地鸣与虚无",
+      "source": "catalog",
+      "primary": "Karl Marx",
+      "secondary": "Magician",
+      "theme": "philosophy",
+      "reason": "philosophy / cinema"
+    },
+    {
+      "id": "gx_cyber_complete_bochi",
+      "title": "文化祭的纵身一跃",
+      "source": "catalog",
+      "primary": "Woman Dancing",
+      "secondary": "Computer",
+      "theme": "music",
+      "reason": "music / computer"
+    },
+    {
+      "id": "gx_cyber_complete_demon_slayer",
+      "title": "炎柱的陨落",
+      "source": "catalog",
+      "primary": "Magician",
+      "secondary": "Computer",
+      "theme": "cinema",
+      "reason": "cinema / computer"
+    },
+    {
+      "id": "gx_cyber_complete_eva",
+      "title": "恭喜你！",
+      "source": "catalog",
+      "primary": "Magician",
+      "secondary": "Electricity",
+      "theme": "cinema",
+      "reason": "cinema / computer"
+    },
+    {
+      "id": "gx_cyber_complete_frieren",
+      "title": "寻找无用的意义",
+      "source": "catalog",
+      "primary": "Karl Marx",
+      "secondary": "Bear",
+      "theme": "philosophy",
+      "reason": "philosophy / cinema"
+    },
+    {
+      "id": "gx_cyber_complete_mygo",
+      "title": "迷路子的归途",
+      "source": "catalog",
+      "primary": "Computer",
+      "secondary": "Woman Dancing",
+      "theme": "computer",
+      "reason": "computer / music"
+    },
+    {
+      "id": "gx_cyber_complete_takagi",
+      "title": "盛夏的幻影：被偷走的三年",
+      "source": "catalog",
+      "primary": "Magician",
+      "secondary": "Cog",
+      "theme": "cinema",
+      "reason": "cinema / computer"
+    },
+    {
+      "id": "gx_cyber_start_aot",
+      "title": "玛利亚之墙的倒塌",
+      "source": "catalog",
+      "primary": "Magician",
+      "secondary": "Blueprints",
+      "theme": "cinema",
+      "reason": "cinema / computer"
+    },
+    {
+      "id": "gx_cyber_start_bochi",
+      "title": "纸箱里的吉他手",
+      "source": "catalog",
+      "primary": "Woman Dancing",
+      "secondary": "Electricity",
+      "theme": "music",
+      "reason": "music / computer"
+    },
+    {
+      "id": "gx_cyber_start_demon_slayer",
+      "title": "水之呼吸与油墨的交响",
+      "source": "catalog",
+      "primary": "Magician",
+      "secondary": "Lightbulb Broken",
+      "theme": "cinema",
+      "reason": "cinema / computer"
+    },
+    {
+      "id": "gx_cyber_start_eva",
+      "title": "做题家的人类补完",
+      "source": "catalog",
+      "primary": "Bear",
+      "secondary": "Computer",
+      "theme": "cinema",
+      "reason": "cinema / computer"
+    },
+    {
+      "id": "gx_cyber_start_frieren",
+      "title": "无意义的高三",
+      "source": "catalog",
+      "primary": "Karl Marx",
+      "secondary": "Bear2",
+      "theme": "philosophy",
+      "reason": "philosophy / cinema"
+    },
+    {
+      "id": "gx_cyber_start_mygo",
+      "title": "乐队政治学与合一派系斗争",
+      "source": "catalog",
+      "primary": "Woman Dancing",
+      "secondary": "Cog",
+      "theme": "music",
+      "reason": "music / computer"
+    },
+    {
+      "id": "gx_cyber_start_takagi",
+      "title": "几何题与橡皮擦的鸿沟",
+      "source": "catalog",
+      "primary": "Computer",
+      "secondary": "Magician",
+      "theme": "computer",
+      "reason": "computer / cinema"
+    },
+    {
+      "id": "gx_dabi_rooftop_invite_story_event",
+      "title": "达璧的天台邀约",
+      "source": "catalog",
+      "generated": "rooftop-midnight",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "night"
+    },
+    {
+      "id": "gx_dabi_route_trial_10d_event",
+      "title": "天台的审判",
+      "source": "catalog",
+      "primary": "Handcuffs",
+      "secondary": "Moon",
+      "theme": "repression",
+      "reason": "repression / night"
+    },
+    {
+      "id": "gx_dabi_route_trial_5d_event",
+      "title": "毒蜘蛛的惊惶与焦土反击",
+      "source": "catalog",
+      "primary": "Rebellion",
+      "secondary": "Handcuffs",
+      "theme": "revolution",
+      "reason": "revolution / repression"
+    },
+    {
+      "id": "gx_dabi_route_trial_embarrass_event",
+      "title": "狗熊的抉择：丢人现眼",
+      "source": "catalog",
+      "primary": "Documents",
+      "secondary": "Megaphone",
+      "theme": "repression",
+      "reason": "关联国策美术；repression / media"
+    },
+    {
+      "id": "gx_dabi_route_trial_redeem_event",
+      "title": "狗熊的抉择：浪子回头",
+      "source": "catalog",
+      "primary": "Documents",
+      "secondary": "Bird Freed",
+      "theme": "repression",
+      "reason": "关联国策美术；repression / freedom"
+    },
+    {
+      "id": "gx_dabi_route_trial_ruin_event",
+      "title": "狗熊的抉择：孤高的王",
+      "source": "catalog",
+      "primary": "Documents",
+      "secondary": "Spy",
+      "theme": "repression",
+      "reason": "关联国策美术；repression / surveillance"
+    },
+    {
+      "id": "gx_embarrass_1_event",
+      "title": "撕裂夜空的底裤",
+      "source": "catalog",
+      "primary": "Hand Tearing Paper",
+      "secondary": "Megaphone",
+      "theme": "revolution",
+      "reason": "关联国策美术；revolution / media"
+    },
+    {
+      "id": "gx_embarrass_2_event",
+      "title": "荧光棒的熄灭",
+      "source": "catalog",
+      "primary": "Brain",
+      "secondary": "Megaphone",
+      "theme": "security",
+      "reason": "关联国策美术；security / media"
+    },
+    {
+      "id": "gx_embarrass_3_event",
+      "title": "四面楚歌的小丑",
+      "source": "catalog",
+      "primary": "Banner",
+      "secondary": "Magician",
+      "theme": "art",
+      "reason": "关联国策美术；art / cinema"
+    },
+    {
+      "id": "gx_embarrass_ending_event",
+      "title": "无法读档的废人",
+      "source": "catalog",
+      "primary": "Paper",
+      "secondary": "Factories2",
+      "theme": "paper",
+      "reason": "paper / industry"
+    },
+    {
+      "id": "gx_embarrass_settlement_2d_event",
+      "title": "迟到一年的审判",
+      "source": "catalog",
+      "primary": "Handcuffs",
+      "secondary": "Rebellion",
+      "theme": "repression",
+      "reason": "repression / revolution"
+    },
+    {
+      "id": "gx_hire_under_wzk_true_left_event",
+      "title": "艺术礼堂的先遣军：狗熊入局",
+      "source": "catalog",
+      "primary": "Brush",
+      "secondary": "Magician",
+      "theme": "art",
+      "reason": "art / cinema"
+    },
+    {
+      "id": "gx_mygo_event",
+      "title": "永不结束的春日影",
+      "source": "catalog",
+      "primary": "Woman Dancing",
+      "secondary": "Cloud Dark",
+      "theme": "music",
+      "reason": "music / weather"
+    },
+    {
+      "id": "gx_pants_event",
+      "title": "午夜的恐慌",
+      "source": "catalog",
+      "primary": "Moon",
+      "secondary": "Magician",
+      "theme": "night",
+      "reason": "night / cinema"
+    },
+    {
+      "id": "gx_redeem_1_event",
+      "title": "剥去痛衣的小丑",
+      "source": "catalog",
+      "primary": "Megaphone Twins",
+      "secondary": "Factories2",
+      "theme": "freedom",
+      "reason": "关联国策美术；freedom / industry"
+    },
+    {
+      "id": "gx_redeem_2_event",
+      "title": "银幕前的告别",
+      "source": "catalog",
+      "primary": "HandPalmDown",
+      "secondary": "Magician",
+      "theme": "freedom",
+      "reason": "关联国策美术；freedom / cinema"
+    },
+    {
+      "id": "gx_redeem_3_event",
+      "title": "小丑的最后一次冲锋",
+      "source": "catalog",
+      "primary": "Bear",
+      "secondary": "Hands Shaking",
+      "theme": "freedom",
+      "reason": "关联国策美术；freedom / negotiation"
+    },
+    {
+      "id": "gx_redeem_ending_event",
+      "title": "漫长的赎罪",
+      "source": "catalog",
+      "generated": "school-infirmary",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "freedom"
+    },
+    {
+      "id": "gx_redeem_settlement_2d_event",
+      "title": "2022年9月1日",
+      "source": "catalog",
+      "primary": "Bird Freed",
+      "secondary": "Magician",
+      "theme": "freedom",
+      "reason": "freedom / cinema"
+    },
+    {
+      "id": "gx_ruin_1_event",
+      "title": "搁浅的复仇",
+      "source": "catalog",
+      "primary": "Arrow4",
+      "secondary": "Megaphone",
+      "theme": "surveillance",
+      "reason": "关联国策美术；surveillance / media"
+    },
+    {
+      "id": "gx_ruin_2_event",
+      "title": "永不停播的天国",
+      "source": "catalog",
+      "primary": "Bell",
+      "secondary": "Book Open",
+      "theme": "paper",
+      "reason": "关联国策美术；paper / book"
+    },
+    {
+      "id": "gx_ruin_3_event",
+      "title": "废墟的奠基",
+      "source": "catalog",
+      "primary": "Paper Sign",
+      "secondary": "Woman Dancing",
+      "theme": "security",
+      "reason": "关联国策美术；security / music"
+    },
+    {
+      "id": "gx_ruin_ending_event",
+      "title": "永恒的赛博废墟",
+      "source": "catalog",
+      "scene": "校园涂鸦1",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "computer"
+    },
+    {
+      "id": "gx_ruin_settlement_2d_event",
+      "title": "落幕前的静场",
+      "source": "catalog",
+      "primary": "Clock",
+      "secondary": "Computer",
+      "theme": "time",
+      "reason": "time / computer"
+    },
+    {
+      "id": "gx_sanity_first_above_70_event",
+      "title": "Galgame里的红色乱码",
+      "source": "catalog",
+      "primary": "Karl Marx",
+      "secondary": "Clock",
+      "theme": "philosophy",
+      "reason": "philosophy / time"
+    },
+    {
+      "id": "gx_sanity_first_above_80_event",
+      "title": "裂隙的微光",
+      "source": "catalog",
+      "primary": "Karl Marx",
+      "secondary": "Paper",
+      "theme": "philosophy",
+      "reason": "philosophy / paper"
+    },
+    {
+      "id": "gx_sanity_first_above_90_event",
+      "title": "无法读档的罪与罚",
+      "source": "catalog",
+      "primary": "Karl Marx",
+      "secondary": "Brush",
+      "theme": "philosophy",
+      "reason": "philosophy / art"
+    },
+    {
+      "id": "gx_sanity_first_below_10_event",
+      "title": "次元升天",
+      "source": "catalog",
+      "primary": "Karl Marx",
+      "secondary": "Rebellion",
+      "theme": "philosophy",
+      "reason": "philosophy / revolution"
+    },
+    {
+      "id": "gx_sanity_first_below_20_event",
+      "title": "赛博精神病",
+      "source": "catalog",
+      "primary": "Computer",
+      "secondary": "Vial",
+      "theme": "computer",
+      "reason": "computer / health"
+    },
+    {
+      "id": "gx_sanity_first_below_30_event",
+      "title": "白板上的攻略树",
+      "source": "catalog",
+      "primary": "Computer",
+      "secondary": "Karl Marx",
+      "theme": "computer",
+      "reason": "computer / philosophy"
+    },
+    {
+      "id": "gx_sanity_first_below_40_event",
+      "title": "像素化的现实",
+      "source": "catalog",
+      "primary": "Computer",
+      "secondary": "Brain",
+      "theme": "computer",
+      "reason": "computer / philosophy"
+    },
+    {
+      "id": "gx_start_event",
+      "title": "大统领的就职演说",
+      "source": "catalog",
+      "news": "entertainmentInauguration",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "media"
+    },
+    {
+      "id": "gx_wushuo_evidence_submit_story_event",
+      "title": "吴蒴提交录证",
+      "source": "catalog",
+      "primary": "Megaphone",
+      "secondary": "Clock",
+      "theme": "media",
+      "reason": "media / time"
+    },
+    {
+      "id": "haobang_assembly_charter_event",
+      "title": "浪漫主义的归途",
+      "source": "catalog",
+      "primary": "Hand Raised",
+      "secondary": "Factories2",
+      "theme": "meeting",
+      "reason": "关联国策美术；meeting / industry"
+    },
+    {
+      "id": "haobang_assembly_recall_event",
+      "title": "解构的终结",
+      "source": "catalog",
+      "primary": "Briefcase2",
+      "secondary": "Computer",
+      "theme": "meeting",
+      "reason": "关联国策美术；meeting / computer"
+    },
+    {
+      "id": "haobang_assembly_upgrade_event",
+      "title": "学生大会升级案",
+      "source": "catalog",
+      "primary": "Walkie Talkie",
+      "secondary": "Officer",
+      "theme": "meeting",
+      "reason": "关联国策美术；meeting / security"
+    },
+    {
+      "id": "haobang_blank_event_1",
+      "title": "解构主义的穷途末路",
+      "source": "catalog",
+      "primary": "Torch Gold",
+      "secondary": "Megaphone",
+      "theme": "revolution",
+      "reason": "关联国策美术；revolution / media"
+    },
+    {
+      "id": "haobang_blank_event_2",
+      "title": "怀仁堂的困兽",
+      "source": "catalog",
+      "primary": "Torch Gold",
+      "secondary": "Hands Shaking",
+      "theme": "meeting",
+      "reason": "关联国策美术；meeting / negotiation"
+    },
+    {
+      "id": "haobang_blank_event_3",
+      "title": "舵手的黄昏",
+      "source": "catalog",
+      "primary": "Torch Gold",
+      "secondary": "Hands Shaking2",
+      "theme": "night",
+      "reason": "关联国策美术；night / negotiation"
+    },
+    {
+      "id": "haobang_commune_federation_event",
+      "title": "公社联合章程生效",
+      "source": "catalog",
+      "primary": "Megaphone Twins",
+      "secondary": "Parliament",
+      "theme": "negotiation",
+      "reason": "关联国策美术；negotiation / meeting"
+    },
+    {
+      "id": "haobang_commune_pilot_event",
+      "title": "公社试点启动",
+      "source": "catalog",
+      "scene": "公社的长桌",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "negotiation"
+    },
+    {
+      "id": "haobang_commune_program_event",
+      "title": "《学生公社建设总纲》",
+      "source": "catalog",
+      "primary": "Factories2",
+      "secondary": "Hands Shaking",
+      "theme": "meeting",
+      "reason": "关联国策美术；meeting / negotiation"
+    },
+    {
+      "id": "haobang_ending_event_1",
+      "title": "议会、政治局与不再被异化的人",
+      "source": "catalog",
+      "primary": "Dice",
+      "secondary": "Karl Marx",
+      "theme": "meeting",
+      "reason": "关联国策美术；meeting / philosophy"
+    },
+    {
+      "id": "haobang_ending_event_2",
+      "title": "铁壁与温情",
+      "source": "catalog",
+      "primary": "Dice",
+      "secondary": "Parliament",
+      "theme": "freedom",
+      "reason": "关联国策美术；freedom / meeting"
+    },
+    {
+      "id": "haobang_ending_event_3",
+      "title": "补完与告别",
+      "source": "catalog",
+      "primary": "Dice",
+      "secondary": "Megaphone",
+      "theme": "freedom",
+      "reason": "关联国策美术；freedom / media"
+    },
+    {
+      "id": "haobang_gouxiong_3d_event",
+      "title": "诸侯与中央的契约",
+      "source": "catalog",
+      "primary": "Hands Shaking",
+      "secondary": "Book Open",
+      "theme": "negotiation",
+      "reason": "negotiation / book"
+    },
+    {
+      "id": "haobang_gouxiong_6d_event",
+      "title": "实在界的定海神针",
+      "source": "catalog",
+      "primary": "Officer",
+      "secondary": "Vial",
+      "theme": "security",
+      "reason": "security / health"
+    },
+    {
+      "id": "haobang_gouxiong_9d_event",
+      "title": "以毒攻毒的危险契约",
+      "source": "catalog",
+      "primary": "Hands Shaking",
+      "secondary": "Handcuffs",
+      "theme": "negotiation",
+      "reason": "negotiation / repression"
+    },
+    {
+      "id": "haobang_legacy_defense_event",
+      "title": "遗产保卫路线写入",
+      "source": "catalog",
+      "primary": "Documents",
+      "secondary": "Parliament",
+      "theme": "security",
+      "reason": "关联国策美术；security / meeting"
+    },
+    {
+      "id": "haobang_legacy_guard_event",
+      "title": "遗产共护声明",
+      "source": "catalog",
+      "primary": "Cracks Overlay",
+      "secondary": "Officer",
+      "theme": "negotiation",
+      "reason": "关联国策美术；negotiation / security"
+    },
+    {
+      "id": "haobang_legacy_joint_event",
+      "title": "联合委员会召开",
+      "source": "catalog",
+      "primary": "Megaphone3",
+      "secondary": "Hands Shaking",
+      "theme": "meeting",
+      "reason": "关联国策美术；meeting / negotiation"
+    },
+    {
+      "id": "haobang_merge_bear_done",
+      "title": "并席完成：狗熊并红蛤",
+      "source": "src/App.tsx",
+      "primary": "Hands Shaking",
+      "secondary": "Rebellion",
+      "theme": "negotiation",
+      "reason": "negotiation / revolution"
+    },
+    {
+      "id": "haobang_merge_pan_done",
+      "title": "并席完成：潘并红蛤",
+      "source": "src/App.tsx",
+      "primary": "Hands Shaking",
+      "secondary": "Fist",
+      "theme": "negotiation",
+      "reason": "negotiation / revolution"
+    },
+    {
+      "id": "haobang_negotiation_result_fail",
+      "title": "谈判破裂",
+      "source": "src/App.tsx",
+      "primary": "Hands Shaking",
+      "secondary": "Denied",
+      "theme": "negotiation",
+      "reason": "negotiation / failure"
+    },
+    {
+      "id": "haobang_start_4d_event",
+      "title": "另立中央的狂想",
+      "source": "catalog",
+      "portrait": "leader_hao_bang",
+      "secondary": "Crown Broken",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "meeting"
+    },
+    {
+      "id": "haobang_start_8d_event",
+      "title": "悬崖边缘的博弈",
+      "source": "catalog",
+      "primary": "Parliament",
+      "secondary": "Hands Shaking2",
+      "theme": "meeting",
+      "reason": "meeting / negotiation"
+    },
+    {
+      "id": "hire_you_guanglei_event",
+      "title": "副手的回归",
+      "source": "catalog",
+      "portrait": "advisor_you_guanglei",
+      "secondary": "Hands Shaking",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "freedom"
+    },
+    {
+      "id": "hire_zhou_chen_event",
+      "title": "陈栋时代遗老出山",
+      "source": "catalog",
+      "portrait": "advisor_zhou_chen",
+      "secondary": "Book Open",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "meeting"
+    },
+    {
+      "id": "jidi_ai_grading_event",
+      "title": "零与一的阅卷标准",
+      "source": "catalog",
+      "primary": "Bills",
+      "secondary": "Ballot2",
+      "theme": "paper",
+      "reason": "关联国策美术；paper / meeting"
+    },
+    {
+      "id": "jidi_ai_tutors_event",
+      "title": "冰冷的硅基教鞭",
+      "source": "catalog",
+      "primary": "Coins",
+      "secondary": "Bills",
+      "theme": "computer",
+      "reason": "关联国策美术；computer / money"
+    },
+    {
+      "id": "jidi_bureau_target_failure",
+      "title": "营收指标未达成",
+      "source": "src/App.tsx",
+      "primary": "Denied",
+      "secondary": "Bills",
+      "theme": "failure",
+      "reason": "failure / money"
+    },
+    {
+      "id": "jidi_bureau_target_success",
+      "title": "营收指标达成",
+      "source": "src/App.tsx",
+      "primary": "Bills",
+      "secondary": "Pedestal",
+      "theme": "money",
+      "reason": "money / awards"
+    },
+    {
+      "id": "jidi_corporate_utopia_event",
+      "title": "企业乌托邦",
+      "source": "catalog",
+      "scene": "企业学校的黄昏",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "money"
+    },
+    {
+      "id": "jidi_data_mining_event",
+      "title": "硅基全知之眼",
+      "source": "catalog",
+      "primary": "Cash Flow Positive2",
+      "secondary": "Paper",
+      "theme": "computer",
+      "reason": "关联国策美术；computer / paper"
+    },
+    {
+      "id": "jidi_ending_1_event",
+      "title": "紫云路的雷霆",
+      "source": "catalog",
+      "primary": "Paper",
+      "secondary": "Parliament",
+      "theme": "paper",
+      "reason": "paper / meeting"
+    },
+    {
+      "id": "jidi_ending_2_event",
+      "title": "零分试卷",
+      "source": "catalog",
+      "primary": "Paper",
+      "secondary": "Hands Shaking",
+      "theme": "paper",
+      "reason": "paper / negotiation"
+    },
+    {
+      "id": "jidi_ending_3_event",
+      "title": "审判日",
+      "source": "catalog",
+      "primary": "Handcuffs",
+      "secondary": "Ballot",
+      "theme": "repression",
+      "reason": "repression / meeting"
+    },
+    {
+      "id": "jidi_ending_4_event",
+      "title": "完美的乌托邦",
+      "source": "catalog",
+      "primary": "Clock",
+      "secondary": "Officer",
+      "theme": "time",
+      "reason": "time / security"
+    },
+    {
+      "id": "jidi_establish_committee_event",
+      "title": "及第之梦-下",
+      "source": "catalog",
+      "primary": "Hands Shaking",
+      "secondary": "Ballot",
+      "theme": "money",
+      "reason": "关联国策美术；money / meeting"
+    },
+    {
+      "id": "jidi_expand_market_event",
+      "title": "资本的下沉触角",
+      "source": "catalog",
+      "primary": "Coins6",
+      "secondary": "Bills",
+      "theme": "paper",
+      "reason": "关联国策美术；paper / money"
+    },
+    {
+      "id": "jidi_feng_anbao_event",
+      "title": "封安宝的回归",
+      "source": "catalog",
+      "portrait": "leader_feng_anbao",
+      "secondary": "Shield",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "freedom"
+    },
+    {
+      "id": "jidi_fujitsu_model_event",
+      "title": "狼性法则：新东方模式",
+      "source": "catalog",
+      "primary": "Coins4",
+      "secondary": "Hand Writing",
+      "theme": "paper",
+      "reason": "关联国策美术；paper / teacher"
+    },
+    {
+      "id": "jidi_hidden_riot_event",
+      "title": "合一暴乱",
+      "source": "catalog",
+      "scene": "价格牌下的风暴",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "revolution"
+    },
+    {
+      "id": "jidi_hitachi_model_event",
+      "title": "独裁者的董事会",
+      "source": "catalog",
+      "primary": "Coins2",
+      "secondary": "Clock",
+      "theme": "power",
+      "reason": "关联国策美术；power / time"
+    },
+    {
+      "id": "jidi_late_game_mock_exam",
+      "title": "合肥市二模：财报与成绩",
+      "source": "src/App.tsx",
+      "primary": "Pedestal",
+      "secondary": "Bills",
+      "theme": "awards",
+      "reason": "awards / money"
+    },
+    {
+      "id": "jidi_late_mock_exam",
+      "title": "合肥市二模",
+      "source": "src/App.tsx",
+      "primary": "Bills",
+      "secondary": "Factories2",
+      "theme": "money",
+      "reason": "money / industry"
+    },
+    {
+      "id": "jidi_mock_exam_approach_event",
+      "title": "二模的阴云：财报季的考验",
+      "source": "catalog",
+      "primary": "Bills",
+      "secondary": "Clock",
+      "theme": "money",
+      "reason": "money / time"
+    },
+    {
+      "id": "jidi_mock_exam_fail",
+      "title": "二模惨败：泡沫破裂",
+      "source": "catalog",
+      "primary": "Denied",
+      "secondary": "Coins",
+      "theme": "failure",
+      "reason": "failure / money"
+    },
+    {
+      "id": "jidi_mock_exam_mediocre",
+      "title": "二模成绩平平：资本的焦虑",
+      "source": "catalog",
+      "primary": "Pedestal",
+      "secondary": "Parliament",
+      "theme": "awards",
+      "reason": "awards / meeting"
+    },
+    {
+      "id": "jidi_mock_exam_success",
+      "title": "二模大捷：财报飘红",
+      "source": "catalog",
+      "primary": "Pedestal",
+      "secondary": "Coins",
+      "theme": "awards",
+      "reason": "awards / money"
+    },
+    {
+      "id": "jidi_monopoly_event",
+      "title": "利维坦的诞生",
+      "source": "catalog",
+      "primary": "Coins3",
+      "secondary": "Hand Writing",
+      "theme": "computer",
+      "reason": "关联国策美术；computer / teacher"
+    },
+    {
+      "id": "jidi_new_era_event",
+      "title": "及第之梦-上",
+      "source": "catalog",
+      "scene": "及第之梦",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "money"
+    },
+    {
+      "id": "jidi_performance_metrics_event",
+      "title": "KPI考核制度落地",
+      "source": "catalog",
+      "primary": "Bank Broken",
+      "secondary": "Parliament",
+      "theme": "paper",
+      "reason": "关联国策美术；paper / meeting"
+    },
+    {
+      "id": "jidi_profit_event",
+      "title": "教育产业化的狂欢",
+      "source": "catalog",
+      "news": "commercialCampus",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "money"
+    },
+    {
+      "id": "jidi_psychological_counseling_event",
+      "title": "虚伪的安慰剂",
+      "source": "catalog",
+      "primary": "Capitol",
+      "secondary": "Handcuffs",
+      "theme": "security",
+      "reason": "关联国策美术；security / repression"
+    },
+    {
+      "id": "jidi_riot_event_10d",
+      "title": "跨越红线的代价",
+      "source": "catalog",
+      "primary": "Rebellion",
+      "secondary": "Officer",
+      "theme": "revolution",
+      "reason": "revolution / security"
+    },
+    {
+      "id": "jidi_riot_event_15d",
+      "title": "谁来了？",
+      "source": "catalog",
+      "primary": "Rebellion",
+      "secondary": "Soldier Pointing",
+      "theme": "revolution",
+      "reason": "revolution / security"
+    },
+    {
+      "id": "jidi_riot_event_5d",
+      "title": "围墙外的决堤",
+      "source": "catalog",
+      "primary": "Rebellion",
+      "secondary": "Clock",
+      "theme": "revolution",
+      "reason": "revolution / time"
+    },
+    {
+      "id": "jidi_riot_feng_death_event",
+      "title": "我以做题家的心境…",
+      "source": "catalog",
+      "primary": "Rebellion",
+      "secondary": "Building",
+      "theme": "revolution",
+      "reason": "revolution / campus"
+    },
+    {
+      "id": "jidi_riot_lockdown_1",
+      "title": "算法无法计算的怒火",
+      "source": "catalog",
+      "primary": "Rebellion",
+      "secondary": "Computer",
+      "theme": "revolution",
+      "reason": "revolution / computer"
+    },
+    {
+      "id": "jidi_riot_lockdown_2",
+      "title": "砸烂那台印钞机",
+      "source": "catalog",
+      "primary": "Factories2",
+      "secondary": "Rebellion",
+      "theme": "industry",
+      "reason": "industry / revolution"
+    },
+    {
+      "id": "jidi_riot_lockdown_3",
+      "title": "董事会的最后决议",
+      "source": "catalog",
+      "primary": "Rebellion",
+      "secondary": "Parliament",
+      "theme": "revolution",
+      "reason": "revolution / meeting"
+    },
+    {
+      "id": "jidi_rnd_department_event",
+      "title": "教辅研发部组建",
+      "source": "catalog",
+      "scene": "密卷流水线",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "industry"
+    },
+    {
+      "id": "jidi_rnd_dumping_phase",
+      "title": "密卷研发：进入倾销与财报阶段",
+      "source": "src/App.tsx",
+      "primary": "Paper",
+      "secondary": "Bills",
+      "theme": "paper",
+      "reason": "paper / money"
+    },
+    {
+      "id": "jidi_rnd_fail",
+      "title": "《考前绝密押题卷》滞销",
+      "source": "catalog",
+      "primary": "Denied",
+      "secondary": "Parliament",
+      "theme": "failure",
+      "reason": "failure / meeting"
+    },
+    {
+      "id": "jidi_rnd_product_1",
+      "title": "一份在及第销售团队内部流传的销讲培训录音文字稿",
+      "source": "catalog",
+      "primary": "Megaphone",
+      "secondary": "Paper",
+      "theme": "media",
+      "reason": "media / paper"
+    },
+    {
+      "id": "jidi_rnd_product_2",
+      "title": "《及第青云·大数据题库-最终用户许可协议》",
+      "source": "catalog",
+      "primary": "Computer",
+      "secondary": "Paper",
+      "theme": "computer",
+      "reason": "computer / paper"
+    },
+    {
+      "id": "jidi_rnd_product_3",
+      "title": "《“考神赋体”24小时极限冲刺套装使用说明书》",
+      "source": "catalog",
+      "primary": "Paper",
+      "secondary": "Clock",
+      "theme": "paper",
+      "reason": "paper / time"
+    },
+    {
+      "id": "jidi_rnd_success",
+      "title": "《考前绝密押题卷》大卖",
+      "source": "catalog",
+      "primary": "Pedestal",
+      "secondary": "Paper",
+      "theme": "awards",
+      "reason": "awards / paper"
+    },
+    {
+      "id": "jidi_rnd_testing_phase",
+      "title": "密卷研发：进入极限测试阶段",
+      "source": "src/App.tsx",
+      "primary": "Paper",
+      "secondary": "Karl Marx",
+      "theme": "paper",
+      "reason": "paper / philosophy"
+    },
+    {
+      "id": "jidi_sell_gdp_for_pp",
+      "title": "政治献金",
+      "source": "catalog",
+      "primary": "Bills",
+      "secondary": "Building",
+      "theme": "money",
+      "reason": "money / campus"
+    },
+    {
+      "id": "jidi_sell_gdp_for_stab",
+      "title": "维稳资金注入",
+      "source": "catalog",
+      "primary": "Bills",
+      "secondary": "House",
+      "theme": "money",
+      "reason": "money / campus"
+    },
+    {
+      "id": "jidi_sony_model_event",
+      "title": "旧时代的余晖",
+      "source": "catalog",
+      "primary": "Cash3",
+      "secondary": "Hands Shaking",
+      "theme": "meeting",
+      "reason": "关联国策美术；meeting / negotiation"
+    },
+    {
+      "id": "jidi_story_committee_5d",
+      "title": "无限螺旋-1",
+      "source": "catalog",
+      "portrait": "advisor_wang_juanhao_vanguard",
+      "secondary": "Paper",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "paper"
+    },
+    {
+      "id": "jidi_story_kpi_25d",
+      "title": "无限螺旋-3",
+      "source": "catalog",
+      "portrait": "advisor_wang_juanhao_vanguard",
+      "secondary": "Clock2",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "paper"
+    },
+    {
+      "id": "jidi_story_kpi_35d",
+      "title": "无限螺旋-4",
+      "source": "catalog",
+      "portrait": "advisor_wang_juanhao_vanguard",
+      "secondary": "Paper Torn",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "paper"
+    },
+    {
+      "id": "jidi_story_kpi_5d",
+      "title": "无限螺旋-2",
+      "source": "catalog",
+      "portrait": "advisor_wang_juanhao_vanguard",
+      "secondary": "Pedestal",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "meeting"
+    },
+    {
+      "id": "jidi_story_monopoly_15d",
+      "title": "无限螺旋-6",
+      "source": "catalog",
+      "portrait": "advisor_wang_juanhao_vanguard",
+      "secondary": "Brain",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "paper"
+    },
+    {
+      "id": "jidi_story_monopoly_25d",
+      "title": "无限螺旋-7",
+      "source": "catalog",
+      "portrait": "advisor_wang_juanhao_vanguard",
+      "secondary": "Cloud Dark",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "paper"
+    },
+    {
+      "id": "jidi_story_monopoly_5d",
+      "title": "无限螺旋-5",
+      "source": "catalog",
+      "portrait": "advisor_wang_juanhao_vanguard",
+      "secondary": "Arrow Broken",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "negotiation"
+    },
+    {
+      "id": "jidi_story_utopia_1d",
+      "title": "无限螺旋-8",
+      "source": "catalog",
+      "primary": "Spy",
+      "secondary": "Computer",
+      "theme": "surveillance",
+      "reason": "surveillance / computer"
+    },
+    {
+      "id": "jidi_story_utopia_2d",
+      "title": "鲜血谱写的檄文",
+      "source": "catalog",
+      "primary": "Rebellion",
+      "secondary": "House",
+      "theme": "revolution",
+      "reason": "revolution / campus"
+    },
+    {
+      "id": "jidi_story_utopia_3d",
+      "title": "报表上的致命污点",
+      "source": "catalog",
+      "primary": "Hands Shaking",
+      "secondary": "Megaphone",
+      "theme": "negotiation",
+      "reason": "negotiation / media"
+    },
+    {
+      "id": "jidi_strict_discipline_event",
+      "title": "全景敞视监狱",
+      "source": "catalog",
+      "primary": "Cash2",
+      "secondary": "Factories2",
+      "theme": "time",
+      "reason": "关联国策美术；time / industry"
+    },
+    {
+      "id": "jidi_student_loans_event",
+      "title": "卖身契与录取通知书",
+      "source": "catalog",
+      "primary": "Gold",
+      "secondary": "Paper",
+      "theme": "money",
+      "reason": "关联国策美术；money / paper"
+    },
+    {
+      "id": "jidi_suppress_event",
+      "title": "铁腕镇压",
+      "source": "catalog",
+      "primary": "Handcuffs",
+      "secondary": "Ballot2",
+      "theme": "repression",
+      "reason": "repression / meeting"
+    },
+    {
+      "id": "jidi_takeover",
+      "title": "及第资本夺权",
+      "source": "src/App.tsx",
+      "primary": "Crown2",
+      "secondary": "Documents",
+      "theme": "power",
+      "reason": "power / paper"
+    },
+    {
+      "id": "jidi_takeover_success",
+      "title": "及第教育全面接管",
+      "source": "src/App.tsx",
+      "primary": "Crown2",
+      "secondary": "Pedestal",
+      "theme": "power",
+      "reason": "power / awards"
+    },
+    {
+      "id": "jidi_teacher_contracts_event",
+      "title": "砸碎生锈的铁饭碗",
+      "source": "catalog",
+      "primary": "Cash",
+      "secondary": "Parliament",
+      "theme": "teacher",
+      "reason": "关联国策美术；teacher / meeting"
+    },
+    {
+      "id": "jidi_value_extraction_event",
+      "title": "血汗工厂",
+      "source": "catalog",
+      "primary": "Vault",
+      "secondary": "Clock",
+      "theme": "industry",
+      "reason": "关联国策美术；industry / time"
+    },
+    {
+      "id": "juanhao_event_1",
+      "title": "狂飙下的宁静",
+      "source": "catalog",
+      "primary": "Hand Grab2",
+      "secondary": "Parliament",
+      "theme": "time",
+      "reason": "关联国策美术；time / meeting"
+    },
+    {
+      "id": "juanhao_event_2",
+      "title": "“打卷阀，分密卷”",
+      "source": "catalog",
+      "primary": "Paper",
+      "secondary": "Factories3",
+      "theme": "paper",
+      "reason": "paper / industry"
+    },
+    {
+      "id": "juanhao_event_3",
+      "title": "异化之茧的破裂",
+      "source": "catalog",
+      "primary": "Karl Marx",
+      "secondary": "Denied",
+      "theme": "philosophy",
+      "reason": "philosophy / failure"
+    },
+    {
+      "id": "juanhao_event_4",
+      "title": "算草纸上的红星",
+      "source": "catalog",
+      "primary": "Rebellion",
+      "secondary": "Bird Freed",
+      "theme": "revolution",
+      "reason": "revolution / freedom"
+    },
+    {
+      "id": "juanhao_event_5",
+      "title": "从做题机器到红色先锋",
+      "source": "catalog",
+      "primary": "Megaphone",
+      "secondary": "Brush",
+      "theme": "media",
+      "reason": "media / art"
+    },
+    {
+      "id": "juanhao_victory_event",
+      "title": "致做题派领袖 王卷豪的信",
+      "source": "catalog",
+      "portrait": "advisor_wang_juanhao_vanguard",
+      "secondary": "Envelope",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "power"
+    },
+    {
+      "id": "late_game_mock_exam",
+      "title": "合肥市二模危机",
+      "source": "src/App.tsx",
+      "primary": "Clock",
+      "secondary": "Pedestal",
+      "theme": "time",
+      "reason": "time / awards"
+    },
+    {
+      "id": "late_mock_exam",
+      "title": "合肥市二模",
+      "source": "src/App.tsx",
+      "primary": "Paper",
+      "secondary": "Bell",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "campus"
+    },
+    {
+      "id": "lost_scroll_1",
+      "title": "迷途之卷 1",
+      "source": "catalog",
+      "primary": "Clock",
+      "secondary": "Electricity",
+      "theme": "time",
+      "reason": "time / computer"
+    },
+    {
+      "id": "lost_scroll_2",
+      "title": "迷途之卷 2",
+      "source": "catalog",
+      "primary": "Megaphone",
+      "secondary": "Vial",
+      "theme": "media",
+      "reason": "media / health"
+    },
+    {
+      "id": "lost_scroll_3",
+      "title": "迷途之卷 3",
+      "source": "catalog",
+      "primary": "Paper",
+      "secondary": "Computer",
+      "theme": "paper",
+      "reason": "paper / computer"
+    },
+    {
+      "id": "lost_scroll_4",
+      "title": "迷途之卷 4",
+      "source": "catalog",
+      "primary": "Building",
+      "secondary": "Lantern",
+      "theme": "campus",
+      "reason": "campus / night"
+    },
+    {
+      "id": "lost_scroll_5",
+      "title": "迷途之卷 5",
+      "source": "catalog",
+      "primary": "Factories2",
+      "secondary": "Documents",
+      "theme": "industry",
+      "reason": "industry / paper"
+    },
+    {
+      "id": "lost_scroll_6",
+      "title": "迷途之卷 6",
+      "source": "catalog",
+      "primary": "Clock",
+      "secondary": "Rebellion",
+      "theme": "time",
+      "reason": "time / revolution"
+    },
+    {
+      "id": "lu_flavor_confession_box",
+      "title": "走廊尽头的检举箱",
+      "source": "catalog",
+      "primary": "Spy",
+      "secondary": "Wall",
+      "theme": "surveillance",
+      "reason": "surveillance / campus"
+    },
+    {
+      "id": "lu_flavor_loyalty_parade",
+      "title": "雨中的忠诚游行",
+      "source": "catalog",
+      "primary": "Cloud Dark",
+      "secondary": "Rebellion",
+      "theme": "weather",
+      "reason": "weather / revolution"
+    },
+    {
+      "id": "lu_flavor_pump_room",
+      "title": "水泵房的值班表",
+      "source": "catalog",
+      "primary": "Officer",
+      "secondary": "Rebellion",
+      "theme": "security",
+      "reason": "security / revolution"
+    },
+    {
+      "id": "lu_purge_admin_blank_event",
+      "title": "行政楼清洗纲要",
+      "source": "catalog",
+      "primary": "Soldiers in Rows",
+      "secondary": "Building",
+      "theme": "repression",
+      "reason": "关联国策美术；repression / campus"
+    },
+    {
+      "id": "lu_purge_auditorium_blank_event",
+      "title": "礼堂清洗纲要",
+      "source": "catalog",
+      "primary": "Soldier3",
+      "secondary": "Magician",
+      "theme": "repression",
+      "reason": "关联国策美术；repression / cinema"
+    },
+    {
+      "id": "lu_purge_b1b2_blank_event",
+      "title": "B1/B2教学楼清洗纲要",
+      "source": "catalog",
+      "primary": "Soldier",
+      "secondary": "Building",
+      "theme": "repression",
+      "reason": "关联国策美术；repression / campus"
+    },
+    {
+      "id": "lu_purge_b3_blank_event",
+      "title": "B3教学楼清洗纲要",
+      "source": "catalog",
+      "primary": "Bowl Cracked",
+      "secondary": "Building",
+      "theme": "repression",
+      "reason": "关联国策美术；repression / campus"
+    },
+    {
+      "id": "lu_purge_lab_blank_event",
+      "title": "实验楼清洗纲要",
+      "source": "catalog",
+      "primary": "Map with Knife",
+      "secondary": "Factories2",
+      "theme": "repression",
+      "reason": "关联国策美术；repression / industry"
+    },
+    {
+      "id": "lu_purge_playground_blank_event",
+      "title": "操场清洗纲要",
+      "source": "catalog",
+      "primary": "Coffin",
+      "secondary": "Building",
+      "theme": "repression",
+      "reason": "关联国策美术；repression / campus"
+    },
+    {
+      "id": "lu_second_democracy_unlocked_event",
+      "title": "黑天红字旗的再起",
+      "source": "src/App.tsx",
+      "primary": "Handcuffs",
+      "secondary": "Megaphone",
+      "theme": "repression",
+      "reason": "repression / media"
+    },
+    {
+      "id": "lu_sole_helmsman_event_1",
+      "title": "阴影里的“五七一”",
+      "source": "catalog",
+      "primary": "Paper Sign",
+      "secondary": "Megaphone",
+      "theme": "time",
+      "reason": "关联国策美术；time / media"
+    },
+    {
+      "id": "lu_sole_helmsman_event_2",
+      "title": "徽州大道的三叉戟",
+      "source": "catalog",
+      "primary": "Paper Sign",
+      "secondary": "Handcuffs",
+      "theme": "paper",
+      "reason": "关联国策美术；paper / repression"
+    },
+    {
+      "id": "lu_sole_helmsman_event_3",
+      "title": "唯一的舵手",
+      "source": "catalog",
+      "primary": "Paper Sign",
+      "secondary": "Rebellion",
+      "theme": "repression",
+      "reason": "关联国策美术；repression / revolution"
+    },
+    {
+      "id": "lu_wang_retire_blank_event_1",
+      "title": "老特剧场（一）",
+      "source": "catalog",
+      "primary": "Bird Freed",
+      "secondary": "Parliament",
+      "theme": "freedom",
+      "reason": "freedom / meeting"
+    },
+    {
+      "id": "lu_wang_retire_blank_event_2",
+      "title": "老特剧场（二）",
+      "source": "catalog",
+      "primary": "Bird Freed",
+      "secondary": "Factories2",
+      "theme": "freedom",
+      "reason": "freedom / industry"
+    },
+    {
+      "id": "lu_wang_retire_blank_event_3",
+      "title": "老特剧场（三）",
+      "source": "catalog",
+      "primary": "Bird Freed",
+      "secondary": "Ballot",
+      "theme": "freedom",
+      "reason": "freedom / meeting"
+    },
+    {
+      "id": "march_on_admin",
+      "title": "进军行政楼",
+      "source": "catalog",
+      "scene": "街垒黎明",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "campus"
+    },
+    {
+      "id": "master_lecture",
+      "title": "名师讲座",
+      "source": "src/components/YangYuleDesk.tsx",
+      "primary": "Hand Writing",
+      "secondary": "Documents",
+      "theme": "teacher",
+      "reason": "teacher / paper"
+    },
+    {
+      "id": "midnight_crisis",
+      "title": "子夜？",
+      "source": "src/App.tsx",
+      "primary": "Moon",
+      "secondary": "Paper",
+      "theme": "night",
+      "reason": "night / paper"
+    },
+    {
+      "id": "mock_exam",
+      "title": "一模考试临近",
+      "source": "src/App.tsx",
+      "primary": "Paper",
+      "secondary": "Clock",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "campus"
+    },
+    {
+      "id": "mock_exam_approach_event",
+      "title": "二模的阴云",
+      "source": "catalog",
+      "primary": "Paper",
+      "secondary": "Clock2",
+      "theme": "paper",
+      "reason": "paper / time"
+    },
+    {
+      "id": "mock_exam_fail",
+      "title": "二模惨败",
+      "source": "catalog",
+      "primary": "Denied",
+      "secondary": "Hands Shaking",
+      "theme": "failure",
+      "reason": "failure / negotiation"
+    },
+    {
+      "id": "mock_exam_fail_initial",
+      "title": "一模成绩雪崩",
+      "source": "src/App.tsx",
+      "primary": "Pedestal",
+      "secondary": "Cloud Dark",
+      "theme": "awards",
+      "reason": "awards / weather"
+    },
+    {
+      "id": "mock_exam_mediocre",
+      "title": "二模成绩平平",
+      "source": "catalog",
+      "primary": "Pedestal",
+      "secondary": "Computer",
+      "theme": "awards",
+      "reason": "awards / computer"
+    },
+    {
+      "id": "mock_exam_success",
+      "title": "二模大捷",
+      "source": "catalog",
+      "primary": "Pedestal",
+      "secondary": "Clock",
+      "theme": "awards",
+      "reason": "awards / time"
+    },
+    {
+      "id": "negotiate_bear",
+      "title": "与钢铁红蛤狗熊派交涉",
+      "source": "catalog",
+      "portrait": "leader_gouxiong",
+      "secondary": "Hands Shaking2",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "negotiation"
+    },
+    {
+      "id": "negotiate_conservativeDem",
+      "title": "与保守民主派交涉",
+      "source": "catalog",
+      "primary": "Hands Shaking",
+      "secondary": "Ballot2",
+      "theme": "negotiation",
+      "reason": "negotiation / meeting"
+    },
+    {
+      "id": "negotiate_jidiTutoring",
+      "title": "与及第补习派交涉",
+      "source": "catalog",
+      "portrait": "advisor_jidi_ceo",
+      "secondary": "Cash Fan",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "negotiation"
+    },
+    {
+      "id": "negotiate_orthodox",
+      "title": "与钢铁红蛤正统派交涉",
+      "source": "catalog",
+      "portrait": "leader_wang_zhaokai",
+      "secondary": "Hands Shaking",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "negotiation"
+    },
+    {
+      "id": "negotiate_otherDem",
+      "title": "与非建制民主派交涉",
+      "source": "catalog",
+      "primary": "Hands Shaking",
+      "secondary": "Constitution",
+      "theme": "negotiation",
+      "reason": "negotiation / meeting"
+    },
+    {
+      "id": "negotiate_pan",
+      "title": "与潘仁越民主派交涉",
+      "source": "catalog",
+      "portrait": "leader_pan_renyue",
+      "secondary": "Hands Shaking3",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "negotiation"
+    },
+    {
+      "id": "negotiate_testTaker",
+      "title": "与做题派交涉",
+      "source": "catalog",
+      "portrait": "advisor_wang_juanhao_vanguard",
+      "secondary": "Hands Shaking4",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "negotiation"
+    },
+    {
+      "id": "newOriental_rnd_fail",
+      "title": "《新高考五三魔改版》滞销",
+      "source": "catalog",
+      "primary": "Denied",
+      "secondary": "Ballot",
+      "theme": "failure",
+      "reason": "failure / meeting"
+    },
+    {
+      "id": "newOriental_rnd_product_1",
+      "title": "《新高考五三魔改版》序言-by李竞凯",
+      "source": "catalog",
+      "primary": "Paper",
+      "secondary": "Moon",
+      "theme": "paper",
+      "reason": "paper / night"
+    },
+    {
+      "id": "newOriental_rnd_product_2",
+      "title": "新东方强基班开营仪式致辞",
+      "source": "catalog",
+      "primary": "Paper",
+      "secondary": "Book Open",
+      "theme": "paper",
+      "reason": "paper / book"
+    },
+    {
+      "id": "newOriental_rnd_product_3",
+      "title": "一份发给每一位高三班主任的管理操作守则",
+      "source": "catalog",
+      "primary": "Paper Torn",
+      "secondary": "Clock",
+      "theme": "paper",
+      "reason": "paper / time"
+    },
+    {
+      "id": "newOriental_rnd_success",
+      "title": "《新高考五三魔改版》大卖",
+      "source": "catalog",
+      "primary": "Pedestal",
+      "secondary": "Ballot",
+      "theme": "awards",
+      "reason": "awards / meeting"
+    },
+    {
+      "id": "olive_branch",
+      "title": "分化瓦解",
+      "source": "catalog",
+      "primary": "Parliament",
+      "secondary": "Hands Shaking3",
+      "theme": "meeting",
+      "reason": "meeting / negotiation"
+    },
+    {
+      "id": "oppose_bill_event",
+      "title": "表态：反对议案",
+      "source": "catalog",
+      "primary": "Ballot",
+      "secondary": "Documents",
+      "theme": "meeting",
+      "reason": "meeting / paper"
+    },
+    {
+      "id": "opposition_propaganda",
+      "title": "反对派宣传",
+      "source": "src/App.tsx",
+      "primary": "Megaphone",
+      "secondary": "Parliament",
+      "theme": "media",
+      "reason": "media / meeting"
+    },
+    {
+      "id": "opposition_slander_event",
+      "title": "反对派污蔑！",
+      "source": "src/engine/assemblyConflict.ts",
+      "primary": "Parliament",
+      "secondary": "Building",
+      "theme": "meeting",
+      "reason": "meeting / campus"
+    },
+    {
+      "id": "orthodox_dominance_event",
+      "title": "确立正统派主导",
+      "source": "catalog",
+      "portrait": "leader_wang_zhaokai",
+      "secondary": "Crown3",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "power"
+    },
+    {
+      "id": "pacify_teachers",
+      "title": "安抚教师情绪",
+      "source": "src/components/YangYuleDesk.tsx",
+      "primary": "Hand Writing",
+      "secondary": "Paper",
+      "theme": "teacher",
+      "reason": "teacher / paper"
+    },
+    {
+      "id": "pan_democratic_victory_event",
+      "title": "漫长凛冬的终结",
+      "source": "catalog",
+      "scene": "春回滨湖",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "awards"
+    },
+    {
+      "id": "pan_takeover_event",
+      "title": "温和派的全面接管",
+      "source": "catalog",
+      "portrait": "leader_pan_renyue",
+      "secondary": "Crown2",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "power"
+    },
+    {
+      "id": "pan_victory_event",
+      "title": "两代人的黎明",
+      "source": "catalog",
+      "portrait": "leader_pan_renyue",
+      "secondary": "Ballot",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "awards"
+    },
+    {
+      "id": "phase1_ban_books",
+      "title": "禁书与禁思",
+      "source": "catalog",
+      "primary": "Book",
+      "secondary": "Officer",
+      "theme": "book",
+      "reason": "关联国策美术；book / security"
+    },
+    {
+      "id": "phase1_before_charge",
+      "title": "临界点",
+      "source": "catalog",
+      "primary": "Fist Colored",
+      "secondary": "Rebellion",
+      "theme": "security",
+      "reason": "关联国策美术；security / revolution"
+    },
+    {
+      "id": "phase1_build_art",
+      "title": "水泥里的交易",
+      "source": "catalog",
+      "primary": "Cog",
+      "secondary": "Brush",
+      "theme": "industry",
+      "reason": "关联国策美术；industry / art"
+    },
+    {
+      "id": "phase1_contact_pan",
+      "title": "实验班的另一种声音",
+      "source": "catalog",
+      "portrait": "leader_pan_renyue",
+      "secondary": "Paper Sign",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "media"
+    },
+    {
+      "id": "phase1_day14_updated",
+      "title": "自治会负责人的抉择",
+      "source": "catalog",
+      "primary": "Officer",
+      "secondary": "Spy2",
+      "theme": "security",
+      "reason": "security / surveillance"
+    },
+    {
+      "id": "phase1_dorm_talks",
+      "title": "熄灯后的频率",
+      "source": "catalog",
+      "generated": "dorm-whispers",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "night"
+    },
+    {
+      "id": "phase1_echo_clubs",
+      "title": "社团联络的后续",
+      "source": "catalog",
+      "primary": "Parliament",
+      "secondary": "Fist",
+      "theme": "meeting",
+      "reason": "meeting / revolution"
+    },
+    {
+      "id": "phase1_echo_handover",
+      "title": "B3联络的后续",
+      "source": "catalog",
+      "primary": "Rebellion",
+      "secondary": "Wall",
+      "theme": "revolution",
+      "reason": "revolution / campus"
+    },
+    {
+      "id": "phase1_fake_five_edu",
+      "title": "检查团的闹剧",
+      "source": "catalog",
+      "primary": "Documents",
+      "secondary": "Computer",
+      "theme": "media",
+      "reason": "关联国策美术；media / computer"
+    },
+    {
+      "id": "phase1_hengshui_schedule",
+      "title": "挤掉的午休",
+      "source": "catalog",
+      "primary": "Paper",
+      "secondary": "Denied",
+      "theme": "time",
+      "reason": "关联国策美术；time / failure"
+    },
+    {
+      "id": "phase1_protest_privilege",
+      "title": "走廊里的正面对峙",
+      "source": "catalog",
+      "primary": "Star Red2",
+      "secondary": "Clock",
+      "theme": "campus",
+      "reason": "关联国策美术；campus / time"
+    },
+    {
+      "id": "phase1_recess_dispute",
+      "title": "课间也要计时",
+      "source": "catalog",
+      "scene": "课间的争执",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "time"
+    },
+    {
+      "id": "phase1_returned_petition",
+      "title": "退回的联名信",
+      "source": "catalog",
+      "scene": "退回的联名信",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "letter"
+    },
+    {
+      "id": "phase1_shared_leaflet",
+      "title": "第二份传单",
+      "source": "catalog",
+      "primary": "Megaphone",
+      "secondary": "Envelope",
+      "theme": "media",
+      "reason": "media / letter"
+    },
+    {
+      "id": "phase1_start_2023",
+      "title": "滨湖的齿轮开始转动",
+      "source": "catalog",
+      "portrait": "leader_feng_anbao",
+      "secondary": "Bell",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "media"
+    },
+    {
+      "id": "phase1_wu_patrol",
+      "title": "走廊尽头的脚步声",
+      "source": "catalog",
+      "portrait": "advisor_wu_fujun",
+      "secondary": "Spy",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "campus"
+    },
+    {
+      "id": "reclaim_democracy_event",
+      "title": "重拾民主",
+      "source": "catalog",
+      "primary": "Wall",
+      "secondary": "Hands Shaking",
+      "theme": "meeting",
+      "reason": "关联国策美术；meeting / negotiation"
+    },
+    {
+      "id": "red_toad_1",
+      "title": "只有天知道的革命",
+      "source": "catalog",
+      "primary": "Rebellion",
+      "secondary": "Paper",
+      "theme": "revolution",
+      "reason": "revolution / paper"
+    },
+    {
+      "id": "red_toad_2",
+      "title": "政治局的基石与大帐篷",
+      "source": "catalog",
+      "primary": "Hands Shaking",
+      "secondary": "Fist Colored",
+      "theme": "negotiation",
+      "reason": "negotiation / revolution"
+    },
+    {
+      "id": "red_toad_3",
+      "title": "沉默的齿轮与火炬",
+      "source": "catalog",
+      "primary": "Book Open",
+      "secondary": "Parliament",
+      "theme": "book",
+      "reason": "book / meeting"
+    },
+    {
+      "id": "red_toad_4",
+      "title": "齐泽克、幻象与哲人王",
+      "source": "catalog",
+      "primary": "Karl Marx",
+      "secondary": "Bear3",
+      "theme": "philosophy",
+      "reason": "philosophy / cinema"
+    },
+    {
+      "id": "red_toad_5",
+      "title": "达摩克利斯之剑",
+      "source": "catalog",
+      "primary": "Parliament",
+      "secondary": "Hands Shaking4",
+      "theme": "meeting",
+      "reason": "meeting / negotiation"
+    },
+    {
+      "id": "reform_blank_event_1",
+      "title": "课间-1  （吕波汉视角）",
+      "source": "catalog",
+      "portrait": "leader_lu_bohan",
+      "secondary": "Clock",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "time"
+    },
+    {
+      "id": "reform_blank_event_2",
+      "title": "课间-2  （豪邦视角）",
+      "source": "catalog",
+      "portrait": "leader_hao_bang",
+      "secondary": "Clock",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "time"
+    },
+    {
+      "id": "reform_blank_event_3",
+      "title": "课间-3  （王照凯视角）",
+      "source": "catalog",
+      "portrait": "leader_wang_zhaokai",
+      "secondary": "Clock",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "time"
+    },
+    {
+      "id": "reform_capital_crisis",
+      "title": "资本反扑",
+      "source": "src/App.tsx",
+      "primary": "Rebellion",
+      "secondary": "Bills",
+      "theme": "revolution",
+      "reason": "revolution / money"
+    },
+    {
+      "id": "reform_capital_fail",
+      "title": "资本的胜利",
+      "source": "src/App.tsx",
+      "primary": "Pedestal",
+      "secondary": "Cash Fan",
+      "theme": "awards",
+      "reason": "awards / money"
+    },
+    {
+      "id": "reform_complete_placeholder",
+      "title": "跨越联考的废墟",
+      "source": "catalog",
+      "primary": "Paper",
+      "secondary": "Hands Shaking2",
+      "theme": "paper",
+      "reason": "paper / negotiation"
+    },
+    {
+      "id": "reform_countdown_120",
+      "title": "大帐篷下的裂隙",
+      "source": "catalog",
+      "primary": "Clock",
+      "secondary": "Fist",
+      "theme": "time",
+      "reason": "time / revolution"
+    },
+    {
+      "id": "reform_countdown_30",
+      "title": "政治局内的图穷匕见",
+      "source": "catalog",
+      "primary": "Clock",
+      "secondary": "Parliament",
+      "theme": "time",
+      "reason": "time / meeting"
+    },
+    {
+      "id": "reform_countdown_60",
+      "title": "防毒面具与二次元审判",
+      "source": "catalog",
+      "primary": "Magician",
+      "secondary": "Handcuffs",
+      "theme": "cinema",
+      "reason": "cinema / repression"
+    },
+    {
+      "id": "reform_countdown_90",
+      "title": "白日的互助与午夜的幽灵",
+      "source": "catalog",
+      "primary": "Moon",
+      "secondary": "Clock",
+      "theme": "night",
+      "reason": "night / time"
+    },
+    {
+      "id": "reform_fail_event",
+      "title": "长夜的最后通牒",
+      "source": "src/App.tsx",
+      "primary": "Denied",
+      "secondary": "Paper",
+      "theme": "failure",
+      "reason": "failure / paper"
+    },
+    {
+      "id": "reform_sanity_crisis",
+      "title": "学生崩溃",
+      "source": "src/App.tsx",
+      "primary": "Denied",
+      "secondary": "Karl Marx",
+      "theme": "failure",
+      "reason": "failure / philosophy"
+    },
+    {
+      "id": "reform_sanity_fail",
+      "title": "群众的怒火",
+      "source": "src/App.tsx",
+      "primary": "Rebellion",
+      "secondary": "Denied",
+      "theme": "revolution",
+      "reason": "revolution / failure"
+    },
+    {
+      "id": "report_to_feng",
+      "title": "向封安宝汇报工作",
+      "source": "src/components/YangYuleDesk.tsx",
+      "primary": "Documents",
+      "secondary": "Paper",
+      "theme": "teacher",
+      "reason": "teacher / paper"
+    },
+    {
+      "id": "reshape_unity_event",
+      "title": "再塑合一",
+      "source": "catalog",
+      "primary": "Idea Icon",
+      "secondary": "Parliament",
+      "theme": "negotiation",
+      "reason": "关联国策美术；negotiation / meeting"
+    },
+    {
+      "id": "resource_exchange_event",
+      "title": "资源统筹与分配",
+      "source": "catalog",
+      "primary": "Hand Empty",
+      "secondary": "Parliament",
+      "theme": "paper",
+      "reason": "关联国策美术；paper / meeting"
+    },
+    {
+      "id": "school_counterattack",
+      "title": "校方反攻？",
+      "source": "src/App.tsx",
+      "primary": "Rebellion",
+      "secondary": "Paper Torn",
+      "theme": "revolution",
+      "reason": "revolution / paper"
+    },
+    {
+      "id": "school_starts",
+      "title": "新学期，新秩序",
+      "source": "src/App.tsx",
+      "news": "schoolOpening",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "security"
+    },
+    {
+      "id": "secret_compromise",
+      "title": "深夜的密谈",
+      "source": "catalog",
+      "scene": "灯下的协议",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "night"
+    },
+    {
+      "id": "start_democratic_election_event",
+      "title": "合肥一中第一次民主普选",
+      "source": "catalog",
+      "scene": "六十日之约",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "meeting"
+    },
+    {
+      "id": "story_1",
+      "title": "题海中的沉默零件",
+      "source": "catalog",
+      "primary": "Paper Torn",
+      "secondary": "Clock2",
+      "theme": "paper",
+      "reason": "paper / time"
+    },
+    {
+      "id": "story_2",
+      "title": "经天纬地楼的阴影",
+      "source": "catalog",
+      "primary": "Clock",
+      "secondary": "Soldier Pointing",
+      "theme": "time",
+      "reason": "time / security"
+    },
+    {
+      "id": "story_3",
+      "title": "熄灯后的微光与红蛤",
+      "source": "catalog",
+      "primary": "Karl Marx",
+      "secondary": "Moon",
+      "theme": "revolution",
+      "reason": "关联国策美术；revolution / night"
+    },
+    {
+      "id": "story_4",
+      "title": "燕妮、二次元与魔怔人",
+      "source": "catalog",
+      "primary": "Hand Out",
+      "secondary": "Rebellion",
+      "theme": "cinema",
+      "reason": "关联国策美术；cinema / revolution"
+    },
+    {
+      "id": "story_5",
+      "title": "撕裂的《五三》与真正的左派",
+      "source": "catalog",
+      "primary": "Bear",
+      "secondary": "Magician",
+      "theme": "paper",
+      "reason": "关联国策美术；paper / cinema"
+    },
+    {
+      "id": "story_6",
+      "title": "B3楼的黑天红字旗",
+      "source": "catalog",
+      "primary": "Fist Colored",
+      "secondary": "Officer",
+      "theme": "meeting",
+      "reason": "关联国策美术；meeting / security"
+    },
+    {
+      "id": "strengthen_patrol",
+      "title": "加强校园巡逻",
+      "source": "src/components/YangYuleDesk.tsx",
+      "primary": "Officer",
+      "secondary": "Building",
+      "theme": "security",
+      "reason": "security / campus"
+    },
+    {
+      "id": "strike_b3_success",
+      "title": "B3楼顶的统一战线",
+      "source": "catalog",
+      "scene": "B3革命",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "awards"
+    },
+    {
+      "id": "student_media_support_event",
+      "title": "滨湖的百家争鸣",
+      "source": "catalog",
+      "primary": "Flag Overlay",
+      "secondary": "Bills",
+      "theme": "media",
+      "reason": "关联国策美术；media / money"
+    },
+    {
+      "id": "student_venting_crisis_event",
+      "title": "学生宣泄危机",
+      "source": "catalog",
+      "primary": "Officer",
+      "secondary": "Denied",
+      "theme": "security",
+      "reason": "security / failure"
+    },
+    {
+      "id": "support_bill_event",
+      "title": "表态：支持议案",
+      "source": "catalog",
+      "primary": "Ballot",
+      "secondary": "Paper",
+      "theme": "meeting",
+      "reason": "meeting / paper"
+    },
+    {
+      "id": "suppress_moderates",
+      "title": "打压温和派",
+      "source": "src/components/YangYuleDesk.tsx",
+      "primary": "Handcuffs",
+      "secondary": "Karl Marx",
+      "theme": "repression",
+      "reason": "repression / philosophy"
+    },
+    {
+      "id": "teachers_rnd_fail",
+      "title": "《衡水体速成字帖》滞销",
+      "source": "catalog",
+      "primary": "Denied",
+      "secondary": "Hand Writing",
+      "theme": "failure",
+      "reason": "failure / teacher"
+    },
+    {
+      "id": "teachers_rnd_product_1",
+      "title": "《衡水体速成字帖》寄语-by周晨",
+      "source": "catalog",
+      "portrait": "advisor_zhou_chen",
+      "secondary": "Hand Writing",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "paper"
+    },
+    {
+      "id": "teachers_rnd_product_2",
+      "title": "《合一感恩读本》编者、特级教师杨玉乐的录音",
+      "source": "catalog",
+      "portrait": "leader_yang_yule",
+      "secondary": "Book",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "teacher"
+    },
+    {
+      "id": "teachers_rnd_product_3",
+      "title": "一张夹在里面的手写序言",
+      "source": "catalog",
+      "primary": "Hand Writing",
+      "secondary": "Paper Torn",
+      "theme": "teacher",
+      "reason": "teacher / paper"
+    },
+    {
+      "id": "teachers_rnd_success",
+      "title": "《衡水体速成字帖》大卖",
+      "source": "catalog",
+      "primary": "Hand Writing",
+      "secondary": "Pedestal",
+      "theme": "teacher",
+      "reason": "teacher / awards"
+    },
+    {
+      "id": "trial_yang",
+      "title": "公审大会",
+      "source": "catalog",
+      "primary": "Handcuffs",
+      "secondary": "Clock",
+      "theme": "repression",
+      "reason": "repression / time"
+    },
+    {
+      "id": "true_left_consolidation_event",
+      "title": "巩固真左派路线",
+      "source": "catalog",
+      "portrait": "leader_wang_zhaokai",
+      "secondary": "Star Red with Sickle",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "meeting"
+    },
+    {
+      "id": "true_left_good_event",
+      "title": "同一杆麦克风",
+      "source": "catalog",
+      "primary": "Marriage",
+      "secondary": "Hands Shaking",
+      "theme": "meeting",
+      "reason": "关联国策美术；meeting / negotiation"
+    },
+    {
+      "id": "true_left_union_choice_event",
+      "title": "十字路口的第三种答案",
+      "source": "catalog",
+      "primary": "Parliament",
+      "secondary": "Marriage",
+      "theme": "meeting",
+      "reason": "meeting / negotiation"
+    },
+    {
+      "id": "ultra_left_error",
+      "title": "题改极左错误",
+      "source": "src/App.tsx",
+      "primary": "Crown2",
+      "secondary": "Paper",
+      "theme": "power",
+      "reason": "power / paper"
+    },
+    {
+      "id": "ultra_left_error_event",
+      "title": "题改极左错误爆发",
+      "source": "src/App.tsx",
+      "primary": "Crown2",
+      "secondary": "Hands Shaking",
+      "theme": "power",
+      "reason": "power / negotiation"
+    },
+    {
+      "id": "wang_juanhao_vanguard",
+      "title": "红色先锋",
+      "source": "src/App.tsx",
+      "primary": "Officer",
+      "secondary": "Paper Torn",
+      "theme": "security",
+      "reason": "security / paper"
+    },
+    {
+      "id": "wang_victory_event",
+      "title": "致钢铁红蛤领袖 王照凯的信",
+      "source": "catalog",
+      "portrait": "leader_wang_zhaokai",
+      "secondary": "Envelope",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "revolution"
+    },
+    {
+      "id": "write_paper",
+      "title": "撰写教改论文",
+      "source": "src/components/YangYuleDesk.tsx",
+      "primary": "Paper Sign",
+      "secondary": "Documents",
+      "theme": "teacher",
+      "reason": "teacher / paper"
+    },
+    {
+      "id": "wu_advisor_slots_full",
+      "title": "顾问名额已满",
+      "source": "src/App.tsx",
+      "primary": "Paper",
+      "secondary": "Officer",
+      "theme": "paper",
+      "reason": "paper / security"
+    },
+    {
+      "id": "wu_ambition_warning_event",
+      "title": "校长室的脚步声",
+      "source": "catalog",
+      "primary": "Building",
+      "secondary": "Crown2",
+      "theme": "campus",
+      "reason": "campus / power"
+    },
+    {
+      "id": "wu_anger_boil_event",
+      "title": "无声的怒火",
+      "source": "catalog",
+      "primary": "Rebellion",
+      "secondary": "Megaphone",
+      "theme": "revolution",
+      "reason": "revolution / media"
+    },
+    {
+      "id": "wu_console_commend",
+      "title": "又一次表彰",
+      "source": "src/components/WuCrackdownConsole.tsx",
+      "primary": "Officer",
+      "secondary": "Pedestal",
+      "theme": "security",
+      "reason": "security / awards"
+    },
+    {
+      "id": "wu_console_press",
+      "title": "新闻发布会",
+      "source": "src/components/WuCrackdownConsole.tsx",
+      "primary": "Megaphone",
+      "secondary": "Hand Writing",
+      "theme": "media",
+      "reason": "media / teacher"
+    },
+    {
+      "id": "wu_console_raid_refused",
+      "title": "枪有枪的脾气",
+      "source": "src/components/WuCrackdownConsole.tsx",
+      "primary": "Megaphone",
+      "secondary": "Documents",
+      "theme": "media",
+      "reason": "media / paper"
+    },
+    {
+      "id": "wu_console_talk",
+      "title": "校长室的茶",
+      "source": "src/components/WuCrackdownConsole.tsx",
+      "primary": "Building",
+      "secondary": "Documents",
+      "theme": "campus",
+      "reason": "campus / paper"
+    },
+    {
+      "id": "wu_console_warn",
+      "title": "敲打",
+      "source": "src/components/WuCrackdownConsole.tsx",
+      "primary": "Bills",
+      "secondary": "Officer",
+      "theme": "money",
+      "reason": "money / security"
+    },
+    {
+      "id": "wu_crackdown",
+      "title": "吴福军最后通牒",
+      "source": "src/App.tsx",
+      "primary": "Officer",
+      "secondary": "Documents",
+      "theme": "security",
+      "reason": "security / paper"
+    },
+    {
+      "id": "wu_crackdown_entry_event",
+      "title": "总攻令",
+      "source": "catalog",
+      "primary": "Officer",
+      "secondary": "Fist",
+      "theme": "security",
+      "reason": "security / revolution"
+    },
+    {
+      "id": "wu_failure_event",
+      "title": "残党反攻",
+      "source": "catalog",
+      "primary": "Rebellion",
+      "secondary": "Star Broken",
+      "theme": "revolution",
+      "reason": "revolution / failure"
+    },
+    {
+      "id": "wu_flavor_black_market",
+      "title": "黑市教辅",
+      "source": "catalog",
+      "primary": "Paper",
+      "secondary": "Book",
+      "theme": "paper",
+      "reason": "paper / book"
+    },
+    {
+      "id": "wu_flavor_camera",
+      "title": "监控维修",
+      "source": "catalog",
+      "primary": "Spy",
+      "secondary": "Officer",
+      "theme": "surveillance",
+      "reason": "surveillance / security"
+    },
+    {
+      "id": "wu_flavor_informer",
+      "title": "告密者",
+      "source": "catalog",
+      "primary": "Spy",
+      "secondary": "Book Open",
+      "theme": "surveillance",
+      "reason": "surveillance / book"
+    },
+    {
+      "id": "wu_flavor_morning_call",
+      "title": "晨会训话",
+      "source": "catalog",
+      "primary": "Clock",
+      "secondary": "Soldier Saluting",
+      "theme": "time",
+      "reason": "time / security"
+    },
+    {
+      "id": "wu_flavor_morning_run",
+      "title": "跑操",
+      "source": "catalog",
+      "primary": "Citizen2",
+      "secondary": "House",
+      "theme": "sport",
+      "reason": "sport / campus"
+    },
+    {
+      "id": "wu_flavor_shiji_notes",
+      "title": "洗衣房里的手记",
+      "source": "catalog",
+      "primary": "Bills",
+      "secondary": "Moon",
+      "theme": "money",
+      "reason": "money / night"
+    },
+    {
+      "id": "wu_flavor_wu_quotes",
+      "title": "吴福军语录",
+      "source": "catalog",
+      "primary": "Officer",
+      "secondary": "Megaphone",
+      "theme": "security",
+      "reason": "security / media"
+    },
+    {
+      "id": "wu_flavor_zhouchen_sketch",
+      "title": "素描课",
+      "source": "catalog",
+      "primary": "Brush",
+      "secondary": "Building",
+      "theme": "art",
+      "reason": "art / campus"
+    },
+    {
+      "id": "wu_guerrilla_resurgence_event",
+      "title": "死灰复燃",
+      "source": "catalog",
+      "primary": "Factories2",
+      "secondary": "Officer",
+      "theme": "industry",
+      "reason": "industry / security"
+    },
+    {
+      "id": "wu_negotiation_40_event",
+      "title": "初步接触",
+      "source": "catalog",
+      "primary": "Hands Shaking",
+      "secondary": "Clock",
+      "theme": "negotiation",
+      "reason": "negotiation / time"
+    },
+    {
+      "id": "wu_negotiation_70_event",
+      "title": "艰难的中间地带",
+      "source": "catalog",
+      "primary": "Hands Shaking",
+      "secondary": "Scales",
+      "theme": "negotiation",
+      "reason": "negotiation / meeting"
+    },
+    {
+      "id": "wu_opinion_event",
+      "title": "教育局的电话",
+      "source": "catalog",
+      "primary": "Officer",
+      "secondary": "House",
+      "theme": "security",
+      "reason": "security / campus"
+    },
+    {
+      "id": "wu_reprieve_event",
+      "title": "通牒撤回",
+      "source": "catalog",
+      "primary": "Officer",
+      "secondary": "Megaphone2",
+      "theme": "security",
+      "reason": "security / media"
+    },
+    {
+      "id": "wu_teacher_petition_event",
+      "title": "教师联名信",
+      "source": "catalog",
+      "primary": "Envelope",
+      "secondary": "Hand Writing",
+      "theme": "letter",
+      "reason": "letter / teacher"
+    },
+    {
+      "id": "wu_ultimatum_event",
+      "title": "吴福军的最后通牒",
+      "source": "catalog",
+      "primary": "Parliament",
+      "secondary": "Soldier Pointing",
+      "theme": "meeting",
+      "reason": "meeting / security"
+    },
+    {
+      "id": "wu_uprising_admin_event",
+      "title": "匿名举报箱",
+      "source": "catalog",
+      "primary": "Spy",
+      "secondary": "Rebellion",
+      "theme": "surveillance",
+      "reason": "surveillance / revolution"
+    },
+    {
+      "id": "wu_uprising_aud_event",
+      "title": "化妆间里的烛光",
+      "source": "catalog",
+      "primary": "Rebellion",
+      "secondary": "Soldier Saluting",
+      "theme": "revolution",
+      "reason": "revolution / security"
+    },
+    {
+      "id": "wu_uprising_b3_2_event",
+      "title": "地下的回信",
+      "source": "catalog",
+      "primary": "Envelope",
+      "secondary": "Fist",
+      "theme": "letter",
+      "reason": "letter / revolution"
+    },
+    {
+      "id": "wu_uprising_b3_event",
+      "title": "B3天台的星火",
+      "source": "catalog",
+      "primary": "Moon",
+      "secondary": "Rebellion",
+      "theme": "night",
+      "reason": "night / revolution"
+    },
+    {
+      "id": "wu_uprising_dorm_event",
+      "title": "熄灯后的串联",
+      "source": "catalog",
+      "primary": "Moon",
+      "secondary": "Fist",
+      "theme": "night",
+      "reason": "night / revolution"
+    },
+    {
+      "id": "wu_uprising_lab_event",
+      "title": "国际部的联名信",
+      "source": "catalog",
+      "primary": "Envelope",
+      "secondary": "Fist Colored",
+      "theme": "letter",
+      "reason": "letter / revolution"
+    },
+    {
+      "id": "wu_uprising_playground_event",
+      "title": "食堂的蒸蛋",
+      "source": "catalog",
+      "primary": "Bowl Cracked",
+      "secondary": "Rebellion",
+      "theme": "food",
+      "reason": "food / revolution"
+    },
+    {
+      "id": "wu_wzk_arrest_event",
+      "title": "王照凯落网",
+      "source": "catalog",
+      "portrait": "leader_wang_zhaokai",
+      "secondary": "Handcuffs",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "repression"
+    },
+    {
+      "id": "wu_wzk_trial_event",
+      "title": "操场上的公审",
+      "source": "catalog",
+      "primary": "Handcuffs",
+      "secondary": "Building",
+      "theme": "repression",
+      "reason": "repression / campus"
+    },
+    {
+      "id": "wu_zhouchen_candle_event",
+      "title": "周晨的烛光夜话",
+      "source": "catalog",
+      "primary": "Moon",
+      "secondary": "Hand Writing",
+      "theme": "night",
+      "reason": "night / teacher"
+    },
+    {
+      "id": "wu_zhouchen_suspension_event",
+      "title": "停课处分",
+      "source": "catalog",
+      "portrait": "advisor_zhou_chen",
+      "secondary": "Denied",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "repression"
+    },
+    {
+      "id": "xu_victory_event",
+      "title": "致保守民主派领袖 徐志的信",
+      "source": "catalog",
+      "primary": "Parliament",
+      "secondary": "Envelope",
+      "theme": "meeting",
+      "reason": "meeting / letter"
+    },
+    {
+      "id": "yang_desk_alumni_donation",
+      "title": "校友捐赠的附加条件",
+      "source": "catalog",
+      "primary": "Computer",
+      "secondary": "Hand Out",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "campus"
+    },
+    {
+      "id": "yang_desk_anonymous_note",
+      "title": "一封没有署名的字条",
+      "source": "catalog",
+      "primary": "Envelope",
+      "secondary": "Documents",
+      "theme": "letter",
+      "reason": "letter / teacher"
+    },
+    {
+      "id": "yang_desk_buy_exams",
+      "title": "教务处关于统一征订《及第教育·新高考绝密卷》的财务申请",
+      "source": "catalog",
+      "primary": "Paper",
+      "secondary": "Coins",
+      "theme": "paper",
+      "reason": "paper / money"
+    },
+    {
+      "id": "yang_desk_contraband_list",
+      "title": "高三年级违禁品查收清单",
+      "source": "catalog",
+      "primary": "Spy",
+      "secondary": "Paper",
+      "theme": "surveillance",
+      "reason": "surveillance / paper"
+    },
+    {
+      "id": "yang_desk_destroy_books",
+      "title": "关于集中销毁原阅览室“陈栋时期”非考试类书刊的通知",
+      "source": "catalog",
+      "primary": "Book Open",
+      "secondary": "Ballot",
+      "theme": "book",
+      "reason": "book / meeting"
+    },
+    {
+      "id": "yang_desk_health_scare",
+      "title": "体检报告上的红色警告",
+      "source": "catalog",
+      "primary": "Vial",
+      "secondary": "Documents",
+      "theme": "health",
+      "reason": "health / paper"
+    },
+    {
+      "id": "yang_desk_informant_report",
+      "title": "密报：B3天台有人深夜集会",
+      "source": "catalog",
+      "primary": "Spy",
+      "secondary": "Moon",
+      "theme": "surveillance",
+      "reason": "surveillance / night"
+    },
+    {
+      "id": "yang_desk_midnight_call",
+      "title": "凌晨三点的电话",
+      "source": "catalog",
+      "primary": "Moon",
+      "secondary": "Clock2",
+      "theme": "night",
+      "reason": "night / time"
+    },
+    {
+      "id": "yang_desk_mocking_letter",
+      "title": "高三28班全体家长关于杨副校长“卓越教学”的联名感谢信",
+      "source": "catalog",
+      "primary": "Envelope",
+      "secondary": "Paper",
+      "theme": "letter",
+      "reason": "letter / paper"
+    },
+    {
+      "id": "yang_desk_oath_rally",
+      "title": "关于开展“感恩封校，拼搏百日”大型誓师大会的审批",
+      "source": "catalog",
+      "primary": "Clock",
+      "secondary": "Fist Colored",
+      "theme": "time",
+      "reason": "time / revolution"
+    },
+    {
+      "id": "yang_desk_paper_authorship",
+      "title": "关于名师工作室年度教研论文的署名权归属",
+      "source": "catalog",
+      "primary": "Paper Sign",
+      "secondary": "Paper",
+      "theme": "teacher",
+      "reason": "teacher / paper"
+    },
+    {
+      "id": "yang_desk_parent_petition",
+      "title": "家长联名信：还我体育课",
+      "source": "catalog",
+      "primary": "Envelope",
+      "secondary": "Citizen2",
+      "theme": "letter",
+      "reason": "letter / sport"
+    },
+    {
+      "id": "yang_desk_pe_cancellation",
+      "title": "操场设施翻修暨高三体育课全面暂停通知",
+      "source": "catalog",
+      "primary": "Building",
+      "secondary": "Citizen2",
+      "theme": "campus",
+      "reason": "campus / sport"
+    },
+    {
+      "id": "yang_desk_retirement_letter",
+      "title": "封安宝的隐退暗示",
+      "source": "catalog",
+      "primary": "Envelope",
+      "secondary": "Bird Freed",
+      "theme": "letter",
+      "reason": "letter / freedom"
+    },
+    {
+      "id": "yang_desk_snow_day",
+      "title": "停课通知：十年一遇的暴雪",
+      "source": "catalog",
+      "scene": "雪中的来函",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "weather"
+    },
+    {
+      "id": "yang_desk_standing_reading",
+      "title": "名师工作室关于强制推行“无死角站立早读”的教改草案",
+      "source": "catalog",
+      "primary": "Clock",
+      "secondary": "Hand Writing",
+      "theme": "time",
+      "reason": "time / teacher"
+    },
+    {
+      "id": "yang_desk_textbook_scandal",
+      "title": "教材回扣的烫手山芋",
+      "source": "catalog",
+      "primary": "Bills",
+      "secondary": "Constitution",
+      "theme": "money",
+      "reason": "money / meeting"
+    },
+    {
+      "id": "yang_desk_thermos_mystery",
+      "title": "保温杯里的不明沉淀物",
+      "source": "catalog",
+      "primary": "Vial",
+      "secondary": "Magnifying Glass",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "campus"
+    },
+    {
+      "id": "yang_desk_tutoring_center",
+      "title": "及第教育周末“培优班”师资借调密函",
+      "source": "catalog",
+      "primary": "Envelope",
+      "secondary": "Paper Sign",
+      "theme": "letter",
+      "reason": "letter / teacher"
+    },
+    {
+      "id": "yang_desk_young_teacher_quit",
+      "title": "年轻教师的辞职信",
+      "source": "catalog",
+      "primary": "Hand Writing",
+      "secondary": "Bird Freed",
+      "theme": "teacher",
+      "reason": "teacher / freedom"
+    },
+    {
+      "id": "yang_mock_exam_fail",
+      "title": "全盘崩溃",
+      "source": "catalog",
+      "primary": "Denied",
+      "secondary": "Pedestal",
+      "theme": "failure",
+      "reason": "failure / awards"
+    },
+    {
+      "id": "yang_mock_exam_mediocre",
+      "title": "差强人意的答卷",
+      "source": "catalog",
+      "primary": "Clock",
+      "secondary": "Crown",
+      "theme": "time",
+      "reason": "time / awards"
+    },
+    {
+      "id": "yang_mock_exam_success",
+      "title": "维稳与升学的双赢",
+      "source": "catalog",
+      "primary": "Pedestal",
+      "secondary": "Electricity",
+      "theme": "awards",
+      "reason": "awards / computer"
+    },
+    {
+      "id": "yang_yule_bribe_inspectors",
+      "title": "打点评审团",
+      "source": "catalog",
+      "primary": "White House",
+      "secondary": "Book Open",
+      "theme": "teacher",
+      "reason": "关联国策美术；teacher / book"
+    },
+    {
+      "id": "yang_yule_buy_health_supplements",
+      "title": "大补中药",
+      "source": "catalog",
+      "primary": "Vial",
+      "secondary": "Handcuffs",
+      "theme": "health",
+      "reason": "health / repression"
+    },
+    {
+      "id": "yang_yule_catch_red_toad",
+      "title": "追查“钢铁红蛤”",
+      "source": "catalog",
+      "primary": "Rebellion",
+      "secondary": "Clock2",
+      "theme": "revolution",
+      "reason": "revolution / time"
+    },
+    {
+      "id": "yang_yule_condition_fail_event",
+      "title": "时机尚未成熟",
+      "source": "src/App.tsx",
+      "primary": "Denied",
+      "secondary": "Documents",
+      "theme": "failure",
+      "reason": "failure / teacher"
+    },
+    {
+      "id": "yang_yule_condition_met_event",
+      "title": "特级教师的注视",
+      "source": "src/App.tsx",
+      "primary": "Hand Writing",
+      "secondary": "House",
+      "theme": "teacher",
+      "reason": "teacher / campus"
+    },
+    {
+      "id": "yang_yule_decision_ready",
+      "title": "杨特出山",
+      "source": "src/App.tsx",
+      "primary": "Hand Writing",
+      "secondary": "Dove",
+      "theme": "teacher",
+      "reason": "teacher / freedom"
+    },
+    {
+      "id": "yang_yule_desk_unlocked",
+      "title": "杨特的办公桌",
+      "source": "catalog",
+      "scene": "保温杯与红批",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "money"
+    },
+    {
+      "id": "yang_yule_expand_security",
+      "title": "扩编保安队",
+      "source": "catalog",
+      "primary": "Officer",
+      "secondary": "Bills",
+      "theme": "security",
+      "reason": "security / money"
+    },
+    {
+      "id": "yang_yule_fail_event",
+      "title": "功亏一篑",
+      "source": "catalog",
+      "scene": "特级0",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "failure"
+    },
+    {
+      "id": "yang_yule_fake_teaching_skills",
+      "title": "伪装名师风采",
+      "source": "catalog",
+      "primary": "Hand Writing",
+      "secondary": "Book Open",
+      "theme": "teacher",
+      "reason": "teacher / book"
+    },
+    {
+      "id": "yang_yule_force_recitation",
+      "title": "强制早读",
+      "source": "catalog",
+      "primary": "Clock",
+      "secondary": "Book Open",
+      "theme": "time",
+      "reason": "time / book"
+    },
+    {
+      "id": "yang_yule_health_death_event",
+      "title": "最终的被动语态",
+      "source": "src/App.tsx",
+      "primary": "Vial",
+      "secondary": "Clock",
+      "theme": "health",
+      "reason": "health / time"
+    },
+    {
+      "id": "yang_yule_health_unlocked",
+      "title": "迷烟幻境",
+      "source": "catalog",
+      "primary": "Clock2",
+      "secondary": "Vial",
+      "theme": "philosophy",
+      "reason": "关联国策美术；philosophy / health"
+    },
+    {
+      "id": "yang_yule_hire_colleagues",
+      "title": "肥水不流外人田",
+      "source": "catalog",
+      "primary": "Star Broken",
+      "secondary": "Pedestal",
+      "theme": "teacher",
+      "reason": "关联国策美术；teacher / awards"
+    },
+    {
+      "id": "yang_yule_late_game_mock_exam",
+      "title": "合肥市二模成绩公布",
+      "source": "src/App.tsx",
+      "primary": "Pedestal",
+      "secondary": "Documents",
+      "theme": "awards",
+      "reason": "awards / paper"
+    },
+    {
+      "id": "yang_yule_late_mock_exam",
+      "title": "合肥市二模",
+      "source": "src/App.tsx",
+      "portrait": "leader_yang_yule",
+      "secondary": "Paper",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "campus"
+    },
+    {
+      "id": "yang_yule_map_unlocked",
+      "title": "钢铁红蛤的阴影",
+      "source": "catalog",
+      "primary": "Star Red",
+      "secondary": "Officer",
+      "theme": "revolution",
+      "reason": "关联国策美术；revolution / security"
+    },
+    {
+      "id": "yang_yule_memorize_grammar",
+      "title": "死记硬背语法点",
+      "source": "catalog",
+      "primary": "Book Open",
+      "secondary": "Hand Writing",
+      "theme": "book",
+      "reason": "book / teacher"
+    },
+    {
+      "id": "yang_yule_mock_exam_approach_event",
+      "title": "二模的阴云",
+      "source": "catalog",
+      "primary": "Handcuffs",
+      "secondary": "Fist",
+      "theme": "repression",
+      "reason": "repression / revolution"
+    },
+    {
+      "id": "yang_yule_red_terror",
+      "title": "白色恐怖",
+      "source": "catalog",
+      "primary": "Handcuffs",
+      "secondary": "Book Open",
+      "theme": "repression",
+      "reason": "repression / book"
+    },
+    {
+      "id": "yang_yule_silence_rebellion",
+      "title": "悄无声息的抹杀",
+      "source": "catalog",
+      "primary": "Rebellion",
+      "secondary": "Shackles",
+      "theme": "revolution",
+      "reason": "revolution / repression"
+    },
+    {
+      "id": "yang_yule_success_event",
+      "title": "装在套子里的合一",
+      "source": "catalog",
+      "scene": "特级",
+      "reason": "按具体剧情指定场景或人物",
+      "theme": "awards"
+    },
+    {
+      "id": "yang_yule_three_mountains",
+      "title": "名师的焦虑",
+      "source": "catalog",
+      "primary": "Book Open",
+      "secondary": "Rebellion",
+      "theme": "teacher",
+      "reason": "关联国策美术；teacher / revolution"
+    },
+    {
+      "id": "yang_yule_welcome_inspection",
+      "title": "迎接教育局视察",
+      "source": "catalog",
+      "primary": "Rebellion",
+      "secondary": "Palace Chinese",
+      "theme": "revolution",
+      "reason": "revolution / campus"
+    },
+    {
+      "id": "yang_yule_write_papers",
+      "title": "炮制教改论文",
+      "source": "catalog",
+      "primary": "Hand Writing",
+      "secondary": "Computer",
+      "theme": "teacher",
+      "reason": "teacher / computer"
+    },
+    {
+      "id": "yangyvle_event_1",
+      "title": "特级教师的红脸戏",
+      "source": "catalog",
+      "primary": "Hand Writing",
+      "secondary": "Officer",
+      "theme": "teacher",
+      "reason": "teacher / security"
+    },
+    {
+      "id": "yangyvle_event_2",
+      "title": "名师登基",
+      "source": "catalog",
+      "primary": "Hand Writing",
+      "secondary": "Clock",
+      "theme": "teacher",
+      "reason": "teacher / time"
+    },
+    {
+      "id": "yy_flavor_exam_room",
+      "title": "后窗的那双眼睛",
+      "source": "catalog",
+      "primary": "Paper",
+      "secondary": "Spy",
+      "theme": "paper",
+      "reason": "paper / surveillance"
+    },
+    {
+      "id": "yy_flavor_old_cadre",
+      "title": "老教师的耳语",
+      "source": "catalog",
+      "primary": "Hand Writing",
+      "secondary": "Clock2",
+      "theme": "teacher",
+      "reason": "teacher / time"
+    },
+    {
+      "id": "yy_flavor_thermos",
+      "title": "保温杯里的哲学",
+      "source": "catalog",
+      "primary": "Karl Marx",
+      "secondary": "Clock2",
+      "theme": "philosophy",
+      "reason": "philosophy / time"
+    },
+    {
+      "id": "yy_title_ready_event",
+      "title": "万事俱备",
+      "source": "src/App.tsx",
+      "primary": "Hand Writing",
+      "secondary": "Spy",
+      "theme": "teacher",
+      "reason": "teacher / surveillance"
+    },
+    {
+      "id": "yy_title_stage1_start",
+      "title": "特级教师的野心",
+      "source": "src/App.tsx",
+      "primary": "Hand Writing",
+      "secondary": "Crown2",
+      "theme": "teacher",
+      "reason": "teacher / power"
+    },
+    {
+      "id": "yy_title_stage2_complete",
+      "title": "材料齐备，评审启动",
+      "source": "src/App.tsx",
+      "primary": "Hand Writing",
+      "secondary": "Bell",
+      "theme": "teacher",
+      "reason": "teacher / time"
+    },
+    {
+      "id": "yy_title_stage3_defense",
+      "title": "答辩之日",
+      "source": "src/App.tsx",
+      "primary": "Hand Writing",
+      "secondary": "Soldier Pointing",
+      "theme": "teacher",
+      "reason": "teacher / security"
+    },
+    {
+      "id": "yy_title_stage4_final",
+      "title": "公示期的暗流",
+      "source": "src/App.tsx",
+      "primary": "Hand Writing",
+      "secondary": "Spy2",
+      "theme": "teacher",
+      "reason": "teacher / surveillance"
+    }
+  ]
+}

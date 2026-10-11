@@ -15,6 +15,7 @@ import { getTileControl } from './engine/mapState';
 import { DECISIONS } from './components/RightSidebar';
 import EventPopup from './components/EventPopup';
 import './components/eventPopup.css';
+import './components/eventIllustration.css';
 import SuperEvent from './components/SuperEvent';
 import MinigameFrequencyWar, { FrequencyWarResult } from './components/MinigameFrequencyWar';
 import MinigameSiege from './components/MinigameSiege';
@@ -562,7 +563,7 @@ const treeRouteTag = (tree: string): string =>
     wu_tree_p2_coup: '大权在握',
   } as Record<string, string>)[tree] ?? tree;
 
-function DistrictWindow({ onDock }: { onDock: (node: HTMLDivElement | null) => void }) {
+function DistrictWindow({ onDock, onClose }: { onDock: (node: HTMLDivElement | null) => void; onClose: () => void }) {
   const windowRef = useRef<HTMLDivElement>(null);
   const dragRef = useRef<{ x: number; y: number; left: number; top: number } | null>(null);
   const [position, setPosition] = useState<{ left: number; top: number } | null>(null);
@@ -582,7 +583,7 @@ function DistrictWindow({ onDock }: { onDock: (node: HTMLDivElement | null) => v
     return () => observer.disconnect();
   }, []);
 
-  const move = (event: React.PointerEvent<HTMLDivElement>) => {
+  const move = (event: React.PointerEvent<HTMLButtonElement>) => {
     if (!dragRef.current || !windowRef.current?.parentElement) return;
     const parent = windowRef.current.parentElement;
     setPosition({
@@ -592,11 +593,14 @@ function DistrictWindow({ onDock }: { onDock: (node: HTMLDivElement | null) => v
   };
 
   return <div ref={windowRef} className="district-window" style={position ?? undefined}>
-    <div className="district-window-handle" onPointerDown={event => {
+    <div className="district-window-titlebar"><span>地区指挥</span><div className="district-window-controls">
+    <button type="button" className="district-window-handle" aria-label="拖动地区指挥窗口" onPointerDown={event => {
       if (!windowRef.current) return;
       dragRef.current = { x: event.clientX, y: event.clientY, left: windowRef.current.offsetLeft, top: windowRef.current.offsetTop };
       event.currentTarget.setPointerCapture(event.pointerId);
-    }} onPointerMove={move} onPointerUp={() => { dragRef.current = null; }} onPointerCancel={() => { dragRef.current = null; }} title="拖动地区指挥窗口">地区指挥 <span>⋮⋮</span></div>
+    }} onPointerMove={move} onPointerUp={() => { dragRef.current = null; }} onPointerCancel={() => { dragRef.current = null; }} title="拖动地区指挥窗口">⋮⋮</button>
+    <button type="button" className="district-window-close" aria-label="关闭地区面板" title="关闭地区面板" onClick={onClose}>×</button>
+    </div></div>
     <div className="district-dock-root" ref={onDock} aria-label="地区指挥区域" />
   </div>;
 }
@@ -5569,7 +5573,7 @@ export default function App() {
           triggerDecision={triggerDecision} 
           triggerError={triggerError} 
         /></div>}
-        {selectedTileId && <DistrictWindow onDock={setDistrictDockTarget} />}
+        {selectedTileId && <DistrictWindow onDock={setDistrictDockTarget} onClose={() => setSelectedTileId(null)} />}
       </div>
 
       {/* Overlays */}

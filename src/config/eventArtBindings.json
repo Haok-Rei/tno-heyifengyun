@@ -1,0 +1,2643 @@
+{
+  "academic_competition_sponsorship_event": {
+    "primary": "Box Open2",
+    "secondary": "Paper",
+    "theme": "letter",
+    "reason": "关联国策美术；letter / paper"
+  },
+  "admin_takeover": {
+    "primary": "House",
+    "secondary": "Clock",
+    "theme": "power",
+    "reason": "关联国策美术；power / time"
+  },
+  "alliance_collapse": {
+    "primary": "Hands Shaking",
+    "secondary": "Documents",
+    "theme": "negotiation",
+    "reason": "negotiation / paper"
+  },
+  "anime_chaos": {
+    "primary": "Magician",
+    "secondary": "Officer",
+    "theme": "cinema",
+    "reason": "cinema / security"
+  },
+  "b3_defeat": {
+    "primary": "Denied",
+    "secondary": "Officer",
+    "theme": "failure",
+    "reason": "failure / security"
+  },
+  "b3_drill_defeat": {
+    "primary": "Denied",
+    "secondary": "Soldier Pointing",
+    "theme": "failure",
+    "reason": "failure / security"
+  },
+  "b3_drill_victory": {
+    "primary": "Pedestal",
+    "secondary": "Officer",
+    "theme": "awards",
+    "reason": "awards / security"
+  },
+  "b3_victory": {
+    "primary": "Pedestal",
+    "secondary": "Hands Shaking",
+    "theme": "awards",
+    "reason": "awards / negotiation"
+  },
+  "bear_victory_event": {
+    "portrait": "leader_gouxiong",
+    "secondary": "Envelope",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "letter"
+  },
+  "bill_abolish_evening_study_failed": {
+    "primary": "Parliament",
+    "secondary": "Denied",
+    "theme": "meeting",
+    "reason": "meeting / failure"
+  },
+  "bill_abolish_evening_study_passed": {
+    "primary": "Parliament",
+    "secondary": "Paper",
+    "theme": "meeting",
+    "reason": "meeting / paper"
+  },
+  "bill_club_freedom_failed": {
+    "primary": "Parliament",
+    "secondary": "Star Broken",
+    "theme": "meeting",
+    "reason": "meeting / failure"
+  },
+  "bill_club_freedom_passed": {
+    "primary": "Parliament",
+    "secondary": "Bird Freed",
+    "theme": "meeting",
+    "reason": "meeting / freedom"
+  },
+  "bill_conservative_discipline_event": {
+    "primary": "Crown2",
+    "secondary": "Officer",
+    "theme": "meeting",
+    "reason": "关联国策美术；meeting / security"
+  },
+  "bill_conservative_discipline_failed": {
+    "primary": "Parliament",
+    "secondary": "Crown Broken",
+    "theme": "meeting",
+    "reason": "meeting / failure"
+  },
+  "bill_conservative_discipline_passed": {
+    "primary": "Parliament",
+    "secondary": "Officer",
+    "theme": "meeting",
+    "reason": "meeting / security"
+  },
+  "bill_curriculum_reform_failed": {
+    "primary": "Parliament",
+    "secondary": "Champagne Shattered",
+    "theme": "meeting",
+    "reason": "meeting / failure"
+  },
+  "bill_curriculum_reform_passed": {
+    "primary": "Parliament",
+    "secondary": "Clock",
+    "theme": "meeting",
+    "reason": "meeting / time"
+  },
+  "bill_failed": {
+    "primary": "Parliament",
+    "secondary": "Paper Torn",
+    "theme": "meeting",
+    "reason": "meeting / failure"
+  },
+  "bill_orthodox_red_culture_event": {
+    "primary": "Lightbulb Broken",
+    "secondary": "Hands Shaking",
+    "theme": "meeting",
+    "reason": "关联国策美术；meeting / negotiation"
+  },
+  "bill_orthodox_red_culture_failed": {
+    "primary": "Ballot",
+    "secondary": "Denied",
+    "theme": "meeting",
+    "reason": "meeting / failure"
+  },
+  "bill_orthodox_red_culture_passed": {
+    "primary": "Parliament",
+    "secondary": "Rebellion",
+    "theme": "meeting",
+    "reason": "meeting / revolution"
+  },
+  "bill_passed": {
+    "news": "assemblyVote",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "meeting"
+  },
+  "bill_student_welfare_failed": {
+    "primary": "Parliament",
+    "secondary": "Arrow Broken",
+    "theme": "meeting",
+    "reason": "meeting / failure"
+  },
+  "bill_student_welfare_passed": {
+    "primary": "Parliament",
+    "secondary": "Hands Shaking",
+    "theme": "meeting",
+    "reason": "meeting / negotiation"
+  },
+  "bill_test_taker_mock_exams_event": {
+    "primary": "Officer",
+    "secondary": "Paper",
+    "theme": "meeting",
+    "reason": "关联国策美术；meeting / paper"
+  },
+  "bill_test_taker_mock_exams_failed": {
+    "primary": "Ballot",
+    "secondary": "Star Broken",
+    "theme": "meeting",
+    "reason": "meeting / failure"
+  },
+  "bill_test_taker_mock_exams_passed": {
+    "primary": "Parliament",
+    "secondary": "Book",
+    "theme": "meeting",
+    "reason": "meeting / paper"
+  },
+  "bill_transparent_finances_failed": {
+    "primary": "Bills",
+    "secondary": "Parliament",
+    "theme": "money",
+    "reason": "money / meeting"
+  },
+  "bill_transparent_finances_passed": {
+    "primary": "Bills",
+    "secondary": "Ballot",
+    "theme": "money",
+    "reason": "money / meeting"
+  },
+  "broadcast_seized": {
+    "news": "broadcastSeized",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "media"
+  },
+  "campus_alumni": {
+    "primary": "Factories2",
+    "secondary": "Spy",
+    "theme": "industry",
+    "reason": "industry / surveillance"
+  },
+  "campus_authorship": {
+    "primary": "Hand Writing",
+    "secondary": "Building",
+    "theme": "teacher",
+    "reason": "teacher / campus"
+  },
+  "campus_books": {
+    "primary": "Book Open",
+    "secondary": "Building",
+    "theme": "book",
+    "reason": "book / campus"
+  },
+  "campus_canteen": {
+    "primary": "Bowl Cracked",
+    "secondary": "Bills",
+    "theme": "food",
+    "reason": "food / money"
+  },
+  "campus_clubs": {
+    "primary": "Building",
+    "secondary": "Bills",
+    "theme": "campus",
+    "reason": "campus / money"
+  },
+  "campus_contraband": {
+    "primary": "Spy",
+    "secondary": "Building",
+    "theme": "surveillance",
+    "reason": "surveillance / campus"
+  },
+  "campus_exams": {
+    "primary": "Paper",
+    "secondary": "Building",
+    "theme": "paper",
+    "reason": "paper / campus"
+  },
+  "campus_health": {
+    "primary": "Vial",
+    "secondary": "Building",
+    "theme": "health",
+    "reason": "health / campus"
+  },
+  "campus_informants": {
+    "primary": "Spy",
+    "secondary": "House",
+    "theme": "surveillance",
+    "reason": "surveillance / campus"
+  },
+  "campus_infrastructure_upgrade_event": {
+    "primary": "Dice",
+    "secondary": "Building",
+    "theme": "meeting",
+    "reason": "关联国策美术；meeting / campus"
+  },
+  "campus_letters": {
+    "primary": "Hand Writing",
+    "secondary": "Envelope",
+    "theme": "teacher",
+    "reason": "teacher / letter"
+  },
+  "campus_mockery": {
+    "primary": "Book Open",
+    "secondary": "House",
+    "theme": "book",
+    "reason": "book / campus"
+  },
+  "campus_petition": {
+    "primary": "Envelope",
+    "secondary": "Building",
+    "theme": "letter",
+    "reason": "letter / campus"
+  },
+  "campus_rally": {
+    "primary": "Woman Dancing",
+    "secondary": "Rebellion",
+    "theme": "music",
+    "reason": "music / revolution"
+  },
+  "campus_retirement": {
+    "primary": "Bird Freed",
+    "secondary": "Building",
+    "theme": "freedom",
+    "reason": "freedom / campus"
+  },
+  "campus_sports": {
+    "primary": "Citizen2",
+    "secondary": "Building",
+    "theme": "sport",
+    "reason": "sport / campus"
+  },
+  "campus_staff": {
+    "primary": "Building",
+    "secondary": "Clock",
+    "theme": "campus",
+    "reason": "campus / time"
+  },
+  "campus_standing": {
+    "primary": "Clock",
+    "secondary": "Building",
+    "theme": "time",
+    "reason": "time / campus"
+  },
+  "campus_supply": {
+    "primary": "Factories2",
+    "secondary": "Building",
+    "theme": "industry",
+    "reason": "industry / campus"
+  },
+  "campus_textbooks": {
+    "primary": "Bills",
+    "secondary": "Book Open",
+    "theme": "money",
+    "reason": "money / book"
+  },
+  "campus_thermos": {
+    "primary": "Building",
+    "secondary": "Hand Writing",
+    "theme": "campus",
+    "reason": "campus / teacher"
+  },
+  "campus_tutoring": {
+    "primary": "Building",
+    "secondary": "Megaphone",
+    "theme": "campus",
+    "reason": "campus / media"
+  },
+  "campus_unrest": {
+    "primary": "Building",
+    "secondary": "Moon",
+    "theme": "campus",
+    "reason": "campus / night"
+  },
+  "campus_winter": {
+    "primary": "Cloud Dark",
+    "secondary": "Building",
+    "theme": "weather",
+    "reason": "weather / campus"
+  },
+  "committee_assembly_opening": {
+    "primary": "Citizen2",
+    "secondary": "Parliament",
+    "theme": "campus",
+    "reason": "关联国策美术；campus / meeting"
+  },
+  "committee_echo_compromise": {
+    "primary": "Hands Shaking",
+    "secondary": "Parliament",
+    "theme": "negotiation",
+    "reason": "negotiation / meeting"
+  },
+  "committee_echo_trial": {
+    "primary": "Handcuffs",
+    "secondary": "Parliament",
+    "theme": "repression",
+    "reason": "repression / meeting"
+  },
+  "committee_militia": {
+    "primary": "Rifle",
+    "secondary": "Magician",
+    "theme": "campus",
+    "reason": "关联国策美术；campus / cinema"
+  },
+  "committee_posters": {
+    "primary": "Megaphone3",
+    "secondary": "Building",
+    "theme": "media",
+    "reason": "关联国策美术；media / campus"
+  },
+  "committee_print_network": {
+    "primary": "Cog Wheel",
+    "secondary": "Megaphone",
+    "theme": "industry",
+    "reason": "关联国策美术；industry / media"
+  },
+  "committee_purge_moderates": {
+    "primary": "Handcuffs Broken",
+    "secondary": "Handcuffs",
+    "theme": "meeting",
+    "reason": "关联国策美术；meeting / repression"
+  },
+  "committee_vanguard": {
+    "primary": "Spy3",
+    "secondary": "Clock",
+    "theme": "security",
+    "reason": "关联国策美术；security / time"
+  },
+  "day_14_event": {
+    "primary": "Officer",
+    "secondary": "Spy",
+    "theme": "security",
+    "reason": "security / surveillance"
+  },
+  "democratic_power_struggle_event": {
+    "primary": "Parliament",
+    "secondary": "Documents",
+    "theme": "meeting",
+    "reason": "meeting / paper"
+  },
+  "democratic_power_struggle_result": {
+    "primary": "Parliament",
+    "secondary": "Computer",
+    "theme": "meeting",
+    "reason": "meeting / computer"
+  },
+  "democratic_reforms_event": {
+    "primary": "Crown",
+    "secondary": "Officer",
+    "theme": "meeting",
+    "reason": "关联国策美术；meeting / security"
+  },
+  "despair_fight": {
+    "primary": "Grim Reaper",
+    "secondary": "Rebellion",
+    "theme": "security",
+    "reason": "关联国策美术；security / revolution"
+  },
+  "education_marketization_event": {
+    "primary": "Bulldozer",
+    "secondary": "Hands Shaking",
+    "theme": "meeting",
+    "reason": "关联国策美术；meeting / negotiation"
+  },
+  "election_outcome_event": {
+    "scene": "第一张选票",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "meeting"
+  },
+  "empower_student_unions_event": {
+    "primary": "Bear2",
+    "secondary": "Rebellion",
+    "theme": "meeting",
+    "reason": "关联国策美术；meeting / revolution"
+  },
+  "enter_treeA": {
+    "news": "committeeFounded",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "meeting"
+  },
+  "enter_treeA_pan_despair": {
+    "scene": "最后一间教室",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "campus"
+  },
+  "enter_treeB": {
+    "primary": "Hand Writing",
+    "secondary": "Parliament",
+    "theme": "teacher",
+    "reason": "teacher / meeting"
+  },
+  "enter_treeC": {
+    "news": "entertainmentInauguration",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "cinema"
+  },
+  "enter_treeD": {
+    "primary": "Building",
+    "secondary": "Paper",
+    "theme": "campus",
+    "reason": "campus / paper"
+  },
+  "event_10_crossroads": {
+    "primary": "Bell",
+    "secondary": "Hands Shaking",
+    "theme": "meeting",
+    "reason": "关联国策美术；meeting / negotiation"
+  },
+  "event_7_smolny": {
+    "primary": "Banner",
+    "secondary": "Hands Shaking",
+    "theme": "meeting",
+    "reason": "关联国策美术；meeting / negotiation"
+  },
+  "event_8_trial": {
+    "primary": "Lantern",
+    "secondary": "Paper",
+    "theme": "repression",
+    "reason": "关联国策美术；repression / paper"
+  },
+  "event_9_rectify_order": {
+    "primary": "Plant",
+    "secondary": "Parliament",
+    "theme": "paper",
+    "reason": "关联国策美术；paper / meeting"
+  },
+  "expand_assembly_event": {
+    "primary": "Briefcase",
+    "secondary": "Rebellion",
+    "theme": "meeting",
+    "reason": "关联国策美术；meeting / revolution"
+  },
+  "extracurricular_activities_fund_event": {
+    "primary": "Cherry Blossom",
+    "secondary": "Bills",
+    "theme": "time",
+    "reason": "关联国策美术；time / money"
+  },
+  "final_revolution_event": {
+    "primary": "Fire2",
+    "secondary": "Hands Shaking",
+    "theme": "revolution",
+    "reason": "关联国策美术；revolution / negotiation"
+  },
+  "gouxiong_coup": {
+    "primary": "Karl Marx",
+    "secondary": "Documents",
+    "theme": "philosophy",
+    "reason": "philosophy / paper"
+  },
+  "gouxiong_coup_success": {
+    "primary": "Rebellion",
+    "secondary": "Pedestal",
+    "theme": "revolution",
+    "reason": "revolution / awards"
+  },
+  "gx_anime_event": {
+    "primary": "Citizen2",
+    "secondary": "Magician",
+    "theme": "sport",
+    "reason": "sport / cinema"
+  },
+  "gx_coup_10_days_warning_event": {
+    "primary": "Envelope",
+    "secondary": "Rebellion",
+    "theme": "letter",
+    "reason": "letter / revolution"
+  },
+  "gx_cyber_complete_aot": {
+    "primary": "Karl Marx",
+    "secondary": "Magician",
+    "theme": "philosophy",
+    "reason": "philosophy / cinema"
+  },
+  "gx_cyber_complete_bochi": {
+    "primary": "Woman Dancing",
+    "secondary": "Computer",
+    "theme": "music",
+    "reason": "music / computer"
+  },
+  "gx_cyber_complete_demon_slayer": {
+    "primary": "Magician",
+    "secondary": "Computer",
+    "theme": "cinema",
+    "reason": "cinema / computer"
+  },
+  "gx_cyber_complete_eva": {
+    "primary": "Magician",
+    "secondary": "Electricity",
+    "theme": "cinema",
+    "reason": "cinema / computer"
+  },
+  "gx_cyber_complete_frieren": {
+    "primary": "Karl Marx",
+    "secondary": "Bear",
+    "theme": "philosophy",
+    "reason": "philosophy / cinema"
+  },
+  "gx_cyber_complete_mygo": {
+    "primary": "Computer",
+    "secondary": "Woman Dancing",
+    "theme": "computer",
+    "reason": "computer / music"
+  },
+  "gx_cyber_complete_takagi": {
+    "primary": "Magician",
+    "secondary": "Cog",
+    "theme": "cinema",
+    "reason": "cinema / computer"
+  },
+  "gx_cyber_start_aot": {
+    "primary": "Magician",
+    "secondary": "Blueprints",
+    "theme": "cinema",
+    "reason": "cinema / computer"
+  },
+  "gx_cyber_start_bochi": {
+    "primary": "Woman Dancing",
+    "secondary": "Electricity",
+    "theme": "music",
+    "reason": "music / computer"
+  },
+  "gx_cyber_start_demon_slayer": {
+    "primary": "Magician",
+    "secondary": "Lightbulb Broken",
+    "theme": "cinema",
+    "reason": "cinema / computer"
+  },
+  "gx_cyber_start_eva": {
+    "primary": "Bear",
+    "secondary": "Computer",
+    "theme": "cinema",
+    "reason": "cinema / computer"
+  },
+  "gx_cyber_start_frieren": {
+    "primary": "Karl Marx",
+    "secondary": "Bear2",
+    "theme": "philosophy",
+    "reason": "philosophy / cinema"
+  },
+  "gx_cyber_start_mygo": {
+    "primary": "Woman Dancing",
+    "secondary": "Cog",
+    "theme": "music",
+    "reason": "music / computer"
+  },
+  "gx_cyber_start_takagi": {
+    "primary": "Computer",
+    "secondary": "Magician",
+    "theme": "computer",
+    "reason": "computer / cinema"
+  },
+  "gx_dabi_rooftop_invite_story_event": {
+    "generated": "rooftop-midnight",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "night"
+  },
+  "gx_dabi_route_trial_10d_event": {
+    "primary": "Handcuffs",
+    "secondary": "Moon",
+    "theme": "repression",
+    "reason": "repression / night"
+  },
+  "gx_dabi_route_trial_5d_event": {
+    "primary": "Rebellion",
+    "secondary": "Handcuffs",
+    "theme": "revolution",
+    "reason": "revolution / repression"
+  },
+  "gx_dabi_route_trial_embarrass_event": {
+    "primary": "Documents",
+    "secondary": "Megaphone",
+    "theme": "repression",
+    "reason": "关联国策美术；repression / media"
+  },
+  "gx_dabi_route_trial_redeem_event": {
+    "primary": "Documents",
+    "secondary": "Bird Freed",
+    "theme": "repression",
+    "reason": "关联国策美术；repression / freedom"
+  },
+  "gx_dabi_route_trial_ruin_event": {
+    "primary": "Documents",
+    "secondary": "Spy",
+    "theme": "repression",
+    "reason": "关联国策美术；repression / surveillance"
+  },
+  "gx_embarrass_1_event": {
+    "primary": "Hand Tearing Paper",
+    "secondary": "Megaphone",
+    "theme": "revolution",
+    "reason": "关联国策美术；revolution / media"
+  },
+  "gx_embarrass_2_event": {
+    "primary": "Brain",
+    "secondary": "Megaphone",
+    "theme": "security",
+    "reason": "关联国策美术；security / media"
+  },
+  "gx_embarrass_3_event": {
+    "primary": "Banner",
+    "secondary": "Magician",
+    "theme": "art",
+    "reason": "关联国策美术；art / cinema"
+  },
+  "gx_embarrass_ending_event": {
+    "primary": "Paper",
+    "secondary": "Factories2",
+    "theme": "paper",
+    "reason": "paper / industry"
+  },
+  "gx_embarrass_settlement_2d_event": {
+    "primary": "Handcuffs",
+    "secondary": "Rebellion",
+    "theme": "repression",
+    "reason": "repression / revolution"
+  },
+  "gx_hire_under_wzk_true_left_event": {
+    "primary": "Brush",
+    "secondary": "Magician",
+    "theme": "art",
+    "reason": "art / cinema"
+  },
+  "gx_mygo_event": {
+    "primary": "Woman Dancing",
+    "secondary": "Cloud Dark",
+    "theme": "music",
+    "reason": "music / weather"
+  },
+  "gx_pants_event": {
+    "primary": "Moon",
+    "secondary": "Magician",
+    "theme": "night",
+    "reason": "night / cinema"
+  },
+  "gx_redeem_1_event": {
+    "primary": "Megaphone Twins",
+    "secondary": "Factories2",
+    "theme": "freedom",
+    "reason": "关联国策美术；freedom / industry"
+  },
+  "gx_redeem_2_event": {
+    "primary": "HandPalmDown",
+    "secondary": "Magician",
+    "theme": "freedom",
+    "reason": "关联国策美术；freedom / cinema"
+  },
+  "gx_redeem_3_event": {
+    "primary": "Bear",
+    "secondary": "Hands Shaking",
+    "theme": "freedom",
+    "reason": "关联国策美术；freedom / negotiation"
+  },
+  "gx_redeem_ending_event": {
+    "generated": "school-infirmary",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "freedom"
+  },
+  "gx_redeem_settlement_2d_event": {
+    "primary": "Bird Freed",
+    "secondary": "Magician",
+    "theme": "freedom",
+    "reason": "freedom / cinema"
+  },
+  "gx_ruin_1_event": {
+    "primary": "Arrow4",
+    "secondary": "Megaphone",
+    "theme": "surveillance",
+    "reason": "关联国策美术；surveillance / media"
+  },
+  "gx_ruin_2_event": {
+    "primary": "Bell",
+    "secondary": "Book Open",
+    "theme": "paper",
+    "reason": "关联国策美术；paper / book"
+  },
+  "gx_ruin_3_event": {
+    "primary": "Paper Sign",
+    "secondary": "Woman Dancing",
+    "theme": "security",
+    "reason": "关联国策美术；security / music"
+  },
+  "gx_ruin_ending_event": {
+    "scene": "校园涂鸦1",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "computer"
+  },
+  "gx_ruin_settlement_2d_event": {
+    "primary": "Clock",
+    "secondary": "Computer",
+    "theme": "time",
+    "reason": "time / computer"
+  },
+  "gx_sanity_first_above_70_event": {
+    "primary": "Karl Marx",
+    "secondary": "Clock",
+    "theme": "philosophy",
+    "reason": "philosophy / time"
+  },
+  "gx_sanity_first_above_80_event": {
+    "primary": "Karl Marx",
+    "secondary": "Paper",
+    "theme": "philosophy",
+    "reason": "philosophy / paper"
+  },
+  "gx_sanity_first_above_90_event": {
+    "primary": "Karl Marx",
+    "secondary": "Brush",
+    "theme": "philosophy",
+    "reason": "philosophy / art"
+  },
+  "gx_sanity_first_below_10_event": {
+    "primary": "Karl Marx",
+    "secondary": "Rebellion",
+    "theme": "philosophy",
+    "reason": "philosophy / revolution"
+  },
+  "gx_sanity_first_below_20_event": {
+    "primary": "Computer",
+    "secondary": "Vial",
+    "theme": "computer",
+    "reason": "computer / health"
+  },
+  "gx_sanity_first_below_30_event": {
+    "primary": "Computer",
+    "secondary": "Karl Marx",
+    "theme": "computer",
+    "reason": "computer / philosophy"
+  },
+  "gx_sanity_first_below_40_event": {
+    "primary": "Computer",
+    "secondary": "Brain",
+    "theme": "computer",
+    "reason": "computer / philosophy"
+  },
+  "gx_start_event": {
+    "news": "entertainmentInauguration",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "media"
+  },
+  "gx_wushuo_evidence_submit_story_event": {
+    "primary": "Megaphone",
+    "secondary": "Clock",
+    "theme": "media",
+    "reason": "media / time"
+  },
+  "haobang_assembly_charter_event": {
+    "primary": "Hand Raised",
+    "secondary": "Factories2",
+    "theme": "meeting",
+    "reason": "关联国策美术；meeting / industry"
+  },
+  "haobang_assembly_recall_event": {
+    "primary": "Briefcase2",
+    "secondary": "Computer",
+    "theme": "meeting",
+    "reason": "关联国策美术；meeting / computer"
+  },
+  "haobang_assembly_upgrade_event": {
+    "primary": "Walkie Talkie",
+    "secondary": "Officer",
+    "theme": "meeting",
+    "reason": "关联国策美术；meeting / security"
+  },
+  "haobang_blank_event_1": {
+    "primary": "Torch Gold",
+    "secondary": "Megaphone",
+    "theme": "revolution",
+    "reason": "关联国策美术；revolution / media"
+  },
+  "haobang_blank_event_2": {
+    "primary": "Torch Gold",
+    "secondary": "Hands Shaking",
+    "theme": "meeting",
+    "reason": "关联国策美术；meeting / negotiation"
+  },
+  "haobang_blank_event_3": {
+    "primary": "Torch Gold",
+    "secondary": "Hands Shaking2",
+    "theme": "night",
+    "reason": "关联国策美术；night / negotiation"
+  },
+  "haobang_commune_federation_event": {
+    "primary": "Megaphone Twins",
+    "secondary": "Parliament",
+    "theme": "negotiation",
+    "reason": "关联国策美术；negotiation / meeting"
+  },
+  "haobang_commune_pilot_event": {
+    "scene": "公社的长桌",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "negotiation"
+  },
+  "haobang_commune_program_event": {
+    "primary": "Factories2",
+    "secondary": "Hands Shaking",
+    "theme": "meeting",
+    "reason": "关联国策美术；meeting / negotiation"
+  },
+  "haobang_ending_event_1": {
+    "primary": "Dice",
+    "secondary": "Karl Marx",
+    "theme": "meeting",
+    "reason": "关联国策美术；meeting / philosophy"
+  },
+  "haobang_ending_event_2": {
+    "primary": "Dice",
+    "secondary": "Parliament",
+    "theme": "freedom",
+    "reason": "关联国策美术；freedom / meeting"
+  },
+  "haobang_ending_event_3": {
+    "primary": "Dice",
+    "secondary": "Megaphone",
+    "theme": "freedom",
+    "reason": "关联国策美术；freedom / media"
+  },
+  "haobang_gouxiong_3d_event": {
+    "primary": "Hands Shaking",
+    "secondary": "Book Open",
+    "theme": "negotiation",
+    "reason": "negotiation / book"
+  },
+  "haobang_gouxiong_6d_event": {
+    "primary": "Officer",
+    "secondary": "Vial",
+    "theme": "security",
+    "reason": "security / health"
+  },
+  "haobang_gouxiong_9d_event": {
+    "primary": "Hands Shaking",
+    "secondary": "Handcuffs",
+    "theme": "negotiation",
+    "reason": "negotiation / repression"
+  },
+  "haobang_legacy_defense_event": {
+    "primary": "Documents",
+    "secondary": "Parliament",
+    "theme": "security",
+    "reason": "关联国策美术；security / meeting"
+  },
+  "haobang_legacy_guard_event": {
+    "primary": "Cracks Overlay",
+    "secondary": "Officer",
+    "theme": "negotiation",
+    "reason": "关联国策美术；negotiation / security"
+  },
+  "haobang_legacy_joint_event": {
+    "primary": "Megaphone3",
+    "secondary": "Hands Shaking",
+    "theme": "meeting",
+    "reason": "关联国策美术；meeting / negotiation"
+  },
+  "haobang_merge_bear_done": {
+    "primary": "Hands Shaking",
+    "secondary": "Rebellion",
+    "theme": "negotiation",
+    "reason": "negotiation / revolution"
+  },
+  "haobang_merge_pan_done": {
+    "primary": "Hands Shaking",
+    "secondary": "Fist",
+    "theme": "negotiation",
+    "reason": "negotiation / revolution"
+  },
+  "haobang_negotiation_result_fail": {
+    "primary": "Hands Shaking",
+    "secondary": "Denied",
+    "theme": "negotiation",
+    "reason": "negotiation / failure"
+  },
+  "haobang_start_4d_event": {
+    "portrait": "leader_hao_bang",
+    "secondary": "Crown Broken",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "meeting"
+  },
+  "haobang_start_8d_event": {
+    "primary": "Parliament",
+    "secondary": "Hands Shaking2",
+    "theme": "meeting",
+    "reason": "meeting / negotiation"
+  },
+  "hire_you_guanglei_event": {
+    "portrait": "advisor_you_guanglei",
+    "secondary": "Hands Shaking",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "freedom"
+  },
+  "hire_zhou_chen_event": {
+    "portrait": "advisor_zhou_chen",
+    "secondary": "Book Open",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "meeting"
+  },
+  "jidi_ai_grading_event": {
+    "primary": "Bills",
+    "secondary": "Ballot2",
+    "theme": "paper",
+    "reason": "关联国策美术；paper / meeting"
+  },
+  "jidi_ai_tutors_event": {
+    "primary": "Coins",
+    "secondary": "Bills",
+    "theme": "computer",
+    "reason": "关联国策美术；computer / money"
+  },
+  "jidi_bureau_target_failure": {
+    "primary": "Denied",
+    "secondary": "Bills",
+    "theme": "failure",
+    "reason": "failure / money"
+  },
+  "jidi_bureau_target_success": {
+    "primary": "Bills",
+    "secondary": "Pedestal",
+    "theme": "money",
+    "reason": "money / awards"
+  },
+  "jidi_corporate_utopia_event": {
+    "scene": "企业学校的黄昏",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "money"
+  },
+  "jidi_data_mining_event": {
+    "primary": "Cash Flow Positive2",
+    "secondary": "Paper",
+    "theme": "computer",
+    "reason": "关联国策美术；computer / paper"
+  },
+  "jidi_ending_1_event": {
+    "primary": "Paper",
+    "secondary": "Parliament",
+    "theme": "paper",
+    "reason": "paper / meeting"
+  },
+  "jidi_ending_2_event": {
+    "primary": "Paper",
+    "secondary": "Hands Shaking",
+    "theme": "paper",
+    "reason": "paper / negotiation"
+  },
+  "jidi_ending_3_event": {
+    "primary": "Handcuffs",
+    "secondary": "Ballot",
+    "theme": "repression",
+    "reason": "repression / meeting"
+  },
+  "jidi_ending_4_event": {
+    "primary": "Clock",
+    "secondary": "Officer",
+    "theme": "time",
+    "reason": "time / security"
+  },
+  "jidi_establish_committee_event": {
+    "primary": "Hands Shaking",
+    "secondary": "Ballot",
+    "theme": "money",
+    "reason": "关联国策美术；money / meeting"
+  },
+  "jidi_expand_market_event": {
+    "primary": "Coins6",
+    "secondary": "Bills",
+    "theme": "paper",
+    "reason": "关联国策美术；paper / money"
+  },
+  "jidi_feng_anbao_event": {
+    "portrait": "leader_feng_anbao",
+    "secondary": "Shield",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "freedom"
+  },
+  "jidi_fujitsu_model_event": {
+    "primary": "Coins4",
+    "secondary": "Hand Writing",
+    "theme": "paper",
+    "reason": "关联国策美术；paper / teacher"
+  },
+  "jidi_hidden_riot_event": {
+    "scene": "价格牌下的风暴",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "revolution"
+  },
+  "jidi_hitachi_model_event": {
+    "primary": "Coins2",
+    "secondary": "Clock",
+    "theme": "power",
+    "reason": "关联国策美术；power / time"
+  },
+  "jidi_late_game_mock_exam": {
+    "primary": "Pedestal",
+    "secondary": "Bills",
+    "theme": "awards",
+    "reason": "awards / money"
+  },
+  "jidi_late_mock_exam": {
+    "primary": "Bills",
+    "secondary": "Factories2",
+    "theme": "money",
+    "reason": "money / industry"
+  },
+  "jidi_mock_exam_approach_event": {
+    "primary": "Bills",
+    "secondary": "Clock",
+    "theme": "money",
+    "reason": "money / time"
+  },
+  "jidi_mock_exam_fail": {
+    "primary": "Denied",
+    "secondary": "Coins",
+    "theme": "failure",
+    "reason": "failure / money"
+  },
+  "jidi_mock_exam_mediocre": {
+    "primary": "Pedestal",
+    "secondary": "Parliament",
+    "theme": "awards",
+    "reason": "awards / meeting"
+  },
+  "jidi_mock_exam_success": {
+    "primary": "Pedestal",
+    "secondary": "Coins",
+    "theme": "awards",
+    "reason": "awards / money"
+  },
+  "jidi_monopoly_event": {
+    "primary": "Coins3",
+    "secondary": "Hand Writing",
+    "theme": "computer",
+    "reason": "关联国策美术；computer / teacher"
+  },
+  "jidi_new_era_event": {
+    "scene": "及第之梦",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "money"
+  },
+  "jidi_performance_metrics_event": {
+    "primary": "Bank Broken",
+    "secondary": "Parliament",
+    "theme": "paper",
+    "reason": "关联国策美术；paper / meeting"
+  },
+  "jidi_profit_event": {
+    "news": "commercialCampus",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "money"
+  },
+  "jidi_psychological_counseling_event": {
+    "primary": "Capitol",
+    "secondary": "Handcuffs",
+    "theme": "security",
+    "reason": "关联国策美术；security / repression"
+  },
+  "jidi_riot_event_10d": {
+    "primary": "Rebellion",
+    "secondary": "Officer",
+    "theme": "revolution",
+    "reason": "revolution / security"
+  },
+  "jidi_riot_event_15d": {
+    "primary": "Rebellion",
+    "secondary": "Soldier Pointing",
+    "theme": "revolution",
+    "reason": "revolution / security"
+  },
+  "jidi_riot_event_5d": {
+    "primary": "Rebellion",
+    "secondary": "Clock",
+    "theme": "revolution",
+    "reason": "revolution / time"
+  },
+  "jidi_riot_feng_death_event": {
+    "primary": "Rebellion",
+    "secondary": "Building",
+    "theme": "revolution",
+    "reason": "revolution / campus"
+  },
+  "jidi_riot_lockdown_1": {
+    "primary": "Rebellion",
+    "secondary": "Computer",
+    "theme": "revolution",
+    "reason": "revolution / computer"
+  },
+  "jidi_riot_lockdown_2": {
+    "primary": "Factories2",
+    "secondary": "Rebellion",
+    "theme": "industry",
+    "reason": "industry / revolution"
+  },
+  "jidi_riot_lockdown_3": {
+    "primary": "Rebellion",
+    "secondary": "Parliament",
+    "theme": "revolution",
+    "reason": "revolution / meeting"
+  },
+  "jidi_rnd_department_event": {
+    "scene": "密卷流水线",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "industry"
+  },
+  "jidi_rnd_dumping_phase": {
+    "primary": "Paper",
+    "secondary": "Bills",
+    "theme": "paper",
+    "reason": "paper / money"
+  },
+  "jidi_rnd_fail": {
+    "primary": "Denied",
+    "secondary": "Parliament",
+    "theme": "failure",
+    "reason": "failure / meeting"
+  },
+  "jidi_rnd_product_1": {
+    "primary": "Megaphone",
+    "secondary": "Paper",
+    "theme": "media",
+    "reason": "media / paper"
+  },
+  "jidi_rnd_product_2": {
+    "primary": "Computer",
+    "secondary": "Paper",
+    "theme": "computer",
+    "reason": "computer / paper"
+  },
+  "jidi_rnd_product_3": {
+    "primary": "Paper",
+    "secondary": "Clock",
+    "theme": "paper",
+    "reason": "paper / time"
+  },
+  "jidi_rnd_success": {
+    "primary": "Pedestal",
+    "secondary": "Paper",
+    "theme": "awards",
+    "reason": "awards / paper"
+  },
+  "jidi_rnd_testing_phase": {
+    "primary": "Paper",
+    "secondary": "Karl Marx",
+    "theme": "paper",
+    "reason": "paper / philosophy"
+  },
+  "jidi_sell_gdp_for_pp": {
+    "primary": "Bills",
+    "secondary": "Building",
+    "theme": "money",
+    "reason": "money / campus"
+  },
+  "jidi_sell_gdp_for_stab": {
+    "primary": "Bills",
+    "secondary": "House",
+    "theme": "money",
+    "reason": "money / campus"
+  },
+  "jidi_sony_model_event": {
+    "primary": "Cash3",
+    "secondary": "Hands Shaking",
+    "theme": "meeting",
+    "reason": "关联国策美术；meeting / negotiation"
+  },
+  "jidi_story_committee_5d": {
+    "portrait": "advisor_wang_juanhao_vanguard",
+    "secondary": "Paper",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "paper"
+  },
+  "jidi_story_kpi_25d": {
+    "portrait": "advisor_wang_juanhao_vanguard",
+    "secondary": "Clock2",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "paper"
+  },
+  "jidi_story_kpi_35d": {
+    "portrait": "advisor_wang_juanhao_vanguard",
+    "secondary": "Paper Torn",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "paper"
+  },
+  "jidi_story_kpi_5d": {
+    "portrait": "advisor_wang_juanhao_vanguard",
+    "secondary": "Pedestal",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "meeting"
+  },
+  "jidi_story_monopoly_15d": {
+    "portrait": "advisor_wang_juanhao_vanguard",
+    "secondary": "Brain",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "paper"
+  },
+  "jidi_story_monopoly_25d": {
+    "portrait": "advisor_wang_juanhao_vanguard",
+    "secondary": "Cloud Dark",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "paper"
+  },
+  "jidi_story_monopoly_5d": {
+    "portrait": "advisor_wang_juanhao_vanguard",
+    "secondary": "Arrow Broken",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "negotiation"
+  },
+  "jidi_story_utopia_1d": {
+    "primary": "Spy",
+    "secondary": "Computer",
+    "theme": "surveillance",
+    "reason": "surveillance / computer"
+  },
+  "jidi_story_utopia_2d": {
+    "primary": "Rebellion",
+    "secondary": "House",
+    "theme": "revolution",
+    "reason": "revolution / campus"
+  },
+  "jidi_story_utopia_3d": {
+    "primary": "Hands Shaking",
+    "secondary": "Megaphone",
+    "theme": "negotiation",
+    "reason": "negotiation / media"
+  },
+  "jidi_strict_discipline_event": {
+    "primary": "Cash2",
+    "secondary": "Factories2",
+    "theme": "time",
+    "reason": "关联国策美术；time / industry"
+  },
+  "jidi_student_loans_event": {
+    "primary": "Gold",
+    "secondary": "Paper",
+    "theme": "money",
+    "reason": "关联国策美术；money / paper"
+  },
+  "jidi_suppress_event": {
+    "primary": "Handcuffs",
+    "secondary": "Ballot2",
+    "theme": "repression",
+    "reason": "repression / meeting"
+  },
+  "jidi_takeover": {
+    "primary": "Crown2",
+    "secondary": "Documents",
+    "theme": "power",
+    "reason": "power / paper"
+  },
+  "jidi_takeover_success": {
+    "primary": "Crown2",
+    "secondary": "Pedestal",
+    "theme": "power",
+    "reason": "power / awards"
+  },
+  "jidi_teacher_contracts_event": {
+    "primary": "Cash",
+    "secondary": "Parliament",
+    "theme": "teacher",
+    "reason": "关联国策美术；teacher / meeting"
+  },
+  "jidi_value_extraction_event": {
+    "primary": "Vault",
+    "secondary": "Clock",
+    "theme": "industry",
+    "reason": "关联国策美术；industry / time"
+  },
+  "juanhao_event_1": {
+    "primary": "Hand Grab2",
+    "secondary": "Parliament",
+    "theme": "time",
+    "reason": "关联国策美术；time / meeting"
+  },
+  "juanhao_event_2": {
+    "primary": "Paper",
+    "secondary": "Factories3",
+    "theme": "paper",
+    "reason": "paper / industry"
+  },
+  "juanhao_event_3": {
+    "primary": "Karl Marx",
+    "secondary": "Denied",
+    "theme": "philosophy",
+    "reason": "philosophy / failure"
+  },
+  "juanhao_event_4": {
+    "primary": "Rebellion",
+    "secondary": "Bird Freed",
+    "theme": "revolution",
+    "reason": "revolution / freedom"
+  },
+  "juanhao_event_5": {
+    "primary": "Megaphone",
+    "secondary": "Brush",
+    "theme": "media",
+    "reason": "media / art"
+  },
+  "juanhao_victory_event": {
+    "portrait": "advisor_wang_juanhao_vanguard",
+    "secondary": "Envelope",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "power"
+  },
+  "late_game_mock_exam": {
+    "primary": "Clock",
+    "secondary": "Pedestal",
+    "theme": "time",
+    "reason": "time / awards"
+  },
+  "late_mock_exam": {
+    "primary": "Paper",
+    "secondary": "Bell",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "campus"
+  },
+  "lost_scroll_1": {
+    "primary": "Clock",
+    "secondary": "Electricity",
+    "theme": "time",
+    "reason": "time / computer"
+  },
+  "lost_scroll_2": {
+    "primary": "Megaphone",
+    "secondary": "Vial",
+    "theme": "media",
+    "reason": "media / health"
+  },
+  "lost_scroll_3": {
+    "primary": "Paper",
+    "secondary": "Computer",
+    "theme": "paper",
+    "reason": "paper / computer"
+  },
+  "lost_scroll_4": {
+    "primary": "Building",
+    "secondary": "Lantern",
+    "theme": "campus",
+    "reason": "campus / night"
+  },
+  "lost_scroll_5": {
+    "primary": "Factories2",
+    "secondary": "Documents",
+    "theme": "industry",
+    "reason": "industry / paper"
+  },
+  "lost_scroll_6": {
+    "primary": "Clock",
+    "secondary": "Rebellion",
+    "theme": "time",
+    "reason": "time / revolution"
+  },
+  "lu_flavor_confession_box": {
+    "primary": "Spy",
+    "secondary": "Wall",
+    "theme": "surveillance",
+    "reason": "surveillance / campus"
+  },
+  "lu_flavor_loyalty_parade": {
+    "primary": "Cloud Dark",
+    "secondary": "Rebellion",
+    "theme": "weather",
+    "reason": "weather / revolution"
+  },
+  "lu_flavor_pump_room": {
+    "primary": "Officer",
+    "secondary": "Rebellion",
+    "theme": "security",
+    "reason": "security / revolution"
+  },
+  "lu_purge_admin_blank_event": {
+    "primary": "Soldiers in Rows",
+    "secondary": "Building",
+    "theme": "repression",
+    "reason": "关联国策美术；repression / campus"
+  },
+  "lu_purge_auditorium_blank_event": {
+    "primary": "Soldier3",
+    "secondary": "Magician",
+    "theme": "repression",
+    "reason": "关联国策美术；repression / cinema"
+  },
+  "lu_purge_b1b2_blank_event": {
+    "primary": "Soldier",
+    "secondary": "Building",
+    "theme": "repression",
+    "reason": "关联国策美术；repression / campus"
+  },
+  "lu_purge_b3_blank_event": {
+    "primary": "Bowl Cracked",
+    "secondary": "Building",
+    "theme": "repression",
+    "reason": "关联国策美术；repression / campus"
+  },
+  "lu_purge_lab_blank_event": {
+    "primary": "Map with Knife",
+    "secondary": "Factories2",
+    "theme": "repression",
+    "reason": "关联国策美术；repression / industry"
+  },
+  "lu_purge_playground_blank_event": {
+    "primary": "Coffin",
+    "secondary": "Building",
+    "theme": "repression",
+    "reason": "关联国策美术；repression / campus"
+  },
+  "lu_second_democracy_unlocked_event": {
+    "primary": "Handcuffs",
+    "secondary": "Megaphone",
+    "theme": "repression",
+    "reason": "repression / media"
+  },
+  "lu_sole_helmsman_event_1": {
+    "primary": "Paper Sign",
+    "secondary": "Megaphone",
+    "theme": "time",
+    "reason": "关联国策美术；time / media"
+  },
+  "lu_sole_helmsman_event_2": {
+    "primary": "Paper Sign",
+    "secondary": "Handcuffs",
+    "theme": "paper",
+    "reason": "关联国策美术；paper / repression"
+  },
+  "lu_sole_helmsman_event_3": {
+    "primary": "Paper Sign",
+    "secondary": "Rebellion",
+    "theme": "repression",
+    "reason": "关联国策美术；repression / revolution"
+  },
+  "lu_wang_retire_blank_event_1": {
+    "primary": "Bird Freed",
+    "secondary": "Parliament",
+    "theme": "freedom",
+    "reason": "freedom / meeting"
+  },
+  "lu_wang_retire_blank_event_2": {
+    "primary": "Bird Freed",
+    "secondary": "Factories2",
+    "theme": "freedom",
+    "reason": "freedom / industry"
+  },
+  "lu_wang_retire_blank_event_3": {
+    "primary": "Bird Freed",
+    "secondary": "Ballot",
+    "theme": "freedom",
+    "reason": "freedom / meeting"
+  },
+  "march_on_admin": {
+    "scene": "街垒黎明",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "campus"
+  },
+  "master_lecture": {
+    "primary": "Hand Writing",
+    "secondary": "Documents",
+    "theme": "teacher",
+    "reason": "teacher / paper"
+  },
+  "midnight_crisis": {
+    "primary": "Moon",
+    "secondary": "Paper",
+    "theme": "night",
+    "reason": "night / paper"
+  },
+  "mock_exam": {
+    "primary": "Paper",
+    "secondary": "Clock",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "campus"
+  },
+  "mock_exam_approach_event": {
+    "primary": "Paper",
+    "secondary": "Clock2",
+    "theme": "paper",
+    "reason": "paper / time"
+  },
+  "mock_exam_fail": {
+    "primary": "Denied",
+    "secondary": "Hands Shaking",
+    "theme": "failure",
+    "reason": "failure / negotiation"
+  },
+  "mock_exam_fail_initial": {
+    "primary": "Pedestal",
+    "secondary": "Cloud Dark",
+    "theme": "awards",
+    "reason": "awards / weather"
+  },
+  "mock_exam_mediocre": {
+    "primary": "Pedestal",
+    "secondary": "Computer",
+    "theme": "awards",
+    "reason": "awards / computer"
+  },
+  "mock_exam_success": {
+    "primary": "Pedestal",
+    "secondary": "Clock",
+    "theme": "awards",
+    "reason": "awards / time"
+  },
+  "negotiate_bear": {
+    "portrait": "leader_gouxiong",
+    "secondary": "Hands Shaking2",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "negotiation"
+  },
+  "negotiate_conservativeDem": {
+    "primary": "Hands Shaking",
+    "secondary": "Ballot2",
+    "theme": "negotiation",
+    "reason": "negotiation / meeting"
+  },
+  "negotiate_jidiTutoring": {
+    "portrait": "advisor_jidi_ceo",
+    "secondary": "Cash Fan",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "negotiation"
+  },
+  "negotiate_orthodox": {
+    "portrait": "leader_wang_zhaokai",
+    "secondary": "Hands Shaking",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "negotiation"
+  },
+  "negotiate_otherDem": {
+    "primary": "Hands Shaking",
+    "secondary": "Constitution",
+    "theme": "negotiation",
+    "reason": "negotiation / meeting"
+  },
+  "negotiate_pan": {
+    "portrait": "leader_pan_renyue",
+    "secondary": "Hands Shaking3",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "negotiation"
+  },
+  "negotiate_testTaker": {
+    "portrait": "advisor_wang_juanhao_vanguard",
+    "secondary": "Hands Shaking4",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "negotiation"
+  },
+  "newOriental_rnd_fail": {
+    "primary": "Denied",
+    "secondary": "Ballot",
+    "theme": "failure",
+    "reason": "failure / meeting"
+  },
+  "newOriental_rnd_product_1": {
+    "primary": "Paper",
+    "secondary": "Moon",
+    "theme": "paper",
+    "reason": "paper / night"
+  },
+  "newOriental_rnd_product_2": {
+    "primary": "Paper",
+    "secondary": "Book Open",
+    "theme": "paper",
+    "reason": "paper / book"
+  },
+  "newOriental_rnd_product_3": {
+    "primary": "Paper Torn",
+    "secondary": "Clock",
+    "theme": "paper",
+    "reason": "paper / time"
+  },
+  "newOriental_rnd_success": {
+    "primary": "Pedestal",
+    "secondary": "Ballot",
+    "theme": "awards",
+    "reason": "awards / meeting"
+  },
+  "olive_branch": {
+    "primary": "Parliament",
+    "secondary": "Hands Shaking3",
+    "theme": "meeting",
+    "reason": "meeting / negotiation"
+  },
+  "oppose_bill_event": {
+    "primary": "Ballot",
+    "secondary": "Documents",
+    "theme": "meeting",
+    "reason": "meeting / paper"
+  },
+  "opposition_propaganda": {
+    "primary": "Megaphone",
+    "secondary": "Parliament",
+    "theme": "media",
+    "reason": "media / meeting"
+  },
+  "opposition_slander_event": {
+    "primary": "Parliament",
+    "secondary": "Building",
+    "theme": "meeting",
+    "reason": "meeting / campus"
+  },
+  "orthodox_dominance_event": {
+    "portrait": "leader_wang_zhaokai",
+    "secondary": "Crown3",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "power"
+  },
+  "pacify_teachers": {
+    "primary": "Hand Writing",
+    "secondary": "Paper",
+    "theme": "teacher",
+    "reason": "teacher / paper"
+  },
+  "pan_democratic_victory_event": {
+    "scene": "春回滨湖",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "awards"
+  },
+  "pan_takeover_event": {
+    "portrait": "leader_pan_renyue",
+    "secondary": "Crown2",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "power"
+  },
+  "pan_victory_event": {
+    "portrait": "leader_pan_renyue",
+    "secondary": "Ballot",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "awards"
+  },
+  "phase1_ban_books": {
+    "primary": "Book",
+    "secondary": "Officer",
+    "theme": "book",
+    "reason": "关联国策美术；book / security"
+  },
+  "phase1_before_charge": {
+    "primary": "Fist Colored",
+    "secondary": "Rebellion",
+    "theme": "security",
+    "reason": "关联国策美术；security / revolution"
+  },
+  "phase1_build_art": {
+    "primary": "Cog",
+    "secondary": "Brush",
+    "theme": "industry",
+    "reason": "关联国策美术；industry / art"
+  },
+  "phase1_contact_pan": {
+    "portrait": "leader_pan_renyue",
+    "secondary": "Paper Sign",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "media"
+  },
+  "phase1_day14_updated": {
+    "primary": "Officer",
+    "secondary": "Spy2",
+    "theme": "security",
+    "reason": "security / surveillance"
+  },
+  "phase1_dorm_talks": {
+    "generated": "dorm-whispers",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "night"
+  },
+  "phase1_echo_clubs": {
+    "primary": "Parliament",
+    "secondary": "Fist",
+    "theme": "meeting",
+    "reason": "meeting / revolution"
+  },
+  "phase1_echo_handover": {
+    "primary": "Rebellion",
+    "secondary": "Wall",
+    "theme": "revolution",
+    "reason": "revolution / campus"
+  },
+  "phase1_fake_five_edu": {
+    "primary": "Documents",
+    "secondary": "Computer",
+    "theme": "media",
+    "reason": "关联国策美术；media / computer"
+  },
+  "phase1_hengshui_schedule": {
+    "primary": "Paper",
+    "secondary": "Denied",
+    "theme": "time",
+    "reason": "关联国策美术；time / failure"
+  },
+  "phase1_protest_privilege": {
+    "primary": "Star Red2",
+    "secondary": "Clock",
+    "theme": "campus",
+    "reason": "关联国策美术；campus / time"
+  },
+  "phase1_recess_dispute": {
+    "scene": "课间的争执",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "time"
+  },
+  "phase1_returned_petition": {
+    "scene": "退回的联名信",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "letter"
+  },
+  "phase1_shared_leaflet": {
+    "primary": "Megaphone",
+    "secondary": "Envelope",
+    "theme": "media",
+    "reason": "media / letter"
+  },
+  "phase1_start_2023": {
+    "portrait": "leader_feng_anbao",
+    "secondary": "Bell",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "media"
+  },
+  "phase1_wu_patrol": {
+    "portrait": "advisor_wu_fujun",
+    "secondary": "Spy",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "campus"
+  },
+  "reclaim_democracy_event": {
+    "primary": "Wall",
+    "secondary": "Hands Shaking",
+    "theme": "meeting",
+    "reason": "关联国策美术；meeting / negotiation"
+  },
+  "red_toad_1": {
+    "primary": "Rebellion",
+    "secondary": "Paper",
+    "theme": "revolution",
+    "reason": "revolution / paper"
+  },
+  "red_toad_2": {
+    "primary": "Hands Shaking",
+    "secondary": "Fist Colored",
+    "theme": "negotiation",
+    "reason": "negotiation / revolution"
+  },
+  "red_toad_3": {
+    "primary": "Book Open",
+    "secondary": "Parliament",
+    "theme": "book",
+    "reason": "book / meeting"
+  },
+  "red_toad_4": {
+    "primary": "Karl Marx",
+    "secondary": "Bear3",
+    "theme": "philosophy",
+    "reason": "philosophy / cinema"
+  },
+  "red_toad_5": {
+    "primary": "Parliament",
+    "secondary": "Hands Shaking4",
+    "theme": "meeting",
+    "reason": "meeting / negotiation"
+  },
+  "reform_blank_event_1": {
+    "portrait": "leader_lu_bohan",
+    "secondary": "Clock",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "time"
+  },
+  "reform_blank_event_2": {
+    "portrait": "leader_hao_bang",
+    "secondary": "Clock",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "time"
+  },
+  "reform_blank_event_3": {
+    "portrait": "leader_wang_zhaokai",
+    "secondary": "Clock",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "time"
+  },
+  "reform_capital_crisis": {
+    "primary": "Rebellion",
+    "secondary": "Bills",
+    "theme": "revolution",
+    "reason": "revolution / money"
+  },
+  "reform_capital_fail": {
+    "primary": "Pedestal",
+    "secondary": "Cash Fan",
+    "theme": "awards",
+    "reason": "awards / money"
+  },
+  "reform_complete_placeholder": {
+    "primary": "Paper",
+    "secondary": "Hands Shaking2",
+    "theme": "paper",
+    "reason": "paper / negotiation"
+  },
+  "reform_countdown_120": {
+    "primary": "Clock",
+    "secondary": "Fist",
+    "theme": "time",
+    "reason": "time / revolution"
+  },
+  "reform_countdown_30": {
+    "primary": "Clock",
+    "secondary": "Parliament",
+    "theme": "time",
+    "reason": "time / meeting"
+  },
+  "reform_countdown_60": {
+    "primary": "Magician",
+    "secondary": "Handcuffs",
+    "theme": "cinema",
+    "reason": "cinema / repression"
+  },
+  "reform_countdown_90": {
+    "primary": "Moon",
+    "secondary": "Clock",
+    "theme": "night",
+    "reason": "night / time"
+  },
+  "reform_fail_event": {
+    "primary": "Denied",
+    "secondary": "Paper",
+    "theme": "failure",
+    "reason": "failure / paper"
+  },
+  "reform_sanity_crisis": {
+    "primary": "Denied",
+    "secondary": "Karl Marx",
+    "theme": "failure",
+    "reason": "failure / philosophy"
+  },
+  "reform_sanity_fail": {
+    "primary": "Rebellion",
+    "secondary": "Denied",
+    "theme": "revolution",
+    "reason": "revolution / failure"
+  },
+  "report_to_feng": {
+    "primary": "Documents",
+    "secondary": "Paper",
+    "theme": "teacher",
+    "reason": "teacher / paper"
+  },
+  "reshape_unity_event": {
+    "primary": "Idea Icon",
+    "secondary": "Parliament",
+    "theme": "negotiation",
+    "reason": "关联国策美术；negotiation / meeting"
+  },
+  "resource_exchange_event": {
+    "primary": "Hand Empty",
+    "secondary": "Parliament",
+    "theme": "paper",
+    "reason": "关联国策美术；paper / meeting"
+  },
+  "school_counterattack": {
+    "primary": "Rebellion",
+    "secondary": "Paper Torn",
+    "theme": "revolution",
+    "reason": "revolution / paper"
+  },
+  "school_starts": {
+    "news": "schoolOpening",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "security"
+  },
+  "secret_compromise": {
+    "scene": "灯下的协议",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "night"
+  },
+  "start_democratic_election_event": {
+    "scene": "六十日之约",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "meeting"
+  },
+  "story_1": {
+    "primary": "Paper Torn",
+    "secondary": "Clock2",
+    "theme": "paper",
+    "reason": "paper / time"
+  },
+  "story_2": {
+    "primary": "Clock",
+    "secondary": "Soldier Pointing",
+    "theme": "time",
+    "reason": "time / security"
+  },
+  "story_3": {
+    "primary": "Karl Marx",
+    "secondary": "Moon",
+    "theme": "revolution",
+    "reason": "关联国策美术；revolution / night"
+  },
+  "story_4": {
+    "primary": "Hand Out",
+    "secondary": "Rebellion",
+    "theme": "cinema",
+    "reason": "关联国策美术；cinema / revolution"
+  },
+  "story_5": {
+    "primary": "Bear",
+    "secondary": "Magician",
+    "theme": "paper",
+    "reason": "关联国策美术；paper / cinema"
+  },
+  "story_6": {
+    "primary": "Fist Colored",
+    "secondary": "Officer",
+    "theme": "meeting",
+    "reason": "关联国策美术；meeting / security"
+  },
+  "strengthen_patrol": {
+    "primary": "Officer",
+    "secondary": "Building",
+    "theme": "security",
+    "reason": "security / campus"
+  },
+  "strike_b3_success": {
+    "scene": "B3革命",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "awards"
+  },
+  "student_media_support_event": {
+    "primary": "Flag Overlay",
+    "secondary": "Bills",
+    "theme": "media",
+    "reason": "关联国策美术；media / money"
+  },
+  "student_venting_crisis_event": {
+    "primary": "Officer",
+    "secondary": "Denied",
+    "theme": "security",
+    "reason": "security / failure"
+  },
+  "support_bill_event": {
+    "primary": "Ballot",
+    "secondary": "Paper",
+    "theme": "meeting",
+    "reason": "meeting / paper"
+  },
+  "suppress_moderates": {
+    "primary": "Handcuffs",
+    "secondary": "Karl Marx",
+    "theme": "repression",
+    "reason": "repression / philosophy"
+  },
+  "teachers_rnd_fail": {
+    "primary": "Denied",
+    "secondary": "Hand Writing",
+    "theme": "failure",
+    "reason": "failure / teacher"
+  },
+  "teachers_rnd_product_1": {
+    "portrait": "advisor_zhou_chen",
+    "secondary": "Hand Writing",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "paper"
+  },
+  "teachers_rnd_product_2": {
+    "portrait": "leader_yang_yule",
+    "secondary": "Book",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "teacher"
+  },
+  "teachers_rnd_product_3": {
+    "primary": "Hand Writing",
+    "secondary": "Paper Torn",
+    "theme": "teacher",
+    "reason": "teacher / paper"
+  },
+  "teachers_rnd_success": {
+    "primary": "Hand Writing",
+    "secondary": "Pedestal",
+    "theme": "teacher",
+    "reason": "teacher / awards"
+  },
+  "trial_yang": {
+    "primary": "Handcuffs",
+    "secondary": "Clock",
+    "theme": "repression",
+    "reason": "repression / time"
+  },
+  "true_left_consolidation_event": {
+    "portrait": "leader_wang_zhaokai",
+    "secondary": "Star Red with Sickle",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "meeting"
+  },
+  "true_left_good_event": {
+    "primary": "Marriage",
+    "secondary": "Hands Shaking",
+    "theme": "meeting",
+    "reason": "关联国策美术；meeting / negotiation"
+  },
+  "true_left_union_choice_event": {
+    "primary": "Parliament",
+    "secondary": "Marriage",
+    "theme": "meeting",
+    "reason": "meeting / negotiation"
+  },
+  "ultra_left_error": {
+    "primary": "Crown2",
+    "secondary": "Paper",
+    "theme": "power",
+    "reason": "power / paper"
+  },
+  "ultra_left_error_event": {
+    "primary": "Crown2",
+    "secondary": "Hands Shaking",
+    "theme": "power",
+    "reason": "power / negotiation"
+  },
+  "wang_juanhao_vanguard": {
+    "primary": "Officer",
+    "secondary": "Paper Torn",
+    "theme": "security",
+    "reason": "security / paper"
+  },
+  "wang_victory_event": {
+    "portrait": "leader_wang_zhaokai",
+    "secondary": "Envelope",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "revolution"
+  },
+  "write_paper": {
+    "primary": "Paper Sign",
+    "secondary": "Documents",
+    "theme": "teacher",
+    "reason": "teacher / paper"
+  },
+  "wu_advisor_slots_full": {
+    "primary": "Paper",
+    "secondary": "Officer",
+    "theme": "paper",
+    "reason": "paper / security"
+  },
+  "wu_ambition_warning_event": {
+    "primary": "Building",
+    "secondary": "Crown2",
+    "theme": "campus",
+    "reason": "campus / power"
+  },
+  "wu_anger_boil_event": {
+    "primary": "Rebellion",
+    "secondary": "Megaphone",
+    "theme": "revolution",
+    "reason": "revolution / media"
+  },
+  "wu_console_commend": {
+    "primary": "Officer",
+    "secondary": "Pedestal",
+    "theme": "security",
+    "reason": "security / awards"
+  },
+  "wu_console_press": {
+    "primary": "Megaphone",
+    "secondary": "Hand Writing",
+    "theme": "media",
+    "reason": "media / teacher"
+  },
+  "wu_console_raid_refused": {
+    "primary": "Megaphone",
+    "secondary": "Documents",
+    "theme": "media",
+    "reason": "media / paper"
+  },
+  "wu_console_talk": {
+    "primary": "Building",
+    "secondary": "Documents",
+    "theme": "campus",
+    "reason": "campus / paper"
+  },
+  "wu_console_warn": {
+    "primary": "Bills",
+    "secondary": "Officer",
+    "theme": "money",
+    "reason": "money / security"
+  },
+  "wu_crackdown": {
+    "primary": "Officer",
+    "secondary": "Documents",
+    "theme": "security",
+    "reason": "security / paper"
+  },
+  "wu_crackdown_entry_event": {
+    "primary": "Officer",
+    "secondary": "Fist",
+    "theme": "security",
+    "reason": "security / revolution"
+  },
+  "wu_failure_event": {
+    "primary": "Rebellion",
+    "secondary": "Star Broken",
+    "theme": "revolution",
+    "reason": "revolution / failure"
+  },
+  "wu_flavor_black_market": {
+    "primary": "Paper",
+    "secondary": "Book",
+    "theme": "paper",
+    "reason": "paper / book"
+  },
+  "wu_flavor_camera": {
+    "primary": "Spy",
+    "secondary": "Officer",
+    "theme": "surveillance",
+    "reason": "surveillance / security"
+  },
+  "wu_flavor_informer": {
+    "primary": "Spy",
+    "secondary": "Book Open",
+    "theme": "surveillance",
+    "reason": "surveillance / book"
+  },
+  "wu_flavor_morning_call": {
+    "primary": "Clock",
+    "secondary": "Soldier Saluting",
+    "theme": "time",
+    "reason": "time / security"
+  },
+  "wu_flavor_morning_run": {
+    "primary": "Citizen2",
+    "secondary": "House",
+    "theme": "sport",
+    "reason": "sport / campus"
+  },
+  "wu_flavor_shiji_notes": {
+    "primary": "Bills",
+    "secondary": "Moon",
+    "theme": "money",
+    "reason": "money / night"
+  },
+  "wu_flavor_wu_quotes": {
+    "primary": "Officer",
+    "secondary": "Megaphone",
+    "theme": "security",
+    "reason": "security / media"
+  },
+  "wu_flavor_zhouchen_sketch": {
+    "primary": "Brush",
+    "secondary": "Building",
+    "theme": "art",
+    "reason": "art / campus"
+  },
+  "wu_guerrilla_resurgence_event": {
+    "primary": "Factories2",
+    "secondary": "Officer",
+    "theme": "industry",
+    "reason": "industry / security"
+  },
+  "wu_negotiation_40_event": {
+    "primary": "Hands Shaking",
+    "secondary": "Clock",
+    "theme": "negotiation",
+    "reason": "negotiation / time"
+  },
+  "wu_negotiation_70_event": {
+    "primary": "Hands Shaking",
+    "secondary": "Scales",
+    "theme": "negotiation",
+    "reason": "negotiation / meeting"
+  },
+  "wu_opinion_event": {
+    "primary": "Officer",
+    "secondary": "House",
+    "theme": "security",
+    "reason": "security / campus"
+  },
+  "wu_reprieve_event": {
+    "primary": "Officer",
+    "secondary": "Megaphone2",
+    "theme": "security",
+    "reason": "security / media"
+  },
+  "wu_teacher_petition_event": {
+    "primary": "Envelope",
+    "secondary": "Hand Writing",
+    "theme": "letter",
+    "reason": "letter / teacher"
+  },
+  "wu_ultimatum_event": {
+    "primary": "Parliament",
+    "secondary": "Soldier Pointing",
+    "theme": "meeting",
+    "reason": "meeting / security"
+  },
+  "wu_uprising_admin_event": {
+    "primary": "Spy",
+    "secondary": "Rebellion",
+    "theme": "surveillance",
+    "reason": "surveillance / revolution"
+  },
+  "wu_uprising_aud_event": {
+    "primary": "Rebellion",
+    "secondary": "Soldier Saluting",
+    "theme": "revolution",
+    "reason": "revolution / security"
+  },
+  "wu_uprising_b3_2_event": {
+    "primary": "Envelope",
+    "secondary": "Fist",
+    "theme": "letter",
+    "reason": "letter / revolution"
+  },
+  "wu_uprising_b3_event": {
+    "primary": "Moon",
+    "secondary": "Rebellion",
+    "theme": "night",
+    "reason": "night / revolution"
+  },
+  "wu_uprising_dorm_event": {
+    "primary": "Moon",
+    "secondary": "Fist",
+    "theme": "night",
+    "reason": "night / revolution"
+  },
+  "wu_uprising_lab_event": {
+    "primary": "Envelope",
+    "secondary": "Fist Colored",
+    "theme": "letter",
+    "reason": "letter / revolution"
+  },
+  "wu_uprising_playground_event": {
+    "primary": "Bowl Cracked",
+    "secondary": "Rebellion",
+    "theme": "food",
+    "reason": "food / revolution"
+  },
+  "wu_wzk_arrest_event": {
+    "portrait": "leader_wang_zhaokai",
+    "secondary": "Handcuffs",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "repression"
+  },
+  "wu_wzk_trial_event": {
+    "primary": "Handcuffs",
+    "secondary": "Building",
+    "theme": "repression",
+    "reason": "repression / campus"
+  },
+  "wu_zhouchen_candle_event": {
+    "primary": "Moon",
+    "secondary": "Hand Writing",
+    "theme": "night",
+    "reason": "night / teacher"
+  },
+  "wu_zhouchen_suspension_event": {
+    "portrait": "advisor_zhou_chen",
+    "secondary": "Denied",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "repression"
+  },
+  "xu_victory_event": {
+    "primary": "Parliament",
+    "secondary": "Envelope",
+    "theme": "meeting",
+    "reason": "meeting / letter"
+  },
+  "yang_desk_alumni_donation": {
+    "primary": "Computer",
+    "secondary": "Hand Out",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "campus"
+  },
+  "yang_desk_anonymous_note": {
+    "primary": "Envelope",
+    "secondary": "Documents",
+    "theme": "letter",
+    "reason": "letter / teacher"
+  },
+  "yang_desk_buy_exams": {
+    "primary": "Paper",
+    "secondary": "Coins",
+    "theme": "paper",
+    "reason": "paper / money"
+  },
+  "yang_desk_contraband_list": {
+    "primary": "Spy",
+    "secondary": "Paper",
+    "theme": "surveillance",
+    "reason": "surveillance / paper"
+  },
+  "yang_desk_destroy_books": {
+    "primary": "Book Open",
+    "secondary": "Ballot",
+    "theme": "book",
+    "reason": "book / meeting"
+  },
+  "yang_desk_health_scare": {
+    "primary": "Vial",
+    "secondary": "Documents",
+    "theme": "health",
+    "reason": "health / paper"
+  },
+  "yang_desk_informant_report": {
+    "primary": "Spy",
+    "secondary": "Moon",
+    "theme": "surveillance",
+    "reason": "surveillance / night"
+  },
+  "yang_desk_midnight_call": {
+    "primary": "Moon",
+    "secondary": "Clock2",
+    "theme": "night",
+    "reason": "night / time"
+  },
+  "yang_desk_mocking_letter": {
+    "primary": "Envelope",
+    "secondary": "Paper",
+    "theme": "letter",
+    "reason": "letter / paper"
+  },
+  "yang_desk_oath_rally": {
+    "primary": "Clock",
+    "secondary": "Fist Colored",
+    "theme": "time",
+    "reason": "time / revolution"
+  },
+  "yang_desk_paper_authorship": {
+    "primary": "Paper Sign",
+    "secondary": "Paper",
+    "theme": "teacher",
+    "reason": "teacher / paper"
+  },
+  "yang_desk_parent_petition": {
+    "primary": "Envelope",
+    "secondary": "Citizen2",
+    "theme": "letter",
+    "reason": "letter / sport"
+  },
+  "yang_desk_pe_cancellation": {
+    "primary": "Building",
+    "secondary": "Citizen2",
+    "theme": "campus",
+    "reason": "campus / sport"
+  },
+  "yang_desk_retirement_letter": {
+    "primary": "Envelope",
+    "secondary": "Bird Freed",
+    "theme": "letter",
+    "reason": "letter / freedom"
+  },
+  "yang_desk_snow_day": {
+    "scene": "雪中的来函",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "weather"
+  },
+  "yang_desk_standing_reading": {
+    "primary": "Clock",
+    "secondary": "Hand Writing",
+    "theme": "time",
+    "reason": "time / teacher"
+  },
+  "yang_desk_textbook_scandal": {
+    "primary": "Bills",
+    "secondary": "Constitution",
+    "theme": "money",
+    "reason": "money / meeting"
+  },
+  "yang_desk_thermos_mystery": {
+    "primary": "Vial",
+    "secondary": "Magnifying Glass",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "campus"
+  },
+  "yang_desk_tutoring_center": {
+    "primary": "Envelope",
+    "secondary": "Paper Sign",
+    "theme": "letter",
+    "reason": "letter / teacher"
+  },
+  "yang_desk_young_teacher_quit": {
+    "primary": "Hand Writing",
+    "secondary": "Bird Freed",
+    "theme": "teacher",
+    "reason": "teacher / freedom"
+  },
+  "yang_mock_exam_fail": {
+    "primary": "Denied",
+    "secondary": "Pedestal",
+    "theme": "failure",
+    "reason": "failure / awards"
+  },
+  "yang_mock_exam_mediocre": {
+    "primary": "Clock",
+    "secondary": "Crown",
+    "theme": "time",
+    "reason": "time / awards"
+  },
+  "yang_mock_exam_success": {
+    "primary": "Pedestal",
+    "secondary": "Electricity",
+    "theme": "awards",
+    "reason": "awards / computer"
+  },
+  "yang_yule_bribe_inspectors": {
+    "primary": "White House",
+    "secondary": "Book Open",
+    "theme": "teacher",
+    "reason": "关联国策美术；teacher / book"
+  },
+  "yang_yule_buy_health_supplements": {
+    "primary": "Vial",
+    "secondary": "Handcuffs",
+    "theme": "health",
+    "reason": "health / repression"
+  },
+  "yang_yule_catch_red_toad": {
+    "primary": "Rebellion",
+    "secondary": "Clock2",
+    "theme": "revolution",
+    "reason": "revolution / time"
+  },
+  "yang_yule_condition_fail_event": {
+    "primary": "Denied",
+    "secondary": "Documents",
+    "theme": "failure",
+    "reason": "failure / teacher"
+  },
+  "yang_yule_condition_met_event": {
+    "primary": "Hand Writing",
+    "secondary": "House",
+    "theme": "teacher",
+    "reason": "teacher / campus"
+  },
+  "yang_yule_decision_ready": {
+    "primary": "Hand Writing",
+    "secondary": "Dove",
+    "theme": "teacher",
+    "reason": "teacher / freedom"
+  },
+  "yang_yule_desk_unlocked": {
+    "scene": "保温杯与红批",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "money"
+  },
+  "yang_yule_expand_security": {
+    "primary": "Officer",
+    "secondary": "Bills",
+    "theme": "security",
+    "reason": "security / money"
+  },
+  "yang_yule_fail_event": {
+    "scene": "特级0",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "failure"
+  },
+  "yang_yule_fake_teaching_skills": {
+    "primary": "Hand Writing",
+    "secondary": "Book Open",
+    "theme": "teacher",
+    "reason": "teacher / book"
+  },
+  "yang_yule_force_recitation": {
+    "primary": "Clock",
+    "secondary": "Book Open",
+    "theme": "time",
+    "reason": "time / book"
+  },
+  "yang_yule_health_death_event": {
+    "primary": "Vial",
+    "secondary": "Clock",
+    "theme": "health",
+    "reason": "health / time"
+  },
+  "yang_yule_health_unlocked": {
+    "primary": "Clock2",
+    "secondary": "Vial",
+    "theme": "philosophy",
+    "reason": "关联国策美术；philosophy / health"
+  },
+  "yang_yule_hire_colleagues": {
+    "primary": "Star Broken",
+    "secondary": "Pedestal",
+    "theme": "teacher",
+    "reason": "关联国策美术；teacher / awards"
+  },
+  "yang_yule_late_game_mock_exam": {
+    "primary": "Pedestal",
+    "secondary": "Documents",
+    "theme": "awards",
+    "reason": "awards / paper"
+  },
+  "yang_yule_late_mock_exam": {
+    "portrait": "leader_yang_yule",
+    "secondary": "Paper",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "campus"
+  },
+  "yang_yule_map_unlocked": {
+    "primary": "Star Red",
+    "secondary": "Officer",
+    "theme": "revolution",
+    "reason": "关联国策美术；revolution / security"
+  },
+  "yang_yule_memorize_grammar": {
+    "primary": "Book Open",
+    "secondary": "Hand Writing",
+    "theme": "book",
+    "reason": "book / teacher"
+  },
+  "yang_yule_mock_exam_approach_event": {
+    "primary": "Handcuffs",
+    "secondary": "Fist",
+    "theme": "repression",
+    "reason": "repression / revolution"
+  },
+  "yang_yule_red_terror": {
+    "primary": "Handcuffs",
+    "secondary": "Book Open",
+    "theme": "repression",
+    "reason": "repression / book"
+  },
+  "yang_yule_silence_rebellion": {
+    "primary": "Rebellion",
+    "secondary": "Shackles",
+    "theme": "revolution",
+    "reason": "revolution / repression"
+  },
+  "yang_yule_success_event": {
+    "scene": "特级",
+    "reason": "按具体剧情指定场景或人物",
+    "theme": "awards"
+  },
+  "yang_yule_three_mountains": {
+    "primary": "Book Open",
+    "secondary": "Rebellion",
+    "theme": "teacher",
+    "reason": "关联国策美术；teacher / revolution"
+  },
+  "yang_yule_welcome_inspection": {
+    "primary": "Rebellion",
+    "secondary": "Palace Chinese",
+    "theme": "revolution",
+    "reason": "revolution / campus"
+  },
+  "yang_yule_write_papers": {
+    "primary": "Hand Writing",
+    "secondary": "Computer",
+    "theme": "teacher",
+    "reason": "teacher / computer"
+  },
+  "yangyvle_event_1": {
+    "primary": "Hand Writing",
+    "secondary": "Officer",
+    "theme": "teacher",
+    "reason": "teacher / security"
+  },
+  "yangyvle_event_2": {
+    "primary": "Hand Writing",
+    "secondary": "Clock",
+    "theme": "teacher",
+    "reason": "teacher / time"
+  },
+  "yy_flavor_exam_room": {
+    "primary": "Paper",
+    "secondary": "Spy",
+    "theme": "paper",
+    "reason": "paper / surveillance"
+  },
+  "yy_flavor_old_cadre": {
+    "primary": "Hand Writing",
+    "secondary": "Clock2",
+    "theme": "teacher",
+    "reason": "teacher / time"
+  },
+  "yy_flavor_thermos": {
+    "primary": "Karl Marx",
+    "secondary": "Clock2",
+    "theme": "philosophy",
+    "reason": "philosophy / time"
+  },
+  "yy_title_ready_event": {
+    "primary": "Hand Writing",
+    "secondary": "Spy",
+    "theme": "teacher",
+    "reason": "teacher / surveillance"
+  },
+  "yy_title_stage1_start": {
+    "primary": "Hand Writing",
+    "secondary": "Crown2",
+    "theme": "teacher",
+    "reason": "teacher / power"
+  },
+  "yy_title_stage2_complete": {
+    "primary": "Hand Writing",
+    "secondary": "Bell",
+    "theme": "teacher",
+    "reason": "teacher / time"
+  },
+  "yy_title_stage3_defense": {
+    "primary": "Hand Writing",
+    "secondary": "Soldier Pointing",
+    "theme": "teacher",
+    "reason": "teacher / security"
+  },
+  "yy_title_stage4_final": {
+    "primary": "Hand Writing",
+    "secondary": "Spy2",
+    "theme": "teacher",
+    "reason": "teacher / surveillance"
+  }
+}

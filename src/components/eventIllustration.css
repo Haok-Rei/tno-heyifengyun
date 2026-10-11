@@ -1,0 +1,14 @@
+.event-illustration { width:100%; aspect-ratio:3/2; position:relative; overflow:hidden; color:#92b8b04d; background:radial-gradient(ellipse at 45% 38%,#263d40,#142329 55%,#071015); isolation:isolate; }
+.event-illustration__engraving { width:100%; height:100%; position:absolute; inset:0; opacity:.7; }
+.event-illustration img { filter:none !important; }
+.event-illustration--symbol .event-illustration__subject,
+.event-illustration__seal img { mix-blend-mode:screen; }
+.event-illustration .event-illustration__subject { position:absolute; width:46%; height:67%; left:23%; top:15%; object-fit:contain; filter:drop-shadow(0 7px 5px #0009) !important; }
+.event-illustration__seal { position:absolute; width:25%; height:37.5%; right:9%; bottom:11%; border:1px solid #8ab1ad42; background:radial-gradient(#283b3d,#101b21); box-shadow:0 0 0 3px #0a121933,0 4px 15px #0005; transform:rotate(-4deg); }
+.event-illustration__seal img { position:absolute; width:84%; height:84%; left:8%; top:8%; object-fit:contain; }
+.event-illustration__rule { position:absolute; bottom:8%; left:9%; width:54%; height:1px; background:linear-gradient(90deg,transparent,#9bc3b552,transparent); }
+.event-illustration--portrait { background:radial-gradient(ellipse at 45% 40%,#35403c,#1b2529 65%,#0b1216); }
+.event-illustration--portrait .event-illustration__subject { width:50%; height:91%; left:11%; top:6%; filter:drop-shadow(7px 0 10px #0009) !important; }
+.event-illustration--portrait .event-illustration__seal { width:27%; height:40.5%; right:9%; bottom:25%; }
+.event-illustration[data-art-theme="repression"],.event-illustration[data-art-theme="revolution"],.event-illustration[data-art-theme="failure"] { color:#be8b724f; background:radial-gradient(ellipse at 45% 38%,#413333,#231d23 65%,#100e15); }
+.event-illustration[data-art-theme="money"],.event-illustration[data-art-theme="awards"] { color:#c8b88852; background:radial-gradient(ellipse at 45% 38%,#3c3b2d,#252b29 65%,#101818); }
