@@ -1,18 +1,19 @@
 {
   "name": "hefei-order",
   "private": true,
-  "version": "0.0.0",
+  "version": "9.4.0",
   "type": "module",
   "scripts": {
     "writing": "node scripts/writing/editor.mjs",
     "dev": "vite --host 127.0.0.1 --port 3000",
-    "build": "vite build && node scripts/check-deployment.mjs",
+    "build": "npm run check:releases && vite build && node scripts/check-deployment.mjs",
     "preview": "vite preview --host 127.0.0.1",
     "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
     "lint": "tsc --noEmit",
     "test": "tsx --test tests/*.test.ts",
     "check:assets": "node scripts/check-local-assets.mjs",
-    "check": "npm run check:assets && npm run lint && npm test && npm run build"
+    "check": "npm run check:releases && npm run check:assets && npm run lint && npm test && npm run build",
+    "check:releases": "node scripts/check-release-history.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.14",

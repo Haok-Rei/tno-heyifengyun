@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { createPortal } from 'react-dom';
 import { AlertTriangle, Target, Book } from 'lucide-react';
 import { GameState, Decision, ALL_SUB_TILES } from '../types';
 import SituationMetrics from './SituationMetrics';
 import { FLAVOR_EVENTS } from '../data/flavorEvents';
 import { STORY_EVENTS } from '../data/storyEvents';
-import RouteGuide from './RouteGuide';
+import RouteGuideDialog from './RouteGuideDialog';
 import HoverWindow from './HoverWindow';
 import { getCommandRoute } from '../data/commandRoutes';
 import { ROUTE_OPERATIONS } from '../data/routeOperations';
@@ -1783,28 +1782,7 @@ export default function RightSidebar({ state, triggerDecision, triggerError }: R
       </div>
 
       {/* Guide Modal */}
-      {isGuideOpen && createPortal(
-        <div className="fixed inset-0 bg-black/80 z-[100] flex items-center justify-center p-4">
-          <div className="bg-tno-bg border-2 border-tno-highlight w-full max-w-5xl h-[85vh] flex flex-col shadow-2xl shadow-tno-highlight/20">
-            <div className="p-4 border-b border-tno-highlight bg-tno-highlight/10 flex justify-between items-center shrink-0">
-              <h2 className="text-xl font-bold text-tno-highlight tracking-widest flex items-center gap-2">
-                <Book className="w-6 h-6" />
-                合肥一中风云：全路线思维导图
-              </h2>
-              <button
-                onClick={() => setIsGuideOpen(false)}
-                className="text-tno-highlight hover:text-white font-bold"
-              >
-                ✕
-              </button>
-            </div>
-            <div className="p-4 text-sm text-tno-text/90 flex-1 min-h-0">
-              <RouteGuide state={state} />
-            </div>
-          </div>
-        </div>,
-        document.body
-      )}
+      {isGuideOpen && <RouteGuideDialog state={state} onClose={() => setIsGuideOpen(false)}/>}
 
     </div>
   );
