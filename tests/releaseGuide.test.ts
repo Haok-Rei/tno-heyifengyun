@@ -16,11 +16,16 @@ test('release archive, build version and changelog stay synchronized',()=>{
   const archive=json('src/data/releaseHistory.json'),manifest=json('package.json'),lock=json('package-lock.json'),log=readFileSync('CHANGELOG.md','utf8');
   assert.ok(validateReleaseHistory(archive,manifest,lock,log)>20);
   assert.equal(CURRENT_VERSION,manifest.version);
-  const bad=structuredClone(archive);bad.currentVersion='9.4.1';assert.throws(()=>validateReleaseHistory(bad,manifest,lock,log));
+  const bad=structuredClone(archive);bad.currentVersion='999.0.0';assert.throws(()=>validateReleaseHistory(bad,manifest,lock,log));
   const duplicate=structuredClone(archive);duplicate.groups[0].releases.push(duplicate.groups[0].releases[0]);assert.throws(()=>validateReleaseHistory(duplicate,manifest,lock,log));
 });
 test('historical themes preserve requested colors and unnumbered records',()=>{
-  assert.match(RELEASE_GROUPS.find(g=>g.title==='左派大更新')!.color,/^#e/);
+  assert.equal(RELEASE_GROUPS.find(g=>g.id==='1.1')!.title,'丑陋的做题家');
+  assert.equal(RELEASE_GROUPS.find(g=>g.id==='1.2')!.title,'特级教师');
+  assert.equal(RELEASE_GROUPS.find(g=>g.id==='1.3')!.title,'合一之春');
+  assert.equal(RELEASE_GROUPS.find(g=>g.id==='1.4')!.title,'及第之梦');
+  assert.notEqual(RELEASE_GROUPS.find(g=>g.id==='8.6')!.title,'合一之春');
+  assert.notEqual(RELEASE_GROUPS.find(g=>g.id==='6.0')!.title,'丑陋的做题家');
   assert.equal(RELEASE_GROUPS.find(g=>g.title==='丑陋的做题家')!.color,'#a7abb2');
   assert.equal(RELEASE_GROUPS.find(g=>g.title==='合一之春')!.color,'#83b4ee');
   assert.ok(RELEASE_GROUPS.some(g=>g.releases.some(r=>r.version===null)));

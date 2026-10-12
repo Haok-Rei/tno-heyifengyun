@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { CURRENT_VERSION, CURRENT_RELEASE, RELEASE_GROUPS } from '../config/releases';
-import { useArchiveDialog } from '../hooks/useArchiveDialog';
 
 export default function ReleaseArchive({ onClose }: { onClose: () => void }) {
   const [selected, setSelected] = useState(RELEASE_GROUPS[0].id);
   const group = RELEASE_GROUPS.find(g => g.id === selected)!;
-  const ref = useArchiveDialog(onClose);
-  return createPortal(<div className="archive-backdrop" onClick={e => { if (e.target === e.currentTarget) onClose(); }}>
-    <div ref={ref} className="release-archive" role="dialog" aria-modal="true" aria-labelledby="release-archive-title" tabIndex={-1}>
+  return createPortal(
+    <div className="release-archive" role="dialog" aria-modal="false" aria-labelledby="release-archive-title" onKeyDown={e => { if (e.key === 'Escape') { e.stopPropagation(); onClose(); } }}>
       <header className="archive-titlebar"><div><small>HEFEI ORDER · RELEASE ARCHIVE</small><h2 id="release-archive-title">版本档案</h2></div><button aria-label="关闭版本档案" onClick={onClose}>×</button></header>
       <div className="release-current"><span>当前版本 <b>v{CURRENT_VERSION}</b></span><time>{CURRENT_RELEASE.date}</time></div>
       <div className="release-layout">
@@ -26,6 +24,5 @@ export default function ReleaseArchive({ onClose }: { onClose: () => void }) {
           <footer>大更新与小版本分别收录；未编号的历史更新按维护日期保留。</footer>
         </section>
       </div>
-    </div>
-  </div>, document.body);
+    </div>, document.body);
 }

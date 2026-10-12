@@ -99,26 +99,26 @@ export default function StartMenu({ onStartGame, onArtRoom, onSettings, onGaller
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_20%,rgba(255,88,133,0.14),transparent_42%),radial-gradient(circle_at_82%_18%,rgba(93,192,255,0.14),transparent_45%)]" />
       </div>
 
-      <div className="absolute top-5 left-5 z-30 md:top-7 md:left-8">
+      <div className="start-version-trigger absolute top-5 left-5 z-30 md:top-7 md:left-8">
+        <button type="button" aria-label="版本与更新档案" aria-describedby={!archiveOpen ? 'start-version-tooltip' : undefined} aria-haspopup="dialog" aria-expanded={archiveOpen} onClick={() => setArchiveOpen(true)}>
         <img
           src={ASSET_URLS.ui_game_logo}
           alt="Game Logo"
           className="h-36 w-36 object-contain drop-shadow-[0_0_18px_rgba(255,255,255,0.36)] md:h-52 md:w-52"
         />
+        </button>
+        {!archiveOpen && <div className="start-menu-tooltip" id="start-version-tooltip" role="tooltip"><small>当前版本</small><strong>v{CURRENT_VERSION} · {CURRENT_UPDATE.title}</strong><time>{CURRENT_RELEASE.date}</time><span>点击查看历代更新</span></div>}
       </div>
 
       <div className="start-menu-archive absolute top-5 right-5 z-30 md:top-7 md:right-8">
-        <div className="start-version-trigger">
-        <button type="button" aria-label="版本与更新档案" aria-describedby={!archiveOpen ? 'start-version-tooltip' : undefined} aria-haspopup="dialog" aria-expanded={archiveOpen} onClick={() => setArchiveOpen(true)}>
+        <div className="start-credits-trigger" aria-label="母校致谢" aria-describedby="start-credits-tooltip">
         <img
           src={ASSET_URLS.ui_studio_logo}
           alt="Studio Logo"
           className="h-[10.5rem] w-[10.5rem] object-contain drop-shadow-[0_0_22px_rgba(255,255,255,0.36)] md:h-[15.5rem] md:w-[15.5rem]"
         />
-        </button>
-        {!archiveOpen && <div className="start-menu-tooltip" id="start-version-tooltip" role="tooltip"><small>当前版本</small><strong>v{CURRENT_VERSION} · {CURRENT_UPDATE.title}</strong><time>{CURRENT_RELEASE.date}</time><span>点击查看历代更新</span></div>}
+        <div className="start-menu-tooltip" id="start-credits-tooltip" role="tooltip"><small>特别感谢</small><strong>母校 · 合肥一中</strong></div>
         </div>
-        <div className="start-credits-trigger"><button aria-label="查看致谢" aria-describedby="start-credits-tooltip">致谢</button><div className="start-menu-tooltip" id="start-credits-tooltip" role="tooltip"><small>特别感谢</small><strong>母校 · 合肥一中</strong></div></div>
       </div>
 
       <div className="relative z-20 flex h-full flex-col px-4 pb-8 pt-20 md:px-10 md:pb-10 md:pt-14">
