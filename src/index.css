@@ -5,6 +5,7 @@
 @import "./components/nationIdeology.css";
 @import "./components/assemblyPolitics.css";
 @import "./components/archiveUi.css";
+@import "./strategyFinish.css";
 
 @theme {
   --font-mono: "Courier New", "SimSun", Courier, monospace;

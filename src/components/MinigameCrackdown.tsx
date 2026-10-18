@@ -120,7 +120,7 @@ export default function MinigameCrackdown({ state, onComplete, spendPP }: Props)
 
   return (
     <div className={`absolute inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md p-4 ${shake ? 'shake' : ''}`}>
-      <div className="bg-[#0a0a14] border-2 border-[#ff4444]/50 max-w-2xl w-full p-6 shadow-[0_0_60px_rgba(255,68,68,0.2)] relative overflow-hidden flex flex-col">
+      <div className="strategy-minigame bg-[#0a0a14] border-2 border-[#ff4444]/50 max-w-2xl w-full p-6 shadow-[0_0_60px_rgba(255,68,68,0.2)] relative overflow-hidden flex flex-col">
         <div className="absolute inset-0 pointer-events-none opacity-[0.03]" style={{ backgroundImage: 'repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,68,68,0.12) 2px,rgba(255,68,68,0.12) 4px)' }} />
 
         {!started && (

@@ -1,3 +1,4 @@
+import MechanicCrest from './MechanicCrest';
 import React, { useState, useEffect } from 'react';
 import { GameState, RedToadFaction } from '../types';
 import { RED_TOAD_BILLS } from '../data/redToadBills';
@@ -222,7 +223,7 @@ export default function RedToadPolitburo({ state, setGameState, onClose }: RedTo
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4">
-      <div className="relative w-full max-w-6xl h-[85vh] bg-[#1a0f0f] border-2 border-[#d32f2f] shadow-[0_0_15px_rgba(211,47,47,0.3)] font-mono overflow-visible flex flex-col">
+      <div className="strategy-minigame relative w-full max-w-6xl h-[85vh] bg-[#1a0f0f] border-2 border-[#d32f2f] shadow-[0_0_15px_rgba(211,47,47,0.3)] font-mono overflow-visible flex flex-col">
         
         {/* Scanlines Background */}
         <div className="absolute inset-0 pointer-events-none opacity-20" style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, #000 2px, #000 4px)' }}></div>
@@ -230,7 +231,7 @@ export default function RedToadPolitburo({ state, setGameState, onClose }: RedTo
         {/* Header */}
         <div className="relative z-[120] flex justify-between items-center p-4 border-b-2 border-[#d32f2f] bg-[#2d1313]">
           <div className="flex items-center gap-4">
-            <h2 className="text-2xl font-bold text-[#ff5252] tracking-[8px] drop-shadow-[0_0_5px_rgba(255,82,82,0.8)]">
+            <h2 className="text-2xl font-bold text-[#ff5252] tracking-[8px] drop-shadow-[0_0_5px_rgba(255,82,82,0.8)]"><MechanicCrest kind="council"/>
               {isNkpdMode ? 'N K P D · 肃 反 委 员 会' : '合 一 联 合 革 委 会 · 政 治 局'}
             </h2>
             <div className="relative group z-[130]">

@@ -1,3 +1,4 @@
+import MapEngraving from './MapEngraving';
 import React, { useState, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { GameState, SubTile, ALL_SUB_TILES } from '../types';
@@ -229,6 +230,7 @@ export default function CentralMap({state,setGameState,triggerError,isElectionUI
               {isLow&&<rect x={r.x} y={r.y} width={r.w} height={r.h} rx={r.rx??2} fill="none" stroke="#a96760" strokeWidth="1" opacity="0.6"/>}
               {/* 选中光晕 */}
               {isSel&&<rect x={r.x-2} y={r.y-2} width={r.w+4} height={r.h+4} rx={(r.rx??2)+2} fill="none" stroke="#fff" strokeWidth="2" strokeDasharray="4,2" filter="url(#g1)"/>}
+              <MapEngraving x={r.x} y={r.y} w={r.w} h={r.h} stadium={r.tid==='track_field'}/>
               {/* 标签 */}
               <text x={r.x+r.w/2} y={r.y+r.h/2+(r.h<35?3:-6)} textAnchor="middle" fontSize={r.w<75?11:13} fontWeight="bold" fill="#d9dfd7" style={{textShadow:'0 1px 3px #000'}}>{SHORT_LABELS[r.tid]||r.lb}</text>
               {r.h>=35&&<text x={r.x+r.w/2} y={r.y+r.h/2+15} textAnchor="middle" fontSize={mapLayer==='control'?17:12} fontWeight="bold" fill={mapLayer==='supply'?'#d1eadd':mapLayer==='orders'?'#c9dce0':color}>

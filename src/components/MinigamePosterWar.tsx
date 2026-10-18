@@ -94,7 +94,7 @@ export default function MinigamePosterWar({ state, onComplete, spendPP }: Props)
 
   return (
     <div className={`absolute inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md p-4 ${shake ? 'shake' : ''}`}>
-      <div className="bg-[#0a0a14] border-2 border-[#f97316]/40 max-w-2xl w-full p-6 shadow-[0_0_60px_rgba(249,115,22,0.15)] relative overflow-hidden flex flex-col">
+      <div className="strategy-minigame bg-[#0a0a14] border-2 border-[#f97316]/40 max-w-2xl w-full p-6 shadow-[0_0_60px_rgba(249,115,22,0.15)] relative overflow-hidden flex flex-col">
         <div className="absolute inset-0 pointer-events-none opacity-[0.03]" style={{ backgroundImage: 'repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(249,115,22,0.1) 2px,rgba(249,115,22,0.1) 4px)' }} />
 
         {!started && (

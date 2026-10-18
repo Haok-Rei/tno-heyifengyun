@@ -90,7 +90,7 @@ export default function MinigamePrintWorkshop({ state, onComplete, spendPP }: Pr
 
   return (
     <div className={`absolute inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md p-4 ${shake?'shake':''}`}>
-      <div className="bg-[#0a0a14] border-2 border-[#06B6D4]/40 max-w-2xl w-full p-6 shadow-[0_0_60px_rgba(6,182,212,0.15)] relative overflow-hidden flex flex-col">
+      <div className="strategy-minigame bg-[#0a0a14] border-2 border-[#06B6D4]/40 max-w-2xl w-full p-6 shadow-[0_0_60px_rgba(6,182,212,0.15)] relative overflow-hidden flex flex-col">
         <div className="absolute inset-0 pointer-events-none opacity-[0.03]" style={{backgroundImage:'repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(6,182,212,0.1) 2px,rgba(6,182,212,0.1) 4px)'}}/>
 
         {!started && (

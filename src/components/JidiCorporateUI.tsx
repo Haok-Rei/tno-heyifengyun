@@ -1,3 +1,4 @@
+import MechanicCrest from './MechanicCrest';
 import React, { useState } from 'react';
 import { JidiCorporateState } from '../types';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
@@ -63,7 +64,7 @@ export function JidiCorporateUI({
   }));
 
   return (
-    <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4 font-sans selection:bg-emerald-500/30">
+    <div className="strategy-minigame fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4 font-sans selection:bg-emerald-500/30">
       {/* CRT Scanline Overlay */}
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_4px,3px_100%] z-50 opacity-20"></div>
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-emerald-500/5 to-transparent h-[10%] w-full z-50 animate-[scanline_8s_linear_infinite] opacity-50"></div>
@@ -74,7 +75,7 @@ export function JidiCorporateUI({
         <div className="flex justify-between items-center p-4 border-b-2 border-emerald-900 bg-emerald-950/20 relative">
           <div className="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDUiLz4KPC9zdmc+')] opacity-20 mix-blend-overlay"></div>
           <div className="flex items-center gap-3 relative z-10">
-            <Terminal className="w-8 h-8 text-emerald-500 animate-pulse" />
+            <MechanicCrest kind="capital"/>
             <div>
               <h2 className="text-2xl font-black text-emerald-400 tracking-[0.2em] uppercase drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]">及第资本 // 校园资产管理终端</h2>
               <p className="text-xs text-emerald-600 font-mono tracking-widest mt-1">SYS.VER 2.0.4 // HEFEI NO.1 ENTERPRISE SCHOOL // AUTHORIZED PERSONNEL ONLY</p>

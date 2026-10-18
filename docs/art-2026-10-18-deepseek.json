@@ -1,0 +1,66 @@
+{
+  "brief": "TNO black-ground engraving, existing two-point perspective and interaction boundaries. See scripts/art/director.mjs.",
+  "calls": [
+    {
+      "model": "deepseek-flash",
+      "requestHash": "3cf992078c78be2f095bafaa9b5d2166a0a95651073c59e054da4981b752e9aa",
+      "usage": {
+        "prompt_tokens": 20550,
+        "completion_tokens": 7762,
+        "total_tokens": 28312,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 20550
+      },
+      "generatedAt": "2026-10-18T07:14:53.514Z"
+    },
+    {
+      "model": "deepseek-flash",
+      "requestHash": "377ef0ef07b09a4eed2e70bdfcff9233fb4baa6f760ec25dba6598e92b84a8ca",
+      "usage": {
+        "prompt_tokens": 20310,
+        "completion_tokens": 11672,
+        "total_tokens": 31982,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 20182
+      },
+      "generatedAt": "2026-10-18T07:15:34.507Z"
+    },
+    {
+      "model": "deepseek-flash",
+      "requestHash": "0197e0c90505a48f4e54a138e4c4af83bd2290aa396021104cbb8e618131f86d",
+      "usage": {
+        "prompt_tokens": 20313,
+        "completion_tokens": 11595,
+        "total_tokens": 31908,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 20185
+      },
+      "generatedAt": "2026-10-18T07:15:38.352Z"
+    },
+    {
+      "model": "deepseek-flash",
+      "requestHash": "3dabd333c6de995df5829ad06f942c0bb21fc656344c382ed43ad82367b07727",
+      "usage": {
+        "prompt_tokens": 16683,
+        "completion_tokens": 10000,
+        "total_tokens": 26683,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 16555
+      },
+      "generatedAt": "2026-10-18T07:15:25.520Z",
+      "note": "Response truncated only after complete architecture code; recovered closed code string, discarded incomplete CSS."
+    }
+  ]
+}

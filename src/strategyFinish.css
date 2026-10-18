@@ -1,0 +1,744 @@
+/* DeepSeek Flash art direction, reviewed and scoped; layout and input preserved. */
+/* ============================================================
+   TNO · 合肥一中风云 — 硬边金属仪表面板精修
+   仅使用既有 class，不新增选择器作用范围
+   ============================================================ */
+
+/* ---------- 资源栏：煤黑底 + 旧铜上缘 + 冷青读数 ---------- */
+.resource-topbar {
+  background:
+    linear-gradient(180deg, #0c1214 0%, #070d10 55%, #050a0c 100%);
+  border-top: 1px solid #3a3226;
+  border-bottom: 2px solid #823b37;
+  box-shadow:
+    inset 0 1px 0 #bda47a22,
+    inset 0 -1px 0 #000,
+    0 2px 0 #000,
+    0 3px 14px #000b;
+  color: #c9cec2;
+  text-shadow: 0 1px 0 #000;
+}
+.resource-topbar .resource-label {
+  color: #8f9c96;
+  letter-spacing: .12em;
+  text-shadow: 0 1px 0 #000;
+}
+.resource-topbar .resource-rate {
+  color: #71c7cc;
+  font-variant-numeric: tabular-nums;
+}
+.resource-topbar .resource-date {
+  color: #bda47a;
+  letter-spacing: .08em;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 1px 0 #000, 0 0 6px #bda47a33;
+}
+.resource-topbar button {
+  color: #a9b3ad;
+  background: linear-gradient(180deg, #1b2427, #11181a);
+  border: 1px solid #3f4a48;
+  box-shadow: inset 0 1px 0 #ffffff0a, inset 0 -1px 0 #0008;
+  letter-spacing: .04em;
+}
+.resource-topbar button:hover:not(:disabled) {
+  color: #e9e4d5;
+  border-color: #826f55;
+  background: linear-gradient(180deg, #2b2a22, #191c1a);
+}
+.resource-topbar button:active:not(:disabled) {
+  box-shadow: inset 0 2px 4px #000c;
+}
+.resource-topbar button:disabled {
+  color: #5d6663;
+  border-color: #2c3434;
+  background: #101617;
+}
+.resource-topbar button:focus-visible {
+  outline: 1px solid #71c7cc;
+  outline-offset: 2px;
+}
+
+/* ---------- 左侧主导航：石墨竖板 ---------- */
+.campaign-rail {
+  background:
+    linear-gradient(180deg, #141a1c, #0b1012 60%, #080d0f);
+  border-right: 1px solid #2c3432;
+  box-shadow: inset -1px 0 0 #bda47a1a, 3px 0 18px #000a;
+}
+.campaign-rail button {
+  color: #9aa19c;
+  border-left: 3px solid transparent;
+  letter-spacing: .06em;
+  text-shadow: 0 1px 0 #000;
+}
+.campaign-rail button > span {
+  color: #b8bdb6;
+  text-shadow: 0 1px 0 #000, 0 0 8px #71c7cc11;
+}
+.campaign-rail button:hover,
+.campaign-rail button.active {
+  color: #f0ead9;
+  background:
+    linear-gradient(90deg, #2a1e1d 0%, #1c1a18 40%, #111516 100%);
+  border-left-color: #c9b481;
+  box-shadow: inset 0 -1px 0 #823b3766, inset 0 1px 0 #ffffff08;
+}
+.campaign-rail button.active > span {
+  color: #e2b9a0;
+  text-shadow: 0 0 9px #823b3755;
+}
+.campaign-rail button:disabled {
+  color: #555c5a;
+  opacity: .5;
+}
+.campaign-rail button b {
+  background: #823b37;
+  color: #f2e6d2;
+  border: 1px solid #bda47a55;
+  box-shadow: 0 1px 3px #000a;
+  font-variant-numeric: tabular-nums;
+}
+.campaign-rail button:focus-visible {
+  outline: 1px solid #71c7cc;
+  outline-offset: -3px;
+}
+.rail-mark {
+  color: #e4dccb;
+  border-bottom: 2px solid #823b37;
+  background:
+    linear-gradient(180deg, #181d1e, #0b1012);
+  box-shadow: inset 0 -1px 0 #000, inset 0 1px 0 #bda47a1f;
+  letter-spacing: .22em;
+  text-shadow: 0 1px 0 #000, 0 2px 0 #0007, 0 0 12px #bda47a26;
+}
+.rail-mark small {
+  color: #9d6a60;
+  letter-spacing: .3em;
+  text-shadow: none;
+}
+
+/* ---------- 国家面板：多层金属边缘 ---------- */
+.nation-panel {
+  background:
+    linear-gradient(160deg, #10161a 0%, #0b1013 72%, #070d10 100%);
+  border: 1px solid #3a433f;
+  box-shadow:
+    inset 0 0 0 1px #bda47a14,
+    inset 0 0 0 4px #070d10,
+    inset 0 1px 0 #ffffff0a,
+    2px 0 18px #0009;
+  color: #c9cec2;
+  scrollbar-color: #4a4034 #0b1013;
+}
+.nation-module {
+  border-bottom: 1px solid #3c4441 !important;
+  background:
+    linear-gradient(165deg, #161e20 0%, #11181a 66%, #0d1315 100%);
+  box-shadow:
+    inset 0 1px 0 #ffffff07,
+    inset 0 -1px 0 #0006;
+}
+.nation-module:nth-of-type(2n) {
+  background:
+    linear-gradient(165deg, #192022 0%, #131a1c 66%, #0e1416 100%);
+}
+.nation-module::before {
+
+  background: linear-gradient(180deg, #bda47a 0%, #823b37 55%, #3c2b28 100%);
+  box-shadow: 0 0 6px #bda47a26;
+}
+.nation-module-heading {
+  color: #d8c6a5 !important;
+  border-bottom: 1px solid #4c4a3d;
+  letter-spacing: .16em;
+  text-shadow: 0 1px 0 #000, 0 2px 2px #0008;
+}
+.nation-module-heading > span:first-child {
+  color: #d8c6a5;
+}
+
+/* 领袖：硬边肖像框 + 压印姓名 */
+.nation-leader-portrait {
+  border: 1px solid #7a6a52;
+  box-shadow:
+    inset 0 0 0 1px #070d10,
+    inset 0 0 0 3px #bda47a1f,
+    0 2px 0 #000,
+    0 6px 18px #000c;
+  background: #0a0f11;
+  filter: grayscale(.28) sepia(.12) contrast(1.06);
+}
+.nation-leader-name {
+  background: linear-gradient(180deg, #1e1e1a, #10100e) !important;
+  color: #e4dcc6 !important;
+  border-top: 1px solid #514636 !important;
+  border-bottom: 1px solid #000 !important;
+  letter-spacing: .18em;
+  text-shadow: 0 1px 0 #000, 0 2px 0 #0009;
+  box-shadow: inset 0 1px 0 #bda47a1a;
+}
+
+/* 意识形态：仪表圆盘 */
+.nation-ideology-heading {
+  color: #e3d6bd;
+  border-color: #6c5847;
+  letter-spacing: .14em;
+  text-shadow: 0 1px 0 #000;
+}
+.nation-ideology-heading small {
+  color: #7e8a86;
+  letter-spacing: .06em;
+}
+.nation-ideology-lead strong {
+  color: #d8ccad;
+  text-shadow: 0 1px 0 #000;
+}
+.nation-ideology-lead em {
+  color: #f3e1b9;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 10px #bda47a3a, 0 1px 0 #000;
+}
+
+/* 派系行：雕版刻线 */
+.nation-faction-row {
+  border-bottom: 1px solid #434741;
+  color: #bcc4bd;
+}
+.nation-faction-row::after {
+  background: var(--faction-accent);
+  opacity: .5;
+  box-shadow: 0 0 4px var(--faction-accent);
+}
+.nation-faction-row:hover {
+  background: #bda47a12;
+  color: #fff0d6;
+}
+.nation-faction-row strong {
+  color: #e2d9c8;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 国策卡：金属托片 */
+.nation-focus-card {
+  border: 1px solid #6b5d49;
+  background:
+    radial-gradient(ellipse at 12% 24%, #4e483744, transparent 55%),
+    linear-gradient(170deg, #141c1d, #0c1213);
+  box-shadow:
+    inset 0 0 0 2px #070d10,
+    inset 0 1px 0 #ffffff09,
+    0 2px 0 #000;
+  color: #cdd2c6;
+}
+.nation-focus-card:hover,
+.nation-focus-card:focus-visible {
+  border-color: #d2ad77;
+  background:
+    radial-gradient(ellipse at 14% 24%, #5a4c3444, transparent 55%),
+    linear-gradient(170deg, #232927, #131a1b);
+  box-shadow:
+    inset 0 0 0 2px #070d10,
+    inset 0 1px 0 #ffffff10,
+    0 0 0 1px #bda47a33,
+    0 2px 0 #000;
+}
+.nation-focus-card:focus-visible {
+  outline: 1px solid #71c7cc;
+  outline-offset: 2px;
+}
+
+/* ---------- 地图工具栏 & 图层按钮 ---------- */
+.map-toolbar {
+  background:
+    linear-gradient(180deg, #131a1d, #0b1113 80%);
+  border-bottom: 1px solid #3f4744;
+  box-shadow:
+    inset 0 1px 0 #ffffff07,
+    0 2px 12px #0007;
+}
+.map-toolbar strong {
+  color: #e9e4d6;
+  letter-spacing: .14em;
+  text-shadow: 0 1px 0 #000, 0 2px 0 #0009;
+}
+.map-toolbar small {
+  color: #8b8578;
+  letter-spacing: .1em;
+}
+.map-toolbar .eyebrow {
+  color: #c08a7e;
+  letter-spacing: .14em;
+  text-shadow: 0 1px 0 #000;
+}
+.map-layers {
+  border: 1px solid #4a5250;
+  background: #0c1214;
+  box-shadow:
+    inset 0 1px 2px #000c,
+    inset 0 0 0 1px #bda47a0f,
+    0 1px 0 #ffffff08;
+}
+.map-layers button {
+  color: #97a49e;
+  background: transparent;
+  border: 0;
+  letter-spacing: .05em;
+}
+.map-layers button:hover:not(:disabled) {
+  color: #e6decb;
+  background: #bda47a14;
+}
+.map-layers button.selected,
+.map-layers button[aria-pressed="true"] {
+  color: #f0dfd4;
+  background: linear-gradient(180deg, #6f3330, #4a2523);
+  box-shadow:
+    inset 0 1px 0 #ffffff12,
+    inset 0 -2px 0 #db9c8e;
+}
+.map-layers button:nth-child(2)[aria-pressed="true"] {
+  background: linear-gradient(180deg, #285342, #173a2f);
+  color: #d5eee0;
+  box-shadow: inset 0 1px 0 #ffffff10, inset 0 -2px 0 #92d4b3;
+}
+.map-layers button:nth-child(3)[aria-pressed="true"] {
+  background: linear-gradient(180deg, #275365, #163743);
+  color: #d4ecf1;
+  box-shadow: inset 0 1px 0 #ffffff10, inset 0 -2px 0 #8fc6d6;
+}
+.map-layers button:disabled {
+  color: #566160;
+  opacity: .5;
+}
+.map-layers button:focus-visible {
+  outline: 1px solid #71c7cc;
+  outline-offset: -2px;
+}
+
+/* ---------- 指挥记录 / 摘要 / 链接 ---------- */
+.command-ledger {
+  background:
+    linear-gradient(180deg, #151b1d, #0d1214);
+  border-top: 2px solid #612a29;
+  box-shadow:
+    inset 0 1px 0 #bda47a14,
+    0 -4px 18px #0008;
+}
+.command-summary {
+  border-bottom: 1px solid #423c34;
+  color: #b7bcb0;
+  text-shadow: 0 1px 0 #000;
+}
+.command-summary strong {
+  color: #d9c4b2;
+  letter-spacing: .06em;
+}
+.command-summary b {
+  color: #71c7cc;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 6px #71c7cc33;
+}
+.command-summary span {
+  color: #8f9a96;
+}
+.command-links {
+  border: 1px solid #464440;
+  background: linear-gradient(170deg, #1a1f20, #121718);
+  box-shadow:
+    inset 0 1px 0 #ffffff07,
+    inset 0 -1px 0 #0007;
+  color: #8e9897;
+}
+.command-links summary {
+  color: #c0ac9c;
+  letter-spacing: .08em;
+}
+.command-links summary:focus-visible {
+  outline: 1px solid #71c7cc;
+  outline-offset: 2px;
+}
+.command-links span::before {
+  color: #5e6866;
+}
+.command-links span.ready {
+  color: #c2dec8;
+}
+.command-links span.ready::before {
+  color: #94d1a6;
+  text-shadow: 0 0 5px #94d1a655;
+}
+.command-links small {
+  color: #a89a8c;
+}
+.command-links strong {
+  color: #e0cec2;
+}
+
+/* ---------- 地区窗口：仪表窗框 ---------- */
+.region-window {
+  border: 1px solid #8a5f52;
+  background:
+    linear-gradient(170deg, #171d1f 0%, #101618 62%, #0a1012 100%);
+  box-shadow:
+    inset 0 0 0 1px #070d10,
+    inset 0 0 0 3px #bda47a16,
+    inset 0 1px 0 #ffffff0a,
+    0 18px 48px #000d;
+  color: #c9cec2;
+}
+.region-window::before {
+  content: '';
+
+  inset: 3px;
+  border: 1px solid #bda47a1f;
+
+}
+
+/* ---------- 合力值 HUD：冷青数字 + 铜刻度 ---------- */
+.heyi-light-v2__header {
+  background:
+    linear-gradient(100deg, #0f1b20 0%, #11181b 55%, #070d11 100%);
+  border-bottom: 1px solid #4a6f77;
+  box-shadow:
+    inset 0 1px 0 #ffffff08,
+    inset 0 -1px 0 #0008,
+    0 3px 17px #000a;
+}
+.heyi-light-v2__title span {
+  color: #82a9af;
+  letter-spacing: .18em;
+}
+.heyi-light-v2__title h2 {
+  color: #ece9db;
+  letter-spacing: .22em;
+  text-shadow: 0 1px 0 #000, 0 3px 0 #0009;
+}
+.heyi-light-v2__value {
+  background:
+    linear-gradient(135deg, #0b1a1f, #061014);
+  border: 1px solid #577b80;
+  box-shadow:
+    inset 0 0 0 1px #142c32,
+    inset 0 8px 16px #16252a88,
+    0 0 0 1px #bda47a14,
+    0 2px 8px #0009;
+}
+.heyi-light-v2__readout > span {
+  color: #a2b6b5;
+  letter-spacing: .12em;
+}
+.heyi-light-v2__readout small {
+  color: #5f848b;
+  letter-spacing: .08em;
+}
+.heyi-light-v2__readout strong {
+  color: var(--heyi-gauge);
+  font-variant-numeric: tabular-nums;
+  text-shadow:
+    0 1px 0 #000,
+    0 0 12px color-mix(in srgb, var(--heyi-gauge), transparent 48%);
+}
+.heyi-light-v2__trend {
+  border-left: 1px solid #39545a;
+}
+.heyi-light-v2__trend b {
+  color: var(--heyi-gauge);
+  text-shadow: 0 1px 0 #000;
+}
+.heyi-light-v2__trend em {
+  color: #aabfbb;
+  font-variant-numeric: tabular-nums;
+}
+.heyi-light-v2__instrument {
+
+}
+.heyi-light-v2__scale {
+  border: 1px solid #5d7e82;
+  background:
+    repeating-linear-gradient(90deg, #12252b 0 4.6%, #274047 4.6% 5%);
+  box-shadow: inset 0 2px 3px #000a, 0 0 0 1px #bda47a12;
+}
+.heyi-light-v2__scale > i {
+  background: linear-gradient(90deg, #416e76, var(--heyi-gauge));
+  box-shadow: 0 0 11px var(--heyi-gauge), inset 0 1px 0 #ffffff1f;
+}
+.heyi-light-v2__scale > b {
+  background: #edf4e5;
+  box-shadow: 0 0 5px #c7e6df;
+}
+.heyi-light-v2__tooltip {
+  background: rgba(5, 17, 22, .97);
+  border: 1px solid var(--heyi-status);
+  box-shadow:
+    0 4px 18px #000d,
+    inset 3px 0 var(--heyi-status),
+    inset 0 0 0 1px #bda47a14;
+  color: #d6e0d8;
+}
+.heyi-light-v2__tooltip span {
+  color: #81c9d4;
+  letter-spacing: .1em;
+}
+.heyi-light-v2__tooltip span b {
+  color: var(--heyi-status);
+  font-variant-numeric: tabular-nums;
+}
+.heyi-light-v2__tooltip p {
+
+  color: #cdd7cf;
+}
+
+/* ---------- 小游戏作用域 ---------- */
+.strategy-minigame {
+  color: #c9cec2;
+  background:
+    linear-gradient(170deg, #101619 0%, #0b1113 70%, #070d10 100%);
+  border: 1px solid #3f4843;
+  box-shadow:
+    inset 0 0 0 1px #bda47a14,
+    inset 0 0 0 3px #070d10;
+  font-family: "Microsoft YaHei", "PingFang SC", system-ui, sans-serif;
+
+}
+.strategy-minigame h2 {
+  color: #ebe4d2;
+  font-family: SimSun, serif;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-shadow: 0 1px 0 #000, 0 2px 0 #0009, 0 0 14px #bda47a22;
+  border-bottom: 1px solid #6a5643;
+
+}
+.strategy-minigame h3 {
+  color: #d8c6a5;
+  font-family: SimSun, serif;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-shadow: 0 1px 0 #000;
+}
+.strategy-minigame section {
+  background:
+    linear-gradient(165deg, #161d1f, #101618 72%);
+  border: 1px solid #3c4441;
+  box-shadow:
+    inset 0 1px 0 #ffffff07,
+    inset 0 -1px 0 #0006;
+  color: #bfc5bb;
+}
+.strategy-minigame button {
+  box-shadow:
+    inset 0 1px 0 #ffffff0a,
+    inset 0 -1px 0 #0008,
+    0 1px 0 #000;
+  letter-spacing: .05em;
+  text-shadow: 0 1px 0 #000;
+  font-variant-numeric: tabular-nums;
+
+}
+.strategy-minigame button:hover:not(:disabled) {
+
+}
+.strategy-minigame button:active:not(:disabled) {
+  box-shadow: inset 0 2px 5px #000c, inset 0 0 0 1px #bda47a1f;
+}
+.strategy-minigame button:disabled {
+  color: #5c6562;
+  border-color: #2e3636;
+  background: #101617;
+  box-shadow: inset 0 1px 0 #ffffff04;
+  opacity: .62;
+}
+.strategy-minigame button:focus-visible,
+.strategy-minigame [role=progressbar]:focus-visible {
+  outline: 1px solid #71c7cc;
+  outline-offset: 2px;
+}
+.strategy-minigame [role=progressbar] {
+  background:
+    repeating-linear-gradient(90deg, #0d1517 0 8px, #162124 8px 9px);
+  border: 1px solid #4a5452;
+  box-shadow: inset 0 2px 4px #000b, 0 0 0 1px #bda47a0f;
+}
+.strategy-minigame [role=progressbar] > * {
+  box-shadow: 0 0 8px #71c7cc44, inset 0 1px 0 #ffffff1f;
+
+}
+
+/* 改革面板 */
+.reform-panel {
+  background:
+    linear-gradient(165deg, #182024, #0e1416 70%);
+  border: 1px solid #46504b;
+  box-shadow:
+    inset 0 0 0 1px #bda47a14,
+    inset 0 1px 0 #ffffff07,
+    0 2px 10px #0007;
+  color: #c3c9bf;
+}
+.reform-panel h3 {
+  color: #e3d6bd;
+  letter-spacing: .12em;
+  border-bottom: 1px solid #574c3e;
+  text-shadow: 0 1px 0 #000;
+}
+.reform-progress {
+  background:
+    repeating-linear-gradient(90deg, #0c1315 0 7px, #152023 7px 8px);
+  border: 1px solid #49524e;
+  box-shadow: inset 0 2px 4px #000b;
+}
+.reform-progress > * {
+  box-shadow: 0 0 8px #823b3755, inset 0 1px 0 #ffffff1a;
+
+}
+
+/* 议会半圆仪 */
+.assembly-hemicycle {
+  background:
+    radial-gradient(ellipse at 50% 100%, #1a2426, #0b1113 78%);
+  border: 1px solid #4a544f;
+  box-shadow:
+    inset 0 0 0 1px #bda47a14,
+    inset 0 0 0 4px #070d10,
+    0 3px 16px #000a;
+  color: #c9cec2;
+}
+.assembly-hemicycle text {
+  fill: #b9c1b8;
+  font-variant-numeric: tabular-nums;
+}
+.assembly-hemicycle circle,
+.assembly-hemicycle path {
+  stroke: #0a1012;
+}
+
+/* 沉浸层不遮挡与不产生模糊，仅用硬边线框 */
+.heyi-light-v2 {
+  color: #d7e2db;
+  background:
+    linear-gradient(170deg, #060e12, #030b0f 72%, #02080b);
+  border: 1px solid #527780;
+  box-shadow:
+    inset 0 0 0 2px #09191e,
+    inset 0 0 0 3px #bda47a12,
+    0 8px 30px #000c;
+}
+
+/* ============================================================
+   可访问性 & 性能
+   ============================================================ */
+.strategy-minigame button:focus-visible,
+.campaign-rail button:focus-visible,
+.resource-topbar button:focus-visible,
+.map-layers button:focus-visible,
+.heyi-light-v2__close:focus-visible {
+  outline: 1px solid #71c7cc;
+  outline-offset: 2px;
+}
+
+.command-links summary:focus-visible,
+.legacy-actions > summary:focus-visible {
+  outline: 1px solid #71c7cc;
+  outline-offset: 2px;
+}
+
+.nation-faction-row:focus-visible {
+  outline: 1px solid #71c7cc;
+  outline-offset: 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .strategy-minigame *,
+  .nation-focus-card,
+  .heyi-light-v2__scale > i,
+  .reform-progress > * {
+    transition: none !important;
+    animation: none !important;
+
+}
+}
+
+/* ---------- 紧凑断点微调，不触发布局变化 ---------- */
+@media (max-width: 900px) {
+  .resource-topbar .resource-rate {
+
+  }
+  .nation-module-heading {
+    letter-spacing: .1em;
+  }
+  .heyi-light-v2__title h2 {
+    letter-spacing: .14em;
+  }
+}
+
+@media (max-width: 600px) {
+  .nation-leader-name {
+    letter-spacing: .08em;
+  }
+  .heyi-light-v2__title h2 {
+    letter-spacing: .1em;
+  }
+  .strategy-minigame h2 {
+    letter-spacing: .1em;
+  }
+  .map-toolbar strong {
+    letter-spacing: .08em;
+  }
+  .campaign-rail button {
+    letter-spacing: .02em;
+  }
+}
+
+.campus-opening .campus-steam{animation:diorama-steam 5.5s ease-in-out infinite}
+.campus-uprising .campus-broadcast{animation:diorama-pulse 2.8s ease-in-out infinite}
+.campus-uprising [data-ch='1'] .campus-object{animation:diorama-settle 1.2s ease-out both}
+.campus-democracy .heyi-cloth{animation:diorama-cloth 6s ease-in-out infinite}
+.campus-water{animation:diorama-water 3.6s linear infinite}
+.campus-festoon{animation:diorama-festoon 4.2s ease-in-out infinite}
+.campus-search-beam{animation:diorama-beam 6.5s ease-in-out infinite}
+@media (prefers-reduced-motion: reduce){.campus-opening .campus-steam,.campus-uprising .campus-broadcast,.campus-democracy .heyi-cloth,.campus-water,.campus-festoon,.campus-search-beam{animation:none}}
+
+/* RouteStreetSceneB — restrained, respects reduced motion */
+@keyframes diorama-drift{0%{transform:translate3d(0,0,0) rotate(0deg);opacity:.9}50%{transform:translate3d(10px,-14px,0) rotate(7deg);opacity:.7}100%{transform:translate3d(22px,-4px,0) rotate(-3deg);opacity:.85}}
+@keyframes diorama-sway{0%{transform:rotate(-1.2deg)}50%{transform:rotate(1.2deg)}100%{transform:rotate(-1.2deg)}}
+@keyframes diorama-scatter{0%{opacity:0;transform:translateY(-4px)}30%{opacity:1}100%{opacity:0;transform:translateY(6px)}}
+@keyframes diorama-ember-rise{0%{opacity:0;transform:translateY(2px)}40%{opacity:.8}100%{opacity:0;transform:translateY(-16px)}}
+@keyframes diorama-water-pour{0%{stroke-dasharray:0 320;opacity:.9}60%{stroke-dasharray:200 320}100%{stroke-dasharray:320 320;opacity:.4}}
+@keyframes diorama-sweep{0%{opacity:.02}50%{opacity:.06}100%{opacity:.02}}
+@keyframes diorama-bulb{0%{opacity:.5}50%{opacity:1}100%{opacity:.5}}
+@keyframes diorama-danmaku-in{0%{opacity:0;transform:translateX(-10px)}20%{opacity:1}100%{opacity:0;transform:translateX(46px)}}
+.diorama-peel{transform-origin:80% 4%;animation:diorama-sway 5.5s ease-in-out infinite}
+.diorama-paper-drift{animation:diorama-drift 7s ease-in-out infinite}
+.diorama-scatter{animation:diorama-scatter 3.2s linear infinite}
+.diorama-ember{animation:diorama-ember-rise 3.4s ease-out infinite}
+.diorama-water{animation:diorama-water-pour 1.6s ease-out forwards}
+.diorama-hose{opacity:.85}
+.diorama-search-sweep{animation:diorama-sweep 6s ease-in-out infinite}
+.diorama-bulb-0{fill:#c4b886;animation:diorama-bulb 2.6s ease-in-out infinite}
+.diorama-bulb-1{fill:#a4b8ac;animation:diorama-bulb 2.6s ease-in-out infinite;animation-delay:-.6s}
+.diorama-bulb-2{fill:#ad99b8;animation:diorama-bulb 2.6s ease-in-out infinite;animation-delay:-1.2s}
+.diorama-danmaku-0{animation:diorama-danmaku-in 4s linear infinite}
+.diorama-danmaku-1{animation:diorama-danmaku-in 4s linear infinite;animation-delay:-1.3s}
+.diorama-danmaku-2{animation:diorama-danmaku-in 4s linear infinite;animation-delay:-2.6s}
+@media (prefers-reduced-motion: reduce){
+  .diorama-peel,.diorama-paper-drift,.diorama-scatter,.diorama-ember,.diorama-water,.diorama-search-sweep,.diorama-bulb-0,.diorama-bulb-1,.diorama-bulb-2,.diorama-danmaku-0,.diorama-danmaku-1,.diorama-danmaku-2{animation:none!important}
+}
+.campus-architectural-engraving .engraving-pulse { animation: engraving-light 7s ease-in-out infinite alternate; }
+@keyframes engraving-light { from {opacity:.28;} to {opacity:.65;} }
+@media(prefers-reduced-motion:reduce) { .campus-architectural-engraving .engraving-pulse {animation:none;} }
+
+/* Engraved instrument identities, preserving each route's signal colors. */
+.focus-tree-status {background:linear-gradient(135deg,#192529,#0b1317);border-color:#657870;box-shadow:inset 0 1px #c4c7ae20,0 4px 16px #0009;}
+.focus-art-node__title {text-shadow:0 1px 2px #000;letter-spacing:.04em;}
+.focus-art-node__status {box-shadow:inset 0 1px #e8e4c71c,0 1px 3px #0008;}
+.focus-art-node--active .focus-art-node__progress {background-image:repeating-linear-gradient(110deg,transparent 0 8px,#ffffff15 8px 11px);}
+.mechanic-crest {width:48px;height:48px;flex:none;display:inline-block;vertical-align:middle;margin-right:12px;color:#bda47a;pointer-events:none;}
+.mechanic-crest--assembly {color:#95b2bc;}
+.mechanic-crest--reform {color:#b9b99b;}
+.mechanic-crest--capital {color:#83b49d;}
+.mechanic-crest--council {color:#c88678;}
+.heyi-light-v2__trend svg {width:52px;height:32px;color:var(--heyi-gauge);flex:none;}
+.strategy-minigame .assembly-hemicycle {background:radial-gradient(ellipse at 50% 90%,#223337,#091013 75%);box-shadow:inset 0 0 0 1px #60777366,inset 0 0 0 5px #091215,0 4px 20px #0008;}
+.strategy-minigame .assembly-hemicycle svg {filter:drop-shadow(0 2px 1px #000);}
+.strategy-minigame .assembly-legend {border-top:1px solid #5e706366;}
+@media(max-width:700px){.mechanic-crest {width:32px;height:32px;margin-right:7px;}}

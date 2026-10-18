@@ -1,3 +1,4 @@
+import MechanicCrest from './MechanicCrest';
 import React, { useState } from 'react';
 import { GameState } from '../types';
 import { getCommandState, getTeamCapacity, reserveReformTeam } from '../engine/commandSystem';
@@ -72,9 +73,9 @@ export default function ReformCommittee({ state, setGameState, onClose, triggerE
   ];
 
   return (
-    <div className="reform-panel absolute inset-0 z-50 flex flex-col crt">
+    <div className="strategy-minigame reform-panel absolute inset-0 z-50 flex flex-col crt">
       <div className="flex justify-between items-center mb-6 border-b-2 border-tno-highlight pb-4">
-        <h2 className="text-3xl font-bold text-tno-highlight tracking-widest">全面做题改革委员会</h2>
+        <h2 className="text-3xl font-bold text-tno-highlight tracking-widest"><MechanicCrest kind="reform"/>全面做题改革委员会</h2>
         <button onClick={onClose} className="text-tno-red hover:text-white text-2xl font-bold">✕</button>
       </div>
 

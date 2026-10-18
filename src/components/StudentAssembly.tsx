@@ -1,3 +1,4 @@
+import MechanicCrest from './MechanicCrest';
 import React from 'react';
 import { Hammer, Ghost, Scale, Users, BookOpen, Shield, GraduationCap, ThumbsUp, ThumbsDown } from 'lucide-react';
 import { GameState } from '../types';
@@ -90,10 +91,10 @@ export default function StudentAssembly({ state, onClose, onInteract }: StudentA
 
   return (
     <div className="absolute inset-0 z-30 bg-black/80 backdrop-blur-sm flex items-center justify-center p-8">
-      <div className={`assembly-panel bg-zinc-900 border-2 border-tno-border w-full ${isDeluxeAssembly ? 'max-w-6xl' : 'max-w-4xl'} max-h-full flex flex-col shadow-2xl`}>
+      <div className={`strategy-minigame assembly-panel bg-zinc-900 border-2 border-tno-border w-full ${isDeluxeAssembly ? 'max-w-6xl' : 'max-w-4xl'} max-h-full flex flex-col shadow-2xl`}>
         {/* Header */}
         <div className="p-4 border-b border-tno-border bg-black flex justify-between items-center">
-          <h2 className="text-2xl font-bold tracking-widest text-tno-highlight">{isDeluxeAssembly ? '新学生代表大会' : (isUpgraded ? '合一学生议会' : '学生代表大会')}</h2>
+          <h2 className="text-2xl font-bold tracking-widest text-tno-highlight"><MechanicCrest kind="assembly"/>{isDeluxeAssembly ? '新学生代表大会' : (isUpgraded ? '合一学生议会' : '学生代表大会')}</h2>
           <button onClick={onClose} className="text-tno-red hover:text-white font-bold border border-tno-red px-4 py-1">
             关闭
           </button>
@@ -227,6 +228,9 @@ export default function StudentAssembly({ state, onClose, onInteract }: StudentA
             <h3 className="text-lg font-bold mb-4">议会席位分布（{dots.length}席）</h3>
             <div className="assembly-hemicycle">
               <svg viewBox="0 0 360 215" role="img" aria-label={`学生代表大会，${dots.length}席`}>
+                <path d="M9 181A171 171 0 0 1 351 181H224L211 206H149L136 181Z" fill="#101c20" stroke="#8d9e91" strokeWidth=".75"/>
+                <path d="M15 181A165 165 0 0 1 345 181M23 181A157 157 0 0 1 337 181" fill="none" stroke="#3b565b" strokeWidth=".6"/>
+                {[0,1,2,3,4,5,6].map(i=>{const a=Math.PI*i/6;return <path key={'aisle'+i} d={`M${180+54*Math.cos(a)} ${180-54*Math.sin(a)}L${180+171*Math.cos(a)} ${180-171*Math.sin(a)}`} fill="none" stroke="#6b817a" strokeWidth=".45" opacity=".5"/>})}
                 {[62,87,112,137,162].map(r => <path key={r} d={`M${180-r} 180A${r} ${r} 0 0 1 ${180+r} 180`} stroke="#41565b" strokeWidth=".7" fill="none" />)}
                 {(() => {
                   const colors: Record<string,string> = {orthodox:'#c67b72',bear:'#ad78a3',pan:'#7f9fc6',otherDem:'#72b5b8',testTaker:'#b1b6ae',conservativeDem:'#8988b3',jidiTutoring:'#c3a263'};
@@ -238,7 +242,7 @@ export default function StudentAssembly({ state, onClose, onInteract }: StudentA
                     for(let j=0;j<count;j++) { const angle=Math.PI-(j+.5)*Math.PI/count; const r=62+row*25; seats.push({x:180+r*Math.cos(angle),y:180-r*Math.sin(angle),angle}); }
                   });
                   seats.sort((a,b)=>b.angle-a.angle);
-                  return seats.map((seat,i)=><rect key={i} x={seat.x-3.4} y={seat.y-3.4} width="6.8" height="6.8" rx="1" fill={colors[dots[i].id]} stroke="#e0e0c7" strokeWidth=".4"><title>{factionDetails.find(f=>f.id===dots[i].id)?.name}</title></rect>);
+                  return seats.map((seat,i)=><g key={i}><rect x={seat.x-3.4} y={seat.y-2.2} width="6.8" height="6.8" fill="#02090d"/><rect x={seat.x-3.4} y={seat.y-3.4} width="6.8" height="6.8" rx="1" fill={colors[dots[i].id]} stroke="#e0e0c7" strokeWidth=".4"><title>{factionDetails.find(f=>f.id===dots[i].id)?.name}</title></rect><path d={`M${seat.x-2.4} ${seat.y-2.2}h4.8`} stroke="#ecedcc" strokeWidth=".4" opacity=".55"/></g>);
                 })()}
                 <path d="M143 182h74l-8 17h-58Z" fill="#1e3035" stroke="#a2afa1" />
                 <text x="180" y="194" textAnchor="middle" fontSize="8" fill="#d0c3a1" letterSpacing="3">主席台</text>

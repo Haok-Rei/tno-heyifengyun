@@ -91,7 +91,7 @@ export default function MinigameNegotiation({ state, onComplete, spendPP }: Mini
 
   return (
     <div className="absolute inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="w-full max-w-5xl h-[82vh] border-2 border-[#b71c1c] bg-[#120707] text-[#f2d9d9] p-6 flex flex-col gap-4 shadow-[0_0_30px_rgba(183,28,28,0.35)]">
+      <div className="strategy-minigame w-full max-w-5xl h-[82vh] border-2 border-[#b71c1c] bg-[#120707] text-[#f2d9d9] p-6 flex flex-col gap-4 shadow-[0_0_30px_rgba(183,28,28,0.35)]">
         <div className="flex items-center justify-between border-b border-[#7b1c1c] pb-3">
           <div className="flex items-center gap-3">
             <Handshake className="w-7 h-7 text-[#ff6e6e]" />

@@ -264,7 +264,7 @@ export default function WuCrackdownConsole({ state, setGameState, onClose, trigg
   const raidEffect = RAID_EFFECTS[tier];
 
   return (
-    <div className="fixed inset-0 pt-12 z-40 flex items-center justify-center bg-black/90 backdrop-blur-md p-4 crt">
+    <div className="strategy-minigame fixed inset-0 pt-12 z-40 flex items-center justify-center bg-black/90 backdrop-blur-md p-4 crt">
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}

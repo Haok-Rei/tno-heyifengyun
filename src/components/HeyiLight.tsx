@@ -3,7 +3,8 @@ import { X } from 'lucide-react';
 import type { GameState } from '../types';
 import { getHeyiLightSnapshot, type HeyiZone } from '../engine/heyiLight';
 import './heyiLight.css';
-import { CampusBuildingDetails, CampusGround, CampusGate, CampusGuard, CampusTrees, StreetFurniture, CampusRouteObjects, CampusEdges } from './CampusEnvironment';
+import { getCampusArtChapter, getCampusArtBranch, getCampusArtScene, type CampusChapter, type CampusBranch } from '../engine/campusArt';
+import { CampusArchitecturalEngraving, CampusBuildingDetails, CampusGround, CampusGate, CampusGuard, CampusTrees, StreetFurniture, CampusRouteObjects, CampusEdges } from './CampusEnvironment';
 
 interface Props { state: GameState; onClose: () => void }
 type Snapshot = ReturnType<typeof getHeyiLightSnapshot>;
@@ -75,8 +76,8 @@ function SchoolCampus({ lit, unrest, route }: { lit: number; unrest: boolean; ro
     <path d="M113 143V370M1124 137V381" stroke="#8caaa5" strokeWidth="1.1" />
   </g>;
 }
-function Scene({ snapshot, month, viewBox, active, onZone, onPointer }: {
-  snapshot: Snapshot; month: number; viewBox: string; active: HeyiZone | null;
+function Scene({ snapshot, chapter, branch, month, viewBox, active, onZone, onPointer }: {
+  snapshot: Snapshot; chapter: CampusChapter; branch: CampusBranch; month: number; viewBox: string; active: HeyiZone | null;
   onZone: (zone: HeyiZone | null, anchor?: Point) => void;
   onPointer: (event: PointerEvent<SVGElement>, zone: HeyiZone) => void;
 }) {
@@ -88,6 +89,7 @@ function Scene({ snapshot, month, viewBox, active, onZone, onPointer }: {
     <rect x="-500" width="2200" height="700" fill="#020b10" />
     <CampusGround observation={observation}/>
     <SchoolCampus lit={lit} unrest={unrest} route={route}/>
+    <CampusArchitecturalEngraving route={route} chapter={chapter}/>
     <CampusBuildingDetails route={route} stage={snapshot.uprisingStage}/>
     <g className="heyi-hotspots"><path d="M80 137L720 75L1160 127V386L720 435L80 377Z" className={active==='building'?'is-active':''}
       role="button" tabIndex={0} aria-label={'观察教学楼：'+snapshot.zones.building.description}
@@ -99,7 +101,7 @@ function Scene({ snapshot, month, viewBox, active, onZone, onPointer }: {
     <CampusGate observation={observation}/>
     <CampusTrees observation={observation} month={month}/>
     <StreetFurniture observation={observation}/>
-    <CampusRouteObjects observation={observation}/>
+    <CampusRouteObjects observation={observation} chapter={chapter} branch={branch}/>
     <Person x={route==='despair'?595:477} y={572} tired={mood==='weary'||mood==='ruin'||route==='wu'} stride={route==='despair'?0:1} active={active} snapshot={snapshot} onZone={onZone} onPointer={onPointer}/>
     {route!=='despair'&&<Person x={562} y={586} tired={mood==='ruin'||route==='jidi'||route==='wu'} stride={2} active={active} snapshot={snapshot} onZone={onZone} onPointer={onPointer}/>}
     {route!=='despair'&&<Person x={680} y={600} tired={mood==='weary'||mood==='ruin'||route==='jidi'||route==='wu'} stride={3} active={active} snapshot={snapshot} onZone={onZone} onPointer={onPointer}/>}
@@ -108,6 +110,7 @@ function Scene({ snapshot, month, viewBox, active, onZone, onPointer }: {
 }
 export default function HeyiLight({ state, onClose }: Props) {
   const snapshot = getHeyiLightSnapshot(state);
+  const artScene = getCampusArtScene(state,snapshot);
   const [active, setActive] = useState<HeyiZone | null>(null);
   const [point, setPoint] = useState<Point>({ x: 0, y: 0 });
   const [viewBox, setViewBox] = useState('0 0 1200 700');
@@ -159,7 +162,13 @@ export default function HeyiLight({ state, onClose }: Props) {
     <header className="heyi-light-v2__header">
       <div className="heyi-light-v2__title"><span>{snapshot.route==='uprising'?snapshot.headline+' / B3':'档案 / CAMPUS OBSERVATION'}</span><h2 id="heyi-light-title">合一之光</h2></div>
       <div className="heyi-light-v2__value" role="meter" aria-label="合一值" aria-valuemin={0} aria-valuemax={100} aria-valuenow={snapshot.value} aria-valuetext={snapshot.value + '，' + trendText} style={{ '--heyi-gauge': gaugeColor } as CSSProperties}>
-        <div className="heyi-light-v2__readout"><span>合一值 <small>HE YI INDEX</small></span><strong>{snapshot.value.toString().padStart(2, '0')}</strong><div className="heyi-light-v2__trend"><b>{trend}</b><em>{trendText}</em></div></div>
+        <div className="heyi-light-v2__readout"><span>合一值 <small>HE YI INDEX</small></span><strong>{snapshot.value.toString().padStart(2, '0')}</strong><div className="heyi-light-v2__trend">
+          <svg viewBox="0 0 58 34" role="img" aria-label={`当前${snapshot.value}，长期趋向${Math.round(snapshot.target)}，${trendText}`}>
+            <path d="M4 4H54M4 17H54M4 30H54M5 3V31M29 3V31M53 3V31" stroke="#517078" strokeWidth=".45" opacity=".5" fill="none"/>
+            <path d={`M5 ${30-snapshot.value*.26}L53 ${30-snapshot.target*.26}`} stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 2" fill="none"/>
+            <circle cx="5" cy={30-snapshot.value*.26} r="2.6" fill="currentColor"/>
+            <path d={`M53 ${26-snapshot.target*.26}l4 4-4 4-4-4Z`} fill="#0a1519" stroke="currentColor" strokeWidth="1"/>
+          </svg><em>{trendText}</em></div></div>
         <div className="heyi-light-v2__instrument">
           <div className="heyi-light-v2__ticks">{Array.from({length: 21}, (_, i) => <i key={i} className={i % 5 === 0 ? 'major' : ''} />)}</div>
           <div className="heyi-light-v2__scale"><i style={{ width: snapshot.value + '%' }} /><b style={{ left: snapshot.value + '%' }} /><span style={{ left: snapshot.target + '%' }} title="长期趋向位置" /></div>
@@ -168,7 +177,7 @@ export default function HeyiLight({ state, onClose }: Props) {
       <button type="button" className="heyi-light-v2__close" onClick={onClose} aria-label="关闭合一之光"><X size={18} /></button>
     </header>
     <div ref={sceneRef} className="heyi-light-v2__scene-wrap">
-      <Scene snapshot={snapshot} month={state.date.getMonth()} viewBox={viewBox} active={active} onZone={onZone} onPointer={onPointer} />
+      <Scene snapshot={artScene} chapter={getCampusArtChapter(state,artScene)} branch={getCampusArtBranch(state)} month={state.date.getMonth()} viewBox={viewBox} active={active} onZone={onZone} onPointer={onPointer} />
       {active && <div className="heyi-light-v2__tooltip" role="status" style={{
         left: Math.min(point.x + 18, Math.max(8, (sceneRef.current?.clientWidth ?? 600) - 284)),
         top: Math.min(point.y + 18, Math.max(8, (sceneRef.current?.clientHeight ?? 400) - 118)),
