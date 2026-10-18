@@ -3,8 +3,10 @@ import { X } from 'lucide-react';
 import type { GameState } from '../types';
 import { getHeyiLightSnapshot, type HeyiZone } from '../engine/heyiLight';
 import './heyiLight.css';
+import {CampusBuilding,CampusEntrance,CampusGatehouse,getStructureProfile} from './CampusStructures';
+import './campusStructures.css';
 import { getCampusArtChapter, getCampusArtBranch, getCampusArtScene, type CampusChapter, type CampusBranch } from '../engine/campusArt';
-import { CampusArchitecturalEngraving, CampusBuildingDetails, CampusGround, CampusGate, CampusGuard, CampusTrees, StreetFurniture, CampusRouteObjects, CampusEdges } from './CampusEnvironment';
+import { CampusGround, CampusTrees, StreetFurniture, CampusRouteObjects, CampusEdges } from './CampusEnvironment';
 
 interface Props { state: GameState; onClose: () => void }
 type Snapshot = ReturnType<typeof getHeyiLightSnapshot>;
@@ -41,64 +43,21 @@ function Person({ x, y, teacher = false, tired = false, stride = 0, active, snap
       onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();onZone(zone,{x,y:y-35});}}} />
   </g>;
 }
-function SchoolCampus({ lit, unrest, route }: { lit: number; unrest: boolean; route: Snapshot['route'] }) {
-  // Both facades converge on a shared horizon at y=260; the nearest corner is deliberately off-centre.
-  const corner = {x:720, top:75, bottom:435};
-  const faces = [{x:80,top:137,bottom:377,n:9},{x:1160,top:127,bottom:386,n:6}];
-  const point=(face:typeof faces[number],u:number,v:number):Point=>({x:corner.x+(face.x-corner.x)*u,y:corner.top+(face.top-corner.top)*u+v*((corner.bottom-corner.top)+(face.bottom-face.top-corner.bottom+corner.top)*u)});
-  const line=(points:Point[])=>'M'+points.map(q=>`${q.x.toFixed(2)} ${q.y.toFixed(2)}`).join('L');
-  return <g className="heyi-campus">
-    <path d="M80 137L720 75L1160 127V386L720 435L80 377Z" fill="#060e12" stroke="#c2c9be" strokeWidth="1.4" />
-    <path d="M80 137L720 75L1160 127L1151 110L720 55L89 120Z" fill="#0a1317" stroke="#a5bcb9" strokeWidth="1" />
-    <path d="M80 145L720 87L1160 137M80 153L720 99L1160 146M80 374L720 429L1160 383" stroke="#6f969b" strokeWidth=".8" fill="none" />
-    {faces.map((face,side)=><g key={side}>
-      {[.02,.25,.5,.75,.98].map(v=><g key={v}><path d={line([point(face,0,v),point(face,1,v)])} fill="none" stroke="#abb6ad" strokeWidth="1.1" /><path d={line([point(face,0,v+.014),point(face,1,v+.014)])} fill="none" stroke="#467581" strokeWidth=".65" /></g>)}
-      {Array.from({length:face.n+1},(_,j)=>{const u=j/face.n;return <path key={j} d={line([point(face,u,.025),point(face,u,.98)])} stroke="#527d85" strokeWidth=".6" fill="none" />;})}
-      {[0,1,2,3].map(row=>Array.from({length:face.n},(_,col)=>{
-        const index=row*face.n+col+side*36;const u=(col+.18)/face.n, end=(col+.80)/face.n;const v=.055+row*.242, bottom=v+.165;
-        const corners=[point(face,u,v),point(face,end,v),point(face,end,bottom),point(face,u,bottom)];
-        const litWindow=(index*7+row)%16<lit*.7;
-        return <g key={index}>
-          <path d={line(corners)+'Z'} fill="#03090d" stroke="#c5d0c5" strokeWidth="1" />
-          {litWindow&&<path className="heyi-window__light" style={{animationDelay:`-${index%7*1.7}s`}} d={line([point(face,u+.015,v+.01),point(face,end-.015,v+.01),point(face,end-.015,bottom-.01),point(face,u+.015,bottom-.01)])+'Z'} fill={index%3?'#6e775a':'#ac9056'} opacity=".23" />}
-          <path d={line([point(face,(u+end)/2,v),point(face,(u+end)/2,bottom)])+line([point(face,u,(v+bottom)/2),point(face,end,(v+bottom)/2)])} fill="none" stroke="#739a9f" strokeWidth=".7" />
-          <path d={line([point(face,u-.012,bottom+.012),point(face,end+.012,bottom+.012),point(face,end+.012,bottom+.025),point(face,u-.012,bottom+.025)])+'Z'} fill="#101b1e" stroke="#b0bdb0" strokeWidth=".7" />
-          <path d={line([point(face,u+.035,v+.025),point(face,u+.10,v+.05)])} stroke="#799e9d" strokeWidth=".6" />
-          {unrest&&index%11===3&&<path d={line([corners[0],point(face,(u+end)/2,(v+bottom)/2),corners[2]])} stroke="#c17e69" strokeWidth="1.1" fill="none" />}
-          {row===3&&col%3===0&&<path d={line([point(face,u,bottom-.025),point(face,end,bottom-.025)])} stroke="#afab89" strokeWidth=".8" />}
-        </g>;
-      }))}
-      {Array.from({length:18},(_,i)=>{const v=.04+i*.052; return <path key={i} d={line([point(face,.91,v),point(face,1,v)])} stroke="#395d67" strokeWidth=".5" fill="none" />;})}
-    </g>)}
-    <path d="M720 56V435M715 57V434M727 58V434" stroke="#c5cbb9" strokeWidth="1.1" />
-    <path d="M720 54V22L744 29V61L720 54ZM720 22L687 32V58L720 54" fill="#070e12" stroke="#afbcae" strokeWidth="1" />
-    <ellipse cx="706" cy="40" rx="8" ry="10" fill="#080f12" stroke="#c3b796" /><path d="M706 33V40L710 44" stroke="#ded4af" fill="none" />
-    <path d="M113 143V370M1124 137V381" stroke="#8caaa5" strokeWidth="1.1" />
-  </g>;
-}
 function Scene({ snapshot, chapter, branch, month, viewBox, active, onZone, onPointer }: {
   snapshot: Snapshot; chapter: CampusChapter; branch: CampusBranch; month: number; viewBox: string; active: HeyiZone | null;
   onZone: (zone: HeyiZone | null, anchor?: Point) => void;
   onPointer: (event: PointerEvent<SVGElement>, zone: HeyiZone) => void;
 }) {
-  const {route,mood,value}=snapshot;
-  const unrest=route==='jidi_riot';
-  const lit=route==='despair'?1:route==='jidi'?13:route==='yang'?10:Math.round(4+value/14);
+  const {route,mood}=snapshot;
+  const profile=getStructureProfile(route,chapter,branch);
   const observation={snapshot,active,onZone,onPointer};
   return <svg className="heyi-light-v2__scene" viewBox={viewBox} preserveAspectRatio="xMidYMid meet" role="img" aria-label={'合肥一中校门：'+snapshot.headline}>
     <rect x="-500" width="2200" height="700" fill="#020b10" />
     <CampusGround observation={observation}/>
-    <SchoolCampus lit={lit} unrest={unrest} route={route}/>
-    <CampusArchitecturalEngraving route={route} chapter={chapter}/>
-    <CampusBuildingDetails route={route} stage={snapshot.uprisingStage}/>
-    <g className="heyi-hotspots"><path d="M80 137L720 75L1160 127V386L720 435L80 377Z" className={active==='building'?'is-active':''}
-      role="button" tabIndex={0} aria-label={'观察教学楼：'+snapshot.zones.building.description}
-      onPointerEnter={e=>onPointer(e,'building')} onPointerMove={e=>onPointer(e,'building')} onPointerLeave={()=>onZone(null)}
-      onFocus={()=>onZone('building',{x:610,y:190})} onBlur={()=>onZone(null)}
-      onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();onZone('building',{x:610,y:190});}}}/></g>
+    <CampusBuilding profile={profile} observation={observation}/>
     <CampusEdges observation={observation}/>
-    <CampusGuard observation={observation}/>
-    <CampusGate observation={observation}/>
+    <CampusGatehouse profile={profile} observation={observation}/>
+    <CampusEntrance profile={profile} observation={observation}/>
     <CampusTrees observation={observation} month={month}/>
     <StreetFurniture observation={observation}/>
     <CampusRouteObjects observation={observation} chapter={chapter} branch={branch}/>

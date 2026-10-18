@@ -13,12 +13,42 @@ export const HORIZON = 260;
 export const INK = '#b9c6ba', EDGE = '#60838b', BLACK = '#050d11';
 export const path = (points: Point[], close = false) => 'M' + points.map(p => `${p.x.toFixed(2)} ${p.y.toFixed(2)}`).join('L') + (close ? 'Z' : '');
 export function at(face: Face, u: number, v: number): Point {
+  // Project a plane, rather than bilinearly stretching its screen-space corners.
+  // This preserves diagonal alignments and the foreshortening of equal facade bays.
+  const [p0,p1,p2,p3]=face;
+  const dx1=p1.x-p2.x,dx2=p3.x-p2.x,dy1=p1.y-p2.y,dy2=p3.y-p2.y;
+  const sx=p0.x-p1.x+p2.x-p3.x,sy=p0.y-p1.y+p2.y-p3.y;
+  const determinant=dx1*dy2-dx2*dy1;
+  if(Math.abs(determinant)>.00001){
+    const g=(sx*dy2-dx2*sy)/determinant,h=(dx1*sy-sx*dy1)/determinant;
+    const divisor=1+g*u+h*v;
+    if(Math.abs(divisor)>.00001)return {
+      x:((p1.x-p0.x+g*p1.x)*u+(p3.x-p0.x+h*p3.x)*v+p0.x)/divisor,
+      y:((p1.y-p0.y+g*p1.y)*u+(p3.y-p0.y+h*p3.y)*v+p0.y)/divisor,
+    };
+  }
+  // Collapsed ground/foot faces are occasionally used for anchors.
   const top = { x: face[0].x + (face[1].x - face[0].x) * u, y: face[0].y + (face[1].y - face[0].y) * u };
   const bottom = { x: face[3].x + (face[2].x - face[3].x) * u, y: face[3].y + (face[2].y - face[3].y) * u };
   return { x: top.x + (bottom.x - top.x) * v, y: top.y + (bottom.y - top.y) * v };
 }
 export function inset(face: Face, u: number, v: number, w: number, h: number): Face {
   return [at(face,u,v),at(face,u+w,v),at(face,u+w,v+h),at(face,u,v+h)];
+}
+/** Translate a vertical facade along its normal while preserving BOTH vanishing points. */
+export function facadeDepth(face:Face,depth:number):Face {
+  const [a,b,c,d]=face;
+  const start=Math.abs(b.y-a.y)>.00001?a:d,end=Math.abs(b.y-a.y)>.00001?b:c;
+  const wallVP=Math.abs(end.y-start.y)>.00001?start.x+(HORIZON-start.y)*(end.x-start.x)/(end.y-start.y):-1200;
+  const normalVP=Math.abs(wallVP+1200)<Math.abs(wallVP-2300)?2300:-1200;
+  const ratio=Math.abs(c.y-b.y)>.00001?(d.y-a.y)/(c.y-b.y):1;
+  // Equal physical offsets require a different screen displacement at each depth.
+  const denominators=[1,ratio,ratio,1];
+  return face.map((p,i)=>{
+    const z=denominators[i],divisor=z+depth;
+    if(Math.abs(divisor)<.00001)return p;
+    return {x:(p.x*z+normalVP*depth)/divisor,y:(p.y*z+HORIZON*depth)/divisor};
+  }) as Face;
 }
 export function geometry(x: number, y: number, height: number, left: number, right: number) {
   const top = {x,y:y-height}, bottom = {x,y};

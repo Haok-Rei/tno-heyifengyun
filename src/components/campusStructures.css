@@ -1,0 +1,11 @@
+/* Architectural variants are drawn once, not painted over the previous facade. */
+.campus-structure-outline {stroke:transparent;stroke-width:1.3;vector-effect:non-scaling-stroke;}
+.campus-structure-outline.is-active,
+.campus-observation:focus-visible .campus-structure-outline {stroke:#62d7e7;filter:drop-shadow(0 0 2px #33b8e080);}
+.campus-window-glow {animation:campus-gentle-window 21s ease-in-out infinite;pointer-events:none;}
+/* The warm fill never exceeds .12; animation does not touch any window frame. */
+@keyframes campus-gentle-window {0%,100%{opacity:.66;}48%,70%{opacity:1;}}
+.heyi-light-v2__scene .heyi-window__light {animation:none;filter:none;}
+.campus-clear-window path {vector-effect:non-scaling-stroke;}
+.campus-rebuilt-building .campus-masonry {pointer-events:none;}
+@media(prefers-reduced-motion:reduce){.campus-window-glow {animation:none;opacity:.8;}}

@@ -5,7 +5,10 @@ import {renderToStaticMarkup} from 'react-dom/server';
 import type {GameState} from '../src/types';
 import {getCampusArtChapter,getCampusArtBranch,getCampusArtScene} from '../src/engine/campusArt';
 import {getHeyiLightSnapshot,type HeyiRoute} from '../src/engine/heyiLight';
-import {CampusArchitecturalEngraving,CampusRouteObjects} from '../src/components/CampusEnvironment';
+import {CampusRouteObjects} from '../src/components/CampusEnvironment';
+import {CampusBuilding,CampusEntrance,CampusGatehouse,getStructureProfile} from '../src/components/CampusStructures';
+import profiles from '../src/data/campusArchitecture.json';
+import {validateCampusProfiles} from '../scripts/art/admit-campus-profiles.mjs';
 
 const renderSvg=(element:ReturnType<typeof createElement>)=>renderToStaticMarkup(createElement('svg',null,element));
 
@@ -40,9 +43,24 @@ test('all twelve scene families have distinct detailed drawings for three chapte
   const drawings=[0,1,2].map(ch=>renderSvg(createElement(CampusRouteObjects,{observation:{snapshot:{...snapshot,route,uprisingStage:ch===0?'barricades':ch===1?'committee':'assembly'},active:null,onZone:()=>{},onPointer:()=>{}},chapter:ch as 0|1|2})));
   assert.equal(new Set(drawings).size,3,route);
   for(const svg of drawings){assert.ok(svg.length>1800,route);assert.doesNotMatch(svg,/NaN|undefined|<script|foreignObject/);}
-  const building=renderSvg(createElement(CampusArchitecturalEngraving,{route,chapter:1}));
-  assert.doesNotMatch(building,/NaN|undefined/);assert.match(building,/pointer-events="none"/);assert.match(building,/clipPath/);
+  for(const ch of [0,1,2] as const){
+  const profile=getStructureProfile(route,ch),observation={snapshot:{...snapshot,route},active:null,onZone:()=>{},onPointer:()=>{}};
+  const building=renderSvg(createElement(CampusBuilding,{profile,observation}));
+  assert.doesNotMatch(building,/NaN|undefined|engraving-room|SmallFigure|heyi-person/);
+  assert.match(building,/campus-clear-window/);assert.match(building,/campus-structure-outline/);
+  assert.doesNotMatch(renderSvg(createElement(CampusEntrance,{profile,observation}))+renderSvg(createElement(CampusGatehouse,{profile,observation})),/NaN|undefined/);
+  }
  }
+});
+
+test('admitted variants differ in building structure, not only signs, color or props',()=>{
+ validateCampusProfiles(profiles);
+ const signatures=profiles.map(p=>JSON.stringify([p.body,p.gate,p.guard,p.landmark]));
+ assert.equal(new Set(signatures).size,36);
+ const publicCampus=getStructureProfile('democracy',2),factory=getStructureProfile('jidi',2),ruin=getStructureProfile('jidi_riot',2);
+ assert.notEqual(publicCampus.body.windows,factory.body.windows);assert.notEqual(publicCampus.gate.kind,factory.gate.kind);
+ assert.equal(ruin.gate.kind,'breached');assert.ok(publicCampus.body.arcade);assert.ok(!factory.body.arcade);
+ assert.equal(getStructureProfile('wu',2,'spring').gate.open,true);assert.equal(getStructureProfile('wu',2,'nkpd').gate.open,false);
 });
 
 test('different authoritarian outcomes have different institutions and scenery',()=>{

@@ -1,0 +1,138 @@
+{
+  "calls": [
+    {
+      "purpose": "reference-study",
+      "model": "deepseek-flash",
+      "requestHash": "156d5b8e355c52948a3f2af99f2066308f0c625bbbc19cc82ddd49bc423248c6",
+      "usage": {
+        "prompt_tokens": 4083,
+        "completion_tokens": 1965,
+        "total_tokens": 6048,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 4083
+      },
+      "generatedAt": "2026-10-18T08:06:02.588Z"
+    },
+    {
+      "purpose": "profiles-a",
+      "model": "deepseek-flash",
+      "requestHash": "cc0917914ae2cd9d554671b885603348042dbbd5e93e5615d0d3f2539ec7be3e",
+      "usage": {
+        "prompt_tokens": 6141,
+        "completion_tokens": 3431,
+        "total_tokens": 9572,
+        "prompt_tokens_details": {
+          "cached_tokens": 3968
+        },
+        "prompt_cache_hit_tokens": 3968,
+        "prompt_cache_miss_tokens": 2173
+      },
+      "prefixHash": "258fd9a43cef52e5eff18ae33c3c3fd715630f9b07b6e22d2cb0f8f7aff9f5f6",
+      "generatedAt": "2026-10-18T08:09:10.453Z"
+    },
+    {
+      "purpose": "profiles-b",
+      "model": "deepseek-flash",
+      "requestHash": "1ea0eb852283ad16267de6d3c6f5b076c4a311628e5cbbd6ab37d50a429d37c4",
+      "usage": {
+        "prompt_tokens": 6142,
+        "completion_tokens": 3439,
+        "total_tokens": 9581,
+        "prompt_tokens_details": {
+          "cached_tokens": 5760
+        },
+        "prompt_cache_hit_tokens": 5760,
+        "prompt_cache_miss_tokens": 382
+      },
+      "prefixHash": "258fd9a43cef52e5eff18ae33c3c3fd715630f9b07b6e22d2cb0f8f7aff9f5f6",
+      "generatedAt": "2026-10-18T08:12:24.348Z"
+    },
+    {
+      "purpose": "profiles-c",
+      "model": "deepseek-flash",
+      "requestHash": "2774e4a65c1749cdc7a5aaa9beb002eed974ab4384efda0a950ae5aa6c56dc97",
+      "usage": {
+        "prompt_tokens": 6143,
+        "completion_tokens": 3347,
+        "total_tokens": 9490,
+        "prompt_tokens_details": {
+          "cached_tokens": 5760
+        },
+        "prompt_cache_hit_tokens": 5760,
+        "prompt_cache_miss_tokens": 383
+      },
+      "prefixHash": "258fd9a43cef52e5eff18ae33c3c3fd715630f9b07b6e22d2cb0f8f7aff9f5f6",
+      "generatedAt": "2026-10-18T08:13:22.437Z"
+    },
+    {
+      "purpose": "profiles-d",
+      "model": "deepseek-flash",
+      "requestHash": "b1d27a220a363090a7ce6b1302cb274883cd04d09891f34dc4d8199dafd91eae",
+      "usage": {
+        "prompt_tokens": 6143,
+        "completion_tokens": 3207,
+        "total_tokens": 9350,
+        "prompt_tokens_details": {
+          "cached_tokens": 5760
+        },
+        "prompt_cache_hit_tokens": 5760,
+        "prompt_cache_miss_tokens": 383
+      },
+      "prefixHash": "258fd9a43cef52e5eff18ae33c3c3fd715630f9b07b6e22d2cb0f8f7aff9f5f6",
+      "generatedAt": "2026-10-18T08:14:50.607Z"
+    },
+    {
+      "purpose": "review",
+      "model": "deepseek-flash",
+      "requestHash": "1cda073150d7d59b2240a5e62278ce21a291d5cdb1da63c4cbeb36d9bcf6da8b",
+      "usage": {
+        "prompt_tokens": 9043,
+        "completion_tokens": 1607,
+        "total_tokens": 10650,
+        "prompt_tokens_details": {
+          "cached_tokens": 5760
+        },
+        "prompt_cache_hit_tokens": 5760,
+        "prompt_cache_miss_tokens": 3283
+      },
+      "prefixHash": "258fd9a43cef52e5eff18ae33c3c3fd715630f9b07b6e22d2cb0f8f7aff9f5f6",
+      "generatedAt": "2026-10-18T08:22:29.514Z"
+    },
+    {
+      "purpose": "fixtures",
+      "model": "deepseek-flash",
+      "requestHash": "b72529d73b168bfe255425bb79625a684a4a685a0bbccc830c3fe45f6b9c7dd6",
+      "usage": {
+        "prompt_tokens": 1402,
+        "completion_tokens": 3525,
+        "total_tokens": 4927,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 1402
+      },
+      "prefixHash": "a5ea5593e6f49249b9d5a9353b7f378b506e64c1b71f66f2a5dcf1e1dc1885ee",
+      "generatedAt": "2026-10-18T08:31:57.945Z"
+    }
+  ],
+  "totalPromptTokens": 39097,
+  "cacheHitTokens": 27008,
+  "weightedCacheHitRate": 0.6907946901296774,
+  "productionCacheHitRate": 0.8648296633969637,
+  "editorialCorrections": [
+    "Opening retains existing four-storey school mass.",
+    "Uprising is an open campus, not ruins.",
+    "Reform and democracy keep open reception, not police checkpoints.",
+    "Yang uses administrative architecture; low health is not a destroyed/boarded school.",
+    "Jidi uses industrial bays, not an open public arcade.",
+    "Riot uses broken gates; invalid boarded window alias normalized to shutters.",
+    "Fixture draft was not admitted verbatim: crossed rectangles, route mix-ups and window-overlapping props were redrawn in CampusFixtures.",
+    "Visual review led to real window recesses, matching arch rings, mouldings, column bases and projected steps.",
+    "User identified perspective mismatch: bilinear coordinates replaced with planar homography; arch stones share the exact projected arch centre and contours."
+  ],
+  "note": "Seven successful calls. First vision study and sanitized fixture brief are cold prefixes. Production rate refers only to four sequential profile batches; overall rate includes study, screenshot critique and fixtures. Server-side cache, not local whole-response cache. Fixture call carries user references and drawing specifications only; full-source fixture request was blocked before transmission. Format-only recovery of study output is recorded locally."
+}

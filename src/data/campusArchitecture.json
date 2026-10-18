@@ -1,0 +1,1460 @@
+[
+  {
+    "id": "opening-0",
+    "route": "opening",
+    "chapter": 0,
+    "concept": "开学日常：三层砖砌教学楼加平顶女儿墙，校门为中国高中四柱横梁加低矮伸缩门，左翼连廊与右翼普通教室成组高窗。",
+    "body": {
+      "floors": 4,
+      "leftBays": 7,
+      "rightBays": 5,
+      "height": 360,
+      "leftReach": 640,
+      "rightReach": 440,
+      "roof": "parapet",
+      "windows": "tall",
+      "skin": "brick",
+      "arcade": false,
+      "balcony": false,
+      "entrance": "glass",
+      "clock": false
+    },
+    "gate": {
+      "kind": "school",
+      "columns": "brick",
+      "canopy": "beam",
+      "open": true
+    },
+    "guard": {
+      "kind": "office",
+      "windows": "cross"
+    },
+    "accent": "#5f7a6a",
+    "lightDensity": 0.12,
+    "landmark": "original",
+    "details": [
+      "主楼左翼三层砖墙、成组高窗，窗内空黑，仅一层一扇窗有细横线柔灯",
+      "右翼五开间方窗，窗间墙是砖砌竖向墙垛，窗台有横线",
+      "中央入口为双扇玻璃门，门前三级通长台阶，台阶按消失点退行",
+      "校门四根方形砖柱夹两段横梁，横梁嵌合肥一中四字，柱间为低矮金属伸缩门",
+      "门卫室贴着右侧门柱，小方窗加深色挑檐，屋顶低于横梁",
+      "一层地面有自行车棚和数株灌木，用暗绿勾边，不填色"
+    ]
+  },
+  {
+    "id": "opening-1",
+    "route": "opening",
+    "chapter": 1,
+    "concept": "教学秩序收紧：主楼左翼底层改设连廊，右翼加一层，屋顶从平顶女儿墙改为平檐，入口改为门廊，校门加装门禁杆与岗亭。",
+    "body": {
+      "floors": 4,
+      "leftBays": 7,
+      "rightBays": 6,
+      "height": 360,
+      "leftReach": 640,
+      "rightReach": 440,
+      "roof": "cornice",
+      "windows": "cross",
+      "skin": "brick",
+      "arcade": false,
+      "balcony": false,
+      "entrance": "portico",
+      "clock": false
+    },
+    "gate": {
+      "kind": "school",
+      "columns": "square",
+      "canopy": "flat",
+      "open": true
+    },
+    "guard": {
+      "kind": "checkpoint",
+      "windows": "cross"
+    },
+    "accent": "#6e7f66",
+    "lightDensity": 0.18,
+    "landmark": "original",
+    "details": [
+      "左翼底层变成贯通两开间的连廊，方柱外露，廊后是玻璃门厅与横线柔灯",
+      "主楼由三层增至四层，最上一层窗为十字窗棂，砖墙竖向分带不重复",
+      "入口从玻璃门改为凸出的门廊，双柱托平顶檐，台阶两侧加矮墙",
+      "校门砖柱换成方柱，横梁延长，柱间加装门禁横杆与刷卡立柱",
+      "门卫室加长为带登记窗口的检查岗亭，小方窗带竖向窗棂",
+      "地面新增自行车停放区画线，线条指向校门，灌木仍为少量暗绿"
+    ]
+  },
+  {
+    "id": "opening-2",
+    "route": "opening",
+    "chapter": 2,
+    "concept": "日常成熟：主楼左侧局部退台，底层连廊与右侧普通教室共存，入口为门廊加两面砖砌踏步翼墙，校门有平雨棚和开放人行口。",
+    "body": {
+      "floors": 4,
+      "leftBays": 8,
+      "rightBays": 5,
+      "height": 360,
+      "leftReach": 640,
+      "rightReach": 440,
+      "roof": "terrace",
+      "windows": "tall",
+      "skin": "brick",
+      "arcade": false,
+      "balcony": true,
+      "entrance": "portico",
+      "clock": false
+    },
+    "gate": {
+      "kind": "school",
+      "columns": "stone",
+      "canopy": "pitched",
+      "open": true
+    },
+    "guard": {
+      "kind": "office",
+      "windows": "cross"
+    },
+    "accent": "#6a806f",
+    "lightDensity": 0.14,
+    "landmark": "reading-arcade",
+    "details": [
+      "左侧三层退台，顶部退进一间，女儿墙沿退台折线转折，与右翼平齐",
+      "左翼二至三层加设外挑阳台，栏杆为铜色细竖杆，阳台地板用横向线条表示",
+      "右翼恢复成组高窗，窗内空黑，砖墙以竖向墙垛分出开间",
+      "入口门廊保留双柱，但顶部改为单坡出挑檐，台阶两侧加砖砌翼墙",
+      "校门柱改用浅色石英柱，门上方加单坡雨棚，柱间伸缩门不再横杆",
+      "门卫室恢复为小型值班室，前方地面画出入校排队线，末端以暗绿灌木收边"
+    ]
+  },
+  {
+    "id": "uprising-0",
+    "route": "uprising",
+    "chapter": 0,
+    "concept": "街垒与结社前夜：左翼三层楼底层拱廊被临时木板封闭，右侧通道设水泥路障，校门保留砖柱但伸缩门倾斜，门卫室窗户用木板封死。",
+    "body": {
+      "floors": 3,
+      "leftBays": 6,
+      "rightBays": 5,
+      "height": 320,
+      "leftReach": 580,
+      "rightReach": 390,
+      "roof": "parapet",
+      "windows": "cross",
+      "skin": "render",
+      "arcade": true,
+      "balcony": false,
+      "entrance": "shutter",
+      "clock": false
+    },
+    "gate": {
+      "kind": "school",
+      "columns": "brick",
+      "canopy": "beam",
+      "open": true
+    },
+    "guard": {
+      "kind": "office",
+      "windows": "cross"
+    },
+    "accent": "#4d5f4a",
+    "lightDensity": 0.06,
+    "landmark": "public-forum",
+    "details": [
+      "左翼底层外露连拱廊，但拱洞内用斜撑木板和横板封住，形成可识别的街垒节点",
+      "主楼窗型由高窗改为封板窗，部分窗留十字横档，墙面为灰泥抹面，有竖向裂缝线",
+      "校门砖柱完整，伸缩门一节脱轨斜靠，横梁上的合肥一中四字仍在原位",
+      "门卫室缩为临时亭，方窗由木板封住，屋顶低矮无檐",
+      "入口卷帘门半落，门前堆有沙袋和木箱，按消失线斜向排列",
+      "地面无旗阵，仅有画线让出的人行通道与自行车斜停暗示紧张"
+    ]
+  },
+  {
+    "id": "uprising-1",
+    "route": "uprising",
+    "chapter": 1,
+    "concept": "革委会时期：右翼整体加高一层成为委员会办公楼，主楼底层拱廊恢复开放作为公共门厅，校门改为有梁无顶的临时检查门，地面出现公共广播台基座。",
+    "body": {
+      "floors": 4,
+      "leftBays": 6,
+      "rightBays": 6,
+      "height": 345,
+      "leftReach": 590,
+      "rightReach": 400,
+      "roof": "cornice",
+      "windows": "ribbon",
+      "skin": "brick",
+      "arcade": true,
+      "balcony": false,
+      "entrance": "glass",
+      "clock": true
+    },
+    "gate": {
+      "kind": "pavilion",
+      "columns": "brick",
+      "canopy": "beam",
+      "open": true
+    },
+    "guard": {
+      "kind": "office",
+      "windows": "cross"
+    },
+    "accent": "#56614f",
+    "lightDensity": 0.18,
+    "landmark": "public-forum",
+    "details": [
+      "右翼升为四层委员会用房，顶层窗为连续横条窗，窗间墙用砖砌线表示不重复",
+      "左翼恢复拱廊，廊柱外露，廊后为公共门厅，入口为双扇玻璃门",
+      "主楼正面顶部加时钟，钟面为细圈加分针线，在女儿墙内",
+      "校门由砖柱改为钢方柱，横梁保留但无雨棚，横梁下挂门禁挡杆",
+      "入口前地面加公共广播台基座，为三级方形平台，四周有细线围栏",
+      "门卫室为登记办公室，十字窗，门口地面画登记排队折线"
+    ]
+  },
+  {
+    "id": "uprising-2",
+    "route": "uprising",
+    "chapter": 2,
+    "concept": "代表大会时期：主楼左侧加两层通高柱廊与门廊形成公共论坛，校门扩建为三开间柱廊检查门，右翼部分窗改为拱窗，广场出现带遮阳棚的演讲台阶。",
+    "body": {
+      "floors": 3,
+      "leftBays": 7,
+      "rightBays": 5,
+      "height": 330,
+      "leftReach": 610,
+      "rightReach": 370,
+      "roof": "cornice",
+      "windows": "arch",
+      "skin": "stone",
+      "arcade": true,
+      "balcony": true,
+      "entrance": "portico",
+      "clock": true
+    },
+    "gate": {
+      "kind": "colonnade",
+      "columns": "stone",
+      "canopy": "pitched",
+      "open": true
+    },
+    "guard": {
+      "kind": "arcaded",
+      "windows": "arch"
+    },
+    "accent": "#4f6652",
+    "lightDensity": 0.2,
+    "landmark": "public-forum",
+    "details": [
+      "左翼底层加两层通高柱廊，方柱托连续檐部，廊后为玻璃门厅，柱距与窗间墙对齐",
+      "右翼窗型改为半圆拱窗，拱心石与拱石放射线清晰，石材墙面以横向石块分带",
+      "主楼顶部女儿墙加檐口线脚，时钟保留但位置居中",
+      "校门从检查门扩建为三开间柱廊，浅色石柱、平檐，顶部无雨棚但檐下线脚完整",
+      "门卫室改为拱廊式值班廊，一开间拱窗，拱石与右翼拱窗对应",
+      "入口前延伸出带遮阳棚的公共演讲台阶，三级平台加深色坡屋面"
+    ]
+  },
+  {
+    "id": "democracy-0",
+    "route": "democracy",
+    "chapter": 0,
+    "concept": "意见征集阶段：左翼三层教学楼设连续开敞拱廊作阅览与意见栏，右翼为四层条窗，校门有平雨棚与方柱，门卫室改为登记亭。",
+    "body": {
+      "floors": 3,
+      "leftBays": 7,
+      "rightBays": 5,
+      "height": 320,
+      "leftReach": 600,
+      "rightReach": 400,
+      "roof": "parapet",
+      "windows": "tall",
+      "skin": "brick",
+      "arcade": true,
+      "balcony": false,
+      "entrance": "portico",
+      "clock": false
+    },
+    "gate": {
+      "kind": "school",
+      "columns": "square",
+      "canopy": "flat",
+      "open": true
+    },
+    "guard": {
+      "kind": "office",
+      "windows": "cross"
+    },
+    "accent": "#5d776d",
+    "lightDensity": 0.14,
+    "landmark": "reading-arcade",
+    "details": [
+      "左翼底层打通为开敞拱廊，五开间连续拱洞，廊后为阅览桌影线与意见栏横线，不画人物",
+      "右翼为两开间成组高窗，砖墙竖向墙垛清晰，窗内空黑",
+      "入口门廊为双柱托平檐，台阶为通长三级，两侧无翼墙",
+      "校门方柱加平雨棚，横梁嵌合肥一中四字，柱间伸缩门开放人形口",
+      "门卫室为小方值班室，十字窗，窗前画登记台水平线",
+      "地面自行车架画线整齐退行，灌木为少量暗绿"
+    ]
+  },
+  {
+    "id": "democracy-1",
+    "route": "democracy",
+    "chapter": 1,
+    "concept": "正式选举阶段：主楼右翼加高为四层并改十字窗，左翼加外挑阳台与直跑外楼梯，入口改为凸出式门廊，校门平雨棚下增设公告橱窗。",
+    "body": {
+      "floors": 4,
+      "leftBays": 7,
+      "rightBays": 6,
+      "height": 345,
+      "leftReach": 610,
+      "rightReach": 410,
+      "roof": "cornice",
+      "windows": "cross",
+      "skin": "stone",
+      "arcade": true,
+      "balcony": true,
+      "entrance": "portico",
+      "clock": false
+    },
+    "gate": {
+      "kind": "school",
+      "columns": "stone",
+      "canopy": "flat",
+      "open": true
+    },
+    "guard": {
+      "kind": "office",
+      "windows": "cross"
+    },
+    "accent": "#5e746b",
+    "lightDensity": 0.16,
+    "landmark": "reading-arcade",
+    "details": [
+      "右翼升为四层，窗型改为十字窗棂，石材墙面以细横线分带",
+      "左翼二至三层加通长外挑阳台，阳台栏杆为铜色竖杆，底层拱廊保留",
+      "入口保持双柱门廊但加宽，柱身为方形石柱，门廊顶为平檐",
+      "校门方柱改为石柱，横梁延长，平雨棚下嵌入两扇公告橱窗，橱窗为细框",
+      "门卫室改为检查岗亭，十字窗，登记窗口贴地水平线",
+      "地面画出入校路线与两侧停车位，左侧自行车棚仍为暗绿"
+    ]
+  },
+  {
+    "id": "democracy-2",
+    "route": "democracy",
+    "chapter": 2,
+    "concept": "社团自治阶段：主楼右翼改为拱窗并局部退台加露台，左翼拱廊连通读书廊，校门为柱廊式门架带单坡雨棚，门卫室为拱窗门房。",
+    "body": {
+      "floors": 3,
+      "leftBays": 8,
+      "rightBays": 5,
+      "height": 330,
+      "leftReach": 615,
+      "rightReach": 395,
+      "roof": "terrace",
+      "windows": "arch",
+      "skin": "brick",
+      "arcade": true,
+      "balcony": true,
+      "entrance": "portico",
+      "clock": false
+    },
+    "gate": {
+      "kind": "colonnade",
+      "columns": "stone",
+      "canopy": "pitched",
+      "open": true
+    },
+    "guard": {
+      "kind": "arcaded",
+      "windows": "arch"
+    },
+    "accent": "#5b7868",
+    "lightDensity": 0.15,
+    "landmark": "reading-arcade",
+    "details": [
+      "右翼窗型改为半圆拱窗，拱石放射线清楚，顶层局部退台形成露台",
+      "左翼拱廊通高两层，一层柱廊与二层外廊连通，廊后玻璃门厅有稳定柔光",
+      "入口门廊为四柱托单坡出挑檐，台阶两翼为砖砌矮墙，不画人物",
+      "校门改为三开间石柱柱廊，中门上方加单坡雨棚，门架顶部平檐",
+      "门卫室改为单开间拱廊值班室，拱窗带窗台线，与右翼拱窗对应",
+      "广场地面画社团活动区，以细线方框和自行车架退线区分，不用符号堆满"
+    ]
+  },
+  {
+    "id": "revolution-0",
+    "route": "revolution",
+    "chapter": 0,
+    "concept": "夺权初期的临时自治：保留旧教学楼主体，底层腾空为议事大堂，屋顶改为平檐口，校门暂用旧砖柱与半开伸缩门，门口加临时广播棚",
+    "body": {
+      "floors": 3,
+      "leftBays": 6,
+      "rightBays": 5,
+      "height": 300,
+      "leftReach": 600,
+      "rightReach": 400,
+      "roof": "cornice",
+      "windows": "tall",
+      "skin": "brick",
+      "arcade": false,
+      "balcony": false,
+      "entrance": "glass",
+      "clock": false
+    },
+    "gate": {
+      "kind": "school",
+      "columns": "brick",
+      "canopy": "beam",
+      "open": true
+    },
+    "guard": {
+      "kind": "office",
+      "windows": "cross"
+    },
+    "accent": "#6b4f3a",
+    "lightDensity": 0.12,
+    "landmark": "public-forum",
+    "details": [
+      "主楼为三层砖砌立面，左翼六开间、右翼五开间，屋檐改为外挑檐口",
+      "底层入口为通高玻璃门厅，门外加临时木框与一排立柱式广播喇叭",
+      "校门为四根方砖柱加两道横梁，横梁挂‘合肥一中’校名匾，中段伸缩门半开",
+      "门卫室为小方盒、平顶挑檐，正面对街开十字窗；门口插一根临时旗杆座"
+    ]
+  },
+  {
+    "id": "revolution-1",
+    "route": "revolution",
+    "chapter": 1,
+    "concept": "自治委员会阶段：底层回廊打通为连续公共议事廊，主楼后加夹层读书廊，校门右侧增设报告板墙与开放通道",
+    "body": {
+      "floors": 3,
+      "leftBays": 7,
+      "rightBays": 5,
+      "height": 310,
+      "leftReach": 610,
+      "rightReach": 410,
+      "roof": "terrace",
+      "windows": "tall",
+      "skin": "brick",
+      "arcade": true,
+      "balcony": true,
+      "entrance": "arch",
+      "clock": false
+    },
+    "gate": {
+      "kind": "pavilion",
+      "columns": "stone",
+      "canopy": "pitched",
+      "open": true
+    },
+    "guard": {
+      "kind": "arcaded",
+      "windows": "arch"
+    },
+    "accent": "#5f6b46",
+    "lightDensity": 0.16,
+    "landmark": "reading-arcade",
+    "details": [
+      "底层沿左翼拓出连续方柱回廊，廊内为开放议事空间，廊柱为石质方柱",
+      "主楼与右翼之间新增外挑夹层读书廊，栏杆为细金属杆，廊下可见支撑梁",
+      "入口改为带半圆拱的门廊，门前设三级外扩台阶",
+      "校门右移并加宽，采用两柱托坡屋顶的小型门亭，门亭内横匾仍为‘合肥一中’；旁设报告板墙"
+    ]
+  },
+  {
+    "id": "revolution-2",
+    "route": "revolution",
+    "chapter": 2,
+    "concept": "代表大会与常设自治机构：左翼后期加建四层与连廊，底层回廊全部开敞并加台阶看台，校门改为石材柱加横梁的固定校门，门卫室扩展为双拱券",
+    "body": {
+      "floors": 4,
+      "leftBays": 8,
+      "rightBays": 6,
+      "height": 340,
+      "leftReach": 630,
+      "rightReach": 430,
+      "roof": "parapet",
+      "windows": "ribbon",
+      "skin": "stone",
+      "arcade": true,
+      "balcony": true,
+      "entrance": "portico",
+      "clock": true
+    },
+    "gate": {
+      "kind": "colonnade",
+      "columns": "stone",
+      "canopy": "flat",
+      "open": true
+    },
+    "guard": {
+      "kind": "arcaded",
+      "windows": "arch"
+    },
+    "accent": "#4f6b58",
+    "lightDensity": 0.2,
+    "landmark": "public-forum",
+    "details": [
+      "左翼增建至四层，外轮廓加高女儿墙，立面由砖改为浅色石材贴面",
+      "底层连廊全长贯通，廊前加两级踏步看台；二、三层窗型改为横向连窗带",
+      "入口为四柱门廊，柱顶设简化檐部，门廊上方墙面嵌一处圆形校钟",
+      "校门为双排石柱加平顶横梁的柱廊式校门，中段为铁艺推拉门；门卫室为双拱券开敞间，前设登记台"
+    ]
+  },
+  {
+    "id": "reform-0",
+    "route": "reform",
+    "chapter": 0,
+    "concept": "互助学习萌发期：保留原有教学楼，底层沿左翼开出小型互助学习角，主楼入口加装檐下读书台与公告栏，校门保持原样，门卫室旁设自行车棚",
+    "body": {
+      "floors": 3,
+      "leftBays": 6,
+      "rightBays": 4,
+      "height": 295,
+      "leftReach": 590,
+      "rightReach": 380,
+      "roof": "parapet",
+      "windows": "cross",
+      "skin": "brick",
+      "arcade": false,
+      "balcony": false,
+      "entrance": "glass",
+      "clock": false
+    },
+    "gate": {
+      "kind": "school",
+      "columns": "brick",
+      "canopy": "flat",
+      "open": true
+    },
+    "guard": {
+      "kind": "office",
+      "windows": "cross"
+    },
+    "accent": "#6a5a44",
+    "lightDensity": 0.14,
+    "landmark": "original",
+    "details": [
+      "主楼三层砖砌，左翼六开间，右翼四开间，窗型为十字框方窗",
+      "入口保留玻璃门，门外挑出浅平雨棚，雨棚下靠墙设木质公告栏与两张固定长凳",
+      "校门为两砖柱加平顶横梁，横梁嵌‘合肥一中’四字，伸缩门半开",
+      "门卫室小方盒，平顶，正面十字窗；门外广场一侧设斜顶自行车棚"
+    ]
+  },
+  {
+    "id": "reform-1",
+    "route": "reform",
+    "chapter": 1,
+    "concept": "教辅公共化：左翼底层改为对全校开放的教辅资料室与互助学习廊，窗型改为横向长窗，入口外扩双跑台阶，校门外增设开放信息栏和延伸的檐廊",
+    "body": {
+      "floors": 3,
+      "leftBays": 7,
+      "rightBays": 5,
+      "height": 300,
+      "leftReach": 610,
+      "rightReach": 400,
+      "roof": "cornice",
+      "windows": "ribbon",
+      "skin": "render",
+      "arcade": true,
+      "balcony": false,
+      "entrance": "glass",
+      "clock": false
+    },
+    "gate": {
+      "kind": "school",
+      "columns": "square",
+      "canopy": "beam",
+      "open": true
+    },
+    "guard": {
+      "kind": "office",
+      "windows": "cross"
+    },
+    "accent": "#57654a",
+    "lightDensity": 0.18,
+    "landmark": "reading-arcade",
+    "details": [
+      "左翼底层外开一跨连廊，廊内为开放资料室，廊柱为方形抹灰柱",
+      "外墙由砖改为浅灰抹灰，二、三层窗型改为横向长窗带，窗内保持空黑",
+      "主入口玻璃门保留，门外加设双跑台阶段与檐下公告廊",
+      "校门柱改为方形混凝土柱，横梁加一道外挑檐，门口右侧立一面开放信息栏"
+    ]
+  },
+  {
+    "id": "reform-2",
+    "route": "reform",
+    "chapter": 2,
+    "concept": "公共学习中心：左翼加建四层，底层整层改为阶梯式公共阅览区与外部退台，右翼加设外楼梯，校门改为平顶门廊加登记岗，门卫室与信息栏一体",
+    "body": {
+      "floors": 4,
+      "leftBays": 8,
+      "rightBays": 6,
+      "height": 330,
+      "leftReach": 620,
+      "rightReach": 420,
+      "roof": "terrace",
+      "windows": "ribbon",
+      "skin": "render",
+      "arcade": true,
+      "balcony": true,
+      "entrance": "portico",
+      "clock": false
+    },
+    "gate": {
+      "kind": "school",
+      "columns": "square",
+      "canopy": "flat",
+      "open": true
+    },
+    "guard": {
+      "kind": "arcaded",
+      "windows": "cross"
+    },
+    "accent": "#5a6b57",
+    "lightDensity": 0.2,
+    "landmark": "reading-arcade",
+    "details": [
+      "左翼增建至四层，屋顶改为退台加低女儿墙，退台上设外露栏杆",
+      "底层整层为按级退进的阅览区，外侧配阶梯看台，入口为两柱小门廊",
+      "右翼端部增设外楼梯，楼梯栏杆为细金属管",
+      "校门改为两砖柱托平顶门廊，门廊下设置登记窗口，门卫室改卷帘窗，信息栏并入门廊侧墙"
+    ]
+  },
+  {
+    "id": "haobang-0",
+    "route": "haobang",
+    "chapter": 0,
+    "concept": "多派协商起步：保留原教学楼，主楼底层开设一间联合协商室，主入口加装简易门廊，校门东侧加设临时协商公告棚",
+    "body": {
+      "floors": 3,
+      "leftBays": 6,
+      "rightBays": 5,
+      "height": 300,
+      "leftReach": 600,
+      "rightReach": 400,
+      "roof": "parapet",
+      "windows": "tall",
+      "skin": "brick",
+      "arcade": false,
+      "balcony": false,
+      "entrance": "glass",
+      "clock": false
+    },
+    "gate": {
+      "kind": "school",
+      "columns": "square",
+      "canopy": "beam",
+      "open": true
+    },
+    "guard": {
+      "kind": "office",
+      "windows": "cross"
+    },
+    "accent": "#6b5f4a",
+    "lightDensity": 0.14,
+    "landmark": "original",
+    "details": [
+      "三层砖砌主楼，左翼六开间、右翼五开间，窗型为竖向高窗",
+      "主入口保留玻璃门，门外加一道简易梁式雨棚与两块固定公告板",
+      "校门为方形砖柱加一道横梁，横梁嵌‘合肥一中’校名匾，伸缩门半开",
+      "门卫室平顶小方盒，正面开十字窗；校门东侧加一临时木架公告棚，棚顶为单坡"
+    ]
+  },
+  {
+    "id": "haobang-1",
+    "route": "haobang",
+    "chapter": 1,
+    "concept": "联合机构阶段：左翼底层改为开放联合议事廊，门窗改为拱形，校门西侧增设联合机构门亭，门卫室扩为带拱券的值班廊",
+    "body": {
+      "floors": 3,
+      "leftBays": 7,
+      "rightBays": 5,
+      "height": 310,
+      "leftReach": 610,
+      "rightReach": 410,
+      "roof": "terrace",
+      "windows": "arch",
+      "skin": "brick",
+      "arcade": true,
+      "balcony": false,
+      "entrance": "arch",
+      "clock": false
+    },
+    "gate": {
+      "kind": "pavilion",
+      "columns": "stone",
+      "canopy": "pitched",
+      "open": true
+    },
+    "guard": {
+      "kind": "arcaded",
+      "windows": "arch"
+    },
+    "accent": "#55644a",
+    "lightDensity": 0.18,
+    "landmark": "public-forum",
+    "details": [
+      "左翼底层打通为连续拱券回廊，柱间为半圆拱，廊内为联合议事空间",
+      "主入口改为半圆拱门廊，拱顶设一块小横匾，门外设二级台阶",
+      "校门西侧新增一座两柱托坡屋顶的小门亭，用作联合机构登记处",
+      "门卫室改为开敞拱券廊，廊下设值班桌；主楼窗型改为拱窗，窗内保持空黑"
+    ]
+  },
+  {
+    "id": "haobang-2",
+    "route": "haobang",
+    "chapter": 2,
+    "concept": "常设联合议事厅：左翼增建四层加外楼梯，底层拱廊延长并与校门门亭连成一体，入口改为柱廊，校门改为石材柱廊加开放登记厅",
+    "body": {
+      "floors": 4,
+      "leftBays": 8,
+      "rightBays": 6,
+      "height": 340,
+      "leftReach": 630,
+      "rightReach": 430,
+      "roof": "parapet",
+      "windows": "arch",
+      "skin": "stone",
+      "arcade": true,
+      "balcony": true,
+      "entrance": "portico",
+      "clock": true
+    },
+    "gate": {
+      "kind": "colonnade",
+      "columns": "stone",
+      "canopy": "flat",
+      "open": true
+    },
+    "guard": {
+      "kind": "arcaded",
+      "windows": "arch"
+    },
+    "accent": "#4e6153",
+    "lightDensity": 0.2,
+    "landmark": "public-forum",
+    "details": [
+      "左翼增建至四层，屋顶改女儿墙，外墙由砖改为浅色石材贴面",
+      "底层拱廊延伸至门卫廊，廊内设置固定长凳，形成通道式公共空间",
+      "主入口为四柱门廊，柱顶带简单檐部，门廊上方嵌圆形校钟",
+      "校门改为双排石柱廊，柱廊之间设开放登记厅，中段为铁艺推拉门；门卫室并入柱廊侧间"
+    ]
+  },
+  {
+    "id": "yang-0",
+    "route": "yang",
+    "chapter": 0,
+    "concept": "教师行政与职称评审初建期：普通三层砖混教学楼加行政侧翼；评审窗口挂于侧翼墙面，教师健康问题开始积累。",
+    "body": {
+      "floors": 3,
+      "leftBays": 7,
+      "rightBays": 5,
+      "height": 300,
+      "leftReach": 600,
+      "rightReach": 400,
+      "roof": "parapet",
+      "windows": "cross",
+      "skin": "brick",
+      "arcade": false,
+      "balcony": false,
+      "entrance": "glass",
+      "clock": false
+    },
+    "gate": {
+      "kind": "school",
+      "columns": "square",
+      "canopy": "flat",
+      "open": true
+    },
+    "guard": {
+      "kind": "office",
+      "windows": "cross"
+    },
+    "accent": "#8a5a4a",
+    "lightDensity": 0.14,
+    "landmark": "original",
+    "details": [
+      "左翼三层砖砌教学楼，每层规则成组十字窗，窗内空黑，仅窗框与一条稳定柔灯横线",
+      "右翼为行政小楼，入口为玻璃门配雨棚，门旁外挂一块深色评审公告板，板面为无字细框，不画人物",
+      "主楼最近角保留竖向雨水管，砖墙用0.65像素砖缝线，窗台线0.9像素；出檐为平女儿墙",
+      "大门为四根方形砖柱加两段横梁，横匾留白，中间低矮金属伸缩门，一侧门卫室开小方窗，硬质铺装广场与一条自行车停车线"
+    ]
+  },
+  {
+    "id": "yang-1",
+    "route": "yang",
+    "chapter": 1,
+    "concept": "职称评审中期：行政侧翼扩建，评审公告与档案窗列成排；教师健康压力表现为走廊加遮阳与座椅，结构上增加外楼梯。",
+    "body": {
+      "floors": 4,
+      "leftBays": 7,
+      "rightBays": 6,
+      "height": 340,
+      "leftReach": 600,
+      "rightReach": 420,
+      "roof": "cornice",
+      "windows": "tall",
+      "skin": "render",
+      "arcade": false,
+      "balcony": true,
+      "entrance": "portico",
+      "clock": true
+    },
+    "gate": {
+      "kind": "school",
+      "columns": "square",
+      "canopy": "pitched",
+      "open": true
+    },
+    "guard": {
+      "kind": "office",
+      "windows": "cross"
+    },
+    "accent": "#8a5a4a",
+    "lightDensity": 0.14,
+    "landmark": "original",
+    "details": [
+      "左翼加高至四层，窗型由十字窗改为瘦高窗，砖墙改为浅抹灰面，窗间竖向线条0.65像素",
+      "右翼行政楼增加一条通长外挑阳台与室外钢楼梯，楼梯通向二层档案与评审室",
+      "主入口改为门廊式，两根方柱托起平顶雨棚，门廊内侧为玻璃门，柱础有砖砌线脚",
+      "大门砖柱改为方柱加石砌线脚，门梁增加平坡檐口与横匾，岗亭保留小方窗，校门内侧新增档案回收箱和公告栏但只画空框"
+    ]
+  },
+  {
+    "id": "yang-2",
+    "route": "yang",
+    "chapter": 2,
+    "concept": "职称压力后期：行政侧翼完全封控化，档案评审窗全部加防护栏与封板；教学楼出现退台与体检室外廊，健康下降在建筑上可见。",
+    "body": {
+      "floors": 4,
+      "leftBays": 8,
+      "rightBays": 6,
+      "height": 350,
+      "leftReach": 620,
+      "rightReach": 430,
+      "roof": "terrace",
+      "windows": "cross",
+      "skin": "render",
+      "arcade": false,
+      "balcony": true,
+      "entrance": "shutter",
+      "clock": false
+    },
+    "gate": {
+      "kind": "school",
+      "columns": "square",
+      "canopy": "flat",
+      "open": true
+    },
+    "guard": {
+      "kind": "office",
+      "windows": "cross"
+    },
+    "accent": "#8a5a4a",
+    "lightDensity": 0.06,
+    "landmark": "original",
+    "details": [
+      "左翼顶层退台，局部窗加装竖向金属防护栏与封板，一至二层保留瘦高窗但加遮阳百叶",
+      "右翼行政楼底层门改为金属卷帘门，二层档案窗加交叉封条，楼道外楼梯保留但加封闭栏板",
+      "校门门柱改为钢柱加横梁，原有横匾仍在但门内改为检查岗亭和隔离栏，伸缩门闭合",
+      "室内体检室只以走廊上的外挑座椅和导引地面细线表示，不画人物与设备"
+    ]
+  },
+  {
+    "id": "jidi-0",
+    "route": "jidi",
+    "chapter": 0,
+    "concept": "资本教辅工厂初期：连片厂房式教学楼，底层为营业式教辅门面，屋顶为锯齿采光，考核数据入口从右侧闸机开始。",
+    "body": {
+      "floors": 2,
+      "leftBays": 8,
+      "rightBays": 6,
+      "height": 280,
+      "leftReach": 620,
+      "rightReach": 430,
+      "roof": "sawtooth",
+      "windows": "ribbon",
+      "skin": "metal",
+      "arcade": false,
+      "balcony": false,
+      "entrance": "glass",
+      "clock": true
+    },
+    "gate": {
+      "kind": "industrial",
+      "columns": "steel",
+      "canopy": "flat",
+      "open": true
+    },
+    "guard": {
+      "kind": "kiosk",
+      "windows": "cross"
+    },
+    "accent": "#6f7d72",
+    "lightDensity": 0.28,
+    "landmark": "dispatch-dock",
+    "details": [
+      "左翼两层长体量金属板教学楼，连续横条窗形成严整水平线，窗内空黑不画人",
+      "右翼底层为教辅门面，三档通高玻璃窗带，上方有平雨棚和悬挂灯带，门面只写空框与细线",
+      "屋顶为锯齿采光棚，用0.65像素细线画出斜坡与天窗，不画彩色",
+      "大门为钢柱加平雨棚，门柱间留出闸机通道；右侧设数据考核入口，地面画出排队折线；门卫为方形岗亭"
+    ]
+  },
+  {
+    "id": "jidi-1",
+    "route": "jidi",
+    "chapter": 1,
+    "concept": "教辅工厂扩张期：底层增设卸货平台与连片遮雨棚，窗型改为通高模数窗，侧翼加设数据考核墙与台阶。",
+    "body": {
+      "floors": 3,
+      "leftBays": 9,
+      "rightBays": 7,
+      "height": 320,
+      "leftReach": 630,
+      "rightReach": 440,
+      "roof": "sawtooth",
+      "windows": "ribbon",
+      "skin": "metal",
+      "arcade": false,
+      "balcony": false,
+      "entrance": "shutter",
+      "clock": true
+    },
+    "gate": {
+      "kind": "industrial",
+      "columns": "steel",
+      "canopy": "beam",
+      "open": true
+    },
+    "guard": {
+      "kind": "kiosk",
+      "windows": "shutter"
+    },
+    "accent": "#6f7d72",
+    "lightDensity": 0.3,
+    "landmark": "dispatch-dock",
+    "details": [
+      "建筑加高至三层，窗型由横条改为通高模数窗，窗列之间加竖向金属肋",
+      "底层左端开敞，形成卸货平台与卷帘门，平台外挑连片钢柱遮雨棚，棚下地面画坡道线",
+      "右翼加设一组室外阶梯通二层考核接待台，台阶用细线画出踏步与扶手",
+      "大门钢柱不变但横梁加高，门内新增第二道闸机和排队栏杆，岗亭窗口改为卷帘小窗"
+    ]
+  },
+  {
+    "id": "jidi-2",
+    "route": "jidi",
+    "chapter": 2,
+    "concept": "封闭升学后期：建筑改造为完全封闭的长进深体量，底层卷帘门与传送带式卸货口并置，窗户加栅并统一为竖向窄窗；大门改为封闭闸口。",
+    "body": {
+      "floors": 4,
+      "leftBays": 9,
+      "rightBays": 7,
+      "height": 350,
+      "leftReach": 640,
+      "rightReach": 440,
+      "roof": "sawtooth",
+      "windows": "shutter",
+      "skin": "metal",
+      "arcade": false,
+      "balcony": false,
+      "entrance": "shutter",
+      "clock": false
+    },
+    "gate": {
+      "kind": "sealed",
+      "columns": "steel",
+      "canopy": "beam",
+      "open": false
+    },
+    "guard": {
+      "kind": "checkpoint",
+      "windows": "shutter"
+    },
+    "accent": "#6f7d72",
+    "lightDensity": 0.24,
+    "landmark": "dispatch-dock",
+    "details": [
+      "加高至四层，窗型由通高模数窗改为竖向窄窗并加金属栅，窗内保持空黑",
+      "底层保留卸货平台，雨棚加长并加装卷帘封板，平台边缘设升降台和导向箭头",
+      "屋顶锯齿改为加高女儿墙压顶，金属肋保持，整体呈连续厂房轮廓",
+      "大门改为封闭式钢闸口，原横梁保留横匾但两侧封板，门卫为封闭检查岗亭，地面画单列进出线"
+    ]
+  },
+  {
+    "id": "jidi_riot-0",
+    "route": "jidi_riot",
+    "chapter": 0,
+    "concept": "教辅工厂损毁初期：屋顶锯齿局部塌陷，卸货棚被砸弯，主体功能仍可辨识，不是火海。",
+    "body": {
+      "floors": 3,
+      "leftBays": 9,
+      "rightBays": 7,
+      "height": 320,
+      "leftReach": 630,
+      "rightReach": 440,
+      "roof": "sawtooth",
+      "windows": "tall",
+      "skin": "metal",
+      "arcade": true,
+      "balcony": false,
+      "entrance": "shutter",
+      "clock": false
+    },
+    "gate": {
+      "kind": "breached",
+      "columns": "steel",
+      "canopy": "beam",
+      "open": true
+    },
+    "guard": {
+      "kind": "kiosk",
+      "windows": "shutter"
+    },
+    "accent": "#6f7d72",
+    "lightDensity": 0.16,
+    "landmark": "dispatch-dock",
+    "details": [
+      "右翼屋顶锯齿有破口，露出梁架线，一侧女儿墙断裂但不整片倒塌",
+      "底层卸货平台仍在，连片遮雨棚部分弯曲下垂，棚脚有散落板材，不画火",
+      "主立面通高模数窗部分玻璃缺失，用斜框与空窗表示，保留原有窗列模数",
+      "大门钢柱仍在，横梁一侧倾斜，闸机通道保持可辨识，岗亭窗口被板封一部分"
+    ]
+  },
+  {
+    "id": "jidi_riot-1",
+    "route": "jidi_riot",
+    "chapter": 1,
+    "concept": "损毁中期：侧翼墙体出现破口，外楼梯断落，底层卸货口被瓦砾部分掩埋；建筑轮廓开始失衡但仍像学校改造楼。",
+    "body": {
+      "floors": 3,
+      "leftBays": 8,
+      "rightBays": 6,
+      "height": 300,
+      "leftReach": 600,
+      "rightReach": 410,
+      "roof": "sawtooth",
+      "windows": "shutter",
+      "skin": "metal",
+      "arcade": false,
+      "balcony": false,
+      "entrance": "boarded",
+      "clock": false
+    },
+    "gate": {
+      "kind": "breached",
+      "columns": "steel",
+      "canopy": "beam",
+      "open": true
+    },
+    "guard": {
+      "kind": "ruined",
+      "windows": "shutter"
+    },
+    "accent": "#6f7d72",
+    "lightDensity": 0.12,
+    "landmark": "dispatch-dock",
+    "details": [
+      "左翼外轮廓后退一跨，屋面与檐口出现豁口，露出桁架与斜撑",
+      "窗型改为封闭板窗并多处破损，窗框扭曲，窗内保持空黑，不做烟熏覆盖",
+      "底层卸货坡道被瓦砾掩埋一半，遮雨棚部分垮塌，只剩柱子和梁头",
+      "大门钢柱一根折断，横梁斜挂，岗亭屋面掀掉一角；地面画出塌落砖板与积水边线"
+    ]
+  },
+  {
+    "id": "jidi_riot-2",
+    "route": "jidi_riot",
+    "chapter": 2,
+    "concept": "余烬期：结构大面积保留但封存，屋顶塌陷加临时支撑，门洞缺口开放但铁栅封死，重建的钢架与旧砖体并置。",
+    "body": {
+      "floors": 2,
+      "leftBays": 8,
+      "rightBays": 5,
+      "height": 260,
+      "leftReach": 580,
+      "rightReach": 390,
+      "roof": "parapet",
+      "windows": "shutter",
+      "skin": "brick",
+      "arcade": false,
+      "balcony": false,
+      "entrance": "boarded",
+      "clock": false
+    },
+    "gate": {
+      "kind": "breached",
+      "columns": "steel",
+      "canopy": "beam",
+      "open": true
+    },
+    "guard": {
+      "kind": "ruined",
+      "windows": "shutter"
+    },
+    "accent": "#5c6a60",
+    "lightDensity": 0.08,
+    "landmark": "dispatch-dock",
+    "details": [
+      "建筑降为两层，原厂房金属外墙大面积剥落，露出砖墙，窗洞以木板和钢条封口",
+      "屋顶塌陷区用临时钢柱和斜撑顶住，女儿墙残缺，边缘有苔痕暗绿",
+      "大门一侧门柱破口，用钢栅反封，横匾不存，门卫亭残墙保留小窗洞",
+      "地面保留瓦砾带与积水细线，少量余烬只以灰红断裂面和低亮度线条表示，不画火焰"
+    ]
+  },
+  {
+    "id": "wu-0",
+    "route": "wu",
+    "chapter": 0,
+    "concept": "纪律强化初期的合一校园：原教学楼轮廓保留，西翼外墙加装金属护窗栏，门卫室改为登记岗，校门加装金属伸缩门，整体仍是普通高中，只露出封控的起始迹象。",
+    "body": {
+      "floors": 3,
+      "leftBays": 7,
+      "rightBays": 5,
+      "height": 320,
+      "leftReach": 600,
+      "rightReach": 400,
+      "roof": "parapet",
+      "windows": "cross",
+      "skin": "brick",
+      "arcade": false,
+      "balcony": false,
+      "entrance": "glass",
+      "clock": false
+    },
+    "gate": {
+      "kind": "school",
+      "columns": "brick",
+      "canopy": "flat",
+      "open": true
+    },
+    "guard": {
+      "kind": "office",
+      "windows": "cross"
+    },
+    "accent": "#6f8a7a",
+    "lightDensity": 0.22,
+    "landmark": "original",
+    "details": [
+      "主楼为三层砖混教学楼，平屋顶女儿墙，窗框为十字分格，窗内保持空黑；",
+      "西翼底层原玻璃门保留，但门上方加装一根横向金属梁与登记窗口；",
+      "校门为方形砖柱加平顶门梁，门梁上嵌横匾，中间是低矮金属伸缩门；",
+      "门卫室仍为小方盒子，带一个小方窗与平顶挑檐，窗内无人物。"
+    ]
+  },
+  {
+    "id": "wu-1",
+    "route": "wu",
+    "chapter": 1,
+    "concept": "封控升级的中期：左翼改为小方窗加交叉封板，部分窗加金属防护栏，主楼外挑出一段封闭检查连廊，校门加装门禁道闸与检查岗，从教学楼转成半封闭管制建筑。",
+    "body": {
+      "floors": 3,
+      "leftBays": 7,
+      "rightBays": 5,
+      "height": 330,
+      "leftReach": 610,
+      "rightReach": 410,
+      "roof": "parapet",
+      "windows": "shutter",
+      "skin": "brick",
+      "arcade": false,
+      "balcony": true,
+      "entrance": "portico",
+      "clock": false
+    },
+    "gate": {
+      "kind": "checkpoint",
+      "columns": "brick",
+      "canopy": "flat",
+      "open": false
+    },
+    "guard": {
+      "kind": "checkpoint",
+      "windows": "cross"
+    },
+    "accent": "#6b7f74",
+    "lightDensity": 0.18,
+    "landmark": "screened-checkpoint",
+    "details": [
+      "左翼窗户改为小方窗，外侧加交叉封板，部分整窗用金属板封死，窗下开一排通气孔；",
+      "主楼二层外挑一段钢柱支撑的封闭检查连廊，连廊立面上有连续小方窗，仍为细白线勾出；",
+      "入口在原门廊位置加装金属栅栏与单侧检查门，门廊立柱仍是砖砌方柱，保持中国学校门廊样式；",
+      "校门改为检查站式：砖柱保留，柱间加整片金属伸缩门与铁丝网，旁设登记窗口与道闸杆，不改成欧洲城门。"
+    ]
+  },
+  {
+    "id": "wu-2",
+    "route": "wu",
+    "chapter": 2,
+    "concept": "全面封控后期：主楼底层开敞廊全部加装钢丝网，右翼缩为封闭走廊，外轮廓加高女儿墙，入口一级台阶加装钢制检查门与登记桌，校园呈封闭管制形态，但结构仍是中国高中教学楼。",
+    "body": {
+      "floors": 3,
+      "leftBays": 6,
+      "rightBays": 4,
+      "height": 335,
+      "leftReach": 620,
+      "rightReach": 420,
+      "roof": "parapet",
+      "windows": "shutter",
+      "skin": "brick",
+      "arcade": true,
+      "balcony": true,
+      "entrance": "shutter",
+      "clock": false
+    },
+    "gate": {
+      "kind": "sealed",
+      "columns": "brick",
+      "canopy": "beam",
+      "open": false
+    },
+    "guard": {
+      "kind": "checkpoint",
+      "windows": "shutter"
+    },
+    "accent": "#5f7a6c",
+    "lightDensity": 0.12,
+    "landmark": "screened-checkpoint",
+    "details": [
+      "底层原连廊改为金属网围合的封闭廊，钢丝网横竖分格清晰；",
+      "入口台阶保留，但入口门改为钢制卷帘门，门两侧加登记桌与隔离柱；",
+      "校门横梁下加装整片金属栅栏和滑动封板，只留登记窗口，平日关闭；",
+      "右翼女儿墙加高并加装金属防护栏，屋顶轮廓仍为平顶。"
+    ]
+  },
+  {
+    "id": "gouxiong-0",
+    "route": "gouxiong",
+    "chapter": 0,
+    "concept": "日常校园的舞台文化初期：主楼仍是中国高中教学楼，右翼底层敞开为多功能活动廊，外设简易露天舞台基座，校门保持砖柱加平顶门梁，门廊内用于集会登记。",
+    "body": {
+      "floors": 3,
+      "leftBays": 7,
+      "rightBays": 5,
+      "height": 320,
+      "leftReach": 600,
+      "rightReach": 400,
+      "roof": "parapet",
+      "windows": "tall",
+      "skin": "brick",
+      "arcade": true,
+      "balcony": false,
+      "entrance": "portico",
+      "clock": false
+    },
+    "gate": {
+      "kind": "school",
+      "columns": "brick",
+      "canopy": "flat",
+      "open": true
+    },
+    "guard": {
+      "kind": "office",
+      "windows": "cross"
+    },
+    "accent": "#8a7b5c",
+    "lightDensity": 0.2,
+    "landmark": "performance-stage",
+    "details": [
+      "主楼为三层砖砌立面，左翼为成组高窗，窗内空黑，只留窗框与玻璃横档；",
+      "右翼底层为敞开的柱廊，柱为方形砖柱，廊下为多功能活动空间；",
+      "入口为带两根方柱的门廊，门廊上有一块平顶小挑檐，柱头有线脚；",
+      "右翼外侧设一个低矮露天舞台基座，带三步台阶与两根背景立柱，校门仍为砖柱加平顶门梁。"
+    ]
+  },
+  {
+    "id": "gouxiong-1",
+    "route": "gouxiong",
+    "chapter": 1,
+    "concept": "荒诞行政中期：主楼入口加装一整块巨型横匾，尺度超出正常校名牌，右翼廊道加设临时主席台与广播喇叭架，屋顶局部加出铁皮平棚，呈现行政规格膨胀的喜剧感。",
+    "body": {
+      "floors": 3,
+      "leftBays": 7,
+      "rightBays": 6,
+      "height": 330,
+      "leftReach": 610,
+      "rightReach": 415,
+      "roof": "cornice",
+      "windows": "tall",
+      "skin": "render",
+      "arcade": true,
+      "balcony": true,
+      "entrance": "portico",
+      "clock": true
+    },
+    "gate": {
+      "kind": "pavilion",
+      "columns": "stone",
+      "canopy": "pitched",
+      "open": true
+    },
+    "guard": {
+      "kind": "kiosk",
+      "windows": "arch"
+    },
+    "accent": "#9a8a6a",
+    "lightDensity": 0.24,
+    "landmark": "performance-stage",
+    "details": [
+      "入口门廊加一块横跨三开间的巨型横匾，由四根比例失衡的细柱支撑，像临时加建的牌楼；",
+      "右翼底层廊道中设临时主席台，台面比地面高出一级，台后是一面横向展板；",
+      "右翼屋顶局部加出铁皮平棚，以钢柱撑起，形成临时加建的行政遮棚；",
+      "门卫室改为六角形小亭，带半圆拱窗，校门改为石柱加竖立横梁，带一块小钟。"
+    ]
+  },
+  {
+    "id": "gouxiong-2",
+    "route": "gouxiong",
+    "chapter": 2,
+    "concept": "荒诞演出的后期：主楼右侧加出一段外挑舞台式连廊，底层柱廊成为固定演出厅出入口，入口上方叠加多层灯架与横匾，门卫亭改造成售票亭式小间，整体仍属于中国校园，但明显功能变形。",
+    "body": {
+      "floors": 3,
+      "leftBays": 6,
+      "rightBays": 6,
+      "height": 340,
+      "leftReach": 620,
+      "rightReach": 420,
+      "roof": "terrace",
+      "windows": "ribbon",
+      "skin": "render",
+      "arcade": true,
+      "balcony": true,
+      "entrance": "portico",
+      "clock": true
+    },
+    "gate": {
+      "kind": "pavilion",
+      "columns": "stone",
+      "canopy": "pitched",
+      "open": true
+    },
+    "guard": {
+      "kind": "kiosk",
+      "windows": "cross"
+    },
+    "accent": "#a08a62",
+    "lightDensity": 0.26,
+    "landmark": "performance-stage",
+    "details": [
+      "右翼二层外挑出一段带栏杆的连廊，走廊宽大，栏杆为方钢立柱，像观演平台；",
+      "底层柱廊改为演出厅入口，廊柱间挂横向幕布，幕布用直线分割表示，可辨识为布质幕布；",
+      "入口上方叠加两层横向灯架，每层灯架上有三盏方灯，灯架与门廊立柱一同支承；",
+      "门卫亭改为售票亭式小间，带小方窗与外侧雨棚，校门为石柱加披檐，横匾取消而保留小钟。"
+    ]
+  },
+  {
+    "id": "despair-0",
+    "route": "despair",
+    "chapter": 0,
+    "concept": "封存前夜的校园：主楼仍完整，窗内空黑，只有少量窗户改为封板，校门部分关闭，门卫室窗内无灯，呈现停止使用但未损毁的初期状态。",
+    "body": {
+      "floors": 3,
+      "leftBays": 7,
+      "rightBays": 5,
+      "height": 320,
+      "leftReach": 600,
+      "rightReach": 400,
+      "roof": "parapet",
+      "windows": "cross",
+      "skin": "brick",
+      "arcade": false,
+      "balcony": false,
+      "entrance": "boarded",
+      "clock": false
+    },
+    "gate": {
+      "kind": "school",
+      "columns": "brick",
+      "canopy": "flat",
+      "open": false
+    },
+    "guard": {
+      "kind": "office",
+      "windows": "cross"
+    },
+    "accent": "#6a7a72",
+    "lightDensity": 0.08,
+    "landmark": "sealed-wing",
+    "details": [
+      "主楼为三层砖混教学楼，十字分格窗，底层入口用木板封住，木板用横线分板；",
+      "左翼底层原玻璃门保留门框，但内侧加一层封板，窗内保持空黑；",
+      "校门为方形砖柱加平顶门梁，中间仅保留一扇可开启的金属门，其余用金属板封住；",
+      "门卫室的窗玻璃缺失，窗框上可见纵向裂线，窗内不画人物。"
+    ]
+  },
+  {
+    "id": "despair-1",
+    "route": "despair",
+    "chapter": 1,
+    "concept": "弃置中期：主楼右翼屋面出现局部塌陷，屋檐断裂，外楼梯断开一截，入口门廊柱断一根，校门横梁倾斜，门卫室墙面有缺口，校门内地面有塌落砖石。",
+    "body": {
+      "floors": 3,
+      "leftBays": 7,
+      "rightBays": 5,
+      "height": 315,
+      "leftReach": 600,
+      "rightReach": 400,
+      "roof": "gable",
+      "windows": "shutter",
+      "skin": "brick",
+      "arcade": false,
+      "balcony": false,
+      "entrance": "boarded",
+      "clock": false
+    },
+    "gate": {
+      "kind": "breached",
+      "columns": "brick",
+      "canopy": "beam",
+      "open": false
+    },
+    "guard": {
+      "kind": "ruined",
+      "windows": "shutter"
+    },
+    "accent": "#7a5a52",
+    "lightDensity": 0.06,
+    "landmark": "sealed-wing",
+    "details": [
+      "右翼屋面局部改为坡屋顶，但与主楼交接处塌出一个破口，可见裸露的椽条；",
+      "左翼窗框多数歪斜，部分窗用封板覆盖，窗玻璃缺失处只留空黑与碎片线；",
+      "入口门廊左侧柱折断半截，断口为斜线，柱础仍在地面；",
+      "校门右侧砖柱倾斜，门梁断开并斜挂，中间金属门倒塌在地，门卫室墙面有缺口，从缺口可看出小方窗的残框。"
+    ]
+  },
+  {
+    "id": "despair-2",
+    "route": "despair",
+    "chapter": 2,
+    "concept": "深度封存弃置：主楼左翼与右翼都被植被覆盖，屋面大面积塌陷，外廊完全堵死，只剩封存的门框与断裂的校名横匾，地面铺设被杂草与积水取代，但轮廓仍可辨出合一的校园。",
+    "body": {
+      "floors": 3,
+      "leftBays": 7,
+      "rightBays": 5,
+      "height": 300,
+      "leftReach": 600,
+      "rightReach": 400,
+      "roof": "sawtooth",
+      "windows": "shutter",
+      "skin": "stone",
+      "arcade": true,
+      "balcony": false,
+      "entrance": "boarded",
+      "clock": false
+    },
+    "gate": {
+      "kind": "sealed",
+      "columns": "brick",
+      "canopy": "none",
+      "open": false
+    },
+    "guard": {
+      "kind": "ruined",
+      "windows": "shutter"
+    },
+    "accent": "#5f6e5e",
+    "lightDensity": 0.04,
+    "landmark": "sealed-wing",
+    "details": [
+      "屋面多处塌落，仅剩锯齿状残片，可见裸露的屋架，左翼与右翼的屋顶都已不完整；",
+      "底层廊道被塌落的梁柱和封板堵死，仅留一条细缝通向内部；",
+      "校门只剩两根倾斜的砖柱，门梁断裂落地，横匾断成两截斜靠门柱；",
+      "门卫室只剩半截砖墙与一个破窗洞，地面上散布碎砖、野草和积水线，没有人物，也没有火焰。"
+    ]
+  }
+]
