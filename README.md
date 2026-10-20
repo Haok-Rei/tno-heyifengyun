@@ -48,16 +48,16 @@
 
 **合一之光**是一幅随路线、剧情阶段与校园状况变化的动态校园画面。将鼠标移到学生、老师、教学楼、大门、校名、门卫室、树木或道路上，可以读到那里正在发生的事。它不提供额外增益；合一值记录的是这些选择最终怎样落在一座学校里。
 
-![合一之光：校园日常](docs/previews/2026-10-18-campus.png)
+![合一之光：校园日常](docs/previews/2026-10-20-campus.png)
 
 <details>
 <summary>查看部分路线画面（含轻微场景剧透）</summary>
 
-![革委会时期](docs/previews/2026-10-18-committee.png)
+![革委会时期](docs/previews/2026-10-20-committee.png)
 
-![及第校园](docs/previews/2026-10-18-jidi.png)
+![及第校园](docs/previews/2026-10-20-jidi.png)
 
-![动荡中的校园](docs/previews/2026-10-18-riot.png)
+![动荡中的校园](docs/previews/2026-10-20-riot.png)
 
 </details>
 

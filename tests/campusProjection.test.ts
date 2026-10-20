@@ -6,6 +6,8 @@ import {at,inset,facadeDepth,geometry,type Point} from '../src/components/campus
 import {projectingStep,CampusEntrance,getStructureProfile} from '../src/components/CampusStructures';
 import {getHeyiLightSnapshot} from '../src/engine/heyiLight';
 import type {GameState} from '../src/types';
+import {campusMassing,storeyLines} from '../src/components/campusMassing';
+import {windowLighting} from '../src/components/campusLighting';
 
 const collinear=(a:Point,b:Point,c:Point)=>Math.abs((b.x-a.x)*(c.y-a.y)-(b.y-a.y)*(c.x-a.x));
 test('facade projection preserves diagonal lines and equal bays shrink into the distance',()=>{
@@ -24,6 +26,31 @@ test('facade projection preserves diagonal lines and equal bays shrink into the 
     const target=face[0].x<720?{x:2300,y:260}:{x:-1200,y:260};
     assert.ok(collinear(step[0],step[3],target)<1e-7);assert.ok(collinear(step[1],step[2],target)<1e-7);
   }
+});
+
+test('arcaded wings share a continuous tall corner and common physical storeys',()=>{
+  for(const route of ['democracy','reform','revolution','haobang','opening','wu'] as const)for(const chapter of [0,1,2] as const){
+    const p=getStructureProfile(route,chapter),m=campusMassing(p);
+    assert.deepEqual(m.faces.left[1],m.faces.right[0],p.id+' roof corner');assert.deepEqual(m.faces.left[2],m.faces.right[3],p.id+' foot corner');
+    for(const v of storeyLines(p.body.floors)){const a=at(m.faces.left,1,v),b=at(m.faces.right,0,v);assert.ok(Math.hypot(a.x-b.x,a.y-b.y)<1e-8,p.id+' floor joint');}
+    if(m.annex){
+      const a=m.annex,cut=1/p.body.floors;
+      assert.ok(Math.hypot(a.face[0].x-at(m.faces.right,1,cut).x,a.face[0].y-at(m.faces.right,1,cut).y)<1e-8);
+      for(const v of storeyLines(a.floors)){
+        const x=at(a.face,0,v),y=at(m.faces.right,1,cut+(1-cut)*v);
+        assert.ok(Math.hypot(x.x-y.x,x.y-y.y)<1e-8,p.id+' annex floor joint');
+      }
+      assert.ok(m.returnWall,'a height step needs a visible end wall');
+    }
+  }
+});
+
+test('window light phases are stable and distributed across independent cycles',()=>{
+  const phases=Array.from({length:40},(_,i)=>windowLighting(i));
+  assert.deepEqual(windowLighting(11),windowLighting(11));
+  assert.ok(new Set(phases.map(p=>p.duration)).size>12);
+  const buckets=new Set(phases.map(p=>Math.floor((-p.delay/p.duration)*8)));
+  assert.equal(buckets.size,8);assert.ok(phases.every(p=>p.duration>=24&&p.duration<=44&&p.delay<=0&&-p.delay<p.duration));
 });
 
 test('the distant gate column is shortened to meet its receding beam',()=>{

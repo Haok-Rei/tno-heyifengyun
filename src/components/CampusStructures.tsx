@@ -1,6 +1,8 @@
 import {memo,useId,type CSSProperties} from 'react';
 import {at,inset,facadeDepth,geometry,path,Observe,Plate,FaceLines,INK,EDGE,type Face,type Point,type Observation} from './campusPrimitives';
 import {CampusFixtures} from './CampusFixtures';
+import {campusMassing,storeyLines} from './campusMassing';
+import {windowLighting} from './campusLighting';
 import type {HeyiRoute} from '../engine/heyiLight';
 import type {CampusBranch,CampusChapter} from '../engine/campusArt';
 import profiles from '../data/campusArchitecture.json';
@@ -75,9 +77,8 @@ function Masonry({face,skin}:{face:Face;skin:CampusStructureProfile['body']['ski
 
 function FacadeCourses({face,floors,bays,skin}:{face:Face;floors:number;bays:number;skin:CampusStructureProfile['body']['skin']}) {
   return <g className="campus-facade-courses" fill="#081318" stroke="#8fa79e" strokeWidth=".55">
-    {Array.from({length:floors-1},(_,r)=>{
-      const v=.04+(r+1)*.95/floors-.025;
-      return <g key={r}><path d={path(inset(face,0,v,1,.014),true)}/><path d={line(face,[[0,v+.022],[1,v+.022]])} stroke="#446970" fill="none"/></g>;
+    {storeyLines(floors).map((v,r)=>{
+      return <g key={r}><path className="campus-storey-course" data-level={floors-r-1} d={path(inset(face,0,v-.028/floors,1,.045/floors),true)}/><path d={line(face,[[0,v+.035/floors],[1,v+.035/floors]])} stroke="#446970" fill="none"/></g>;
     })}
     {[0,.967].map(u=><g key={u}>
       <path d={path(inset(face,u,.035,.033,.95),true)} fill="#071115" stroke="#849d96" strokeWidth=".6"/>
@@ -99,9 +100,10 @@ function Window({face,kind,lit,index,ruined=false}:{key?:number;face:Face;kind:C
   const clip=useId(),outer=inset(face,-.065,-.065,1.13,1.13);
   const recessed=facadeDepth(face,.0015);
   const inner=inset(recessed,.035,.04,.93,.92);
+  const lighting=windowLighting(index),lightStart=at(inner,.5,0),lightEnd=at(inner,.5,1);
   const shape=(f:Face)=>kind==='arch'?arch(f):path(f,true);
   return <g className="campus-clear-window" data-window-kind={kind}>
-    <defs><clipPath id={clip}><path d={shape(face)}/></clipPath></defs>
+    <defs><clipPath id={clip}><path d={shape(face)}/></clipPath><linearGradient id={clip+'-light'} gradientUnits="userSpaceOnUse" x1={lightStart.x} y1={lightStart.y} x2={lightEnd.x} y2={lightEnd.y}><stop offset="0" stopColor="#c9b27c" stopOpacity=".12"/><stop offset=".6" stopColor="#c9b27c" stopOpacity=".65"/><stop offset="1" stopColor="#ddc48e" stopOpacity="1"/></linearGradient></defs>
     <path d={kind==='arch'?arch(face,.065,.065):shape(outer)} fill="#0b191c" stroke="#a6b5a7" strokeWidth=".7"/>
     <path d={shape(face)} fill="#030a0e" stroke="#c1c9b9" strokeWidth=".8"/>
     <g clipPath={`url(#${clip})`}>
@@ -112,7 +114,7 @@ function Window({face,kind,lit,index,ruined=false}:{key?:number;face:Face;kind:C
       <path d={path(inset(face,-.095,-.10,1.19,.055),true)} fill="#0b191c" stroke="#b6bba4" strokeWidth=".65"/>
     </>}
     <g clipPath={`url(#${clip})`}>
-    {lit&&kind!=='shutter'&&!ruined&&<path className="campus-window-glow" d={shape(inner)} fill="#b6a67b" fillOpacity=".12" style={{animationDelay:`-${index*1.73%19}s`,animationDuration:`${17+index%9}s`} as CSSProperties}/>}
+    {lit&&kind!=='shutter'&&!ruined&&<path className="campus-window-glow" d={shape(inner)} fill={'url(#'+clip+'-light)'} fillOpacity=".48" style={{animationDelay:lighting.delay+'s',animationDuration:lighting.duration+'s'} as CSSProperties}/>}
     {kind==='shutter'?<>
       <path d={path(inner,true)} fill="#071115" stroke="#657e7e" strokeWidth=".5"/>
       {Array.from({length:7},(_,i)=><g key={i}><path d={line(inner,[[0,.08+i*.13],[1,.08+i*.13]])} stroke="#82938b" strokeWidth=".55"/><path d={line(inner,[[0,.105+i*.13],[1,.105+i*.13]])} stroke="#28494f" strokeWidth=".45"/></g>)}
@@ -130,15 +132,15 @@ function Window({face,kind,lit,index,ruined=false}:{key?:number;face:Face;kind:C
   </g>;
 }
 
-function Roof({faces,profile}:{faces:ReturnType<typeof geometry>;profile:CampusStructureProfile}) {
+function Roof({faces,profile,walls=[faces.left,faces.right]}:{faces:ReturnType<typeof geometry>;profile:CampusStructureProfile;walls?:Face[]}) {
   const {body}=profile;
-  const roofPlanes=[faces.left,faces.right].map(f=>{
+  const roofPlanes=walls.map(f=>{
     const back=facadeDepth(f,.024);
     return [f[0],f[1],back[1],back[0]] as Face;
   });
   return <g className={'campus-roof campus-roof--'+body.roof} fill="#050d11" stroke="#bac5b6" strokeWidth=".85">
-    {roofPlanes.map((f,i)=><path key={i} d={path(f,true)}/>)}
-    {[faces.left,faces.right].map((f,i)=><g key={'trim'+i}>
+    {roofPlanes.filter(f=>(f[0].y+f[1].y)/2>260).map((f,i)=><path key={i} d={path(f,true)}/>)}
+    {walls.map((f,i)=><g key={'trim'+i}>
       <path d={path(inset(f,-.004,-.012,1.008,.027),true)} fill="#0b181b" stroke="#b6c1ad" strokeWidth=".9"/>
       <path d={path(inset(f,-.009,.018,1.018,.017),true)} fill="#071216" stroke="#9eafa2" strokeWidth=".65"/>
       <path d={line(f,[[0,.045],[1,.045]])} fill="none" stroke="#5d8388" strokeWidth=".5"/>
@@ -150,18 +152,17 @@ function Roof({faces,profile}:{faces:ReturnType<typeof geometry>;profile:CampusS
       })}
     </g>)}
     {body.roof==='gable'?<>
-      {roofPlanes.map((f,i)=><g key={i}><path d={path([f[0],f[1],{x:f[1].x,y:f[1].y-22},{x:f[0].x,y:f[0].y-22}],true)} fill="#0a1519"/><path d={path([{x:f[0].x,y:f[0].y-22},{x:f[1].x,y:f[1].y-22},f[2],f[3]],true)} fill="#071318" stroke="#587e87"/></g>)}
-      {[.2,.4,.6,.8].map(u=><path key={u} d={path([at(faces.left,u,0),{x:at(faces.left,u,0).x,y:at(faces.left,u,0).y-22}])} stroke="#536e73" strokeWidth=".45"/>)}
+      {walls.map((f,i)=><g key={i}><path d={path([f[0],f[1],at(f,1,-.055),at(f,0,-.055)],true)} fill="#0a1519"/>{[.2,.4,.6,.8].map(u=><path key={u} d={line(f,[[u,0],[u,-.055]])} fill="none" stroke="#536e73" strokeWidth=".45"/>)}</g>)}
     </>:body.roof==='sawtooth'?<>
-      {[faces.left,faces.right].map((f,side)=><g key={side}>{Array.from({length:side?5:7},(_,i)=>{
+      {walls.map((f,side)=><g key={side}>{Array.from({length:side?5:7},(_,i)=>{
         const count=side?5:7,a=at(f,i/count,0),b=at(f,(i+.65)/count,0),c=at(f,(i+1)/count,0);
         const peak=at(f,(i+.65)/count,-.055),innerPeak=at(f,(i+.65)/count,-.043);
         return <g key={i}><path d={path([a,peak,c],true)} fill="#061216" stroke="#9ab1ac"/><path d={path([{x:a.x+4,y:a.y-1},innerPeak,{x:c.x-3,y:c.y-1}])} fill="none" stroke="#456e78" strokeWidth=".55"/>{[.25,.5,.75].map(t=><path key={t} d={path([{x:a.x+(peak.x-a.x)*t,y:a.y+(peak.y-a.y)*t},{x:a.x+(c.x-a.x)*t,y:a.y+(c.y-a.y)*t}])} stroke="#6c8b8b" strokeWidth=".45"/>)}</g>;
       })}</g>)}
     </>:<>
-      {[faces.left,faces.right].map((f,side)=><path key={side} d={path([at(f,0,0),at(f,1,0),at(f,1,.033),at(f,0,.033)],true)} fill="#0a1418" stroke="#9fafa3" strokeWidth=".7"/>)}
-      {body.roof==='cornice'&&[faces.left,faces.right].map((f,i)=><path key={i} d={line(f,[[0,.05],[1,.05]])} fill="none" stroke="#adad97" strokeWidth="1.2"/>)}
-      {body.roof==='terrace'&&[faces.left,faces.right].map((f,i)=><g key={i}><path d={line(f,[[0,-.055],[1,-.055]])} fill="none"/>{Array.from({length:18},(_,j)=><path key={j} d={line(f,[[j/17,-.055],[j/17,0]])} strokeWidth=".6"/>)}</g>)}
+      {walls.map((f,side)=><path key={side} d={path([at(f,0,0),at(f,1,0),at(f,1,.033),at(f,0,.033)],true)} fill="#0a1418" stroke="#9fafa3" strokeWidth=".7"/>)}
+      {body.roof==='cornice'&&walls.map((f,i)=><path key={i} d={line(f,[[0,.05],[1,.05]])} fill="none" stroke="#adad97" strokeWidth="1.2"/>)}
+      {body.roof==='terrace'&&walls.map((f,i)=><g key={i}><path d={line(f,[[0,-.055],[1,-.055]])} fill="none"/>{Array.from({length:Math.max(5,Math.round(Math.abs(f[1].x-f[0].x)/35))},(_,j)=>{const count=Math.max(5,Math.round(Math.abs(f[1].x-f[0].x)/35));return <path key={j} d={line(f,[[j/(count-1),-.055],[j/(count-1),0]])} strokeWidth=".6"/>;})}</g>)}
     </>}
   </g>;
 }
@@ -202,10 +203,36 @@ function Entrance({face,kind,opening,stepCount=3}:{face:Face;kind:CampusStructur
   </g>;
 }
 
-function Arcade({face,bays}:{face:Face;bays:number}) {
+function ArcadeBay({face,index}:{key?:number;face:Face;index:number}) {
+  const id=useId(),back=facadeDepth(face,.012);
+  const frontCurve=Array.from({length:25},(_,i)=>{const a=Math.PI-i*Math.PI/24;return at(face,.5+Math.cos(a)*.5,.38-Math.sin(a)*.38);});
+  const backCurve=Array.from({length:25},(_,i)=>{const a=Math.PI-i*Math.PI/24;return at(back,.5+Math.cos(a)*.5,.38-Math.sin(a)*.38);});
+  const floor:Face=[face[3],face[2],back[2],back[3]];
+  return <g className="campus-arcade-bay">
+    <defs><clipPath id={id}><path d={arch(face)}/></clipPath></defs>
+    <path d={arch(face,.075,.09)} fill="#101c1e" stroke="#9baa98" strokeWidth=".7"/>
+    <path d={arch(face)} fill="#01080c" stroke="#c1c6b4" strokeWidth=".95"/>
+    <g clipPath={`url(#${id})`}>
+      <path d={path([at(face,0,.38),face[3],back[3],at(back,0,.38)],true)} fill="#14272b" stroke="#69888a" strokeWidth=".55"/>
+      <path d={path([at(face,1,.38),face[2],back[2],at(back,1,.38)],true)} fill="#08161b" stroke="#476970" strokeWidth=".5"/>
+      <path d={path([...frontCurve,...backCurve.slice().reverse()],true)} fill="#152326" stroke="#72908d" strokeWidth=".5"/>
+      <path d={arch(back)} fill="#020a0e" stroke="#476b72" strokeWidth=".65"/>
+      <path className="campus-arcade-floor" d={path(floor,true)} fill="#0c191d" stroke="#66817c" strokeWidth=".6"/>
+      <path d={line(back,[[0,.84],[1,.84]])} fill="none" stroke="#3b5e66" strokeWidth=".45"/>
+      {[.22,.55,.82].map(u=><path key={u} d={path([at(face,u,1),at(back,u,1)])} fill="none" stroke="#3a5b63" strokeWidth=".45"/>)}
+      <path className="campus-corridor-light" d={path(floor,true)} fill="#c4a86e" style={{animationDelay:`-${index*11.3}s`,animationDuration:`${31+index%5*7}s`} as CSSProperties}/>
+      {frontCurve.filter((_,i)=>i%4===0).map((p,i)=><path key={i} d={path([p,backCurve[i*4]])} stroke="#587777" strokeWidth=".4" fill="none"/>)}
+    </g>
+    <ArchStones face={face} growU={.075} growV={.09}/>
+    {[.0,.93].map(u=><path key={u} d={path(inset(face,u,.39,.07,.035),true)+path(inset(face,u-.015,.95,.10,.04),true)} fill="#0c191c" stroke="#a2b3a0" strokeWidth=".6"/>)}
+  </g>;
+}
+
+function Arcade({face,bays,floors,indexOffset=0,door=false}:{face:Face;bays:number;floors:number;indexOffset?:number;door?:boolean}) {
   return <g className="campus-open-arcade">{Array.from({length:bays},(_,i)=>{
-    const f=inset(face,(i+.13)/bays,.77,.74/bays,.222);
-    return <g key={i}><path d={arch(f,.075,.09)} fill="#0a171a" stroke="#8fa697" strokeWidth=".65"/><path d={arch(f)} fill="#02090d" stroke="#c1c6b4" strokeWidth=".95"/><ArchStones face={f} growU={.075} growV={.09}/><path d={arch(inset(f,.08,.08,.84,.92))} fill="none" stroke="#3f626b" strokeWidth=".55"/>{[.0,.93].map(u=><path key={u} d={path(inset(f,u,.39,.07,.035),true)+path(inset(f,u-.015,.95,.10,.04),true)} fill="#0c191c" stroke="#a2b3a0" strokeWidth=".6"/>)}<path d={line(f,[[.08,.97],[.92,.97]])} stroke="#69828a" fill="none"/></g>;
+    if(door&&(i+.5)/bays>.55&&(i+.5)/bays<.86)return null;
+    const f=inset(face,(i+.15)/bays,1-.94/floors,.70/bays,.925/floors);
+    return <ArcadeBay key={i} face={f} index={indexOffset+i}/>;
   })}</g>;
 }
 
@@ -224,49 +251,59 @@ function Landmark({face,kind,accent}:{face:Face;kind:CampusStructureProfile['lan
   return null;
 }
 
+function BuildingFace({face,floors,bays,segment,profile}:{face:Face;floors:number;bays:number;segment:'left'|'corner'|'annex';profile:CampusStructureProfile}) {
+  const {body}=profile,side=segment!=='left',offset=segment==='left'?0:segment==='corner'?64:128;
+  const ruined=profile.route==='jidi_riot'||profile.route==='despair';
+  const windowBays=body.windows==='ribbon'?Math.max(2,Math.floor(bays/2)):bays;
+  return <g className={'campus-mass-face campus-mass-face--'+segment} data-facade-segment={segment}>
+    <path d={path(face,true)} fill={side?'#030c11':'#09161a'} stroke={side?'#8ca69e':'#c0c8b7'} strokeWidth="1.05"/>
+    <Masonry face={face} skin={body.skin}/><FacadeCourses face={face} floors={floors} bays={windowBays} skin={body.skin}/>
+    {Array.from({length:floors},(_,row)=>{
+      if(body.arcade&&row===floors-1)return null;
+      return <g key={row}>{Array.from({length:windowBays},(_,col)=>{
+        if(row===floors-1&&(!side&&(col+.5)/windowBays>.55&&(col+.5)/windowBays<.86||side&&['dispatch-dock','printing-hall','performance-stage'].includes(profile.landmark)))return null;
+        const index=offset+row*windowBays+col,long=body.windows==='ribbon';
+        const win=inset(face,(col+(long?.10:.19))/windowBays,(row+.14)/floors,(long?.80:.62)/windowBays,(body.windows==='tall'?.73:.64)/floors);
+        return <Window key={index} face={win} kind={body.windows} lit={(index*17%53)/53<Math.min(.6,.24+profile.lightDensity*.8)} index={index} ruined={ruined&&index%4===0}/>;
+      })}</g>;
+    })}
+    {body.arcade&&<Arcade face={face} bays={Math.max(2,bays)} floors={floors} indexOffset={offset} door={!side}/>}
+    {body.balcony&&<g className="campus-balcony">
+      <path d={path(inset(face,.025,1-.97/floors,.95,.07/floors),true)} fill="#0a171b" stroke="#a8b6a4" strokeWidth=".75"/>
+      <path d={line(face,[[.025,1-1.22/floors],[.975,1-1.22/floors]])} stroke="#92a79b" strokeWidth=".65" fill="none"/>
+      {Array.from({length:Math.max(5,bays*3)},(_,j)=>{const u=.025+j*.95/(Math.max(5,bays*3)-1);return <path key={j} d={line(face,[[u,1-1.22/floors],[u,1-.97/floors]])} stroke="#78948f" strokeWidth=".5"/>;})}
+    </g>}
+    <path d={line(face,[[0,.994],[1,.994]])} fill="none" stroke="#aebca7" strokeWidth=".9"/>
+  </g>;
+}
+
 export const CampusBuilding=memo(function CampusBuilding({profile,observation}:{profile:CampusStructureProfile;observation:Observation}) {
-  const {body}=profile;
-  const lowerWing=profile.landmark==='reading-arcade'?.76:profile.landmark==='public-forum'?.84:profile.landmark==='performance-stage'?.72:1;
-  const main=geometry(720,435,body.height,body.leftReach,body.rightReach);
-  const faces={...main,right:geometry(720,435,body.height*lowerWing,body.leftReach,body.rightReach).right};
+  const {body}=profile,{faces,annex,returnWall,outline,cornerBays}=campusMassing(profile);
   const ruined=profile.route==='jidi_riot'||profile.route==='despair';
   return <Observe zone="building" anchor={{x:720,y:230}} observation={observation}>
     <g className="campus-rebuilt-building" data-structure-id={profile.id} data-roof={body.roof} data-skin={body.skin}>
-      {[faces.left,faces.right].map((face,side)=>{
-        const bays=body.windows==='ribbon'?Math.max(3,Math.floor((side?body.rightBays:body.leftBays)/2)):(side?body.rightBays:body.leftBays);
-        return <g key={side}>
-          <path d={path(face,true)} fill={side?'#040c10':'#061014'} stroke="#b8c5b8" strokeWidth="1.1"/>
-          <Masonry face={face} skin={body.skin}/>
-          <FacadeCourses face={face} floors={side?Math.max(2,body.floors-(lowerWing<1?1:0)):body.floors} bays={bays} skin={body.skin}/>
-          {Array.from({length:side?Math.max(2,body.floors-(lowerWing<1?1:0)):body.floors},(_,row)=>{
-            const floors=side?Math.max(2,body.floors-(lowerWing<1?1:0)):body.floors;
-            const floorTop=.04+row*.95/floors,span=.95/floors;
-            if(body.arcade&&row===floors-1)return null;
-            return <g key={row}><path d={line(face,[[0,floorTop],[1,floorTop]])} fill="none" stroke="#8ba39f" strokeWidth=".6"/>
-              {Array.from({length:bays},(_,col)=>{
-                if(row===floors-1&&(!side&&(col+.5)/bays>.55&&(col+.5)/bays<.86||side&&['dispatch-dock','printing-hall','performance-stage'].includes(profile.landmark)))return null;
-                const index=row*bays+col+side*32;
-                const long=body.windows==='ribbon';
-                const win=inset(face,(col+(long?.10:.19))/bays,floorTop+span*.12,(long?.80:.62)/bays,span*(body.windows==='tall'?.73:.60));
-                return <Window key={index} face={win} kind={body.windows} lit={(index*7%31)/31<profile.lightDensity} index={index} ruined={ruined&&index%4===0}/>;
-              })}
-            </g>;
-          })}
-          {body.arcade&&<Arcade face={face} bays={side?4:6}/>}
-          {body.balcony&&<g className="campus-balcony"><path d={path(inset(face,.025,.69,.95,.035),true)} fill="#0a171b" stroke="#b9c1ae" strokeWidth=".8"/><path d={line(face,[[.025,.62],[.975,.62]])} stroke="#9faf9f" strokeWidth=".7" fill="none"/>{Array.from({length:21},(_,j)=><path key={j} d={line(face,[[.025+j*.95/20,.62],[.025+j*.95/20,.69]])} stroke="#78948f" strokeWidth=".55"/>)}</g>}
-          <path d={line(face,[[0,.994],[1,.994]])} fill="none" stroke="#c1c3ad" strokeWidth="1"/>
-        </g>;
-      })}
+      {annex&&<>
+        <BuildingFace face={annex.face} floors={annex.floors} bays={annex.bays} segment="annex" profile={profile}/>
+        <Roof faces={faces} walls={[annex.face]} profile={profile}/>
+      </>}
+      {returnWall&&<g className="campus-wing-return">
+        <path d={path(returnWall,true)} fill="#02090d" stroke="#91a59b" strokeWidth=".8"/>
+        <Masonry face={returnWall} skin={body.skin}/>
+        <path d={line(returnWall,[[.12,.03],[.12,.97]])} fill="none" stroke="#4e7378" strokeWidth=".55"/>
+        <path d={line(returnWall,[[0,.97],[1,.97]])} fill="none" stroke="#a8b29d" strokeWidth=".7"/>
+      </g>}
+      <BuildingFace face={faces.left} floors={body.floors} bays={body.leftBays} segment="left" profile={profile}/>
+      <BuildingFace face={faces.right} floors={body.floors} bays={cornerBays} segment="corner" profile={profile}/>
       <Roof faces={faces} profile={profile}/>
       <Entrance face={faces.left} kind={body.entrance}/>
-      <Landmark face={faces.right} kind={profile.landmark} accent={profile.accent}/>
+      <Landmark face={annex?.face??faces.right} kind={profile.landmark} accent={profile.accent}/>
       {ruined&&<g className="campus-structural-damage">
         <path d={path([at(faces.left,.68,0),at(faces.left,.71,.09),at(faces.left,.74,.035),at(faces.left,.76,.18),at(faces.left,.82,.06),at(faces.left,.86,0)],true)} fill="#020b10" stroke="#a0937a" strokeWidth=".85"/>
         {profile.chapter>=1&&<path d={path([at(faces.right,.2,.23),at(faces.right,.24,.31),at(faces.right,.2,.39),at(faces.right,.31,.44),at(faces.right,.37,.37),at(faces.right,.4,.27),at(faces.right,.32,.2)],true)} fill="#02090c" stroke="#a4957d" strokeWidth=".9"/>}
         {profile.chapter===2&&<path d={line(faces.right,[[.16,.24],[.43,.38]])+line(faces.right,[[.22,.46],[.4,.26]])} fill="none" stroke="#7d8f88" strokeWidth="1"/>}
       </g>}
       <CampusFixtures faces={faces} profile={profile}/>
-      <path className={'campus-structure-outline '+(observation.active==='building'?'is-active':'')} d={path([faces.left[0],faces.left[1],faces.right[0],faces.right[1],faces.right[2],faces.right[3],faces.left[3]],true)} fill="none" pointerEvents="none"/>
+      <path className={'campus-structure-outline '+(observation.active==='building'?'is-active':'')} d={path(outline,true)} fill="none" pointerEvents="none"/>
     </g>
   </Observe>;
 });
