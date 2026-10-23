@@ -1,3 +1,4 @@
+import MechanicCrest from './MechanicCrest';
 import React, { useState, useEffect, useRef } from 'react';
 import { GameState } from '../types';
 import { Radio, Shield, Zap, AlertTriangle, Signal, Wifi, WifiOff } from 'lucide-react';
@@ -95,7 +96,7 @@ export default function MinigameFrequencyWar({ state, onComplete, spendPP }: Min
 
         {!started && (
           <div className="absolute inset-0 bg-black/90 z-50 flex flex-col items-center justify-center p-8 text-center">
-            <Radio className="w-16 h-16 text-[#ff4444] mb-4 crt-flicker" />
+            <MechanicCrest kind="frequency"/>
             <h2 className="text-3xl font-black text-[#ff4444] mb-3 tracking-[0.3em]">夺 取 校 园 之 声</h2>
             <p className="text-white/70 mb-2 text-sm max-w-md">行政楼顶层广播站 · 35秒内劫持三个FM频段</p>
             {fieldSupport > 0 && <p className="text-emerald-300 text-xs mb-2">地下联络工作组筹备 {fieldSupport} 份 · 各频段初始值 +{fieldSupport * 5}</p>}
@@ -111,7 +112,7 @@ export default function MinigameFrequencyWar({ state, onComplete, spendPP }: Min
 
         <div className="flex justify-between items-center mb-5 border-b border-[#ff4444]/30 pb-3">
           <div className="flex items-center gap-3">
-            <Radio className="w-7 h-7 text-[#ff4444] crt-flicker" />
+            <MechanicCrest kind="frequency"/>
             <div><h2 className="text-xl font-black text-[#ff4444] tracking-[0.2em]">电波战：夺取校园之声</h2>
               <div className="text-[10px] text-white/40">行政楼广播站 · FM 88.0 / 93.0 / 98.0</div></div>
           </div>

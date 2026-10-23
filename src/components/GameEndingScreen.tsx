@@ -70,8 +70,8 @@ export default function GameEndingScreen({ state, onRestart, onReturnToMainMenu 
   }, []);
 
   return (
-    <div className="fixed inset-0 z-[100] bg-black flex items-center justify-center p-8">
-      <div className={`max-w-4xl w-full bg-zinc-950 border-2 ${details.borderColor} p-8 relative overflow-hidden flex flex-col items-center text-center max-h-[90vh] overflow-y-auto`}>
+    <div className="ending-screen fixed inset-0 z-[100] bg-black flex items-center justify-center">
+      <div className={`ending-screen__dossier w-full bg-zinc-950 border-2 ${details.borderColor} p-8 relative overflow-hidden flex flex-col items-center text-center max-h-[90vh] overflow-y-auto`}>
         {/* Scanline effect */}
         <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_4px,3px_100%] z-10 opacity-20"></div>
 
@@ -82,12 +82,11 @@ export default function GameEndingScreen({ state, onRestart, onReturnToMainMenu 
           {details.subtitle}
         </h2>
 
-        <div className={`w-full h-64 border ${details.borderColor} mb-8 relative overflow-hidden`}>
-          <img src={getEndingImageUrl(details.imageKey)} alt="Ending" className="w-full h-full object-cover opacity-80 mix-blend-luminosity" />
-          <div className={`absolute inset-0 ${details.bgColor} mix-blend-overlay`}></div>
-        </div>
+        <figure className={`ending-cg ${details.borderColor}`}>
+          <img src={getEndingImageUrl(details.imageKey)} alt={`${details.title} · 结局CG`} decoding="async"/>
+        </figure>
 
-        <p className="text-lg text-tno-text leading-relaxed mb-12 max-w-2xl text-left whitespace-pre-wrap">
+        <p className="ending-screen__description text-tno-text text-left whitespace-pre-wrap">
           {details.description}
         </p>
 
@@ -129,7 +128,7 @@ export default function GameEndingScreen({ state, onRestart, onReturnToMainMenu 
           <p className="ending-ledger-foot">累计印制约 {summary.papersPrinted.toLocaleString()} 张试卷，学习环境指数平均 {summary.average} / 100。{summary.cohorts ? `跨越 ${summary.cohorts} 届高考；升学人数根据本局学习环境推算。` : '本局尚未到达首个高考毕业季，因此录取人数为零。'}旧存档可能缺少历史累计数据。</p>
         </section>
 
-        <div className="flex gap-4 z-20 pointer-events-auto">
+        <div className="ending-screen__actions flex gap-4 z-20 pointer-events-auto">
           <button
             onClick={onRestart}
             className={`px-8 py-3 border-2 ${details.borderColor} ${details.color} hover:bg-white/10 font-bold tracking-widest transition-colors cursor-pointer pointer-events-auto`}

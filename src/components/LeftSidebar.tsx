@@ -148,9 +148,9 @@ export default function LeftSidebar({ state, hireAdvisor, dismissAdvisor, cancel
       {/* National Spirits（v8.11.2：法案动态精神不在此显示，见校内法案区） */}
       <div className="nation-module nation-module--spirits p-3 border-b border-tno-border">
         <div className="nation-module-heading text-xs text-tno-text/60 mb-1.5 uppercase tracking-widest">国家精神</div>
-        <div className="flex flex-wrap gap-1.5">
+        <div className="nation-spirit-rack flex flex-wrap gap-1.5">
           <HoverWindow width={302} estimateHeight={366} content={<div className="bg-tno-panel border border-tno-border p-3 shadow-lg shadow-black/60">
-            <div className="flex items-center gap-2 mb-2 border-b border-tno-border/50 pb-2"><SpiritArt spirit={heyiLight.spirit} /><div className="min-w-0 flex-1 font-bold text-sm text-tno-highlight">合一之光</div><span className="text-[9px] font-bold text-tno-highlight/70">中性</span></div>
+            <div className="flex items-center gap-2 mb-2 border-b border-tno-border/50 pb-2"><SpiritArt spirit={heyiLight.spirit} state={state}/><div className="min-w-0 flex-1 font-bold text-sm text-tno-highlight">合一之光</div><span className="text-[9px] font-bold text-tno-highlight/70">中性</span></div>
             <div className="flex items-baseline justify-between border-b border-tno-border/40 pb-2 mb-2"><span className="text-[11px] tracking-wider text-tno-text/70">合一目前状况</span><strong className="font-mono text-sm text-tno-highlight">{heyiLight.value}<small className="font-normal text-tno-text/50"> / 100</small></strong></div>
             <div className="grid grid-cols-1 gap-0.5">{(['students', 'teachers', 'sign', 'gate', 'building', 'road', 'trees', 'guard'] as const).map(zone => {
               const entry = heyiLight.zones[zone];
@@ -158,7 +158,7 @@ export default function LeftSidebar({ state, hireAdvisor, dismissAdvisor, cancel
               return <div key={zone} className="flex justify-between gap-3 border-b border-tno-border/25 py-0.5 text-[11px]"><span className="text-tno-text/65">{entry.label}</span><span className={`font-semibold tracking-wider ${color}`}>{entry.status}</span></div>;
             })}</div>
           </div>}>
-            <div className="nation-spirit-icon" aria-label="国家精神：合一之光"><SpiritArt spirit={heyiLight.spirit} /></div>
+            <div className="nation-spirit-icon" aria-label="国家精神：合一之光"><SpiritArt spirit={heyiLight.spirit} state={state}/></div>
           </HoverWindow>
           {state.nationalSpirits
             .filter(spirit => !spirit.id.startsWith('law_spirit_'))

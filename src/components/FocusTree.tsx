@@ -6,6 +6,7 @@ import { STORY_EVENTS } from '../data/storyEvents';
 import { applyYangSettlement, CROSSROADS_RULES, CROSSROADS_LABELS, getCrossroadsOutcome } from '../engine/assemblyPolitics';
 import FocusHoverCard from './FocusHoverCard';
 import { formatControl, getCampusControlProgress, getTileControl } from '../engine/mapState';
+import { getFocusLayout } from './focusLayout';
 
 interface FocusTreeProps {
   state: GameState;
@@ -3225,8 +3226,8 @@ export default function FocusTree({ state, startFocus, triggerError, isSuperEven
   };
 
   const currentNodes = getFocusNodes(state.currentFocusTree);
-  const focusY = (node: FocusNode) => Math.round(node.y * 1.6);
-  const canvasWidth = Math.max(1200, ...currentNodes.map(node => node.x + 280));
+  const {x:focusX,y:focusY}=getFocusLayout(currentNodes);
+  const canvasWidth = Math.max(1200, ...currentNodes.map(node => focusX(node) + 280));
   const canvasHeight = Math.max(1000, ...currentNodes.map(node => focusY(node) + 260));
 
   const canStartFocus = (node: FocusNode) => {
@@ -3295,9 +3296,9 @@ export default function FocusTree({ state, startFocus, triggerError, isSuperEven
               const isCompleted = state.completedFocuses.includes(reqId);
               const isAvailable = canStartFocus(node);
               const strokeColor = isCompleted ? '#a5ba8d' : (isAvailable ? '#cbb581' : '#4c4b43');
-              const startX = reqNode.x + 82;
+              const startX = focusX(reqNode) + 82;
               const startY = focusY(reqNode) + 126;
-              const endX = node.x + 82;
+              const endX = focusX(node) + 82;
               const endY = focusY(node);
               const middleY = Math.min(endY - 2, startY + Math.max(2, (endY - startY) / 2));
 
@@ -3338,7 +3339,7 @@ export default function FocusTree({ state, startFocus, triggerError, isSuperEven
                 onClick={() => handleNodeClick(node)}
                 onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); handleNodeClick(node); } }}
                 className={`focus-art-node absolute select-none z-10 group hover:z-[100] ${isCompleted ? 'focus-art-node--completed' : isActive ? 'focus-art-node--active' : isAvailable ? 'focus-art-node--available cursor-pointer' : 'focus-art-node--locked'}`}
-                style={{ left: node.x, top: focusY(node) }}
+                style={{ left: focusX(node), top: focusY(node) }}
               >
                 <FocusArt node={node} />
                 <span className="focus-art-node__status">{status}</span>

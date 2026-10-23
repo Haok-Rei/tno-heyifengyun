@@ -12,7 +12,7 @@ test('all authored events and ambient families have valid local, content-specifi
   const signatures=new Set<string>();
   for(const event of events){
     const art=getEventArtwork(event);assert.ok(art,event.id);
-    if(art.kind==='scene'){assert.ok(!art.src.startsWith('http'),event.id);signatures.add(art.src);}
+    if(art.kind==='scene'||art.kind==='painted'){assert.ok(!art.src.startsWith('http'),event.id);signatures.add(art.src);}
     else {assert.ok(art.primary&&art.secondary&&!art.primary.startsWith('http')&&!art.secondary.startsWith('http'),event.id);signatures.add(art.primary+' / '+art.secondary);}
   }
   assert.ok(signatures.size/events.length>.9,'over 90% distinct visual subjects across authored events');

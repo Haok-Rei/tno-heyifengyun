@@ -1,0 +1,650 @@
+[
+  {
+    "source": "src/assets/route-art-v2/masters/hero/H_assembly_upgrade_program.png",
+    "sha256": "6902578f252103fb45d99fe58726503a123ba78bb4a7dfa75774c659ec151d54",
+    "output": "src/assets/campaign-art/subjects/assembly_upgrade_program.webp",
+    "width": 960,
+    "height": 606,
+    "bytes": 191858
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/hero/H_charge_b3.png",
+    "sha256": "87bff6d8116bf677ee27fc6329b3b47c964e2adf63ae5b9bff3a76f1ada0298d",
+    "output": "src/assets/campaign-art/subjects/charge_b3.webp",
+    "width": 960,
+    "height": 753,
+    "bytes": 198096
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/hero/H_crossroads_of_fate.png",
+    "sha256": "fbcd7623ac568be963de59aa66ed7e0336c44ef509cdd848984554f199bf8762",
+    "output": "src/assets/campaign-art/subjects/crossroads_of_fate.webp",
+    "width": 960,
+    "height": 625,
+    "bytes": 237658
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/hero/H_declare_indep.png",
+    "sha256": "9b66a9a82451a670a0fdebc3b7d41dfd18345ecf642b093abfebc780396a40e1",
+    "output": "src/assets/campaign-art/subjects/declare_indep.webp",
+    "width": 960,
+    "height": 788,
+    "bytes": 200922
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/hero/H_defend_b3.png",
+    "sha256": "dc665ea19ddd0141944e75113a694c2238990fcd782017a8d51ede67676eac04",
+    "output": "src/assets/campaign-art/subjects/defend_b3.webp",
+    "width": 960,
+    "height": 636,
+    "bytes": 275588
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/hero/H_democratic_reforms.png",
+    "sha256": "aad83f1816d9153f84bac699e33e61290ecdf2a1f7114ffd4bbe85565388f477",
+    "output": "src/assets/campaign-art/subjects/democratic_reforms.webp",
+    "width": 960,
+    "height": 786,
+    "bytes": 249462
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/hero/H_first_democratic_election.png",
+    "sha256": "1df8ad2c3350ec58f0866ee25d5f2f16f75e67ee2f178dd66658f54f5f6e255a",
+    "output": "src/assets/campaign-art/subjects/first_democratic_election.webp",
+    "width": 960,
+    "height": 839,
+    "bytes": 244052
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/hero/H_great_purge_map_phase.png",
+    "sha256": "b698bc54961b07b3c4505618878cce4089601b10c522be3ca3686a3e7e9f16d6",
+    "output": "src/assets/campaign-art/subjects/great_purge_map_phase.webp",
+    "width": 960,
+    "height": 824,
+    "bytes": 289516
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/hero/H_gx_embarrass_settlement.png",
+    "sha256": "7e49f8255ace6f727a99bdca7d8e6bcbca9ab7442f150a08a5f988d1d566e4b9",
+    "output": "src/assets/campaign-art/subjects/gx_embarrass_settlement.webp",
+    "width": 960,
+    "height": 806,
+    "bytes": 261180
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/hero/H_gx_redeem_settlement.png",
+    "sha256": "f1b726a27b6edda9c67a5fb0553caa8cf9f504d97250c1fe154559f2c12e0d1d",
+    "output": "src/assets/campaign-art/subjects/gx_redeem_settlement.webp",
+    "width": 960,
+    "height": 835,
+    "bytes": 330218
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/hero/H_gx_ruin_settlement.png",
+    "sha256": "361e74f65fdfb5f4255f25abc280f04ec319fa53d15c32b276ed62a730cf359d",
+    "output": "src/assets/campaign-art/subjects/gx_ruin_settlement.webp",
+    "width": 960,
+    "height": 816,
+    "bytes": 320134
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/hero/H_gx_start.png",
+    "sha256": "2a6ddbcfe0b34abc72a1e5f12d33557399930a1e7f04192e4559e6d353a412c4",
+    "output": "src/assets/campaign-art/subjects/gx_start.webp",
+    "width": 960,
+    "height": 798,
+    "bytes": 271324
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/hero/H_haobang_grand_success.png",
+    "sha256": "facf1af3875bb71252816c445ab83e60c697bde5ba6e6b981df928dc5a9008d5",
+    "output": "src/assets/campaign-art/subjects/haobang_grand_success.webp",
+    "width": 960,
+    "height": 801,
+    "bytes": 254482
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/hero/H_haobang_start.png",
+    "sha256": "e3c8474cb9113b79e6a39c4ac07640d2bbe60ff2cbc3b0cb6b267babda380266",
+    "output": "src/assets/campaign-art/subjects/haobang_start.webp",
+    "width": 960,
+    "height": 766,
+    "bytes": 234736
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/hero/H_jidi_corporate_utopia.png",
+    "sha256": "0f5025a87f749e84e37348cc0ddcab846319c54dbf68f738476fe997e3efb423",
+    "output": "src/assets/campaign-art/subjects/jidi_corporate_utopia.webp",
+    "width": 960,
+    "height": 832,
+    "bytes": 260146
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/hero/H_jidi_hidden_riot.png",
+    "sha256": "5c8aae8e111ce10a5d0673027179cdf816c6013d52c44de810325a374712975a",
+    "output": "src/assets/campaign-art/subjects/jidi_hidden_riot.webp",
+    "width": 960,
+    "height": 806,
+    "bytes": 239956
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/hero/H_jidi_new_era.png",
+    "sha256": "2022b50f1be929691215ac72a08c5134b04647f5da913fd5299d04c7a785e425",
+    "output": "src/assets/campaign-art/subjects/jidi_new_era.webp",
+    "width": 960,
+    "height": 795,
+    "bytes": 285104
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/hero/H_last_stand_fails.png",
+    "sha256": "983dd1e17a0d9e4028159679e1dab302ecbbeab489527ece2f57cf9916c77928",
+    "output": "src/assets/campaign-art/subjects/last_stand_fails.webp",
+    "width": 960,
+    "height": 812,
+    "bytes": 273666
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/hero/H_lu_bohan_start.png",
+    "sha256": "75ad1739832c444431165476df721d59b697b21bd622dd7d1516cd3d683f50ab",
+    "output": "src/assets/campaign-art/subjects/lu_bohan_start.webp",
+    "width": 960,
+    "height": 765,
+    "bytes": 256698
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/hero/H_pan_ending.png",
+    "sha256": "0daf4d5393b4991a395073eb29b486d401cbe3f4c9005e4bc9df6a319ff8d03b",
+    "output": "src/assets/campaign-art/subjects/pan_ending.webp",
+    "width": 960,
+    "height": 813,
+    "bytes": 231270
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/hero/H_pan_takeover.png",
+    "sha256": "e07607fd31fe0893c7a73d1cf02034773b3be786e552dcd8cc06cc2fc927829e",
+    "output": "src/assets/campaign-art/subjects/pan_takeover.webp",
+    "width": 960,
+    "height": 794,
+    "bytes": 240614
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/hero/H_sole_helmsman.png",
+    "sha256": "1ffea3b27e81cb6c44550f42eb0ec58f0a4822f8d39762d27ebb8448fb8c7ce6",
+    "output": "src/assets/campaign-art/subjects/sole_helmsman.webp",
+    "width": 932,
+    "height": 840,
+    "bytes": 230534
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/hero/H_start_2023.png",
+    "sha256": "be8c63e3358b9cb67f02e3f6d996cafb2b0a427591b858cf8240801e3d568801",
+    "output": "src/assets/campaign-art/subjects/start_2023.webp",
+    "width": 960,
+    "height": 769,
+    "bytes": 254926
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/hero/H_start_reform.png",
+    "sha256": "fa4dcf93cda43bcbb8d081c1394e9d9154aaa32be7b6b12e91ab2b04fb2f5681",
+    "output": "src/assets/campaign-art/subjects/start_reform.webp",
+    "width": 960,
+    "height": 780,
+    "bytes": 246988
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/hero/H_true_left_consolidation.png",
+    "sha256": "d189895745d41f19a0b5d59ad07ed1f916d2916793fee7f9aeea534ffc782f5d",
+    "output": "src/assets/campaign-art/subjects/true_left_consolidation.webp",
+    "width": 960,
+    "height": 740,
+    "bytes": 244864
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/hero/H_true_left_ending.png",
+    "sha256": "ce95f27f476c28719f119c6980ca967a35bf02d0ada375b2dc8e986d2eb593d9",
+    "output": "src/assets/campaign-art/subjects/true_left_ending.webp",
+    "width": 960,
+    "height": 819,
+    "bytes": 245486
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/hero/H_ultimate_master_teacher.png",
+    "sha256": "d583a388806ed1c7b7295078a768c4bd63228ed00decd8e4ddafa8e6e626c6ce",
+    "output": "src/assets/campaign-art/subjects/ultimate_master_teacher.webp",
+    "width": 924,
+    "height": 840,
+    "bytes": 278962
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/hero/H_wu_coup_december.png",
+    "sha256": "d767ce70336d19fd7a982bca630d459acfc592ab5430215d0b95b60c884d5c50",
+    "output": "src/assets/campaign-art/subjects/wu_coup_december.webp",
+    "width": 960,
+    "height": 805,
+    "bytes": 252474
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/hero/H_wu_millennium_plan.png",
+    "sha256": "e337a536172e5e8566fa2cf50054a912f3cbbdef56a4dd5b1f9f7bdd21360a54",
+    "output": "src/assets/campaign-art/subjects/wu_millennium_plan.webp",
+    "width": 960,
+    "height": 801,
+    "bytes": 264700
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/hero/H_wu_model_school.png",
+    "sha256": "26dde5186ac2bfe02a704f6976ff4ee727992e6c2ee4257ac5f5ebbb2f08eac7",
+    "output": "src/assets/campaign-art/subjects/wu_model_school.webp",
+    "width": 960,
+    "height": 722,
+    "bytes": 218292
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/hero/H_wu_negotiate_peace.png",
+    "sha256": "7141c326c8eb64ef7e7b16e69e68e229528a6233078ca6df6e59646f7a286fc7",
+    "output": "src/assets/campaign-art/subjects/wu_negotiate_peace.webp",
+    "width": 960,
+    "height": 726,
+    "bytes": 233094
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/hero/H_wu_order_restored.png",
+    "sha256": "3330b3f8e32673ce85dfd35a872133019218dc439c61b8e0db0e7430996e17b3",
+    "output": "src/assets/campaign-art/subjects/wu_order_restored.webp",
+    "width": 960,
+    "height": 786,
+    "bytes": 261626
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/hero/H_yang_yule_start.png",
+    "sha256": "17a3ab4a76adb6200f5930557b3ba980f498315a797670e05deff90bd272a7df",
+    "output": "src/assets/campaign-art/subjects/yang_yule_start.webp",
+    "width": 960,
+    "height": 822,
+    "bytes": 251044
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/bop-side_exam_education.png",
+    "sha256": "8dfae625253f64c52473cda989799ec047956ea4a3d8cbe52c3a7dcb8761d3d8",
+    "output": "src/assets/campaign-art/mechanisms/bop-side_exam_education.webp",
+    "width": 118,
+    "height": 144,
+    "bytes": 7052
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/bop-side_quality_education.png",
+    "sha256": "ff99b0a3f726b08c850547e9ee9d9f44a37e86ba7e59e4bde484d6967ea1c852",
+    "output": "src/assets/campaign-art/mechanisms/bop-side_quality_education.webp",
+    "width": 118,
+    "height": 144,
+    "bytes": 7294
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/category_assembly.png",
+    "sha256": "368db1f370fae81e3b6471fe3b28aee83f980ae14b139a933a64e7affe6d5845",
+    "output": "src/assets/campaign-art/mechanisms/category_assembly.webp",
+    "width": 160,
+    "height": 123,
+    "bytes": 10322
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/category_campus.png",
+    "sha256": "df184729b287a8c133e8eb06992ac57c5af24697efaf29d856c416fd844a5576",
+    "output": "src/assets/campaign-art/mechanisms/category_campus.webp",
+    "width": 160,
+    "height": 123,
+    "bytes": 12282
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/category_crisis.png",
+    "sha256": "765d5dd7ffb5c8c275b8b9bac5a65fe99470ca28e0ca1a8d4a5ab942d55e038f",
+    "output": "src/assets/campaign-art/mechanisms/category_crisis.webp",
+    "width": 160,
+    "height": 123,
+    "bytes": 11428
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/category_education.png",
+    "sha256": "a618b8c5193690c157accba09b3c453c4b45ea06e00ce2a69b61f83fd60a8b1d",
+    "output": "src/assets/campaign-art/mechanisms/category_education.webp",
+    "width": 160,
+    "height": 123,
+    "bytes": 10630
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/category_guide.png",
+    "sha256": "1d6930282cc2ac10621ad21b1c949bd075f7327684ddb8e180f556c422c6c642",
+    "output": "src/assets/campaign-art/mechanisms/category_guide.webp",
+    "width": 160,
+    "height": 123,
+    "bytes": 11876
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/category_haobang.png",
+    "sha256": "888c959a9eaa0d0944311fbaa010af57751c95f0984fef27d719659fa0f8873f",
+    "output": "src/assets/campaign-art/mechanisms/category_haobang.webp",
+    "width": 160,
+    "height": 123,
+    "bytes": 9818
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/category_jidi.png",
+    "sha256": "c2e2e6f1229202279d98011536b35eec1b859c9dddd1708e02485e46262521cd",
+    "output": "src/assets/campaign-art/mechanisms/category_jidi.webp",
+    "width": 160,
+    "height": 123,
+    "bytes": 11410
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/category_politburo.png",
+    "sha256": "724b5a11474e95fcd8f3489b741f9afbf496264f91416ddeb59258b72203ebf8",
+    "output": "src/assets/campaign-art/mechanisms/category_politburo.webp",
+    "width": 160,
+    "height": 123,
+    "bytes": 8864
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/category_print.png",
+    "sha256": "0c0a84b08eac65e788d946e45029d4e199e926e74170a8a992305afa85ad7810",
+    "output": "src/assets/campaign-art/mechanisms/category_print.webp",
+    "width": 160,
+    "height": 123,
+    "bytes": 12984
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/category_yang.png",
+    "sha256": "3f63ea6a585626c1a245b0f075dffa4a425c4de66b92b29a8eab470fd1716fc5",
+    "output": "src/assets/campaign-art/mechanisms/category_yang.webp",
+    "width": 160,
+    "height": 123,
+    "bytes": 9328
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/entry_assembly.png",
+    "sha256": "041a5a7d18f56ac22eee3f1a8d02f83acba6fa14e18bf9fb3604b2019ce1df9d",
+    "output": "src/assets/campaign-art/mechanisms/entry_assembly.webp",
+    "width": 128,
+    "height": 128,
+    "bytes": 7538
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/entry_b3_recovery.png",
+    "sha256": "4c152b77794f482fbc1b820938c8cc82e6d570799ae762b2dfb5298619a04a51",
+    "output": "src/assets/campaign-art/mechanisms/entry_b3_recovery.webp",
+    "width": 128,
+    "height": 128,
+    "bytes": 8988
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/entry_campus.png",
+    "sha256": "0b57b43b621ae993f53e4bae942e981273096a2781bf62925630c6ef2bb9b706",
+    "output": "src/assets/campaign-art/mechanisms/entry_campus.webp",
+    "width": 128,
+    "height": 128,
+    "bytes": 8654
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/entry_crackdown.png",
+    "sha256": "7d156ec77f83aaa4e01f5baa5b4d95feca752ca029bc07952b17feb9f7c56a60",
+    "output": "src/assets/campaign-art/mechanisms/entry_crackdown.webp",
+    "width": 128,
+    "height": 128,
+    "bytes": 6992
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/entry_crisis.png",
+    "sha256": "535e6c5a9c6cd6cd8886f372d59c415578744ed21df56b25fcf03746b06f49fb",
+    "output": "src/assets/campaign-art/mechanisms/entry_crisis.webp",
+    "width": 128,
+    "height": 128,
+    "bytes": 7990
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/entry_education.png",
+    "sha256": "1987ca44286158f7645d52b0ca01ecef15dd1d6f6585c6c49ba30f2d9f8dff62",
+    "output": "src/assets/campaign-art/mechanisms/entry_education.webp",
+    "width": 128,
+    "height": 128,
+    "bytes": 7856
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/entry_election.png",
+    "sha256": "7c338c505fe3a2a335927e3021a0c7a5ce718e1e59e6515c464a4fc3f66ee815",
+    "output": "src/assets/campaign-art/mechanisms/entry_election.webp",
+    "width": 128,
+    "height": 128,
+    "bytes": 8050
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/entry_frequency.png",
+    "sha256": "62783da9a21b1f0aedd25759b042800fbd87141be562c157c0183035ac045a0a",
+    "output": "src/assets/campaign-art/mechanisms/entry_frequency.webp",
+    "width": 128,
+    "height": 128,
+    "bytes": 8346
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/entry_gouxiong_chat.png",
+    "sha256": "617d45a7c450fbcf6c799098b68784278f3851303868930588a77f733927944a",
+    "output": "src/assets/campaign-art/mechanisms/entry_gouxiong_chat.webp",
+    "width": 128,
+    "height": 128,
+    "bytes": 6926
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/entry_gouxiong_cyber.png",
+    "sha256": "f6de56a58da43a9ab08d0d99bb89a3b0910130482941d277dc77a37f4a36e151",
+    "output": "src/assets/campaign-art/mechanisms/entry_gouxiong_cyber.webp",
+    "width": 128,
+    "height": 128,
+    "bytes": 7554
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/entry_governance.png",
+    "sha256": "0928ca8989272169b53276007317a8afe5ee456c71bdca95f80f88a518a4d191",
+    "output": "src/assets/campaign-art/mechanisms/entry_governance.webp",
+    "width": 128,
+    "height": 128,
+    "bytes": 8868
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/entry_guide.png",
+    "sha256": "df1f8a6ef16ddb97783d1a7cafe16a5d31e4555df7d525cdfccb5a493eadec19",
+    "output": "src/assets/campaign-art/mechanisms/entry_guide.webp",
+    "width": 128,
+    "height": 128,
+    "bytes": 8332
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/entry_haobang.png",
+    "sha256": "779cfa06b2d4421a3c4dcc0b4753ee2ce11a29a393319a615e4382654b745b0b",
+    "output": "src/assets/campaign-art/mechanisms/entry_haobang.webp",
+    "width": 128,
+    "height": 128,
+    "bytes": 7064
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/entry_jidi.png",
+    "sha256": "4f8acc0ffb07b9561560c787fa5b1ca1d70c1a515881a9b2b772c499e65b6525",
+    "output": "src/assets/campaign-art/mechanisms/entry_jidi.webp",
+    "width": 128,
+    "height": 128,
+    "bytes": 7736
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/entry_lu.png",
+    "sha256": "39d4c8c4f1deba1b5cbd2d73c78e893081aa284fe71439f34a1e02d747e55e3c",
+    "output": "src/assets/campaign-art/mechanisms/entry_lu.webp",
+    "width": 128,
+    "height": 128,
+    "bytes": 7764
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/entry_negotiation.png",
+    "sha256": "3dbf130860d36de39f4208031fe24b89d35d8663ec19770726404bc922dce0cc",
+    "output": "src/assets/campaign-art/mechanisms/entry_negotiation.webp",
+    "width": 128,
+    "height": 128,
+    "bytes": 7174
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/entry_politburo.png",
+    "sha256": "5cb400299c5402f7e1ce25b97fd3cb5ae3aa6f4fc9a9e96bbce46ba407752f36",
+    "output": "src/assets/campaign-art/mechanisms/entry_politburo.webp",
+    "width": 128,
+    "height": 128,
+    "bytes": 6842
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/entry_poster.png",
+    "sha256": "6bd691a434d8768a6b32927a73594bf6d3818b8adba3989f571e6b7b3366e7d8",
+    "output": "src/assets/campaign-art/mechanisms/entry_poster.webp",
+    "width": 128,
+    "height": 128,
+    "bytes": 8666
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/entry_print.png",
+    "sha256": "cc88810f81cfdeff890388d1735824823cf7e6415fd45ae802e2946b23c51f71",
+    "output": "src/assets/campaign-art/mechanisms/entry_print.webp",
+    "width": 128,
+    "height": 128,
+    "bytes": 8818
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/entry_reform.png",
+    "sha256": "314fdbbb0c0567cc0f53eec9e68e776e871cf19daafc0b00c9ee2d610513d172",
+    "output": "src/assets/campaign-art/mechanisms/entry_reform.webp",
+    "width": 128,
+    "height": 128,
+    "bytes": 7290
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/entry_regions.png",
+    "sha256": "fc397440d1dad57f8d3fb8399382993e6f5a1cb938c13290c477d9ef5719ae70",
+    "output": "src/assets/campaign-art/mechanisms/entry_regions.webp",
+    "width": 128,
+    "height": 128,
+    "bytes": 9448
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/entry_resources.png",
+    "sha256": "a29f934ed68de686c35464d7cab12a5ba4ffc6cc4be8cfeb59aedce18f2a6161",
+    "output": "src/assets/campaign-art/mechanisms/entry_resources.webp",
+    "width": 128,
+    "height": 128,
+    "bytes": 7624
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/entry_siege.png",
+    "sha256": "5ac940408800e2d9e0c3f964a95e1a8f3cd8f2cf37e7110017a3be0c92ca8a2d",
+    "output": "src/assets/campaign-art/mechanisms/entry_siege.webp",
+    "width": 128,
+    "height": 128,
+    "bytes": 7780
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/entry_wu.png",
+    "sha256": "6992012bc021e2502e65b26972385186a88fd60db06cc287b6ea4a4d6468175e",
+    "output": "src/assets/campaign-art/mechanisms/entry_wu.webp",
+    "width": 128,
+    "height": 128,
+    "bytes": 8098
+  },
+  {
+    "source": "src/assets/route-art-v2/auxiliary/entry_yang.png",
+    "sha256": "776ae30824ab552ffacef5098d0919ad2cb704f813df007b618e7fccbf106eb4",
+    "output": "src/assets/campaign-art/mechanisms/entry_yang.webp",
+    "width": 128,
+    "height": 128,
+    "bytes": 6628
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/backgrounds/coalition.png",
+    "sha256": "b34f1eb766b5a132422c02e24ee2de8943933de5c353b6cc40436f51ac245f03",
+    "output": "src/assets/campaign-art/frames/coalition.webp",
+    "width": 240,
+    "height": 168,
+    "bytes": 16086
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/backgrounds/corporate.png",
+    "sha256": "daec8776a639a8b7889ced70718f9973974c9698b292338518cd5948c97d2d78",
+    "output": "src/assets/campaign-art/frames/corporate.webp",
+    "width": 240,
+    "height": 168,
+    "bytes": 11850
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/backgrounds/culture.png",
+    "sha256": "aaf490f28a5086d232500318fbcd27e346ee1c769f3e0d5df07baac6849065b9",
+    "output": "src/assets/campaign-art/frames/culture.webp",
+    "width": 240,
+    "height": 168,
+    "bytes": 14356
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/backgrounds/democracy.png",
+    "sha256": "fc5aa29f4b02d3b3025d2cc8875b3be7af8b22804a7ed0266ba943fb4fb9985f",
+    "output": "src/assets/campaign-art/frames/democracy.webp",
+    "width": 240,
+    "height": 168,
+    "bytes": 15848
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/backgrounds/despair.png",
+    "sha256": "6f4ca338fce889e4dcb86bd48db89a6c2af3acae71445f4cdfdbd3883151af24",
+    "output": "src/assets/campaign-art/frames/despair.webp",
+    "width": 240,
+    "height": 168,
+    "bytes": 16546
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/backgrounds/haobang.png",
+    "sha256": "fac4fda540ca1c000d92e64bbfcf53fcd3df4bfe17bce64ee63d511eeff8ced0",
+    "output": "src/assets/campaign-art/frames/haobang.webp",
+    "width": 240,
+    "height": 168,
+    "bytes": 15380
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/backgrounds/military.png",
+    "sha256": "de2b8351e46790b4f908949af1a78d3636c8991f9e5bd52c39ebbf64314557ed",
+    "output": "src/assets/campaign-art/frames/military.webp",
+    "width": 240,
+    "height": 168,
+    "bytes": 11520
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/backgrounds/red.png",
+    "sha256": "67b80ea802f6b1a5410814c62bee574569e5a5f8cdd7d6feca659f577baa1902",
+    "output": "src/assets/campaign-art/frames/red.webp",
+    "width": 240,
+    "height": 178,
+    "bytes": 15628
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/backgrounds/school.png",
+    "sha256": "c91bf190f8c7cb8d575869bbf82fee8a3171d3b8dfb4f4d1a36624328501192c",
+    "output": "src/assets/campaign-art/frames/school.webp",
+    "width": 240,
+    "height": 168,
+    "bytes": 14240
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/backgrounds/security.png",
+    "sha256": "e2d9bcf8a8ba173399ca0ccb4f7f60ffb3e34f45df3a5f6914d4a1c39580a3e5",
+    "output": "src/assets/campaign-art/frames/security.webp",
+    "width": 240,
+    "height": 168,
+    "bytes": 12444
+  },
+  {
+    "source": "src/assets/route-art-v2/masters/backgrounds/study.png",
+    "sha256": "07fad0f2a6ba31cd2c07ca6060d38bae8f9940bbcd695d6f409e14128d91b0f3",
+    "output": "src/assets/campaign-art/frames/study.webp",
+    "width": 240,
+    "height": 168,
+    "bytes": 12472
+  }
+]

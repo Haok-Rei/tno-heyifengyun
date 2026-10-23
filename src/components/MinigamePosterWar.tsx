@@ -1,3 +1,4 @@
+import MechanicCrest from './MechanicCrest';
 import React, { useState, useEffect, useRef } from 'react';
 import { GameState } from '../types';
 import { Megaphone, Shield, Clock, Target } from 'lucide-react';
@@ -99,7 +100,7 @@ export default function MinigamePosterWar({ state, onComplete, spendPP }: Props)
 
         {!started && (
           <div className="absolute inset-0 bg-black/90 z-50 flex flex-col items-center justify-center p-8 text-center">
-            <Megaphone className="w-16 h-16 text-[#f97316] mb-4" />
+            <MechanicCrest kind="poster"/>
             <h2 className="text-3xl font-black text-[#f97316] mb-3 tracking-[0.3em]">校 园 海 报 战</h2>
             {fieldSupport > 0 && <p className="text-emerald-300 text-xs mb-2">地下联络工作组筹备 {fieldSupport} 份 · 操场初始覆盖 +{fieldSupport * 5}</p>}
             <p className="text-white/70 mb-2 text-sm max-w-md">全校范围 · 30秒内在六大建筑区域张贴革命海报</p>
@@ -116,7 +117,7 @@ export default function MinigamePosterWar({ state, onComplete, spendPP }: Props)
         {/* Header */}
         <div className="flex justify-between items-center mb-4 border-b border-[#f97316]/30 pb-3">
           <div className="flex items-center gap-3">
-            <Megaphone className="w-7 h-7 text-[#f97316]" />
+            <MechanicCrest kind="poster"/>
             <div>
               <h2 className="text-xl font-black text-[#f97316] tracking-[0.2em]">校园海报战</h2>
               <div className="text-[10px] text-white/40">平均覆盖率 {avgCov()}% | 上次巡逻: {lastPatrol || '无'}</div>

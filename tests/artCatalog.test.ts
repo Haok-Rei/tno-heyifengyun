@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { ASSET_URLS, LOADING_ART_URLS, getAdvisorPortraitUrl } from '../src/config/assets';
 import { EXPANDED_ART_URLS } from '../src/config/expandedArtwork';
 import { SPIRIT_BACKGROUND_VARIANTS } from '../src/config/hoi4Artwork';
+import { ENDING_CG } from '../src/config/endingCgAssets';
 
 const root = process.cwd();
 const manifest = JSON.parse(readFileSync(join(root, 'src/config/artAssignments.json'), 'utf8')) as {
@@ -41,7 +42,7 @@ test('all supplied loading art is optimized and every local super-event scene ex
   const originals = readdirSync(join(root, 'art/载入图')).filter(name => name.endsWith('.png'));
   const optimized = readdirSync(join(root, 'src/assets/loading')).filter(name => name.endsWith('.webp'));
   assert.equal(optimized.length, originals.length);
-  assert.equal(LOADING_ART_URLS.length, originals.length);
+  assert.equal(LOADING_ART_URLS.length, originals.length + Object.keys(ENDING_CG).length);
   for (const url of LOADING_ART_URLS) assert.ok(existsSync(fileURLToPath(url)));
   for (const url of [ASSET_URLS.ui_game_logo, ASSET_URLS.ui_studio_logo]) assert.ok(existsSync(fileURLToPath(url)));
   for (const name of originals) assert.ok(optimized.includes(name.replace(/\.png$/, '.webp')));

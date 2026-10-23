@@ -1,3 +1,4 @@
+import { getMechanismEntryArt } from './components/MechanicCrest';
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import TopBar from './components/TopBar';
 import LeftSidebar, { WU_ROUTE_ADVISOR } from './components/LeftSidebar';
@@ -5438,7 +5439,7 @@ export default function App() {
           <button onClick={() => setIsChronicleOpen(true)}><span>▥</span>编年史</button>
           <button data-tour="rail-tutorial" aria-label="重新开始教学" onClick={reopenTutorial}><span>?</span>教学</button>
           {featureEntries.length > 0 && <div className="rail-feature-list" aria-label="已解锁的特色系统">
-            {featureEntries.map(entry => <button key={entry.id} data-tour={entry.id === 'heyi-light' ? 'heyi-light' : undefined} className={entry.active ? 'active' : ''} aria-pressed={entry.active} title={entry.label} onClick={entry.open}><span>{entry.glyph}</span>{entry.label}</button>)}
+            {featureEntries.map(entry => <button key={entry.id} data-tour={entry.id === 'heyi-light' ? 'heyi-light' : undefined} className={entry.active ? 'active' : ''} aria-pressed={entry.active} title={entry.label} onClick={entry.open}><span>{getMechanismEntryArt(entry.id) ? <img src={getMechanismEntryArt(entry.id)} alt="" draggable={false}/> : entry.glyph}</span>{entry.label}</button>)}
           </div>}
           <button className="rail-menu" onClick={openInGameMenu}><span>⚙</span>菜单</button>
         </nav>

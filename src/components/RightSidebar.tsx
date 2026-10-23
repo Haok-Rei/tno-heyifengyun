@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { AlertTriangle, Target, Book } from 'lucide-react';
 import { GameState, Decision, ALL_SUB_TILES } from '../types';
 import SituationMetrics from './SituationMetrics';
+import { MECHANISM_ART } from '../config/campaignArtwork';
 import { FLAVOR_EVENTS } from '../data/flavorEvents';
 import { STORY_EVENTS } from '../data/storyEvents';
 import RouteGuideDialog from './RouteGuideDialog';
@@ -1607,7 +1608,7 @@ export default function RightSidebar({ state, triggerDecision, triggerError }: R
       {/* Crises */}
        <div className="mb-4 flex flex-col max-h-64 min-h-0">
         <h2 className="text-tno-red font-bold text-lg mb-4 border-b border-tno-border pb-2 tracking-widest flex items-center gap-2">
-          <AlertTriangle className="w-5 h-5 animate-pulse" />
+          <img className="decision-title-art" src={MECHANISM_ART.category_crisis} alt="" aria-hidden="true"/>
           当前危机
         </h2>
         
@@ -1661,7 +1662,7 @@ export default function RightSidebar({ state, triggerDecision, triggerError }: R
       {/* Decisions */}
       <div className="flex-1 flex flex-col overflow-hidden">
         <h2 className="text-tno-highlight font-bold text-lg mb-4 border-b border-tno-border pb-2 tracking-widest flex items-center gap-2">
-          <Target className="w-5 h-5" />
+          <img className="decision-title-art" src={MECHANISM_ART.category_campus} alt="" aria-hidden="true"/>
           可用决议
         </h2>
 

@@ -156,7 +156,7 @@ export default function EndingGallery({ onBack }: EndingGalleryProps) {
           onClick={() => setSelected(null)}
         >
           <div
-            className={`max-w-2xl w-full border-2 ${selected.borderColor} bg-zinc-950 p-6 relative max-h-[85vh] overflow-y-auto`}
+            className={`max-w-4xl w-full border-2 ${selected.borderColor} bg-zinc-950 p-6 relative max-h-[85vh] overflow-y-auto`}
             onClick={ev => ev.stopPropagation()}
           >
             <button
@@ -170,10 +170,9 @@ export default function EndingGallery({ onBack }: EndingGalleryProps) {
             <div className="text-[10px] text-tno-text/40 font-mono mt-1 tracking-widest">
               〔{selected.routeTag}〕 · {new Date(unlockState.unlocked[selected.id] ?? 0).toLocaleDateString()} 解锁
             </div>
-            <div className={`w-full h-48 border ${selected.borderColor} mt-4 relative overflow-hidden`}>
-              <img src={getEndingImageUrl(selected.imageKey)} alt={selected.title} className="w-full h-full object-cover opacity-80 mix-blend-luminosity" />
-              <div className={`absolute inset-0 ${selected.bgColor} mix-blend-overlay`} />
-            </div>
+            <figure className={`ending-cg ending-gallery__cg ${selected.borderColor}`}>
+              <img src={getEndingImageUrl(selected.imageKey)} alt={`${selected.title} · 结局CG`} decoding="async"/>
+            </figure>
             <p className="text-sm text-tno-text leading-relaxed mt-4 whitespace-pre-wrap font-serif">
               {selected.description}
             </p>

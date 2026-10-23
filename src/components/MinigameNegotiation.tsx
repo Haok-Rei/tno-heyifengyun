@@ -1,3 +1,4 @@
+import MechanicCrest from './MechanicCrest';
 import React, { useMemo, useState } from 'react';
 import { GameState } from '../types';
 import { Scale, Shield, Banknote, Gauge, Handshake } from 'lucide-react';
@@ -94,7 +95,7 @@ export default function MinigameNegotiation({ state, onComplete, spendPP }: Mini
       <div className="strategy-minigame w-full max-w-5xl h-[82vh] border-2 border-[#b71c1c] bg-[#120707] text-[#f2d9d9] p-6 flex flex-col gap-4 shadow-[0_0_30px_rgba(183,28,28,0.35)]">
         <div className="flex items-center justify-between border-b border-[#7b1c1c] pb-3">
           <div className="flex items-center gap-3">
-            <Handshake className="w-7 h-7 text-[#ff6e6e]" />
+            <MechanicCrest kind="negotiation"/>
             <div>
               <h2 className="text-2xl font-bold tracking-widest text-[#ff8a8a]">极权派退党谈判</h2>
               <div className="text-xs text-[#c9a3a3]">自社派 与 极权派 特别条款博弈</div>

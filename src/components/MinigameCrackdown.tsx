@@ -1,3 +1,4 @@
+import MechanicCrest from './MechanicCrest';
 import React, { useState, useEffect, useRef } from 'react';
 import { GameState } from '../types';
 import { Siren, Shield, Clock, Eye } from 'lucide-react';
@@ -125,7 +126,7 @@ export default function MinigameCrackdown({ state, onComplete, spendPP }: Props)
 
         {!started && (
           <div className="absolute inset-0 bg-black/90 z-50 flex flex-col items-center justify-center p-8 text-center">
-            <Siren className="w-16 h-16 text-[#ff4444] mb-4" />
+            <MechanicCrest kind="crackdown"/>
             <h2 className="text-3xl font-black text-[#ff4444] mb-3 tracking-[0.3em]">午 夜 清 场</h2>
             <p className="text-white/70 mb-2 text-sm max-w-md">戒严行动 · 30秒内驱散校园各区域的聚集人群</p>
             {fieldSupport > 0 && <p className="text-emerald-300 text-xs mb-2">巡逻工作组筹备 {fieldSupport} 份 · 已锁定目标 +{fieldSupport * 2}</p>}
@@ -143,7 +144,7 @@ export default function MinigameCrackdown({ state, onComplete, spendPP }: Props)
         {/* Header */}
         <div className="flex justify-between items-center mb-4 border-b border-[#ff4444]/30 pb-3">
           <div className="flex items-center gap-3">
-            <Siren className="w-7 h-7 text-[#ff4444]" />
+            <MechanicCrest kind="crackdown"/>
             <div>
               <h2 className="text-xl font-black text-[#ff4444] tracking-[0.2em]">午夜清场</h2>
               <div className="text-[10px] text-white/40">清场 {cleared} | 误伤 {collateral} | {lastAction || '等待集结...'}</div>

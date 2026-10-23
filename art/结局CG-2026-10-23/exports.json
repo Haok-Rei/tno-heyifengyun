@@ -1,0 +1,83 @@
+[
+  {
+    "id": "game_over_anarchy",
+    "source": "art/结局CG-2026-10-23/game_over_anarchy.png",
+    "sha256": "06a081655e380928e6a47cd491db86f095a508ef7439ca4c587386cc92d5247d",
+    "output": "src/assets/endings/game_over_anarchy.webp",
+    "width": 1672,
+    "height": 941,
+    "bytes": 261656
+  },
+  {
+    "id": "game_over_bear",
+    "source": "art/结局CG-2026-10-23/game_over_bear.png",
+    "sha256": "21d4839abf12b068932b589e47e483f15ae027da0f64ebb146653ea9c641f63e",
+    "output": "src/assets/endings/game_over_bear.webp",
+    "width": 1672,
+    "height": 941,
+    "bytes": 392108
+  },
+  {
+    "id": "game_over_feng_millennium",
+    "source": "art/结局CG-2026-10-23/game_over_feng_millennium.png",
+    "sha256": "7074eb155322fb07928806117edd6e59b27d9f9620961206dc1e360c8ab5726d",
+    "output": "src/assets/endings/game_over_feng_millennium.webp",
+    "width": 1672,
+    "height": 941,
+    "bytes": 126630
+  },
+  {
+    "id": "game_over_gouxiong_embarrass",
+    "source": "art/结局CG-2026-10-23/game_over_gouxiong_embarrass.png",
+    "sha256": "03deac81e64d602bbea9e491105c8b15796da48027accc6f563e8b836f985f67",
+    "output": "src/assets/endings/game_over_gouxiong_embarrass.webp",
+    "width": 1672,
+    "height": 941,
+    "bytes": 140134
+  },
+  {
+    "id": "game_over_victory",
+    "source": "art/结局CG-2026-10-23/game_over_victory.png",
+    "sha256": "9cb84fde19e212536cf5c4efdb226199df61934216e17b1a7ddee028bd642ab5",
+    "output": "src/assets/endings/game_over_victory.webp",
+    "width": 1672,
+    "height": 940,
+    "bytes": 378720
+  },
+  {
+    "id": "game_over_wang",
+    "source": "art/结局CG-2026-10-23/game_over_wang.png",
+    "sha256": "40aba81512eeb3ecc352cdfa9e41c8c96f812a1603026434560ccf64cd1f5b75",
+    "output": "src/assets/endings/game_over_wang.webp",
+    "width": 1672,
+    "height": 941,
+    "bytes": 277598
+  },
+  {
+    "id": "game_over_xu",
+    "source": "art/结局CG-2026-10-23/game_over_xu.png",
+    "sha256": "2a13702e9e70f0e6a8e156bb3fa1c2c3e0a735d56ed16318371940b6bb777a6c",
+    "output": "src/assets/endings/game_over_xu.webp",
+    "width": 1672,
+    "height": 941,
+    "bytes": 385690
+  },
+  {
+    "id": "great_awakening",
+    "source": "art/结局CG-2026-10-23/great_awakening.png",
+    "sha256": "8242a5ac0f68579f4140a7e9c29cc8c64f27ab8c009b9347da5efe1664e82bc0",
+    "output": "src/assets/endings/great_awakening.webp",
+    "width": 1672,
+    "height": 941,
+    "bytes": 281144
+  },
+  {
+    "id": "pleasure_of_mediocrity",
+    "source": "art/结局CG-2026-10-23/pleasure_of_mediocrity.png",
+    "sha256": "04066e8fb3544c2c76e829c5b98fab5f80f30fe9cc3cedd60ddbfe1c94e95f7f",
+    "output": "src/assets/endings/pleasure_of_mediocrity.webp",
+    "width": 1672,
+    "height": 941,
+    "bytes": 213506
+  }
+]

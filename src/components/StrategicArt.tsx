@@ -1,4 +1,5 @@
-import type { FocusNode, NationalSpirit } from '../types';
+import type { FocusNode, NationalSpirit, GameState } from '../types';
+import HeyiLightSpirit from './HeyiLightSpirit';
 import focusRoutes from '../config/focusRoutes.json';
 import { FOCUS_BACKGROUNDS } from '../config/focusBackgrounds';
 import { LAW_ART } from '../config/lawArtwork';
@@ -114,7 +115,8 @@ export function FocusArt({ node, compact = false }: { node: Pick<FocusNode, 'id'
   </span>;
 }
 
-export function SpiritArt({ spirit }: { spirit: Pick<NationalSpirit, 'id' | 'name' | 'type' | 'icon'> }) {
+export function SpiritArt({ spirit, state }: { spirit: Pick<NationalSpirit, 'id' | 'name' | 'type' | 'icon'>; state?:GameState }) {
+  if (spirit.id === 'heyi_light') return <HeyiLightSpirit state={state}/>;
   const kind = spirit.icon && spirit.icon in ART_KIND_LABELS ? spirit.icon as ArtKind : getStrategicArtKind(spirit.id, spirit.name);
   const updated = getRouteSpiritArt(spirit.id, spirit.name);
   if (updated) return <span className={`strategic-art strategic-art--spirit strategic-art--composed strategic-art--${spirit.type}`} data-art-kind={kind} data-art-version="2" aria-hidden="true">

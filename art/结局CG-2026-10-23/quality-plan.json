@@ -1,0 +1,95 @@
+{
+  "wash_prompt": "Keep this image exactly the same: same composition, framing, product shape, buttons, labels, text, people, lighting, colors and background. Only re-render the velvet / fabric surfaces so they look clean, soft and natural like a real photo, removing the squiggly maze-like noise texture.",
+  "images": [
+    {
+      "input": "art\\结局CG-2026-10-23\\game_over_anarchy.png",
+      "maze_score": 0.0,
+      "needs_repair": false,
+      "reason": "GPT 图但几乎没有迷宫纹（maze_score=0.000）",
+      "wash_prompt": null,
+      "faces": 0,
+      "portrait": false,
+      "face_box": null
+    },
+    {
+      "input": "art\\结局CG-2026-10-23\\game_over_bear.png",
+      "maze_score": 0.0008,
+      "needs_repair": false,
+      "reason": "GPT 图但几乎没有迷宫纹（maze_score=0.001）",
+      "wash_prompt": null,
+      "faces": 2,
+      "portrait": false,
+      "face_box": null
+    },
+    {
+      "input": "art\\结局CG-2026-10-23\\game_over_feng_millennium.png",
+      "maze_score": 0.0001,
+      "needs_repair": false,
+      "reason": "GPT 图但几乎没有迷宫纹（maze_score=0.000）",
+      "wash_prompt": null,
+      "faces": 2,
+      "portrait": false,
+      "face_box": null
+    },
+    {
+      "input": "art\\结局CG-2026-10-23\\game_over_gouxiong_embarrass.png",
+      "maze_score": 0.0,
+      "needs_repair": false,
+      "reason": "GPT 图但几乎没有迷宫纹（maze_score=0.000）",
+      "wash_prompt": null,
+      "faces": 0,
+      "portrait": false,
+      "face_box": null
+    },
+    {
+      "input": "art\\结局CG-2026-10-23\\game_over_victory.png",
+      "maze_score": 0.0003,
+      "needs_repair": false,
+      "reason": "GPT 图但几乎没有迷宫纹（maze_score=0.000）",
+      "wash_prompt": null,
+      "faces": 2,
+      "portrait": false,
+      "face_box": null
+    },
+    {
+      "input": "art\\结局CG-2026-10-23\\game_over_wang.png",
+      "maze_score": 0.0003,
+      "needs_repair": false,
+      "reason": "GPT 图但几乎没有迷宫纹（maze_score=0.000）",
+      "wash_prompt": null,
+      "faces": 9,
+      "portrait": false,
+      "face_box": null
+    },
+    {
+      "input": "art\\结局CG-2026-10-23\\game_over_xu.png",
+      "maze_score": 0.0009,
+      "needs_repair": false,
+      "reason": "GPT 图但几乎没有迷宫纹（maze_score=0.001）",
+      "wash_prompt": null,
+      "faces": 1,
+      "portrait": false,
+      "face_box": null
+    },
+    {
+      "input": "art\\结局CG-2026-10-23\\great_awakening.png",
+      "maze_score": 0.0,
+      "needs_repair": false,
+      "reason": "GPT 图但几乎没有迷宫纹（maze_score=0.000）",
+      "wash_prompt": null,
+      "faces": 3,
+      "portrait": false,
+      "face_box": null
+    },
+    {
+      "input": "art\\结局CG-2026-10-23\\pleasure_of_mediocrity.png",
+      "maze_score": 0.0,
+      "needs_repair": false,
+      "reason": "GPT 图但几乎没有迷宫纹（maze_score=0.000）",
+      "wash_prompt": null,
+      "faces": 1,
+      "portrait": false,
+      "face_box": null
+    }
+  ]
+}

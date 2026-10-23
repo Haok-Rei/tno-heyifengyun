@@ -1,13 +1,19 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { GameEvent } from '../types';
 import { getEventArtwork } from '../config/eventArtwork';
 
 export default function EventIllustration({event,legacyImage,fallback}:{event:GameEvent;legacyImage:string;fallback:string}) {
   const art=getEventArtwork(event);
   const [failed,setFailed]=useState(false);
+  useEffect(()=>setFailed(false),[event.id]);
   const label=event.title+'配图';
   if(!art||art.kind==='scene'||failed) return <img data-event-art-main data-fallback={failed?'true':undefined} src={failed?fallback:art?.kind==='scene'?art.src:legacyImage} alt={label} decoding="async" draggable={false}
     onError={e=>{if(e.currentTarget.dataset.fallback)return;e.currentTarget.dataset.fallback='true';e.currentTarget.src=fallback;}} />;
+  if (art.kind==='painted') return <div className={'event-illustration event-illustration--painted campaign-route--'+art.route} role="img" aria-label={label}>
+    <span className="campaign-art__corner campaign-art__corner--top" aria-hidden="true"/>
+    <img data-event-art-main className="campaign-art__painting" src={art.src} alt="" decoding="async" draggable={false} onError={()=>setFailed(true)}/>
+    <span className="campaign-art__corner campaign-art__corner--bottom" aria-hidden="true"/>
+  </div>;
   return <div className={'event-illustration event-illustration--'+art.kind} data-art-theme={art.theme} role="img" aria-label={label}>
     <svg className="event-illustration__engraving" viewBox="0 0 600 400" aria-hidden="true">
       <defs><linearGradient id={'paper-'+event.id} x2="1" y2="1"><stop stopColor="#314448"/><stop offset="1" stopColor="#0b151b"/></linearGradient></defs>

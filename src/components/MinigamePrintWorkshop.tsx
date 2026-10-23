@@ -1,3 +1,4 @@
+import MechanicCrest from './MechanicCrest';
 import React, { useState, useEffect, useRef } from 'react';
 import { GameState } from '../types';
 import { Printer, ShieldAlert, Zap, FileText } from 'lucide-react';
@@ -95,7 +96,7 @@ export default function MinigamePrintWorkshop({ state, onComplete, spendPP }: Pr
 
         {!started && (
           <div className="absolute inset-0 bg-black/90 z-50 flex flex-col items-center justify-center p-8 text-center">
-            <Printer className="w-16 h-16 text-[#06B6D4] mb-4" />
+            <MechanicCrest kind="print"/>
             <h2 className="text-3xl font-black text-[#06B6D4] mb-3 tracking-[0.3em]">地 下 印 刷 所</h2>
             {fieldSupport > 0 && <p className="text-emerald-300 text-xs mb-2">地下联络工作组筹备 {fieldSupport} 份 · 预先印制 +{fieldSupport * 2}</p>}
             <p className="text-white/70 mb-2 text-sm max-w-md">实验楼机房 · 40秒内尽可能多地印刷革命传单</p>
@@ -111,7 +112,7 @@ export default function MinigamePrintWorkshop({ state, onComplete, spendPP }: Pr
 
         <div className="flex justify-between items-center mb-4 border-b border-[#06B6D4]/30 pb-3">
           <div className="flex items-center gap-3">
-            <Printer className="w-7 h-7 text-[#06B6D4]" />
+            <MechanicCrest kind="print"/>
             <div><h2 className="text-xl font-black text-[#06B6D4] tracking-[0.2em]">地下印刷所</h2>
               <div className="text-[10px] text-white/40">实验室机房 · 已印刷 {printed} 份 | 被没收 {busted} 份{combo >= 3 ? ` | ${combo}连击!` : ''}</div></div>
           </div>

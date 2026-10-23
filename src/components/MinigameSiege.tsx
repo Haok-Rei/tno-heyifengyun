@@ -1,3 +1,4 @@
+import MechanicCrest from './MechanicCrest';
 import React, { useState, useEffect } from 'react';
 import { GameState } from '../types';
 import { Shield, Users, FileText, AlertTriangle } from 'lucide-react';
@@ -118,7 +119,7 @@ export default function MinigameSiege({ state, onComplete, spendTPR }: MinigameS
         {/* Header */}
         <div className="flex justify-between items-center mb-6 border-b border-tno-highlight pb-4 flex-shrink-0">
           <div className="flex items-center gap-3">
-            <Shield className="w-8 h-8 text-tno-highlight crt-flicker" />
+            <MechanicCrest kind="siege"/>
             <div>
               <h2 className="text-2xl font-bold text-tno-highlight tracking-widest">经天纬地的铁壁</h2>
               <div className="text-xs text-tno-text/60">B3教学楼 - 阵地防卫战</div>

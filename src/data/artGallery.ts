@@ -70,6 +70,15 @@ export const ARTWORKS: Artwork[] = [
   { name: '春回滨湖', route: '民主与豪邦', note: '豪邦改革 · 校园和解', unlockHint: '见证豪邦改革的超事件', events: ['haobang_rise_super'], endings: ['game_over_haobang'] },
   { name: '价格牌下的风暴', route: '及第', note: '商业校园 · 暴乱', unlockHint: '经历及第暴乱', events: ['jidi_riot_super'], focuses: ['jidi_hidden_riot'], endings: ['game_over_jidi_2'] },
   { name: '总攻前夜', route: '吴福军', note: '铁腕时代 · 命令下达之前', unlockHint: '经历“总攻令”超事件', events: ['wu_crackdown'], sensitive: true },
+  { name:'终章·钢铁红蛤的复兴', route:'民主与豪邦', note:'集体主义下的自治会议', unlockHint:'达成“钢铁红蛤的复兴”结局', endings:['game_over_wang'] },
+  { name:'终章·自由的狂欢', route:'民主与豪邦', note:'校园社团节', unlockHint:'达成“自由的狂欢”结局', endings:['game_over_bear'] },
+  { name:'终章·中道之胜', route:'民主与豪邦', note:'选举之后，秩序如常', unlockHint:'达成“中道之胜”结局', endings:['game_over_xu'] },
+  { name:'终章·平庸之乐', route:'联合革命', note:'留在课桌边的选票', unlockHint:'达成“平庸之乐”结局', endings:['pleasure_of_mediocrity'] },
+  { name:'终章·连任千年', route:'吴福军', note:'行政会议室里的长桌', unlockHint:'达成“连任千年”结局', endings:['game_over_feng_millennium'] },
+  { name:'终章·B3保卫战胜利', route:'联合革命', note:'黎明后的教学楼', unlockHint:'达成“B3保卫战胜利”结局', endings:['game_over_victory'] },
+  { name:'终章·大梦初醒', route:'N.K.P.D.', note:'理想凝结为名册与印章', unlockHint:'达成“大梦初醒”结局', endings:['great_awakening'] },
+  { name:'终章·升学率雪崩', route:'终局', note:'成绩单前的沉默', unlockHint:'达成“升学率雪崩”结局', endings:['game_over_anarchy'] },
+  { name:'终章·公开处刑日', route:'狗熊', note:'礼堂中的公开问责', unlockHint:'达成“公开处刑日”结局', endings:['game_over_gouxiong_embarrass'] },
 ];
 
 export const ART_ROUTES: Array<ArtRoute | '全部'> = ['全部', '校园', '序章', '联合革命', '做题改革', 'N.K.P.D.', '民主与豪邦', '及第', '杨玉乐', '狗熊', '吴福军', '绝望', '终局'];
