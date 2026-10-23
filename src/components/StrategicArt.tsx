@@ -5,6 +5,7 @@ import { LAW_ART } from '../config/lawArtwork';
 import { FOCUS_PIECE_OVERRIDES, HOI4_PIECES, SPIRIT_BACKGROUNDS, SPIRIT_BACKGROUND_VARIANTS, SPIRIT_PIECE_OVERRIDES } from '../config/hoi4Artwork';
 import artAssignments from '../config/artAssignments.json';
 import { EXPANDED_ART_URLS } from '../config/expandedArtwork';
+import { ROUTE_FOCUS_ART, ROUTE_LAW_ART, getRouteSpiritArt } from '../config/routeIconArtwork';
 
 export type ArtKind = 'study' | 'authority' | 'revolt' | 'security' | 'alliance' | 'assembly' | 'industry' | 'media' | 'culture' | 'reform' | 'law' | 'research' | 'economy' | 'command' | 'crisis' | 'campus';
 
@@ -85,6 +86,10 @@ export function getFocusBackdrop(route: string, kind: ArtKind): string {
 }
 
 export function LawArt({ id, large = false }: { id: string; large?: boolean }) {
+  const updated = ROUTE_LAW_ART[id];
+  if (updated) return <span className={`law-art law-art--composed ${large ? 'law-art--large' : ''}`} data-art-version="2" aria-hidden="true">
+    <img className="route-art__composed" src={updated.src} alt="" draggable={false} decoding="async" />
+  </span>;
   const art = LAW_ART[id] ?? { piece: 'Scales Golden', background: 'Polygon', rank: 1 };
   return <span className={`law-art ${large ? 'law-art--large' : ''}`} aria-hidden="true">
     <img className="law-art__backdrop" src={SPIRIT_BACKGROUND_VARIANTS[art.background]} alt="" draggable={false} />
@@ -95,6 +100,10 @@ export function LawArt({ id, large = false }: { id: string; large?: boolean }) {
 
 export function FocusArt({ node, compact = false }: { node: Pick<FocusNode, 'id' | 'title'>; compact?: boolean }) {
   const kind = getStrategicArtKind(node.id, node.title);
+  const updated = ROUTE_FOCUS_ART[node.id];
+  if (updated) return <span className={`strategic-art strategic-art--focus strategic-art--composed strategic-art--route-${updated.route} ${compact ? 'strategic-art--compact' : ''} ${updated.important ? 'strategic-art--major' : ''}`} data-art-kind={kind} data-art-version="2" aria-hidden="true">
+    <img className="route-art__composed" src={updated.src} alt="" draggable={false} decoding="async" loading="lazy" />
+  </span>;
   const portrait = PORTRAIT_FOCUS[node.id];
   const piece = expandedPiece(focusAssignments[node.id]) ?? HOI4_PIECES[FOCUS_PIECE_OVERRIDES[node.id] ?? kind];
   const route = (focusRoutes as Record<string, string>)[node.id] ?? 'school';
@@ -107,6 +116,10 @@ export function FocusArt({ node, compact = false }: { node: Pick<FocusNode, 'id'
 
 export function SpiritArt({ spirit }: { spirit: Pick<NationalSpirit, 'id' | 'name' | 'type' | 'icon'> }) {
   const kind = spirit.icon && spirit.icon in ART_KIND_LABELS ? spirit.icon as ArtKind : getStrategicArtKind(spirit.id, spirit.name);
+  const updated = getRouteSpiritArt(spirit.id, spirit.name);
+  if (updated) return <span className={`strategic-art strategic-art--spirit strategic-art--composed strategic-art--${spirit.type}`} data-art-kind={kind} data-art-version="2" aria-hidden="true">
+    <img className="route-art__composed" src={updated.src} alt="" draggable={false} decoding="async" loading="lazy" />
+  </span>;
   const piece = expandedPiece(spiritAssignments[spirit.id]) ?? HOI4_PIECES[SPIRIT_PIECE_OVERRIDES[spirit.id] ?? kind];
   const background = SPIRIT_BACKGROUND_VARIANTS[spiritBackgroundByKind[kind]] ?? SPIRIT_BACKGROUNDS[spirit.type];
   return <span className={`strategic-art strategic-art--spirit strategic-art--${kind} strategic-art--${spirit.type}`} data-art-kind={kind} aria-hidden="true">
