@@ -38,3 +38,12 @@ test('manual pause during a cue cancels automatic resume', () => {
   interruption.end();
   assert.equal(current.counts().plays, 0);
 });
+
+test('PV and super-event share music ownership without premature or duplicate resume',()=>{
+  const current=music(false),interruption=createMusicInterruption(()=>current.element,()=>assert.fail('resume failed'));
+  interruption.start('pv');interruption.start();interruption.start('pv');
+  interruption.end('pv');assert.equal(interruption.active,true);assert.equal(current.counts().plays,0);
+  interruption.end();assert.equal(interruption.active,false);assert.deepEqual(current.counts(),{pauses:1,plays:1});
+  interruption.end('pv');assert.equal(current.counts().plays,1);
+  interruption.start('pv');interruption.cancelResume();interruption.end('pv');assert.equal(current.counts().plays,1);
+});

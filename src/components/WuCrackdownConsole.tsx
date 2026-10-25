@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { GameState, WuState, ALL_SUB_TILES } from '../types';
+import type { MechanicEventDraft } from '../engine/mechanicEvents';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, ShieldAlert, Eye, Megaphone, FileWarning, Zap, Handshake, Award, AlertTriangle } from 'lucide-react';
 
@@ -110,7 +111,7 @@ interface WuCrackdownConsoleProps {
   state: GameState;
   setGameState: React.Dispatch<React.SetStateAction<GameState>>;
   onClose: () => void;
-  triggerEvent: (event: any) => void;
+  triggerEvent: (event: MechanicEventDraft) => void;
   spendPP: (amount: number) => boolean;
 }
 

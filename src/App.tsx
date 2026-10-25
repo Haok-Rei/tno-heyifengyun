@@ -1,4 +1,5 @@
 import { getMechanismEntryArt } from './components/MechanicCrest';
+import { ensureEventIdentity } from './engine/mechanicEvents';
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import TopBar from './components/TopBar';
 import LeftSidebar, { WU_ROUTE_ADVISOR } from './components/LeftSidebar';
@@ -5548,7 +5549,7 @@ export default function App() {
               state={gameState}
               setGameState={setGameState}
               onClose={() => setIsYangYuleDeskOpen(false)}
-              triggerEvent={(event) => setGameState(prev => ({ ...prev, activeEvent: event, isPaused: true }))}
+              triggerEvent={(event) => setGameState(prev => ({ ...prev, activeEvent: ensureEventIdentity(event,'yang_office'), isPaused: true }))}
               updateYangYuleState={(updates) => setGameState(prev => ({
                 ...prev,
                 yangYuleState: prev.yangYuleState ? { ...prev.yangYuleState, ...updates } : undefined
@@ -5563,7 +5564,7 @@ export default function App() {
               state={gameState}
               setGameState={setGameState}
               onClose={() => setIsWuConsoleOpen(false)}
-              triggerEvent={(event) => setGameState(prev => ({ ...prev, activeEvent: event, isPaused: true }))}
+              triggerEvent={(event) => setGameState(prev => ({ ...prev, activeEvent: ensureEventIdentity(event,'wu_console'), isPaused: true }))}
               spendPP={spendPP}
             />
           )}

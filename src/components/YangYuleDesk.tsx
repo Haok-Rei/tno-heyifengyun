@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from 'motion/react';
 import { X, Stamp, Pill, Coffee, FileText, Terminal, Phone, BookOpen, Mic } from 'lucide-react';
 import { canDrawYangDeskDocument, drawYangDeskDocument } from '../engine/yangDeskDocuments';
 import { getMechanicImageUrl } from '../config/assets';
+import type { MechanicEventDraft } from '../engine/mechanicEvents';
+import {YANG_OFFICE_EFFECTS} from '../engine/yangOfficeEffects';
 
 interface YangYuleDecision {
   id: string;
@@ -17,7 +19,7 @@ interface YangYuleDeskProps {
   state: GameState;
   setGameState: React.Dispatch<React.SetStateAction<GameState>>;
   onClose: () => void;
-  triggerEvent: (event: any) => void;
+  triggerEvent: (event: MechanicEventDraft) => void;
   updateYangYuleState: (updates: Partial<NonNullable<GameState['yangYuleState']>>) => void;
   spendPP: (amount: number) => boolean;
 }
@@ -72,10 +74,11 @@ export default function YangYuleDesk({ state, setGameState, onClose, triggerEven
       costPP: 25,
       effect: () => {
         triggerEvent({
+          id:'yang_office_patrol',
           title: '加强巡逻',
           description: '保安队加强了巡逻，压制了激进派的活动。',
           buttonText: '很好',
-          effect: (s: GameState) => ({ stats: { ...s.stats, radicalAnger: Math.max(0, s.stats.radicalAnger - 10) } })
+          effect: YANG_OFFICE_EFFECTS.patrol
         });
       }
     },
@@ -86,10 +89,11 @@ export default function YangYuleDesk({ state, setGameState, onClose, triggerEven
       costPP: 15,
       effect: () => {
         triggerEvent({
+          id:'yang_office_suppress',
           title: '打压温和派',
           description: '通过行政手段打压了温和派的诉求，换取了暂时的稳定。',
           buttonText: '这就对了嘛',
-          effect: (s: GameState) => ({ stats: { ...s.stats, studentSanity: Math.max(0, s.stats.studentSanity - 10), stab: Math.min(100, s.stats.stab + 5) } })
+          effect: YANG_OFFICE_EFFECTS.suppress
         });
       }
     },
@@ -104,10 +108,11 @@ export default function YangYuleDesk({ state, setGameState, onClose, triggerEven
           studioAchievements: Math.min(100, (yyState.studioAchievements || 0) + 5),
         });
         triggerEvent({
+          id:'yang_office_lecture',
           title: '名师讲座',
           description: '作为合肥一中的”名师代表”，你受邀前往合肥师范学院为未来的师范生们举办一场教研讲座。\n\n当你站在大学的讲台上，看着下面那些充满朝气、眼神中还没有被内卷磨灭光芒的大学生时，你突然感到一种莫名的烦躁。讲稿上写的是”素质教育”，但你的嘴巴却开始不受控制地想说些别的。',
           buttonText: 'ED or ING？',
-          effect: (s: GameState) => ({ stats: { ...s.stats, ss: Math.min(100, s.stats.ss + 5) } })
+          effect: YANG_OFFICE_EFFECTS.lecture
         });
       }
     }
@@ -230,23 +235,11 @@ export default function YangYuleDesk({ state, setGameState, onClose, triggerEven
     if (state.stats.pp >= 50 && state.stats.ss >= 20) {
       spendPP(50);
       triggerEvent({
+        id:'yang_office_red_phone',
         title: '吴福军出动',
         description: '情况已经完全失控了。\n\n钢铁红蛤的地下组织蔓延到了每一个班级，《资本论简读》被堂而皇之地摆在课桌上，学生们甚至开始串联罢考。你的软性维稳在绝对的革命怒火面前像一层窗户纸般被捅破。你看着窗外操场上聚集的人群，手不受控制地颤抖着。你知道，只有暴力能平息这一切了。你拿起了那部积灰已久的红色座机，拨通了后勤处吴福军的号码。',
         buttonText: '老吴，带你的人来清场。出了事我担着。',
-        effect: (s: GameState) => {
-          const newRebelCooldowns = { ...(s.yangYuleState?.rebelCooldowns || {}) };
-          Object.keys(s.yangYuleState?.rebelLocations || {}).forEach(locId => {
-            newRebelCooldowns[locId] = 5;
-          });
-          return {
-            stats: { ...s.stats, ss: Math.max(0, s.stats.ss - 20) },
-            yangYuleState: { 
-              ...s.yangYuleState!, 
-              rebelLocations: {},
-              rebelCooldowns: newRebelCooldowns
-            }
-          };
-        }
+        effect:YANG_OFFICE_EFFECTS.redPhone
       });
     } else {
       triggerEvent({ title: '政治点数或学生支持度不足', description: '你需要 50 PP 和 20 学生支持度来调动吴福军。', buttonText: '可恶' });
@@ -283,6 +276,7 @@ export default function YangYuleDesk({ state, setGameState, onClose, triggerEven
         {/* Close Button */}
         <button 
           onClick={onClose}
+          aria-label="关闭杨玉乐办公桌"
           className="absolute top-4 right-4 z-50 bg-tno-red/20 text-tno-red p-2 hover:bg-tno-red hover:text-black border border-tno-red transition-colors"
         >
           <X size={24} />
@@ -674,6 +668,7 @@ export default function YangYuleDesk({ state, setGameState, onClose, triggerEven
                         <p className="text-sm text-tno-text/80 mb-4">{decision.description}</p>
                       </div>
                       <button
+                        data-yang-decision={decision.id}
                         onClick={() => handleDecision(decision)}
                         disabled={state.stats.pp < decision.costPP || yyState.dailyDecisionUsed}
                         className={`w-full py-2 font-bold font-mono transition-colors border ${

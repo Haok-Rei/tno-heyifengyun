@@ -2,25 +2,27 @@
 .focus-art-node { overflow:visible; background:radial-gradient(ellipse at 50% 45%,#34382c66,transparent 70%),linear-gradient(180deg,#151c1be0,#101716); }
 .focus-art-node::before { inset:7px 5px 3px; border-color:#a18e6540; }
 .focus-art-node::after { top:auto; bottom:29px; left:5px; right:5px; height:1px; }
-.focus-art-node > .strategic-art--focus { position:absolute; left:50%; top:-24px; width:180px; height:126px; transform:translateX(-50%); overflow:visible; }
-.focus-art-node > .strategic-art--focus.strategic-art--major { width:192px; height:132px; top:-29px; }
+.focus-art-node > .strategic-art--focus { position:absolute; left:50%; top:-50px; width:232px; height:164px; transform:translateX(-50%); overflow:visible; }
+.focus-art-node > .strategic-art--focus.strategic-art--major { width:248px; height:174px; top:-60px; }
 .focus-art-node > .strategic-art--focus .route-art__composed { filter:drop-shadow(0 5px 4px #000a); }
-.focus-art-node__title,.focus-art-node:has(.strategic-art--major) .focus-art-node__title { position:absolute; left:3px; right:3px; bottom:3px; height:27px; min-height:27px; padding:2px 3px; font-size:11px; line-height:1.12; background:linear-gradient(#202927f5,#101918); border-top:1px solid #a08a5a55; z-index:2; }
-.focus-art-node__status { top:auto; bottom:34px; left:4px; font-size:8px; padding:1px 2px; }
-.focus-art-node__days { top:auto; bottom:34px; right:4px; font-size:9px; }
+.focus-art-node__title,.focus-art-node:has(.strategic-art--major) .focus-art-node__title { position:absolute; left:3px; right:3px; bottom:17px; height:29px; min-height:29px; padding:2px 3px; font-size:12px; line-height:1.15; background:linear-gradient(#202927f5,#101918); border-top:1px solid #a08a5a55; z-index:2; }
+.focus-art-node__status { top:auto; bottom:3px; left:4px; font-size:8px; padding:0 2px; }
+.focus-art-node__days { top:auto; bottom:3px; right:4px; font-size:9px; padding:0 2px; }
+.strategic-art--focus.strategic-art--compact,.strategic-art--focus.strategic-art--composed.strategic-art--compact { width:58px; height:58px; }
 .focus-art-node__progress { z-index:4; }
 .focus-tree-status { width:min(240px,calc(100% - 32px)); }
 .focus-art-node--locked > .strategic-art { filter:grayscale(.7) brightness(.64); }
 .focus-art-node--available { border-color:#d0b47b; background:radial-gradient(ellipse at 50% 30%,#9e884430,transparent 80%),linear-gradient(#202922,#121b19); }
 .focus-art-node--active { background:radial-gradient(ellipse at 50% 30%,#c880482b,transparent 80%),linear-gradient(#302b21,#171d19); }
 .focus-art-node--completed { background:radial-gradient(ellipse at 50% 30%,#7b9d6626,transparent 80%),linear-gradient(#243029,#131c19); }
-.strategic-art--spirit { width:68px; height:60px; overflow:visible; border:0; background:none; box-shadow:none; }
+.strategic-art--spirit { width:76px; height:68px; overflow:visible; border:0; background:none; box-shadow:none; }
 .strategic-art--spirit::before { display:none; }
 .strategic-art--spirit .strategic-art__piece,.strategic-art--spirit.strategic-art--composed .route-art__composed { inset:0; width:100%; height:100%; }
-.nation-spirit-icon { width:66px; height:60px; padding:0; border:0; background:radial-gradient(ellipse at 50% 65%,#7ea2a314,transparent 70%); box-shadow:none; }
-.nation-spirit-icon > .strategic-art--spirit { width:76px; height:67px; filter:drop-shadow(0 3px 2px #000a); }
+.nation-spirit-icon { width:82px; height:74px; padding:0; border:0; background:radial-gradient(ellipse at 50% 65%,#7ea2a314,transparent 70%); box-shadow:none; }
+.nation-spirit-icon > .strategic-art--spirit { width:94px; height:82px; filter:drop-shadow(0 3px 2px #000a); }
 .nation-spirit-icon:hover { transform:translateY(-2px); background:radial-gradient(ellipse at 50% 60%,#b3b2812b,transparent 70%); }
-.nation-spirit-rack { gap:4px 3px; padding:4px 0 2px; }
+.nation-spirit-rack { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px 4px; padding:7px 4px; max-height:178px; overflow-y:auto; overflow-x:hidden; scrollbar-color:#65746a #101819; }
+.nation-spirit-rack > * { justify-self:center; }
 .heyi-spirit svg { width:100%; height:100%; overflow:visible; pointer-events:none; filter:drop-shadow(0 2px 1px #0009); }
 .heyi-spirit__window { animation:heyi-badge-window var(--window-time,10s) var(--window-delay,0s) infinite ease-in-out; opacity:.6; }
 .heyi-spirit--weary svg { filter:saturate(.7) drop-shadow(0 2px 1px #0009); }

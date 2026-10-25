@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { lazy, Suspense, useCallback, useEffect, useState } from 'react';
 import { ASSET_URLS } from '../config/assets';
 import { CURRENT_VERSION, CURRENT_RELEASE, CURRENT_UPDATE } from '../config/releases';
 import ReleaseArchive from './ReleaseArchive';
+import PromoVideoButton from './PromoVideoButton';
+import './promoVideo.css';
+
+const PromoVideo=lazy(()=>import('./PromoVideo'));
 
 interface StartMenuProps {
   onStartGame: () => void;
@@ -53,6 +57,8 @@ export default function StartMenu({ onStartGame, onArtRoom, onSettings, onGaller
   const [quoteIndex, setQuoteIndex] = useState(0);
   const [isQuoteVisible, setIsQuoteVisible] = useState(true);
   const [archiveOpen, setArchiveOpen] = useState(false);
+  const [pvOpen,setPvOpen]=useState(false);
+  const closePv=useCallback(()=>setPvOpen(false),[]);
 
   useEffect(() => {
     const timeoutIds: number[] = [];
@@ -119,6 +125,7 @@ export default function StartMenu({ onStartGame, onArtRoom, onSettings, onGaller
         />
         <div className="start-menu-tooltip" id="start-credits-tooltip" role="tooltip"><small>特别感谢</small><strong>母校 · 合肥一中</strong></div>
         </div>
+        <PromoVideoButton onClick={()=>setPvOpen(true)}/>
       </div>
 
       <div className="relative z-20 flex h-full flex-col px-4 pb-8 pt-20 md:px-10 md:pb-10 md:pt-14">
@@ -192,6 +199,7 @@ export default function StartMenu({ onStartGame, onArtRoom, onSettings, onGaller
         </div>
       </div>
       {archiveOpen && <ReleaseArchive onClose={() => setArchiveOpen(false)}/>}
+      {pvOpen&&<Suspense fallback={<div className="pv-loading" role="status">正在打开放映室…</div>}><PromoVideo onClose={closePv}/></Suspense>}
     </div>
   );
 }

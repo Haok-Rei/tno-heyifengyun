@@ -100,3 +100,8 @@ art 与 music：项目作者提供的原始文件；此整理不为其添加新�
 新增9幅结局场景：内置imagegen绘制；源PNG、完整提示词、导出与画质检查记录见art/结局CG-2026-10-23。
 33张主体原画与37张附属徽记导出为透明WebP，用于事件与机制界面，来源校验记录见src/assets/campaign-art/receipts.json。
 新CG使用repair-ai-image-quality检查，9张均无需去纹处理；保留原图细节与色彩。
+
+--- 放映室（2026-10-25）---
+《向合一奔去》PV V2：由项目作者提供；网页版本保留完整影片与原音轨。
+HLS播放库hls.js：Apache-2.0，https://github.com/video-dev/hls.js；许可证见/licenses/hls.js.txt。
+网页转码与后续替换方法：docs/PV_WEB_DELIVERY.md。

@@ -15,7 +15,7 @@ import { ROUTE_FOCUS_ART } from '../src/config/routeIconArtwork';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { getFocusNodes } from '../src/components/FocusTree';
-import { getFocusLayout } from '../src/components/focusLayout';
+import { getFocusLayout, FOCUS_METRICS } from '../src/components/focusLayout';
 import HeyiLightSpirit, {getHeyiSpiritAppearance} from '../src/components/HeyiLightSpirit';
 import type { GameState } from '../src/types';
 
@@ -43,7 +43,7 @@ test('large focus crests do not overlap across all authored trees and aligned co
     const nodes=getFocusNodes(tree),layout=getFocusLayout(nodes);
     for(let i=0;i<nodes.length;i++)for(let j=i+1;j<nodes.length;j++) {
       if(nodes[i].x===nodes[j].x)assert.equal(layout.x(nodes[i]),layout.x(nodes[j]));
-      if(Math.abs(layout.y(nodes[i])-layout.y(nodes[j]))<155) assert.ok(Math.abs(layout.x(nodes[i])-layout.x(nodes[j]))>=200,`${tree}: ${nodes[i].id}/${nodes[j].id}`);
+      if(Math.abs(layout.y(nodes[i])-layout.y(nodes[j]))<FOCUS_METRICS.cardHeight-FOCUS_METRICS.crestTop) assert.ok(Math.abs(layout.x(nodes[i])-layout.x(nodes[j]))>=FOCUS_METRICS.crestWidth+12,`${tree}: ${nodes[i].id}/${nodes[j].id}`);
     }
   }
 });

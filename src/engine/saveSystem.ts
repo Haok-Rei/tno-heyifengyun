@@ -1,4 +1,6 @@
 import { normalizeDisplayNames } from './displayNames';
+import { ensureEventIdentity } from './mechanicEvents';
+import {restoreYangOfficeEffect} from './yangOfficeEffects';
 /**
  * engine/saveSystem.ts - 多槽位存档系统
  *
@@ -80,9 +82,11 @@ export function deserializeGameState(raw: string): GameState | null {
       // v8.0 编年史：旧存档无此字段，兜底为空数组
       chronicle: parsed.chronicle ?? [],
     } as GameState;
-    const restore = (event: NonNullable<GameState['activeEvent']>) => event.campusSituation
-      ? restoreCampusEvent(state, event)
-      : FLAVOR_EVENTS[event.id] ? { ...FLAVOR_EVENTS[event.id], ...event, effect: FLAVOR_EVENTS[event.id].effect, choices: FLAVOR_EVENTS[event.id].choices } : event;
+    const restore = (draft: NonNullable<GameState['activeEvent']>) => {
+      const event=restoreYangOfficeEffect(ensureEventIdentity(draft),state);
+      return event.campusSituation ? restoreCampusEvent(state, event)
+        : FLAVOR_EVENTS[event.id] ? { ...FLAVOR_EVENTS[event.id], ...event, effect: FLAVOR_EVENTS[event.id].effect, choices: FLAVOR_EVENTS[event.id].choices } : event;
+    };
     state.activeEvent = state.activeEvent ? restore(state.activeEvent) : null;
     state.activeStoryEvents = (state.activeStoryEvents ?? []).map(restore);
     const restored = restoreMapState(reconcileRouteSpirits(syncAssemblyConflict(refreshReviewedDescriptions(state))));

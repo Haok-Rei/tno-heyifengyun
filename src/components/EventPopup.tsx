@@ -5,6 +5,7 @@ import { Radio, FileText, GripHorizontal, ChevronRight, Lock } from 'lucide-reac
 import { getNewsEventImageUrl, getStoryEventImageUrl } from '../config/assets';
 import { getEventPresentation } from '../engine/eventPresentation';
 import EventIllustration from './EventIllustration';
+import { ensureEventIdentity } from '../engine/mechanicEvents';
 
 interface EventPopupProps {
   event: GameEvent;
@@ -13,7 +14,8 @@ interface EventPopupProps {
   state?: GameState;
 }
 
-export default function EventPopup({ event, onConfirm, date, state }: EventPopupProps) {
+export default function EventPopup({ event:incomingEvent, onConfirm, date, state }: EventPopupProps) {
+  const event=ensureEventIdentity(incomingEvent);
   const [hovered, setHovered] = useState<number | null>(null);
   const bounds = useRef<HTMLDivElement>(null);
   const dialog = useRef<HTMLDivElement>(null);

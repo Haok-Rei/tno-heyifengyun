@@ -4,6 +4,7 @@ import { AUDIO_SETTINGS_EVENT, readAudioSettings, writeAudioSettings } from '../
 import { installUiSoundListener } from '../engine/uiSounds';
 import { SUPER_EVENT_AUDIO_END, SUPER_EVENT_AUDIO_START } from '../engine/superEventAudio';
 import { createMusicInterruption } from '../engine/musicInterruption';
+import { PROMO_VIDEO_AUDIO_START, PROMO_VIDEO_AUDIO_END } from '../engine/promoVideoAudio';
 import './audioDock.css';
 
 const files = import.meta.glob('../../music/*.mp3', { eager: true, query: '?url', import: 'default' }) as Record<string, string>;
@@ -57,11 +58,17 @@ export default function AudioDock() {
     interruptionRef.current = interruption;
     const startCue = () => interruption.start();
     const endCue = () => interruption.end();
+    const startVideo = () => interruption.start('pv');
+    const endVideo = () => interruption.end('pv');
     window.addEventListener(SUPER_EVENT_AUDIO_START, startCue);
     window.addEventListener(SUPER_EVENT_AUDIO_END, endCue);
+    window.addEventListener(PROMO_VIDEO_AUDIO_START,startVideo);
+    window.addEventListener(PROMO_VIDEO_AUDIO_END,endVideo);
     return () => {
       window.removeEventListener(SUPER_EVENT_AUDIO_START, startCue);
       window.removeEventListener(SUPER_EVENT_AUDIO_END, endCue);
+      window.removeEventListener(PROMO_VIDEO_AUDIO_START,startVideo);
+      window.removeEventListener(PROMO_VIDEO_AUDIO_END,endVideo);
       interruptionRef.current = null;
     };
   }, []);
