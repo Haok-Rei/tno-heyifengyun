@@ -105,3 +105,6 @@ art 与 music：项目作者提供的原始文件；此整理不为其添加新�
 《向合一奔去》PV V2：由项目作者提供；网页版本保留完整影片与原音轨。
 HLS播放库hls.js：Apache-2.0，https://github.com/video-dev/hls.js；许可证见/licenses/hls.js.txt。
 网页转码与后续替换方法：docs/PV_WEB_DELIVERY.md。
+
+--- 用户素材更新（2026-10-29）---
+5张新人物肖像与3张载入CG由项目作者提供，来源为项目根目录art文件夹；仅导出网页派生图，保留原素材。校验记录见docs/ART_REFRESH_2026-10-29.json。

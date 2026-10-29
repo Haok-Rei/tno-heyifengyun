@@ -12,7 +12,7 @@ source = Path('art/载入图')
 output = Path('src/assets/loading')
 output.mkdir(parents=True, exist_ok=True)
 
-for image_path in sorted(source.glob('*.png')):
+for image_path in sorted(path for path in source.iterdir() if path.suffix.lower() in {'.png', '.jpg', '.jpeg', '.webp'}):
     with Image.open(image_path) as image:
         image = ImageOps.exif_transpose(image).convert('RGB')
         image.thumbnail((1920, 1200), Image.Resampling.LANCZOS)

@@ -2,6 +2,9 @@
 import { ENDING_CG } from './endingCgAssets';
 export const LOADING_ART: Record<string, string> = {
   ...ENDING_CG,
+  "合一足球": new URL("../assets/loading/合一足球.webp", import.meta.url).href,
+  "陈栋与封安宝": new URL("../assets/loading/陈栋与封安宝.webp", import.meta.url).href,
+  "陈栋与封安宝2": new URL("../assets/loading/陈栋与封安宝2.webp", import.meta.url).href,
   "B3夜读": new URL("../assets/loading/B3夜读.webp", import.meta.url).href,
   "B3革命": new URL("../assets/loading/B3革命.webp", import.meta.url).href,
   "价格牌下的风暴": new URL("../assets/loading/价格牌下的风暴.webp", import.meta.url).href,

@@ -1,0 +1,70 @@
+{
+  "source": "用户art文件夹更新",
+  "assets": [
+    {
+      "source": "人像/潘仁越.jpg",
+      "sha256": "126078e577de4b7ea38205542ccaeb33f95411ed25c14688365eeb39e9941da5",
+      "dimensions": [
+        896,
+        1200
+      ]
+    },
+    {
+      "source": "人像/周晨.jpg",
+      "sha256": "a0bfbea1029d0009d6c7c26c21649f57ae5f2bb12ec7726e60992337948a3549",
+      "dimensions": [
+        896,
+        1200
+      ]
+    },
+    {
+      "source": "人像/靖珍2.jpg",
+      "sha256": "9dd959541de1b11d7d65bcfd4d45c93447147bc0a847c4f958bc64e230a3ab5e",
+      "dimensions": [
+        896,
+        1200
+      ]
+    },
+    {
+      "source": "人像/张春.jpg",
+      "sha256": "0da0997d4dcebe34c79c1765f4b05faa490f6477e977746fb696e551845762c3",
+      "dimensions": [
+        896,
+        1200
+      ]
+    },
+    {
+      "source": "人像/陈栋3.jpg",
+      "sha256": "d9bfde1d05957329c8ce4b1414d43e3579daeeed2d1ae4e1f80ea00725d57b0e",
+      "dimensions": [
+        896,
+        1200
+      ]
+    },
+    {
+      "source": "载入图/合一足球.png",
+      "sha256": "f4ca2eebef7b56bc1c8d467d18f9bbfb62b67ed00598d5941db9f2024538e2c2",
+      "dimensions": [
+        2048,
+        1152
+      ]
+    },
+    {
+      "source": "载入图/陈栋与封安保.jpg",
+      "sha256": "52283270dbed76f64e687a3eabb930512bf6c006be912a03d735a8643f0ca2c3",
+      "dimensions": [
+        1200,
+        675
+      ]
+    },
+    {
+      "source": "载入图/陈栋与封安保2.png",
+      "sha256": "a91d8f3f1fe005aa201f33831db8d7905933e7b55f081b811cbd74fcb9506b89",
+      "dimensions": [
+        2048,
+        1152
+      ]
+    }
+  ],
+  "policy": "仅更新美术；保留原有剧情、路线条件与CG抽取规则。"
+}

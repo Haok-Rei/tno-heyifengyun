@@ -74,7 +74,7 @@ test('old save route history and existing ending archive retain earned artwork',
 
 test('unlock is once per device across saves, new games and repeated React effects', () => {
   const storage = memoryStorage();
-  assert.equal(unlockEarnedArtwork(progress(), storage, 1000).length, 4);
+  assert.equal(unlockEarnedArtwork(progress(), storage, 1000).length, ARTWORKS.filter(work => work.opening).length);
   assert.equal(unlockEarnedArtwork(progress(), storage, 2000).length, 0);
   assert.deepEqual(unlockEarnedArtwork(progress({ currentFocusTree: 'treeB' }), storage, 3000).map(work => work.name), ['特级教师', '保温杯与红批']);
   assert.equal(unlockEarnedArtwork(progress(), storage, 4000).length, 0);
@@ -83,7 +83,7 @@ test('unlock is once per device across saves, new games and repeated React effec
 
 test('unavailable/quota-full storage preserves session progress without duplicate popups', () => {
   const storage = memoryStorage({}, true);
-  assert.equal(unlockEarnedArtwork(progress(), storage, 1000).length, 4);
+  assert.equal(unlockEarnedArtwork(progress(), storage, 1000).length, ARTWORKS.filter(work => work.opening).length);
   assert.equal(unlockEarnedArtwork(progress(), storage, 2000).length, 0);
   assert.equal(Object.keys(getArtUnlocks(storage)).length, ARTWORKS.filter(work => work.scenery || work.opening).length);
   const broken = memoryStorage({ [ART_UNLOCK_KEY]: 'not json' });

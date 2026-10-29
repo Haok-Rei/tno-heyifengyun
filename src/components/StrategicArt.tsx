@@ -23,7 +23,7 @@ const spiritBackgroundByKind: Record<ArtKind, string> = {
 const PORTRAIT_FOCUS: Record<string, string> = {
   start_2023: new URL('../../art/人像/封安宝.png', import.meta.url).href,
   declare_indep: new URL('../../art/人像/王照凯4.png', import.meta.url).href,
-  pan_takeover: new URL('../../art/人像/潘仁越5.png', import.meta.url).href,
+  pan_takeover: new URL('../../art/人像/潘仁越.jpg', import.meta.url).href,
   true_left_consolidation: new URL('../../art/人像/王照凯4.png', import.meta.url).href,
   lu_bohan_start: new URL('../../art/人像/吕波汉.png', import.meta.url).href,
   haobang_start: new URL('../../art/人像/豪邦.png', import.meta.url).href,

@@ -39,13 +39,13 @@ test('new cabinet portraits and explicitly labelled dossier cards are bundled', 
 });
 
 test('all supplied loading art is optimized and every local super-event scene exists', () => {
-  const originals = readdirSync(join(root, 'art/载入图')).filter(name => name.endsWith('.png'));
+  const originals = readdirSync(join(root, 'art/载入图')).filter(name => /\.(png|jpe?g|webp)$/i.test(name));
   const optimized = readdirSync(join(root, 'src/assets/loading')).filter(name => name.endsWith('.webp'));
   assert.equal(optimized.length, originals.length);
   assert.equal(LOADING_ART_URLS.length, originals.length + Object.keys(ENDING_CG).length);
   for (const url of LOADING_ART_URLS) assert.ok(existsSync(fileURLToPath(url)));
   for (const url of [ASSET_URLS.ui_game_logo, ASSET_URLS.ui_studio_logo]) assert.ok(existsSync(fileURLToPath(url)));
-  for (const name of originals) assert.ok(optimized.includes(name.replace(/\.png$/, '.webp')));
+  for (const name of originals) assert.ok(optimized.includes(name.replace(/\.(png|jpe?g|webp)$/i, '.webp')));
 
   const config = readFileSync(join(root, 'src/config/assets.ts'), 'utf8');
   for (const match of config.matchAll(/superevent_[^:]+:\s*loadingArt\('([^']+)'\)/g)) {
