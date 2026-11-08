@@ -42,7 +42,8 @@ export function getArtUnlocks(storage = browserStorage()): ArtUnlocks {
   try {
     const parsed = JSON.parse(storage?.getItem(ART_UNLOCK_KEY) ?? '{}');
     for (const [name, date] of Object.entries(parsed)) {
-      if (knownNames.has(name) && typeof date === 'number' && Number.isFinite(date) && date > 0) result[name] = date;
+      const canonical = name.replace(/\u5c01\u5b89\u4fdd/g, '封安宝');
+      if (knownNames.has(canonical) && typeof date === 'number' && Number.isFinite(date) && date > 0) result[canonical] = Math.min(result[canonical] ?? date, date);
     }
     const endings = JSON.parse(storage?.getItem('tno_endings_unlock_v1') ?? '{}').unlocked ?? {};
     for (const [id, date] of Object.entries(endings)) {

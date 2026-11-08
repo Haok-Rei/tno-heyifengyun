@@ -17,12 +17,10 @@ export interface Artwork {
 
 export const ARTWORKS: Artwork[] = [
   // Supplied alternate editions retain their corresponding opening/ending unlock boundaries.
-  { name:'封安保时代', route:'终局', note:'校方体制 · 原始资料版本', unlockHint:'经历全面镇压或连任千年的结局', events:['game_over_school'], endings:['game_over_school','game_over_feng_millennium'] },
-  { name:'陈栋与封安保', route:'序章', note:'校园旧影 · 原始资料版本', unlockHint:'体验序章', opening:true },
-  { name:'陈栋与封安保2', route:'序章', note:'校友座谈 · 原始资料版本', unlockHint:'体验序章', opening:true },
+  { name:'封安宝时代', route:'终局', note:'校方体制 · 原始资料版本', unlockHint:'经历全面镇压或连任千年的结局', events:['game_over_school'], endings:['game_over_school','game_over_feng_millennium'] },
+  { name:'陈栋与封安宝', route:'序章', note:'校园旧影 · 原始资料版本', unlockHint:'体验序章', opening:true },
+  { name:'陈栋与封安宝2', route:'序章', note:'校友座谈 · 原始资料版本', unlockHint:'体验序章', opening:true },
   { name:'合一足球', route:'校园', note:'校园足球 · 绿茵时光', unlockHint:'初始开放', scenery:true },
-  { name:'陈栋与封安宝', route:'序章', note:'陈栋与封安宝 · 校园旧影', unlockHint:'体验序章', opening:true },
-  { name:'陈栋与封安宝2', route:'序章', note:'校友座谈 · 陈栋与封安宝', unlockHint:'体验序章', opening:true },
   { name: '滨湖晨光', route: '校园', note: '滨湖校门 · 秋晨', unlockHint: '初始开放', scenery: true },
   { name: '端馥晚照', route: '校园', note: '端馥堂 · 放学之后', unlockHint: '初始开放', scenery: true },
   { name: '雨过校门', route: '校园', note: '滨湖校门 · 雨后的归途', unlockHint: '初始开放', scenery: true },
@@ -50,7 +48,6 @@ export const ARTWORKS: Artwork[] = [
   { name: '校园涂鸦1', route: '狗熊', note: '永恒的赛博废墟 · 结局差分', unlockHint: '见证狗熊路线的赛博废墟结局', events: ['gx_ruin_super'], focuses: ['gx_ruin_settlement'], endings: ['game_over_gouxiong'] },
   { name: '校园涂鸦2', route: '狗熊', note: '丢人现眼 · 结局差分', unlockHint: '见证狗熊路线的公开处刑结局', events: ['gx_embarrass_super'], focuses: ['gx_embarrass_settlement'], endings: ['game_over_gouxiong_embarrass'] },
   { name: '清场', route: '吴福军', note: '铁腕时代 · 超事件', unlockHint: '进入吴福军的铁腕时代', trees: ['wu_tree', 'wu_tree_p2_feng', 'wu_tree_p2_spring', 'wu_tree_p2_coup'], events: ['wu_crackdown'], routeTags: ['铁腕时代', '秩序元年', '风暴前夕', '大权在握'], endings: ['compromise', 'game_over_feng_millennium', 'game_over_hefei_spring', 'game_over_wu_coup'], sensitive: true },
-  { name: '封安宝时代', route: '终局', note: '校方体制 · 终局', unlockHint: '经历全面镇压或连任千年的结局', events: ['game_over_school'], endings: ['game_over_school', 'game_over_feng_millennium'] },
   { name: '合一陨落', route: '终局', note: '校园崩溃 · 终局', unlockHint: '经历升学率雪崩的结局', events: ['game_over_anarchy'], endings: ['game_over_anarchy'] },
   { name: '街垒黎明', route: '联合革命', note: 'B3起义之后 · 校门的第一缕光', unlockHint: '经历B3起义，进入联合革委会阶段', trees: ['treeA'], focuses: ['charge_b3'], events: ['b3_uprising'], routeTags: ['联合革命线'], sensitive: true },
   { name: '油印机之夜', route: '联合革命', note: '地下宣传 · 油墨未干', unlockHint: '完成“地下印刷网络”国策', focuses: ['underground_print'] },

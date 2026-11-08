@@ -26,7 +26,7 @@ const ABSOLUTE_URL_RE = /^(?:https?:)?\/\//i;
 const loadingArt = (name: string): string => LOADING_ART[name] || LOADING_ART_URLS[0];
 
 const NEWS_EVENT_ASSET_URLS: Partial<Record<AssetKey, string>> = Object.keys(FLAVOR_EVENTS).reduce((acc, eventId) => {
-  acc[`news_${eventId}` as AssetKey] = getExpandedNewsArt(eventId) ?? getExpandedNewsArt(eventId) ?? getSimpleNewsArt(eventId) ?? loadingArt('行政楼');
+  acc[`news_${eventId}` as AssetKey] = getExpandedNewsArt(eventId) ?? getExpandedNewsArt(eventId) ?? getExpandedNewsArt(eventId) ?? getSimpleNewsArt(eventId) ?? loadingArt('行政楼');
   return acc;
 }, {} as Partial<Record<AssetKey, string>>);
 
