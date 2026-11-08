@@ -16,6 +16,10 @@ export interface Artwork {
 }
 
 export const ARTWORKS: Artwork[] = [
+  // Supplied alternate editions retain their corresponding opening/ending unlock boundaries.
+  { name:'封安保时代', route:'终局', note:'校方体制 · 原始资料版本', unlockHint:'经历全面镇压或连任千年的结局', events:['game_over_school'], endings:['game_over_school','game_over_feng_millennium'] },
+  { name:'陈栋与封安保', route:'序章', note:'校园旧影 · 原始资料版本', unlockHint:'体验序章', opening:true },
+  { name:'陈栋与封安保2', route:'序章', note:'校友座谈 · 原始资料版本', unlockHint:'体验序章', opening:true },
   { name:'合一足球', route:'校园', note:'校园足球 · 绿茵时光', unlockHint:'初始开放', scenery:true },
   { name:'陈栋与封安宝', route:'序章', note:'陈栋与封安宝 · 校园旧影', unlockHint:'体验序章', opening:true },
   { name:'陈栋与封安宝2', route:'序章', note:'校友座谈 · 陈栋与封安宝', unlockHint:'体验序章', opening:true },

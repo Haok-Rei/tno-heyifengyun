@@ -1,8 +1,9 @@
+import { getExpandedNewsArt } from './expandedNewsArtwork';
 import { FLAVOR_EVENTS } from '../data/flavorEvents';
 import { STORY_EVENTS } from '../data/storyEvents';
 import { LOCAL_GOUXIONG_PORTRAIT, LOCAL_PORTRAIT_URLS } from './localPortraits';
 import { LOADING_ART, LOADING_ART_URLS } from './loadingArtwork';
-import { NEWS_ARTWORK } from './newsArtwork';
+import { NEWS_ARTWORK, getSimpleNewsArt } from './newsArtwork';
 import { ENDING_ARTWORK } from './endingArtwork';
 export { LOADING_ART_URLS } from './loadingArtwork';
 
@@ -25,11 +26,15 @@ const ABSOLUTE_URL_RE = /^(?:https?:)?\/\//i;
 const loadingArt = (name: string): string => LOADING_ART[name] || LOADING_ART_URLS[0];
 
 const NEWS_EVENT_ASSET_URLS: Partial<Record<AssetKey, string>> = Object.keys(FLAVOR_EVENTS).reduce((acc, eventId) => {
-  acc[`news_${eventId}` as AssetKey] = loadingArt('行政楼');
+  acc[`news_${eventId}` as AssetKey] = getExpandedNewsArt(eventId) ?? getExpandedNewsArt(eventId) ?? getSimpleNewsArt(eventId) ?? loadingArt('行政楼');
   return acc;
 }, {} as Partial<Record<AssetKey, string>>);
 
 const storyIllustration = (id: string): string => {
+  const expanded = getExpandedNewsArt(id);
+  if (expanded) return expanded;
+  const simple = getSimpleNewsArt(id);
+  if (simple) return simple;
   if (/^(yang_|yy_|enter_treeB)/.test(id)) return loadingArt('保温杯与红批');
   if (/^(jidi_|enter_treeD)/.test(id)) return loadingArt('企业学校的黄昏');
   if (/^(gx_|gouxiong_|enter_treeC)/.test(id)) return loadingArt('银幕仍亮');

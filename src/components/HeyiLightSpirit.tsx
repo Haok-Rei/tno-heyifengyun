@@ -3,7 +3,6 @@ import type { GameState } from '../types';
 import { getHeyiLightSnapshot, type HeyiRoute } from '../engine/heyiLight';
 import { getCampusArtScene, getCampusArtChapter, getCampusArtBranch } from '../engine/campusArt';
 import { getStructureProfile } from './CampusStructures';
-import { BADGE_BACKDROP_ART } from '../config/campaignArtwork';
 
 const THEMES: Record<HeyiRoute,string> = {opening:'school',uprising:'coalition',democracy:'democracy',revolution:'red',reform:'red',despair:'despair',haobang:'haobang',yang:'study',jidi:'corporate',jidi_riot:'despair',gouxiong:'culture',wu:'military'};
 const PALETTES: Record<string,[string,string,string]> = {
@@ -44,7 +43,7 @@ export default function HeyiLightSpirit({state}:{state?:GameState}) {
         <linearGradient id={id+'-stone'} x2="1" y2="1"><stop stopColor={stone}/><stop offset="1" stopColor={shade}/></linearGradient>
         <linearGradient id={id+'-roof'} x2="0" y2="1"><stop stopColor={edge}/><stop offset="1" stopColor={shade}/></linearGradient>
       </defs>
-      <image href={BADGE_BACKDROP_ART[theme]} x="0" y="29" width="160" height="112"/>
+      <rect x="6" y="5" width="148" height="130" rx="18" fill={shade} stroke={edge} strokeWidth="3"/>
       <path d="M20 112L79 126L147 108L92 91Z" fill="#1b2625" stroke={edge} strokeWidth="1"/>
       <path d="M20 112v5l59 14 68-18v-5L79 126Z" fill="#111a19" stroke={shade} strokeWidth="1"/>
       <g strokeLinejoin="round">
