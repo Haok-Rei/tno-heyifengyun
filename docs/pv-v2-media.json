@@ -1,13 +1,13 @@
 {
   "sourceName": "TNO_向合一奔去_PV_V2.mp4",
-  "sourceSha256": "82defc639a6d6873b256ab8669a0a65bfba2b1e50233f5db50335be12fd946bb",
-  "sourceBytes": 821669921,
+  "sourceSha256": "71c55fb26a8d0e8548410eda19c392de7f949bba10f2bc21c9ce252da4617956",
+  "sourceBytes": 804750232,
   "durationSeconds": 251.066667,
   "resolution": "1920x1080",
   "video": "H.264 / CRF21 / capped 4500 kbit/s",
   "audio": "Original AAC copied without re-encoding",
   "segmentSeconds": 6,
   "segmentCount": 42,
-  "outputBytes": 149869762.0,
-  "largestSegmentBytes": 3790387.0
+  "outputBytes": 149892487.0,
+  "largestSegmentBytes": 3791993.0
 }

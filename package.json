@@ -1,7 +1,7 @@
 {
   "name": "hefei-order",
   "private": true,
-  "version": "9.5.6",
+  "version": "9.5.7",
   "type": "module",
   "scripts": {
     "writing": "node scripts/writing/editor.mjs",
