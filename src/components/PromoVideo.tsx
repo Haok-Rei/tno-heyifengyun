@@ -5,8 +5,8 @@ import { AUDIO_SETTINGS_EVENT, readAudioSettings } from '../engine/audioSettings
 import { PROMO_VIDEO_AUDIO_START, PROMO_VIDEO_AUDIO_END } from '../engine/promoVideoAudio';
 import './promoVideo.css';
 
-export const PROMO_VIDEO_SOURCE='/media/pv-v2/index.m3u8';
-export const PROMO_VIDEO_POSTER='/media/pv-v2/poster.webp';
+export const PROMO_VIDEO_SOURCE='/media/pv-v2/index.m3u8?v=9.5.9';
+export const PROMO_VIDEO_POSTER='/media/pv-v2/poster.webp?v=9.5.9';
 
 /** The video and streaming client are mounted only after the player opens the film. */
 export default function PromoVideo({onClose}:{onClose:()=>void}) {
