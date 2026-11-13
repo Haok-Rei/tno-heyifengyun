@@ -21,6 +21,7 @@ export const ARTWORKS: Artwork[] = [
   { name:'陈栋与封安宝', route:'序章', note:'校园旧影 · 原始资料版本', unlockHint:'体验序章', opening:true },
   { name:'陈栋与封安宝2', route:'序章', note:'校友座谈 · 原始资料版本', unlockHint:'体验序章', opening:true },
   { name:'合一足球', route:'校园', note:'校园足球 · 绿茵时光', unlockHint:'初始开放', scenery:true },
+  { name: '滨湖晨光0', route: '校园', note: '旧校门 · 秋晨', unlockHint: '初始开放', scenery: true },
   { name: '滨湖晨光', route: '校园', note: '滨湖校门 · 秋晨', unlockHint: '初始开放', scenery: true },
   { name: '端馥晚照', route: '校园', note: '端馥堂 · 放学之后', unlockHint: '初始开放', scenery: true },
   { name: '雨过校门', route: '校园', note: '滨湖校门 · 雨后的归途', unlockHint: '初始开放', scenery: true },

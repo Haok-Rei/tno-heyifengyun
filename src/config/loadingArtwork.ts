@@ -59,6 +59,7 @@ export const LOADING_ART: Record<string, string> = {
   "雨过校门": new URL("../assets/loading/雨过校门.webp", import.meta.url).href,
   "雪中的来函": new URL("../assets/loading/雪中的来函.webp", import.meta.url).href,
   "食堂晚灯": new URL("../assets/loading/食堂晚灯.webp", import.meta.url).href,
+  "滨湖晨光0": new URL("../assets/loading/滨湖晨光0.webp", import.meta.url).href,
 };
 
 export const LOADING_ART_URLS = Object.values(LOADING_ART);
