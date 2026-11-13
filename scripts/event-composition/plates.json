@@ -1,0 +1,2576 @@
+{
+  "academic_competition_sponsorship_event": {
+    "scene": "退回的联名信",
+    "subject": "src/assets/hoi4/expanded/Box Open2.png",
+    "portrait": false,
+    "anchor": 0.52
+  },
+  "alliance_collapse": {
+    "scene": "灯下的协议",
+    "subject": "src/assets/hoi4/expanded/Hands Shaking.png",
+    "portrait": false,
+    "anchor": 0.44
+  },
+  "anime_chaos": {
+    "scene": "银幕仍亮",
+    "subject": "src/assets/hoi4/expanded/Magician.png",
+    "portrait": false,
+    "anchor": 0.42
+  },
+  "b3_defeat": {
+    "scene": "街垒黎明",
+    "subject": "src/assets/hoi4/expanded/Denied.png",
+    "portrait": false,
+    "anchor": 0.59
+  },
+  "b3_drill_defeat": {
+    "scene": "B3革命",
+    "subject": "src/assets/hoi4/expanded/Denied.png",
+    "portrait": false,
+    "anchor": 0.6
+  },
+  "b3_drill_victory": {
+    "scene": "B3革命",
+    "subject": "src/assets/hoi4/expanded/Pedestal.png",
+    "portrait": false,
+    "anchor": 0.64
+  },
+  "b3_victory": {
+    "scene": "街垒黎明",
+    "subject": "src/assets/hoi4/expanded/Pedestal.png",
+    "portrait": false,
+    "anchor": 0.55
+  },
+  "bear_victory_event": {
+    "scene": "名单之外",
+    "subject": "scripts/event-composition/subjects/leader_gouxiong.webp",
+    "portrait": true,
+    "anchor": 0.39
+  },
+  "bill_abolish_evening_study_failed": {
+    "scene": "第一张选票",
+    "subject": "src/assets/hoi4/expanded/Parliament.png",
+    "portrait": false,
+    "anchor": 0.37
+  },
+  "bill_abolish_evening_study_passed": {
+    "scene": "议场初开",
+    "subject": "src/assets/hoi4/expanded/Parliament.png",
+    "portrait": false,
+    "anchor": 0.62
+  },
+  "bill_club_freedom_failed": {
+    "scene": "银幕仍亮",
+    "subject": "src/assets/hoi4/expanded/Parliament.png",
+    "portrait": false,
+    "anchor": 0.56
+  },
+  "bill_club_freedom_passed": {
+    "scene": "银幕仍亮",
+    "subject": "src/assets/hoi4/expanded/Parliament.png",
+    "portrait": false,
+    "anchor": 0.56
+  },
+  "bill_conservative_discipline_event": {
+    "scene": "第一张选票",
+    "subject": "src/assets/hoi4/expanded/Crown2.png",
+    "portrait": false,
+    "anchor": 0.37
+  },
+  "bill_conservative_discipline_failed": {
+    "scene": "议场初开",
+    "subject": "src/assets/hoi4/expanded/Parliament.png",
+    "portrait": false,
+    "anchor": 0.68
+  },
+  "bill_conservative_discipline_passed": {
+    "scene": "议场初开",
+    "subject": "src/assets/hoi4/expanded/Parliament.png",
+    "portrait": false,
+    "anchor": 0.42
+  },
+  "bill_curriculum_reform_failed": {
+    "scene": "第一张选票",
+    "subject": "src/assets/hoi4/expanded/Parliament.png",
+    "portrait": false,
+    "anchor": 0.59
+  },
+  "bill_curriculum_reform_passed": {
+    "scene": "第一张选票",
+    "subject": "src/assets/hoi4/expanded/Parliament.png",
+    "portrait": false,
+    "anchor": 0.49
+  },
+  "bill_failed": {
+    "scene": "第一张选票",
+    "subject": "src/assets/hoi4/expanded/Parliament.png",
+    "portrait": false,
+    "anchor": 0.51
+  },
+  "bill_orthodox_red_culture_event": {
+    "scene": "第一张选票",
+    "subject": "src/assets/hoi4/expanded/Lightbulb Broken.png",
+    "portrait": false,
+    "anchor": 0.63
+  },
+  "bill_orthodox_red_culture_failed": {
+    "scene": "第一张选票",
+    "subject": "src/assets/hoi4/expanded/Ballot.png",
+    "portrait": false,
+    "anchor": 0.61
+  },
+  "bill_orthodox_red_culture_passed": {
+    "scene": "议场初开",
+    "subject": "src/assets/hoi4/expanded/Parliament.png",
+    "portrait": false,
+    "anchor": 0.44
+  },
+  "bill_student_welfare_failed": {
+    "scene": "第一张选票",
+    "subject": "src/assets/hoi4/expanded/Parliament.png",
+    "portrait": false,
+    "anchor": 0.37
+  },
+  "bill_student_welfare_passed": {
+    "scene": "第一张选票",
+    "subject": "src/assets/hoi4/expanded/Parliament.png",
+    "portrait": false,
+    "anchor": 0.39
+  },
+  "bill_test_taker_mock_exams_event": {
+    "scene": "密卷流水线",
+    "subject": "src/assets/hoi4/expanded/Officer.png",
+    "portrait": false,
+    "anchor": 0.31
+  },
+  "bill_test_taker_mock_exams_failed": {
+    "scene": "课桌上的改革",
+    "subject": "src/assets/hoi4/expanded/Ballot.png",
+    "portrait": false,
+    "anchor": 0.48
+  },
+  "bill_test_taker_mock_exams_passed": {
+    "scene": "课桌上的改革",
+    "subject": "src/assets/hoi4/expanded/Parliament.png",
+    "portrait": false,
+    "anchor": 0.64
+  },
+  "bill_transparent_finances_failed": {
+    "scene": "议场初开",
+    "subject": "src/assets/hoi4/expanded/Bills.png",
+    "portrait": false,
+    "anchor": 0.36
+  },
+  "bill_transparent_finances_passed": {
+    "scene": "第一张选票",
+    "subject": "src/assets/hoi4/expanded/Bills.png",
+    "portrait": false,
+    "anchor": 0.63
+  },
+  "campus_informants": {
+    "scene": "行政楼",
+    "subject": "src/assets/hoi4/expanded/Spy.png",
+    "portrait": false,
+    "anchor": 0.29
+  },
+  "campus_infrastructure_upgrade_event": {
+    "scene": "议场初开",
+    "subject": "src/assets/hoi4/expanded/Dice.png",
+    "portrait": false,
+    "anchor": 0.6
+  },
+  "campus_mockery": {
+    "scene": "B3夜读",
+    "subject": "src/assets/hoi4/expanded/Book Open.png",
+    "portrait": false,
+    "anchor": 0.37
+  },
+  "campus_retirement": {
+    "scene": "校园涂鸦1",
+    "subject": "src/assets/hoi4/expanded/Bird Freed.png",
+    "portrait": false,
+    "anchor": 0.49
+  },
+  "committee_echo_compromise": {
+    "scene": "公社的长桌",
+    "subject": "src/assets/hoi4/expanded/Hands Shaking.png",
+    "portrait": false,
+    "anchor": 0.55
+  },
+  "committee_echo_trial": {
+    "scene": "清场",
+    "subject": "src/assets/hoi4/expanded/Handcuffs.png",
+    "portrait": false,
+    "anchor": 0.35
+  },
+  "day_14_event": {
+    "scene": "熄灯后的脚步",
+    "subject": "src/assets/hoi4/expanded/Officer.png",
+    "portrait": false,
+    "anchor": 0.44
+  },
+  "democratic_power_struggle_event": {
+    "scene": "议场初开",
+    "subject": "src/assets/hoi4/expanded/Parliament.png",
+    "portrait": false,
+    "anchor": 0.7
+  },
+  "democratic_power_struggle_result": {
+    "scene": "议场初开",
+    "subject": "src/assets/hoi4/expanded/Parliament.png",
+    "portrait": false,
+    "anchor": 0.58
+  },
+  "democratic_reforms_event": {
+    "scene": "第一张选票",
+    "subject": "src/assets/hoi4/expanded/Crown.png",
+    "portrait": false,
+    "anchor": 0.31
+  },
+  "despair_fight": {
+    "scene": "熄灯后的脚步",
+    "subject": "src/assets/hoi4/expanded/Grim Reaper.png",
+    "portrait": false,
+    "anchor": 0.66
+  },
+  "education_marketization_event": {
+    "scene": "价格牌下的风暴",
+    "subject": "src/assets/hoi4/expanded/Bulldozer.png",
+    "portrait": false,
+    "anchor": 0.5
+  },
+  "empower_student_unions_event": {
+    "scene": "第一张选票",
+    "subject": "src/assets/hoi4/expanded/Bear2.png",
+    "portrait": false,
+    "anchor": 0.3
+  },
+  "enter_treeB": {
+    "scene": "保温杯与红批",
+    "subject": "src/assets/hoi4/expanded/Hand Writing.png",
+    "portrait": false,
+    "anchor": 0.37
+  },
+  "enter_treeD": {
+    "scene": "滨湖晨光",
+    "subject": "src/assets/hoi4/expanded/Building.png",
+    "portrait": false,
+    "anchor": 0.31
+  },
+  "expand_assembly_event": {
+    "scene": "第一张选票",
+    "subject": "src/assets/hoi4/expanded/Briefcase.png",
+    "portrait": false,
+    "anchor": 0.35
+  },
+  "extracurricular_activities_fund_event": {
+    "scene": "廊桥课间",
+    "subject": "src/assets/hoi4/expanded/Cherry Blossom.png",
+    "portrait": false,
+    "anchor": 0.59
+  },
+  "final_revolution_event": {
+    "scene": "街垒黎明",
+    "subject": "src/assets/hoi4/expanded/Fire2.png",
+    "portrait": false,
+    "anchor": 0.66
+  },
+  "gouxiong_alliance_secret": {
+    "scene": "操场晚晴",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_cooperate_with_gouxiong.png",
+    "portrait": false,
+    "anchor": 0.46
+  },
+  "gouxiong_coup": {
+    "scene": "B3夜读",
+    "subject": "src/assets/hoi4/expanded/Karl Marx.png",
+    "portrait": false,
+    "anchor": 0.51
+  },
+  "gouxiong_coup_success": {
+    "scene": "街垒黎明",
+    "subject": "src/assets/hoi4/expanded/Rebellion.png",
+    "portrait": false,
+    "anchor": 0.28
+  },
+  "gx_anarchy_broadcast_slot_event": {
+    "scene": "滨湖晨光",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_gx_anarchy_broadcast_slot.png",
+    "portrait": false,
+    "anchor": 0.39
+  },
+  "gx_anarchy_festival_ops_event": {
+    "scene": "操场晚晴",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_gx_anarchy_festival_ops.png",
+    "portrait": false,
+    "anchor": 0.34
+  },
+  "gx_anarchy_map_start_event": {
+    "scene": "廊桥课间",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_gx_anarchy_map_start.png",
+    "portrait": false,
+    "anchor": 0.5
+  },
+  "gx_anarchy_shadow_network_event": {
+    "scene": "廊桥课间",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_gx_anarchy_shadow_network.png",
+    "portrait": false,
+    "anchor": 0.67
+  },
+  "gx_anarchy_swarm_mobilization_event": {
+    "scene": "廊桥课间",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_gx_anarchy_swarm_mobilization.png",
+    "portrait": false,
+    "anchor": 0.44
+  },
+  "gx_anime_event": {
+    "scene": "银幕仍亮",
+    "subject": "src/assets/hoi4/expanded/Citizen2.png",
+    "portrait": false,
+    "anchor": 0.32
+  },
+  "gx_campus_rewrite_event": {
+    "scene": "操场晚晴",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_gx_campus_rewrite.png",
+    "portrait": false,
+    "anchor": 0.39
+  },
+  "gx_coup_10_days_warning_event": {
+    "scene": "名单之外",
+    "subject": "src/assets/hoi4/expanded/Envelope.png",
+    "portrait": false,
+    "anchor": 0.42
+  },
+  "gx_cyber_archive_war_event": {
+    "scene": "校园涂鸦1",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_gx_cyber_archive_war.png",
+    "portrait": false,
+    "anchor": 0.47
+  },
+  "gx_cyber_bootstrap_event": {
+    "scene": "校园涂鸦1",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_gx_cyber_bootstrap.png",
+    "portrait": false,
+    "anchor": 0.37
+  },
+  "gx_cyber_complete_aot": {
+    "scene": "银幕仍亮",
+    "subject": "src/assets/hoi4/expanded/Karl Marx.png",
+    "portrait": false,
+    "anchor": 0.68
+  },
+  "gx_cyber_complete_bochi": {
+    "scene": "校园涂鸦1",
+    "subject": "src/assets/hoi4/expanded/Woman Dancing.png",
+    "portrait": false,
+    "anchor": 0.37
+  },
+  "gx_cyber_complete_demon_slayer": {
+    "scene": "银幕仍亮",
+    "subject": "src/assets/hoi4/expanded/Magician.png",
+    "portrait": false,
+    "anchor": 0.48
+  },
+  "gx_cyber_complete_eva": {
+    "scene": "银幕仍亮",
+    "subject": "src/assets/hoi4/expanded/Magician.png",
+    "portrait": false,
+    "anchor": 0.5
+  },
+  "gx_cyber_complete_frieren": {
+    "scene": "银幕仍亮",
+    "subject": "src/assets/hoi4/expanded/Karl Marx.png",
+    "portrait": false,
+    "anchor": 0.68
+  },
+  "gx_cyber_complete_mygo": {
+    "scene": "银幕仍亮",
+    "subject": "src/assets/hoi4/expanded/Computer.png",
+    "portrait": false,
+    "anchor": 0.48
+  },
+  "gx_cyber_complete_takagi": {
+    "scene": "银幕仍亮",
+    "subject": "src/assets/hoi4/expanded/Magician.png",
+    "portrait": false,
+    "anchor": 0.32
+  },
+  "gx_cyber_deep_dive_event": {
+    "scene": "校园涂鸦1",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_gx_cyber_deep_dive.png",
+    "portrait": false,
+    "anchor": 0.41
+  },
+  "gx_cyber_public_forum_event": {
+    "scene": "银幕仍亮",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_gx_cyber_public_forum.png",
+    "portrait": false,
+    "anchor": 0.58
+  },
+  "gx_cyber_rating_event": {
+    "scene": "校园涂鸦1",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_gx_cyber_rating_protocol.png",
+    "portrait": false,
+    "anchor": 0.61
+  },
+  "gx_cyber_start_aot": {
+    "scene": "校园涂鸦1",
+    "subject": "src/assets/hoi4/expanded/Magician.png",
+    "portrait": false,
+    "anchor": 0.57
+  },
+  "gx_cyber_start_bochi": {
+    "scene": "银幕仍亮",
+    "subject": "src/assets/hoi4/expanded/Woman Dancing.png",
+    "portrait": false,
+    "anchor": 0.34
+  },
+  "gx_cyber_start_demon_slayer": {
+    "scene": "校园涂鸦1",
+    "subject": "src/assets/hoi4/expanded/Magician.png",
+    "portrait": false,
+    "anchor": 0.55
+  },
+  "gx_cyber_start_eva": {
+    "scene": "校园涂鸦1",
+    "subject": "src/assets/hoi4/expanded/Bear.png",
+    "portrait": false,
+    "anchor": 0.57
+  },
+  "gx_cyber_start_frieren": {
+    "scene": "银幕仍亮",
+    "subject": "src/assets/hoi4/expanded/Karl Marx.png",
+    "portrait": false,
+    "anchor": 0.7
+  },
+  "gx_cyber_start_mygo": {
+    "scene": "银幕仍亮",
+    "subject": "src/assets/hoi4/expanded/Woman Dancing.png",
+    "portrait": false,
+    "anchor": 0.34
+  },
+  "gx_cyber_start_takagi": {
+    "scene": "银幕仍亮",
+    "subject": "src/assets/hoi4/expanded/Computer.png",
+    "portrait": false,
+    "anchor": 0.44
+  },
+  "gx_dabi_patience_event": {
+    "scene": "滨湖晨光",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_gx_dabi_patience.png",
+    "portrait": false,
+    "anchor": 0.68
+  },
+  "gx_dabi_route_trial_10d_event": {
+    "scene": "清场",
+    "subject": "src/assets/hoi4/expanded/Handcuffs.png",
+    "portrait": false,
+    "anchor": 0.31
+  },
+  "gx_dabi_route_trial_5d_event": {
+    "scene": "清场",
+    "subject": "src/assets/hoi4/expanded/Rebellion.png",
+    "portrait": false,
+    "anchor": 0.57
+  },
+  "gx_dabi_route_trial_embarrass_event": {
+    "scene": "批斗",
+    "subject": "src/assets/hoi4/expanded/Documents.png",
+    "portrait": false,
+    "anchor": 0.5
+  },
+  "gx_dabi_route_trial_redeem_event": {
+    "scene": "清场",
+    "subject": "src/assets/hoi4/expanded/Documents.png",
+    "portrait": false,
+    "anchor": 0.69
+  },
+  "gx_dabi_route_trial_ruin_event": {
+    "scene": "批斗",
+    "subject": "src/assets/hoi4/expanded/Documents.png",
+    "portrait": false,
+    "anchor": 0.4
+  },
+  "gx_dual_engine_sync_event": {
+    "scene": "廊桥课间",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_gx_dual_engine_sync.png",
+    "portrait": false,
+    "anchor": 0.55
+  },
+  "gx_embarrass_1_event": {
+    "scene": "B3革命",
+    "subject": "src/assets/hoi4/expanded/Hand Tearing Paper.png",
+    "portrait": false,
+    "anchor": 0.37
+  },
+  "gx_embarrass_2_event": {
+    "scene": "军训",
+    "subject": "src/assets/hoi4/expanded/Brain.png",
+    "portrait": false,
+    "anchor": 0.55
+  },
+  "gx_embarrass_3_event": {
+    "scene": "校园涂鸦2",
+    "subject": "src/assets/hoi4/expanded/Banner.png",
+    "portrait": false,
+    "anchor": 0.48
+  },
+  "gx_embarrass_ending_event": {
+    "scene": "密卷流水线",
+    "subject": "src/assets/hoi4/expanded/Paper.png",
+    "portrait": false,
+    "anchor": 0.32
+  },
+  "gx_embarrass_settlement_2d_event": {
+    "scene": "清场",
+    "subject": "src/assets/hoi4/expanded/Handcuffs.png",
+    "portrait": false,
+    "anchor": 0.45
+  },
+  "gx_gal_bootstrap_event": {
+    "scene": "滨湖晨光",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_gx_gal_bootstrap.png",
+    "portrait": false,
+    "anchor": 0.42
+  },
+  "gx_hire_under_wzk_true_left_event": {
+    "scene": "校园涂鸦1",
+    "subject": "src/assets/hoi4/expanded/Brush.png",
+    "portrait": false,
+    "anchor": 0.64
+  },
+  "gx_lante_light_channel_event": {
+    "scene": "廊桥课间",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_gx_lante_light_channel.png",
+    "portrait": false,
+    "anchor": 0.41
+  },
+  "gx_maodun_street_ops_event": {
+    "scene": "廊桥课间",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_gx_maodun_street_ops.png",
+    "portrait": false,
+    "anchor": 0.41
+  },
+  "gx_midnight_negotiation_event": {
+    "scene": "熄灯后的脚步",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_gx_midnight_negotiation.png",
+    "portrait": false,
+    "anchor": 0.36
+  },
+  "gx_mygo_event": {
+    "scene": "校园涂鸦2",
+    "subject": "src/assets/hoi4/expanded/Woman Dancing.png",
+    "portrait": false,
+    "anchor": 0.48
+  },
+  "gx_pants_event": {
+    "scene": "B3夜读",
+    "subject": "src/assets/hoi4/expanded/Moon.png",
+    "portrait": false,
+    "anchor": 0.31
+  },
+  "gx_redeem_1_event": {
+    "scene": "梧桐秋径",
+    "subject": "src/assets/hoi4/expanded/Megaphone Twins.png",
+    "portrait": false,
+    "anchor": 0.38
+  },
+  "gx_redeem_2_event": {
+    "scene": "春回滨湖",
+    "subject": "src/assets/hoi4/expanded/HandPalmDown.png",
+    "portrait": false,
+    "anchor": 0.43
+  },
+  "gx_redeem_3_event": {
+    "scene": "春回滨湖",
+    "subject": "src/assets/hoi4/expanded/Bear.png",
+    "portrait": false,
+    "anchor": 0.56
+  },
+  "gx_redeem_settlement_2d_event": {
+    "scene": "梧桐秋径",
+    "subject": "src/assets/hoi4/expanded/Bird Freed.png",
+    "portrait": false,
+    "anchor": 0.54
+  },
+  "gx_ruin_1_event": {
+    "scene": "清场",
+    "subject": "src/assets/hoi4/expanded/Arrow4.png",
+    "portrait": false,
+    "anchor": 0.69
+  },
+  "gx_ruin_2_event": {
+    "scene": "最后一间教室",
+    "subject": "src/assets/hoi4/expanded/Bell.png",
+    "portrait": false,
+    "anchor": 0.38
+  },
+  "gx_ruin_3_event": {
+    "scene": "军训",
+    "subject": "src/assets/hoi4/expanded/Paper Sign.png",
+    "portrait": false,
+    "anchor": 0.59
+  },
+  "gx_ruin_settlement_2d_event": {
+    "scene": "廊桥课间",
+    "subject": "src/assets/hoi4/expanded/Clock.png",
+    "portrait": false,
+    "anchor": 0.36
+  },
+  "gx_sanity_first_above_70_event": {
+    "scene": "银幕仍亮",
+    "subject": "src/assets/hoi4/expanded/Karl Marx.png",
+    "portrait": false,
+    "anchor": 0.62
+  },
+  "gx_sanity_first_above_80_event": {
+    "scene": "B3夜读",
+    "subject": "src/assets/hoi4/expanded/Karl Marx.png",
+    "portrait": false,
+    "anchor": 0.46
+  },
+  "gx_sanity_first_above_90_event": {
+    "scene": "图书长廊",
+    "subject": "src/assets/hoi4/expanded/Karl Marx.png",
+    "portrait": false,
+    "anchor": 0.53
+  },
+  "gx_sanity_first_below_10_event": {
+    "scene": "银幕仍亮",
+    "subject": "src/assets/hoi4/expanded/Karl Marx.png",
+    "portrait": false,
+    "anchor": 0.31
+  },
+  "gx_sanity_first_below_20_event": {
+    "scene": "密卷流水线",
+    "subject": "src/assets/hoi4/expanded/Computer.png",
+    "portrait": false,
+    "anchor": 0.57
+  },
+  "gx_sanity_first_below_30_event": {
+    "scene": "密卷流水线",
+    "subject": "src/assets/hoi4/expanded/Computer.png",
+    "portrait": false,
+    "anchor": 0.29
+  },
+  "gx_sanity_first_below_40_event": {
+    "scene": "B3夜读",
+    "subject": "src/assets/hoi4/expanded/Computer.png",
+    "portrait": false,
+    "anchor": 0.54
+  },
+  "gx_system_boot_event": {
+    "scene": "廊桥课间",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_gx_start.png",
+    "portrait": false,
+    "anchor": 0.53
+  },
+  "gx_unlock_dabi_event": {
+    "scene": "滨湖晨光",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_gx_unlock_dabi.png",
+    "portrait": false,
+    "anchor": 0.48
+  },
+  "gx_unlock_lante_event": {
+    "scene": "滨湖晨光",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_gx_unlock_lante.png",
+    "portrait": false,
+    "anchor": 0.71
+  },
+  "gx_unlock_maodun_event": {
+    "scene": "操场晚晴",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_gx_unlock_maodun.png",
+    "portrait": false,
+    "anchor": 0.57
+  },
+  "gx_unlock_wushuo_event": {
+    "scene": "滨湖晨光",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_gx_unlock_wushuo.png",
+    "portrait": false,
+    "anchor": 0.44
+  },
+  "gx_wushuo_evidence_submit_story_event": {
+    "scene": "银幕仍亮",
+    "subject": "src/assets/hoi4/expanded/Megaphone.png",
+    "portrait": false,
+    "anchor": 0.45
+  },
+  "gx_wushuo_manuscript_event": {
+    "scene": "滨湖晨光",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_gx_wushuo_manuscript.png",
+    "portrait": false,
+    "anchor": 0.36
+  },
+  "haobang_assembly_charter_event": {
+    "scene": "议场初开",
+    "subject": "src/assets/hoi4/expanded/Hand Raised.png",
+    "portrait": false,
+    "anchor": 0.64
+  },
+  "haobang_assembly_recall_event": {
+    "scene": "议场初开",
+    "subject": "src/assets/hoi4/expanded/Briefcase2.png",
+    "portrait": false,
+    "anchor": 0.3
+  },
+  "haobang_assembly_upgrade_event": {
+    "scene": "议场初开",
+    "subject": "src/assets/hoi4/expanded/Walkie Talkie.png",
+    "portrait": false,
+    "anchor": 0.3
+  },
+  "haobang_blank_event_1": {
+    "scene": "红色风暴",
+    "subject": "src/assets/hoi4/expanded/Torch Gold.png",
+    "portrait": false,
+    "anchor": 0.67
+  },
+  "haobang_blank_event_2": {
+    "scene": "公社的长桌",
+    "subject": "src/assets/hoi4/expanded/Torch Gold.png",
+    "portrait": false,
+    "anchor": 0.37
+  },
+  "haobang_blank_event_3": {
+    "scene": "B3夜读",
+    "subject": "src/assets/hoi4/expanded/Torch Gold.png",
+    "portrait": false,
+    "anchor": 0.3
+  },
+  "haobang_commune_federation_event": {
+    "scene": "灯下的协议",
+    "subject": "src/assets/hoi4/expanded/Megaphone Twins.png",
+    "portrait": false,
+    "anchor": 0.7
+  },
+  "haobang_commune_program_event": {
+    "scene": "六十日之约",
+    "subject": "src/assets/hoi4/expanded/Factories2.png",
+    "portrait": false,
+    "anchor": 0.35
+  },
+  "haobang_ending_event_1": {
+    "scene": "六十日之约",
+    "subject": "src/assets/hoi4/expanded/Dice.png",
+    "portrait": false,
+    "anchor": 0.31
+  },
+  "haobang_ending_event_2": {
+    "scene": "梧桐秋径",
+    "subject": "src/assets/hoi4/expanded/Dice.png",
+    "portrait": false,
+    "anchor": 0.52
+  },
+  "haobang_ending_event_3": {
+    "scene": "春回滨湖",
+    "subject": "src/assets/hoi4/expanded/Dice.png",
+    "portrait": false,
+    "anchor": 0.56
+  },
+  "haobang_gouxiong_3d_event": {
+    "scene": "退回的联名信",
+    "subject": "src/assets/hoi4/expanded/Hands Shaking.png",
+    "portrait": false,
+    "anchor": 0.66
+  },
+  "haobang_gouxiong_6d_event": {
+    "scene": "军训",
+    "subject": "src/assets/hoi4/expanded/Officer.png",
+    "portrait": false,
+    "anchor": 0.33
+  },
+  "haobang_gouxiong_9d_event": {
+    "scene": "灯下的协议",
+    "subject": "src/assets/hoi4/expanded/Hands Shaking.png",
+    "portrait": false,
+    "anchor": 0.42
+  },
+  "haobang_left_tent_event": {
+    "scene": "滨湖晨光",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_left_tent_front.png",
+    "portrait": false,
+    "anchor": 0.3
+  },
+  "haobang_legacy_defense_event": {
+    "scene": "军训",
+    "subject": "src/assets/hoi4/expanded/Documents.png",
+    "portrait": false,
+    "anchor": 0.4
+  },
+  "haobang_legacy_guard_event": {
+    "scene": "退回的联名信",
+    "subject": "src/assets/hoi4/expanded/Cracks Overlay.png",
+    "portrait": false,
+    "anchor": 0.33
+  },
+  "haobang_legacy_joint_event": {
+    "scene": "议场初开",
+    "subject": "src/assets/hoi4/expanded/Megaphone3.png",
+    "portrait": false,
+    "anchor": 0.64
+  },
+  "haobang_merge_bear_done": {
+    "scene": "退回的联名信",
+    "subject": "src/assets/hoi4/expanded/Hands Shaking.png",
+    "portrait": false,
+    "anchor": 0.66
+  },
+  "haobang_merge_pan_done": {
+    "scene": "公社的长桌",
+    "subject": "src/assets/hoi4/expanded/Hands Shaking.png",
+    "portrait": false,
+    "anchor": 0.46
+  },
+  "haobang_negotiation_result_fail": {
+    "scene": "灯下的协议",
+    "subject": "src/assets/hoi4/expanded/Hands Shaking.png",
+    "portrait": false,
+    "anchor": 0.55
+  },
+  "haobang_pan_reconciliation_event": {
+    "scene": "滨湖晨光",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_pan_reconciliation.png",
+    "portrait": false,
+    "anchor": 0.68
+  },
+  "haobang_start_4d_event": {
+    "scene": "公社的长桌",
+    "subject": "scripts/event-composition/subjects/leader_hao_bang.webp",
+    "portrait": true,
+    "anchor": 0.33
+  },
+  "haobang_start_8d_event": {
+    "scene": "议场初开",
+    "subject": "src/assets/hoi4/expanded/Parliament.png",
+    "portrait": false,
+    "anchor": 0.48
+  },
+  "haobang_succession_event": {
+    "scene": "滨湖晨光",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_gouxiong_accident.png",
+    "portrait": false,
+    "anchor": 0.32
+  },
+  "hire_you_guanglei_event": {
+    "scene": "梧桐秋径",
+    "subject": "scripts/event-composition/subjects/advisor_you_guanglei.webp",
+    "portrait": true,
+    "anchor": 0.37
+  },
+  "hire_zhou_chen_event": {
+    "scene": "六十日之约",
+    "subject": "scripts/event-composition/subjects/advisor_zhou_chen.webp",
+    "portrait": true,
+    "anchor": 0.35
+  },
+  "jidi_ai_grading_event": {
+    "scene": "密卷流水线",
+    "subject": "src/assets/hoi4/expanded/Bills.png",
+    "portrait": false,
+    "anchor": 0.65
+  },
+  "jidi_ai_tutors_event": {
+    "scene": "B3夜读",
+    "subject": "src/assets/hoi4/expanded/Coins.png",
+    "portrait": false,
+    "anchor": 0.37
+  },
+  "jidi_bureau_target_failure": {
+    "scene": "名单之外",
+    "subject": "src/assets/hoi4/expanded/Denied.png",
+    "portrait": false,
+    "anchor": 0.71
+  },
+  "jidi_bureau_target_success": {
+    "scene": "食堂晚灯",
+    "subject": "src/assets/hoi4/expanded/Bills.png",
+    "portrait": false,
+    "anchor": 0.47
+  },
+  "jidi_data_mining_event": {
+    "scene": "B3夜读",
+    "subject": "src/assets/hoi4/expanded/Cash Flow Positive2.png",
+    "portrait": false,
+    "anchor": 0.53
+  },
+  "jidi_ending_1_event": {
+    "scene": "密卷流水线",
+    "subject": "src/assets/hoi4/expanded/Paper.png",
+    "portrait": false,
+    "anchor": 0.45
+  },
+  "jidi_ending_2_event": {
+    "scene": "课桌上的改革",
+    "subject": "src/assets/hoi4/expanded/Paper.png",
+    "portrait": false,
+    "anchor": 0.6
+  },
+  "jidi_ending_3_event": {
+    "scene": "批斗",
+    "subject": "src/assets/hoi4/expanded/Handcuffs.png",
+    "portrait": false,
+    "anchor": 0.28
+  },
+  "jidi_ending_4_event": {
+    "scene": "廊桥课间",
+    "subject": "src/assets/hoi4/expanded/Clock.png",
+    "portrait": false,
+    "anchor": 0.42
+  },
+  "jidi_establish_committee_event": {
+    "scene": "食堂晚灯",
+    "subject": "src/assets/hoi4/expanded/Hands Shaking.png",
+    "portrait": false,
+    "anchor": 0.41
+  },
+  "jidi_expand_market_event": {
+    "scene": "价格牌下的风暴",
+    "subject": "src/assets/hoi4/expanded/Coins6.png",
+    "portrait": false,
+    "anchor": 0.52
+  },
+  "jidi_feng_anbao_event": {
+    "scene": "春回滨湖",
+    "subject": "scripts/event-composition/subjects/leader_feng_anbao.webp",
+    "portrait": true,
+    "anchor": 0.48
+  },
+  "jidi_fujitsu_model_event": {
+    "scene": "课桌上的改革",
+    "subject": "src/assets/hoi4/expanded/Coins4.png",
+    "portrait": false,
+    "anchor": 0.53
+  },
+  "jidi_hitachi_model_event": {
+    "scene": "公社的长桌",
+    "subject": "src/assets/hoi4/expanded/Coins2.png",
+    "portrait": false,
+    "anchor": 0.67
+  },
+  "jidi_late_game_mock_exam": {
+    "scene": "课桌上的改革",
+    "subject": "src/assets/hoi4/expanded/Pedestal.png",
+    "portrait": false,
+    "anchor": 0.62
+  },
+  "jidi_late_mock_exam": {
+    "scene": "课桌上的改革",
+    "subject": "src/assets/hoi4/expanded/Bills.png",
+    "portrait": false,
+    "anchor": 0.32
+  },
+  "jidi_mock_exam_approach_event": {
+    "scene": "课桌上的改革",
+    "subject": "src/assets/hoi4/expanded/Bills.png",
+    "portrait": false,
+    "anchor": 0.38
+  },
+  "jidi_mock_exam_fail": {
+    "scene": "课桌上的改革",
+    "subject": "src/assets/hoi4/expanded/Denied.png",
+    "portrait": false,
+    "anchor": 0.48
+  },
+  "jidi_mock_exam_mediocre": {
+    "scene": "密卷流水线",
+    "subject": "src/assets/hoi4/expanded/Pedestal.png",
+    "portrait": false,
+    "anchor": 0.53
+  },
+  "jidi_mock_exam_success": {
+    "scene": "密卷流水线",
+    "subject": "src/assets/hoi4/expanded/Pedestal.png",
+    "portrait": false,
+    "anchor": 0.63
+  },
+  "jidi_monopoly_event": {
+    "scene": "密卷流水线",
+    "subject": "src/assets/hoi4/expanded/Coins3.png",
+    "portrait": false,
+    "anchor": 0.47
+  },
+  "jidi_performance_metrics_event": {
+    "scene": "最后一间教室",
+    "subject": "src/assets/hoi4/expanded/Bank Broken.png",
+    "portrait": false,
+    "anchor": 0.56
+  },
+  "jidi_psychological_counseling_event": {
+    "scene": "军训",
+    "subject": "src/assets/hoi4/expanded/Capitol.png",
+    "portrait": false,
+    "anchor": 0.36
+  },
+  "jidi_riot_event_10d": {
+    "scene": "街垒黎明",
+    "subject": "src/assets/hoi4/expanded/Rebellion.png",
+    "portrait": false,
+    "anchor": 0.58
+  },
+  "jidi_riot_event_15d": {
+    "scene": "总攻前夜",
+    "subject": "src/assets/hoi4/expanded/Rebellion.png",
+    "portrait": false,
+    "anchor": 0.41
+  },
+  "jidi_riot_event_5d": {
+    "scene": "总攻前夜",
+    "subject": "src/assets/hoi4/expanded/Rebellion.png",
+    "portrait": false,
+    "anchor": 0.71
+  },
+  "jidi_riot_feng_death_event": {
+    "scene": "总攻前夜",
+    "subject": "src/assets/hoi4/expanded/Rebellion.png",
+    "portrait": false,
+    "anchor": 0.33
+  },
+  "jidi_riot_lockdown_1": {
+    "scene": "街垒黎明",
+    "subject": "src/assets/hoi4/expanded/Rebellion.png",
+    "portrait": false,
+    "anchor": 0.4
+  },
+  "jidi_riot_lockdown_2": {
+    "scene": "总攻前夜",
+    "subject": "src/assets/hoi4/expanded/Factories2.png",
+    "portrait": false,
+    "anchor": 0.53
+  },
+  "jidi_riot_lockdown_3": {
+    "scene": "总攻前夜",
+    "subject": "src/assets/hoi4/expanded/Rebellion.png",
+    "portrait": false,
+    "anchor": 0.71
+  },
+  "jidi_rnd_dumping_phase": {
+    "scene": "密卷流水线",
+    "subject": "src/assets/hoi4/expanded/Paper.png",
+    "portrait": false,
+    "anchor": 0.64
+  },
+  "jidi_rnd_fail": {
+    "scene": "最后一间教室",
+    "subject": "src/assets/hoi4/expanded/Denied.png",
+    "portrait": false,
+    "anchor": 0.44
+  },
+  "jidi_rnd_product_1": {
+    "scene": "校园涂鸦2",
+    "subject": "src/assets/hoi4/expanded/Megaphone.png",
+    "portrait": false,
+    "anchor": 0.51
+  },
+  "jidi_rnd_product_2": {
+    "scene": "B3夜读",
+    "subject": "src/assets/hoi4/expanded/Computer.png",
+    "portrait": false,
+    "anchor": 0.4
+  },
+  "jidi_rnd_product_3": {
+    "scene": "密卷流水线",
+    "subject": "src/assets/hoi4/expanded/Paper.png",
+    "portrait": false,
+    "anchor": 0.28
+  },
+  "jidi_rnd_success": {
+    "scene": "特级教师",
+    "subject": "src/assets/hoi4/expanded/Pedestal.png",
+    "portrait": false,
+    "anchor": 0.71
+  },
+  "jidi_rnd_testing_phase": {
+    "scene": "密卷流水线",
+    "subject": "src/assets/hoi4/expanded/Paper.png",
+    "portrait": false,
+    "anchor": 0.57
+  },
+  "jidi_sell_gdp_for_pp": {
+    "scene": "企业学校的黄昏",
+    "subject": "src/assets/hoi4/expanded/Bills.png",
+    "portrait": false,
+    "anchor": 0.69
+  },
+  "jidi_sell_gdp_for_stab": {
+    "scene": "价格牌下的风暴",
+    "subject": "src/assets/hoi4/expanded/Bills.png",
+    "portrait": false,
+    "anchor": 0.54
+  },
+  "jidi_sony_model_event": {
+    "scene": "第一张选票",
+    "subject": "src/assets/hoi4/expanded/Cash3.png",
+    "portrait": false,
+    "anchor": 0.38
+  },
+  "jidi_story_committee_5d": {
+    "scene": "密卷流水线",
+    "subject": "scripts/event-composition/subjects/advisor_wang_juanhao_vanguard.webp",
+    "portrait": true,
+    "anchor": 0.36
+  },
+  "jidi_story_kpi_25d": {
+    "scene": "课桌上的改革",
+    "subject": "scripts/event-composition/subjects/advisor_wang_juanhao_vanguard.webp",
+    "portrait": true,
+    "anchor": 0.58
+  },
+  "jidi_story_kpi_35d": {
+    "scene": "最后一间教室",
+    "subject": "scripts/event-composition/subjects/advisor_wang_juanhao_vanguard.webp",
+    "portrait": true,
+    "anchor": 0.64
+  },
+  "jidi_story_kpi_5d": {
+    "scene": "公社的长桌",
+    "subject": "scripts/event-composition/subjects/advisor_wang_juanhao_vanguard.webp",
+    "portrait": true,
+    "anchor": 0.57
+  },
+  "jidi_story_monopoly_15d": {
+    "scene": "课桌上的改革",
+    "subject": "scripts/event-composition/subjects/advisor_wang_juanhao_vanguard.webp",
+    "portrait": true,
+    "anchor": 0.37
+  },
+  "jidi_story_monopoly_25d": {
+    "scene": "密卷流水线",
+    "subject": "scripts/event-composition/subjects/advisor_wang_juanhao_vanguard.webp",
+    "portrait": true,
+    "anchor": 0.69
+  },
+  "jidi_story_monopoly_5d": {
+    "scene": "灯下的协议",
+    "subject": "scripts/event-composition/subjects/advisor_wang_juanhao_vanguard.webp",
+    "portrait": true,
+    "anchor": 0.7
+  },
+  "jidi_story_utopia_1d": {
+    "scene": "行政楼",
+    "subject": "src/assets/hoi4/expanded/Spy.png",
+    "portrait": false,
+    "anchor": 0.56
+  },
+  "jidi_story_utopia_2d": {
+    "scene": "B3革命",
+    "subject": "src/assets/hoi4/expanded/Rebellion.png",
+    "portrait": false,
+    "anchor": 0.61
+  },
+  "jidi_story_utopia_3d": {
+    "scene": "灯下的协议",
+    "subject": "src/assets/hoi4/expanded/Hands Shaking.png",
+    "portrait": false,
+    "anchor": 0.69
+  },
+  "jidi_strict_discipline_event": {
+    "scene": "B3夜读",
+    "subject": "src/assets/hoi4/expanded/Cash2.png",
+    "portrait": false,
+    "anchor": 0.48
+  },
+  "jidi_student_loans_event": {
+    "scene": "企业学校的黄昏",
+    "subject": "src/assets/hoi4/expanded/Gold.png",
+    "portrait": false,
+    "anchor": 0.55
+  },
+  "jidi_suppress_event": {
+    "scene": "清场",
+    "subject": "src/assets/hoi4/expanded/Handcuffs.png",
+    "portrait": false,
+    "anchor": 0.66
+  },
+  "jidi_takeover": {
+    "scene": "议场初开",
+    "subject": "src/assets/hoi4/expanded/Crown2.png",
+    "portrait": false,
+    "anchor": 0.44
+  },
+  "jidi_takeover_success": {
+    "scene": "公社的长桌",
+    "subject": "src/assets/hoi4/expanded/Crown2.png",
+    "portrait": false,
+    "anchor": 0.3
+  },
+  "jidi_teacher_contracts_event": {
+    "scene": "特级教师",
+    "subject": "src/assets/hoi4/expanded/Cash.png",
+    "portrait": false,
+    "anchor": 0.56
+  },
+  "jidi_value_extraction_event": {
+    "scene": "企业学校的黄昏",
+    "subject": "src/assets/hoi4/expanded/Vault.png",
+    "portrait": false,
+    "anchor": 0.47
+  },
+  "juanhao_event_1": {
+    "scene": "教室晨光",
+    "subject": "src/assets/hoi4/expanded/Hand Grab2.png",
+    "portrait": false,
+    "anchor": 0.46
+  },
+  "juanhao_event_2": {
+    "scene": "密卷流水线",
+    "subject": "src/assets/hoi4/expanded/Paper.png",
+    "portrait": false,
+    "anchor": 0.62
+  },
+  "juanhao_event_3": {
+    "scene": "银幕仍亮",
+    "subject": "src/assets/hoi4/expanded/Karl Marx.png",
+    "portrait": false,
+    "anchor": 0.38
+  },
+  "juanhao_event_4": {
+    "scene": "红色风暴",
+    "subject": "src/assets/hoi4/expanded/Rebellion.png",
+    "portrait": false,
+    "anchor": 0.51
+  },
+  "juanhao_event_5": {
+    "scene": "校园涂鸦2",
+    "subject": "src/assets/hoi4/expanded/Megaphone.png",
+    "portrait": false,
+    "anchor": 0.46
+  },
+  "juanhao_victory_event": {
+    "scene": "公社的长桌",
+    "subject": "scripts/event-composition/subjects/advisor_wang_juanhao_vanguard.webp",
+    "portrait": true,
+    "anchor": 0.61
+  },
+  "late_game_mock_exam": {
+    "scene": "密卷流水线",
+    "subject": "src/assets/hoi4/expanded/Clock.png",
+    "portrait": false,
+    "anchor": 0.61
+  },
+  "late_mock_exam": {
+    "scene": "课桌上的改革",
+    "subject": "src/assets/hoi4/expanded/Paper.png",
+    "portrait": false,
+    "anchor": 0.42
+  },
+  "lost_scroll_1": {
+    "scene": "廊桥课间",
+    "subject": "src/assets/hoi4/expanded/Clock.png",
+    "portrait": false,
+    "anchor": 0.7
+  },
+  "lost_scroll_2": {
+    "scene": "银幕仍亮",
+    "subject": "src/assets/hoi4/expanded/Megaphone.png",
+    "portrait": false,
+    "anchor": 0.5
+  },
+  "lost_scroll_3": {
+    "scene": "课桌上的改革",
+    "subject": "src/assets/hoi4/expanded/Paper.png",
+    "portrait": false,
+    "anchor": 0.61
+  },
+  "lost_scroll_4": {
+    "scene": "操场晚晴",
+    "subject": "src/assets/hoi4/expanded/Building.png",
+    "portrait": false,
+    "anchor": 0.36
+  },
+  "lost_scroll_5": {
+    "scene": "企业学校的黄昏",
+    "subject": "src/assets/hoi4/expanded/Factories2.png",
+    "portrait": false,
+    "anchor": 0.39
+  },
+  "lost_scroll_6": {
+    "scene": "B3夜读",
+    "subject": "src/assets/hoi4/expanded/Clock.png",
+    "portrait": false,
+    "anchor": 0.38
+  },
+  "lu_bohan_crackdown_complete": {
+    "scene": "操场晚晴",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_iron_fist_crackdown.png",
+    "portrait": false,
+    "anchor": 0.39
+  },
+  "lu_bohan_route_opening": {
+    "scene": "滨湖晨光",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_lu_bohan_start.png",
+    "portrait": false,
+    "anchor": 0.36
+  },
+  "lu_flavor_confession_box": {
+    "scene": "熄灯后的脚步",
+    "subject": "src/assets/hoi4/expanded/Spy.png",
+    "portrait": false,
+    "anchor": 0.68
+  },
+  "lu_flavor_loyalty_parade": {
+    "scene": "秋雨连廊",
+    "subject": "src/assets/hoi4/expanded/Cloud Dark.png",
+    "portrait": false,
+    "anchor": 0.38
+  },
+  "lu_flavor_pump_room": {
+    "scene": "军训",
+    "subject": "src/assets/hoi4/expanded/Officer.png",
+    "portrait": false,
+    "anchor": 0.67
+  },
+  "lu_purge_admin_blank_event": {
+    "scene": "清场",
+    "subject": "src/assets/hoi4/expanded/Soldiers in Rows.png",
+    "portrait": false,
+    "anchor": 0.61
+  },
+  "lu_purge_auditorium_blank_event": {
+    "scene": "批斗",
+    "subject": "src/assets/hoi4/expanded/Soldier3.png",
+    "portrait": false,
+    "anchor": 0.52
+  },
+  "lu_purge_b1b2_blank_event": {
+    "scene": "清场",
+    "subject": "src/assets/hoi4/expanded/Soldier.png",
+    "portrait": false,
+    "anchor": 0.65
+  },
+  "lu_purge_b3_blank_event": {
+    "scene": "批斗",
+    "subject": "src/assets/hoi4/expanded/Bowl Cracked.png",
+    "portrait": false,
+    "anchor": 0.28
+  },
+  "lu_purge_consolidation_event": {
+    "scene": "批斗",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_purge_consolidation_directive.png",
+    "portrait": false,
+    "anchor": 0.54
+  },
+  "lu_purge_lab_blank_event": {
+    "scene": "清场",
+    "subject": "src/assets/hoi4/expanded/Map with Knife.png",
+    "portrait": false,
+    "anchor": 0.51
+  },
+  "lu_purge_map_phase_event": {
+    "scene": "清场",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_great_purge_map_phase.png",
+    "portrait": false,
+    "anchor": 0.57
+  },
+  "lu_purge_playground_blank_event": {
+    "scene": "清场",
+    "subject": "src/assets/hoi4/expanded/Coffin.png",
+    "portrait": false,
+    "anchor": 0.31
+  },
+  "lu_second_democracy_unlocked_event": {
+    "scene": "第一张选票",
+    "subject": "src/assets/hoi4/expanded/Handcuffs.png",
+    "portrait": false,
+    "anchor": 0.65
+  },
+  "lu_sole_helmsman_event_1": {
+    "scene": "教室晨光",
+    "subject": "src/assets/hoi4/expanded/Paper Sign.png",
+    "portrait": false,
+    "anchor": 0.7
+  },
+  "lu_sole_helmsman_event_2": {
+    "scene": "课桌上的改革",
+    "subject": "src/assets/hoi4/expanded/Paper Sign.png",
+    "portrait": false,
+    "anchor": 0.34
+  },
+  "lu_sole_helmsman_event_3": {
+    "scene": "名单之外",
+    "subject": "src/assets/hoi4/expanded/Paper Sign.png",
+    "portrait": false,
+    "anchor": 0.43
+  },
+  "lu_wang_retire_blank_event_1": {
+    "scene": "校园涂鸦1",
+    "subject": "src/assets/hoi4/expanded/Bird Freed.png",
+    "portrait": false,
+    "anchor": 0.55
+  },
+  "lu_wang_retire_blank_event_2": {
+    "scene": "校园涂鸦1",
+    "subject": "src/assets/hoi4/expanded/Bird Freed.png",
+    "portrait": false,
+    "anchor": 0.31
+  },
+  "lu_wang_retire_blank_event_3": {
+    "scene": "春回滨湖",
+    "subject": "src/assets/hoi4/expanded/Bird Freed.png",
+    "portrait": false,
+    "anchor": 0.28
+  },
+  "master_lecture": {
+    "scene": "特级教师",
+    "subject": "src/assets/hoi4/expanded/Hand Writing.png",
+    "portrait": false,
+    "anchor": 0.51
+  },
+  "midnight_crisis": {
+    "scene": "B3夜读",
+    "subject": "src/assets/hoi4/expanded/Moon.png",
+    "portrait": false,
+    "anchor": 0.43
+  },
+  "mock_exam": {
+    "scene": "密卷流水线",
+    "subject": "src/assets/hoi4/expanded/Paper.png",
+    "portrait": false,
+    "anchor": 0.61
+  },
+  "mock_exam_approach_event": {
+    "scene": "课桌上的改革",
+    "subject": "src/assets/hoi4/expanded/Paper.png",
+    "portrait": false,
+    "anchor": 0.42
+  },
+  "mock_exam_fail": {
+    "scene": "密卷流水线",
+    "subject": "src/assets/hoi4/expanded/Denied.png",
+    "portrait": false,
+    "anchor": 0.31
+  },
+  "mock_exam_fail_initial": {
+    "scene": "密卷流水线",
+    "subject": "src/assets/hoi4/expanded/Pedestal.png",
+    "portrait": false,
+    "anchor": 0.49
+  },
+  "mock_exam_mediocre": {
+    "scene": "课桌上的改革",
+    "subject": "src/assets/hoi4/expanded/Pedestal.png",
+    "portrait": false,
+    "anchor": 0.64
+  },
+  "mock_exam_success": {
+    "scene": "课桌上的改革",
+    "subject": "src/assets/hoi4/expanded/Pedestal.png",
+    "portrait": false,
+    "anchor": 0.28
+  },
+  "negotiate_bear": {
+    "scene": "退回的联名信",
+    "subject": "scripts/event-composition/subjects/leader_gouxiong.webp",
+    "portrait": true,
+    "anchor": 0.55
+  },
+  "negotiate_conservativeDem": {
+    "scene": "公社的长桌",
+    "subject": "src/assets/hoi4/expanded/Hands Shaking.png",
+    "portrait": false,
+    "anchor": 0.67
+  },
+  "negotiate_jidiTutoring": {
+    "scene": "灯下的协议",
+    "subject": "scripts/event-composition/subjects/advisor_jidi_ceo.webp",
+    "portrait": true,
+    "anchor": 0.59
+  },
+  "negotiate_orthodox": {
+    "scene": "退回的联名信",
+    "subject": "scripts/event-composition/subjects/leader_wang_zhaokai.webp",
+    "portrait": true,
+    "anchor": 0.29
+  },
+  "negotiate_otherDem": {
+    "scene": "公社的长桌",
+    "subject": "src/assets/hoi4/expanded/Hands Shaking.png",
+    "portrait": false,
+    "anchor": 0.35
+  },
+  "negotiate_pan": {
+    "scene": "退回的联名信",
+    "subject": "scripts/event-composition/subjects/leader_pan_renyue.webp",
+    "portrait": true,
+    "anchor": 0.44
+  },
+  "negotiate_testTaker": {
+    "scene": "灯下的协议",
+    "subject": "scripts/event-composition/subjects/advisor_wang_juanhao_vanguard.webp",
+    "portrait": true,
+    "anchor": 0.63
+  },
+  "newOriental_rnd_fail": {
+    "scene": "最后一间教室",
+    "subject": "src/assets/hoi4/expanded/Denied.png",
+    "portrait": false,
+    "anchor": 0.62
+  },
+  "newOriental_rnd_product_1": {
+    "scene": "密卷流水线",
+    "subject": "src/assets/hoi4/expanded/Paper.png",
+    "portrait": false,
+    "anchor": 0.43
+  },
+  "newOriental_rnd_product_2": {
+    "scene": "密卷流水线",
+    "subject": "src/assets/hoi4/expanded/Paper.png",
+    "portrait": false,
+    "anchor": 0.28
+  },
+  "newOriental_rnd_product_3": {
+    "scene": "课桌上的改革",
+    "subject": "src/assets/hoi4/expanded/Paper Torn.png",
+    "portrait": false,
+    "anchor": 0.57
+  },
+  "newOriental_rnd_success": {
+    "scene": "特级教师",
+    "subject": "src/assets/hoi4/expanded/Pedestal.png",
+    "portrait": false,
+    "anchor": 0.51
+  },
+  "olive_branch": {
+    "scene": "议场初开",
+    "subject": "src/assets/hoi4/expanded/Parliament.png",
+    "portrait": false,
+    "anchor": 0.36
+  },
+  "oppose_bill_event": {
+    "scene": "第一张选票",
+    "subject": "src/assets/hoi4/expanded/Ballot.png",
+    "portrait": false,
+    "anchor": 0.71
+  },
+  "opposition_propaganda": {
+    "scene": "校园涂鸦2",
+    "subject": "src/assets/hoi4/expanded/Megaphone.png",
+    "portrait": false,
+    "anchor": 0.31
+  },
+  "opposition_slander_event": {
+    "scene": "六十日之约",
+    "subject": "src/assets/hoi4/expanded/Parliament.png",
+    "portrait": false,
+    "anchor": 0.63
+  },
+  "orthodox_dominance_event": {
+    "scene": "议场初开",
+    "subject": "scripts/event-composition/subjects/leader_wang_zhaokai.webp",
+    "portrait": true,
+    "anchor": 0.52
+  },
+  "orthodox_retirement_event": {
+    "scene": "廊桥课间",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_retire_wang_zhaokai.png",
+    "portrait": false,
+    "anchor": 0.64
+  },
+  "pacify_teachers": {
+    "scene": "保温杯与红批",
+    "subject": "src/assets/hoi4/expanded/Hand Writing.png",
+    "portrait": false,
+    "anchor": 0.39
+  },
+  "pan_second_democracy_event": {
+    "scene": "议场初开",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_pan_second_democracy.png",
+    "portrait": false,
+    "anchor": 0.66
+  },
+  "pan_takeover_event": {
+    "scene": "议场初开",
+    "subject": "scripts/event-composition/subjects/leader_pan_renyue.webp",
+    "portrait": true,
+    "anchor": 0.71
+  },
+  "pan_victory_event": {
+    "scene": "春回滨湖",
+    "subject": "scripts/event-composition/subjects/leader_pan_renyue.webp",
+    "portrait": true,
+    "anchor": 0.39
+  },
+  "phase1_ban_books": {
+    "scene": "教室晨光",
+    "subject": "src/assets/hoi4/expanded/Book.png",
+    "portrait": false,
+    "anchor": 0.54
+  },
+  "phase1_before_charge": {
+    "scene": "街垒黎明",
+    "subject": "src/assets/hoi4/expanded/Fist Colored.png",
+    "portrait": false,
+    "anchor": 0.55
+  },
+  "phase1_build_art": {
+    "scene": "企业学校的黄昏",
+    "subject": "src/assets/hoi4/expanded/Cog.png",
+    "portrait": false,
+    "anchor": 0.68
+  },
+  "phase1_contact_pan": {
+    "scene": "银幕仍亮",
+    "subject": "scripts/event-composition/subjects/leader_pan_renyue.webp",
+    "portrait": true,
+    "anchor": 0.28
+  },
+  "phase1_day14_updated": {
+    "scene": "熄灯后的脚步",
+    "subject": "src/assets/hoi4/expanded/Officer.png",
+    "portrait": false,
+    "anchor": 0.4
+  },
+  "phase1_echo_clubs": {
+    "scene": "银幕仍亮",
+    "subject": "src/assets/hoi4/expanded/Parliament.png",
+    "portrait": false,
+    "anchor": 0.56
+  },
+  "phase1_echo_handover": {
+    "scene": "街垒黎明",
+    "subject": "src/assets/hoi4/expanded/Rebellion.png",
+    "portrait": false,
+    "anchor": 0.56
+  },
+  "phase1_fake_five_edu": {
+    "scene": "银幕仍亮",
+    "subject": "src/assets/hoi4/expanded/Documents.png",
+    "portrait": false,
+    "anchor": 0.6
+  },
+  "phase1_hengshui_schedule": {
+    "scene": "B3夜读",
+    "subject": "src/assets/hoi4/expanded/Paper.png",
+    "portrait": false,
+    "anchor": 0.56
+  },
+  "phase1_protest_privilege": {
+    "scene": "廊桥课间",
+    "subject": "src/assets/hoi4/expanded/Star Red2.png",
+    "portrait": false,
+    "anchor": 0.33
+  },
+  "phase1_shared_leaflet": {
+    "scene": "油印机之夜",
+    "subject": "src/assets/hoi4/expanded/Megaphone.png",
+    "portrait": false,
+    "anchor": 0.29
+  },
+  "phase1_start_2023": {
+    "scene": "油印机之夜",
+    "subject": "scripts/event-composition/subjects/leader_feng_anbao.webp",
+    "portrait": true,
+    "anchor": 0.51
+  },
+  "phase1_wu_patrol": {
+    "scene": "滨湖晨光",
+    "subject": "scripts/event-composition/subjects/advisor_wu_fujun.webp",
+    "portrait": true,
+    "anchor": 0.66
+  },
+  "reclaim_democracy_event": {
+    "scene": "第一张选票",
+    "subject": "src/assets/hoi4/expanded/Wall.png",
+    "portrait": false,
+    "anchor": 0.59
+  },
+  "recruit_revolutionaries_event": {
+    "scene": "街垒黎明",
+    "subject": "src/assets/route-art-v2/icons/heyi_story_recruit_revolutionaries.png",
+    "portrait": false,
+    "anchor": 0.3
+  },
+  "reform_blank_event_1": {
+    "scene": "廊桥课间",
+    "subject": "scripts/event-composition/subjects/leader_lu_bohan.webp",
+    "portrait": true,
+    "anchor": 0.63
+  },
+  "reform_blank_event_2": {
+    "scene": "廊桥课间",
+    "subject": "scripts/event-composition/subjects/leader_hao_bang.webp",
+    "portrait": true,
+    "anchor": 0.28
+  },
+  "reform_blank_event_3": {
+    "scene": "廊桥课间",
+    "subject": "scripts/event-composition/subjects/leader_wang_zhaokai.webp",
+    "portrait": true,
+    "anchor": 0.7
+  },
+  "reform_capital_crisis": {
+    "scene": "街垒黎明",
+    "subject": "src/assets/hoi4/expanded/Rebellion.png",
+    "portrait": false,
+    "anchor": 0.64
+  },
+  "reform_capital_fail": {
+    "scene": "特级",
+    "subject": "src/assets/hoi4/expanded/Pedestal.png",
+    "portrait": false,
+    "anchor": 0.43
+  },
+  "reform_complete_placeholder": {
+    "scene": "最后一间教室",
+    "subject": "src/assets/hoi4/expanded/Paper.png",
+    "portrait": false,
+    "anchor": 0.7
+  },
+  "reform_countdown_120": {
+    "scene": "廊桥课间",
+    "subject": "src/assets/hoi4/expanded/Clock.png",
+    "portrait": false,
+    "anchor": 0.53
+  },
+  "reform_countdown_30": {
+    "scene": "教室晨光",
+    "subject": "src/assets/hoi4/expanded/Clock.png",
+    "portrait": false,
+    "anchor": 0.43
+  },
+  "reform_countdown_60": {
+    "scene": "裤熊逢春",
+    "subject": "src/assets/hoi4/expanded/Magician.png",
+    "portrait": false,
+    "anchor": 0.68
+  },
+  "reform_countdown_90": {
+    "scene": "熄灯后的脚步",
+    "subject": "src/assets/hoi4/expanded/Moon.png",
+    "portrait": false,
+    "anchor": 0.5
+  },
+  "reform_fail_event": {
+    "scene": "特级0",
+    "subject": "src/assets/hoi4/expanded/Denied.png",
+    "portrait": false,
+    "anchor": 0.66
+  },
+  "reform_sanity_crisis": {
+    "scene": "特级0",
+    "subject": "src/assets/hoi4/expanded/Denied.png",
+    "portrait": false,
+    "anchor": 0.47
+  },
+  "reform_sanity_fail": {
+    "scene": "B3革命",
+    "subject": "src/assets/hoi4/expanded/Rebellion.png",
+    "portrait": false,
+    "anchor": 0.53
+  },
+  "report_to_feng": {
+    "scene": "保温杯与红批",
+    "subject": "src/assets/hoi4/expanded/Documents.png",
+    "portrait": false,
+    "anchor": 0.58
+  },
+  "reshape_unity_event": {
+    "scene": "退回的联名信",
+    "subject": "src/assets/hoi4/expanded/Idea Icon.png",
+    "portrait": false,
+    "anchor": 0.51
+  },
+  "resource_exchange_event": {
+    "scene": "最后一间教室",
+    "subject": "src/assets/hoi4/expanded/Hand Empty.png",
+    "portrait": false,
+    "anchor": 0.45
+  },
+  "retire_haobang_story": {
+    "scene": "滨湖晨光",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_retire_haobang.png",
+    "portrait": false,
+    "anchor": 0.65
+  },
+  "retire_shiji_story": {
+    "scene": "滨湖晨光",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_retire_shiji.png",
+    "portrait": false,
+    "anchor": 0.29
+  },
+  "retire_zhou_story": {
+    "scene": "操场晚晴",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_retire_zhou_hongbing.png",
+    "portrait": false,
+    "anchor": 0.57
+  },
+  "school_counterattack": {
+    "scene": "街垒黎明",
+    "subject": "src/assets/hoi4/expanded/Rebellion.png",
+    "portrait": false,
+    "anchor": 0.56
+  },
+  "story_1": {
+    "scene": "最后一间教室",
+    "subject": "src/assets/hoi4/expanded/Paper Torn.png",
+    "portrait": false,
+    "anchor": 0.42
+  },
+  "story_2": {
+    "scene": "教室晨光",
+    "subject": "src/assets/hoi4/expanded/Clock.png",
+    "portrait": false,
+    "anchor": 0.51
+  },
+  "story_3": {
+    "scene": "街垒黎明",
+    "subject": "src/assets/hoi4/expanded/Karl Marx.png",
+    "portrait": false,
+    "anchor": 0.68
+  },
+  "story_4": {
+    "scene": "银幕仍亮",
+    "subject": "src/assets/hoi4/expanded/Hand Out.png",
+    "portrait": false,
+    "anchor": 0.51
+  },
+  "story_5": {
+    "scene": "密卷流水线",
+    "subject": "src/assets/hoi4/expanded/Bear.png",
+    "portrait": false,
+    "anchor": 0.66
+  },
+  "story_6": {
+    "scene": "议场初开",
+    "subject": "src/assets/hoi4/expanded/Fist Colored.png",
+    "portrait": false,
+    "anchor": 0.28
+  },
+  "strengthen_patrol": {
+    "scene": "军训",
+    "subject": "src/assets/hoi4/expanded/Officer.png",
+    "portrait": false,
+    "anchor": 0.34
+  },
+  "student_media_support_event": {
+    "scene": "油印机之夜",
+    "subject": "src/assets/hoi4/expanded/Flag Overlay.png",
+    "portrait": false,
+    "anchor": 0.55
+  },
+  "student_venting_crisis_event": {
+    "scene": "军训",
+    "subject": "src/assets/hoi4/expanded/Officer.png",
+    "portrait": false,
+    "anchor": 0.37
+  },
+  "support_bill_event": {
+    "scene": "第一张选票",
+    "subject": "src/assets/hoi4/expanded/Ballot.png",
+    "portrait": false,
+    "anchor": 0.39
+  },
+  "suppress_moderates": {
+    "scene": "清场",
+    "subject": "src/assets/hoi4/expanded/Handcuffs.png",
+    "portrait": false,
+    "anchor": 0.52
+  },
+  "teachers_rnd_fail": {
+    "scene": "特级教师",
+    "subject": "src/assets/hoi4/expanded/Denied.png",
+    "portrait": false,
+    "anchor": 0.44
+  },
+  "teachers_rnd_product_1": {
+    "scene": "保温杯与红批",
+    "subject": "scripts/event-composition/subjects/advisor_zhou_chen.webp",
+    "portrait": true,
+    "anchor": 0.63
+  },
+  "teachers_rnd_product_2": {
+    "scene": "特级教师",
+    "subject": "scripts/event-composition/subjects/leader_yang_yule.webp",
+    "portrait": true,
+    "anchor": 0.4
+  },
+  "teachers_rnd_product_3": {
+    "scene": "保温杯与红批",
+    "subject": "src/assets/hoi4/expanded/Hand Writing.png",
+    "portrait": false,
+    "anchor": 0.41
+  },
+  "teachers_rnd_success": {
+    "scene": "特级教师",
+    "subject": "src/assets/hoi4/expanded/Hand Writing.png",
+    "portrait": false,
+    "anchor": 0.42
+  },
+  "trial_yang": {
+    "scene": "批斗",
+    "subject": "src/assets/hoi4/expanded/Handcuffs.png",
+    "portrait": false,
+    "anchor": 0.68
+  },
+  "true_left_consolidation_event": {
+    "scene": "六十日之约",
+    "subject": "scripts/event-composition/subjects/leader_wang_zhaokai.webp",
+    "portrait": true,
+    "anchor": 0.67
+  },
+  "true_left_good_event": {
+    "scene": "议场初开",
+    "subject": "src/assets/hoi4/expanded/Marriage.png",
+    "portrait": false,
+    "anchor": 0.4
+  },
+  "true_left_union_choice_event": {
+    "scene": "六十日之约",
+    "subject": "src/assets/hoi4/expanded/Parliament.png",
+    "portrait": false,
+    "anchor": 0.43
+  },
+  "ultra_left_error": {
+    "scene": "议场初开",
+    "subject": "src/assets/hoi4/expanded/Crown2.png",
+    "portrait": false,
+    "anchor": 0.56
+  },
+  "ultra_left_error_event": {
+    "scene": "公社的长桌",
+    "subject": "src/assets/hoi4/expanded/Crown2.png",
+    "portrait": false,
+    "anchor": 0.58
+  },
+  "wang_juanhao_vanguard": {
+    "scene": "熄灯后的脚步",
+    "subject": "src/assets/hoi4/expanded/Officer.png",
+    "portrait": false,
+    "anchor": 0.7
+  },
+  "wang_victory_event": {
+    "scene": "红色风暴",
+    "subject": "scripts/event-composition/subjects/leader_wang_zhaokai.webp",
+    "portrait": true,
+    "anchor": 0.71
+  },
+  "write_paper": {
+    "scene": "教室晨光",
+    "subject": "src/assets/hoi4/expanded/Paper Sign.png",
+    "portrait": false,
+    "anchor": 0.39
+  },
+  "wu_advisor_slots_full": {
+    "scene": "密卷流水线",
+    "subject": "src/assets/hoi4/expanded/Paper.png",
+    "portrait": false,
+    "anchor": 0.56
+  },
+  "wu_ambition_warning_event": {
+    "scene": "滨湖晨光",
+    "subject": "src/assets/hoi4/expanded/Building.png",
+    "portrait": false,
+    "anchor": 0.63
+  },
+  "wu_anger_boil_event": {
+    "scene": "红色风暴",
+    "subject": "src/assets/hoi4/expanded/Rebellion.png",
+    "portrait": false,
+    "anchor": 0.47
+  },
+  "wu_annual_review_story": {
+    "scene": "操场晚晴",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_wu_annual_review.png",
+    "portrait": false,
+    "anchor": 0.31
+  },
+  "wu_arm_guard_story": {
+    "scene": "操场晚晴",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_wu_arm_guard.png",
+    "portrait": false,
+    "anchor": 0.71
+  },
+  "wu_assassination_story": {
+    "scene": "廊桥课间",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_wu_ambition_peak.png",
+    "portrait": false,
+    "anchor": 0.57
+  },
+  "wu_bureau_backing_story": {
+    "scene": "滨湖晨光",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_wu_bureau_backing.png",
+    "portrait": false,
+    "anchor": 0.57
+  },
+  "wu_club_concession_story": {
+    "scene": "校园涂鸦1",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_wu_club_concession.png",
+    "portrait": false,
+    "anchor": 0.71
+  },
+  "wu_console_commend": {
+    "scene": "清场",
+    "subject": "src/assets/hoi4/expanded/Officer.png",
+    "portrait": false,
+    "anchor": 0.32
+  },
+  "wu_console_press": {
+    "scene": "油印机之夜",
+    "subject": "src/assets/hoi4/expanded/Megaphone.png",
+    "portrait": false,
+    "anchor": 0.42
+  },
+  "wu_console_raid_refused": {
+    "scene": "校园涂鸦2",
+    "subject": "src/assets/hoi4/expanded/Megaphone.png",
+    "portrait": false,
+    "anchor": 0.7
+  },
+  "wu_console_talk": {
+    "scene": "廊桥课间",
+    "subject": "src/assets/hoi4/expanded/Building.png",
+    "portrait": false,
+    "anchor": 0.66
+  },
+  "wu_console_warn": {
+    "scene": "价格牌下的风暴",
+    "subject": "src/assets/hoi4/expanded/Bills.png",
+    "portrait": false,
+    "anchor": 0.55
+  },
+  "wu_coup_story": {
+    "scene": "廊桥课间",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_wu_coup_december.png",
+    "portrait": false,
+    "anchor": 0.42
+  },
+  "wu_crackdown": {
+    "scene": "熄灯后的脚步",
+    "subject": "src/assets/hoi4/expanded/Officer.png",
+    "portrait": false,
+    "anchor": 0.39
+  },
+  "wu_crackdown_entry_event": {
+    "scene": "熄灯后的脚步",
+    "subject": "src/assets/hoi4/expanded/Officer.png",
+    "portrait": false,
+    "anchor": 0.48
+  },
+  "wu_dorm_sweep_story": {
+    "scene": "B3夜读",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_wu_dorm_sweep.png",
+    "portrait": false,
+    "anchor": 0.67
+  },
+  "wu_failure_event": {
+    "scene": "B3革命",
+    "subject": "src/assets/hoi4/expanded/Rebellion.png",
+    "portrait": false,
+    "anchor": 0.45
+  },
+  "wu_first_strike_story": {
+    "scene": "廊桥课间",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_wu_first_strike_right.png",
+    "portrait": false,
+    "anchor": 0.7
+  },
+  "wu_flavor_black_market": {
+    "scene": "价格牌下的风暴",
+    "subject": "src/assets/hoi4/expanded/Paper.png",
+    "portrait": false,
+    "anchor": 0.7
+  },
+  "wu_flavor_camera": {
+    "scene": "熄灯后的脚步",
+    "subject": "src/assets/hoi4/expanded/Spy.png",
+    "portrait": false,
+    "anchor": 0.67
+  },
+  "wu_flavor_informer": {
+    "scene": "行政楼",
+    "subject": "src/assets/hoi4/expanded/Spy.png",
+    "portrait": false,
+    "anchor": 0.48
+  },
+  "wu_flavor_morning_call": {
+    "scene": "B3夜读",
+    "subject": "src/assets/hoi4/expanded/Clock.png",
+    "portrait": false,
+    "anchor": 0.31
+  },
+  "wu_flavor_morning_run": {
+    "scene": "合一足球",
+    "subject": "src/assets/hoi4/expanded/Citizen2.png",
+    "portrait": false,
+    "anchor": 0.5
+  },
+  "wu_flavor_shiji_notes": {
+    "scene": "企业学校的黄昏",
+    "subject": "src/assets/hoi4/expanded/Bills.png",
+    "portrait": false,
+    "anchor": 0.49
+  },
+  "wu_flavor_wu_quotes": {
+    "scene": "清场",
+    "subject": "src/assets/hoi4/expanded/Officer.png",
+    "portrait": false,
+    "anchor": 0.4
+  },
+  "wu_flavor_zhouchen_sketch": {
+    "scene": "校园涂鸦2",
+    "subject": "src/assets/hoi4/expanded/Brush.png",
+    "portrait": false,
+    "anchor": 0.35
+  },
+  "wu_guerrilla_resurgence_event": {
+    "scene": "企业学校的黄昏",
+    "subject": "src/assets/hoi4/expanded/Factories2.png",
+    "portrait": false,
+    "anchor": 0.54
+  },
+  "wu_independent_command_story": {
+    "scene": "廊桥课间",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_wu_independent_command.png",
+    "portrait": false,
+    "anchor": 0.41
+  },
+  "wu_inspection_story": {
+    "scene": "滨湖晨光",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_wu_inspection.png",
+    "portrait": false,
+    "anchor": 0.57
+  },
+  "wu_iron_curtain_story": {
+    "scene": "滨湖晨光",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_wu_iron_curtain.png",
+    "portrait": false,
+    "anchor": 0.71
+  },
+  "wu_martial_law_story": {
+    "scene": "滨湖晨光",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_wu_martial_law.png",
+    "portrait": false,
+    "anchor": 0.45
+  },
+  "wu_millennium_story": {
+    "scene": "滨湖晨光",
+    "subject": "src/assets/route-art-v2/web-only/wu_millennium_plan.png",
+    "portrait": false,
+    "anchor": 0.62
+  },
+  "wu_model_school_story": {
+    "scene": "操场晚晴",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_wu_model_school.png",
+    "portrait": false,
+    "anchor": 0.55
+  },
+  "wu_negotiation_40_event": {
+    "scene": "公社的长桌",
+    "subject": "src/assets/hoi4/expanded/Hands Shaking.png",
+    "portrait": false,
+    "anchor": 0.43
+  },
+  "wu_negotiation_70_event": {
+    "scene": "公社的长桌",
+    "subject": "src/assets/hoi4/expanded/Hands Shaking.png",
+    "portrait": false,
+    "anchor": 0.64
+  },
+  "wu_night_patrol_story": {
+    "scene": "滨湖晨光",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_wu_night_patrol.png",
+    "portrait": false,
+    "anchor": 0.67
+  },
+  "wu_opinion_event": {
+    "scene": "熄灯后的脚步",
+    "subject": "src/assets/hoi4/expanded/Officer.png",
+    "portrait": false,
+    "anchor": 0.52
+  },
+  "wu_parents_forum_story": {
+    "scene": "滨湖晨光",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_wu_parents_forum.png",
+    "portrait": false,
+    "anchor": 0.49
+  },
+  "wu_peace_story": {
+    "scene": "廊桥课间",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_wu_negotiate_peace.png",
+    "portrait": false,
+    "anchor": 0.59
+  },
+  "wu_perimeter_story": {
+    "scene": "廊桥课间",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_wu_secure_perimeter.png",
+    "portrait": false,
+    "anchor": 0.56
+  },
+  "wu_power_expansion_story": {
+    "scene": "操场晚晴",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_wu_power_expansion.png",
+    "portrait": false,
+    "anchor": 0.54
+  },
+  "wu_power_review_story": {
+    "scene": "廊桥课间",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_wu_power_review.png",
+    "portrait": false,
+    "anchor": 0.33
+  },
+  "wu_promote_wu_story": {
+    "scene": "廊桥课间",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_wu_promote_wu.png",
+    "portrait": false,
+    "anchor": 0.55
+  },
+  "wu_rebel_contact_story": {
+    "scene": "操场晚晴",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_wu_rebel_contact.png",
+    "portrait": false,
+    "anchor": 0.54
+  },
+  "wu_reprieve_event": {
+    "scene": "军训",
+    "subject": "src/assets/hoi4/expanded/Officer.png",
+    "portrait": false,
+    "anchor": 0.5
+  },
+  "wu_resume_classes_story": {
+    "scene": "操场晚晴",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_wu_resume_classes.png",
+    "portrait": false,
+    "anchor": 0.38
+  },
+  "wu_route_opening": {
+    "scene": "操场晚晴",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_wu_order_restored.png",
+    "portrait": false,
+    "anchor": 0.53
+  },
+  "wu_rule_by_law_story": {
+    "scene": "操场晚晴",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_wu_rule_by_law.png",
+    "portrait": false,
+    "anchor": 0.61
+  },
+  "wu_safe_school_story": {
+    "scene": "操场晚晴",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_wu_safe_school.png",
+    "portrait": false,
+    "anchor": 0.61
+  },
+  "wu_scorched_earth_story": {
+    "scene": "操场晚晴",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_wu_scorched_earth.png",
+    "portrait": false,
+    "anchor": 0.47
+  },
+  "wu_teacher_petition_event": {
+    "scene": "退回的联名信",
+    "subject": "src/assets/hoi4/expanded/Envelope.png",
+    "portrait": false,
+    "anchor": 0.4
+  },
+  "wu_teacher_relief_story": {
+    "scene": "保温杯与红批",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_wu_teacher_relief.png",
+    "portrait": false,
+    "anchor": 0.49
+  },
+  "wu_ultimatum_event": {
+    "scene": "议场初开",
+    "subject": "src/assets/hoi4/expanded/Parliament.png",
+    "portrait": false,
+    "anchor": 0.64
+  },
+  "wu_underground_war_story": {
+    "scene": "廊桥课间",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_wu_underground_war.png",
+    "portrait": false,
+    "anchor": 0.58
+  },
+  "wu_uprising_admin_event": {
+    "scene": "行政楼",
+    "subject": "src/assets/hoi4/expanded/Spy.png",
+    "portrait": false,
+    "anchor": 0.47
+  },
+  "wu_uprising_aud_event": {
+    "scene": "街垒黎明",
+    "subject": "src/assets/hoi4/expanded/Rebellion.png",
+    "portrait": false,
+    "anchor": 0.4
+  },
+  "wu_uprising_b3_2_event": {
+    "scene": "街垒黎明",
+    "subject": "src/assets/hoi4/expanded/Envelope.png",
+    "portrait": false,
+    "anchor": 0.37
+  },
+  "wu_uprising_b3_event": {
+    "scene": "街垒黎明",
+    "subject": "src/assets/hoi4/expanded/Moon.png",
+    "portrait": false,
+    "anchor": 0.41
+  },
+  "wu_uprising_dorm_event": {
+    "scene": "熄灯后的脚步",
+    "subject": "src/assets/hoi4/expanded/Moon.png",
+    "portrait": false,
+    "anchor": 0.62
+  },
+  "wu_uprising_lab_event": {
+    "scene": "雪中的来函",
+    "subject": "src/assets/hoi4/expanded/Envelope.png",
+    "portrait": false,
+    "anchor": 0.54
+  },
+  "wu_uprising_playground_event": {
+    "scene": "合一足球",
+    "subject": "src/assets/hoi4/expanded/Bowl Cracked.png",
+    "portrait": false,
+    "anchor": 0.29
+  },
+  "wu_wu_demote_story": {
+    "scene": "操场晚晴",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_wu_wu_demote.png",
+    "portrait": false,
+    "anchor": 0.33
+  },
+  "wu_wu_transfer_story": {
+    "scene": "廊桥课间",
+    "subject": "src/assets/route-art-v2/icons/heyi_route_wu_wu_transfer.png",
+    "portrait": false,
+    "anchor": 0.6
+  },
+  "wu_wzk_arrest_event": {
+    "scene": "批斗",
+    "subject": "scripts/event-composition/subjects/leader_wang_zhaokai.webp",
+    "portrait": true,
+    "anchor": 0.46
+  },
+  "wu_wzk_trial_event": {
+    "scene": "清场",
+    "subject": "src/assets/hoi4/expanded/Handcuffs.png",
+    "portrait": false,
+    "anchor": 0.61
+  },
+  "wu_zhouchen_candle_event": {
+    "scene": "B3夜读",
+    "subject": "src/assets/hoi4/expanded/Moon.png",
+    "portrait": false,
+    "anchor": 0.37
+  },
+  "wu_zhouchen_suspension_event": {
+    "scene": "批斗",
+    "subject": "scripts/event-composition/subjects/advisor_zhou_chen.webp",
+    "portrait": true,
+    "anchor": 0.56
+  },
+  "xu_victory_event": {
+    "scene": "六十日之约",
+    "subject": "src/assets/hoi4/expanded/Parliament.png",
+    "portrait": false,
+    "anchor": 0.47
+  },
+  "yang_mock_exam_fail": {
+    "scene": "密卷流水线",
+    "subject": "src/assets/hoi4/expanded/Denied.png",
+    "portrait": false,
+    "anchor": 0.67
+  },
+  "yang_mock_exam_mediocre": {
+    "scene": "课桌上的改革",
+    "subject": "src/assets/hoi4/expanded/Clock.png",
+    "portrait": false,
+    "anchor": 0.54
+  },
+  "yang_mock_exam_success": {
+    "scene": "课桌上的改革",
+    "subject": "src/assets/hoi4/expanded/Pedestal.png",
+    "portrait": false,
+    "anchor": 0.7
+  },
+  "yang_yule_bribe_inspectors": {
+    "scene": "保温杯与红批",
+    "subject": "src/assets/hoi4/expanded/White House.png",
+    "portrait": false,
+    "anchor": 0.6
+  },
+  "yang_yule_buy_health_supplements": {
+    "scene": "最后一间教室",
+    "subject": "src/assets/hoi4/expanded/Vial.png",
+    "portrait": false,
+    "anchor": 0.55
+  },
+  "yang_yule_catch_red_toad": {
+    "scene": "街垒黎明",
+    "subject": "src/assets/hoi4/expanded/Rebellion.png",
+    "portrait": false,
+    "anchor": 0.64
+  },
+  "yang_yule_condition_fail_event": {
+    "scene": "最后一间教室",
+    "subject": "src/assets/hoi4/expanded/Denied.png",
+    "portrait": false,
+    "anchor": 0.46
+  },
+  "yang_yule_condition_met_event": {
+    "scene": "教室晨光",
+    "subject": "src/assets/hoi4/expanded/Hand Writing.png",
+    "portrait": false,
+    "anchor": 0.58
+  },
+  "yang_yule_decision_ready": {
+    "scene": "教室晨光",
+    "subject": "src/assets/hoi4/expanded/Hand Writing.png",
+    "portrait": false,
+    "anchor": 0.36
+  },
+  "yang_yule_expand_security": {
+    "scene": "清场",
+    "subject": "src/assets/hoi4/expanded/Officer.png",
+    "portrait": false,
+    "anchor": 0.39
+  },
+  "yang_yule_fake_teaching_skills": {
+    "scene": "特级教师",
+    "subject": "src/assets/hoi4/expanded/Hand Writing.png",
+    "portrait": false,
+    "anchor": 0.59
+  },
+  "yang_yule_force_recitation": {
+    "scene": "廊桥课间",
+    "subject": "src/assets/hoi4/expanded/Clock.png",
+    "portrait": false,
+    "anchor": 0.49
+  },
+  "yang_yule_health_death_event": {
+    "scene": "保温杯与红批",
+    "subject": "src/assets/hoi4/expanded/Vial.png",
+    "portrait": false,
+    "anchor": 0.7
+  },
+  "yang_yule_health_unlocked": {
+    "scene": "图书长廊",
+    "subject": "src/assets/hoi4/expanded/Clock2.png",
+    "portrait": false,
+    "anchor": 0.69
+  },
+  "yang_yule_hire_colleagues": {
+    "scene": "特级教师",
+    "subject": "src/assets/hoi4/expanded/Star Broken.png",
+    "portrait": false,
+    "anchor": 0.41
+  },
+  "yang_yule_late_game_mock_exam": {
+    "scene": "课桌上的改革",
+    "subject": "src/assets/hoi4/expanded/Pedestal.png",
+    "portrait": false,
+    "anchor": 0.44
+  },
+  "yang_yule_late_mock_exam": {
+    "scene": "课桌上的改革",
+    "subject": "scripts/event-composition/subjects/leader_yang_yule.webp",
+    "portrait": true,
+    "anchor": 0.4
+  },
+  "yang_yule_map_unlocked": {
+    "scene": "总攻前夜",
+    "subject": "src/assets/hoi4/expanded/Star Red.png",
+    "portrait": false,
+    "anchor": 0.3
+  },
+  "yang_yule_memorize_grammar": {
+    "scene": "B3夜读",
+    "subject": "src/assets/hoi4/expanded/Book Open.png",
+    "portrait": false,
+    "anchor": 0.56
+  },
+  "yang_yule_mock_exam_approach_event": {
+    "scene": "课桌上的改革",
+    "subject": "src/assets/hoi4/expanded/Handcuffs.png",
+    "portrait": false,
+    "anchor": 0.56
+  },
+  "yang_yule_red_terror": {
+    "scene": "清场",
+    "subject": "src/assets/hoi4/expanded/Handcuffs.png",
+    "portrait": false,
+    "anchor": 0.6
+  },
+  "yang_yule_silence_rebellion": {
+    "scene": "街垒黎明",
+    "subject": "src/assets/hoi4/expanded/Rebellion.png",
+    "portrait": false,
+    "anchor": 0.48
+  },
+  "yang_yule_three_mountains": {
+    "scene": "保温杯与红批",
+    "subject": "src/assets/hoi4/expanded/Book Open.png",
+    "portrait": false,
+    "anchor": 0.57
+  },
+  "yang_yule_welcome_inspection": {
+    "scene": "B3革命",
+    "subject": "src/assets/hoi4/expanded/Rebellion.png",
+    "portrait": false,
+    "anchor": 0.45
+  },
+  "yang_yule_write_papers": {
+    "scene": "保温杯与红批",
+    "subject": "src/assets/hoi4/expanded/Hand Writing.png",
+    "portrait": false,
+    "anchor": 0.37
+  },
+  "yangyvle_event_1": {
+    "scene": "特级教师",
+    "subject": "src/assets/hoi4/expanded/Hand Writing.png",
+    "portrait": false,
+    "anchor": 0.64
+  },
+  "yangyvle_event_2": {
+    "scene": "教室晨光",
+    "subject": "src/assets/hoi4/expanded/Hand Writing.png",
+    "portrait": false,
+    "anchor": 0.51
+  },
+  "yy_flavor_exam_room": {
+    "scene": "密卷流水线",
+    "subject": "src/assets/hoi4/expanded/Paper.png",
+    "portrait": false,
+    "anchor": 0.37
+  },
+  "yy_flavor_old_cadre": {
+    "scene": "特级教师",
+    "subject": "src/assets/hoi4/expanded/Hand Writing.png",
+    "portrait": false,
+    "anchor": 0.37
+  },
+  "yy_flavor_thermos": {
+    "scene": "保温杯与红批",
+    "subject": "src/assets/hoi4/expanded/Karl Marx.png",
+    "portrait": false,
+    "anchor": 0.68
+  },
+  "yy_title_ready_event": {
+    "scene": "特级教师",
+    "subject": "src/assets/hoi4/expanded/Hand Writing.png",
+    "portrait": false,
+    "anchor": 0.52
+  },
+  "yy_title_stage1_start": {
+    "scene": "特级教师",
+    "subject": "src/assets/hoi4/expanded/Hand Writing.png",
+    "portrait": false,
+    "anchor": 0.5
+  },
+  "yy_title_stage2_complete": {
+    "scene": "保温杯与红批",
+    "subject": "src/assets/hoi4/expanded/Hand Writing.png",
+    "portrait": false,
+    "anchor": 0.67
+  },
+  "yy_title_stage3_defense": {
+    "scene": "特级教师",
+    "subject": "src/assets/hoi4/expanded/Hand Writing.png",
+    "portrait": false,
+    "anchor": 0.42
+  },
+  "yy_title_stage4_final": {
+    "scene": "特级教师",
+    "subject": "src/assets/hoi4/expanded/Hand Writing.png",
+    "portrait": false,
+    "anchor": 0.66
+  }
+}
