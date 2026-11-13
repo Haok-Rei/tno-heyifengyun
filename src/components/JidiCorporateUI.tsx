@@ -64,7 +64,7 @@ export function JidiCorporateUI({
   }));
 
   return (
-    <div className="strategy-minigame fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4 font-sans selection:bg-emerald-500/30">
+    <div className="strategy-minigame station-panel station-JidiCorporateUI fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4 font-sans selection:bg-emerald-500/30">
       {/* CRT Scanline Overlay */}
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_4px,3px_100%] z-50 opacity-20"></div>
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-emerald-500/5 to-transparent h-[10%] w-full z-50 animate-[scanline_8s_linear_infinite] opacity-50"></div>

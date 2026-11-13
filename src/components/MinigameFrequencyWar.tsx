@@ -90,7 +90,7 @@ export default function MinigameFrequencyWar({ state, onComplete, spendPP }: Min
 
   return (
     <div className={`absolute inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md p-4 ${shake ? 'shake' : ''}`}>
-      <div className="strategy-minigame bg-[#0a0a14] border-2 border-[#ff4444]/50 max-w-3xl w-full p-6 shadow-[0_0_60px_rgba(255,0,0,0.2)] relative overflow-hidden flex flex-col">
+      <div className="strategy-minigame station-panel station-MinigameFrequencyWar bg-[#0a0a14] border-2 border-[#ff4444]/50 max-w-3xl w-full p-6 shadow-[0_0_60px_rgba(255,0,0,0.2)] relative overflow-hidden flex flex-col">
         {/* 扫描线 */}
         <div className="absolute inset-0 pointer-events-none opacity-[0.03]" style={{backgroundImage:'repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,68,68,0.1) 2px,rgba(255,68,68,0.1) 4px)'}}/>
 
@@ -135,21 +135,22 @@ export default function MinigameFrequencyWar({ state, onComplete, spendPP }: Min
         )}
 
         <div className="space-y-6 flex-1">
+          <div className="flex justify-between text-xs text-slate-200"><span>平均信号 {Math.round(freqs.reduce((a,b)=>a+b,0)/3)}%</span><span>接管 65% · 全面接管 85%</span></div>
           {[0, 1, 2].map(i => (
             <div key={i} className="relative">
               <div className="flex justify-between text-xs mb-1.5">
                 <span className="text-white/50">FM {88+i*5}.0 MHz</span>
                 <span className={`font-bold ${freqs[i] >= 70 ? 'text-[#39FF14]' : freqs[i] >= 40 ? 'text-yellow-400' : 'text-red-400'}`}>{Math.round(freqs[i])}%</span>
               </div>
-              <div className="h-10 bg-[#0d1117] border border-[#1a2a3a] relative rounded-sm overflow-hidden">
+              <div className="station-dial h-10 bg-[#0d1117] border border-[#1a2a3a] relative rounded-sm overflow-hidden">
                 <div className="absolute top-0 bottom-0 left-[70%] right-[10%] bg-[#39FF14]/15 border-x border-[#39FF14]/40" />
                 <div className="absolute top-0 bottom-0 left-0 right-[80%] bg-red-500/15 border-r border-red-500/40" />
-                <input type="range" min="0" max="100" value={freqs[i]} onChange={e => adjFreq(i, Number(e.target.value) - freqs[i])} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
+                <input type="range" aria-label={`FM ${88+i*5}.0 MHz 信号强度`} min="0" max="100" value={freqs[i]} onChange={e => adjFreq(i, Number(e.target.value) - freqs[i])} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
                 <div className="absolute top-0 bottom-0 w-3 bg-[#ff4444] border border-white/30 pointer-events-none transition-all duration-75 shadow-[0_0_8px_rgba(255,0,0,0.5)]"
                   style={{ left: `calc(${freqs[i]}% - 6px)` }} />
               </div>
               {interference[i] > 0 && (
-                <div className="absolute -right-16 top-1/2 -translate-y-1/2 text-red-400 flex items-center gap-1 text-[10px]">
+                <div className="absolute right-20 top-0 text-red-400 flex items-center gap-1 text-[10px]">
                   <AlertTriangle className="w-3 h-3" />{Math.round(interference[i])}%
                 </div>
               )}
@@ -158,11 +159,11 @@ export default function MinigameFrequencyWar({ state, onComplete, spendPP }: Min
         </div>
 
         <div className="mt-6 pt-4 border-t border-[#ff4444]/20 flex gap-3">
-          <button onClick={doFirewall} disabled={fwUses <= 0}
+          <button onClick={doFirewall} disabled={fwUses <= 0 || state.stats.pp < 15}
             className={`flex items-center gap-1.5 px-4 py-2 text-xs font-bold border transition-all ${fwUses > 0 ? 'border-[#39FF14]/50 text-[#39FF14] hover:bg-[#39FF14]/10' : 'border-gray-700 text-gray-500 cursor-not-allowed'}`}>
-            <Shield className="w-3.5 h-3.5" />防火墙 ({fwUses})
+            <Shield className="w-3.5 h-3.5" />防火墙 (15PP · {fwUses}次)
           </button>
-          <button onClick={doBoost}
+          <button disabled={state.stats.pp < 25} onClick={doBoost}
             className="flex items-center gap-1.5 px-4 py-2 text-xs font-bold border border-yellow-500/50 text-yellow-400 hover:bg-yellow-500/10 transition-all">
             <Zap className="w-3.5 h-3.5" />信号增强 (25PP)
           </button>

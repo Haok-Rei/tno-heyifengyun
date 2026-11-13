@@ -224,7 +224,7 @@ export default function RedToadPolitburo({ state, setGameState, onClose }: RedTo
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4">
-      <div className="strategy-minigame relative w-full max-w-6xl h-[85vh] bg-[#1a0f0f] border-2 border-[#d32f2f] shadow-[0_0_15px_rgba(211,47,47,0.3)] font-mono overflow-visible flex flex-col">
+      <div className="strategy-minigame station-panel station-RedToadPolitburo relative w-full max-w-6xl h-[85vh] bg-[#1a0f0f] border-2 border-[#d32f2f] shadow-[0_0_15px_rgba(211,47,47,0.3)] font-mono overflow-visible flex flex-col">
         
         {/* Scanlines Background */}
         <div className="absolute inset-0 pointer-events-none opacity-20" style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, #000 2px, #000 4px)' }}></div>

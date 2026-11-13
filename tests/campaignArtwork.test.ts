@@ -95,7 +95,7 @@ test('web panel derivatives are local WebP assets and focus links preserve dedic
     assert.ok(ROUTE_FOCUS_ART[focusId],focusId);
     const art=getEventArtwork({id:eventId,title:'',description:''});
     assert.ok(art,eventId);
-    if(art.kind==='painted') { paintings++; assert.equal(art.focusId,focusId); assert.ok(!EVENT_ART_BINDINGS[eventId]?.portrait); }
+    assert.equal(art.kind,'scene'); if(EVENT_ART_BINDINGS[eventId]?.feature) paintings++;
   }
   assert.ok(paintings>=60,`${paintings} focus-linked paintings`);
 });

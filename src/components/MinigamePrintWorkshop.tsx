@@ -35,7 +35,7 @@ export default function MinigamePrintWorkshop({ state, onComplete, spendPP }: Pr
     setTarget(p); setCurrent(t); setInput('');
   };
 
-  useEffect(() => { if (started) newTarget(); }, [started]);
+  useEffect(() => { if (started) { newTarget(); inputRef.current?.focus(); } }, [started]);
 
   useEffect(() => {
     if (!started || timeLeft <= 0) return;
@@ -91,7 +91,7 @@ export default function MinigamePrintWorkshop({ state, onComplete, spendPP }: Pr
 
   return (
     <div className={`absolute inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md p-4 ${shake?'shake':''}`}>
-      <div className="strategy-minigame bg-[#0a0a14] border-2 border-[#06B6D4]/40 max-w-2xl w-full p-6 shadow-[0_0_60px_rgba(6,182,212,0.15)] relative overflow-hidden flex flex-col">
+      <div className="strategy-minigame station-panel station-MinigamePrintWorkshop bg-[#0a0a14] border-2 border-[#06B6D4]/40 max-w-2xl w-full p-6 shadow-[0_0_60px_rgba(6,182,212,0.15)] relative overflow-hidden flex flex-col">
         <div className="absolute inset-0 pointer-events-none opacity-[0.03]" style={{backgroundImage:'repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(6,182,212,0.1) 2px,rgba(6,182,212,0.1) 4px)'}}/>
 
         {!started && (
@@ -99,11 +99,11 @@ export default function MinigamePrintWorkshop({ state, onComplete, spendPP }: Pr
             <MechanicCrest kind="print"/>
             <h2 className="text-3xl font-black text-[#06B6D4] mb-3 tracking-[0.3em]">地 下 印 刷 所</h2>
             {fieldSupport > 0 && <p className="text-emerald-300 text-xs mb-2">地下联络工作组筹备 {fieldSupport} 份 · 预先印制 +{fieldSupport * 2}</p>}
-            <p className="text-white/70 mb-2 text-sm max-w-md">实验楼机房 · 40秒内尽可能多地印刷革命传单</p>
+            <p className="text-white/70 mb-2 text-sm max-w-md">实验楼机房 · 45秒内尽可能多地印刷革命传单</p>
             <div className="text-white/50 text-xs mb-6 max-w-md space-y-1">
               <p>· 屏幕显示被审查污染的标语——输入正确原文发布</p>
               <p>· 保安巡查警报持续上升，满格则被没收一批传单</p>
-              <p>· 隐藏印刷机(12PP/4秒)减缓警报 · 加速印刷(20PP)跳过8秒</p>
+              <p>· 隐藏印刷机(10PP/4秒)减缓警报 · 加速印刷(20PP)跳过8秒</p>
               <p className="text-[#06B6D4] mt-2">连续正确输入可获得连击奖励！</p>
             </div>
             <button onClick={() => setStarted(true)} className="bg-[#06B6D4]/20 border-2 border-[#06B6D4] text-[#06B6D4] font-black py-3 px-10 text-lg hover:bg-[#06B6D4] hover:text-black transition-all tracking-widest">开 始 印 刷</button>
@@ -141,14 +141,14 @@ export default function MinigamePrintWorkshop({ state, onComplete, spendPP }: Pr
           <form onSubmit={e => { e.preventDefault(); submit(); }} className="flex gap-2 w-full max-w-md">
             <input ref={inputRef} value={input} onChange={e => setInput(e.target.value)}
               className="flex-1 bg-[#0d1117] border border-[#06B6D4]/30 text-[#06B6D4] font-mono text-lg px-4 py-2 outline-none focus:border-[#06B6D4] rounded"
-              placeholder="输入正确原文..." autoFocus />
+              placeholder="输入正确原文..." disabled={!started} />
             <button type="submit" className="bg-[#06B6D4]/20 border border-[#06B6D4] text-[#06B6D4] font-bold px-6 py-2 hover:bg-[#06B6D4] hover:text-black transition-all rounded">发布</button>
           </form>
         </div>
 
         <div className="mt-4 pt-4 border-t border-[#06B6D4]/20 flex gap-3">
-          <button onClick={hide} className="flex items-center gap-1.5 px-4 py-2 text-xs font-bold border border-[#06B6D4]/50 text-[#06B6D4] hover:bg-[#06B6D4]/10 transition-all"><ShieldAlert className="w-3.5 h-3.5"/>隐藏 (12PP)</button>
-          <button onClick={speedUp} className="flex items-center gap-1.5 px-4 py-2 text-xs font-bold border border-yellow-500/50 text-yellow-400 hover:bg-yellow-500/10 transition-all"><Zap className="w-3.5 h-3.5"/>加速 (20PP)</button>
+          <button disabled={hidden || state.stats.pp < 10} onClick={hide} className="flex items-center gap-1.5 px-4 py-2 text-xs font-bold border border-[#06B6D4]/50 text-[#06B6D4] hover:bg-[#06B6D4]/10 transition-all"><ShieldAlert className="w-3.5 h-3.5"/>隐藏 (10PP)</button>
+          <button disabled={state.stats.pp < 20} onClick={speedUp} className="flex items-center gap-1.5 px-4 py-2 text-xs font-bold border border-yellow-500/50 text-yellow-400 hover:bg-yellow-500/10 transition-all"><Zap className="w-3.5 h-3.5"/>加速 (20PP)</button>
           <div className="flex-1"/>
           <button onClick={finish} className="px-6 py-2 text-xs font-black border border-red-500/50 text-red-400 hover:bg-red-500/10 transition-all tracking-wider">收工</button>
         </div>

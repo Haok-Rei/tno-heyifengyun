@@ -68,3 +68,32 @@
 .brush-heading { display:inline-block; vertical-align:middle; width:auto; max-width:min(51vw,450px); height:clamp(25px,3.8vw,42px); object-fit:contain; }
 .brush-focus { display:block; width:100%; height:24px; object-fit:contain; }
 .bureau-masthead { background:linear-gradient(95deg,#33171cf2,#2c171bbb 64%,#171719f5),url('../assets/loading/油印机之夜.webp') center 48%/cover; box-shadow:inset 0 -1px #d6b27b; }
+
+.station-MinigameFrequencyWar { --station-art:url('../assets/loading/油印机之夜.webp'); }
+.station-MinigamePrintWorkshop { --station-art:url('../assets/loading/密卷流水线.webp'); }
+.station-MinigameSiege { --station-art:url('../assets/loading/街垒黎明.webp'); }
+.station-MinigamePosterWar { --station-art:url('../assets/loading/校园涂鸦2.webp'); }
+.station-MinigameNegotiation { --station-art:url('../assets/loading/灯下的协议.webp'); }
+.station-MinigameCrackdown { --station-art:url('../assets/loading/清场.webp'); }
+.station-StudentAssembly { --station-art:url('../assets/loading/议场初开.webp'); }
+.station-RedToadPolitburo { --station-art:url('../assets/loading/公社的长桌.webp'); }
+.station-ReformCommittee { --station-art:url('../assets/loading/课桌上的改革.webp'); }
+.station-JidiCorporateUI { --station-art:url('../assets/loading/企业学校的黄昏.webp'); }
+.station-WuCrackdownConsole { --station-art:url('../assets/loading/军训.webp'); }
+
+.station-panel { background-image:linear-gradient(105deg,#0b1519fa 8%,#0c171bed 64%,#101a20dc),var(--station-art); background-position:center; background-size:cover; box-shadow:0 16px 64px #000b,inset 0 0 0 1px #9bada04a; font-variant-numeric:tabular-nums; }
+.station-panel > .absolute.inset-0.z-50 { background-image:linear-gradient(90deg,#0a1117ed,#0a1117d9),var(--station-art); background-size:cover; background-position:center; overflow-y:auto; }
+.station-panel button:not(:disabled):focus-visible,.station-panel input:focus-visible { outline:2px solid #ffe1a2; outline-offset:2px; }
+.station-panel button:not(:disabled):active { box-shadow:inset 0 2px 5px #0009; }
+.station-panel button:disabled { filter:saturate(.32); }
+
+
+.station-dial { background-image:repeating-linear-gradient(90deg,#a9c6ca65 0px 1px,transparent 1px 10%); }
+.station-dial:focus-within { outline:2px solid #e9c995; }
+@media(max-width:760px),(max-height:620px){
+ .station-panel { max-height:94dvh; overflow:auto; overscroll-behavior:contain; padding:12px; }
+ .station-MinigameNegotiation .grid { grid-template-columns:repeat(2,minmax(0,1fr)); flex:none; }
+ .station-MinigameSiege .siege-columns { flex-direction:column; overflow:visible; }
+ .station-MinigameSiege .siege-columns > * { width:100%; }
+ .station-panel form input { min-width:0; }
+}

@@ -91,7 +91,7 @@ export default function StudentAssembly({ state, onClose, onInteract }: StudentA
 
   return (
     <div className="absolute inset-0 z-30 bg-black/80 backdrop-blur-sm flex items-center justify-center p-8">
-      <div className={`strategy-minigame assembly-panel bg-zinc-900 border-2 border-tno-border w-full ${isDeluxeAssembly ? 'max-w-6xl' : 'max-w-4xl'} max-h-full flex flex-col shadow-2xl`}>
+      <div className={`strategy-minigame station-panel station-StudentAssembly assembly-panel bg-zinc-900 border-2 border-tno-border w-full ${isDeluxeAssembly ? 'max-w-6xl' : 'max-w-4xl'} max-h-full flex flex-col shadow-2xl`}>
         {/* Header */}
         <div className="p-4 border-b border-tno-border bg-black flex justify-between items-center">
           <h2 className="text-2xl font-bold tracking-widest text-tno-highlight"><MechanicCrest kind="assembly"/>{isDeluxeAssembly ? '新学生代表大会' : (isUpgraded ? '合一学生议会' : '学生代表大会')}</h2>

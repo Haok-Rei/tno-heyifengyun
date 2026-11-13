@@ -114,7 +114,7 @@ export default function MinigameSiege({ state, onComplete, spendTPR }: MinigameS
 
   return (
     <div className={`absolute inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md p-4 ${shake ? 'shake' : ''}`}>
-      <div className="strategy-minigame bg-tno-panel border-2 border-tno-highlight max-w-4xl w-full p-6 shadow-2xl shadow-tno-highlight/20 relative flex flex-col h-[80vh]">
+      <div className="strategy-minigame station-panel station-MinigameSiege bg-tno-panel border-2 border-tno-highlight max-w-4xl w-full p-6 shadow-2xl shadow-tno-highlight/20 relative flex flex-col h-[80vh]">
         
         {/* Header */}
         <div className="flex justify-between items-center mb-6 border-b border-tno-highlight pb-4 flex-shrink-0">
@@ -138,7 +138,7 @@ export default function MinigameSiege({ state, onComplete, spendTPR }: MinigameS
           </div>
         </div>
 
-        <div className="flex flex-1 gap-6 overflow-hidden">
+        <div className="siege-columns flex flex-1 gap-6 overflow-hidden">
           {/* Left: Building View */}
           <div className="flex-1 flex flex-col gap-2">
             {floors.map((floor, index) => (
