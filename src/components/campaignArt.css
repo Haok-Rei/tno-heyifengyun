@@ -64,3 +64,7 @@
   .ending-screen__actions button { padding:10px 14px; font-size:12px; }
   .ending-screen__description { font-size:13px; }
 }
+
+.brush-heading { display:inline-block; vertical-align:middle; width:auto; max-width:min(51vw,450px); height:clamp(25px,3.8vw,42px); object-fit:contain; }
+.brush-focus { display:block; width:100%; height:24px; object-fit:contain; }
+.bureau-masthead { background:linear-gradient(95deg,#33171cf2,#2c171bbb 64%,#171719f5),url('../assets/loading/油印机之夜.webp') center 48%/cover; box-shadow:inset 0 -1px #d6b27b; }

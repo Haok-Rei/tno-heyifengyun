@@ -1,15 +1,22 @@
 import { MECHANISM_ART } from '../config/campaignArtwork';
 
 const CRESTS = {
-  assembly:'entry_assembly', reform:'entry_reform', capital:'entry_jidi', council:'entry_politburo',
-  print:'entry_print', frequency:'entry_frequency', poster:'entry_poster', siege:'entry_siege',
-  negotiation:'entry_negotiation', crackdown:'entry_crackdown',
+  assembly:new URL("../assets/dispatch/gui-assembly.webp",import.meta.url).href,
+  reform:new URL("../assets/dispatch/gui-reform.webp",import.meta.url).href,
+  capital:new URL("../assets/dispatch/gui-capital.webp",import.meta.url).href,
+  council:new URL("../assets/dispatch/gui-council.webp",import.meta.url).href,
+  frequency:new URL("../assets/dispatch/gui-frequency.webp",import.meta.url).href,
+  print:new URL("../assets/dispatch/gui-print.webp",import.meta.url).href,
+  poster:new URL("../assets/dispatch/gui-poster.webp",import.meta.url).href,
+  siege:new URL("../assets/dispatch/gui-siege.webp",import.meta.url).href,
+  crackdown:new URL("../assets/dispatch/gui-crackdown.webp",import.meta.url).href,
+  negotiation:new URL("../assets/dispatch/gui-negotiation.webp",import.meta.url).href,
 } as const;
 
 /** Route badges share the same materials as focus and national spirit art. */
 export default function MechanicCrest({kind}:{kind:keyof typeof CRESTS}) {
   return <span className={'mechanic-crest mechanic-crest--'+kind} aria-hidden="true">
-    <img src={MECHANISM_ART[CRESTS[kind]]} alt="" draggable={false}/>
+    <img src={CRESTS[kind]} alt="" draggable={false}/>
   </span>;
 }
 

@@ -1,3 +1,4 @@
+import { BRUSH_TITLES } from '../config/brushTitles';
 import MechanicCrest from './MechanicCrest';
 import React, { useState, useEffect } from 'react';
 import { GameState, RedToadFaction } from '../types';
@@ -229,10 +230,10 @@ export default function RedToadPolitburo({ state, setGameState, onClose }: RedTo
         <div className="absolute inset-0 pointer-events-none opacity-20" style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, #000 2px, #000 4px)' }}></div>
 
         {/* Header */}
-        <div className="relative z-[120] flex justify-between items-center p-4 border-b-2 border-[#d32f2f] bg-[#2d1313]">
+        <div className="bureau-masthead relative z-[120] flex justify-between items-center p-4 border-b-2 border-[#d32f2f] bg-[#2d1313]">
           <div className="flex items-center gap-4">
             <h2 className="text-2xl font-bold text-[#ff5252] tracking-[8px] drop-shadow-[0_0_5px_rgba(255,82,82,0.8)]"><MechanicCrest kind="council"/>
-              {isNkpdMode ? 'N K P D · 肃 反 委 员 会' : '合 一 联 合 革 委 会 · 政 治 局'}
+              {isNkpdMode ? 'N K P D · 肃 反 委 员 会' : <img className="brush-heading" src={BRUSH_TITLES.politburo} alt="合一联合革委会 · 政治局"/>}
             </h2>
             <div className="relative group z-[130]">
               <button className="w-8 h-8 rounded-full border-2 border-[#ff5252] text-[#ff5252] font-bold flex items-center justify-center hover:bg-[#ff5252] hover:text-black transition-colors">

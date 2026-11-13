@@ -6,10 +6,8 @@
     "reason": "关联国策美术；letter / paper"
   },
   "admin_takeover": {
-    "primary": "House",
-    "secondary": "Clock",
-    "theme": "power",
-    "reason": "关联国策美术；power / time"
+    "generated": "admin_takeover",
+    "reason": "行政楼 · S_toad"
   },
   "alliance_collapse": {
     "primary": "Hands Shaking",
@@ -179,57 +177,40 @@
     "reason": "money / meeting"
   },
   "broadcast_seized": {
-    "news": "broadcastSeized",
-    "reason": "按具体剧情指定场景或人物",
-    "theme": "media"
+    "generated": "broadcast_seized",
+    "reason": "油印机之夜 · S_radio"
   },
   "campus_alumni": {
-    "primary": "Factories2",
-    "secondary": "Spy",
-    "theme": "industry",
-    "reason": "industry / surveillance"
+    "generated": "campus_alumni",
+    "reason": "陈栋与封安宝2 · S_handshake"
   },
   "campus_authorship": {
-    "primary": "Hand Writing",
-    "secondary": "Building",
-    "theme": "teacher",
-    "reason": "teacher / campus"
+    "generated": "campus_authorship",
+    "reason": "教室晨光 · C_documents"
   },
   "campus_books": {
-    "primary": "Book Open",
-    "secondary": "Building",
-    "theme": "book",
-    "reason": "book / campus"
+    "generated": "campus_books",
+    "reason": "图书长廊 · S_book"
   },
   "campus_canteen": {
-    "primary": "Bowl Cracked",
-    "secondary": "Bills",
-    "theme": "food",
-    "reason": "food / money"
+    "generated": "campus_canteen",
+    "reason": "食堂晚灯 · F_welfare"
   },
   "campus_clubs": {
-    "primary": "Building",
-    "secondary": "Bills",
-    "theme": "campus",
-    "reason": "campus / money"
+    "generated": "campus_clubs",
+    "reason": "春回滨湖 · S_projector"
   },
   "campus_contraband": {
-    "primary": "Spy",
-    "secondary": "Building",
-    "theme": "surveillance",
-    "reason": "surveillance / campus"
+    "generated": "campus_contraband",
+    "reason": "图书长廊 · C_search"
   },
   "campus_exams": {
-    "primary": "Paper",
-    "secondary": "Building",
-    "theme": "paper",
-    "reason": "paper / campus"
+    "generated": "campus_exams",
+    "reason": "密卷流水线 · S_exam"
   },
   "campus_health": {
-    "primary": "Vial",
-    "secondary": "Building",
-    "theme": "health",
-    "reason": "health / campus"
+    "generated": "campus_health",
+    "reason": "最后一间教室 · F_welfare"
   },
   "campus_informants": {
     "primary": "Spy",
@@ -244,10 +225,8 @@
     "reason": "关联国策美术；meeting / campus"
   },
   "campus_letters": {
-    "primary": "Hand Writing",
-    "secondary": "Envelope",
-    "theme": "teacher",
-    "reason": "teacher / letter"
+    "generated": "campus_letters",
+    "reason": "退回的联名信 · C_documents"
   },
   "campus_mockery": {
     "primary": "Book Open",
@@ -256,16 +235,12 @@
     "reason": "book / campus"
   },
   "campus_petition": {
-    "primary": "Envelope",
-    "secondary": "Building",
-    "theme": "letter",
-    "reason": "letter / campus"
+    "generated": "campus_petition",
+    "reason": "灯下的协议 · C_hand"
   },
   "campus_rally": {
-    "primary": "Woman Dancing",
-    "secondary": "Rebellion",
-    "theme": "music",
-    "reason": "music / revolution"
+    "generated": "campus_rally",
+    "reason": "总攻前夜 · S_radio"
   },
   "campus_retirement": {
     "primary": "Bird Freed",
@@ -274,64 +249,44 @@
     "reason": "freedom / campus"
   },
   "campus_sports": {
-    "primary": "Citizen2",
-    "secondary": "Building",
-    "theme": "sport",
-    "reason": "sport / campus"
+    "generated": "campus_sports",
+    "reason": "合一足球 · S_clock"
   },
   "campus_staff": {
-    "primary": "Building",
-    "secondary": "Clock",
-    "theme": "campus",
-    "reason": "campus / time"
+    "generated": "campus_staff",
+    "reason": "行政楼 · Briefcase"
   },
   "campus_standing": {
-    "primary": "Clock",
-    "secondary": "Building",
-    "theme": "time",
-    "reason": "time / campus"
+    "generated": "campus_standing",
+    "reason": "教室晨光 · S_clock"
   },
   "campus_supply": {
-    "primary": "Factories2",
-    "secondary": "Building",
-    "theme": "industry",
-    "reason": "industry / campus"
+    "generated": "campus_supply",
+    "reason": "价格牌下的风暴 · C_factory"
   },
   "campus_textbooks": {
-    "primary": "Bills",
-    "secondary": "Book Open",
-    "theme": "money",
-    "reason": "money / book"
+    "generated": "campus_textbooks",
+    "reason": "课桌上的改革 · S_book"
   },
   "campus_thermos": {
-    "primary": "Building",
-    "secondary": "Hand Writing",
-    "theme": "campus",
-    "reason": "campus / teacher"
+    "generated": "campus_thermos",
+    "reason": "保温杯与红批 · C_search"
   },
   "campus_tutoring": {
-    "primary": "Building",
-    "secondary": "Megaphone",
-    "theme": "campus",
-    "reason": "campus / media"
+    "generated": "campus_tutoring",
+    "reason": "B3夜读 · F_brain"
   },
   "campus_unrest": {
-    "primary": "Building",
-    "secondary": "Moon",
-    "theme": "campus",
-    "reason": "campus / night"
+    "generated": "campus_unrest",
+    "reason": "街垒黎明 · S_torch"
   },
   "campus_winter": {
-    "primary": "Cloud Dark",
-    "secondary": "Building",
-    "theme": "weather",
-    "reason": "weather / campus"
+    "generated": "campus_winter",
+    "reason": "雪中的来函 · Moon"
   },
   "committee_assembly_opening": {
-    "primary": "Citizen2",
-    "secondary": "Parliament",
-    "theme": "campus",
-    "reason": "关联国策美术；campus / meeting"
+    "generated": "committee_assembly_opening",
+    "reason": "议场初开 · C_parliament"
   },
   "committee_echo_compromise": {
     "primary": "Hands Shaking",
@@ -346,34 +301,24 @@
     "reason": "repression / meeting"
   },
   "committee_militia": {
-    "primary": "Rifle",
-    "secondary": "Magician",
-    "theme": "campus",
-    "reason": "关联国策美术；campus / cinema"
+    "generated": "committee_militia",
+    "reason": "军训 · S_shield"
   },
   "committee_posters": {
-    "primary": "Megaphone3",
-    "secondary": "Building",
-    "theme": "media",
-    "reason": "关联国策美术；media / campus"
+    "generated": "committee_posters",
+    "reason": "校园涂鸦1 · C_hand"
   },
   "committee_print_network": {
-    "primary": "Cog Wheel",
-    "secondary": "Megaphone",
-    "theme": "industry",
-    "reason": "关联国策美术；industry / media"
+    "generated": "committee_print_network",
+    "reason": "油印机之夜 · C_gear"
   },
   "committee_purge_moderates": {
-    "primary": "Handcuffs Broken",
-    "secondary": "Handcuffs",
-    "theme": "meeting",
-    "reason": "关联国策美术；meeting / repression"
+    "generated": "committee_purge_moderates",
+    "reason": "名单之外 · C_handcuffs"
   },
   "committee_vanguard": {
-    "primary": "Spy3",
-    "secondary": "Clock",
-    "theme": "security",
-    "reason": "关联国策美术；security / time"
+    "generated": "committee_vanguard",
+    "reason": "街垒黎明 · S_torch"
   },
   "day_14_event": {
     "primary": "Officer",
@@ -450,28 +395,20 @@
     "reason": "campus / paper"
   },
   "event_10_crossroads": {
-    "primary": "Bell",
-    "secondary": "Hands Shaking",
-    "theme": "meeting",
-    "reason": "关联国策美术；meeting / negotiation"
+    "generated": "event_10_crossroads",
+    "reason": "公社的长桌 · S_handshake"
   },
   "event_7_smolny": {
-    "primary": "Banner",
-    "secondary": "Hands Shaking",
-    "theme": "meeting",
-    "reason": "关联国策美术；meeting / negotiation"
+    "generated": "event_7_smolny",
+    "reason": "B3革命 · S_toad"
   },
   "event_8_trial": {
-    "primary": "Lantern",
-    "secondary": "Paper",
-    "theme": "repression",
-    "reason": "关联国策美术；repression / paper"
+    "generated": "event_8_trial",
+    "reason": "批斗 · S_scales"
   },
   "event_9_rectify_order": {
-    "primary": "Plant",
-    "secondary": "Parliament",
-    "theme": "paper",
-    "reason": "关联国策美术；paper / meeting"
+    "generated": "event_9_rectify_order",
+    "reason": "红色风暴 · C_documents"
   },
   "expand_assembly_event": {
     "primary": "Briefcase",
@@ -1767,34 +1704,24 @@
     "reason": "关联国策美术；meeting / negotiation"
   },
   "red_toad_1": {
-    "primary": "Rebellion",
-    "secondary": "Paper",
-    "theme": "revolution",
-    "reason": "revolution / paper"
+    "generated": "red_toad_1",
+    "reason": "B3革命 · S_torch"
   },
   "red_toad_2": {
-    "primary": "Hands Shaking",
-    "secondary": "Fist Colored",
-    "theme": "negotiation",
-    "reason": "negotiation / revolution"
+    "generated": "red_toad_2",
+    "reason": "议场初开 · S_toad"
   },
   "red_toad_3": {
-    "primary": "Book Open",
-    "secondary": "Parliament",
-    "theme": "book",
-    "reason": "book / meeting"
+    "generated": "red_toad_3",
+    "reason": "课桌上的改革 · C_gear"
   },
   "red_toad_4": {
-    "primary": "Karl Marx",
-    "secondary": "Bear3",
-    "theme": "philosophy",
-    "reason": "philosophy / cinema"
+    "generated": "red_toad_4",
+    "reason": "图书长廊 · F_brain"
   },
   "red_toad_5": {
-    "primary": "Parliament",
-    "secondary": "Hands Shaking4",
-    "theme": "meeting",
-    "reason": "meeting / negotiation"
+    "generated": "red_toad_5",
+    "reason": "名单之外 · S_scales"
   },
   "reform_blank_event_1": {
     "portrait": "leader_lu_bohan",
@@ -2297,88 +2224,60 @@
     "reason": "meeting / letter"
   },
   "yang_desk_alumni_donation": {
-    "primary": "Computer",
-    "secondary": "Hand Out",
-    "reason": "按具体剧情指定场景或人物",
-    "theme": "campus"
+    "generated": "yang_desk_alumni_donation",
+    "reason": "陈栋与合一 · S_coin"
   },
   "yang_desk_anonymous_note": {
-    "primary": "Envelope",
-    "secondary": "Documents",
-    "theme": "letter",
-    "reason": "letter / teacher"
+    "generated": "yang_desk_anonymous_note",
+    "reason": "退回的联名信 · C_search"
   },
   "yang_desk_buy_exams": {
-    "primary": "Paper",
-    "secondary": "Coins",
-    "theme": "paper",
-    "reason": "paper / money"
+    "generated": "yang_desk_buy_exams",
+    "reason": "密卷流水线 · S_coin"
   },
   "yang_desk_contraband_list": {
-    "primary": "Spy",
-    "secondary": "Paper",
-    "theme": "surveillance",
-    "reason": "surveillance / paper"
+    "generated": "yang_desk_contraband_list",
+    "reason": "图书长廊 · C_spy"
   },
   "yang_desk_destroy_books": {
-    "primary": "Book Open",
-    "secondary": "Ballot",
-    "theme": "book",
-    "reason": "book / meeting"
+    "generated": "yang_desk_destroy_books",
+    "reason": "图书长廊 · Padlock"
   },
   "yang_desk_health_scare": {
-    "primary": "Vial",
-    "secondary": "Documents",
-    "theme": "health",
-    "reason": "health / paper"
+    "generated": "yang_desk_health_scare",
+    "reason": "保温杯与红批 · F_welfare"
   },
   "yang_desk_informant_report": {
-    "primary": "Spy",
-    "secondary": "Moon",
-    "theme": "surveillance",
-    "reason": "surveillance / night"
+    "generated": "yang_desk_informant_report",
+    "reason": "熄灯后的脚步 · C_spy"
   },
   "yang_desk_midnight_call": {
-    "primary": "Moon",
-    "secondary": "Clock2",
-    "theme": "night",
-    "reason": "night / time"
+    "generated": "yang_desk_midnight_call",
+    "reason": "B3夜读 · Moon"
   },
   "yang_desk_mocking_letter": {
-    "primary": "Envelope",
-    "secondary": "Paper",
-    "theme": "letter",
-    "reason": "letter / paper"
+    "generated": "yang_desk_mocking_letter",
+    "reason": "校园涂鸦2 · C_documents"
   },
   "yang_desk_oath_rally": {
-    "primary": "Clock",
-    "secondary": "Fist Colored",
-    "theme": "time",
-    "reason": "time / revolution"
+    "generated": "yang_desk_oath_rally",
+    "reason": "总攻前夜 · S_shield"
   },
   "yang_desk_paper_authorship": {
-    "primary": "Paper Sign",
-    "secondary": "Paper",
-    "theme": "teacher",
-    "reason": "teacher / paper"
+    "generated": "yang_desk_paper_authorship",
+    "reason": "课桌上的改革 · C_documents"
   },
   "yang_desk_parent_petition": {
-    "primary": "Envelope",
-    "secondary": "Citizen2",
-    "theme": "letter",
-    "reason": "letter / sport"
+    "generated": "yang_desk_parent_petition",
+    "reason": "退回的联名信 · S_scales"
   },
   "yang_desk_pe_cancellation": {
-    "primary": "Building",
-    "secondary": "Citizen2",
-    "theme": "campus",
-    "reason": "campus / sport"
+    "generated": "yang_desk_pe_cancellation",
+    "reason": "合一足球 · S_exam"
   },
   "yang_desk_retirement_letter": {
-    "primary": "Envelope",
-    "secondary": "Bird Freed",
-    "theme": "letter",
-    "reason": "letter / freedom"
+    "generated": "yang_desk_retirement_letter",
+    "reason": "行政楼 · C_documents"
   },
   "yang_desk_snow_day": {
     "scene": "雪中的来函",
@@ -2386,34 +2285,24 @@
     "theme": "weather"
   },
   "yang_desk_standing_reading": {
-    "primary": "Clock",
-    "secondary": "Hand Writing",
-    "theme": "time",
-    "reason": "time / teacher"
+    "generated": "yang_desk_standing_reading",
+    "reason": "B3夜读 · S_clock"
   },
   "yang_desk_textbook_scandal": {
-    "primary": "Bills",
-    "secondary": "Constitution",
-    "theme": "money",
-    "reason": "money / meeting"
+    "generated": "yang_desk_textbook_scandal",
+    "reason": "价格牌下的风暴 · S_book"
   },
   "yang_desk_thermos_mystery": {
-    "primary": "Vial",
-    "secondary": "Magnifying Glass",
-    "reason": "按具体剧情指定场景或人物",
-    "theme": "campus"
+    "generated": "yang_desk_thermos_mystery",
+    "reason": "保温杯与红批 · C_hand"
   },
   "yang_desk_tutoring_center": {
-    "primary": "Envelope",
-    "secondary": "Paper Sign",
-    "theme": "letter",
-    "reason": "letter / teacher"
+    "generated": "yang_desk_tutoring_center",
+    "reason": "B3夜读 · S_coin"
   },
   "yang_desk_young_teacher_quit": {
-    "primary": "Hand Writing",
-    "secondary": "Bird Freed",
-    "theme": "teacher",
-    "reason": "teacher / freedom"
+    "generated": "yang_desk_young_teacher_quit",
+    "reason": "最后一间教室 · Briefcase"
   },
   "yang_mock_exam_fail": {
     "primary": "Denied",
@@ -2639,5 +2528,21 @@
     "secondary": "Spy2",
     "theme": "teacher",
     "reason": "teacher / surveillance"
+  },
+  "democratic_councils_event": {
+    "generated": "democratic_councils_event",
+    "reason": "议场初开 · S_ballot"
+  },
+  "broad_coalition_event": {
+    "generated": "broad_coalition_event",
+    "reason": "公社的长桌 · C_hand"
+  },
+  "unite_teachers_event": {
+    "generated": "unite_teachers_event",
+    "reason": "最后一间教室 · S_handshake"
+  },
+  "disperse_guards_event": {
+    "generated": "disperse_guards_event",
+    "reason": "清场 · C_helmet"
   }
 }

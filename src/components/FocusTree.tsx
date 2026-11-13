@@ -1,3 +1,4 @@
+import { BRUSH_TITLES } from '../config/brushTitles';
 import React, { useState, useRef, useEffect } from 'react';
 import { GameState, FocusNode, ALL_SUB_TILES } from '../types';
 import { FocusArt, ART_KIND_LABELS, getStrategicArtKind } from './StrategicArt';
@@ -3343,7 +3344,7 @@ export default function FocusTree({ state, startFocus, triggerError, isSuperEven
               >
                 <FocusArt node={node} />
                 <span className="focus-art-node__status">{status}</span>
-                <div className="focus-art-node__title text-tno-text">{node.title}</div>
+                <div className="focus-art-node__title text-tno-text">{BRUSH_TITLES[node.id] ? <img className="brush-focus" src={BRUSH_TITLES[node.id]} alt={node.title}/> : node.title}</div>
                 <div className="focus-art-node__days">{node.days}D</div>
                 {isActive && (
                   <div className="focus-art-node__progress" style={{ width: `${((state.activeFocus!.totalDays - state.activeFocus!.daysLeft) / state.activeFocus!.totalDays) * 100}%` }}></div>
@@ -3353,7 +3354,7 @@ export default function FocusTree({ state, startFocus, triggerError, isSuperEven
                 {hovered?.id === node.id && !isDragging && <FocusHoverCard anchor={hovered.anchor} onEnter={cancelClose} onLeave={scheduleClose}>
                   <div className="flex items-center gap-2 mb-2 border-b border-tno-border pb-2">
                     <FocusArt node={node} compact />
-                    <div className="min-w-0 flex-1"><div className="font-bold text-sm text-tno-text">{node.title}</div><div className="text-[10px] text-tno-text/60">{ART_KIND_LABELS[getStrategicArtKind(node.id, node.title)]} · 研究 {node.days} 天</div></div>
+                    <div className="min-w-0 flex-1"><div className="font-bold text-sm text-tno-text">{BRUSH_TITLES[node.id] ? <img className="brush-focus" src={BRUSH_TITLES[node.id]} alt={node.title}/> : node.title}</div><div className="text-[10px] text-tno-text/60">{ART_KIND_LABELS[getStrategicArtKind(node.id, node.title)]} · 研究 {node.days} 天</div></div>
                   </div>
                   <div className="text-[11px] text-tno-text/80 mb-2 leading-relaxed whitespace-pre-line">{node.description}</div>
 
