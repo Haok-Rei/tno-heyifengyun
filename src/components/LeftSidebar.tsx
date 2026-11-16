@@ -87,8 +87,8 @@ export default function LeftSidebar({ state, hireAdvisor, dismissAdvisor, cancel
       <div className="nation-overview" data-tour="nation-overview">
       <div className="nation-leader-section">
         <HoverWindow
-          width={240}
-          estimateHeight={280}
+          width={420}
+          estimateHeight={520}
           placement="right"
           content={
             <CharacterProfile name={state.leader.name} title={state.leader.title} description={state.leader.description} traits={getLeaderTraits(state.leader.buffs)} />

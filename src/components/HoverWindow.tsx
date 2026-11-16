@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useLayoutEffect } from 'react';
 import { createPortal } from 'react-dom';
 
 /**
@@ -31,6 +31,13 @@ export default function HoverWindow({ children, content, width = 300, estimateHe
   const [pos, setPos] = useState<{ top: number; left: number; maxHeight: number; show: boolean }>({
     top: 0, left: 0, maxHeight: 400, show: false,
   });
+  const popupRef = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    if (!pos.show || !popupRef.current) return;
+    const bounds = popupRef.current.getBoundingClientRect();
+    const top = Math.max(8, Math.min(pos.top, window.innerHeight - bounds.height - 8));
+    if (top !== pos.top) setPos(p => ({...p, top, maxHeight: window.innerHeight - top - 8}));
+  }, [pos.show, pos.top, content]);
   const triggerRef = useRef<HTMLDivElement>(null);
   const closeTimer = useRef<number | null>(null);
   const openTimer = useRef<number | null>(null);
@@ -66,7 +73,7 @@ export default function HoverWindow({ children, content, width = 300, estimateHe
         if (top + estimateHeight > vh) top = Math.max(8, rect.top - estimateHeight - 6);
         left = Math.max(8, Math.min(rect.left, vw - width - 8));
       }
-      const maxHeight = Math.min(vh - top - 8, 420);
+      const maxHeight = vh - 16;
       setPos({ top, left, maxHeight, show: true });
     }, openDelay);
   };
@@ -78,8 +85,9 @@ export default function HoverWindow({ children, content, width = 300, estimateHe
       </div>
       {pos.show && createPortal(
         <div
+          ref={popupRef}
           className="fixed z-[150]"
-          style={{ top: pos.top, left: pos.left, width, maxHeight: pos.maxHeight, overflowY: 'auto' }}
+          style={{ top: pos.top, left: pos.left, width: Math.min(width, window.innerWidth - 16), maxHeight: pos.maxHeight, overflowY: 'auto' }}
           onMouseEnter={scheduleOpen}
           onMouseLeave={scheduleClose}
         >

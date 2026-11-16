@@ -19,10 +19,10 @@ const youGuanglei = new URL('../../art/人像/尤光雷.jpg', import.meta.url).h
 const jingZhen = new URL('../../art/人像/靖珍2.jpg', import.meta.url).href;
 const zhangChun = new URL('../../art/人像/张春.jpg', import.meta.url).href;
 const classified = new URL('../assets/portrait-classified.svg', import.meta.url).href;
-const jidiPartner = new URL('../assets/portraits/jidi-partner.svg', import.meta.url).href;
-const jidiInvestor = new URL('../assets/portraits/jidi-investor.svg', import.meta.url).href;
-const jidiManager = new URL('../assets/portraits/jidi-manager.svg', import.meta.url).href;
-const jidiAnalyst = new URL('../assets/portraits/jidi-analyst.svg', import.meta.url).href;
+const jidiPartner = new URL('../../art/人像/李竞凯.jpg', import.meta.url).href;
+const jidiInvestor = new URL('../../art/人像/方田.png', import.meta.url).href;
+const jidiManager = new URL('../../art/人像/刘守强.jpg', import.meta.url).href;
+const jidiAnalyst = new URL('../../art/人像/盛为民.png', import.meta.url).href;
 
 /** 本地肖像是人物身份的唯一来源；未核实身份的条目显示档案占位。 */
 export const LOCAL_PORTRAIT_URLS: Record<string, string> = {
