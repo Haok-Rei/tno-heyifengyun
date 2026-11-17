@@ -72,7 +72,7 @@ const INITIAL_EVENT: GameEvent = {
   id: 'school_starts',
   presentation: 'news',
   title: '新学期，新秩序',
-  description: '2023年9月1日，合肥一中迎来了新的学期。然而，平静的表面下暗流涌动。\n\n教务督导吴福军加强了对校园的巡查，试图将一切不稳定因素扼杀在摇篮中。学生群体内部也出现了分裂，激进派和保守派的矛盾日益尖锐。\n\n在这座被高墙围拢的“经天纬地”之城里，谁将主宰未来的秩序？是继续忍受高压的应试教育，还是掀起一场彻底的变革？\n\n命运的齿轮已经开始转动。',
+  description: '2023年9月1日，滨湖校区的起床号照例在清晨五点五十准时撕裂薄雾。表面上看，合肥一中不过是迎来了又一个被红榜、周考与量化扣分填满的新学期；可在“怀天下抱负，做未来主人”的鎏金校训下方，这座庞大应试机器的齿轮已经发出了刺耳的摩擦声。\n\n在校长封安宝的铁腕授意下，教务督导吴福军将防暴钢叉与红外监控铺满了每一条走廊，试图把陈栋时代残存的最后一丝自由火种彻底按死在萌芽之中；而在堆满五三与密卷的课桌底下，从潘仁越的宪政传单到王照凯的红色读书会，压抑已久的学子们正在暗夜中秘密串联，激进派与温和派的路线裂痕也在高压下日趋白热化。\n\n在这座被电网与高墙合围的“经天纬地”之城里，风暴的引信已经燃至尽头：是继续在衡水化全景监狱的流水线上充当沉默的做题耗材，还是用年轻的血肉之躯撞碎旧秩序的铁门？',
   buttonText: '天佑做题家',
 };
 
@@ -223,14 +223,14 @@ const INITIAL_GAME_STATE: GameState = {
     {
       id: 'exam_pressure',
       name: '应试高压',
-      description: "合一用升学率作为衡量一切的标尺，周考排名成为刻度。教师被迫压缩课堂余地，把教学转向应试；学生从入学起就活在比较中，分数起伏被当作前途信号。后果是学习从理解变成竞争，学生之间用名次彼此打量，压力层层传导且长期无从缓解。",
+      description: "在封安宝打造的衡水化体制下，清北率与一本率成为了衡量一切的绝对神明，而每周一次的红白榜排名则是悬在数千名学子头顶的达摩克利斯之剑。教师被迫沦为卡着秒表批卷的监工，任何偏离高考考纲的启蒙都被视为渎职；学生从踏入滨湖校区的那一刻起便被剥夺了姓名，化作年级大榜上不断跳动的冰冷数字。同窗之情在零和博弈的排名绞肉机中被异化为彼此提防的猜忌，令人窒息的焦虑顺着每一张答题卡层层传导，将整座校园压成了一座随时可能爆燃的火药桶。",
       type: 'negative',
       effects: { stabDaily: -0.5, tprDaily: -0.5 } // Assuming base TPR is -10, +5% is -0.5
     },
     {
       id: 'b3_fortress',
       name: 'B3堡垒',
-      description: "B3教学楼被改造成革命据点：楼道堆着课桌沙袋组成街垒，顶层红旗高挂。参与者视其为组织核心，既是革命起点的象征，也是必须守住的阵地。校方无法再用普通教学楼的方式管理这里。只要街垒还在、红旗还挂着，校园里的力量对比就仍处于对峙。",
+      description: "高耸的B3教学楼早已不再是单纯的授课场所，而是全校反抗力量的心脏与精神图腾。废弃课桌、成捆旧教辅与消防沙袋在走廊拐角垒成了层层街垒，天台栏杆上猎猎作响的红黑战旗俯瞰着整座滨湖校区。无论是自由派的地下印刷点还是钢铁红蛤的青年近卫队，都将这里视为绝不可退让的最后阵地。只要B3楼顶的旗帜尚未倒下，行政楼的铁腕政令就永远无法真正号令全校。",
       type: 'neutral',
       effects: { defenseBonus: 0.1 }
     }
@@ -248,7 +248,7 @@ const INITIAL_GAME_STATE: GameState = {
       title: '一模考试临近',
       daysLeft: 30,
       totalDays: 30,
-      description: '如果不采取措施稳定军心，到期将触发巨大的稳定度惩罚。',
+      description: '全市高三第一次摸底联考的倒计时牌已经在各班黑板角挂起。动荡的局势让备考秩序濒临瘫痪，若不能在开考前调配足够试卷组织冲刺、稳住各方军心，一旦成绩雪崩，家长与教务处的双重问责将彻底冲垮现有的统治威信。',
       resolutionText: '执行「组织一模冲刺」决议（消耗 500 TPR + 20 PP）可提前化解',
       expiryText: '稳定度 -30%',
     }
@@ -753,7 +753,7 @@ export default function App() {
             newState.activeEvent = STORY_EVENTS[`gx_cyber_start_${workId}`] || {
               id: `gx_cyber_start_${workId}`,
               title: '赛博解构启动',
-              description: '该作品首次进入解构流程。',
+              description: '艺术礼堂的放映机发出低沉的嗡鸣，新的动画切片与二创鬼畜素材已被导入控制台，一场针对严肃叙事的狂欢式解构正式拉开帷幕。',
               buttonText: '继续',
               isStoryEvent: true,
             };
@@ -762,7 +762,7 @@ export default function App() {
             newState.activeEvent = STORY_EVENTS[`gx_cyber_complete_${workId}`] || {
               id: `gx_cyber_complete_${workId}`,
               title: '赛博解构完成',
-              description: '该作品完成首轮完整解构。',
+              description: '银幕上的最后一帧画面被弹幕与抽象烂梗彻底淹没。原本沉重的宿命与热血被拆解成无数供人消费的电子糖精，礼堂内的哄笑声再次压过了现实的焦虑。',
               buttonText: '继续',
               isStoryEvent: true,
             };
@@ -846,7 +846,7 @@ export default function App() {
           activeEvent: {
             id: `gx_gal_blocked_${todayKey}`,
             title: '今日聊天中止',
-            description: '对方今天已经不再回复消息，等明天再尝试。',
+            description: '对话框停留在最后一行刺眼的“已读”，无论你再发多少条表情包都如同石沉大海。屏幕的冷光映着空荡荡的放映室，今天看来只能到此为止了。',
             buttonText: '知道了',
             isStoryEvent: true,
           },
@@ -877,7 +877,7 @@ export default function App() {
             activeEvent: {
               id: `gx_gal_no_reply_${characterId}_${todayKey}`,
               title: '对方结束了今天的聊天',
-              description: '今天的消息频率过高，对方选择中止回应。',
+              description: '你连珠炮般的追问与试探终于耗尽了对方的耐心。头像悄然暗了下去，只剩下一串冰冷的省略号在屏幕中央无声地嘲笑着你的急躁。',
               buttonText: '明天再聊',
               isStoryEvent: true,
             },
@@ -990,7 +990,7 @@ export default function App() {
               activeEvent: {
                 id: `gx_gal_positive_feedback_${characterId}_${ts}`,
                 title: '聊天正反馈',
-                description: `${characterNameMap[characterId]}的反馈让你暂时稳住了情绪，理智恢复 ${sanityRefund}。`,
+                description: `手机屏幕亮起的那一瞬，${characterNameMap[characterId]}发来的简短回复像一根浮木，将你从躁郁与虚无的漩涡边缘轻轻拉了回来。你长舒了一口气，紧绷的神经稍稍松弛（理智恢复 ${sanityRefund}）。`,
                 buttonText: '继续聊天',
                 isStoryEvent: true,
               },
@@ -1506,18 +1506,18 @@ export default function App() {
           const politburoSpiritIndex = newNationalSpirits.findIndex(ns => ns.id === 'red_toad_politburo');
           
           let spiritType: 'positive' | 'negative' | 'neutral' = 'neutral';
-          let spiritDesc = '会议室里的气氛像绷紧的弦，各派系谁也不肯先开口。';
+          let spiritDesc = 'B3顶层会议室里弥漫着廉价烟草与油墨的气息，各派系代表冷眼隔桌相望，脆弱的平衡在死寂中维持着微妙的僵局。';
           let effects: any = {};
 
           if (consensus > 50) {
             spiritType = 'positive';
             const buffLevel = Math.max(1, Math.floor((consensus - 50) / 10));
-            spiritDesc = '几大派系罕见地拧成一股绳，议案以惊人的速度通过。';
+            spiritDesc = '在共同的革命愿景下，红蛤政治局的几大派系罕见地放下成见、拧成一股绳，红色指令顺着畅通的组织脉络全速运转。';
             effects = { ppDaily: buffLevel * 0.1, stabDaily: buffLevel * 0.2, tprDaily: buffLevel * 5 };
           } else if (consensus < 50) {
             spiritType = 'negative';
             const debuffLevel = Math.max(1, Math.floor((50 - consensus) / 10));
-            spiritDesc = '会议室里拍桌声不绝，每一份议案都要先撕上三轮。';
+            spiritDesc = '政治局会议室里拍桌声与路线攻讦昼夜不绝，每一份决议草案都要在派系倾轧的泥潭里被撕扯得面目全非。';
             effects = { ppDaily: -debuffLevel * 0.1, stabDaily: -debuffLevel * 0.2, radicalAngerDaily: debuffLevel * 0.5 };
           }
           
@@ -1571,16 +1571,16 @@ export default function App() {
           }
 
           let spiritType: 'positive' | 'negative' | 'neutral' = 'neutral';
-          let spiritDesc = '两架马车并排而行，车夫都在偷看对方的鞭子。';
+          let spiritDesc = '极权清洗与解构狂欢的两架马车在悬崖边缘并驾齐驱，吕波汉与狗熊都在一边微笑握手，一边死死盯着对方手里的刀。';
           if (nextBalance <= 35) {
             spiritType = 'positive';
-            spiritDesc = '吕波汉把缰绳攥得更紧了，礼堂那边敢怒不敢言。';
+            spiritDesc = '吕波汉的特别纠察队将铁腕缰绳攥得咯咯作响，艺术礼堂的乐子人们在刺刀的寒光下噤若寒蝉。';
             ppMod += 0.2;
             partyCentralizationMod += 0.3;
             ssMod -= 0.2;
           } else if (nextBalance >= 65) {
             spiritType = 'negative';
-            spiritDesc = '狗熊的喇叭声压过了一切，秩序在欢呼声里慢慢溶解。';
+            spiritDesc = '狗熊的高音喇叭与二次元鬼畜压过了纠察队的哨声，严密的极权秩序正在歇斯底里的哄笑声中悄然溶解。';
             tprMod += 5;
             stabMod -= 0.35;
             ssMod -= 0.35;
@@ -1588,7 +1588,7 @@ export default function App() {
             ppMod -= 0.2;
           } else {
             spiritType = 'neutral';
-            spiritDesc = '表面平稳，暗地里两份名单都在越写越长。';
+            spiritDesc = '主楼与礼堂维持着诡异的恐怖平衡，而在看不见的抽屉深处，双方用红笔勾画的清洗名单都在越写越长。';
             stabMod += 0.1;
             ppMod -= 0.05;
           }
@@ -1615,7 +1615,7 @@ export default function App() {
           let sanitySpirit: NationalSpirit = {
             id: sanitySpiritId,
             name: '狗熊理智波动',
-            description: '理智在临界值附近摇摆，谁也说不准明天会怎样。',
+            description: '大统领的精神状态正在清醒与癫狂的临界线上危险地走着钢丝，没人知道明天礼堂广播里传出的会是行政指令还是抽象怪叫。',
             type: 'neutral',
             effects: {
               ppDaily: 0,
@@ -1627,7 +1627,7 @@ export default function App() {
             sanitySpirit = {
               id: sanitySpiritId,
               name: '狗熊理智在线',
-              description: '狗熊的脑回路暂时在线，礼堂的行政效率出奇地高。',
+              description: '罕见的清醒期暂时压制了躁郁的妄想，狗熊以一种令人意外的狡黠与冷酷调度着礼堂上下的行政机器。',
               type: 'positive',
               effects: {
                 ppDaily: 0.3,
@@ -1640,7 +1640,7 @@ export default function App() {
             sanitySpirit = {
               id: sanitySpiritId,
               name: '狗熊理智失衡',
-              description: '狗熊的情绪开始接管一切，决策随着番剧剧情左右摇摆。',
+              description: '偏执与被害妄想彻底接管了放映室的控制台，全校的最高政令开始随着昨晚番剧的胃痛剧情与群聊记录疯狂摇摆。',
               type: 'negative',
               effects: {
                 ppDaily: -0.3,
@@ -1777,7 +1777,7 @@ export default function App() {
                 id: 'ultra_left_error',
                 totalDays: 15,
                 title: '题改极左错误',
-                description: '激进愤怒度持续爆表，先锋队内部出现了严重的极左倾向，如果不能在15天内将激进愤怒度降至100%以下，做题改革将遭到极大破坏！',
+                description: '长期爆表的激进怒火彻底冲垮了党内的理性防线，基层工作队中蔓延着“砸烂一切考卷、批斗所有尖子生”的极左狂热。若不能在15天内将激进愤怒度压回100%以下，整场做题改革将在盲目的破坏狂潮中自毁长城！',
                 resolutionText: '将激进愤怒度降至 100 以下（危机自动解除）',
                 expiryText: '题改进度 -30，稳定度 -20%',
                 daysLeft: 15
@@ -1825,7 +1825,7 @@ export default function App() {
           newFlags.lu_second_democracy_unlock_days = unlockDays;
           if (unlockDays <= 3) {
             const chainDescriptions = [
-              '篡权后的校长办公室里，狗熊正百无聊赖地把玩着从广播站缴获来的调音台，试图合成一首更加刺耳的二次元鬼畜进行曲，用来在明天的全校批斗会上折磨那些“做题蛆”。但今天，他的兴致却莫名地低落。\n\n“吕指导，你有没有觉得，这几天楼道里太安静了？”狗熊转过老板椅，看着正埋头批阅《反革命做题分子肃清名单》的吕波汉，“以前我让纠察队去踹门，那些书呆子好歹还会哭喊、会求饶，或者像周洪斌那样念几句听不懂的经。那多有乐子！可昨晚我们去查寝，那帮人看我们的眼神……像是在看死人。没有恐惧，只有一种说不出的死寂。”\n\n吕波汉皱了皱眉，放下了手中的红笔。他确实也收到了一些零星的异常报告：地下水泵房的看守声称有几只老鼠咬断了门锁，导致几箱作为燃料的废旧试卷和一名劳改犯不翼而飞；学校后勤处丢失了几台老式油印机和大量的黑色墨水。“不过是几只在阴沟里苟延残喘的虫子罢了。”吕波汉冷哼了一声，试图压下心头那一丝转瞬即逝的不安，“加大午夜纠察队的巡逻力度，任何不正常的集结，直接物理消灭。”',
+              '篡权后的校长办公室里，狗熊正百无聊赖地把玩着从广播站缴获来的调音台，试图合成一首更加刺耳的二次元鬼畜进行曲，用来在明天的全校批斗会上折磨那些“做题蛆”。但今天，他的兴致却莫名地低落。\n\n“吕指导，你有没有觉得，这几天楼道里太安静了？”狗熊转过老板椅，看着正埋头批阅《反革命做题分子肃清名单》的吕波汉，“以前我让纠察队去踹门，那些书呆子好歹还会哭喊、会求饶，或者像周红兵那样念几句听不懂的经。那多有乐子！可昨晚我们去查寝，那帮人看我们的眼神……像是在看死人。没有恐惧，只有一种说不出的死寂。”\n\n吕波汉皱了皱眉，放下了手中的红笔。他确实也收到了一些零星的异常报告：地下水泵房的看守声称有几只老鼠咬断了门锁，导致几箱作为燃料的废旧试卷和一名劳改犯不翼而飞；学校后勤处丢失了几台老式油印机和大量的黑色墨水。“不过是几只在阴沟里苟延残喘的虫子罢了。”吕波汉冷哼了一声，试图压下心头那一丝转瞬即逝的不安，“加大午夜纠察队的巡逻力度，任何不正常的集结，直接物理消灭。”',
               '极权机器的齿轮，第一次感受到了明显的阻力。清晨，当吕波汉阴沉着脸走进行政大楼时，他赫然发现大厅的承重柱上，贴着一张粗糙但字迹极其有力的油印传单。传单没有使用任何晦涩的马列理论，也没有使用狗熊那种抽象的二次元烂梗，而是用最朴素、最能刺痛合一学生内心的语言，控诉着近期发生的一系列血腥私刑与无底线的羞辱。\n\n更令吕波汉感到不寒而栗的是传单的落款——“合一自由党”。那个早已被宣布为非法、被扫进历史垃圾堆的自由派组织，竟然在他的眼皮底下复活了。\n\n狗熊在一旁气急败坏地撕扯着传单：“这群没有幽默感的蠢货！他们居然跟我讲人权？讲尊严？纠察队是干什么吃的！为什么监控里什么都没拍到？！”吕波汉死死捏着那张散发着刺鼻油墨味的纸，手背上青筋暴起。他突然意识到，自己那套只懂得依靠暴力威慑的体系，在面对这种真正基于信仰与牺牲精神的地下网络时，显得如此笨重而迟缓。一张看不见的、由无数个微小齿轮咬合而成的民主链条，正在合一的地下疯狂运转。',
               '恐慌开始在先锋队的内部蔓延。仅仅三天时间，那种无形的抵抗已经从暗处走向了半公开化。午夜纠察队的汇报变得越来越诡异：B1教学楼的所有监控探头都在一夜之间被蒙上了黑布；原本互相监视、动辄举报的班级里，突然形成了一种极其默契的沉默同盟，没有人再向上面提供任何有价值的线索。甚至连纠察队内部，都开始出现开小差和装病的现象。\n\n吕波汉独自站在校长办公室的落地窗前，俯视着被探照灯扫射的操场。他引以为傲的NKPD，此刻变成了一个到处漏风的破筛子。他终于明白，潘仁越和豪邦正在联手做一件极其可怕的事情：他们将自由派的浪漫主义号召力，与自社派在基层深耕的互助组网络完美地结合在了一起。\n\n“吕指导……B3那边的纠察队……被缴械了……”一名浑身是血的干事跌跌撞撞地撞开门，打破了办公室里死一般的沉寂，“他们人太多了……而且……而且他们根本不怕死……”狗熊脸上的狂妄终于褪去，取而代之的是一种歇斯底里的惊恐。他引以为傲的解构主义，在真正视死如归的怒火面前，就像是一个劣质的笑话。极权的丧钟，已然在合一的夜空中敲响。'
             ];
@@ -1871,7 +1871,7 @@ export default function App() {
               queueEvent({
                 id: 'yang_yule_decision_ready',
                 title: '杨特出山',
-                description: 'B3风暴已经平息十天了。杨玉乐放下手中的保温杯，从抽屉里取出那份早已拟好的《关于稳定合一教学秩序的建议书》。时机已经成熟——是时候让这位老练的特级教师出来"主持大局"了。右侧决议栏中已出现"杨特出山"决议。消耗20学生支持度即可让杨玉乐接管合一。',
+                description: 'B3风暴的硝烟已经散去十天，而校园的权力真空仍在持续流血。行政楼二楼的办公室里，杨玉乐慢条斯理地旋紧保温杯盖，从抽屉最底层取出那份字斟句酌、早已拟好的《关于恢复合一正常教学秩序的紧急建议书》。当年轻的造反派与老迈的独裁者两败俱伤之时，正是他这位深谙官场太极的特级教师以“温和折中派”面目出山摘桃的最佳时机。（右侧决议栏已解锁「杨特出山」，消耗20学生支持度即可由杨玉乐接管大局。）',
                 buttonText: '这只老狐狸终于要出手了...',
                 isStoryEvent: true,
               });
@@ -2276,7 +2276,7 @@ export default function App() {
               title: '联盟濒临瓦解',
               daysLeft: 15,
               totalDays: 15,
-              description: '党内集权度过高且联盟团结度极低，如果不采取措施，联盟将在15天后彻底瓦解。',
+              description: '先锋队毫无节制的集权专断已经将盟友逼到了决裂边缘，联席会议上的争吵正迅速演变为各教学楼间的武装对峙。若不能在15天内分权让步或弥合裂痕，脆弱的革命联合阵线将彻底分崩离析！',
               resolutionText: '降低党内集权至 ≤90，或将联盟团结提升至 ≥25（自动解除）',
               expiryText: '结局：升学率雪崩（游戏结束）',
             });
@@ -2298,7 +2298,7 @@ export default function App() {
               title: '及第资本夺权',
               daysLeft: 30,
               totalDays: 30,
-              description: '及第教育的资本正在暗中渗透，如果我们不能在30天内降低资本渗透度（<=60），他们将接管学校！',
+              description: '借着校园秩序动荡的空隙，及第教育的商业触手已顺着高价密卷与教研外包渗透进每一个年级组。封安祥的法务与托管团队正在校外集结，若不能在30天内斩断利益链条、将资本渗透度压回60以下，这座百年学府将被彻底私有化！',
               resolutionText: '将资本渗透度降至 ≤60（自动解除）',
               expiryText: '及第资本全面接管，进入及第企业线',
             });
@@ -2322,7 +2322,7 @@ export default function App() {
               title: '内奸？？',
               daysLeft: 15,
               totalDays: 15,
-              description: '稳定度和学生理智度极低，狗熊似乎在暗中策划着什么...如果不能在15天内提高稳定度或学生理智度，后果不堪设想！',
+              description: '秩序的崩塌与集体理智的枯竭让整座校园陷入了诡异的躁狂。驻守艺术礼堂的狗熊正频繁切断总部的通讯抽查，放映室里彻夜传出刺耳的调音啸叫与狂笑……若不能在15天内稳住局势或恢复学生理智，一场荒诞而致命的背叛即将引爆！',
               resolutionText: '稳定度 ≥30 或 学生理智 ≥30（自动解除）',
               expiryText: '狗熊公开分裂，建立「二次元地上天国」，进入狗熊线',
             });
@@ -2344,7 +2344,7 @@ export default function App() {
               title: '子夜？',
               daysLeft: 30,
               totalDays: 30,
-              description: '稳定度和试卷储备量同时归零。合一正在分崩离析，如果不能在30天内改变现状（稳定度>0或试卷储备量>0），一切都将结束。',
+              description: '最后一张试卷已在战火中化为灰烬，最后一丝秩序也在饥谨与暴乱中彻底归零。钟表上的指针正冷酷地滑向滴答作响的子夜——若不能在30天内重建起最基本的秩序或试卷供给，合肥一中将坠入万劫不复的毁灭深渊。',
               resolutionText: '稳定度 >0 或 TPR >0（自动解除）',
               expiryText: '结局：合一的毁灭（游戏结束）',
             });
@@ -2366,7 +2366,7 @@ export default function App() {
               title: '校方反攻？',
               daysLeft: 30,
               totalDays: 30,
-              description: '试卷储备量枯竭，学生支持度极低。校方保安队正在集结，如果我们不能在30天内改善现状（TPR>0或学生支持度>=30），我们将面临绝望的走廊巷战！',
+              description: '耗尽的卷子储备与跌入冰点的民心让新生议会沦为了空壳。行政楼前的探照灯彻夜通明，吴福军的防暴保安与及第资本的雇佣兵已完成合围，若不能在30天内恢复试卷供给或赢回学生支持，等待自由派的唯有绝望的走廊巷战！',
               resolutionText: 'TPR >0 或 学生支持度 ≥30（自动解除）',
               expiryText: '进入潘仁越绝望分支（走廊巷战）',
             });
@@ -2389,7 +2389,7 @@ export default function App() {
                 title: '资本反扑',
                 daysLeft: 20,
                 totalDays: 20,
-                description: '资本渗透度过高！及第教育正在暗中破坏做题改革。如果不能在20天内将资本渗透度降至70以下，题改进度将大幅倒退！',
+                description: '及第教育的地下书商与买办正在疯狂反扑，用天价押题密卷与私下补习瓦解着互助公社的根基。若不能在20天内重拳肃清买办、将资本渗透度压至70以下，苦心推进的做题改革将被资本逻辑倒算清算！',
                 resolutionText: '将资本渗透度降至 <70（自动解除）',
                 expiryText: '题改进度 -20',
               });
@@ -2410,7 +2410,7 @@ export default function App() {
                 totalDays: 15,
                 title: '学生崩溃',
                 daysLeft: 15,
-                description: '学生理智度极低！过激的改革让学生们濒临崩溃。如果不能在15天内将理智度提升至20以上，题改将失去群众基础！',
+                description: '连轴转的政治批斗与高强度课业改造已将普通学生的精神防线逼至极限，深夜的教学楼里到处是抱头痛哭与歇斯底里的嘶吼。若不能在15天内将学生理智度拉回20以上，做题改革将在全校范围的心理崩溃中彻底丧失群众基础！',
                 resolutionText: '将学生理智度提升至 ≥20（自动解除）',
                 expiryText: '题改进度 -15，先锋党员 -20',
               });
@@ -2447,7 +2447,7 @@ export default function App() {
             queueEvent({
               id: 'mock_exam_fail_initial',
               title: '一模成绩雪崩',
-              description: "一模成绩贴出来时，走廊里挤满了人。前几名的名字被围住，更多的人扫一眼自己的分数就低下头，把答题卡折了又折。\n\n“复习没人组织，也没人管。”一个女生蹲在窗边打电话，声音越来越低，“这回真的完了。”电话那头大概是家长，她没再说下去。\n\n课间操的铃响了，没什么人动。几个班干部挨个教室喊人，喊到一半自己也没了底气。晚自习出奇地安静，翻书声比平时响，很多人却看不进去，有人趴在桌上反复写着“完了”。\n\n恐慌从几张成绩单蔓延到整条走廊，校园秩序受到严重冲击。",
+              description: "全市一模的统考大榜贴上高三年级公告栏的那一刻，整条走廊陷入了死一般的寂静。曾经在全省名列前茅的一本达线率断崖式暴跌，密密麻麻的红叉与刺眼的排名滑坡像一记重锤，将全校师生最后的侥幸心理砸得粉碎。\n\n“整整一个月没人组织模考冲刺，连卷子都发不齐……这三年到底算什么？”一名重点班的女生蹲在楼梯拐角抓着手机，听着电话那头家长的咆哮，眼泪大颗大颗地砸在折烂的答题卡上。恐慌与幻灭感如同决堤的洪水般在各个班级蔓延，愤怒的家长把教务处的投诉电话彻底打爆，而原本摇摆不定的中间派学生也开始公开质疑现有秩序的合法性。\n\n当晚的晚自习铃声响起时，偌大的教学楼里再也没有往日齐整的翻书声。有人呆滞地盯着桌角发呆，有人在走廊里歇斯底里地撕碎讲义——在这座以升学率为唯一信仰的城池里，分数的雪崩就意味着统治根基的全面塌方。",
               buttonText: '这下完了...'
             });
           } else if (c.id === 'alliance_collapse') {
@@ -2462,7 +2462,7 @@ export default function App() {
             queueEvent({
               id: 'enter_treeA_pan_despair',
               title: '绝望的走廊巷战',
-              description: '试卷储备量已经彻底枯竭，学生支持度也跌入谷底。没有了做题力作为支撑，我们无法建立新的秩序。校方保安队和及第教育的雇佣兵趁机发起了反扑。潘仁越带领着最后的抵抗军，在教学楼的走廊里展开了绝望的巷战。',
+              description: '最后一批油印试卷在昨日的混乱中消耗殆尽，而长期脱离现实的空谈也让普通学生的支持率跌入了冰冷的谷底。在这座被高考倒计时统治的校园里，无法提供做题力保障的自由议会终究被大多数人抛弃。嗅到血腥味的吴福军保安队与及第教育的黑衣雇佣兵在凌晨联合撞开了教学楼的铁门。\n\n刺耳的警笛声与防暴盾牌撞击地面的闷响回荡在B3一楼大厅，曾经冠冕堂皇的议员们作鸟兽散。潘仁越摘下那副沾满灰尘的眼镜，默默捡起地上散落的扩音喇叭，带着最后几十名不肯投降的死忠青年近卫队退守二楼楼梯口。课桌垒成的街垒后方，已再无退路可言——一场注定载入合一悲剧史册的绝望巷战，在刺刀与催泪瓦斯的寒光中拉开了帷幕。',
               buttonText: '战斗到最后一刻！'
             });
           } else if (c.id === 'reform_capital_crisis') {
@@ -2473,7 +2473,7 @@ export default function App() {
             queueEvent({
               id: 'reform_capital_fail',
               title: '资本的胜利',
-              description: "及第教育的资本成功渗透了改革委员会。原本该由学生自己推进的做题改革，如今被拆得七零八落。有人熬夜整理的方案被搁在一边，互助小组的进度也大幅倒退。\n\n“我们做的事，怎么忽然就不算数了？”一个先锋党员在走廊里拦下负责对接的同学问。对方只是低着头，说现在很多事不归他们管了。\n\n成果被窃取或破坏的消息在改革派中间传开。愤怒没有出口，题改进度大幅倒退。",
+              description: "及第教育的银弹攻势最终从内部瓦解了做题改革委员会的防线。短短数周之内，原本由学生志愿编写的免费互助讲义被悄然踢出推荐名录，取而代之的是一套套印着及第防伪水印、标价高昂的“定制提分密卷”；几个核心互助小组的场地更是在一夜之间被挂上了“VIP一对一培优室”的铜牌。\n\n“我们熬了十几个通宵整理的共创题库，凭什么贴个商标就成了书商的收费专利？！”一名眼眶通红的基层先锋党员在教研室门口死死拽住负责对接的干事，而后者只是眼神闪躲地挣脱袖口，低声嘟囔着“经费缺口太大，上面也是为了大局”。\n\n革命果实被资本买办窃取的耻辱消息迅速传遍了B3各层。信仰的崩塌比外部的镇压更加致命，无数心灰意冷的积极分子当场退出了互助组，做题改革的齿轮在铜臭味的侵蚀下发出了痛苦的倒转声。",
               buttonText: '可恶的资本家！'
             });
           } else if (c.id === 'reform_sanity_crisis') {
@@ -2485,7 +2485,7 @@ export default function App() {
             queueEvent({
               id: 'reform_sanity_fail',
               title: '群众的怒火',
-              description: "学生们无法承受过激的改革。连日来，自习安排、动员任务和层层加码的要求压得人喘不过气，抵触终于从私下的抱怨变成了公开的抗议。\n\n抗议的人群堵在楼梯口和教室门前，举着手写的牌子，要求停止那些脱离实际的改动。先锋党员夹在中间，试图解释改革的必要，却被两边的人同时质问：“那你替我们做啊？”\n\n推搡中，有人把先锋党员的袖标扯了下来，有人干脆转身离开。原本靠这批人维持的动员链条断了几处。事后清点，流失的先锋党员让题改少了一批骨干，进度受挫。改革派内部开始争论到底该硬撑还是放缓，但眼下谁都没有答案。",
+              description: "拔苗助长的激进改造终于压断了普通学生脑中最后一根理智的弦。连日来没完没了的思想检讨会、强制摊派的题库编写指标以及层层加码的集体自习，让原本旨在解放学生的“做题改革”异化成了另一副更沉重的精神枷锁。压抑已久的怒火在今天傍晚彻底决堤。\n\n数百名濒临崩溃的学生自发堵死了B3教学楼的楼梯口与走廊，将成摞的政治学习材料和强制互助表撕得粉碎，从四楼天井漫天洒下。“你们和封安宝到底有什么区别？！还我们正常的休息时间！”面对汹涌的质问，试图上前维持秩序的先锋党员被愤怒的同学团团围住，甚至有几名原本动摇的基层干事当众扯下红袖标、哭喊着站到了抗议人群一边。\n\n当闹剧在深夜散场时，满地狼藉的纸屑中留下的是一条彻底断裂的基层动员链。二十名核心骨干的脫党出走让改革委员会元气大伤，而那句“你们和旧校方有什么区别”的怒吼，更像一记耳光狠狠抽在了每一名改革派的脸上。",
               buttonText: '我们需要更温和的手段...'
             });
           } else if (c.id === 'gouxiong_coup') {
@@ -2505,7 +2505,7 @@ export default function App() {
                     title: '赛博娱乐大统领',
                     portrait: 'gouxiong',
                     ideology: 'deconstructivism',
-                    description: "狗熊从红蛤时期的初创成员变成赛博娱乐大统领，靠的不是一套能解释校园秩序的政治纲领，而是把学生对旧权威的愤怒引向持续的解构狂欢。他认定严肃制度和宏大叙事已经失效，只有把学校彻底娱乐化、二次元化，才能让被压抑的人获得短暂归属。据传说他高二时偷过女同学裤子，这种恶趣味后来成了他行使权力时的固定风格，既不严肃也不打算解释。他掌握广播室和艺术礼堂后，用动漫片头、网络迷因和粗俗玩笑维系忠诚，支持者围拢过来多半是为了在起哄中分到一点存在感。这种统治能拆解旧权威，却无法回答权力应当承担什么责任。"
+                    description: "如果说王照凯代表了红色理想主义的铁血，吕波汉代表了极权清洗的冰冷，那么从钢铁红蛤分裂而出的“赛博娱乐大统领”狗熊，则是这座高压应试疯人院在彻底绝望后孕育出的最荒诞的怪胎。\n\n他没有政治纲领，也不屑于撰写任何宣言——在这个高二时曾因偷女生裤子而声名狼藉、却又在网络迷因与抽象黑话中如鱼得水的边缘人看来，无论是封安宝的衡水纪律还是革委会的宏大叙事，统统都是用来规训顺民的虚伪狗屁。夺取艺术礼堂与广播站后，他用二十四小时循环播放的二次元番剧、震耳欲聋的鬼畜电音和毫无底线的网络批斗取代了一切校规。在他的“二次元地上天国”里，自卑被包装成解构一切的特权，霸凌被粉饰为弹幕狂欢的节目效果。他用最廉价的多巴胺收容了所有逃避现实的灵魂，却唯独不敢让人关掉投影仪——因为一旦银幕暗下，镜子里便只剩下一个连自己都无法面对的小丑。"
                   },
                   // v8.11 狗熊撕毁一切旧法案：纪律全面自治、作息自由、人事学生评议会、教育素质教育
                   lawSystem: { discipline: 'full_autonomy', schedule: 'free_schedule', personnel: 'student_assembly_hr', education: 'quality_education', assessment: 'project_assessment', clubs: 'student_clubs' },
@@ -2514,7 +2514,7 @@ export default function App() {
                   nationalSpirits: state.nationalSpirits.filter(ns => !['red_campus', 'student_council', 'awakened_binhu', 'assembly_dynamics', 'democratic_councils_spirit'].includes(ns.id)).concat({
                     id: 'cyber_hedonism_rule',
                     name: '赛博娱乐统治',
-                    description: "学校的管理重心转向礼堂后，赛博娱乐便不再只是课余消遣。银幕昼夜播放，弹幕覆盖了原本用于讨论和集合的空间。学生们被要求持续参与这场互动，现实中的矛盾则被片头曲和动画片段一次次打断。荒诞在于人人都在笑，压抑在于不能停。",
+                    description: "当权力中枢从阴森的行政楼迁入闪烁着霓虹荧光的艺术礼堂，娱乐便从课余的消遣变成了强制履行的最高政治义务。巨型银幕昼夜不停地倾泻着高饱和度的番剧切片与抽象鬼畜，高音喇叭里的动漫片头曲彻底取代了上下课铃声。在这里，严肃的思考是可耻的异端，对未来的焦虑必须被整齐划一的弹幕哄笑所淹没。最令人毛骨悚然的荒诞莫过于此：礼堂里的每一个人都在咧嘴大笑，但没有任何人敢第一个停下来。",
                     type: 'negative',
                     effects: { ppDaily: 1, stabDaily: -2, studentSanityDaily: -5 }
                   }),
@@ -2564,7 +2564,7 @@ export default function App() {
             queueEvent({
               id: 'jidi_takeover_success',
               title: '及第教育全面接管',
-              description: 'B3教学楼的浓烟与嘶哑的口号声终于迎来了休止符，但这绝非学生们期盼的黎明，而是一场更为彻底的深渊降临。随着封安宝那套粗暴的“安宝全面复辟”与防暴队镇压体系在黑天红字旗的冲击下彻底破产，校园原有的高压秩序已然土崩瓦解 。\n\n就在联合革命委员会的年轻人们满心以为熬过了最黑暗的凛冬、即将迎来自治的曙光时，几辆黑色的迈巴赫在一列专业安保车队的护送下，平稳地碾过满地狼藉的滨湖校区大门。车门打开，及第教育CEO封安祥西装革履地踏上了这片布满试卷残骸与燃烧痕迹的土地。他的手里没有沾血的警棍，只有一份盖着市教育局纪委鲜红公章的《合肥一中整体托管与重组授权书》。\n\n在狼藉的校长办公室内，一场同姓兄弟间的权力交接冷酷地完成了。封安宝颓丧地瘫坐在宽大的皮椅上，看着自己迷信的铁腕统治化为泡影。封安祥则从容地将几份刺眼的清算文件扔在桌面上，语气中带着精算师般的轻蔑：“大哥，你最大的错误就是把这群做题家当成了需要物理镇压的敌人，而没有把他们当成可以无限榨取剩余价值的矿产。防暴队只会徒增维稳成本，但制造升学焦虑却能带来源源不断的现金流。”\n\n窗外，及第资本的法务团队和新入驻的“高级安保顾问”正以惊人的企业级效率清理着战场。潘仁越与王照凯等人拼死建立的联合革委会甚至没有等来一场像样的最终决战，就被一纸纸精准寄到家长单位的律师函、违约金账单和退学威胁瞬间瓦解 。理想主义的红黑旗帜被当作有害垃圾塞进了焚化炉，取而代之的是贴满公告栏的《独家教辅强制订阅清单》。合肥一中，这座曾经见证过陈栋时代民主风云的百年名校，正式完成了它血淋淋的“借壳上市”，彻底沦为了一座冰冷、高效、只为股东报表负责的盈利性应试工厂 。',
+              description: 'B3教学楼的浓烟与嘶哑的口号声终于迎来了休止符，但这绝非学生们期盼的黎明，而是一场更为彻底的深渊降临。随着封安宝那套粗暴的“安宝全面复辟”与防暴队镇压体系在黑天红字旗的冲击下彻底破产，校园原有的高压秩序已然土崩瓦解。\n\n就在联合革命委员会的年轻人们满心以为熬过了最黑暗的凛冬、即将迎来自治的曙光时，几辆黑色的迈巴赫在一列专业安保车队的护送下，平稳地碾过满地狼藉的滨湖校区大门。车门打开，及第教育CEO封安祥西装革履地踏上了这片布满试卷残骸与燃烧痕迹的土地。他的手里没有沾血的警棍，只有一份盖着市教育局纪委鲜红公章的《合肥一中整体托管与重组授权书》。\n\n在狼藉的校长办公室内，一场同姓兄弟间的权力交接冷酷地完成了。封安宝颓丧地瘫坐在宽大的皮椅上，看着自己迷信的铁腕统治化为泡影。封安祥则从容地将几份刺眼的清算文件扔在桌面上，语气中带着精算师般的轻蔑：“大哥，你最大的错误就是把这群做题家当成了需要物理镇压的敌人，而没有把他们当成可以无限榨取剩余价值的矿产。防暴队只会徒增维稳成本，但制造升学焦虑却能带来源源不断的现金流。”\n\n窗外，及第资本的法务团队和新入驻的“高级安保顾问”正以惊人的企业级效率清理着战场。潘仁越与王照凯等人拼死建立的联合革委会甚至没有等来一场像样的最终决战，就被一纸纸精准寄到家长单位的律师函、违约金账单和退学威胁瞬间瓦解。理想主义的红黑旗帜被当作有害垃圾塞进了焚化炉，取而代之的是贴满公告栏的《独家教辅强制订阅清单》。合肥一中，这座曾经见证过陈栋时代民主风云的百年名校，正式完成了它血淋淋的“借壳上市”，彻底沦为了一座冰冷、高效、只为股东报表负责的盈利性应试工厂。',
               buttonText: '资本的胜利...',
               effect: (state) => {
                 return {
@@ -2645,7 +2645,7 @@ export default function App() {
             queueEvent({
               id: 'ultra_left_error_event',
               title: '题改极左错误爆发',
-              description: '由于激进愤怒度长期居高不下，先锋队内部的极左倾向彻底失控。盲目的破坏和批斗取代了理性的改革，许多无辜的学生和老师受到波及。这场混乱极大地破坏了做题改革的成果，并让联盟的威信扫地。',
+              description: '长期积聚的激进怒火终于冲破了纪律的闸门，将原本理性的做题改革卷入了一场盲目狂热的极左风暴。失控的基层纠察队闯入各班教室，将一切正常的错题订正与阶段测验统统扣上“旧体制复辟”的帽子，连夜收缴并焚烧了数千册教辅笔记；许多原本支持改革的普通教师与尖子生被强行拉上讲台戴高帽批斗。\n\n熊熊燃烧的纸堆照亮了B3教学楼惊恐的夜空，却也将改革委员会辛苦建立的互助信任烧成了灰烬。当狂热的潮水退去，留给中央的只有一片狼藉的课堂与一落千丈的政治威信。',
               buttonText: '我们走得太远了...',
               effect: (state) => {
                 const newReformState = state.reformState ? { ...state.reformState } : undefined;
@@ -2662,7 +2662,7 @@ export default function App() {
             queueEvent({
               id: 'late_game_mock_exam',
               title: '合肥市二模危机',
-              description: '2024年3月，合肥市第二次模拟考试如期而至。全校师生都在关注着这次考试的成绩，这将是对我们这段时间以来路线的最终检验...',
+              description: '2024年3月，决定高三命运的合肥市第二次教学质量检测如期降临。在经历了数月波澜壮阔的校园自治与路线变革后，全校师生、无数家长乃至市教育局的目光都死死聚焦在这张统考成绩单上——无论口号喊得多么响亮，这场残酷的二模大考都将成为检验新秩序成色的终极试金石……',
               buttonText: '查看结果',
               effect: (state) => {
                 if (state.stats.tpr >= 1000 && state.stats.ss >= 60 && state.stats.stab >= 50) {
@@ -2691,7 +2691,7 @@ export default function App() {
             queueEvent({
               id: 'yang_yule_late_game_mock_exam',
               title: '合肥市二模成绩公布',
-              description: '2024年3月，合肥市第二次模拟考试的成绩单终于摆在了你的桌面上。你深吸了一口气，翻开了第一页...',
+              description: '2024年3月，散发着油墨味的合肥市二模全校统分报表终于送到了你的红木办公桌上。行政楼外的走廊一片寂静，封安宝与全体高三班主任都在等待着这份成绩单对“杨特软性维稳路线”作出最后的宣判。你放下保温杯，深吸了一口气，缓缓翻开了印着红头密封线的第一页……',
               buttonText: '查看结果',
               effect: (state) => {
                 if (state.stats.tpr >= 1000 && state.stats.stab >= 50 && state.stats.radicalAnger <= 50) {
@@ -2719,7 +2719,7 @@ export default function App() {
             queueEvent({
               id: 'jidi_late_game_mock_exam',
               title: '合肥市二模：财报与成绩',
-              description: '2024年3月，合肥市第二次模拟考试的成绩单终于摆在了及第资本的会议桌上。所有的董事都在盯着这些数字，这不仅关乎学生的命运，更关乎下一季度的股价...',
+              description: '2024年3月，合肥市二模统考数据与第一季度营收报表同时摆上了及第教育集团董事会的长桌。投影幕布前，西装革履的股东与风投代表们正屏息凝视着那些跳动的曲线——在这座被彻底证券化的提分工厂里，一本达线率与GDP流水将直接决定及第帝国下一季度的估值与权柄……',
               buttonText: '查看财报与成绩',
               effect: (state) => {
                 const gdp = state.jidiCorporateState?.gdp || 0;
@@ -2789,7 +2789,7 @@ export default function App() {
               queueEvent({
                 id: 'jidi_bureau_target_event',
                 title: '教育局的营收指标',
-                description: '教育局纪委对及第资本接管后的合肥一中提出了明确的营收要求。他们要求在接下来的120天内，学校的总GDP必须达到 ' + newJidiCorporateState.bureauTarget.targetGdp + ' 万。如果未能达成目标，及第资本将面临严厉的惩罚，甚至可能失去对学校的控制权。',
+                description: '市教育局纪委与托管评估组的专车在清晨驶入了滨湖校区。在闭门质询会上，评估组组长敲着桌面，向及第资本亮出了托管合同中的刚性对赌条款：在接下来的120天内，校区总营收（GDP）必须达到 ' + newJidiCorporateState.bureauTarget.targetGdp + ' 万。一旦对赌违约，不仅董事会将面临严厉的行政问责，及第资本在合一的特许经营权也将摇摇欲坠。',
                 buttonText: '必须完成指标！'
               });
             }
@@ -2805,7 +2805,7 @@ export default function App() {
               queueEvent({
                 id: 'jidi_bureau_target_success',
                 title: '营收指标达成',
-                description: '及第资本成功完成了教育局下达的营收指标。教育局纪委对我们的表现非常满意，及第资本在合肥一中的统治地位得到了进一步巩固。',
+                description: '对赌期限的最后一天，印着漂亮红字的财务审计报表准时送达市教育局案头。靠着全天候运转的密卷流水线与精细到骨髓的商业开发，及第资本不仅超额兑现了托管营收承诺，更用亮眼的账面数据堵住了所有质疑者的嘴。评估组在推杯换盏间签下了优评意见，封安祥在合一的商业统治由此固若金汤。',
                 buttonText: '资本的胜利'
               });
               newStats.pp += 50;
@@ -2817,7 +2817,7 @@ export default function App() {
               queueEvent({
                 id: 'jidi_bureau_target_failure',
                 title: '营收指标未达成',
-                description: '及第资本未能完成教育局下达的营收指标。教育局纪委对此表示强烈不满，并对我们进行了严厉的处罚。',
+                description: '120天的对赌期限届满，账面上的巨大营收窟窿终究无法用漂亮的PPT掩盖。市教育局纪委的问责通报在当天下午直接发到了联合管理委员会，严厉斥责及第教育“托管经营不善、引发教学与财务双重震荡”。高额的违约罚金与行政通报让董事会在一夜之间威信扫地。',
                 buttonText: '可恶...'
               });
               newStats.pp -= 50;
@@ -2901,7 +2901,7 @@ export default function App() {
               id: 'yang_yule_late_mock_exam',
               title: '合肥市二模',
               daysLeft: 14,
-              description: '二模即将到来，这是对你“软性维稳”路线的最终检验。你需要准备足够的TPR，同时控制激进愤怒度和稳定度。'
+              description: '决定高三成败的合肥市二模仅剩14天。这场大考将直接检验你“软性维稳”路线的含金量——你必须在开考前筹措充足的试卷储备（TPR），同时将校园稳定度与激进怒火牢牢按在安全线以内。'
             });
             queueEvent(FLAVOR_EVENTS.yang_yule_mock_exam_approach_event);
           } else if (newFlags['jidi_takeover_complete']) {
@@ -2909,7 +2909,7 @@ export default function App() {
               id: 'jidi_late_mock_exam',
               title: '合肥市二模',
               daysLeft: 14,
-              description: '二模即将到来，这是对及第资本“提分工厂”模式的最终检验。我们需要极高的GDP和一本率来向董事会交差。'
+              description: '距离合肥市二模统考仅剩14天。这不仅是高三学子的试炼，更是及第资本“提分工厂”商业模式的终极路演——唯有同时交出亮眼的GDP财报与一本达线率，才能向苛刻的董事会交差。'
             });
             queueEvent(FLAVOR_EVENTS.jidi_mock_exam_approach_event);
           } else {
@@ -2917,7 +2917,7 @@ export default function App() {
               id: 'late_mock_exam',
               title: '合肥市二模',
               daysLeft: 14,
-              description: '二模即将到来，这是对我们路线的最终检验。我们需要准备足够的TPR、稳定度和学生支持度。'
+              description: '距离合肥市二模统考仅剩14天。全校师生与校外势力都在盯着新政权的答卷——我们必须在开考前确保充足的试卷储备（TPR）、稳固的校园秩序与广泛的学生支持度。'
             });
             queueEvent(FLAVOR_EVENTS.mock_exam_approach_event);
           }
@@ -3039,7 +3039,7 @@ export default function App() {
                 queueEvent({
                   id: `mission_success_${regionId}`,
                   title: '工作队捷报',
-                  description: `派往 ${regionId} 的工作队圆满完成了任务！${isCritical ? '这是一次大成功，我们获得了额外的收益！' : ''}`,
+                  description: `派往 ${regionId} 的题改下乡工作队传回捷报！面对积重难返的应试旧习，队员们顶住压力完成了基层整顿与互助改组。${isCritical ? '工作队在当地赢得了师生们的狂热拥护，超额取得了突破性的改革战果！' : ''}`,
                   buttonText: '继续前进！'
                 });
               } else {
@@ -3060,7 +3060,7 @@ export default function App() {
                 queueEvent({
                   id: `mission_fail_${regionId}`,
                   title: '做题派反抗',
-                  description: `派往 ${regionId} 的工作队遭遇了顽固势力的激烈抵抗，任务失败了。部分先锋党员在冲突中流失。`,
+                  description: `派往 ${regionId} 的题改工作队在死守旧秩序的顽固做题派反扑下严重受挫！工作队的宣传桌被愤怒的刷题党掀翻，数名先锋党员在激烈的走廊推搡与冲突中负伤脱队，行动被迫中止。`,
                   buttonText: '绝不妥协！'
                 });
               }
@@ -3125,7 +3125,7 @@ export default function App() {
                 id: 'wang_juanhao_vanguard',
                 title: '红色先锋',
                 name: '王卷豪',
-                description: '每日试卷储备量 +20，B3教学楼所有任务成功率固定 +30%。',
+                description: '这位昔日被衡水体制异化的“卷王之王”已在红色互助公社的感召下彻底觉醒，将其恐怖的解题算力毫无保留地献给了集体事业（每日试卷储备量 +20，B3教学楼所有任务成功率固定 +30%）。',
                 cost: 0, // Free when auto-hired
                 modifiers: { tprDaily: 20 }
               };
@@ -3205,12 +3205,12 @@ export default function App() {
                         const updatedPath = { ...newSpirits[pathIndex] };
                         if (passedCount >= 5) {
                           updatedPath.name = '民主之路（完成）';
-                          updatedPath.description = '民主的制度已经稳固，我们走在正确的道路上。';
+                          updatedPath.description = '历经无数次议会博弈与彻夜辩论，宪政与自治的基石终于在合肥一中深深扎根。陈栋时代的民主薪火不仅得以重燃，更化作了守护全体学子尊严的坚固制度。';
                           updatedPath.type = 'positive';
                           updatedPath.effects = { ppDaily: 0.5, powerBalanceDaily: -0.1, tprDaily: 10, studentSanityDaily: 0 };
                         } else {
                           updatedPath.name = `民主之路（${passedCount}/5）`;
-                          updatedPath.description = '民主的道路充满曲折，我们需要通过更多的法案来巩固它。';
+                          updatedPath.description = '推翻独裁只是万里长征的第一步，新生的学生议会依然在派系扯皮与应试压力的夹缝中蹒跚前行。唯有推动更多实质性的改革法案落地，才能让脆弱的民主制度真正站稳脚跟。';
                           updatedPath.effects = { 
                             ppDaily: -1 + (passedCount * 0.2), 
                             powerBalanceDaily: 0.5 - (passedCount * 0.1),
@@ -3255,7 +3255,7 @@ export default function App() {
                   queueEvent({
                     id: `bill_passed_${billId}`,
                     title: '法案通过！',
-                    description: `议会以 ${totalApproval} 票赞成通过了《${billName}》。民主的进程又向前迈进了一步！`,
+                    description: `伴随着议长木槌清脆的落音，学生代表大会最终以 ${totalApproval} 票赞成的优势正式通过了《${billName}》。礼堂席位间响起热烈的掌声，校园宪政的齿轮又向前咬合了坚实的一步！`,
                     buttonText: '太好了',
                     effect: (state) => {
                       return {
@@ -3283,7 +3283,7 @@ export default function App() {
                   queueEvent({
                     id: failedEventId,
                     title: '法案被否决',
-                    description: `《${billName}》仅获得 ${totalApproval} 票赞成，未能达到 ${requiredApproval} 票的通过门槛。我们需要重新考虑我们的策略。`,
+                    description: `计票黑板上的数字最终定格在 ${totalApproval} 票赞成，距离 ${requiredApproval} 票的法定门槛一步之遥。《${billName}》在反对派的联手阻击下宣告流产，会场内一片哗然，执政联盟不得不重新审视接下来的议会统战策略。`,
                     buttonText: '我们需要重新审视我们的策略...',
                     effect: (s) => {
                       return {
@@ -3438,7 +3438,7 @@ export default function App() {
                   newCrises.push({
                     id: 'opposition_propaganda',
                     title: '反对派宣传',
-                    description: '反对派正在校园内散布对民主派不利的言论，试图动摇我们的统治基础。',
+                    description: '失势的旧派系与极端分子正在各教学楼散播攻击民主议会的地下大字报，借学业焦虑煽动学生对现行体制的不满，企图从根基上瓦解执政联盟的公信力。',
                     daysLeft: 30,
                     severity: 'medium',
                     onExpire: (s) => ({
@@ -3524,7 +3524,7 @@ export default function App() {
                   newCrises.push({
                     id: crisisId,
                     title: `${faction.name} 派系危机`,
-                    description: `${faction.name} 忠诚度过低且执行力过高，正在策划破坏行动！如果不加以安抚或镇压，将在30天后严重危害党内总共识度。`,
+                    description: `${faction.name} 对中央的不满已突破临界点，其掌控的基层骨干正在串联抵制政治局指令！若不在30天内果断加以安抚或整肃，这场派系哗变将重创党内总共识度。`,
                     daysLeft: 30,
                     severity: 'high',
                     onExpire: (s) => {
@@ -3676,7 +3676,7 @@ export default function App() {
                 id: 'yang_yule_health_death_event',
                 title: '最终的被动语态',
                 description: '你正端坐在那张宽大的红木办公桌前，试图在一份关于“高三全面取消午休”的红头文件上盖下黄铜公章。突然，你的胸口传来一阵极其尖锐的绞痛，那感觉就像是有人把一整个带刺的榴莲硬生生塞进了你的左心室。\n\n你颤抖着伸出手，想要去抓桌角那个掉漆的保温杯，但这具被你过度透支的衰老躯壳终于发起了最后的、不可逆的暴动。你大脑里的那块“橡皮擦”此刻马力全开，它不仅擦掉了定语从句，擦掉了新教改的阿谀奉承，甚至极其精准地擦掉了支配你心肺系统的神经中枢。\n\n你曾经在讲台上理直气壮地教育做题家们：“一个人一天呼吸五十升空气，不需要问肺为什么要吸气”。而现在，你的肺不仅不再问为什么，它甚至直接拒绝为你提供今天的第五十一升空气。缺氧的剧痛让你体会到了前所未有的恐慌。\n\n在视线彻底被黑雾吞噬的前一秒，你惊恐地发现，墙上那张你毕生追求、日夜凝视的“特级教师”证书，其上的字迹正在疯狂扭曲重组，最终化作了两个血红的英文字母——“ED”。这是生命彻底的、无法抗拒的被动语态。\n\n而在那片令人窒息的虚无幻境中，你仿佛清清楚楚地看到，那个因为天天打篮球而比你“早走五年”的哥们，正抱着一个味道“还不戳儿”的榴莲，笑眯眯地站在奈何桥上冲你招手。',
-                buttonText: '”杨特“的教师生涯，终于加上了ED。',
+                buttonText: '“杨特”的教师生涯，终于加上了ED。',
                 isStoryEvent: true,
                 effect: (state) => ({
                   gameEnding: 'game_over_school',
@@ -3699,7 +3699,7 @@ export default function App() {
             queueEvent({
               id: `yang_rebellion_report_${newDate.getTime()}`,
               title: '地区协调失守',
-              description: `${names}的红蛤组织在限期内未被处理，拒绝接受年级组的安排。${newStats.ss < 40 ? '学生支持不足，值班教师无法获得有效配合。' : '代表认为已有答复没有解决具体诉求，协调仍告失败。'}\n\n封安宝要求重新建立联络。这些地区进入14天恢复期，不会立即再次暴动。`,
+              description: `${names}的红蛤基层组织在最后期限届满后彻底掀了桌子，公然将年级组下发的整改通知贴在墙上涂满红叉。${newStats.ss < 40 ? '由于学生支持度低迷，派去维持秩序的值班教师被哄出走廊，连班干部都拒绝配合点名。' : '学生代表当场识破了太极推手式的敷衍答复，谈判在激烈的拍桌声中彻底破裂。'}\n\n封安宝在早会后黑着脸打来内线电话，严令年级组重新稳住局面。上述失守区域将进入14天整顿恢复期，暂不会立即再次爆发抗议。`,
               effectsText: [`稳定度 -${Math.min(18, rebellion.failed.length * 10)}`, `封校长信任 -${Math.min(18, rebellion.failed.length * 10)}`],
               buttonText: '核对地区报告',
             });
@@ -3717,27 +3717,27 @@ export default function App() {
           ty.studioAchievements = Math.min(100, (ty.studioAchievements || 0) + dailyAchievements);
           if (ty.titleStage === 0 && ty.fengFavor >= 60 && !milestones.includes('stage1_start')) {
             ty.titleStage = 1; ty.titleProgress = 10; milestones.push('stage1_start');
-            queueEvent({ id: 'yy_title_stage1_start', title: '特级教师的野心', isStoryEvent: true, description: '封安宝在一次行政会上无意中提到：市教育局明年有一个正高级职称的评审名额。"杨主任，你这些年为学校维稳立下了汗马功劳，这个名额非你莫属。"\n\n你心领神会。回到办公室，你打开抽屉，翻出那本泛黄的《安徽省中小学教师职称评审办法》。评审分四个阶段：材料准备（需教研成果）、专家评审、现场答辩、公示。\n\n接下来你需要在办公桌上处理日常公务的同时，暗中积累教研成果和政治资本。教研成果可以通过撰写论文、举办讲座、管理名师工作室来获取。', buttonText: '正高级，我来了！', effectsText: ['机制说明：评审共四个阶段','教研成果通过办公桌决策和名师工作室产出积累','封校长信任度和教师支持度影响评审速度'] });
+            queueEvent({ id: 'yy_title_stage1_start', title: '特级教师的野心', isStoryEvent: true, description: '在周一的校务通气会上，封安宝端着茶杯，似笑非笑地向你透了个底：市教育局明年给合一留了一个“正高级教师”的评审指标。“杨主任，这阵子替学校弹压B3那帮刺头，你可是立了汗马功劳啊。只要大局稳住，这个正高名额非你莫属。”\n\n你捧着保温杯连连谦辞，眼底却闪过一丝按捺不住的精光。回到二楼办公室锁好门，你从抽屉深处翻出那本翻得卷边的《安徽省中小学教师职称评审办法》。通往教坛顶峰的阶梯共分四步：材料筹备、专家盲审、现场答辩与最终公示。\n\n想要把这顶桂冠稳稳戴在头上，你必须在替封校长弹压学潮、批阅公文的同时，开足名师工作室的马力，把青年教师的青春与汗水统统转化为你档案袋里的“核心教研成果”。', buttonText: '正高级，我来了！', effectsText: ['机制说明：评审共四个阶段','教研成果通过办公桌决策和名师工作室产出积累','封校长信任度和教师支持度影响评审速度'] });
           }
           if (ty.titleStage === 1 && ty.fengFavor >= 70 && (ty.studioAchievements || 0) >= 20 && !milestones.includes('stage2_complete')) {
             ty.titleStage = 2; milestones.push('stage2_complete'); ty.titleProgress = 40;
-            queueEvent({ id: 'yy_title_stage2_complete', title: '材料齐备，评审启动', isStoryEvent: true, description: '经过一段时间的"积累"，你的评审材料终于凑齐了。几篇署着你大名的教研论文（虽然大部分是工作室年轻教师熬夜写的）、一份"卓有成效"的校园维稳报告、以及封校长亲自润色的推荐信。\n\n市教育局的评审委员会已经受理了你的申请。评审进度将每天自动推进，速度取决于封校长信任度和教师支持度。', buttonText: '评审才刚刚开始...', effectsText: ['评审进度将每日自动推进','推进速度 = 信任度x0.5 + 支持度x0.25'] });
+            queueEvent({ id: 'yy_title_stage2_complete', title: '材料齐备，评审启动', isStoryEvent: true, description: '经过数周紧锣密鼓的“运作”，你那只厚实的牛皮纸档案袋终于被塞得满满当当：三篇第一作者署着你大名的省级核心教研论文（尽管底稿全是工作室那群刚毕业的年轻老师熬红了眼攒出来的）、一份字字珠玑的《重点中学特殊时期柔性德育实践报告》，外加一封由封安宝亲笔签章的校长特批推荐信。\n\n市教育局职称评审委员会已正式受理了你的卷宗。接下来，评审流程将按日自动推进——而你在行政楼里的恩宠与教研组里的人脉，将直接决定这份档案袋通关的速度。', buttonText: '评审才刚刚开始...', effectsText: ['评审进度将每日自动推进','推进速度 = 信任度x0.5 + 支持度x0.25'] });
           }
           if (ty.titleStage >= 2 && ty.titleStage < 4) {
             const dailyGain = (ty.fengFavor / 100) * 0.5 + (ty.teacherSupport / 100) * 0.25;
             ty.titleProgress = Math.min(100, (ty.titleProgress || 0) + dailyGain);
             if (ty.titleStage === 2 && (ty.titleProgress || 0) >= 70 && !milestones.includes('stage3_defense')) {
               ty.titleStage = 3; milestones.push('stage3_defense');
-              queueEvent({ id: 'yy_title_stage3_defense', title: '答辩之日', isStoryEvent: true, description: '评审委员会的答辩安排在教育局的小会议室里。你穿着那件洗得发白的西装，端着保温杯，面对着三位表情严肃的评审专家。\n\n"杨老师，请简述你对新高考背景下英语教学改革的认识。"\n\n你清了清嗓子，开始了准备已久的表演。你大谈"衡水模式"的纪律优势，又适时地流露出对"素质教育"的包容态度。在提到"ED和ING的区别"时，你不忘加上一句"这是我三十余年教学经验的结晶"。评审专家们相互交换了一个复杂的眼神。', buttonText: '滴水不漏' });
+              queueEvent({ id: 'yy_title_stage3_defense', title: '答辩之日', isStoryEvent: true, description: '正高级职称的现场答辩设在市教育局三楼的小会议室里。你特意换上了那件只在公开课穿的藏青色西装，手里稳稳端着标志性的枸杞保温杯，坐在三位面色威严的省市教研员面前。\n\n“杨玉乐同志，请结合近期合一的学情波动，谈谈你对新高考背景下英语教学改革与德育管理的认识。”\n\n你慢条斯理地清了清嗓子，开启了炉火纯青的太极表演。前半段你慷慨激昂地盛赞封校长“严管厚爱、纪律兜底”的治校方略，后半段又话锋一转，用极其温润的腔调大谈“春风化雨、倾听学生心声”的素质教育艺术；讲到兴起处，你更是顺手拈来那套“人是被动ED还是主动ING”的独门哲学，把整场官样文章包装成了三十余年一线躬耕的心血结晶。台下的专家们彼此交换了一个意味深长的眼神，纷纷在评分表上画下了勾。', buttonText: '滴水不漏' });
             }
           }
           if ((ty.titleProgress || 0) >= 100 && ty.titleStage < 4 && !milestones.includes('stage4_final')) {
             ty.titleStage = 4; milestones.push('stage4_final');
-            queueEvent({ id: 'yy_title_stage4_final', title: '公示期的暗流', isStoryEvent: true, description: '评审结果进入了公示期。你的名字赫然列在拟通过名单的第一位。\n\n然而公示刚过两天，一封匿名举报信出现在教育局举报箱里。信中列举了你的"三宗罪"：论文抄袭青年教师成果、利用维稳职权打压异己、收受及第教育贿赂。\n\n你一眼就看出这是老对手王照凯那些"钢铁红蛤"的手笔。但现在不是追究的时候——你需要维持高信任度或高教师支持度来撑过公示期。', buttonText: '最后一关...', effectsText: ['公示期条件：封校长信任度 >= 85 或 教师支持度 >= 70','满足条件后自动触发胜利结局'] });
+            queueEvent({ id: 'yy_title_stage4_final', title: '公示期的暗流', isStoryEvent: true, description: '市教育局官网的红头公示栏终于更新了，“杨玉乐”三个字赫然排在全省正高级教师拟聘名单的榜首。\n\n然而香槟还未开启，一封附带详实证据链的实名举报信便在公示第三天引爆了教体局纪检组。信中刀刀见血地列出了你的“三宗罪”：强占名师工作室青年教师论文署名、假借维稳职权打击报复异己学生、以及暗中为及第教育高价教辅充当保护伞。\n\n看着复印件上那熟悉的犀利排版，你一眼便认出这是王照凯那帮“钢铁红蛤”余党与教研组眼红同事的联手狙击。但在这临门一脚的节骨眼上，任何失态都是大忌——你必须死死攥住封安宝的信任或广大教师的拥护，只要熬过这短短几天的公示风暴，死无对证的赢家依然是你。', buttonText: '最后一关...', effectsText: ['公示期条件：封校长信任度 >= 85 或 教师支持度 >= 70','满足条件后自动触发胜利结局'] });
           }
           if (ty.titleStage === 4 && (ty.fengFavor >= 85 || ty.teacherSupport >= 70) && !newFlags['yy_title_ready']) {
             newFlags['yy_title_ready'] = true;
-            queueEvent({ id: 'yy_title_ready_event', title: '万事俱备', isStoryEvent: true, description: '公示期有惊无险地过去了。举报信被"查无实据"——封安宝的几通电话起了关键作用。\n\n现在，正高级职称的正式批文已经下发到学校人事处，只等你完成最后的手续。你需要在国策树中完成"合一的最终维稳人"国策，正式加冕为合一的正高级教师。\n\n你端起保温杯，轻轻吹了吹浮在杯口的茶叶。窗外，夕阳的余晖将整个滨湖校区染成了金色。三十年了，从一名普通英语教师到如今的正高级职称，你用ED和ING教会了一代又一代学生——至少在英语考试中——如何正确地"被动"。', buttonText: '胜利在望', effectsText: ['公示期已通过！', '完成国策树中的"合一的最终维稳人"以触发胜利结局'] });
+            queueEvent({ id: 'yy_title_ready_event', title: '万事俱备', isStoryEvent: true, description: '长达七天的公示期最终在波澜不惊中画上了句号。那封言之凿凿的举报信，在封安宝亲自打给市局领导的几通私人电话与教研组长们的联名担保下，被轻描淡写地定性为了“查无实据的恶意揣测”。\n\n现在，盖着省教育厅钢印的正高级教师聘书已经静静躺在学校人事处的档案柜里，只待你在国策树中走完「合一的最终维稳人」的最后一步，便可正式加冕为这所百年名校的教坛泰斗。\n\n你端起那只陪伴了你半辈子的保温杯，轻轻吹开浮在水面的枸杞与茶叶。窗外，暮色中的余晖将整座滨湖校区染成了一片庄严的暗金色。三十年宦海沉浮，造反的狂徒换了一茬又一茬，而你依然稳坐在这张红木办公桌后，用你那套炉火纯青的“ED与ING”，教会了一代又一代年轻气盛的做题家：在这个铁打的体制里，究竟该如何体面地接受“被动”。', buttonText: '胜利在望', effectsText: ['公示期已通过！', '完成国策树中的"合一的最终维稳人"以触发胜利结局'] });
           }
         }
 
@@ -3764,7 +3764,7 @@ export default function App() {
               queueEvent({
                 id: 'jidi_rnd_testing_phase',
                 title: '密卷研发：进入极限测试阶段',
-                description: '初步的教辅内容已经编写完成。现在，我们需要将这些内容投入到学生的日常练习中，进行“极限测试”。测试强度越高，最终产品的质量可能越好，但也会严重消耗学生的理智。',
+                description: '最新一季《合一密卷》的初稿已在教研流水线上装订完毕。现在，数千名高三学子将作为最廉价的天然小白鼠，在全封闭的早晚自习中对这批新题进行高强度“极限压力测试”。拉高测试强度能迅速打磨出更具商业卖点的押题质量，但每一次加码都在无情榨干学生们摇摇欲坠的理智。',
                 buttonText: '开始测试',
               });
             } else if (newJidiCorporateState.rndState.phase === 'testing' && newJidiCorporateState.rndState.daysInPhase >= 20) {
@@ -3773,7 +3773,7 @@ export default function App() {
               queueEvent({
                 id: 'jidi_rnd_dumping_phase',
                 title: '密卷研发：进入倾销与财报阶段',
-                description: '测试阶段结束，最终版本的《合一密卷》已经定稿。现在是时候将其推向市场，转化为我们的利润了。',
+                description: '建立在数万张错题卡与通宵黑眼圈之上的临床测试已告一段落，最终商业版《合一密卷》正式定稿付印。营销部早已拟好制造升学恐慌的软文，现在是时候开动印钞机，将这批滚烫的纸张向全省焦虑的家长倾销变现了。',
                 buttonText: '开始销售',
               });
             } else if (newJidiCorporateState.rndState.phase === 'dumping' && newJidiCorporateState.rndState.daysInPhase >= 20) {
@@ -3823,11 +3823,11 @@ export default function App() {
               
               let flavorText = '';
               if (faction === 'jidi') {
-                flavorText = isSuccess ? '及第教育的最新产品在市场上取得了巨大的成功！家长们疯狂抢购，学生们在题海中苦苦挣扎。及第派系在联合管理委员会中的影响力进一步提升。' : '由于质量低劣或营销不力，及第教育的新产品遭遇了滑铁卢。家长们纷纷退货，及第派系在联合管理委员会中的威信受到了打击。';
+                flavorText = isSuccess ? '印着及第烫金徽标的最新密卷在省内教辅市场掀起了现象级的抢购狂潮！被升学焦虑裹挟的家长们在书店门前排起长龙，高三学子在连山倒海的题海中痛苦哀嚎，而滚滚而来的现金流则让及第本部在联合管理委员会中愈发一言九鼎。' : '粗制滥造的排版与频频出错的参考答案让及第本部的最新密卷在市场上遭遇了惨痛的滑铁卢。愤怒的家长们堵在校门口集体退货维权，糟糕的季度报表让及第派系在联合管理委员会中颜面扫地。';
               } else if (faction === 'newOriental') {
-                flavorText = isSuccess ? '新东方派系的教辅产品凭借其独特的“魔改”思路，成功吸引了大量学生。新东方派系在联合管理委员会中的话语权显著增强。' : '新东方派系的新产品过于超前，市场反响平平。大量的库存积压让新东方派系在联合管理委员会中抬不起头。';
+                flavorText = isSuccess ? '新东方派系操刀的教辅凭借花哨的“名师解题大招”与互联网病毒式营销，精准收割了大批渴望走捷径的学生与家长。傲人的销售分成让新东方资本在联合管理委员会的谈判桌上声音洪亮了不少。' : '新东方派系主推的“概念魔改教辅”因过度追求噱头而严重偏离考纲，在务实的安徽考区无人问津。堆积如山的退货库存化作了刺眼的亏损数字，让新东方代表在董事会上完全抬不起头。';
               } else if (faction === 'teachers') {
-                flavorText = isSuccess ? '合一教师协会推出的产品精准击中了阅卷老师的痛点，成为了学生们的必备神器。教师派系在联合管理委员会中的地位得到了巩固。' : '学生们对枯燥的产品感到厌烦，教师协会的新产品销量惨淡。教师派系在联合管理委员会中的影响力有所下降。';
+                flavorText = isSuccess ? '由合一老教师协会亲自命制的传统密卷精准踩中了全省统考的阅卷给分点，被各重点班奉为考前救命的圭臬。亮眼的实战提分率让教师协会在资本环伺的联合管理委员会中牢牢守住了一席之地。' : '陈旧刻板的题型汇编与毫无亮点的解析让教师协会的新书在市场上彻底哑火，连本校学生都对其嗤之以鼻。惨淡的销量不仅砸了老名师们的招牌，更让教师派系在委员会中的话语权进一步萎缩。';
               }
 
               queueEvent({
@@ -3880,7 +3880,7 @@ export default function App() {
                 queueEvent({
                   id: `jidi_bill_passed_${bill.id}`,
                   title: '法案通过',
-                  description: `联合管理委员会以 ${totalApproval.toFixed(1)}% 赞成率通过了《${bill.name}》。`,
+                  description: `在股东代表与校方委员的利益交换下，联合管理委员会最终以 ${totalApproval.toFixed(1)}% 的赞成率敲槌通过了《${bill.name}》，新的商业化管控条款即刻在全校生效。`,
                   buttonText: '执行',
                   effect: (s) => {
                     const ns = { ...s };
@@ -3941,7 +3941,7 @@ export default function App() {
                 queueEvent({
                   id: `jidi_bill_failed_${bill.id}`,
                   title: '法案被否决',
-                  description: `《${bill.name}》仅获得 ${totalApproval.toFixed(1)}% 赞成率，未能通过。提议派系对此表示不满。`,
+                  description: `由于分赃比例未能谈拢，《${bill.name}》在联合管理委员会的表决中仅获 ${totalApproval.toFixed(1)}% 赞成率而宣告流产，提案派系代表当场摔门离席。`,
                   buttonText: '继续',
                 });
                 
@@ -3979,7 +3979,7 @@ export default function App() {
                     newCrises.push({
                       id: `jidi_faction_crisis_${key}`,
                       title: '派系危机',
-                      description: `某一派系对现状极度不满，可能会采取极端行动。`,
+                      description: `联合管理委员会内部的分赃失衡已令某一股东派系彻底失去耐心，他们正暗中抽逃资金、煽动罢工，企图用极端手段瘫痪校区运转！`,
                       daysLeft: 30,
                       severity: 'high',
                       onExpire: (s) => ({
@@ -4102,7 +4102,7 @@ export default function App() {
                 title: '吴福军最后通牒',
                 daysLeft: 15,
                 totalDays: 15,
-                description: '学生控制区域大幅萎缩，吴福军下达最后通牒。若15天内无法重夺控制区（≥5个建筑失守且稳定度<30视为恶化），保安队将发动总攻。',
+                description: '随着多处教学楼阵地接连失守，吴福军的防暴保安队已完成了对残余自治区的铁桶合围，并通过校广播站下达了最后的缴械通牒。若不能在15天内组织反击夺回控制区（失守建筑<5个）并将稳定度拉回30以上，钢叉与警棍的总攻将彻底碾碎学生自治！',
                 resolutionText: '重夺控制区（失守建筑 <5 个）且稳定度 ≥30（通牒自动撤回，可反复触发）',
                 expiryText: '吴福军总攻，进入铁腕时代（校方视角）',
               }];
@@ -4663,7 +4663,7 @@ export default function App() {
             newActiveEvent = {
               id: 'yang_yule_condition_met_event',
               title: '特级教师的注视',
-              description: '杨玉乐注意到了混乱中的机会。这位老练的名师深知——当稳定度跌破安全线、学生们冲上B3教学楼之时，正是他这种"温和保守派"最好的上位时机。他端起保温杯，朝行政楼方向露出了意味深长的微笑。\n\n系统提示：杨玉乐路线条件已满足。B3国策完成10天后，"杨特出山"决议将出现在右侧决议栏中。',
+              description: '隔着二楼办公室的百叶窗，杨玉乐静静注视着B3教学楼方向翻涌的红黑旗帜与滚滚浓烟。这位在合一官场浸淫三十载的特级教师比谁都清楚——当封安宝的铁腕镇压将校园稳定度逼破安全底线、愤怒的学子与防暴队撞得头破血流之时，恰恰是他这种“温和改良派”出面收拾残局的天赐良机。他轻轻吹开保温杯里的枸杞，朝行政楼顶层的方向露出了意味深长的微笑。\n\n系统提示：杨玉乐路线前置条件已达成。B3起义国策完成10天后，右侧决议栏将解锁「杨特出山」。',
               buttonText: '这只老狐狸...',
               isStoryEvent: true,
             };
@@ -4673,7 +4673,7 @@ export default function App() {
             newActiveEvent = {
               id: 'yang_yule_condition_fail_event',
               title: '时机尚未成熟',
-              description: '杨玉乐皱着眉头放下了红色座机的话筒。虽然他在Day14已经被任命为特级教师，但当前校园的稳定度还太高——封校长仍有掌控力。杨玉乐深知，只有在局势失控、稳定度跌至35以下时，他才能以"救世主"的姿态出来收拾残局。\n\n提示：需要稳定度<35并在开始B3国策时已雇佣杨玉乐为顾问，才能解锁杨玉乐路线。',
+              description: '杨玉乐皱着眉头放下了桌上那部红色内线座机的话筒。尽管他早已在九月中旬戴上了特级教师的桂冠并进入了核心顾问班子，但眼下封安宝对校园大局依然握有相当的掌控力。这位精明的老狐狸深知，在旧秩序尚未彻底失控（稳定度跌破35）之前贸然露头，不仅当不成各方拥戴的“救世主”，反而会沦为封校长立威的替罪羊。\n\n提示：需在稳定度 < 35 且已聘用杨玉乐为顾问的前提下推进B3国策，方可解锁杨玉乐路线。',
               buttonText: '继续观望...',
               isStoryEvent: true,
             };
@@ -4968,25 +4968,25 @@ export default function App() {
             newStats.ss = Math.min(100, newStats.ss + 30);
             newStats.pp += 20;
             newStats.allianceUnity = Math.min(100, newStats.allianceUnity + 10);
-            newSpirits.push({ id: 'awakened_binhu', name: '被唤醒的滨湖', description: "校方不再垄断广播。学生的诉求和行动通知可以直接传遍校园，各班不必再靠口耳相传维持联系。夺下设备只是第一步：广播的口径由谁决定、哪些声音能够播出，将成为学生组织自己的责任。", type: 'positive', effects: { ssDaily: 0.5, ppDaily: 0.3 } });
-            newEvent = { id: 'freq_critical_evt', title: '电波响彻滨湖', description: `平均接管率${fr.avgFreq.toFixed(1)}%——完美！\n\n当王照凯的声音通过三个FM频段同时响起时，整个校园都安静了。吴福军愤怒地砸碎了保安室的收音机，杨玉乐在办公室里来回踱步，封安宝的电话线被打爆了。\n\n"合一的学生们，这里是联合革命委员会。旧的秩序已经终结，新的时代从此刻开始。"\n\n行政楼的控制得到了全面巩固，革命的电波势不可挡。`, buttonText: '这是我们的频率！', isStoryEvent: true, effectsText: ['行政楼地块控制度 +20', 'SS +30, PP +20, 团结 +10'] };
+            newSpirits.push({ id: 'awakened_binhu', name: '被唤醒的滨湖', description: "行政楼顶层的广播发射塔终于易手，校方长达数年的舆论垄断在一夜之间土崩瓦解。如今，每一间教室头顶的扬声器里流淌的不再是冷冰冰的量化扣分通报，而是激昂的革命号召与自由辩论。被应试高墙分割成孤岛的数千名学子第一次在电波中听见了彼此的心跳，觉醒的浪潮正顺着广播线路席卷整座滨湖校区。", type: 'positive', effects: { ssDaily: 0.5, ppDaily: 0.3 } });
+            newEvent = { id: 'freq_critical_evt', title: '电波响彻滨湖', description: `平均接管率 ${fr.avgFreq.toFixed(1)}%——全频段完美制霸！\n\n当刺耳的电磁杂音被彻底滤净、王照凯铿锵有力的声音通过三个FM主频段同时响彻教学楼与宿舍区时，整座滨湖校区在瞬间安静了下来。保安室里的吴福军暴跳如雷地砸烂了对讲机底座，杨玉乐端着保温杯在窗前焦躁踱步，而校长室的红色内线电话更是在十秒钟内被打爆。\n\n“合一的同学们，这里是联合革命委员会广播电台。旧官僚的谎言已经终结，属于我们自己的时代从此刻正式开始！”\n\n欢呼声从一间又一间教室的窗户炸响，行政楼周边的控制权得到了压倒性的巩固。`, buttonText: '这是我们的频率！', isStoryEvent: true, effectsText: ['行政楼地块控制度 +20', 'SS +30, PP +20, 团结 +10'] };
             break;
           case 'success': // 成功接管
             newStats.ss = Math.min(100, newStats.ss + 18);
             newStats.pp += 10;
-            newSpirits.push({ id: 'awakened_binhu', name: '被唤醒的滨湖', description: "校方不再垄断广播。学生的诉求和行动通知可以直接传遍校园，各班不必再靠口耳相传维持联系。夺下设备只是第一步：广播的口径由谁决定、哪些声音能够播出，将成为学生组织自己的责任。", type: 'positive', effects: { ssDaily: 0.3 } });
-            newEvent = { id: 'freq_success_evt', title: '频率之战告捷', description: `平均接管率${fr.avgFreq.toFixed(1)}%——成功。\n\n经过紧张的频率拉锯，广播站的主要频段已经落入我们手中。虽然中间一度被干扰，但先锋队员们最终稳住了阵脚。\n\n行政楼周边的学生开始聚集，他们听到了广播里的号召。`, buttonText: '继续推进！', isStoryEvent: true, effectsText: ['行政楼地块控制度 +12', 'SS +18, PP +10'] };
+            newSpirits.push({ id: 'awakened_binhu', name: '被唤醒的滨湖', description: "行政楼顶层的广播发射塔终于易手，校方长达数年的舆论垄断在一夜之间土崩瓦解。如今，每一间教室头顶的扬声器里流淌的不再是冷冰冰的量化扣分通报，而是激昂的革命号召与自由辩论。被应试高墙分割成孤岛的数千名学子第一次在电波中听见了彼此的心跳，觉醒的浪潮正顺着广播线路席卷整座滨湖校区。", type: 'positive', effects: { ssDaily: 0.3 } });
+            newEvent = { id: 'freq_success_evt', title: '频率之战告捷', description: `平均接管率 ${fr.avgFreq.toFixed(1)}%——主频段夺取成功！\n\n经过令人窒息的调谐拉锯战，广播站的核心发射频段终于被技术小组牢牢锁定。尽管吴福军的干扰机仍在边缘频段发出零星的啸叫，但先锋队的播音员已经稳稳握住了主麦克风。\n\n越来越多的学生顺着广播里的号召向行政楼广场汇集，信息封锁的铁幕已被撕开了一道巨大的裂口。`, buttonText: '继续推进！', isStoryEvent: true, effectsText: ['行政楼地块控制度 +12', 'SS +18, PP +10'] };
             break;
           case 'partial': // 部分成功
             newStats.ss = Math.min(100, newStats.ss + 6);
             newStats.stab = Math.max(0, newStats.stab - 5);
-            newEvent = { id: 'freq_partial_evt', title: '电波之殇', description: `平均接管率${fr.avgFreq.toFixed(1)}%——勉强可用。\n\n广播站只被部分接管。吴福军的干扰信号仍然时不时盖过革命的广播，学生们的反应也参差不齐。有些人被唤醒了，有些人则抱怨"广播太吵影响刷题"。\n\n但至少，声音传出去了一部分。`, buttonText: '聊胜于无...', isStoryEvent: true, effectsText: ['行政楼地块控制度 +4', 'SS +6, 稳定度 -5'] };
+            newEvent = { id: 'freq_partial_evt', title: '电波之殇', description: `平均接管率 ${fr.avgFreq.toFixed(1)}%——信号勉强维持。\n\n广播站的争夺陷入了焦灼的拉锯战。吴福军调来的大功率白噪音干扰器时不时将我们的播音切得支离破碎，各教学楼听到的只有断断续续的口号与刺耳的电流麦声。一部分学生循声走出了教室，但也有不少刷题党烦躁地捂住耳朵抱怨“广播坏了吵得没法做圆锥曲线”。\n\n尽管未能一举定乾坤，但反抗的声音终究还是在铁幕上凿穿了第一道缝隙。`, buttonText: '聊胜于无...', isStoryEvent: true, effectsText: ['行政楼地块控制度 +4', 'SS +6, 稳定度 -5'] };
             break;
           case 'failure': // 失败
             newStats.stab = Math.max(0, newStats.stab - 15);
             newStats.ss = Math.max(0, newStats.ss - 8);
-            newSpirits.push({ id: 'silenced_vanguard', name: '失声的先锋队', description: "频率之争以失守告终，先锋队架起的喇叭被卸下，广播重新归校方控制。走廊里少了学生的播音，只剩下保安队的脚步声。先锋队失去的不只是设备，而是把声音递到全校的那条通道；一夜之间，公开动员退回地下，校园重新被校方的节奏填满。", type: 'negative', effects: { ppDaily: -0.2 } });
-            newEvent = { id: 'freq_failure_evt', title: '电波沉寂', description: `平均接管率${fr.avgFreq.toFixed(1)}%——失败。\n\n吴福军的保安队成功守住了广播站。他们不仅切断了电源，还在广播室门口加派了双岗。一名试图翻窗进入的先锋队员被抓，现在正在保安室"接受教育"。\n\n行政楼的校方控制反而加强了。`, buttonText: '可恶...', isStoryEvent: true, effectsText: ['行政楼地块控制度 -8', '稳定度 -15, SS -8', '获得负面精神：失声的先锋队'] };
+            newSpirits.push({ id: 'silenced_vanguard', name: '失声的先锋队', description: "广播站争夺战的惨败让反抗军彻底丧失了空中舆论阵地。私接的功放与高音喇叭被保安队用铁钳成批剪断，校园上空重新被死气沉沉的眼保健操音乐与政教处训话填满。失去扩音喉舌的先锋队不得不再次退回阴暗的地下印刷室，每一次集结动员都变得举步维艰。", type: 'negative', effects: { ppDaily: -0.2 } });
+            newEvent = { id: 'freq_failure_evt', title: '电波沉寂', description: `平均接管率 ${fr.avgFreq.toFixed(1)}%——行动全面受挫。\n\n吴福军的保安队提前洞悉了突袭路线，直接拉闸切断了实验频段的备用电源，并在行政楼三楼播音室门外架起了双层防暴铁栅栏。一名试图顺着空调外机翻窗架线的技术干事被当场按倒，连人带调音设备一起押进了保卫科审讯室。\n\n喇叭里只剩下一片死寂的盲音，校方对行政楼周边的戒严反而比先前更加密不透风。`, buttonText: '可恶...', isStoryEvent: true, effectsText: ['行政楼地块控制度 -8', '稳定度 -15, SS -8', '获得负面精神：失声的先锋队'] };
             break;
         }
       } else if (prev.activeMinigame === 'print_workshop') {
@@ -4997,16 +4997,16 @@ export default function App() {
         });
         switch (pr.tier) {
           case 'critical': newStats.ss = Math.min(100, newStats.ss + 20); newStats.pp += 15; newStats.radicalAnger = Math.min(100, newStats.radicalAnger + 8);
-            newEvent = { id: 'print_critical_evt', title: '传单风暴', description: `成功印刷 ${pr.printed} 份传单，仅被没收 ${pr.busted} 份！\n\n革命传单像雪片一样从实验楼飞出，课桌抽屉里、厕所隔间里、甚至吴福军的考勤本里都夹着一张。学生们在走廊里交换心照不宣的眼神。\n\n实验楼的控制得到了全面巩固——地下印刷网络已经建立。`, buttonText: '纸比刀更锋利！', isStoryEvent: true, effectsText: ['实验楼地块控制度 +18', 'SS +20, PP +15'] };
+            newEvent = { id: 'print_critical_evt', title: '传单风暴', description: `本次行动共秘密印制传单 ${pr.printed} 份，仅被巡逻队截获 ${pr.busted} 份！\n\n带着滚烫油墨香气的革命传单如暴风雪般从实验楼席卷全校——从高三重点班的课桌抽屉、图书馆的《五年高考三年模拟》夹页，直到吴福军办公桌上的值班考勤本里，到处都塞满了讨伐旧秩序的檄文。课间走廊里，学生们捏着传单交换着心照不宣的眼神。\n\n实验楼与图书馆的地下印刷网已彻底扎根，纸张与油墨化作了刺向独裁统治最锋利的匕首。`, buttonText: '纸比刀更锋利！', isStoryEvent: true, effectsText: ['实验楼地块控制度 +18', 'SS +20, PP +15'] };
             break;
           case 'success': newStats.ss = Math.min(100, newStats.ss + 12); newStats.pp += 8;
-            newEvent = { id: 'print_success_evt', title: '油墨的胜利', description: `成功印刷 ${pr.printed} 份，被没收 ${pr.busted} 份。\n\n虽然保安队找到了一部分传单，但大部分已经散布到了各个年级。效果正在发酵。`, buttonText: '继续印刷！', isStoryEvent: true, effectsText: ['实验楼地块控制度 +10', 'SS +12, PP +8'] };
+            newEvent = { id: 'print_success_evt', title: '油墨的胜利', description: `本次行动成功印制 ${pr.printed} 份传单，被保安队搜走 ${pr.busted} 份。\n\n尽管夜间巡逻的保安在楼梯拐角截获了一小捆宣传品，但绝大部分印着反抗纲领的纸页已在早读课前准时流进了三个年级的教室。早自习的书声背后，觉醒的暗流正在悄然发酵。`, buttonText: '继续印刷！', isStoryEvent: true, effectsText: ['实验楼地块控制度 +10', 'SS +12, PP +8'] };
             break;
           case 'partial': newStats.ss = Math.min(100, newStats.ss + 4);
-            newEvent = { id: 'print_partial_evt', title: '小试牛刀', description: `仅印刷 ${pr.printed} 份，被没收 ${pr.busted} 份。保安队的巡查太频繁了，印刷工作频频被打断。但至少证明了这条路是可行的。`, buttonText: '下次准备更充分...', isStoryEvent: true, effectsText: ['实验楼地块控制度 +4', 'SS +4'] };
+            newEvent = { id: 'print_partial_evt', title: '小试牛刀', description: `本次行动仅印出 ${pr.printed} 份传单，另有 ${pr.busted} 份在转运途中被没收。\n\n保卫科手电筒的光柱整夜在实验楼走廊外晃动，地下印刷小组不得不一次次拉闸停机、躲进化学药品柜后屏息规避。虽然流向各班的传单数量有限，但至少证明了这条地下油印通道依然畅通。`, buttonText: '下次准备更充分...', isStoryEvent: true, effectsText: ['实验楼地块控制度 +4', 'SS +4'] };
             break;
           case 'failure': newStats.stab = Math.max(0, newStats.stab - 8);
-            newEvent = { id: 'print_failure_evt', title: '印刷机被查获', description: `仅印刷 ${pr.printed} 份，被没收 ${pr.busted} 份。保安队在机房蹲点，查获了油印机和大量纸张。多名参与印刷的学生被带走。实验楼的校方控制反而加强了。`, buttonText: '损失惨重...', isStoryEvent: true, effectsText: ['实验楼地块控制度 -6', '稳定度 -8'] };
+            newEvent = { id: 'print_failure_evt', title: '印刷机被查获', description: `本次行动仅印出 ${pr.printed} 份传单，高达 ${pr.busted} 份半成品及母版被当场查获！\n\n吴福军的便衣暗哨早已在实验楼机房外布下口袋阵。铁门被一脚踹开时，油印机尚未冷却，成箱的白纸、油墨滚筒与还没来得及销毁的刻蜡版被悉数抄走，几名负责接应的骨干干事也被反扭着胳膊押往政教处。实验楼周边的校方封锁在一夜之间骤然收紧。`, buttonText: '损失惨重...', isStoryEvent: true, effectsText: ['实验楼地块控制度 -6', '稳定度 -8'] };
             break;
         }
       } else if (prev.activeMinigame === 'poster_war') {
@@ -5017,16 +5017,16 @@ export default function App() {
         });
         switch (pr.tier) {
           case 'critical': newStats.ss = Math.min(100, newStats.ss + pr.ssBonus); newStats.pp += 15; newStats.stab = Math.min(100, newStats.stab + 5);
-            newEvent = { id: 'poster_critical_evt', title: '海报狂潮', description: `全校平均覆盖率 ${pr.avgCoverage}%！六大建筑区的革命海报让校方应接不暇！\n\n吴福军的保安疲于撕海报，刚撕完一面墙，另一面又被贴满。学生们在走廊里自发讨论海报内容。行政楼的控制被极大巩固！`, buttonText: '革命的视觉永不褪色！', isStoryEvent: true, effectsText: ['行政楼地块控制度 +20', `SS +${pr.ssBonus}, PP +15, 稳定 +5`] };
+            newEvent = { id: 'poster_critical_evt', title: '海报狂潮', description: `全校六大建筑区平均覆盖率高达 ${pr.avgCoverage}%！铺天盖地的视觉风暴彻底淹没了整座滨湖校区！\n\n从行政楼大厅的罗马柱到食堂门前的宣传栏，到处都是墨迹淋漓的木刻版画风大字报与讽刺漫画。吴福军的保安队拎着铲刀和水桶疲于奔命，往往刚刮花东头走廊的标语，西头楼梯口又被贴上了双倍的传单。围观的学生把公告栏堵得水泄不通，旧权威的尊严在哄笑与议论声中荡然无存！`, buttonText: '革命的视觉永不褪色！', isStoryEvent: true, effectsText: ['行政楼地块控制度 +20', `SS +${pr.ssBonus}, PP +15, 稳定 +5`] };
             break;
           case 'success': newStats.ss = Math.min(100, newStats.ss + pr.ssBonus); newStats.pp += 8;
-            newEvent = { id: 'poster_success_evt', title: '遍地开花', description: `平均覆盖率 ${pr.avgCoverage}%。海报在六大区域都有较好的覆盖，校方保安焦头烂额。`, buttonText: '乘胜追击！', isStoryEvent: true, effectsText: ['行政楼地块控制度 +12', `SS +${pr.ssBonus}, PP +8`] };
+            newEvent = { id: 'poster_success_evt', title: '遍地开花', description: `全校平均覆盖率达到 ${pr.avgCoverage}%。六大建筑区的显眼墙面均已被宣传突击队成功占领，混着强力胶水的革命海报让校方保安队铲得焦头烂额，越来越多观望的学生在课间驻足阅读。`, buttonText: '乘胜追击！', isStoryEvent: true, effectsText: ['行政楼地块控制度 +12', `SS +${pr.ssBonus}, PP +8`] };
             break;
           case 'partial': newStats.ss = Math.min(100, newStats.ss + pr.ssBonus);
-            newEvent = { id: 'poster_partial_evt', title: '星星之火', description: `平均覆盖率仅 ${pr.avgCoverage}%。保安巡逻太频繁，很多海报刚贴上就被撕掉了。但至少行政楼的学生看到了我们的存在。`, buttonText: '下次准备更充分...', isStoryEvent: true, effectsText: ['行政楼地块控制度 +5', `SS +${pr.ssBonus}`] };
+            newEvent = { id: 'poster_partial_evt', title: '星星之火', description: `全校平均覆盖率仅为 ${pr.avgCoverage}%。密集的保安巡逻哨让张贴行动举步维艰，许多海报浆糊还没干透就被撕得只剩半截残角；但残留在行政楼走廊墙面上的醒目红字，依然向全校宣告着反抗者的存在。`, buttonText: '下次准备更充分...', isStoryEvent: true, effectsText: ['行政楼地块控制度 +5', `SS +${pr.ssBonus}`] };
             break;
           case 'failure': newStats.stab = Math.max(0, newStats.stab + pr.ssBonus); newStats.ss = Math.max(0, newStats.ss - 5);
-            newEvent = { id: 'poster_failure_evt', title: '海报被全面清剿', description: `平均覆盖率仅 ${pr.avgCoverage}%。保安队发动了一场"校园牛皮癣清零行动"，所有海报在两小时内被清洗干净。几名贴海报的学生被记过处分。`, buttonText: '损失惨重...', isStoryEvent: true, effectsText: ['行政楼地块控制度 -10', `SS -5, 稳定度 ${pr.ssBonus}`] };
+            newEvent = { id: 'poster_failure_evt', title: '海报被全面清剿', description: `全校平均覆盖率定格在可怜的 ${pr.avgCoverage}%。吴福军调集全体保洁与保安发动了一场雷霆般的“校园牛皮癣清零行动”，高压水枪在两小时内便将各楼墙面冲刷得一干二净，几名拎着浆糊桶的宣传队员更被当场抓获、通报记过。`, buttonText: '损失惨重...', isStoryEvent: true, effectsText: ['行政楼地块控制度 -10', `SS -5, 稳定度 ${pr.ssBonus}`] };
             break;
         }
       } else if (prev.activeMinigame === 'siege_b3') {
@@ -5046,7 +5046,7 @@ export default function App() {
             newEvent = {
               id: 'b3_drill_victory',
               title: '城防演习圆满成功',
-              description: '按B3保卫战预案进行的模拟攻防落下帷幕。防守方成功守住了三块阵地，群情振奋。\n\n扮演保安队的学生们灰头土脸地撤出演习区域，围观的人群在B3楼顶升起了红旗。这次只是演练——但下次，就未必了。',
+              description: '按照《B3堡垒总防御预案》展开的实兵对抗演练在黄昏时分圆满落幕。依托楼梯口严密交叉的课桌街垒与精准的传令调度，防守方青年近卫队稳稳守住了全部三块核心阵地。\n\n扮演校方突击队的同学们灰头土脸地退出了封锁线，天台栏杆上再次升起了猎猎飘扬的红旗。走廊里爆发出一阵热烈的欢呼——尽管今天扔出的只是粉笔头与纸团，但每一个人都清楚，真正的刺刀见红已经不远了。',
               buttonText: '养兵千日，用兵一时',
               isStoryEvent: true,
               effectsText: ['B3三块地块控制度 +15', 'B3防御天数 +3', '宿舍1-4栋 +5', 'SS +8, PP +10'],
@@ -5056,7 +5056,7 @@ export default function App() {
             newEvent = {
               id: 'b3_victory',
               title: 'B3保卫战胜利',
-              description: '我们成功击退了校方保安和反动学生自治会的进攻！B3教学楼依然在我们的控制之下。\n\n吴福军的势力遭到了毁灭性的打击，联盟的团结度空前高涨。',
+              description: '当最后一波手持防暴盾牌的保安队与反动自治会打手在漫天飞舞的试卷、粉笔灰与灭火器白雾中狼狈溃退时，B3教学楼的每一层走廊都爆发出了震耳欲聋的怒吼！\n\n课桌与沙袋筑成的街垒在无数次猛烈撞击下依然屹立不倒，吴福军苦心经营的铁腕威慑在这座红色堡垒面前撞得头破血流。硝烟散尽的晨光中，B3天台上的旗帜比以往任何时候都更加鲜艳，联合阵线的凝聚力在这一刻达到了空前的巅峰！',
               buttonText: '胜利属于我们',
               effect: (s) => ({
                 stats: { ...s.stats, pp: s.stats.pp + 100, ss: s.stats.ss + 20, stab: s.stats.stab + 20 },
@@ -5074,7 +5074,7 @@ export default function App() {
             newEvent = {
               id: 'b3_drill_defeat',
               title: '城防演习暴露短板',
-              description: '演习结果令人忧心。防线在模拟进攻下被多点突破，B3三块阵地的防守体系暴露出致命缺陷。\n\n吴福军在旁观席上露出冷笑，保安队则在演习后"善意"地分享了他们的攻防经验。士气受挫，但至少真正的战斗还没开始。',
+              description: '实兵演习的结果给所有乐观主义者浇了一盆刺骨的冷水。由于各班纠察队各自为战、通讯口令混乱，模拟突击队仅用不到二十分钟便从侧翼连廊撕开了缺口，B3三块核心阵地的防御体系暴露出致命的衔接漏洞。\n\n远在行政楼阳台用望远镜旁观的吴福军露出了轻蔑的冷笑，甚至让人送来了一本印着“消防通道清理指南”的小册子以示嘲弄。尽管士气遭受重挫，但庆幸的是，这还只是一场流汗不流血的彩排。',
               buttonText: '知耻而后勇',
               isStoryEvent: true,
               effectsText: ['B3三块地块控制度 -12', '宿舍1-4栋 -5', '食堂 -5', '稳定度 -5'],
@@ -5084,7 +5084,7 @@ export default function App() {
             newEvent = {
               id: 'b3_defeat',
               title: '防线崩溃',
-              description: '保安队突破了我们的防线，红旗被拔除。\n\n吴福军宣布实行全面军管，所有参与抵抗的学生被物理拖出学校。游戏结束。',
+              description: '随着二楼连廊最后一道课桌街垒在防暴钢叉与破门槌的撞击下轰然坍塌，吴福军的保安主力如黑色潮水般涌入了B3教学楼。天台上的红黑战旗被粗暴地扯落踩进泥水，扩音喇叭里传出刺耳的全面军管通告。\n\n所有负隅顽抗的青年近卫队员与学生代表被反剪双手、逐一拖出教学楼大门。在这座重归死寂的全景监狱里，反抗的火种已被彻底碾碎。',
               buttonText: '一切都结束了...',
               effect: (s) => ({ gameEnding: 'game_over_anarchy' })
             };
