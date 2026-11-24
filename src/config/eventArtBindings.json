@@ -1683,5 +1683,7 @@
   },
   "pan_despair_chain_3": {
     "scene": "街垒黎明"
-  }
+  },
+  "pan_despair_telegram_receipt": { "scene": "雪中的来函" },
+  "reform_assessment_trial": { "scene": "课桌上的改革" }
 }

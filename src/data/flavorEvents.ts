@@ -1391,6 +1391,20 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
     buttonText: '欢迎来到赛博游乐场……',
     effect: () => ({ gameEnding: 'gouxiong_usurpation' })
   },
+  pan_despair_telegram_receipt: {
+    id: "pan_despair_telegram_receipt",
+    title: "电报回音",
+    description: "抄电报的学生跑上楼，把纸递给潘仁越。纸在半路折了一道，有几个字被汗洇开了，末尾那句还能看清：“来电收悉，保持联络。”\n\n“他们的人已经到了？”靠门的学生起身，伸手去够搭在椅背上的外套。\n\n“还没有。信上也没说会来。”潘仁越把纸展开，递还给他，“再抄一份送到楼下。就这几个字，别加别的。”\n\n学生把外套放回椅背，在纸边试了试笔尖。写完第一行，他才问：“那下次他们来信，还送到这间屋吗？”\n\n“送到这儿。我等着。”",
+    buttonText: "把回执送下去。",
+    isStoryEvent: true,
+  },
+  reform_assessment_trial: {
+    id: "reform_assessment_trial",
+    title: "成绩单之外",
+    description: "工作队带来的样表就摊在课桌上。卷面成绩还在原来的位置，旁边印了两列空格，一列记给同学讲题，一列记改过的错题和怎么改的。\n\n“那我前面做的几本题算什么？”一个学生问。他从桌肚里拿出错题本，摊开一页，满是红笔划掉的算式。\n\n工作队的人把表挪近了些。“这一列还是记你的分数。右边是让你讲讲，这道题后来怎么做对的。”\n\n学生又翻了两页，停在一道几何题上。“这道是同桌教我的。后来我才弄懂图上这根线。”他把本子转向工作队的人，拿铅笔在图上点了一下。",
+    buttonText: "先照这张表试一试。",
+    isStoryEvent: true,
+  },
   pan_despair_chain_1: {
     id: 'pan_despair_chain_1',
     title: '断水断电的第三夜',

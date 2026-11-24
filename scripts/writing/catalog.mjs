@@ -19,6 +19,7 @@ function choiceSummaries(n) {
   });
 }
 function routeOf(id, ancestors) {
+  if (id.startsWith('pan_despair_chain_')) return 'democracy';
   const symbol=ancestors.map(a=>ts.isVariableDeclaration(a)?a.name.getText():null).filter(Boolean).at(-1);
   if (routeNames[symbol]) return routeNames[symbol];
   for(const [pattern,route] of [[/^(jidi|jd)_/,'jidi'],[/^(gx|gouxiong|cyber)_/,'gouxiong'],[/^wu_/,'wu'],[/^(yang|yy)_/,'yang'],[/^(haobang|hb)_/,'commune'],[/^(lu|nkpd)_/,'purge'],[/^(democratic|democracy|election)_/,'democracy'],[/^phase1_/,'opening'],[/^(true_left|reform)_/,'reform']]) if(pattern.test(id)) return route;

@@ -1681,7 +1681,9 @@ export const TREE_A_PAN_DESPAIR_NODES: FocusNode[] = [
     nationalSpirits: s.nationalSpirits.concat({ id: 'desperate_defense', name: '绝望的抵抗', description: "最后的街垒已经筑起。参与者清楚赢不了，但没有人打算退。绝望在此处不表现为崩溃，而表现为明知结局仍不撤离的防御姿态。\n\n这种抵抗能拖住进攻方，却无法带来任何政治出路。它以持续消耗自身为代价换取时间，每一刻都在削弱本就脆弱的稳定。走廊尽头的决定尚未作出，但街垒后面的人已经用行动表明了立场。", type: 'neutral', effects: { defenseBonus: 0.2, stabDaily: -0.5 } }),
     activeEvent: FLAVOR_EVENTS.despair_fight
   }), effectsText: ['获得国家精神：绝望的抵抗 (防御加成 +20%，稳定度每日 -0.5%)', '触发事件：绝望的走廊巷战'] },
-  { id: 'telegram_six_schools', title: '六校联合的电报', description: '希望的曙光。', days: 7, x: 700, y: 50, effectsText: ['解锁后续国策'] },
+  { id: 'telegram_six_schools', title: '六校联合的电报', description: '希望的曙光。', days: 7, x: 700, y: 50,
+    onComplete: () => ({ activeEvent: FLAVOR_EVENTS.pan_despair_telegram_receipt }),
+    effectsText: ['解锁后续国策', '触发事件：电报回音'] },
   { id: 'defend_b3', title: '死守B3教学楼', description: '触发B3保卫战小游戏！', days: 14, x: 500, y: 200, requires: ['despair_street_fight', 'telegram_six_schools'], effectsText: ['触发B3保卫战小游戏'] },
   { id: 'counter_attack', title: '绝地反击', description: '从防守转入进攻。', days: 14, x: 500, y: 350, requires: ['defend_b3'], onComplete: (s) => ({ stats: { ...s.stats, ss: s.stats.ss + 30 } }), effectsText: ['学生支持度 (SS) +30'] },
   { id: 'last_stand_fails', title: '最后的防线崩溃', description: '我们尽力了，但敌人太多了。', days: 21, x: 500, y: 500, requires: ['counter_attack'], onComplete: (s) => ({ gameEnding: 'game_over_despair' }), effectsText: ['触发结局：绝望的终局'] },
@@ -1787,9 +1789,10 @@ export const TREE_A_TRUE_LEFT_NODES: FocusNode[] = [
   },
   { id: 'reform_focus_3', title: '建立新评价体系', description: '引入多元化的评价标准，打破单一的考试评价。', days: 21, x: 500, y: 950, requires: ['reform_focus_1', 'reform_focus_2'],
     onComplete: (s) => ({
-      reformState: s.reformState ? { ...s.reformState, baseSuccessRate: s.reformState.baseSuccessRate + 15 } : undefined
+      reformState: s.reformState ? { ...s.reformState, baseSuccessRate: s.reformState.baseSuccessRate + 15 } : undefined,
+      activeEvent: FLAVOR_EVENTS.reform_assessment_trial
     }),
-    effectsText: ['题改任务基础成功率 +15%']
+    effectsText: ['题改任务基础成功率 +15%', '触发事件：成绩单之外']
   },
   { id: 'reform_recruit_vanguard', title: '扩充先锋队', description: '在各年级广泛招募积极分子加入先锋队。', days: 14, x: 100, y: 950, requires: ['reform_focus_1'],
     onComplete: (s) => ({

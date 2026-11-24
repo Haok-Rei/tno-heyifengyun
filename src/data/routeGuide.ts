@@ -262,7 +262,7 @@ export const ROUTE_TREE: GuideNode = {
                       title: '校方反攻？（绝望分支）',
                       type: 'crisis',
                       req: 'TPR ≤ 0 且 学生支持 < 30 · 30天倒计时',
-                      story: '民主失能，校方保安队与及第雇佣兵反扑。到期进入绝望分支，若仍在此路线，第3、6、9天分别会出现带选择的走廊巷战事件。',
+                      story: '民主失能，校方保安队与及第雇佣兵反扑。到期进入绝望分支，若仍在此路线，第3、6、9天分别会出现带选择的走廊巷战事件。完成「六校联合的电报」后会收到回信，解锁保卫战仍需完成两项前置国策。',
                       children: [
                         { id: 'despair_end_1', title: 'B3保卫战胜利', type: 'ending', endingId: 'game_over_victory', req: '死守B3小游戏获胜', story: '红旗未倒。这只是一个开始，但已经证明了学生的力量。' },
                         { id: 'despair_end_2', title: '绝望的终局', type: 'ending', endingId: 'game_over_despair', req: '完成「最后的防线崩溃」国策', story: '潘仁越和抵抗军被镇压，抗争最终只是一场徒劳的悲剧。' },
