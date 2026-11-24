@@ -1665,5 +1665,23 @@
   },
   "wu_wu_transfer_story": {
     "feature": "wu_wu_transfer_story"
+  },
+  "crossroads_gouxiong_usurpation_event": {
+    "scene": "银幕仍亮"
+  },
+  "crossroads_great_awakening_event": {
+    "scene": "红色风暴"
+  },
+  "crossroads_pleasure_of_mediocrity_event": {
+    "scene": "教室晨光"
+  },
+  "pan_despair_chain_1": {
+    "scene": "B3夜读"
+  },
+  "pan_despair_chain_2": {
+    "scene": "熄灯后的脚步"
+  },
+  "pan_despair_chain_3": {
+    "scene": "街垒黎明"
   }
 }

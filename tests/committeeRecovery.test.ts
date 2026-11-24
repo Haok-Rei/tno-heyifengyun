@@ -79,3 +79,40 @@ test('opening scenes require their prior plot and cease as soon as B3 focus star
   assert.equal(nextOpeningGuidance({...s,activeFocus:{id:'charge_b3',daysLeft:4,totalDays:5}}),null);
   assert.ok(!FLAVOR_EVENTS.phase1_recess_dispute.effectsText?.join('').includes('仅出现一次'));
 });
+
+test('terminal crossroads branches present their story before ending, including after reload', () => {
+  for (const [unity, central, ending] of [
+    [30, 90, 'great_awakening'],
+    [50, 20, 'pleasure_of_mediocrity'],
+    [50, 50, 'gouxiong_usurpation'],
+  ] as const) {
+    const state = fixture();
+    state.stats.allianceUnity = unity;
+    state.stats.partyCentralization = central;
+    const next = FLAVOR_EVENTS.event_10_crossroads.effect!(state);
+    assert.equal(next.gameEnding, undefined);
+    assert.equal(next.activeEvent?.id, 'crossroads_' + ending + '_event');
+    const saved = deserializeGameState(serializeGameState({ ...state, ...next }))!;
+    assert.equal(saved.activeEvent?.effect?.(saved).gameEnding, ending);
+  }
+});
+
+test('despair options and one-time flags survive active and queued event saves', () => {
+  const state = fixture();
+  state.currentFocusTree = 'treeA_pan_despair';
+  state.flags.pan_despair_days = 6;
+  state.flags.pan_despair_chain_1_fired = true;
+  state.activeEvent = FLAVOR_EVENTS.pan_despair_chain_1;
+  state.activeStoryEvents = [FLAVOR_EVENTS.pan_despair_chain_2, FLAVOR_EVENTS.pan_despair_chain_3];
+  const saved = deserializeGameState(serializeGameState(state))!;
+  assert.equal(saved.flags.pan_despair_days, 6);
+  assert.equal(saved.flags.pan_despair_chain_1_fired, true);
+  for (const event of [saved.activeEvent!, ...saved.activeStoryEvents]) {
+    const original = FLAVOR_EVENTS[event.id];
+    assert.equal(event.choices?.length, 2);
+    for (let i = 0; i < 2; i++) {
+      assert.ok(event.choices?.[i].effect);
+      assert.deepEqual(event.choices[i].effect!(saved), original.choices![i].effect!(saved));
+    }
+  }
+});

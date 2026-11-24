@@ -48,7 +48,7 @@ const legacyGates: Record<string, (s: GameState) => boolean> = {
   wu_flavor_camera: s => getLawSystem(s.lawSystem).discipline === 'panopticon',
   wu_flavor_wu_quotes: s => (s.wuState?.wuAmbition ?? 0) >= 30,
   wu_flavor_zhouchen_sketch: s => !s.flags.wu_zhouchen_suspension_fired,
-  wu_flavor_shiji_notes: s => !!s.flags.haobang_commune_map_phase,
+  wu_flavor_shiji_notes: s => !!s.wuState && s.wuState.guerrillaStrength >= 25,
   lu_flavor_pump_room: s => !!s.flags.great_purge_map_phase,
   lu_flavor_confession_box: s => s.stats.partyCentralization >= 65,
   lu_flavor_loyalty_parade: s => s.stats.partyCentralization >= 50 && s.stats.allianceUnity < 55,
