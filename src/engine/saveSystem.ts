@@ -14,6 +14,8 @@ import { GameState } from '../types';
 import { restoreCampusEvent } from './campusEvents';
 import { FLAVOR_EVENTS } from '../data/flavorEvents';
 import { STORY_EVENTS } from '../data/storyEvents';
+import { FOCUS_COMPLETION_SUPER_EVENTS } from './gameLoop';
+import { promotePendingEvent } from './eventQueue';
 import { reconcileRouteSpirits } from './routeSpirits';
 import { refreshReviewedDescriptions } from './proseRevisions';
 import { syncAssemblyConflict } from './assemblyConflict';
@@ -105,6 +107,25 @@ export function deserializeGameState(raw: string): GameState | null {
     }
     state.activeEvent = state.activeEvent ? restore(state.activeEvent) : null;
     state.activeStoryEvents = (state.activeStoryEvents ?? []).map(restore);
+    if (!state.gameEnding && state.currentFocusTree === 'phase1' && state.activeFocus?.id === 'charge_b3'
+        && !state.completedFocuses.includes('charge_b3')) {
+      if (state.activeEvent?.id === 'story_6') state.activeEvent = null;
+      state.activeStoryEvents = state.activeStoryEvents.filter(event => event.id !== 'story_6');
+      Object.assign(state, promotePendingEvent(state));
+    }
+    if (!state.gameEnding && state.currentFocusTree === 'phase1' && state.activeEvent?.id === 'phase1_before_charge') {
+      state.activeStoryEvents = state.activeStoryEvents.filter(event => event.id !== 'story_6');
+      if (state.activeSuperEvent?.id === 'b3_uprising') state.activeSuperEvent = null;
+    }
+    // Repair saves cut short by the old start-of-focus transition.
+    if (!state.gameEnding && state.currentFocusTree === 'treeA' && !state.activeFocus
+        && !state.completedFocuses.length && !state.activeSuperEvent && state.flags.story_6_triggered
+        && !state.flags.event_seen_enter_treeA && !state.flags.focus_completed_date_charge_b3
+        && (state.flags.event_seen_story_6 || state.flags.united_committee_established)) {
+      state.flags.focus_completed_date_charge_b3 = state.date.getTime();
+      state.flags.charge_b3_completed_days ??= 0;
+      state.activeSuperEvent = FOCUS_COMPLETION_SUPER_EVENTS.charge_b3;
+    }
     const restored = restoreMapState(reconcileRouteSpirits(syncAssemblyConflict(refreshReviewedDescriptions(state))));
     return restored.command ? { ...restored, command: getCommandState(restored) } : restored;
   } catch {

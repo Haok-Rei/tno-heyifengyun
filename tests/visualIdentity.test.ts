@@ -63,10 +63,10 @@ test('historical saves migrate names and event text while preserving game IDs an
   assert.equal(restored.currentFocusTree, 'treeA_true_left');
 });
 
-test('B3 focus is visible from the start and unlocks only above 80 radical anger', () => {
+test('B3 focus is visible from the start and requires Steel Toad plus anger above 80', () => {
   const node = getFocusNodes('phase1').find(item => item.id === 'charge_b3')!;
   assert.equal(node.isHidden, undefined);
-  assert.equal(node.requires, undefined);
+  assert.deepEqual(node.requires, ['steel_toad']);
   for (const [anger, support, expected] of [[0, 100, false], [80, 100, false], [80.01, 0, true]] as const) {
     assert.equal(node.canStart?.({ stats: { radicalAnger: anger, ss: support } } as GameState), expected);
   }

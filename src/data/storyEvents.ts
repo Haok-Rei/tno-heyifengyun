@@ -1,6 +1,7 @@
 import { GameEvent, GameState, ALL_SUB_TILES } from '../types';
 import { applyTileCtrlDeltas } from '../engine/tileHelpers';
 import { startCampaignTeams } from '../engine/electionCampaign';
+import { FOCUS_COMPLETION_SUPER_EVENTS } from '../engine/gameLoop';
 
 export const STORY_EVENTS: Record<string, GameEvent> = {
   treeA_counterattack_choice_event: {
@@ -1505,6 +1506,7 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
   },
   story_6: {
     id: 'story_6',
+    isStoryEvent: true,
     title: 'B3楼的黑天红字旗',
     description: `历史的车轮终于碾过了合一压抑的操场。那是一个看似寻常的下午，一声尖锐的呐喊突然划破了滨湖校区死寂的空气。从实验班的方向，潘仁越和他的战友们终于忍无可忍。他们冲上了B3教学楼的制高点，一面写着“蜕变”的黑天红字旗在风中猎猎作响。
 
@@ -1520,10 +1522,8 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
       const flags = { ...state.flags, united_committee_established: true, rebellion_started: true };
       applyTileCtrlDeltas(flags, { b3_a1a3: 10, b3_b1b2: 10, b3_tower: 10, dorm_1_4: 5 });
       return {
-        currentFocusTree: 'treeA',
-        completedFocuses: [],
-        activeFocus: null,
-        flags
+        activeSuperEvent: FOCUS_COMPLETION_SUPER_EVENTS.charge_b3,
+        flags: { ...flags, story_6_triggered: true }
       };
     }
   },

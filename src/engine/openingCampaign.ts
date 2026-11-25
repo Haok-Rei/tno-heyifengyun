@@ -69,11 +69,11 @@ export function getChapterBrief(state: GameState): ChapterBrief | null {
   const done = (id: string) => state.completedFocuses.includes(id);
   if (chapter === 'mobilization') return {
     id: chapter, title: '风暴前夜 · 联络与动员',
-    goal: state.stats.radicalAnger > 80 ? 'B3行动已可选择；也可以继续完成当前国策。' : `激进愤怒 ${Math.floor(state.stats.radicalAnger || 0)} / >80；巡查、禁书与学生联络的国策和事件会推动局势。`,
+    goal: done('steel_toad') && state.stats.radicalAnger > 80 ? 'B3行动已可选择。' : `激进愤怒 ${Math.floor(state.stats.radicalAnger || 0)} / >80。先完成「拉拢强基班与平行班」「器材室的秘密聚会」「抗议自治会特权」，再铸造钢铁红蛤。`,
     steps: [
       { label: '秋季开学', done: done('start_2023'), hint: '开学典礼完成后，校方与学生两侧国策开放。' },
       { label: '校园联络', done: getOpeningFieldwork(state).some(e => e.chapter === chapter), hint: 'B3串联、礼堂社团和操场活动均可操作；工作组定期执行同一行动。' },
-      { label: 'B3行动', done: done('charge_b3'), hint: '激进愤怒大于80即可选择；无需完成左右两侧全部国策。' },
+      { label: 'B3行动', done: done('charge_b3'), hint: '完成「铸造钢铁红蛤」，并将激进愤怒提高到80以上。' },
     ],
   };
   if (chapter === 'handover') return {

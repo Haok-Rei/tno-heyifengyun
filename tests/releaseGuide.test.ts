@@ -42,7 +42,7 @@ test('every current tree has a guide node, every listed ending is valid, and col
 });
 test('B3 boundary, crossroads priority and live progress match actual game rules',()=>{
   const s=state(),focus=PHASE1_NODES.find(n=>n.id==='charge_b3')!;
-  for(const anger of [80,80.1,100]){s.stats.radicalAnger=anger;assert.equal(getRouteGuideStatus(s).checks[0].met,focus.canStart!(s));}
+  for(const anger of [80,80.1,100]){s.stats.radicalAnger=anger;assert.equal(getRouteGuideStatus(s).checks.find(check=>check.label.includes('激进愤怒'))?.met,focus.canStart!(s));}
   for(const [id,index] of [['route_pan',0],['route_true_left',1],['golden_path',2]] as const)assert.equal(findGuideNode(id)!.req,CROSSROADS_RULES[index]);
   s.currentFocusTree='treeA';assert.equal(getCrossroadsOutcome(s),'true_left');assert.ok(getRouteGuideStatus(s).tip.includes(CROSSROADS_LABELS.true_left));
   s.studentAssemblyFactions!.pan=35;s.stats.partyCentralization=20;s.stats.allianceUnity=80;assert.ok(getRouteGuideStatus(s).tip.includes(CROSSROADS_LABELS.democracy));

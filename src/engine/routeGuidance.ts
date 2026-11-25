@@ -35,8 +35,9 @@ export function getRouteGuideStatus(state: GameState) {
   const checks: Array<{ label: string; value: string; met: boolean }> = [];
   let tip = '国策决定剧情阶段；决议、法案、地区行动与工作组为路线准备条件。';
   if (state.currentFocusTree === 'phase1' && !state.flags.rebellion_started) {
+    checks.push({ label: '铸造钢铁红蛤', value: '完成三个前置国策后可选', met: done('steel_toad') });
     checks.push({ label: 'B3起义 · 激进愤怒', value: state.stats.radicalAnger.toFixed(1)+' / >80', met: state.stats.radicalAnger > 80 });
-    tip = '禁书、抗议国策与校园小事件会推动愤怒。工作组定期重复已解锁的地图行动；无需完成所有开局国策。';
+    tip = '禁书、抗议国策与校园小事件会推动愤怒。工作组定期重复已解锁的地图行动；铸造钢铁红蛤需完成「拉拢强基班与平行班」「器材室的秘密聚会」「抗议自治会特权」。';
   } else if (state.currentFocusTree === 'treeA') {
     checks.push({ label: '真左团结底线', value: state.stats.allianceUnity.toFixed(1)+' / ≥55', met: state.stats.allianceUnity >= 55 });
     tip = '按当前席位与数值预判：'+CROSSROADS_LABELS[getCrossroadsOutcome(state)]+'。真正分流在十字路口事件确认时；国策推进期间仍可进行地区争夺和大会协商。';

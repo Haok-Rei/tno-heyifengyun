@@ -5,7 +5,7 @@ export function nextOpeningGuidance(state: GameState): string | null {
   if (state.currentFocusTree !== 'phase1' || state.gameEnding || state.flags.rebellion_started || state.activeEvent || state.activeStoryEvents.length || state.activeMinigame || state.activeSuperEvent) return null;
   const days = Math.floor((Date.UTC(state.date.getFullYear(), state.date.getMonth(), state.date.getDate()) - Date.UTC(2023, 8, 1)) / 86400000);
   const last = Number(state.flags.opening_guidance_day ?? -100);
-  if (days - last < 6 || !state.completedFocuses.includes('start_2023') || state.stats.radicalAnger > 80 || state.activeFocus?.id === 'charge_b3') return null;
+  if (days - last < 6 || !state.completedFocuses.includes('start_2023') || (state.stats.radicalAnger > 80 && state.completedFocuses.includes('steel_toad')) || state.activeFocus?.id === 'charge_b3') return null;
   const seen = (id: string) => !!state.flags[`${id}_seen`] || !!state.flags[`event_seen_${id}`];
   const candidates = [
     ['phase1_returned_petition', days >= 16 && (state.completedFocuses.includes('dorm_talks') || state.completedFocuses.includes('wu_patrol'))],

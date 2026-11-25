@@ -12,6 +12,8 @@ import { availableMapActions, executeMapAction } from '../src/engine/mapActions'
 import { assignRecurringAction } from '../src/engine/commandSystem';
 import { serializeGameState, deserializeGameState } from '../src/engine/saveSystem';
 import { nextOpeningGuidance } from '../src/engine/campaignGuidance';
+import { isDarkCrossroadsReady, isSchoolCounterattackPressure } from '../src/engine/campusCounterattack';
+import { startSiegeDefense, advanceSiegeDefense, canDeploySiegeOrder, deploySiegeOrder, SIEGE_WAVES, type SiegeOrder } from '../src/engine/siegeDefense';
 
 function fixture(): GameState {
   return { date:new Date(2023,9,12), currentFocusTree:'treeA', completedFocuses:['convene_assembly'],
@@ -189,4 +191,96 @@ test('the external siege accepts either committee settlement and Wu coup require
   assert.equal(hasFocusRequirements(coup, state.completedFocuses), true);
   state.wuState!.fengTrust = 39;
   assert.equal(coup.canStart?.(state), false);
+});
+
+test('9.6.3 opening requires all three student focuses and stages the uprising after completion',()=>{
+  const focuses=getFocusNodes('phase1');
+  const steel=focuses.find(focus=>focus.id==='steel_toad')!;
+  assert.equal(steel.requires?.length,3);
+  for(const id of steel.requires!) assert.equal(hasFocusRequirements(steel, steel.requires!.filter(req=>req!==id)),false);
+  assert.equal(hasFocusRequirements(steel,steel.requires!),true);
+  const b3=focuses.find(focus=>focus.id==='charge_b3')!;
+  assert.equal(hasFocusRequirements(b3,steel.requires!),false);
+  assert.equal(hasFocusRequirements(b3,['steel_toad']),true);
+  const state=fixture();
+  state.currentFocusTree='phase1';
+  assert.equal(b3.onStart,undefined);
+  const completed=b3.onComplete!(state);
+  assert.equal(completed.activeEvent?.id,'phase1_before_charge');
+  assert.equal(completed.activeStoryEvents,undefined);
+  const intro=FLAVOR_EVENTS.phase1_before_charge.effect!({...state,...completed});
+  assert.equal(intro.activeEvent?.id,'story_6');
+  assert.equal(intro.currentFocusTree,undefined);
+  const banner=STORY_EVENTS.story_6.effect!({...state,...completed,...intro});
+  assert.equal(banner.activeSuperEvent?.id,'b3_uprising');
+  assert.equal(banner.currentFocusTree,undefined);
+});
+
+test('9.6.3 interrupted legacy B3 saves resume without replaying settled routes',()=>{
+  const state=fixture();
+  state.currentFocusTree='phase1';
+  state.completedFocuses=['steel_toad'];
+  state.activeFocus={id:'charge_b3',daysLeft:2,totalDays:5};
+  state.activeEvent=STORY_EVENTS.story_6;
+  const mid=deserializeGameState(serializeGameState(state))!;
+  assert.equal(mid.activeEvent?.id,undefined);
+  assert.equal(mid.activeFocus?.daysLeft,2);
+
+  state.currentFocusTree='treeA';
+  state.completedFocuses=[];
+  state.activeFocus=null;
+  state.activeEvent=null;
+  state.flags.story_6_triggered=true;
+  state.flags.event_seen_story_6=true;
+  const recovered=deserializeGameState(serializeGameState(state))!;
+  assert.equal(recovered.activeSuperEvent?.id,'b3_uprising');
+  assert.equal(recovered.flags.focus_completed_date_charge_b3,state.date.getTime());
+  state.completedFocuses=['declare_indep'];
+  assert.equal(deserializeGameState(serializeGameState(state))?.activeSuperEvent?.id,undefined);
+});
+
+test('9.6.3 dark crossroads requires simultaneous military, stability and supply or support pressure',()=>{
+  const fragile={tpr:140,ss:70,stab:34.9};
+  assert.equal(isDarkCrossroadsReady(18,4,fragile),true);
+  assert.equal(isDarkCrossroadsReady(17,4,fragile),false);
+  assert.equal(isDarkCrossroadsReady(18,3,fragile),false);
+  assert.equal(isDarkCrossroadsReady(18,4,{...fragile,stab:35}),false);
+  assert.equal(isDarkCrossroadsReady(18,4,{...fragile,tpr:141,ss:32}),false);
+  assert.equal(isDarkCrossroadsReady(18,4,{...fragile,tpr:141,ss:31.9}),true);
+  assert.equal(isSchoolCounterattackPressure(fragile),false);
+  assert.equal(isSchoolCounterattackPressure({...fragile,ss:31.9}),true);
+  assert.equal(isSchoolCounterattackPressure({...fragile,tpr:141,ss:31.9}),false);
+});
+
+test('9.6.3 rotating free units can win the decisive siege and stacking pickets cannot',()=>{
+  const rotations: Array<Array<[number,SiegeOrder]>> = [
+    [[0,'debater'],[1,'debater'],[2,'debater']],
+    [[3,'debater'],[0,'picket']],
+    [[0,'debater'],[1,'debater'],[2,'debater']],
+    [[3,'debater'],[4,'debater']],
+    [[0,'debater'],[1,'debater'],[2,'debater']],
+    [[3,'debater'],[4,'debater']],
+    [[0,'debater'],[1,'debater'],[2,'debater']],
+    [[3,'debater'],[2,'picket']],
+  ];
+  let mixed=startSiegeDefense(0,false);
+  assert.equal(canDeploySiegeOrder(mixed,0,'barricade',49),false);
+  assert.equal(canDeploySiegeOrder(mixed,0,'barricade',50),true);
+  for(const assignments of rotations){
+    for(const [floor,order] of assignments){
+      assert.ok(canDeploySiegeOrder(mixed,floor,order,0));
+      mixed=deploySiegeOrder(mixed,floor,order);
+    }
+    mixed=advanceSiegeDefense(mixed);
+  }
+  assert.equal(mixed.result,'held');
+  let pickets=startSiegeDefense(3,true);
+  while(!pickets.result){
+    const wave=SIEGE_WAVES[pickets.round];
+    const highest=pickets.floors.map((slot,i)=>slot.pressure+wave[i]).reduce((a,b,i,all)=>b>all[a]?i:a,0);
+    pickets=deploySiegeOrder(pickets,highest,'picket');
+    assert.equal(canDeploySiegeOrder(pickets,(highest+1)%5,'picket',0),false);
+    pickets=advanceSiegeDefense(pickets);
+  }
+  assert.equal(pickets.result,'breached');
 });

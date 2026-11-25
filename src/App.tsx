@@ -10,7 +10,7 @@ import ActionReminders from './components/ActionReminders';
 import { getActionReminders, type ActionReminder } from './engine/actionReminders';
 import { cleanAssemblyCrises, expireAssemblyCrisis } from './engine/assemblyPolitics';
 import { syncAssemblyConflict } from './engine/assemblyConflict';
-import { enqueueEvent } from './engine/eventQueue';
+import { enqueueEvent, promotePendingEvent } from './engine/eventQueue';
 import { nextOpeningGuidance } from './engine/campaignGuidance';
 import { snapshotOpeningEvent } from './engine/openingCampaign';
 import { getTileControl } from './engine/mapState';
@@ -21,6 +21,7 @@ import './components/eventIllustration.css';
 import SuperEvent from './components/SuperEvent';
 import MinigameFrequencyWar, { FrequencyWarResult } from './components/MinigameFrequencyWar';
 import MinigameSiege from './components/MinigameSiege';
+import MinigameDespairSiege from './components/MinigameDespairSiege';
 import MinigameNegotiation from './components/MinigameNegotiation';
 import MinigamePrintWorkshop, { PrintResult } from './components/MinigamePrintWorkshop';
 import MinigamePosterWar, { PosterResult } from './components/MinigamePosterWar';
@@ -64,6 +65,7 @@ import { applyFocusLawTransition, lawChangeEvent } from './engine/lawTransitions
 import { advanceCampaignTeams } from './engine/electionCampaign';
 import { GOUXIONG_GAL_PHOTO_ASSETS } from './config/assets';
 import { hasFocusRequirements, calculateModifiers } from './engine/gameLoop';
+import { CAMPUS_COUNTERATTACK, isDarkCrossroadsReady, isSchoolCounterattackPressure } from './engine/campusCounterattack';
 import { serializeGameState, deserializeGameState, saveToSlot, loadFromSlot, hasSlot, deleteSlot, getSaveSlotStates, migrateLegacySaves } from './engine/saveSystem';
 
 import RedToadPolitburo from './components/RedToadPolitburo';
@@ -93,13 +95,6 @@ const GAME_OVER_ANARCHY: SuperEventData = {
 };
 
 const FOCUS_COMPLETION_SUPER_EVENTS: Record<string, SuperEventData> = {
-  charge_b3: {
-    id: 'b3_uprising',
-    title: '合肥一中B3起义',
-    quote: '重拾民主，再塑合一。',
-    author: '潘仁越',
-    color: 'tno-red',
-  },
   jidi_corporate_utopia: {
     id: 'jidi_empire_super',
     title: '及第帝国',
@@ -1855,7 +1850,7 @@ export default function App() {
         let newActiveFocus = prev.activeFocus;
         let newCompletedFocuses = [...prev.completedFocuses];
 
-        // 杨玉乐路线解锁 — 直接读 flags 中的时间戳（story_6会重置completedFocuses但flags保留）
+        // 杨玉乐路线解锁 — 直接读 flags 中的时间戳（转场会重置国策树；完成日期仍保留）
         if (!newFlags.yang_yule_decision_unlocked) {
           const doneTs = newFlags['focus_completed_date_charge_b3'] as number | undefined;
           if (doneTs) {
@@ -2161,6 +2156,7 @@ export default function App() {
               if (effectPartial.electionState) newElectionState = effectPartial.electionState;
               if (effectPartial.wuState) newWuState = effectPartial.wuState;
               if (effectPartial.activeMinigame !== undefined) newActiveMinigame = effectPartial.activeMinigame;
+              if (effectPartial.activeSuperEvent) newActiveSuperEvent = effectPartial.activeSuperEvent;
               if (effectPartial.isPaused !== undefined) newIsPaused = effectPartial.isPaused;
             }
 
@@ -2203,7 +2199,7 @@ export default function App() {
             }
 
             const completedFocusSuperEvent = FOCUS_COMPLETION_SUPER_EVENTS[newActiveFocus.id];
-            if (completedFocusSuperEvent) {
+            if (completedFocusSuperEvent && !newActiveSuperEvent) {
               newActiveSuperEvent = completedFocusSuperEvent;
             }
 
@@ -2356,7 +2352,7 @@ export default function App() {
         }
 
         const isSchoolCounterattackConditionMet = (newCurrentFocusTree === 'treeA_pan' || newCurrentFocusTree === 'treeA')
-          && newStats.tpr <= 180 && newStats.ss < 40 && !newFlags.wu_route_active
+          && isSchoolCounterattackPressure(newStats) && !newFlags.wu_route_active
           && (newCurrentFocusTree === 'treeA_pan' || !newFlags.map_struggle_ended);
         const schoolCounterattackCrisisIndex = newCrises.findIndex(c => c.id === 'school_counterattack');
 
@@ -2365,10 +2361,10 @@ export default function App() {
             newCrises.push({
               id: 'school_counterattack',
               title: '校方反攻迫近',
-              daysLeft: 15,
-              totalDays: 15,
-              description: '试卷储备量告急（≤180）且学生支持度跌破警戒线（<40）。校方保安队与及第外包安保正在集结，若15天内无法恢复（TPR>180或学生支持≥40），防线将彻底崩盘！',
-              resolutionText: 'TPR >180 或 学生支持度 ≥40（自动解除）',
+              daysLeft: CAMPUS_COUNTERATTACK.schoolDays,
+              totalDays: CAMPUS_COUNTERATTACK.schoolDays,
+              description: '试卷储备量告急（≤140）且学生支持度跌破警戒线（<32）。校方保安队与及第外包安保正在集结，若18天内无法恢复（试卷储备 >140 或学生支持 ≥32），防线将彻底崩盘！',
+              resolutionText: '试卷储备 >140 或 学生支持度 ≥32（自动解除）',
               expiryText: '触发命运分流：转入「潘仁越绝望线」或「吴福军铁腕时代」',
             });
           }
@@ -4106,7 +4102,7 @@ export default function App() {
           const isWuRouteActive = newCurrentFocusTree === 'wu_tree' || newCurrentFocusTree.startsWith('wu_tree_p2') || !!newFlags.wu_route_active;
 
           const ultimatum = newCrises.find(c => c.id === 'wu_crackdown');
-          const recovered = redCount < 4 && newStats.stab >= 40;
+          const recovered = redCount < CAMPUS_COUNTERATTACK.ultimatumLost || newStats.stab >= CAMPUS_COUNTERATTACK.stability;
           const enteringAnotherRoute = newCurrentFocusTree !== prev.currentFocusTree;
           const collapsePending = newFlags.school_counterattack_complete
             && (newActiveEvent?.id === 'treeA_final_collapse_choice_event' || newActiveEvent?.id === 'despair_route_entry_event');
@@ -4120,18 +4116,17 @@ export default function App() {
             }
           }
 
+          if (prev.currentFocusTree === 'treeA' && newCurrentFocusTree === 'treeA' && !newFlags.map_struggle_ended) newFlags.treeA_days_elapsed = Number(newFlags.treeA_days_elapsed ?? 0) + 1;
+
           if (newCurrentFocusTree === 'treeA' && !newFlags.treeA_counterattack_choice_fired && !newFlags.treeA_counterattack_resolved && !newFlags.map_struggle_ended && !prev.flags['yang_yule_route_started'] && !prev.flags['jidi_takeover_complete'] && !isGouxiongRouteActive && !isWuRouteActive) {
-            const treeADays = (newFlags.treeA_days_elapsed || 0) + 1;
-            newFlags.treeA_days_elapsed = treeADays;
-            const readyForChoice = treeADays >= 12 || getFocusNodes('treeA').filter(node => newCompletedFocuses.includes(node.id)).length >= 2;
-            const pressureHigh = (redCount >= 3 && newStats.stab < 45) || newStats.tpr < 250 || newStats.ss < 38;
-            if (readyForChoice && pressureHigh && !collapsePending && !(ultimatum && ultimatum.daysLeft <= 0 && !recovered)) {
+            if (isDarkCrossroadsReady(Number(newFlags.treeA_days_elapsed ?? 0), redCount, newStats)
+                && !collapsePending && !(ultimatum && ultimatum.daysLeft <= 0 && !recovered)) {
               newFlags.treeA_counterattack_choice_fired = true;
               queueEvent(STORY_EVENTS.treeA_counterattack_choice_event, true);
             }
           }
 
-          if (!ultimatum && !collapsePending && !enteringAnotherRoute && redCount >= 4 && newStats.stab < 40 && !prev.flags['game_over_triggered'] && !prev.flags['yang_yule_route_started'] && !prev.flags['jidi_takeover_complete'] && !isGouxiongRouteActive && !isWuRouteActive && newCurrentFocusTree !== 'treeA_pan_despair') {
+          if (!ultimatum && !collapsePending && !enteringAnotherRoute && redCount >= CAMPUS_COUNTERATTACK.ultimatumLost && newStats.stab < CAMPUS_COUNTERATTACK.stability && !prev.flags['game_over_triggered'] && !prev.flags['yang_yule_route_started'] && !prev.flags['jidi_takeover_complete'] && !isGouxiongRouteActive && !isWuRouteActive && newCurrentFocusTree !== 'treeA_pan_despair') {
             // 只在防线恶化时发出新的通牒。
             if (!newFlags.wu_crackdown_generated && !newCrises.some(c => c.id === 'wu_crackdown')) {
               newFlags.wu_crackdown_generated = true;
@@ -4140,8 +4135,8 @@ export default function App() {
                 title: '吴福军最后通牒',
                 daysLeft: 12,
                 totalDays: 12,
-                description: '学生控制区域持续萎缩，吴福军下达最后通牒。若12天内无法重夺控制区（≥4个建筑失守且稳定度<40视为恶化），保安队将发动总攻。',
-                resolutionText: '重夺控制区（失守建筑 <4 个）且稳定度 ≥40（通牒自动撤回）',
+                description: '学生控制区域持续萎缩，吴福军下达最后通牒。若12天内无法重夺控制区（≥5个建筑失守且稳定度<35视为恶化），保安队将发动总攻。',
+                resolutionText: '失守建筑少于5个，或稳定度达到35（通牒自动撤回）',
                 expiryText: '触发命运分流：进入吴福军铁腕时代或潘仁越绝望线',
               }];
               newChronicle = pushChronicle(newChronicle, {
@@ -4691,6 +4686,11 @@ export default function App() {
     if (!node) return;
     
     setGameState(prev => {
+      if (prev.activeFocus || prev.activeEvent || prev.activeMinigame || prev.activeSuperEvent
+          || prev.gameEnding || prev.stats.pp < 0 || prev.completedFocuses.includes(node.id)
+          || !hasFocusRequirements(node, prev.completedFocuses) || node.isHidden?.(prev)
+          || node.mutuallyExclusive?.some(id => prev.completedFocuses.includes(id))
+          || (node.canStart && !node.canStart(prev))) return prev;
       let newFlags = { ...prev.flags };
       let newActiveEvent = prev.activeEvent;
       let newIsPaused = prev.isPaused;
@@ -4720,11 +4720,7 @@ export default function App() {
             };
           }
         }
-        if (!newFlags['story_6_triggered']) {
-          newFlags['story_6_triggered'] = true;
-          newActiveEvent = STORY_EVENTS.story_6;
-          newIsPaused = true;
-        }
+
       }
 
       if (focusId === 'gx_dabi_route_trial' && !newFlags['focus_started_date_gx_dabi_route_trial']) {
@@ -4926,7 +4922,7 @@ export default function App() {
         newState.flags = { ...newState.flags, haobang_post_blank_unlocked: true };
       }
       
-      if (!newState.activeEvent && newState.activeStoryEvents.length > 0) {
+      if (!newState.activeEvent && !newState.activeSuperEvent && newState.activeStoryEvents.length > 0) {
         newState.activeEvent = newState.activeStoryEvents[0];
         newState.activeStoryEvents = newState.activeStoryEvents.slice(1);
         newState.isPaused = true;
@@ -4960,7 +4956,7 @@ export default function App() {
     // Only B3 uprising should branch and switch focus tree.
     // Other super events are narrative highlights and must not reset tree progression.
     if (activeSuperId !== 'b3_uprising') {
-      setGameState(prev => ({ ...prev, activeSuperEvent: null }));
+      setGameState(prev => promotePendingEvent({ ...prev, activeSuperEvent: null }));
       return;
     }
 
@@ -4980,9 +4976,11 @@ export default function App() {
         transitionEvent = FLAVOR_EVENTS.enter_treeA;
       }
 
+      if (prev.activeSuperEvent?.id !== 'b3_uprising') return prev;
       return reconcileRouteSpirits({
         ...prev,
         activeSuperEvent: null,
+        activeStoryEvents: prev.activeEvent ? [prev.activeEvent, ...prev.activeStoryEvents] : prev.activeStoryEvents,
         activeEvent: transitionEvent,
         isPaused: false,
         currentFocusTree: nextTree,
@@ -5703,7 +5701,9 @@ export default function App() {
       )}
 
       {gameState.activeMinigame === 'siege_b3' && (
-        <MinigameSiege state={gameState} onComplete={handleMinigameComplete} spendTPR={spendTPR} />
+        gameState.currentFocusTree === 'treeA_pan_despair' && !gameState.flags.siege_b3_drill
+          ? <MinigameDespairSiege state={gameState} onComplete={handleMinigameComplete} spendTPR={spendTPR} />
+          : <MinigameSiege state={gameState} onComplete={handleMinigameComplete} spendTPR={spendTPR} />
       )}
 
       {gameState.activeMinigame === 'nkpd_negotiation' && (

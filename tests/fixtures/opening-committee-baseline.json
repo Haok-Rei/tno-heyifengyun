@@ -1,5 +1,5 @@
 {
-  "source": "9.6.1",
+  "source": "9.6.3",
   "trees": {
     "phase1": [
       {
@@ -102,7 +102,9 @@
       {
         "id": "charge_b3",
         "days": 5,
-        "requires": [],
+        "requires": [
+          "steel_toad"
+        ],
         "mutuallyExclusive": []
       },
       {

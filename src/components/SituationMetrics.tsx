@@ -24,7 +24,7 @@ export default function SituationMetrics({ state }: { state: GameState }) {
     { name: '社会支持', value: w.teacherSupport, display: `舆论 ${Math.round(w.publicOpinion)} / 教师 ${Math.round(w.teacherSupport)}`, text: '填充表示教师支持；舆论压力达到80会每天降低0.2稳定度。', change: '随谈判、宣传与事件变化', color: '#91b9ae' },
   ] : [
     { name: '资本渗透', value: s.capitalPenetration, daily: state.modifiers.capitalPenetrationDaily, text: '外部资本对学校的控制程度，影响及第路线与改革行动。', color: '#b99677' },
-    { name: '激进愤怒', value: s.radicalAnger, daily: state.modifiers.radicalAngerDaily, text: '激进学生的不满。超过80可解锁冲上B3教学楼等行动。', color: '#c6796e' },
+    { name: '激进愤怒', value: s.radicalAnger, daily: state.modifiers.radicalAngerDaily, text: '激进学生的不满。完成铸造钢铁红蛤后，愤怒超过80可选择「冲上B3教学楼」。', color: '#c6796e' },
     { name: '联盟团结', value: s.allianceUnity, daily: state.modifiers.allianceUnityDaily, text: '各学生派系的共识与协作程度，影响联盟国策和议会。', color: '#91bba4' },
     { name: '党内集权', value: s.partyCentralization, daily: state.modifiers.partyCentralizationDaily, text: '红蛤组织内部权力集中程度，影响路线分歧与改革成功率。', color: '#c2ab7a' },
     { name: '学生理智', value: s.studentSanity, daily: state.modifiers.studentSanityDaily, text: '学生保持判断与正常生活的能力；低于30时须留意特殊事件。', color: '#8db7c2' },
