@@ -5,6 +5,8 @@ import { syncAssemblyConflict } from '../src/engine/assemblyConflict';
 import { cleanAssemblyCrises } from '../src/engine/assemblyPolitics';
 import { enqueueEvent } from '../src/engine/eventQueue';
 import { FLAVOR_EVENTS } from '../src/data/flavorEvents';
+import { STORY_EVENTS } from '../src/data/storyEvents';
+import { hasFocusRequirements } from '../src/engine/gameLoop';
 import { getFocusNodes } from '../src/components/FocusTree';
 import { availableMapActions, executeMapAction } from '../src/engine/mapActions';
 import { assignRecurringAction } from '../src/engine/commandSystem';
@@ -115,4 +117,76 @@ test('despair options and one-time flags survive active and queued event saves',
       assert.deepEqual(event.choices[i].effect!(saved), original.choices![i].effect!(saved));
     }
   }
+});
+
+
+test('9.6.1 collapse choices and event costs survive a save round trip', () => {
+  const state = fixture();
+  state.activeEvent = STORY_EVENTS.treeA_final_collapse_choice_event;
+  state.activeStoryEvents = [FLAVOR_EVENTS.committee_counter_infiltration_event];
+  const restored = deserializeGameState(serializeGameState(state))!;
+  const [despair, wu] = restored.activeEvent!.choices!;
+  assert.equal(despair.effect(restored).activeEvent?.id, 'despair_route_entry_event');
+  assert.equal(wu.effect(restored).activeEvent?.id, 'wu_crackdown_entry_event');
+  const front = despair.effect(restored).activeEvent!.effect!(restored);
+  assert.equal(front.currentFocusTree, 'treeA_pan_despair');
+  assert.equal(front.activeFocus, null);
+  assert.equal(front.flags?.tile_ctrl_b3_tower, 70);
+  const guard = restored.activeStoryEvents[0].choices![0];
+  assert.equal(guard.disabled?.({...restored, stats: {...restored.stats, pp: 14}}), true);
+  assert.equal(guard.disabled?.({...restored, stats: {...restored.stats, pp: 15}}), false);
+  assert.equal(guard.effect(restored).stats?.pp, 285);
+});
+
+test('9.6.1 siege prerequisites and post-siege paths remain mutually exclusive', () => {
+  const state = fixture();
+  state.currentFocusTree = 'treeA_pan_despair';
+  const nodes = getFocusNodes(state.currentFocusTree);
+  const defend = nodes.find(n => n.id === 'defend_b3')!;
+  assert.equal(defend.requires?.length, 3);
+  assert.equal(hasFocusRequirements(defend, defend.requires!.slice(1)), false);
+  assert.equal(hasFocusRequirements(defend, defend.requires!), true);
+  const counter = nodes.find(n => n.id === 'counter_attack')!;
+  const rooftop = nodes.find(n => n.id === 'despair_rooftop_broadcast')!;
+  assert.equal(counter.canStart?.(state), false);
+  assert.equal(rooftop.canStart?.(state), false);
+  state.flags.despair_b3_held = true;
+  assert.equal(counter.canStart?.(state), true);
+  assert.equal(rooftop.canStart?.(state), false);
+  state.flags.despair_b3_held = false;
+  state.flags.despair_b3_breached = true;
+  assert.equal(counter.canStart?.(state), false);
+  assert.equal(rooftop.canStart?.(state), true);
+  assert.equal(FLAVOR_EVENTS.despair_dawn_break_event.effect?.(state).gameEnding, 'game_over_victory');
+  assert.equal(FLAVOR_EVENTS.despair_final_fall_event.effect?.(state).gameEnding, 'game_over_despair');
+});
+
+test('legacy siege results migrate without changing completed endings', () => {
+  const state = fixture();
+  state.currentFocusTree = 'treeA_pan_despair';
+  state.completedFocuses = ['defend_b3'];
+  const pending = deserializeGameState(serializeGameState(state))!;
+  assert.equal(pending.activeMinigame, 'siege_b3');
+  state.activeEvent = { id: 'b3_defeat', title: '旧结算', description: '', buttonText: '继续' };
+  const intercepted = deserializeGameState(serializeGameState(state))!;
+  assert.equal(intercepted.activeEvent?.id, 'despair_siege_breached_event');
+  assert.equal(intercepted.flags.despair_b3_breached, true);
+  state.gameEnding = 'game_over_anarchy';
+  const ended = deserializeGameState(serializeGameState(state))!;
+  assert.equal(ended.gameEnding, 'game_over_anarchy');
+  assert.equal(ended.flags.despair_b3_breached, undefined);
+});
+
+test('the external siege accepts either committee settlement and Wu coup requires new preparation', () => {
+  const committee = getFocusNodes('treeA').find(n => n.id === 'committee_external_siege')!;
+  for (const completed of ['trial_yang','secret_compromise']) assert.equal(hasFocusRequirements(committee, [completed]), true);
+  assert.equal(hasFocusRequirements(committee, []), false);
+  const coup = getFocusNodes('wu_tree_p2_coup').find(n => n.id === 'wu_coup_december')!;
+  const state = {...fixture(), currentFocusTree:'wu_tree_p2_coup', wuState:{wuAmbition:100,fengTrust:40}} as GameState;
+  assert.equal(coup.canStart?.(state), false);
+  state.completedFocuses = ['wu_coup_wiretap_office', 'wu_first_strike_right'];
+  assert.equal(coup.canStart?.(state), true);
+  assert.equal(hasFocusRequirements(coup, state.completedFocuses), true);
+  state.wuState!.fengTrust = 39;
+  assert.equal(coup.canStart?.(state), false);
 });

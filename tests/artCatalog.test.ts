@@ -7,6 +7,7 @@ import { ASSET_URLS, LOADING_ART_URLS, getAdvisorPortraitUrl } from '../src/conf
 import { EXPANDED_ART_URLS } from '../src/config/expandedArtwork';
 import { SPIRIT_BACKGROUND_VARIANTS } from '../src/config/hoi4Artwork';
 import { ENDING_CG } from '../src/config/endingCgAssets';
+import { ROUTE_FOCUS_ART } from '../src/config/routeIconArtwork';
 
 const root = process.cwd();
 const manifest = JSON.parse(readFileSync(join(root, 'src/config/artAssignments.json'), 'utf8')) as {
@@ -21,7 +22,8 @@ test('story focus art stays complete and mostly unique', () => {
     assert.ok(manifest.focus[id], `missing focus artwork for ${id}`);
   }
   const pieces = Object.values(manifest.focus);
-  assert.ok(new Set(pieces).size / pieces.length >= 0.7, 'focus imagery repeats too often');
+  const displayed = ids.map(id => ROUTE_FOCUS_ART[id]?.src ?? manifest.focus[id]);
+  assert.ok(new Set(displayed).size / displayed.length >= 0.7, 'focus imagery repeats too often');
   for (const piece of [...pieces, ...Object.values(manifest.spirit)]) {
     assert.ok(existsSync(join(root, 'src/assets/hoi4/expanded', `${piece}.png`)), `missing ${piece}.png`);
     assert.ok(EXPANDED_ART_URLS[piece], `unbundled ${piece}.png`);
@@ -41,8 +43,10 @@ test('new cabinet portraits and explicitly labelled dossier cards are bundled', 
 test('all supplied loading art is optimized and every local super-event scene exists', () => {
   const originals = readdirSync(join(root, 'art/载入图')).filter(name => /\.(png|jpe?g|webp)$/i.test(name));
   const optimized = readdirSync(join(root, 'src/assets/loading')).filter(name => name.endsWith('.webp'));
-  assert.equal(optimized.length, originals.length);
-  assert.equal(LOADING_ART_URLS.length, originals.length + Object.keys(ENDING_CG).length);
+  const newGallery = ['暗夜分流', 'B3三层', '焦土黎明', '天台回声', '戒严台账', '行政楼夜餐'];
+  for (const name of newGallery) assert.ok(optimized.includes(name + '.webp'), name);
+  assert.equal(optimized.length, originals.length + newGallery.length);
+  assert.equal(LOADING_ART_URLS.length, optimized.length + Object.keys(ENDING_CG).length);
   for (const url of LOADING_ART_URLS) assert.ok(existsSync(fileURLToPath(url)));
   for (const url of [ASSET_URLS.ui_game_logo, ASSET_URLS.ui_studio_logo]) assert.ok(existsSync(fileURLToPath(url)));
   for (const name of originals) assert.ok(optimized.includes(name.replace(/\.(png|jpe?g|webp)$/i, '.webp')));

@@ -4,6 +4,969 @@ import { applyTileCtrlDeltas } from '../engine/tileHelpers';
 import { applyYangSettlement, getCrossroadsOutcome, CROSSROADS_RULES } from '../engine/assemblyPolitics';
 
 export const FLAVOR_EVENTS: Record<string, GameEvent> = {
+  phase1_jidi_deal: {
+    id: 'phase1_jidi_deal',
+    title: '地下室里的“特许培优”',
+    isStoryEvent: true,
+    description: "艺术礼堂翻修工程的围挡还没拆，地下一层已经悄悄摆进了两百套崭新的单人课桌和成箱的蓝白封面教辅——《及第教育·合一强基绝密押题库》。封安祥甚至没走学校采购公示，直接以“校企联合教研捐赠”的名义把收费二维码贴进了高三重点班的家长群。\n\n晚自习前，几名西装革履的及第顾问带着新东方背景的绩效讲师李竞凯走进理科实验班“试讲”。王卷豪死死盯着屏幕上那套据称能压中全省联考三道大题的内部模型，手指在草稿纸上飞快验算；后排几名普通班借读生却算了一笔账：单这一套密卷加周末冲刺课，就要花掉家里两个月的生活费。资本的镰刀已经伸进了围墙，而校长室正等着看你的态度。",
+    choices: [
+      {
+        text: '默许及第铺开“签约培优班”，换取海量押题卷与经费。',
+        previewText: '资本渗透 +18，TPR +350，PP +25，学生理智 -6',
+        effect: (s: GameState) => ({
+          stats: {
+            ...s.stats,
+            capitalPenetration: Math.min(100, s.stats.capitalPenetration + 18),
+            tpr: s.stats.tpr + 350,
+            pp: s.stats.pp + 25,
+            studentSanity: Math.max(0, s.stats.studentSanity - 6),
+          }
+        })
+      },
+      {
+        text: '暗中留存收费证据并限制强制征订，只在各班流传真相。',
+        previewText: '资本渗透 +5，学生支持 +6，激进愤怒 +8',
+        effect: (s: GameState) => ({
+          stats: {
+            ...s.stats,
+            capitalPenetration: Math.min(100, s.stats.capitalPenetration + 5),
+            ss: Math.min(100, s.stats.ss + 6),
+            radicalAnger: Math.min(100, s.stats.radicalAnger + 8),
+          }
+        })
+      }
+    ]
+  },
+  phase1_faculty_rift: {
+    id: 'phase1_faculty_rift',
+    title: '教研室里的两种声音',
+    isStoryEvent: true,
+    description: "周三下午的全体教师例会开得火药味十足。总务处下发了封安宝签署的新规：所有非高考科目的专用教室一律腾空改作高三自习室，美术老师周晨自费布置的“午间心灵画室”被点名限期拆除。\n\n散会后，几位在陈栋老校长时期进校的老教师围在走廊尽头低声叹气。前教务骨干私下抱怨，如今的合一连尤光雷那样的实干派都被发配边缘，剩下的全是盯着考核加分的迎合者；而门外刚好端着保温杯路过的杨玉乐却笑呵呵地打起圆场：“时代变了，老陈那一套怀柔早过时咯，咱们拿工资的，还是把一本率保住最实在。”教师队伍的撕裂，已再也藏不住了。",
+    choices: [
+      {
+        text: '暗中替周晨与陈栋时代老教师保留一间画室与联络渠道。',
+        previewText: '学生支持 +8，学生理智 +6，稳定度 -6',
+        effect: (s: GameState) => ({
+          stats: {
+            ...s.stats,
+            ss: Math.min(100, s.stats.ss + 8),
+            studentSanity: Math.min(100, s.stats.studentSanity + 6),
+            stab: Math.max(0, s.stats.stab - 6),
+          }
+        })
+      },
+      {
+        text: '顺从校方新规，用绩效考核把教研室的杂音压下去。',
+        previewText: '稳定度 +6，PP +30，激进愤怒 +8',
+        effect: (s: GameState) => ({
+          stats: {
+            ...s.stats,
+            stab: Math.min(100, s.stats.stab + 6),
+            pp: s.stats.pp + 30,
+            radicalAnger: Math.min(100, s.stats.radicalAnger + 8),
+          }
+        })
+      }
+    ]
+  },
+  phase1_yang_studio: {
+    id: 'phase1_yang_studio',
+    title: '五十升空气与“ED/ING”',
+    isStoryEvent: true,
+    description: "高三（28）班的公开示范课上，英语名师工作室带头人杨玉乐背着手在黑板前踱着方步。刚刚有学生鼓起勇气举手，指出黑板上那道非谓语例句的语态划分与真题解析有出入，全班的呼吸瞬间停滞。\n\n杨玉乐既没有像吴福军那样拍桌咆哮，也没有翻看教案，只是慢悠悠拧开那只掉漆的保温杯抿了一口枸杞水，露出一副痛心疾首的慈祥笑脸：“同学们啊，一个人一天要呼吸五十升空气，你会停下来问肺为什么要吸气吗？被动就是ED，主动就是ING！记住就行了，钻牛角尖耽误高考的可是你们自己！”\n\n下课铃响后，杨玉乐笑着拍了拍班长的肩膀，顺手把刚才各班抱怨晚自习太长的意见条压进了茶杯底。台下的学生面面相觑——比起吴福军的橡胶棍，这种笑眯眯把人摁回题海的“软刀子”，才更让人毛骨悚然。",
+    choices: [
+      {
+        text: '任由杨玉乐用“老特级”的面子在各班继续和稀泥。',
+        previewText: '稳定度 -8，激进愤怒 +10，PP +20（更易满足杨玉乐线稳定度阈值）',
+        effect: (s: GameState) => ({
+          stats: {
+            ...s.stats,
+            stab: Math.max(0, s.stats.stab - 8),
+            radicalAnger: Math.min(100, s.stats.radicalAnger + 10),
+            pp: s.stats.pp + 20,
+          }
+        })
+      },
+      {
+        text: '在黑板报和匿名墙上把“五十升空气”的荒诞语录传遍全校。',
+        previewText: '激进愤怒 +15，学生支持 +6，稳定度 -5',
+        effect: (s: GameState) => ({
+          stats: {
+            ...s.stats,
+            radicalAnger: Math.min(100, s.stats.radicalAnger + 15),
+            ss: Math.min(100, s.stats.ss + 6),
+            stab: Math.max(0, s.stats.stab - 5),
+          }
+        })
+      }
+    ]
+  },
+  phase1_october_exam: {
+    id: 'phase1_october_exam',
+    title: '十月联考与“小一六八”的阴影',
+    isStoryEvent: true,
+    description: "十月全省名校大联考的红榜贴上B3底楼那天，整座滨湖校区仿佛坠入了冰窖。尽管全高三的午休被取消、晚自习拖到了十点半，合肥一中的高分段人数和均分却再一次被死对头“小一六八”甩开了一截。\n\n下午的广播里，封安宝的声音冷得像结了冰的铁块，当众点名批评高三年级部“松懈涣散”，并宣布从本周起取消全校单休，每两周增设一次全省模拟排名淘汰考。28班里，王卷豪面色灰白地往错题本上疯狂抄写导数大题，后排的吕波汉盯着红榜冷笑不止，而几名女生则压抑不住崩溃，趴在堆积如山的卷子上低声抽泣。高压不仅没能换来尊严，反倒把最后一丝体面碾成了粉末。",
+    choices: [
+      {
+        text: '在各班传抄数据：证明高压熬夜反而拖垮了全校均分！',
+        previewText: '激进愤怒 +18，稳定度 -12，学生支持 +8',
+        effect: (s: GameState) => ({
+          stats: {
+            ...s.stats,
+            radicalAnger: Math.min(100, s.stats.radicalAnger + 18),
+            stab: Math.max(0, s.stats.stab - 12),
+            ss: Math.min(100, s.stats.ss + 8),
+          }
+        })
+      },
+      {
+        text: '强推周末全封闭加课，用题海把输掉的分数硬砸回来。',
+        previewText: 'TPR +300，激进愤怒 +12，学生理智 -10',
+        effect: (s: GameState) => ({
+          stats: {
+            ...s.stats,
+            tpr: s.stats.tpr + 300,
+            radicalAnger: Math.min(100, s.stats.radicalAnger + 12),
+            studentSanity: Math.max(0, s.stats.studentSanity - 10),
+          }
+        })
+      },
+      {
+        text: '协助潘仁越联系各班班委，起草反对取消双休的联合质询信。',
+        previewText: '联盟团结 +10，激进愤怒 +10，稳定度 -8',
+        effect: (s: GameState) => ({
+          stats: {
+            ...s.stats,
+            allianceUnity: Math.min(100, s.stats.allianceUnity + 10),
+            radicalAnger: Math.min(100, s.stats.radicalAnger + 10),
+            stab: Math.max(0, s.stats.stab - 8),
+          }
+        })
+      }
+    ]
+  },
+  phase1_rally_classes: {
+    id: 'phase1_rally_classes',
+    title: '实验班与平行班的第一次握手',
+    isStoryEvent: true,
+    description: "周六傍晚的空阶梯教室里，潘仁越第一次把强基实验班与平行班的学生代表聚到了同一间屋子里。窗外天色渐暗，但屋里两个阵营之间仿佛隔着一堵看不见的玻璃墙。\n\n强基班的代表徐志推了推无框眼镜，语气平静却带着天然的疏离：“潘仁越，我们可以签名反对无意义的站立早读和保安巡查，但你们必须保证，别把抗议搞成停课闹事——我们还要冲清北。”坐在后排的平行班代表立刻拍案而起：“合着你们重点班配着全校最好的师资和空调，我们平行班天天被拿来当升学率分母、连体育课都被砍光，现在还要先照顾你们刷题的心情？”\n\n潘仁越按住微微发颤的手掌，站到两排课桌中间。这支松散的自由派同盟究竟该向精英阶层妥协以求稳妥，还是彻底站到受压迫最深的平行班一边，此刻的定调将决定未来同盟的底色。",
+    choices: [
+      {
+        text: '向强基班与平行班各让一步：把“废除量化扣分”定为共同最低纲领。',
+        previewText: '联盟团结 +10，学生支持 +6，党内集权 -4',
+        effect: (s: GameState) => ({
+          stats: {
+            ...s.stats,
+            allianceUnity: Math.min(100, s.stats.allianceUnity + 10),
+            ss: Math.min(100, s.stats.ss + 6),
+            partyCentralization: Math.max(0, s.stats.partyCentralization - 4),
+          }
+        })
+      },
+      {
+        text: '公开抨击重点班资源特权，把动员重心彻底压向广大的平行班！',
+        previewText: '激进愤怒 +12，学生支持 +8，联盟团结 -4',
+        effect: (s: GameState) => ({
+          stats: {
+            ...s.stats,
+            radicalAnger: Math.min(100, s.stats.radicalAnger + 12),
+            ss: Math.min(100, s.stats.ss + 8),
+            allianceUnity: Math.max(0, s.stats.allianceUnity - 4),
+          }
+        })
+      }
+    ]
+  },
+  committee_exam_question_event: {
+    id: 'committee_exam_question_event',
+    title: '模考还考不考？——做题派的拷问',
+    isStoryEvent: true,
+    description: "学生代表大会刚刚确立议席，最棘手的现实问题便砸在了联合革委会的会议桌上。周三清晨，一贯沉默寡言的王卷豪带着三十多名各班学习委员堵在了B3阶梯教室门口，手里捧着一摞尚未拆封的理综联考样卷。\n\n“王照凯，潘仁越，我不管你们谁当主席、谁签宪章。”王卷豪推了推厚重的眼镜，镜片后的眼神因为彻夜焦虑布满血丝，“封安宝倒了，教务处停摆了，可六月七号的高考不会因为你们在B3插了红旗就取消！下周的校内月考到底还考不考？自习室还开不开？你们要是打算带着全校一起考零分，现在就给我们一句痛快话！”\n\n全场代表瞬间炸开了锅。钢铁红蛤的激进干事怒斥这是“做题奴性发作”，自由派主张给学生完全的自愿选择权，而角落里不少普通班代表却默默低下了头——他们确实痛恨封安宝，却也同样害怕输掉决定命运的考场。",
+    choices: [
+      {
+        text: '彻底废除红黑榜排名，把原定月考改为跨班“互助解题研讨”。',
+        previewText: '党内集权 +6，学生理智 +8，激进愤怒 +6，TPR -80',
+        effect: (s: GameState) => ({
+          stats: {
+            ...s.stats,
+            partyCentralization: Math.min(100, s.stats.partyCentralization + 6),
+            studentSanity: Math.min(100, s.stats.studentSanity + 8),
+            radicalAnger: Math.min(100, s.stats.radicalAnger + 6),
+            tpr: Math.max(0, s.stats.tpr - 80),
+          }
+        })
+      },
+      {
+        text: '废除强制排名与处罚，但保留自习室与自愿参加的模拟测试。',
+        previewText: '联盟团结 +8，学生支持 +6，TPR +120',
+        effect: (s: GameState) => ({
+          stats: {
+            ...s.stats,
+            allianceUnity: Math.min(100, s.stats.allianceUnity + 8),
+            ss: Math.min(100, s.stats.ss + 6),
+            tpr: s.stats.tpr + 120,
+          }
+        })
+      },
+      {
+        text: '革命不能脱离升学现实——照常组织模考以安抚沉默的大多数。',
+        previewText: '稳定度 +10，TPR +260，激进愤怒 -10，学生理智 -6',
+        effect: (s: GameState) => ({
+          stats: {
+            ...s.stats,
+            stab: Math.min(100, s.stats.stab + 10),
+            tpr: s.stats.tpr + 260,
+            radicalAnger: Math.max(0, s.stats.radicalAnger - 10),
+            studentSanity: Math.max(0, s.stats.studentSanity - 6),
+          }
+        })
+      }
+    ]
+  },
+  committee_external_siege_event: {
+    id: 'committee_external_siege_event',
+    title: '围墙外的围堵：家长与资本掮客',
+    isStoryEvent: true,
+    description: "滨湖校区易主的消息终究没能藏在围墙之内。周末清晨，紫云路校门外停满了闻讯赶来的私家车，上百名焦躁不安的家长隔着伸缩门大声质问“学校是不是乱套了”“孩子还能不能安心高考”。\n\n更耐人寻味的是，就在纠察队员忙着应付门外人潮时，一辆黑色轿车悄然停在了侧门阴影处。及第教育派出的区域代表隔着栅栏递进一张烫金名片与一份极具诱惑力的清单：只要联合革委会允许及第“中立教研团队”进驻提供免费模考与答疑，及第不仅立刻无偿捐赠三千套绝密冲刺卷与印刷纸张，还愿意动用家长群渠道替革委会背书“教学秩序平稳”。门外是焦虑的父母，门边是笑里藏刀的资本——革委会必须当场表态。",
+    choices: [
+      {
+        text: '打开礼堂侧门召开家长公开说明会，当面展示自治课表与秩序。',
+        previewText: '联盟团结 +8，稳定度 +8，PP -15，资本渗透 -5',
+        disabled: (s: GameState) => s.stats.pp < 15,
+        effect: (s: GameState) => ({
+          stats: {
+            ...s.stats,
+            allianceUnity: Math.min(100, s.stats.allianceUnity + 8),
+            stab: Math.min(100, s.stats.stab + 8),
+            pp: s.stats.pp - 15,
+            capitalPenetration: Math.max(0, s.stats.capitalPenetration - 5),
+          }
+        })
+      },
+      {
+        text: '当众撕碎及第名片并封锁侧门——革命绝不向资本乞讨一口饭！',
+        previewText: '激进愤怒 +8，党内集权 +6，学生支持 +5，资本渗透 -10',
+        effect: (s: GameState) => ({
+          stats: {
+            ...s.stats,
+            radicalAnger: Math.min(100, s.stats.radicalAnger + 8),
+            partyCentralization: Math.min(100, s.stats.partyCentralization + 6),
+            ss: Math.min(100, s.stats.ss + 5),
+            capitalPenetration: Math.max(0, s.stats.capitalPenetration - 10),
+          }
+        })
+      },
+      {
+        text: '饮鸩止渴：暗中签收及第赞助的试卷与经费，先熬过眼前难关。',
+        previewText: 'TPR +400，PP +35，资本渗透 +20，学生理智 -5',
+        effect: (s: GameState) => ({
+          stats: {
+            ...s.stats,
+            tpr: s.stats.tpr + 400,
+            pp: s.stats.pp + 35,
+            capitalPenetration: Math.min(100, s.stats.capitalPenetration + 20),
+            studentSanity: Math.max(0, s.stats.studentSanity - 5),
+          }
+        })
+      }
+    ]
+  },
+  committee_logistics_event: {
+    id: 'committee_logistics_event',
+    title: '食堂后厨的革命',
+    isStoryEvent: true,
+    description: "推翻旧校规的亢奋还没散去，最先逼上门的不是保安队，而是三千张肚子。早上十点，一楼食堂的后厨窗口排起了长龙——外包餐饮公司的经理锁上了冷库大门，扬言既然校方领导不在、账目没人签字，明天起全校停火断餐。\n\n时纪带着几名后勤志愿生撬开了应急粮仓，清点出还能撑两周的米面油与速冻半成品，但怎么定价、怎么分配成了联合革委会的第一道民生大考。激进的纠察队员喊着要实行战时配给制、优先保证通宵站岗的战士吃饱；普通班代表则要求立刻取消虚高的菜价、实现平价供餐；而保守的班委私下劝说，不如给原承包商打个欠条先稳住供货链。革命如果连一碗热汤都端不稳，红旗插得再高也会先从胃里塌掉。",
+    choices: [
+      {
+        text: '由学生后勤组接管窗口，全校一律按成本价平价供餐！',
+        previewText: '联盟团结 +6，学生支持 +8，政治点数 -10',
+        disabled: (s: GameState) => s.stats.pp < 10,
+        effect: (s: GameState) => ({
+          stats: {
+            ...s.stats,
+            allianceUnity: Math.min(100, s.stats.allianceUnity + 6),
+            ss: Math.min(100, s.stats.ss + 8),
+            pp: s.stats.pp - 10,
+          }
+        })
+      },
+      {
+        text: '推行战时粮票配给，优先保障前线纠察队与油印室骨干。',
+        previewText: '党内集权 +8，稳定度 +5，学生支持 -4',
+        effect: (s: GameState) => ({
+          stats: {
+            ...s.stats,
+            partyCentralization: Math.min(100, s.stats.partyCentralization + 8),
+            stab: Math.min(100, s.stats.stab + 5),
+            ss: Math.max(0, s.stats.ss - 4),
+          }
+        })
+      },
+      {
+        text: '给旧承包商打白条换取照常供货，腾出精力应付校方。',
+        previewText: '稳定度 +8，TPR +150，资本渗透 +8',
+        effect: (s: GameState) => ({
+          stats: {
+            ...s.stats,
+            stab: Math.min(100, s.stats.stab + 8),
+            tpr: s.stats.tpr + 150,
+            capitalPenetration: Math.min(100, s.stats.capitalPenetration + 8),
+          }
+        })
+      }
+    ]
+  },
+  committee_counter_infiltration_event: {
+    id: 'committee_counter_infiltration_event',
+    title: '暗夜里的反扑警报',
+    isStoryEvent: true,
+    description: "深夜十一点，B3教学楼保卫组的对讲机里突然传出一阵急促的杂音。巡夜学生在西门外侧的花坛阴影里截获了一张沾泥的纸条——吴福军的保安队根本没有彻底撤出滨湖校区，他们正借着夜色重新集结，并联合了一批高薪聘来的校外外包保安，准备趁革委会防务交接的空档强行夺回行政楼与B3一楼。\n\n指挥室里顿时炸开了锅。王照凯盯着校园平面图冷声下令全员进入一级战备；潘仁越却看着见底的后勤储备与疲惫不堪的值守学生，脸色凝重。外围据点的哨兵不断报来探照灯逼近的消息——是咬牙调动全校死守革委会防线，还是顺势迎来那场无法回避的宿命转折？",
+    choices: [
+      {
+        text: '拉响警报！紧急抽调各班骨干死守全校外围阵地！',
+        previewText: '政治点数 -15，稳定度 +6，B3与行政楼控制度 +8',
+        disabled: (s: GameState) => s.stats.pp < 15,
+        effect: (s: GameState) => {
+          const flags = { ...s.flags };
+          applyTileCtrlDeltas(flags, { b3_tower: 8, b3_a1a3: 8, admin_main: 8 });
+          return {
+            flags,
+            stats: {
+              ...s.stats,
+              pp: s.stats.pp - 15,
+              stab: Math.min(100, s.stats.stab + 6),
+            }
+          };
+        }
+      },
+      {
+        text: '【防线收缩】放弃外围空城，全线退守B3三层打响绝望走廊巷战！',
+        previewText: '触发绝望线转折事件（进入潘仁越绝望分支）',
+        effect: (s: GameState) => ({
+          flags: { ...s.flags, trigger_despair_from_infiltration: true },
+          stats: { ...s.stats, stab: Math.max(0, s.stats.stab - 8) }
+        })
+      },
+      {
+        text: '【校方反攻】切换视角：配合吴福军总攻令，以铁腕彻底接管校园！',
+        previewText: '触发吴福军总攻令（进入铁腕时代校方路线）',
+        effect: (s: GameState) => ({
+          flags: { ...s.flags, trigger_wu_from_infiltration: true },
+          stats: { ...s.stats, stab: Math.min(100, s.stats.stab + 5) }
+        })
+      }
+    ]
+  },
+  committee_b3_fortification_event: {
+    id: 'committee_b3_fortification_event',
+    title: '钢筋、课桌与红袖章',
+    isStoryEvent: true,
+    description: "在武装纠察队的统一号令下，B3教学楼彻底蜕变成了一座名副其实的红色堡垒。废弃铁架床被拆下来焊成楼梯口拒马，一楼所有侧门换上了双道铁链，顶层水房里囤满了三大桶饮用水与成箱压缩饼干。几名高三男生正蹲在走廊拐角调试从物理实验室拆来的简易声光警报器。\n\n看着眼前这座武装到牙齿的堡垒，王照凯满意地点了点头，而路过的几名普通班女生却下意识加快了脚步——墙上的标语越来越红，哨卡的盘查越来越严。这座堡垒足以让吴福军的防暴队撞得头破血流，只是没人知道，它究竟是在把敌人关在外面，还是把学生们锁进了另一座高墙里。",
+    buttonText: '只要B3不倒，红旗便永不落地。',
+    effect: (s: GameState) => {
+      const flags = { ...s.flags };
+      applyTileCtrlDeltas(flags, { b3_a1a3: 12, b3_b1b2: 12, b3_tower: 15 });
+      ['b3_a1a3', 'b3_b1b2', 'b3_tower'].forEach(t => {
+        flags[`tile_def_${t}`] = ((flags[`tile_def_${t}`] as number | undefined) ?? 0) + 5;
+      });
+      return {
+        flags,
+        stats: {
+          ...s.stats,
+          partyCentralization: Math.min(100, s.stats.partyCentralization + 6),
+          stab: Math.min(100, s.stats.stab + 6),
+        }
+      };
+    }
+  },
+  committee_student_charter_event: {
+    id: 'committee_student_charter_event',
+    title: '油印机里的第一部约法',
+    isStoryEvent: true,
+    description: "经过七个夜晚的逐条辩论，一份用实验楼老式油印机印制的《合肥一中学生临时自治约法（草案）》终于摆上了全校每一张课桌。油墨味刺鼻，纸张粗糙发黄，但第一页印着的五条铁律却让无数疲惫的高三生眼眶发热：\n\n“一、任何处分与扣分须经公开听证；二、严禁无故剥夺午休与体育课；三、严禁强制征订校外高价教辅；四、保障各班社团与匿名建言自由；五、任何执政委员会成员无权凌驾于约法之上。”\n\n潘仁越与豪邦站在B3走廊里，看着学生们围在公告栏前逐字诵读。在充满暴力与算计的动荡年代，薄薄几张油印纸或许挡不住防暴钢叉，却第一次把“尊严”二字，白纸黑字地写进了合一的历史。",
+    buttonText: '这是我们亲手立下的规矩。',
+    effect: (s: GameState) => ({
+      stats: {
+        ...s.stats,
+        allianceUnity: Math.min(100, s.stats.allianceUnity + 10),
+        studentSanity: Math.min(100, s.stats.studentSanity + 10),
+        ss: Math.min(100, s.stats.ss + 6),
+      }
+    })
+  },
+  despair_ration_water_event: {
+    id: 'despair_ration_water_event',
+    title: '一瓶矿泉水的重量',
+    isStoryEvent: true,
+    description: "断水断电后的B3三楼闷热得像一只密闭的铁罐。后勤小组翻遍了每一间教室的储物柜，一共只凑出七箱矿泉水、十几袋饼干和两箱不知谁留下的八宝粥。楼下吴福军的防暴队正用高音喇叭每隔十分钟喊一次话：“里面的人听着，主动走下来写检讨的一律免予开除，管热饭热水！”\n\n走廊尽头，几名守了一整夜楼梯口街垒的男生嗓子已经哑得说不出话，而隔壁教室的临时救护点里，两名中暑发烧的女生正裹着校服发抖。每一瓶水都不再是两块钱的商品，而是维系这条残破防线不断裂的命脉。",
+    choices: [
+      {
+        text: '优先配给伤员与体力不支的同学，前线干部带头减半定量。',
+        previewText: '学生支持 +8，学生理智 +10，稳定度 +4',
+        effect: (s: GameState) => ({
+          stats: {
+            ...s.stats,
+            ss: Math.min(100, s.stats.ss + 8),
+            studentSanity: Math.min(100, s.stats.studentSanity + 10),
+            stab: Math.min(100, s.stats.stab + 4),
+          }
+        })
+      },
+      {
+        text: '实行战时铁律：一切物资优先保障一线街垒守卫，确保防线不破！',
+        previewText: '稳定度 +10，B3控制度 +10，学生理智 -5',
+        effect: (s: GameState) => {
+          const flags = { ...s.flags };
+          applyTileCtrlDeltas(flags, { b3_tower: 10, b3_a1a3: 8, b3_b1b2: 8 });
+          return {
+            flags,
+            stats: {
+              ...s.stats,
+              stab: Math.min(100, s.stats.stab + 10),
+              studentSanity: Math.max(0, s.stats.studentSanity - 5),
+            }
+          };
+        }
+      }
+    ]
+  },
+  despair_smuggle_zhouchen_event: {
+    id: 'despair_smuggle_zhouchen_event',
+    title: '消防梯上的药箱',
+    isStoryEvent: true,
+    description: "凌晨两点，B3西侧背阴的消防窗口忽然传来三声极轻的叩击。守夜的学生紧张地举起拖把杆凑过去，却看见一张在手电微光里满是焦急与泪痕的熟悉脸庞——美术老师周晨和几位陈栋时代的老教师趁着保安换岗的盲区，冒着被开除的风险爬上消防梯，把两大袋退烧药、碘伏、纱布和还带着余温的馒头塞进了铁栅栏。\n\n“仁越，楼下已经调来了及第重金雇来的黑保安，明早他们就要架液压剪强攻了。”周晨死死抓住潘仁越冰凉的手，声音发颤，“尤光雷老师已经在联系省教育厅的旧交，但远水救不了近火。算老师求你，趁现在西门还没彻底焊死，让我带伤员和撑不住的孩子先撤出去吧！”",
+    choices: [
+      {
+        text: '请周老师掩护伤员与动摇者体面撤离——我们绝不拿同学当人质。',
+        previewText: '学生支持 +12，学生理智 +12，稳定度 -4',
+        effect: (s: GameState) => ({
+          stats: {
+            ...s.stats,
+            ss: Math.min(100, s.stats.ss + 12),
+            studentSanity: Math.min(100, s.stats.studentSanity + 12),
+            stab: Math.max(0, s.stats.stab - 4),
+          }
+        })
+      },
+      {
+        text: '收下药品，把全楼联名血书交给周老师带往紫云路与媒体！',
+        previewText: '政治点数 +30，稳定度 +8，学生支持 +6',
+        effect: (s: GameState) => ({
+          stats: {
+            ...s.stats,
+            pp: s.stats.pp + 30,
+            stab: Math.min(100, s.stats.stab + 8),
+            ss: Math.min(100, s.stats.ss + 6),
+          }
+        })
+      }
+    ]
+  },
+  despair_burn_records_event: {
+    id: 'despair_burn_records_event',
+    title: '黑夜里的纸火',
+    isStoryEvent: true,
+    description: "寒潮过境的深夜，断电的教学楼里冷得呵气成霜。几名学生从二楼废弃的自治会办公室里拖出了整整六大箱文件——里面全是封安宝复辟以来积攒的班级量化扣分表、学生违纪检讨书、以及准备用来秋后算账的“重点观察名单”。\n\n有人找来一只铁皮垃圾桶，提议把这些吃人的废纸全点着，既能给冻得发抖的同学们取暖，又能把火光映在窗口，让楼下围困的吴福军看清这群年轻人绝不屈服的脊梁。也有冷静的干事提醒：如果把这批带有校方公章的黑账保留下来，日后或许能成为扳倒封安宝的铁证。",
+    choices: [
+      {
+        text: '一把火烧了这堆吃人的红黑榜！让火光照亮整片滨湖夜空！',
+        previewText: '学生理智 +12，激进愤怒 +10，稳定度 +6',
+        effect: (s: GameState) => ({
+          stats: {
+            ...s.stats,
+            studentSanity: Math.min(100, s.stats.studentSanity + 12),
+            radicalAnger: Math.min(100, s.stats.radicalAnger + 10),
+            stab: Math.min(100, s.stats.stab + 6),
+          }
+        })
+      },
+      {
+        text: '连夜拍照封存这批黑账，把它们打包发给校外家长群与省厅！',
+        previewText: '政治点数 +25，学生支持 +8，资本渗透 -10',
+        effect: (s: GameState) => ({
+          stats: {
+            ...s.stats,
+            pp: s.stats.pp + 25,
+            ss: Math.min(100, s.stats.ss + 8),
+            capitalPenetration: Math.max(0, s.stats.capitalPenetration - 10),
+          }
+        })
+      }
+    ]
+  },
+  despair_red_toad_signal_event: {
+    id: 'despair_red_toad_signal_event',
+    title: '昔日死敌的援手',
+    isStoryEvent: true,
+    description: "午夜十二点整，B3三楼楼梯间里那台早已没电的对讲机突然在备用频道里刺啦作响。一个沙哑却再熟悉不过的冷硬声音穿透了电流声，让原本紧绷着神经的自由派干事们集体僵在原地——那是王照凯。\n\n“潘仁越，听得见吗？”王照凯没有半分冷嘲热讽，语速快得像战场电报，“你在议会里把我们排挤出去的账，留到以后再算。现在楼下那帮穿黑西装的雇佣兵和吴福军的狗，是冲着砸死整个合一的脊梁来的。我手里还有四十多个钢铁红蛤的铁杆弟兄潜伏在实验楼和东翼配电间。只要你点个头，明晚总攻一打响，我们从东翼炸闸断掉他们的探照灯、从背后夹击保安队，跟你们一起把B3守下来！”\n\n指挥室里死一般寂静。几名激进自由派立刻反对，怕引狼入室、打赢了也沦为红蛤附庸；但望着楼下黑压压的防暴盾牌，所有人都清楚——单凭手里的拖把杆，自由派根本撑不过明天的强攻。",
+    choices: [
+      {
+        text: '“照凯，东翼交给你了！——为了合一，我们再并肩战一次！”',
+        previewText: '红蛤策应：B3保卫战首回合行动点 +1，初始压力 −10；联盟团结 +20，稳定度 +10',
+        effect: (s: GameState) => ({
+          flags: { ...s.flags, despair_red_toad_ally: true },
+          stats: {
+            ...s.stats,
+            allianceUnity: Math.min(100, s.stats.allianceUnity + 20),
+            stab: Math.min(100, s.stats.stab + 10),
+            ss: Math.min(100, s.stats.ss + 8),
+          }
+        })
+      },
+      {
+        text: '“谢谢你的好意，但自由的旗帜，容不得先锋队的刺刀替我们扛。”',
+        previewText: '政治点数 +30，学生理智 +12，联盟团结 -10',
+        effect: (s: GameState) => ({
+          flags: { ...s.flags, despair_red_toad_ally: false },
+          stats: {
+            ...s.stats,
+            pp: s.stats.pp + 30,
+            studentSanity: Math.min(100, s.stats.studentSanity + 12),
+            allianceUnity: Math.max(0, s.stats.allianceUnity - 10),
+          }
+        })
+      }
+    ]
+  },
+  despair_parents_cry_event: {
+    id: 'despair_parents_cry_event',
+    title: '穿破夜雾的扩音器',
+    isStoryEvent: true,
+    description: "天色微明时，紫云路校门外已经聚起了黑压压几百名闻讯赶来的学生家长。校方死死拉着伸缩门，教务处的扩音喇叭不断重复着“校内一切正常，仅极少数违纪学生破坏公物”。\n\n潘仁越踩上三楼窗台，把全楼最后一只还能响的电池喊话筒架在栏杆上，深吸了一口刺骨的寒气：“叔叔阿姨们！你们听着！我们不是暴徒，我们是你们的孩子！封安宝和及第教育把高三逼得连水都不让喝、把打伤同学的外包保安放进教学楼！如果今天你们转身走了，明天被抬出来的可能就是你们自己的孩子！”\n\n清亮而嘶哑的少年嗓音穿透了滨湖清晨的薄雾。铁门外的家长群瞬间沸腾了，几十部手机同时举起拍向教学楼，连楼下举着盾牌的几名外包保安也开始不安地互相张望。",
+    choices: [
+      {
+        text: '把受伤同学的绷带与及第高价收费单从三楼抛向校门外！',
+        previewText: '学生支持 +12，稳定度 +8，资本渗透 -15',
+        effect: (s: GameState) => ({
+          stats: {
+            ...s.stats,
+            ss: Math.min(100, s.stats.ss + 12),
+            stab: Math.min(100, s.stats.stab + 8),
+            capitalPenetration: Math.max(0, s.stats.capitalPenetration - 15),
+          }
+        })
+      },
+      {
+        text: '号召全楼齐唱校歌，用尊严与克制赢得家长和路人的同情。',
+        previewText: '学生理智 +15，学生支持 +10，PP +15',
+        effect: (s: GameState) => ({
+          stats: {
+            ...s.stats,
+            studentSanity: Math.min(100, s.stats.studentSanity + 15),
+            ss: Math.min(100, s.stats.ss + 10),
+            pp: s.stats.pp + 15,
+          }
+        })
+      }
+    ]
+  },
+  despair_counter_attack_event: {
+    id: 'despair_counter_attack_event',
+    title: '废墟上的反冲锋',
+    isStoryEvent: true,
+    description: "吴福军引以为傲的防暴阵型终于在B3二楼楼梯间彻底崩溃了。连续数小时的强攻非但没能拿下课桌街垒，反而因为校门外几百名愤怒家长的围堵与外包保安的临阵倒戈陷入了腹背受敌的绝境。东翼配电间突然炸起一团耀眼的电火花，校园里所有刺眼的探照灯应声熄灭——埋伏在外围的支援力量动了！\n\n“就是现在！全员翻过街垒，把他们赶出B3！”潘仁越浑身沾满粉笔灰与干粉白雾，第一个跃过翻倒的讲台冲下楼梯。在他身后，原本弹尽粮绝、连站都快站不稳的几百名抵抗军爆发出震耳欲聋的怒吼，如决堤的怒涛般顺着楼梯间反向碾压下去。丢盔弃甲的防暴钢叉滚落一地，曾经不可一世的吴福军在混乱中被人群冲散，只能仓皇逃向行政楼。",
+    buttonText: '黑夜撕开了一道口子——冲向广播站！',
+    effect: (s: GameState) => {
+      const flags = { ...s.flags };
+      applyTileCtrlDeltas(flags, { b3_tower: 30, b3_a1a3: 30, b3_b1b2: 30, admin_main: 25, court_area: 20 });
+      return {
+        flags,
+        stats: {
+          ...s.stats,
+          ss: Math.min(100, s.stats.ss + 25),
+          stab: Math.min(100, s.stats.stab + 20),
+          studentSanity: Math.min(100, s.stats.studentSanity + 15),
+        }
+      };
+    }
+  },
+  despair_dawn_break_event: {
+    id: 'despair_dawn_break_event',
+    title: '焦土上的共和国',
+    isStoryEvent: true,
+    description: "当清晨的第一缕阳光照进满目疮痍的行政楼广播站时，整座滨湖校区像经历了一场真正的战争。破碎的玻璃、折断的防暴棍和散落一地的《五三》铺满了广场，但那面被烟火熏黑边角的黑天红字旗，依然高高飘扬在B3教学楼的制高点。\n\n紫云路校门外，愤怒的家长与匆匆赶来的市教育局紧急工作组彻底堵住了校方反扑的退路。面对满身灰尘却寸步不让的学生代表、以及周晨和老教师们当众递上的伤情与黑账铁证，市局领导脸色铁青地当场宣布暂停封安宝与吴福军职务，全面清退及第外包安保。\n\n潘仁越推开广播站破碎的窗户，凛冽却清新的晨风扑面而来。这场从绝境中杀出来的惨胜没有带来童话般的乌托邦——教室满目疮痍，复习进度千疮百孔，未来的路依旧布满荆棘。但站在广场上的三千名年轻人心里都明白：从这一天起，再也没有任何人敢把合肥一中的学生，当成任人宰割的做题零件了。",
+    buttonText: '我们守住了B3，也守住了作为人的尊严。',
+    effectsText: ['触发结局：B3保卫战胜利'],
+    effect: (s: GameState) => ({
+      stats: { ...s.stats, pp: s.stats.pp + 100, ss: Math.min(100, s.stats.ss + 20), stab: Math.min(100, s.stats.stab + 20) },
+      gameEnding: 'game_over_victory'
+    })
+  },
+  despair_rooftop_broadcast_event: {
+    id: 'despair_rooftop_broadcast_event',
+    title: '致未来的合一人',
+    isStoryEvent: true,
+    description: "三楼的课桌街垒终究没能挡住液压剪与催泪瓦斯的联合强攻。防线被撕开的瞬间，潘仁越与最后三十几名死守到底的同学被逼上了暴雨倾盆的B3天台。铁门在身后发出沉重刺耳的撞击声，门锁已经肉眼可见地变形扭曲。\n\n雨水顺着发梢不断砸进眼眶。潘仁越没有再去堵门，而是把那台仅剩最后一点电量的手摇喊话器高高举向漆黑的夜空，对着下面亮着无数手电筒的宿舍楼，用尽胸膛里最后一丝力气喊出了留给这座校园的绝笔：\n\n“合一的同学们！今天我们输了，明天早上他们会把墙刷白、把卷子重新发到你们桌上，告诉你们什么都没发生过！但请你们记住今晚的雨、记住B3楼顶升起过的这面旗——只要还有一个人拒绝低下头，这座监狱就永远赢不了！”",
+    buttonText: '门锁断了。但声音已经飞过了高墙。',
+    effect: (s: GameState) => ({
+      stats: {
+        ...s.stats,
+        ss: Math.min(100, s.stats.ss + 10),
+        studentSanity: Math.max(0, s.stats.studentSanity - 10),
+      }
+    })
+  },
+  despair_final_fall_event: {
+    id: 'despair_final_fall_event',
+    title: '黑夜吞没最后一道火光',
+    isStoryEvent: true,
+    description: "铁门轰然倒地。十几道刺眼的强光手电瞬间交织成惨白的囚笼，把天台上浑身湿透的少年们死死按在积满雨水的地砖上。吴福军撑着一把黑伞跨过门槛，皮鞋重重地踩在那面被雨水泡透的黑天红字旗上，脸上挂着冰冷而残酷的笑意。\n\n“闹剧结束了，潘同学。”吴福军弯下腰，从泥水里捡起那只仍在滋滋作响的喊话器，“你们这群不识抬举的东西，真以为喊几句自由就能赢过高考和规矩？带走，全部记过清退！”\n\n潘仁越被反扭着双臂押下楼梯时，没有求饶，也没有低头。他最后望了一眼窗外漆黑的滨湖校区——黑夜吞没了最后一道火光，防暴队重新接管了每一条走廊，而属于这一届合一人的漫长寒冬，彻底降临了。",
+    buttonText: '我们尽力了……',
+    effectsText: ['触发结局：绝望的终局'],
+    effect: () => ({ gameEnding: 'game_over_despair' })
+  },
+  wu_guard_academy_event: {
+    id: 'wu_guard_academy_event',
+    title: '操场上的方阵',
+    isStoryEvent: true,
+    description: "周日下午的体育馆空地上响起了震耳欲聋的口号声。吴福军不仅把保安队扩编了一倍，还托关系请来两名退伍格斗教官，正对着上百名身穿深蓝作战背心的护校队员操练防暴盾牌推进阵型与抓捕擒拿术。\n\n几名路过看台的高三教师看得心惊肉跳——这哪里还是高中校园的门卫保安，分明是一支随时能封锁整条街区的准军事武装。封安宝在行政楼窗前静静俯视着那排整齐划一的黑色方阵，指尖轻轻叩着茶杯沿：这把刀越锋利，镇压残党越省心，可一旦刀柄握得不够紧，最先割伤的就是握刀的人。",
+    choices: [
+      {
+        text: '全额批复护校队特种训练经费——非常时期，就得养出一支铁军！',
+        previewText: '残党实力 -12，吴福军野心 +12，封校长信任 +5，学生愤怒 +6',
+        effect: (s: GameState) => ({
+          wuState: s.wuState ? {
+            ...s.wuState,
+            guerrillaStrength: Math.max(0, s.wuState.guerrillaStrength - 12),
+            wuAmbition: Math.min(100, s.wuState.wuAmbition + 12),
+            fengTrust: Math.min(100, s.wuState.fengTrust + 5),
+            studentAnger: Math.min(100, s.wuState.studentAnger + 6),
+          } : undefined
+        })
+      },
+      {
+        text: '派总务处派驻财务监督员并削减一半装备预算，敲打吴福军。',
+        previewText: '吴福军野心 -8，封校长信任 -6，稳定度 +5，政治点数 +20',
+        effect: (s: GameState) => ({
+          stats: { ...s.stats, stab: Math.min(100, s.stats.stab + 5), pp: s.stats.pp + 20 },
+          wuState: s.wuState ? {
+            ...s.wuState,
+            wuAmbition: Math.max(0, s.wuState.wuAmbition - 8),
+            fengTrust: Math.max(0, s.wuState.fengTrust - 6),
+          } : undefined
+        })
+      }
+    ]
+  },
+  wu_broadcast_discipline_event: {
+    id: 'wu_broadcast_discipline_event',
+    title: '刷白的走廊墙',
+    isStoryEvent: true,
+    description: "十几个后勤工人提着白漆桶从B3一楼刷到了顶楼，昔日写满“还我自由”“废除量化考核”的粉笔字与红色标语被厚厚的乳胶漆盖得严严实实，刺鼻的油漆味弥漫了整栋教学楼。行政楼广播站也完成了线路检修，所有教室的希沃白板被强行锁死了校方主控频道。\n\n接下来每天早中晚的黄金广播时段该放什么内容，办公室里产生了分歧。吴福军主张全校循环播报《违纪通报》与《学生手册》严管条文，让恐惧刻进每个人的耳膜；一旁的杨玉乐则端着保温杯笑眯眯地建议，不如改放几段温和励志的高考动员与名师寄语，把刺耳的铁腕包上一层体面的糖衣。",
+    choices: [
+      {
+        text: '按吴福军的办：全天候循环播报校规铁律与违纪点名通报！',
+        previewText: '残党实力 -8，稳定度 +6，学生愤怒 +8，舆论压力 +5',
+        effect: (s: GameState) => ({
+          stats: { ...s.stats, stab: Math.min(100, s.stats.stab + 6) },
+          wuState: s.wuState ? {
+            ...s.wuState,
+            guerrillaStrength: Math.max(0, s.wuState.guerrillaStrength - 8),
+            studentAnger: Math.min(100, s.wuState.studentAnger + 8),
+            publicOpinion: Math.min(100, s.wuState.publicOpinion + 5),
+          } : undefined
+        })
+      },
+      {
+        text: '采纳杨玉乐的建议：换上温情高考广播，对外营造祥和表象。',
+        previewText: '舆论压力 -8，教师支持 +6，学生愤怒 -4，政治点数 -10',
+        disabled: (s: GameState) => s.stats.pp < 10,
+        effect: (s: GameState) => ({
+          stats: { ...s.stats, pp: s.stats.pp - 10 },
+          wuState: s.wuState ? {
+            ...s.wuState,
+            publicOpinion: Math.max(0, s.wuState.publicOpinion - 8),
+            teacherSupport: Math.min(100, s.wuState.teacherSupport + 6),
+            studentAnger: Math.max(0, s.wuState.studentAnger - 4),
+          } : undefined
+        })
+      }
+    ]
+  },
+  wu_exam_blacklist_event: {
+    id: 'wu_exam_blacklist_event',
+    title: '贴回墙上的红黑榜',
+    isStoryEvent: true,
+    description: "戒严后的第一次全年级周考成绩出炉。教务处把那块在起义期间被学生砸碎的玻璃展板重新装好，连夜打印出长达三米的年级总排名红黑榜。前一百名用烫金红字标出，后三百名则赫然印在触目惊心的黑框之中。\n\n吴福军拿着红笔站在展板前，提议把上次起义期间表现活跃的几十名骨干单独拎出来，在名字后面加注“纪律待察”的警示星号，以此杀鸡儆猴；但高三年级几位老班主任却悄悄劝阻，认为只要把学生的注意力重新锁回冷冰冰的分数竞争里，他们自己就会忙着内卷、无暇造反，没必要再刻意翻旧账激怒全校。",
+    choices: [
+      {
+        text: '加注“纪律待察”黑星！让所有刺头在全校面前抬不起头！',
+        previewText: '残党实力 -10，TPR +180，学生愤怒 +10，舆论压力 +6',
+        effect: (s: GameState) => ({
+          stats: { ...s.stats, tpr: s.stats.tpr + 180 },
+          wuState: s.wuState ? {
+            ...s.wuState,
+            guerrillaStrength: Math.max(0, s.wuState.guerrillaStrength - 10),
+            studentAnger: Math.min(100, s.wuState.studentAnger + 10),
+            publicOpinion: Math.min(100, s.wuState.publicOpinion + 6),
+          } : undefined
+        })
+      },
+      {
+        text: '只贴纯粹的分数排名——用升学焦虑本身瓦解他们的团结。',
+        previewText: 'TPR +300，教师支持 +8，学生愤怒 -3',
+        effect: (s: GameState) => ({
+          stats: { ...s.stats, tpr: s.stats.tpr + 300 },
+          wuState: s.wuState ? {
+            ...s.wuState,
+            teacherSupport: Math.min(100, s.wuState.teacherSupport + 8),
+            studentAnger: Math.max(0, s.wuState.studentAnger - 3),
+          } : undefined
+        })
+      }
+    ]
+  },
+  wu_jidi_security_contract_event: {
+    id: 'wu_jidi_security_contract_event',
+    title: '弟弟的“义举”',
+    isStoryEvent: true,
+    description: "晚自习后的校长办公室烟雾缭绕。及第教育CEO封安祥拎着一只精致的公文包推门而入，脸上挂着那副标志性的精明笑容：“大哥，听说你刚把B3的乱子平下去，学校监控、门禁全被那帮小兔崽子砸烂了，经费吃紧吧？我们及第可以无偿捐赠全套最新的人脸识别闸机、两百个高清探头和一整套高三冲刺密卷。”\n\n封安宝吹了吹茶沫，自然知道亲弟弟从不做赔本买卖。果然，封安祥紧接着便亮出了底牌：作为回报，戒严期间校内只准使用及第统一配发的教辅资料，且周末封闭自习室的辅导名额由及第独家承包。一旁的吴福军冷着脸没说话——他既眼馋那套无死角监控系统，又本能地厌恶资本的手伸进自己的地盘。",
+    choices: [
+      {
+        text: '签下“校企安防共建协议”——有钱有探头，这笔买卖划算！',
+        previewText: 'PP +45，TPR +350，残党实力 -8，资本渗透 +15，舆论压力 +8',
+        effect: (s: GameState) => ({
+          stats: {
+            ...s.stats,
+            pp: s.stats.pp + 45,
+            tpr: s.stats.tpr + 350,
+            capitalPenetration: Math.min(100, s.stats.capitalPenetration + 15),
+          },
+          wuState: s.wuState ? {
+            ...s.wuState,
+            guerrillaStrength: Math.max(0, s.wuState.guerrillaStrength - 8),
+            publicOpinion: Math.min(100, s.wuState.publicOpinion + 8),
+          } : undefined
+        })
+      },
+      {
+        text: '婉拒封安祥的“好意”——合一的规矩由校方自己守，不卖给商人。',
+        previewText: 'PP -15，封校长信任 +8，教师支持 +8，舆论压力 -5',
+        disabled: (s: GameState) => s.stats.pp < 15,
+        effect: (s: GameState) => ({
+          stats: { ...s.stats, pp: s.stats.pp - 15 },
+          wuState: s.wuState ? {
+            ...s.wuState,
+            fengTrust: Math.min(100, s.wuState.fengTrust + 8),
+            teacherSupport: Math.min(100, s.wuState.teacherSupport + 8),
+            publicOpinion: Math.max(0, s.wuState.publicOpinion - 5),
+          } : undefined
+        })
+      }
+    ]
+  },
+  wu_feng_curriculum_cage_event: {
+    id: 'wu_feng_curriculum_cage_event',
+    title: '白皮书里的青春',
+    isStoryEvent: true,
+    description: "拿下“平安校园示范校”提名后，封安宝趁热打铁，抽调杨玉乐名师工作室与教务处骨干，连夜编纂了一本厚达三百页的《合一新时代精细化育人范式白皮书》。书中把精确到秒的作息表、量化扣分矩阵与全封闭备考流程统统包装成“科学高效的现代名校治理典范”，准备报送省厅向全省兄弟中学推广。\n\n看着烫金封面上那一行行冰冷华丽的术语，几位被迫参与校对的年轻老师一言不发——白皮书里写满了升学曲线、平均分增量与纪律达标率，唯独从第一页翻到最后一页，都找不到“休息”和“快乐”这两个词。",
+    choices: [
+      {
+        text: '高调召开全省观摩发布会，把“合一范式”打造成封校长的终身政绩！',
+        previewText: 'PP +35，封校长信任 +10，舆论压力 -6，学生理智 -8',
+        effect: (s: GameState) => ({
+          stats: { ...s.stats, pp: s.stats.pp + 35, studentSanity: Math.max(0, s.stats.studentSanity - 8) },
+          wuState: s.wuState ? {
+            ...s.wuState,
+            fengTrust: Math.min(100, s.wuState.fengTrust + 10),
+            publicOpinion: Math.max(0, s.wuState.publicOpinion - 6),
+          } : undefined
+        })
+      },
+      {
+        text: '仅作为校内考核蓝本悄然施行，少在媒体前招摇以免节外生枝。',
+        previewText: '稳定度 +6，教师支持 +8，学生愤怒 -5',
+        effect: (s: GameState) => ({
+          stats: { ...s.stats, stab: Math.min(100, s.stats.stab + 6) },
+          wuState: s.wuState ? {
+            ...s.wuState,
+            teacherSupport: Math.min(100, s.wuState.teacherSupport + 8),
+            studentAnger: Math.max(0, s.wuState.studentAnger - 5),
+          } : undefined
+        })
+      }
+    ]
+  },
+  wu_feng_student_cadres_event: {
+    id: 'wu_feng_student_cadres_event',
+    title: '蓝袖章的新主人',
+    isStoryEvent: true,
+    description: "封安宝深知，靠满走廊穿保安制服的成年人盯着学生，终究容易落人口实。随着示范校授牌落地，他重新启用了昔日被学生撕碎的“学生自治督导团”——这一次，臂章换成了柔和的浅蓝色，招募对象专门锁定在各重点班成绩优异、渴望拿到综合素质评价A级与高校推荐加分的优等生。\n\n不到三天，报名表便堆满了政教处。穿回制服的保安队退居门卫与外围，而戴着浅蓝袖章的同班同学重新拿起记录本，开始面无表情地记下同桌午休抬头看窗外的次数。比起吴福军的橡胶棍，让最聪明的孩子心甘情愿地充当牢笼的看守，才是封安宝最得意的统治艺术。",
+    choices: [
+      {
+        text: '把“强基综评推荐权”直接与督导团执勤积分挂钩！',
+        previewText: '吴福军野心 -10，残党实力 -10，学生愤怒 +6，学生理智 -6',
+        effect: (s: GameState) => ({
+          stats: { ...s.stats, studentSanity: Math.max(0, s.stats.studentSanity - 6) },
+          wuState: s.wuState ? {
+            ...s.wuState,
+            wuAmbition: Math.max(0, s.wuState.wuAmbition - 10),
+            guerrillaStrength: Math.max(0, s.wuState.guerrillaStrength - 10),
+            studentAnger: Math.min(100, s.wuState.studentAnger + 6),
+          } : undefined
+        })
+      },
+      {
+        text: '要求督导团只负责考勤提醒、严禁随意扣分，维持温和体面。',
+        previewText: '舆论压力 -8，学生愤怒 -6，教师支持 +6',
+        effect: (s: GameState) => ({
+          wuState: s.wuState ? {
+            ...s.wuState,
+            publicOpinion: Math.max(0, s.wuState.publicOpinion - 8),
+            studentAnger: Math.max(0, s.wuState.studentAnger - 6),
+            teacherSupport: Math.min(100, s.wuState.teacherSupport + 6),
+          } : undefined
+        })
+      }
+    ]
+  },
+  wu_feng_silenced_memorial_event: {
+    id: 'wu_feng_silenced_memorial_event',
+    title: '抹平的校史陈列柜',
+    isStoryEvent: true,
+    description: "行政楼一层的百年校史馆闭馆翻修了整整一周。重新开放那天，学生们惊愕地发现，原本陈列在最显眼位置、记录着陈栋老校长时期社团节与民主议事会的整面老照片墙被撤得一干二净；取而代之的，是大幅烫金喷绘的近三年一本率攀升柱状图、“平安校园示范校”铜牌特写，以及封安宝在开学典礼上挥手致意的巨幅肖像。\n\n关于2023年秋天的B3街垒、黑天红字旗、甚至吴福军曾手握重兵的铁腕戒严，整座校史馆里没有留下半个标点符号。当记忆被整齐地装进碎纸机，封安宝站在光洁如镜的大理石地板上，终于可以毫无阻碍地迈向他梦寐以求的“无固定期限任期”。",
+    buttonText: '历史只属于最后留在主席台上的那个人。',
+    effect: (s: GameState) => ({
+      stats: { ...s.stats, stab: Math.min(100, s.stats.stab + 8), pp: s.stats.pp + 25 },
+      wuState: s.wuState ? {
+        ...s.wuState,
+        publicOpinion: Math.max(0, s.wuState.publicOpinion - 8),
+        studentAnger: Math.max(0, s.wuState.studentAnger - 6),
+      } : undefined
+    })
+  },
+  wu_spring_whistleblower_event: {
+    id: 'wu_spring_whistleblower_event',
+    title: '复印机里的证词',
+    isStoryEvent: true,
+    description: "市教育局督导组刚离开校门不到两天，实验楼二层的公用复印机卡纸槽里，便被值班教师拽出一沓印了一半的匿名传单——《致全市家长与教育督导组的公开信》。上面不仅按日期详细记录了吴福军保安队在B3地下室关押学生、强行扣押私人物品的全过程，末尾还附着几张清晰度惊人的夜间巡查照片。\n\n办公室里顿时气氛凝重。吴福军暴跳如雷，咬定这是尤光雷和周晨暗中勾结地下残党捅的刀子，要求立刻封锁全校打印室、把所有老教师挨个过筛子；而封安宝却死死盯着那几张照片，心底发寒——督导组才刚给过黄牌，要是再闹出二次封校搜查，自己这顶校长乌纱帽怕是要先飞了。",
+    choices: [
+      {
+        text: '严厉驳回吴福军的搜查请求，把传单扣下冷处理以免激怒督导组！',
+        previewText: '吴福军野心 +15，封校长信任 -10，舆论压力 -8，教师支持 +8（加速推向冲突顶点）',
+        effect: (s: GameState) => ({
+          wuState: s.wuState ? {
+            ...s.wuState,
+            wuAmbition: Math.min(100, s.wuState.wuAmbition + 15),
+            fengTrust: Math.max(0, s.wuState.fengTrust - 10),
+            publicOpinion: Math.max(0, s.wuState.publicOpinion - 8),
+            teacherSupport: Math.min(100, s.wuState.teacherSupport + 8),
+          } : undefined
+        })
+      },
+      {
+        text: '默许保安队秘密排查泄密者，同时悄悄向教育局递交先发制人的自查报告。',
+        previewText: '吴福军野心 -5，残党实力 -8，舆论压力 +8，学生愤怒 +6',
+        effect: (s: GameState) => ({
+          wuState: s.wuState ? {
+            ...s.wuState,
+            wuAmbition: Math.max(0, s.wuState.wuAmbition - 5),
+            guerrillaStrength: Math.max(0, s.wuState.guerrillaStrength - 8),
+            publicOpinion: Math.min(100, s.wuState.publicOpinion + 8),
+            studentAnger: Math.min(100, s.wuState.studentAnger + 6),
+          } : undefined
+        })
+      }
+    ]
+  },
+  wu_spring_midnight_talk_event: {
+    id: 'wu_spring_midnight_talk_event',
+    title: '雨夜弃子',
+    isStoryEvent: true,
+    description: "深夜十一点，校长室的窗玻璃被冷雨敲得噼啪作响。封安宝没有叫吴福军，只悄悄请来了端着保温杯的杨玉乐和两位资深年级组长。茶过三巡，封安宝把督导组留下的《限期整改通知书》摊在桌面，终于说出了那句憋了半个月的实话：“市里的意思很明白——要保住合一的招牌，就必须交出一颗足够分量的人头，或者拿出一份让学生和家长都闭嘴的和解方案。”\n\n杨玉乐慢悠悠抿了一口枸杞水，眼皮都没抬：“校长，吴主任这把刀帮咱们砍翻了B3，可现在满校园的怨气和局里的火气全冲着他一个人去。拿他替学校挡这一刀，再顺势给残党一点甜头，这盘死棋不就走活了？”门外走廊的暗影里，一名负责端茶倒水的保安队员听见屋里的低语，悄无声息地退进了雨幕中。",
+    choices: [
+      {
+        text: '决定向地下残党递出秘密接触的橄榄枝，准备拿吴福军换取和解！',
+        previewText: '封校长信任 -10，吴福军野心 +12，舆论压力 -10，解锁和解铺垫',
+        effect: (s: GameState) => ({
+          flags: { ...s.flags, wu_spring_peace_hint: true },
+          wuState: s.wuState ? {
+            ...s.wuState,
+            fengTrust: Math.max(0, s.wuState.fengTrust - 10),
+            wuAmbition: Math.min(100, s.wuState.wuAmbition + 12),
+            publicOpinion: Math.max(0, s.wuState.publicOpinion - 10),
+          } : undefined
+        })
+      },
+      {
+        text: '安抚老班主任，承诺用温和整改逐步收权，尽量不把吴福军逼上绝路。',
+        previewText: '吴福军野心 -10，封校长信任 +8，教师支持 +6',
+        effect: (s: GameState) => ({
+          wuState: s.wuState ? {
+            ...s.wuState,
+            wuAmbition: Math.max(0, s.wuState.wuAmbition - 10),
+            fengTrust: Math.min(100, s.wuState.fengTrust + 8),
+            teacherSupport: Math.min(100, s.wuState.teacherSupport + 6),
+          } : undefined
+        })
+      }
+    ]
+  },
+  wu_coup_secret_loyalty_event: {
+    id: 'wu_coup_secret_loyalty_event',
+    title: '酒杯里的“吴家军”',
+    isStoryEvent: true,
+    description: "周五晚间，滨湖新区一家偏僻的土菜馆包厢里烟雾腾腾。吴福军自掏腰包摆了四桌酒席，在座的全是新扩编五百人护校队的正副中队长、门卫班长和宿管总头目，唯独没有请行政楼里的任何一位校领导。\n\n三杯白酒下肚，吴福军解开西装风纪扣，把一叠厚厚的“夜巡特别补贴”红包挨个发到众人手里，红着脸拍案说道：“弟兄们都记清楚了！教育局那帮坐空调房的老爷不管咱们死活，行政楼那帮教书匠也只会背后打小报告！这五百口子人端的是谁给争来的饭碗？往后在这滨湖校区，谁敢动护校队一根汗毛，就问问咱们手里的家伙答不答应！”包厢里爆发出震耳欲聋的敬酒声——一支只认吴福军个人、不再认校长室的私人武装，在酒气中彻底成型。",
+    choices: [
+      {
+        text: '顺水推舟，将后勤仓库与门禁钥匙也一并交由护校队骨干掌管！',
+        previewText: '吴福军野心 +18，封校长信任 +5，残党实力 -8',
+        effect: (s: GameState) => ({
+          wuState: s.wuState ? {
+            ...s.wuState,
+            wuAmbition: Math.min(100, s.wuState.wuAmbition + 18),
+            fengTrust: Math.min(100, s.wuState.fengTrust + 5),
+            guerrillaStrength: Math.max(0, s.wuState.guerrillaStrength - 8),
+          } : undefined
+        })
+      },
+      {
+        text: '提醒各中队长低调行事，表面上继续对封校长毕恭毕敬。',
+        previewText: '吴福军野心 +10，封校长信任 +12，舆论压力 -5',
+        effect: (s: GameState) => ({
+          wuState: s.wuState ? {
+            ...s.wuState,
+            wuAmbition: Math.min(100, s.wuState.wuAmbition + 10),
+            fengTrust: Math.min(100, s.wuState.fengTrust + 12),
+            publicOpinion: Math.max(0, s.wuState.publicOpinion - 5),
+          } : undefined
+        })
+      }
+    ]
+  },
+  wu_coup_wiretap_office_event: {
+    id: 'wu_coup_wiretap_office_event',
+    title: '监听耳机里的校长室',
+    isStoryEvent: true,
+    description: "以“排查地下残党黑客窃听、维护行政通讯安全”为由，吴福军亲自带队接管了行政楼地下一层的总机配线间与全校广播主控室。仅仅半天功夫，所有通往外界的电话线、校园网出口乃至校长办公室那部红色直线座机，全部绕进了保安室里那台新装的信号交换机。\n\n当晚八点，吴福军戴上监听耳机，清清楚楚地听见楼上封安宝正压低声音给市教育局的老熟人打电话，试探着问“明年开春能不能把老吴平调去分校看大门”。耳机里传来封安宝轻描淡写的笑声，保安室里的吴福军却面无表情地按下了录音停止键，随后拿起红笔，在日历上“12月12日”那一格画了一个重重的红圈。",
+    choices: [
+      {
+        text: '秘密测试全校路灯总闸与信号屏蔽器——“预案”随时可以启动。',
+        previewText: '吴福军野心 +20，稳定度 +5，政变筹备就绪',
+        effect: (s: GameState) => ({
+          flags: { ...s.flags, wu_coup_prepped: true },
+          stats: { ...s.stats, stab: Math.min(100, s.stats.stab + 5) },
+          wuState: s.wuState ? {
+            ...s.wuState,
+            wuAmbition: Math.min(100, s.wuState.wuAmbition + 20),
+          } : undefined
+        })
+      },
+      {
+        text: '先按兵不动，继续搜集封安宝与及第教育的通话录音作为把柄。',
+        previewText: '吴福军野心 +12，封校长信任 +8，PP +30',
+        effect: (s: GameState) => ({
+          flags: { ...s.flags, wu_coup_prepped: true },
+          stats: { ...s.stats, pp: s.stats.pp + 30 },
+          wuState: s.wuState ? {
+            ...s.wuState,
+            wuAmbition: Math.min(100, s.wuState.wuAmbition + 12),
+            fengTrust: Math.min(100, s.wuState.fengTrust + 8),
+          } : undefined
+        })
+      }
+    ]
+  },
   phase1_hengshui_schedule: {
     id: 'phase1_hengshui_schedule', title: '挤掉的午休', isStoryEvent: true,
     description: "一纸新印的《高三年级作息时间表》在早读前被钉在了每间教室的后门框上。原本留给学生喘息的午休被红线彻底抹去，从清晨六点二十的早读到深夜十点半的晚自习，整整十六个小时被切割成精密咬合的课时网格，每堂课之间只剩下五分钟的喘息。\n\n“五分钟？去开水房打个水、上个厕所都得百米冲刺！”\n\n走廊里有人压低声音咒骂，但没人敢停下脚步——挂在走廊尽头的倒计时牌和端着记分册的自治会督察员正在同时读秒。预备铃一响，整层楼的学生便如条件反射般退回课桌后。到了晚自习散场，班长捧着年级部下发的量化考勤细则回到寝室，熄灯哨响前还有人在黑暗里喃喃发问：“明天中午……真的连趴在桌上睡二十分钟都不准了吗？”\n\n黑暗中没有回音。在这台加速运转的应试机器里，被征用的时间永远不会退还。",
@@ -1397,6 +2360,13 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
     description: "抄电报的学生跑上楼，把纸递给潘仁越。纸在半路折了一道，有几个字被汗洇开了，末尾那句还能看清：“来电收悉，保持联络。”\n\n“他们的人已经到了？”靠门的学生起身，伸手去够搭在椅背上的外套。\n\n“还没有。信上也没说会来。”潘仁越把纸展开，递还给他，“再抄一份送到楼下。就这几个字，别加别的。”\n\n学生把外套放回椅背，在纸边试了试笔尖。写完第一行，他才问：“那下次他们来信，还送到这间屋吗？”\n\n“送到这儿。我等着。”",
     buttonText: "把回执送下去。",
     isStoryEvent: true,
+    effect: (s: GameState) => ({
+      stats: {
+        ...s.stats,
+        ss: Math.min(100, s.stats.ss + 8),
+        studentSanity: Math.min(100, s.stats.studentSanity + 10),
+      }
+    })
   },
   reform_assessment_trial: {
     id: "reform_assessment_trial",
@@ -1404,6 +2374,13 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
     description: "工作队带来的样表就摊在课桌上。卷面成绩还在原来的位置，旁边印了两列空格，一列记给同学讲题，一列记改过的错题和怎么改的。\n\n“那我前面做的几本题算什么？”一个学生问。他从桌肚里拿出错题本，摊开一页，满是红笔划掉的算式。\n\n工作队的人把表挪近了些。“这一列还是记你的分数。右边是让你讲讲，这道题后来怎么做对的。”\n\n学生又翻了两页，停在一道几何题上。“这道是同桌教我的。后来我才弄懂图上这根线。”他把本子转向工作队的人，拿铅笔在图上点了一下。",
     buttonText: "先照这张表试一试。",
     isStoryEvent: true,
+    effect: (s: GameState) => ({
+      stats: {
+        ...s.stats,
+        studentSanity: Math.min(100, s.stats.studentSanity + 6),
+        allianceUnity: Math.min(100, s.stats.allianceUnity + 5),
+      }
+    })
   },
   pan_despair_chain_1: {
     id: 'pan_despair_chain_1',

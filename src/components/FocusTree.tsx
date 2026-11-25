@@ -16,15 +16,7 @@ interface FocusTreeProps {
   isSuperEventActive?: boolean;
 }
 
-const OR_REQUIRE_FOCUS_IDS = new Set(['steel_toad', 'rectify_campus_order', 'wu_coup_december', 'wu_millennium_plan']);
-
-const hasFocusRequirements = (node: FocusNode, completedFocuses: string[]) => {
-  if (!node.requires || node.requires.length === 0) return true;
-  if (OR_REQUIRE_FOCUS_IDS.has(node.id)) {
-    return node.requires.some(req => completedFocuses.includes(req));
-  }
-  return node.requires.every(req => completedFocuses.includes(req));
-};
+import { hasFocusRequirements, requiresIsOr } from '../engine/gameLoop';
 
 export const PHASE1_NODES: FocusNode[] = [
   { id: 'start_2023', title: '2023秋季开学典礼', description: '三千张年轻的面孔涌入滨湖校区。封安宝的致辞冰冷而精准，杨玉乐的保温杯冒着热气，及第教育的广告横幅在行政楼侧墙猎猎作响。这是合一——一座被高墙围拢的做题工厂，也是一张被各方势力反复拉扯的棋盘。', days: 5, x: 500, y: 50,
@@ -37,100 +29,100 @@ export const PHASE1_NODES: FocusNode[] = [
   },
 
   // ===== 左路：校方体制路线 =====
-  { id: 'build_art', title: '大兴土木的野望', description: '艺术礼堂翻修、B3扩建、操场跑道更换——封安宝的基建计划需要大量资金。及第教育CEO封安祥慷慨解囊。一笔完美的交易：校方得到政绩，资本得到市场。', days: 10, x: 280, y: 200, requires: ['start_2023'],
+  { id: 'build_art', title: '大兴土木的野望', description: '艺术礼堂翻修、B3扩建、操场跑道更换——封安宝的基建计划需要大量资金。及第教育CEO封安祥慷慨解囊。一笔完美的交易：校方得到政绩，资本得到市场。', days: 8, x: 220, y: 200, requires: ['start_2023'],
     onComplete: (s) => ({
-      stats: { ...s.stats, tpr: s.stats.tpr + 300, capitalPenetration: s.stats.capitalPenetration + 10 },
+      stats: { ...s.stats, tpr: s.stats.tpr + 300, capitalPenetration: Math.min(100, s.stats.capitalPenetration + 10) },
       activeEvent: FLAVOR_EVENTS.phase1_build_art,
       flags: { ...s.flags, story_2_triggered: true }
     }),
     effectsText: ['TPR +300', '资本渗透度 +10', '触发事件：水泥里的交易']
   },
-  { id: 'wu_patrol', title: '吴福军的走廊巡查', description: '教务督导吴福军——合一的纪律铁拳。硬底皮鞋每天七次巡视高三走廊，考勤本上密密麻麻记录着每一句交谈、每一次走动、每一张搜出的违禁品。', days: 10, x: 280, y: 380, requires: ['build_art'],
+  { id: 'wu_patrol', title: '吴福军的走廊巡查', description: '教务督导吴福军——合一的纪律铁拳。硬底皮鞋每天七次巡视高三走廊，考勤本上密密麻麻记录着每一句交谈、每一次走动、每一张搜出的违禁品。', days: 8, x: 280, y: 350, requires: ['build_art'],
     onComplete: (s) => ({
       nationalSpirits: s.nationalSpirits.concat({ id: 'wu_patrol_spirit', name: '走廊巡查', description: "在吴福军及其防暴队的高压维稳下，连课间的喘息也沦为了纪律的刑场。冷酷的巡视将每一次交谈、每一次走动乃至每一页私藏的读物，都转化为考勤本上的量化扣分。B3教学楼的走廊里只剩下死寂，但在表象之下，深不见底的怨恨正在暗处如野火般悄然蔓延。暴政换来的从来不是信服，而是被刻意忽视的风暴前兆。", type: 'negative', effects: { stabDaily: 0.5 } }),
-      stats: { ...s.stats, ss: s.stats.ss - 10 },
+      stats: { ...s.stats, ss: Math.max(0, s.stats.ss - 10), radicalAnger: Math.min(100, s.stats.radicalAnger + 8) },
       activeEvent: FLAVOR_EVENTS.phase1_wu_patrol,
       flags: { ...s.flags, story_3_triggered: true }
     }),
-    effectsText: ['国家精神：走廊巡查 (+0.5%稳定/日)', 'SS -10', '触发事件：走廊尽头的脚步声']
+    effectsText: ['国家精神：走廊巡查 (+0.5%稳定/日)', 'SS -10，激进愤怒度 +8', '触发事件：走廊尽头的脚步声']
   },
-  { id: 'fake_five_edu', title: '应付五育检查', description: '市教育局检查团到访。美术教室连夜搬出石膏像，钢琴被擦得锃亮，操场标语换成了全面发展。杨玉乐用三年前的旧照片拼了一份PPT。检查团待了两小时，给合一打了满分。', days: 10, x: 160, y: 560, requires: ['wu_patrol'],
+  { id: 'fake_five_edu', title: '应付五育检查', description: '市教育局检查团到访。美术教室连夜搬出石膏像，钢琴被擦得锃亮，操场标语换成了全面发展。杨玉乐用三年前的旧照片拼了一份PPT。检查团待了两小时，给合一打了满分。', days: 8, x: 150, y: 500, requires: ['wu_patrol'],
     onComplete: (s) => ({
-      stats: { ...s.stats, pp: s.stats.pp + 50, studentSanity: s.stats.studentSanity - 5 },
+      stats: { ...s.stats, pp: s.stats.pp + 50, studentSanity: Math.max(0, s.stats.studentSanity - 5), stab: Math.min(100, s.stats.stab + 5) },
       activeEvent: FLAVOR_EVENTS.phase1_fake_five_edu,
       flags: { ...s.flags, story_4_triggered: true }
     }),
-    effectsText: ['PP +50', '学生理智值 -5', '触发事件：检查团的闹剧']
+    effectsText: ['PP +50，稳定度 +5，学生理智 -5', '触发事件：检查团的闹剧']
   },
-  { id: 'ban_books', title: '严打违规课外书', description: '吴福军的违禁品清单越来越长。《南方周末》是散布焦虑，《读者》是消极避世，《共产党宣言》手抄本更被定性为思想犯罪。但每没收一本书，就会催生三个想看它的人。', days: 10, x: 400, y: 560, requires: ['wu_patrol'],
+  { id: 'ban_books', title: '严打违规课外书', description: '吴福军的违禁品清单越来越长。《南方周末》是散布焦虑，《读者》是消极避世，《共产党宣言》手抄本更被定性为思想犯罪。但每没收一本书，就会催生三个想看它的人。', days: 8, x: 350, y: 500, requires: ['wu_patrol'],
     onComplete: (s) => ({
-      stats: { ...s.stats, radicalAnger: Math.min(100, s.stats.radicalAnger + 20) },
+      stats: { ...s.stats, radicalAnger: Math.min(100, s.stats.radicalAnger + 18), studentSanity: Math.max(0, s.stats.studentSanity - 4) },
       activeEvent: FLAVOR_EVENTS.phase1_ban_books,
       flags: { ...s.flags, story_5_triggered: true }
     }),
-    effectsText: ['激进愤怒度 +20', '触发事件：禁书与禁思']
+    effectsText: ['激进愤怒度 +18，学生理智 -4', '触发事件：禁书与禁思']
   },
-  { id: 'perfect_hengshui', title: '打造完美衡水流水线', description: '作息精确到分钟，课间压缩到五分钟，午休取消。合一的做题机器运转到极限——机器越完美，零件的摩擦声就越刺耳。', days: 14, x: 280, y: 720, requires: ['fake_five_edu', 'ban_books'],
+  { id: 'perfect_hengshui', title: '打造完美衡水流水线', description: '作息精确到分钟，课间压缩到五分钟，午休取消。合一的做题机器运转到极限——机器越完美，零件的摩擦声就越刺耳。', days: 10, x: 250, y: 650, requires: ['fake_five_edu', 'ban_books'],
     onComplete: (s) => ({
-      stats: { ...s.stats, tpr: s.stats.tpr + 400, studentSanity: Math.max(0, s.stats.studentSanity - 5), stab: Math.min(100, s.stats.stab + 5) },
-      flags: { ...s.flags, story_6_triggered: true },
+      stats: { ...s.stats, tpr: s.stats.tpr + 400, studentSanity: Math.max(0, s.stats.studentSanity - 6), stab: Math.min(100, s.stats.stab + 4), radicalAnger: Math.min(100, s.stats.radicalAnger + 10) },
+      flags: { ...s.flags, perfect_hengshui_done: true },
       activeEvent: FLAVOR_EVENTS.phase1_hengshui_schedule
     }),
-    effectsText: ['TPR +400', '学生理智值 -5', '稳定度 +5', '触发事件：挤掉的午休；B3起义只需激进愤怒度 >80']
+    effectsText: ['TPR +400，稳定度 +4，学生理智 -6，激进愤怒度 +10', '触发事件：挤掉的午休']
   },
 
   // ===== 右路：学生反抗路线 =====
-  { id: 'dorm_talks', title: '寝室里的熄灯夜话', description: '晚上十一点半熄灯。黑暗成了最安全的保护色。在被窝里压低声音的交谈中，愤怒在发酵，思想在传播。有人递过来一部旧手机，屏幕上是一个叫钢铁红蛤的群聊。', days: 10, x: 720, y: 200, requires: ['start_2023'],
+  { id: 'dorm_talks', title: '寝室里的熄灯夜话', description: '晚上十一点半熄灯。黑暗成了最安全的保护色。在被窝里压低声音的交谈中，愤怒在发酵，思想在传播。有人递过来一部旧手机，屏幕上是一个叫钢铁红蛤的群聊。', days: 8, x: 780, y: 200, requires: ['start_2023'],
     onComplete: (s) => ({
-      stats: { ...s.stats, allianceUnity: Math.min(100, s.stats.allianceUnity + 6), ss: Math.min(100, s.stats.ss + 3) },
+      stats: { ...s.stats, allianceUnity: Math.min(100, s.stats.allianceUnity + 6), ss: Math.min(100, s.stats.ss + 3), radicalAnger: Math.min(100, s.stats.radicalAnger + 5) },
       activeEvent: FLAVOR_EVENTS.phase1_dorm_talks,
       flags: { ...s.flags, story_2_triggered: true }
     }),
-    effectsText: ['联盟团结度 +6', 'SS +3', '触发事件：熄灯后的频率']
+    effectsText: ['联盟团结度 +6，SS +3，激进愤怒度 +5', '触发事件：熄灯后的频率']
   },
-  { id: 'contact_pan', title: '接触潘仁越的自由派', description: '理科实验班的潘仁越，成绩稳居年级前十，却把民主挂在嘴边。他相信通过学生会提案、校长信箱这些合法渠道可以不流血地改变合一。理想得近乎天真——但足够危险。', days: 10, x: 600, y: 380, requires: ['dorm_talks'],
+  { id: 'contact_pan', title: '接触潘仁越的自由派', description: '理科实验班的潘仁越，成绩稳居年级前十，却把民主挂在嘴边。他相信通过学生会提案、校长信箱这些合法渠道可以不流血地改变合一。理想得近乎天真——但足够危险。', days: 8, x: 680, y: 350, requires: ['dorm_talks'],
     onComplete: (s) => ({
       stats: { ...s.stats, allianceUnity: Math.min(100, s.stats.allianceUnity + 10), ss: Math.min(100, s.stats.ss + 5) },
       activeEvent: FLAVOR_EVENTS.phase1_contact_pan,
       flags: { ...s.flags, story_3_triggered: true }
     }),
-    effectsText: ['联盟团结度 +10', 'SS +5', '触发事件：实验班的另一种声音']
+    effectsText: ['联盟团结度 +10，SS +5', '触发事件：实验班的另一种声音']
   },
-  { id: 'read_marx', title: '研读马列原典', description: '在那部屏幕碎裂的旧手机上，伪装成TXT小说的马列原典正在黑暗中被一行行阅读。政治课本上干瘪的条文，此刻像闪电一样劈开了铁屋子。王照凯正在成为最危险的那个人。', days: 10, x: 840, y: 380, requires: ['dorm_talks'],
+  { id: 'read_marx', title: '研读马列原典', description: '在那部屏幕碎裂的旧手机上，伪装成TXT小说的马列原典正在黑暗中被一行行阅读。政治课本上干瘪的条文，此刻像闪电一样劈开了铁屋子。王照凯正在成为最危险的那个人。', days: 8, x: 880, y: 350, requires: ['dorm_talks'],
     onComplete: (s) => ({
-      stats: { ...s.stats, ss: Math.min(100, s.stats.ss + 10), radicalAnger: Math.min(100, s.stats.radicalAnger + 5) },
+      stats: { ...s.stats, ss: Math.min(100, s.stats.ss + 8), radicalAnger: Math.min(100, s.stats.radicalAnger + 8) },
       activeEvent: STORY_EVENTS.story_3,
       flags: { ...s.flags, story_3_triggered: true }
     }),
-    effectsText: ['SS +10', '激进愤怒度 +5', '触发事件：熄灯后的微光与红蛤']
+    effectsText: ['SS +8，激进愤怒度 +8', '触发事件：熄灯后的微光与红蛤']
   },
-  { id: 'rally_classes', title: '拉拢强基班与平行班', description: '潘仁越的自由党在各个班级发展成员。强基班学霸想要更多自习自由，平行班学生受够了当升学率分母。一个松散的同盟正在成型——脆弱，但足以让行政楼感到不安。', days: 10, x: 600, y: 560, requires: ['contact_pan'],
+  { id: 'rally_classes', title: '拉拢强基班与平行班', description: '潘仁越的自由党在各个班级发展成员。强基班学霸想要更多自习自由，平行班学生受够了当升学率分母。一个松散的同盟正在成型——脆弱，但足以让行政楼感到不安。', days: 8, x: 650, y: 500, requires: ['contact_pan'],
     onComplete: (s) => ({
       stats: { ...s.stats, ss: Math.min(100, s.stats.ss + 4), allianceUnity: Math.min(100, s.stats.allianceUnity + 4) },
-      activeEvent: STORY_EVENTS.story_4,
-      flags: { ...s.flags, story_4_triggered: true }
+      activeEvent: FLAVOR_EVENTS.phase1_rally_classes,
+      flags: { ...s.flags, phase1_rally_classes_done: true }
     }),
-    effectsText: ['SS +4', '联盟团结度 +4', '触发事件：燕妮、二次元与魔怔人']
+    effectsText: ['SS +4，联盟团结度 +4', '触发抉择事件：实验班与平行班的第一次握手']
   },
-  { id: 'protest_privilege', title: '抗议自治会特权', description: '自治会——封安宝设立的傀儡组织——颁布新规：课间禁止走廊逗留。当巡查员拿着扣分本路过28班时，王照凯站起来问了一句：这个自治会，到底自治了什么？走廊里的空气凝固了。', days: 10, x: 840, y: 560, requires: ['read_marx'],
+  { id: 'protest_privilege', title: '抗议自治会特权', description: '自治会——封安宝设立的傀儡组织——颁布新规：课间禁止走廊逗留。当巡查员拿着扣分本路过28班时，王照凯站起来问了一句：这个自治会，到底自治了什么？走廊里的空气凝固了。', days: 8, x: 970, y: 500, requires: ['read_marx'],
     onComplete: (s) => ({
-      stats: { ...s.stats, radicalAnger: Math.min(100, s.stats.radicalAnger + 15) },
+      stats: { ...s.stats, radicalAnger: Math.min(100, s.stats.radicalAnger + 16) },
       activeEvent: FLAVOR_EVENTS.phase1_protest_privilege,
-      flags: { ...s.flags, story_4_triggered: true }
+      flags: { ...s.flags, phase1_protest_done: true }
     }),
-    effectsText: ['激进愤怒度 +15', '触发事件：走廊里的正面对峙']
+    effectsText: ['激进愤怒度 +16', '触发事件：走廊里的正面对峙']
   },
-  { id: 'steel_toad', title: '铸造钢铁红蛤', description: '王照凯在群聊里敲下了一篇洋洋洒洒的阶级分析长文，把狗熊的魔怔言论批得体无完肤。那晚，他把一本做了一半的《五年高考三年模拟》撕成碎片。一个做题机器死去了，一个革命者诞生了。', days: 14, x: 720, y: 720, requires: ['rally_classes', 'protest_privilege'],
+  { id: 'steel_toad', title: '铸造钢铁红蛤', description: '王照凯在群聊里敲下了一篇洋洋洒洒的阶级分析长文，把狗熊的魔怔言论批得体无完肤。那晚，他把一本做了一半的《五年高考三年模拟》撕成碎片。一个做题机器死去了，一个革命者诞生了。', days: 10, x: 810, y: 650, requires: ['rally_classes', 'phase1_red_toad_cell', 'protest_privilege'],
     onComplete: (s) => ({
-      stats: { ...s.stats, partyCentralization: Math.min(100, s.stats.partyCentralization + 8), radicalAnger: Math.min(100, s.stats.radicalAnger + 10), allianceUnity: Math.min(100, s.stats.allianceUnity + 5) },
+      stats: { ...s.stats, partyCentralization: Math.min(100, s.stats.partyCentralization + 8), radicalAnger: Math.min(100, s.stats.radicalAnger + 12), allianceUnity: Math.min(100, s.stats.allianceUnity + 5) },
       activeEvent: STORY_EVENTS.story_5,
       flags: { ...s.flags, story_5_triggered: true }
     }),
-    effectsText: ['党内集权度 +8', '激进愤怒度 +10', '联盟团结度 +5', '触发事件：撕裂的《五三》与真正的左派']
+    effectsText: ['党内集权度 +8，激进愤怒度 +12，联盟团结度 +5', '触发事件：撕裂的《五三》与真正的左派']
   },
 
   // ===== 最终节点：B3起义 =====
-  { id: 'charge_b3', title: '冲上B3教学楼！', description: '所有矛盾在这里汇聚。吴福军的保安队在楼下集结，杨玉乐拨不通封安宝的电话。走廊里的街垒已经堆了三小时，一个女生的额头撞上了消防栓。血沿着她的脸颊流下来——然后，所有人心里的最后一丝畏惧碎了。', days: 5, x: 500, y: 880,
+  { id: 'charge_b3', title: '冲上B3教学楼！', description: '所有矛盾在这里汇聚。吴福军的保安队在楼下集结，杨玉乐拨不通封安宝的电话。走廊里的街垒已经堆了三小时，一个女生的额头撞上了消防栓。血沿着她的脸颊流下来——然后，所有人心里的最后一丝畏惧碎了。', days: 5, x: 500, y: 820,
     canStart: (s) => s.stats.radicalAnger > 80,
     onComplete: (s) => ({
       activeEvent: FLAVOR_EVENTS.phase1_before_charge,
@@ -140,10 +132,47 @@ export const PHASE1_NODES: FocusNode[] = [
     effectsText: ['触发事件链：临界点→B3楼的黑天红字旗→联合革委会成立', '开启校园地图斗争阶段'],
     requiresText: ['激进愤怒度 > 80']
   },
+  { id: 'phase1_jidi_deal', title: '及第“培优”特许协议', description: '艺术礼堂地下层刚一封顶，成箱印着及第蓝白LOGO的冲刺密卷便被悄悄推进了校园。封安祥与新东方讲师李竞凯开始在重点班试水高价“强基培优”，资本的触角正式伸向高三课堂。', days: 8, x: 80, y: 350, requires: ['build_art'],
+    onComplete: (s) => ({
+      activeEvent: FLAVOR_EVENTS.phase1_jidi_deal,
+      flags: { ...s.flags, phase1_jidi_deal_done: true }
+    }),
+    effectsText: ['触发抉择事件：地下室里的“特许培优”', '可借此加速资本渗透，或暗中留证激化学生反感']
+  },
+  { id: 'phase1_faculty_rift', title: '教研室的暗流', description: '封安宝的新政不仅压垮了学生，也在教师办公室里撕开了一道深沟。周晨等陈栋时代的老教师还在死守最后一点人文底线，而精于算计的既得利益者早已靠向行政楼。', days: 7, x: 500, y: 200, requires: ['start_2023'],
+    onComplete: (s) => ({
+      activeEvent: FLAVOR_EVENTS.phase1_faculty_rift,
+      flags: { ...s.flags, phase1_faculty_rift_done: true }
+    }),
+    effectsText: ['触发抉择事件：教研室里的两种声音', '抉择庇护陈栋遗老还是配合绩效考核']
+  },
+  { id: 'phase1_yang_studio', title: '名师工作室的“春风化雨”', description: '相比吴福军喊打喊杀的粗暴，英语特级教师杨玉乐更擅长用一只保温杯和“为了你们高考好”的红脸戏消解怨气。高三28班的一节公开课，将彻底暴露这位老保骨子里的虚伪与荒诞。', days: 8, x: 500, y: 350, requires: ['phase1_faculty_rift'],
+    onComplete: (s) => ({
+      activeEvent: FLAVOR_EVENTS.phase1_yang_studio,
+      flags: { ...s.flags, phase1_yang_studio_done: true }
+    }),
+    effectsText: ['触发抉择事件：五十升空气与“ED/ING”', '影响稳定度与激进愤怒，铺垫杨玉乐路线伏笔']
+  },
+  { id: 'phase1_october_exam', title: '十月联考与“小一六八”', description: '高三第一次全省大联考放榜，合一再次惨败给死对头“小一六八”。封安宝震怒之下要求全面取消双休，王卷豪陷入偏执加压，而普通学生的忍耐终于滑向崩溃临界点。', days: 10, x: 500, y: 500, requires: ['phase1_yang_studio'],
+    canStart: (s) => s.date >= new Date(2023, 9, 1), requiresText: ['日期达到2023年10月1日'],
+    onComplete: (s) => ({
+      activeEvent: FLAVOR_EVENTS.phase1_october_exam,
+      flags: { ...s.flags, phase1_october_exam_done: true }
+    }),
+    effectsText: ['触发三选事件：十月联考与“小一六八”的阴影', '大幅推动激进愤怒或调控稳定度与TPR']
+  },
+  { id: 'phase1_red_toad_cell', title: '器材室的秘密聚会', description: '潜伏半个月后，王照凯推开了旧体育器材室的铁门，第一次在线下见到了“钢铁红蛤”的初创元老们——温和务实的豪邦、眼神阴郁的吕波汉、沉默的时纪，以及穿着二次元痛衣大谈“解构校服”的狗熊。', days: 8, x: 810, y: 500, requires: ['read_marx'],
+    onComplete: (s) => ({
+      stats: { ...s.stats, partyCentralization: Math.min(100, s.stats.partyCentralization + 5), radicalAnger: Math.min(100, s.stats.radicalAnger + 8), pp: s.stats.pp + 15 },
+      activeEvent: STORY_EVENTS.story_4,
+      flags: { ...s.flags, story_4_triggered: true }
+    }),
+    effectsText: ['党内集权度 +5，激进愤怒度 +8，PP +15', '触发事件：燕妮、二次元与魔怔人']
+  },
 ];
 
 export const TREE_A_NODES: FocusNode[] = [
-  { id: 'declare_indep', title: '成立联合革命委员会', description: '斯莫尔尼宫的灯火。', days: 7, x: 500, y: 50, onComplete: (s) => ({
+  { id: 'declare_indep', title: '成立联合革命委员会', description: '斯莫尔尼宫的灯火。', days: 5, x: 600, y: 50, onComplete: (s) => ({
     leader: { 
       name: '王照凯',
       title: '联合革命委员会主席', 
@@ -156,50 +185,183 @@ export const TREE_A_NODES: FocusNode[] = [
     nationalSpirits: s.nationalSpirits.filter(ns => ns.id !== 'exam_pressure').concat({ id: 'red_campus', name: '赤色校园', description: "联合革命委员会成立后，B3门口贴出新的值班表，学生代表轮值处理食堂、课表与印刷室的急事。这套安排把原先分散的诉求收进一个常设机构，学生不再只靠临时聚集争取，而有了固定渠道。支持革委会的人随之增多，但他们并非无条件站队：承诺改善的每一项事务都成了检验，兑现与否决定这批新支持者留还是走。", type: 'positive', effects: { ppDaily: 0.5, ssDaily: 0.2 } }),
     activeEvent: FLAVOR_EVENTS.event_7_smolny,
     flags: { ...s.flags, united_committee_established: true }
-  }), effectsText: ['更换领导人为：王照凯', '意识形态变为：真左派', '移除国家精神：一模的重压', '获得国家精神：赤色校园 (每日PP +0.5，学生支持度每日 +0.2)', '触发事件：斯莫尔尼宫的灯火'] },
+  }), effectsText: ['更换领导人为：王照凯', '意识形态变为：真左派', '移除国家精神：应试高压', '获得国家精神：赤色校园 (每日PP +0.5，学生支持度每日 +0.2)', '触发事件：斯莫尔尼宫的会议桌'] },
   
-  { id: 'recruit_revolutionaries', title: '革命招兵买马', description: '我们需要更多的人才来管理这个新生的政权。各班骨干开始分批接管校园运作节点，B3教学楼的控制得到全面巩固。', days: 7, x: 500, y: 150, requires: ['declare_indep'], onComplete: (s) => {
+  { id: 'recruit_revolutionaries', title: '革命招兵买马', description: '我们需要更多的人才来管理这个新生的政权。各班骨干开始分批接管校园运作节点，B3教学楼的控制得到全面巩固。', days: 7, x: 600, y: 190, requires: ['declare_indep'], onComplete: (s) => {
     const flags = { ...s.flags, b3_advisors_unlocked: true };
-    // 强化B3三块子地块控制度
     ['b3_a1a3', 'b3_b1b2', 'b3_tower'].forEach(tid => { flags[`tile_ctrl_${tid}`] = Math.min(100, (flags[`tile_ctrl_${tid}`] ?? 50) + 15); });
-    return { flags, stats: { ...s.stats, pp: s.stats.pp + 20, allianceUnity: Math.min(100, s.stats.allianceUnity + 4) }, activeEvent: { id: 'recruit_revolutionaries_event', title: '革委会扩编令', description: "联合革命委员会今日发布通告，宣布启动第一轮组织扩编。各班骨干已按部署分批进入指定区域，接管校园运作节点。\n\n通告称，B3教学楼各出入口及走廊现由先锋队控制，控制权已全面巩固。委员会将逐步明确后续各节点的人员安排与职责划分，并呼吁全体成员服从调度。", buttonText: '开列干部名册', isStoryEvent: true } };
-  }, effectsText: ['解锁顾问：王照凯、狗熊', 'PP +20, 联盟团结度 +4', 'B3三块子地块控制度各 +15'] },
+    return {
+      flags,
+      stats: { ...s.stats, pp: s.stats.pp + 20, allianceUnity: Math.min(100, s.stats.allianceUnity + 4) },
+      activeEvent: {
+        id: 'recruit_revolutionaries_event',
+        title: '革委会扩编令',
+        description: "联合革命委员会今日发布通告，宣布启动第一轮组织扩编。各班骨干已按部署分批进入指定区域，接管校园运作节点。\n\n通告称，B3教学楼各出入口及走廊现由先锋队控制，控制权已全面巩固。委员会将逐步明确后续各节点的人员安排与职责划分，并呼吁全体成员服从调度。",
+        isStoryEvent: true,
+        choices: [
+          {
+            text: '重用钢铁红蛤行动派，把防务与纪律大权抓牢在核心手里。',
+            previewText: '党内集权 +6，激进愤怒 +5，稳定度 +4',
+            effect: (st: GameState) => ({
+              stats: {
+                ...st.stats,
+                partyCentralization: Math.min(100, st.stats.partyCentralization + 6),
+                radicalAnger: Math.min(100, st.stats.radicalAnger + 5),
+                stab: Math.min(100, st.stats.stab + 4),
+              }
+            })
+          },
+          {
+            text: '广泛吸纳各班热心班委与互助组骨干，先稳住全校民心。',
+            previewText: '联盟团结 +6，学生支持 +6，党内集权 -4',
+            effect: (st: GameState) => ({
+              stats: {
+                ...st.stats,
+                allianceUnity: Math.min(100, st.stats.allianceUnity + 6),
+                ss: Math.min(100, st.stats.ss + 6),
+                partyCentralization: Math.max(0, st.stats.partyCentralization - 4),
+              }
+            })
+          }
+        ]
+      }
+    };
+  }, effectsText: ['解锁顾问：王照凯、狗熊', 'PP +20，联盟团结度 +4', 'B3三块子地块控制度各 +15', '触发抉择事件：铁与火的干部名册'] },
 
   // Left Branch (Centralization)
-  { id: 'purge_moderates', title: '清洗温和派', description: '革命不是请客吃饭。', days: 14, x: 200, y: 200, requires: ['declare_indep'], mutuallyExclusive: ['broad_coalition'], onComplete: (s) => ({ stats: { ...s.stats, partyCentralization: Math.min(100, s.stats.partyCentralization + 20), allianceUnity: Math.max(0, s.stats.allianceUnity - 20) }, activeEvent: FLAVOR_EVENTS.committee_purge_moderates }), effectsText: ['党内集权度 +20', '联盟团结度 -20', '触发事件：缺席的代表'] },
-  { id: 'establish_vanguard', title: '建立先锋队', description: '我们需要铁腕。', days: 14, x: 200, y: 350, requires: ['purge_moderates'], onComplete: (s) => ({ stats: { ...s.stats, partyCentralization: Math.min(100, s.stats.partyCentralization + 10) }, activeEvent: FLAVOR_EVENTS.committee_vanguard, nationalSpirits: s.nationalSpirits.concat({ id: 'vanguard_party', name: '先锋队', description: "起义初期的热血与混乱已成过去，为了维持B3教学楼的运转，先锋队将散沙般的后勤统合成了严密的轮值体系。试卷的印刷与班级通知终于不再堆积如山，事事皆有专人按点完成。然而，机器的咬合必然带来隔阂，效率取代了激情。面对普通学生对排班的意见，同志们如今只能给出统一而刻板的答复：“请按轮值办”。", type: 'positive', effects: { tprDaily: 2 } }) }), effectsText: ['党内集权度 +10', '获得国家精神：先锋队 (每日TPR +2)'] },
-  { id: 'student_militia', title: '武装纠察队', description: '保卫我们的胜利果实。', days: 14, x: 200, y: 500, requires: ['establish_vanguard'], onComplete: (s) => {
+  { id: 'purge_moderates', title: '清洗温和派', description: '革命不是请客吃饭。', days: 10, x: 160, y: 340, requires: ['declare_indep'], mutuallyExclusive: ['broad_coalition'], onComplete: (s) => ({ stats: { ...s.stats, partyCentralization: Math.min(100, s.stats.partyCentralization + 20), allianceUnity: Math.max(0, s.stats.allianceUnity - 20) }, activeEvent: FLAVOR_EVENTS.committee_purge_moderates }), effectsText: ['党内集权度 +20', '联盟团结度 -20', '触发事件：缺席的代表'] },
+  { id: 'establish_vanguard', title: '建立先锋队', description: '我们需要铁腕。', days: 10, x: 160, y: 490, requires: ['purge_moderates'], onComplete: (s) => ({ stats: { ...s.stats, partyCentralization: Math.min(100, s.stats.partyCentralization + 10) }, activeEvent: FLAVOR_EVENTS.committee_vanguard, nationalSpirits: s.nationalSpirits.concat({ id: 'vanguard_party', name: '先锋队', description: "起义初期的热血与混乱已成过去，为了维持B3教学楼的运转，先锋队将散沙般的后勤统合成了严密的轮值体系。试卷的印刷与班级通知终于不再堆积如山，事事皆有专人按点完成。然而，机器的咬合必然带来隔阂，效率取代了激情。面对普通学生对排班的意见，同志们如今只能给出统一而刻板的答复：“请按轮值办”。", type: 'positive', effects: { tprDaily: 2 } }) }), effectsText: ['党内集权度 +10', '获得国家精神：先锋队 (每日TPR +2)', '触发事件：谁来下达下一道命令'] },
+  { id: 'student_militia', title: '武装纠察队', description: '保卫我们的胜利果实。', days: 10, x: 160, y: 640, requires: ['establish_vanguard'], onComplete: (s) => {
+    const flags = { ...s.flags };
+    ['aud_screen', 'aud_back', 'aud_hall', 'court_area', 'canteen', 'track_field'].forEach(tid => {
+      flags[`tile_ctrl_${tid}`] = Math.min(100, (flags[`tile_ctrl_${tid}`] as number | undefined ?? 40) + 25);
+    });
     const newMap = { ...s.mapLocations };
-    newMap.auditorium = { ...newMap.auditorium, studentControl: Math.min(100, newMap.auditorium.studentControl + 30) };
-    newMap.playground = { ...newMap.playground, studentControl: Math.min(100, newMap.playground.studentControl + 30) };
-    return { mapLocations: newMap, activeEvent: FLAVOR_EVENTS.committee_militia, nationalSpirits: s.nationalSpirits.concat({ id: 'armed_militia', name: '武装纠察队', description: "驱逐吴福军的防暴队仅仅是第一步。为了应对校方必然的反扑，学生们的防御体系从应急街垒转为了常设哨位，夜间的换班不再依靠临时叫喊。大礼堂与操场如今被牢牢掌控，但在每一个楼梯口，巡查的脚步声再次成为了日常。", type: 'positive', effects: { defenseBonus: 0.15, stabDaily: 0.1 } }) };
-  }, effectsText: ['大礼堂学生控制度 +30%', '操场学生控制度 +30%', '获得国家精神：武装纠察队 (防御加成 +15%，稳定度每日 +0.1%)'] },
+    newMap.auditorium = { ...newMap.auditorium, studentControl: Math.min(100, newMap.auditorium.studentControl + 25) };
+    newMap.playground = { ...newMap.playground, studentControl: Math.min(100, newMap.playground.studentControl + 25) };
+    return { flags, mapLocations: newMap, activeEvent: FLAVOR_EVENTS.committee_militia, nationalSpirits: s.nationalSpirits.concat({ id: 'armed_militia', name: '武装纠察队', description: "驱逐吴福军的防暴队仅仅是第一步。为了应对校方必然的反扑，学生们的防御体系从应急街垒转为了常设哨位，夜间的换班不再依靠临时叫喊。大礼堂与操场如今被牢牢掌控，但在每一个楼梯口，巡查的脚步声再次成为了日常。", type: 'positive', effects: { defenseBonus: 0.15, stabDaily: 0.1 } }) };
+  }, effectsText: ['艺术礼堂与操场全部子地块控制度 +25%', '获得国家精神：武装纠察队 (防御加成 +15%，稳定度每日 +0.1%)', '触发事件：岗哨后面的教室'] },
 
   // Right Branch (Unity)
-  { id: 'broad_coalition', title: '广泛的同盟', description: '团结一切可以团结的力量。', days: 14, x: 800, y: 200, requires: ['declare_indep'], mutuallyExclusive: ['purge_moderates'], onComplete: (s) => ({ stats: { ...s.stats, allianceUnity: s.stats.allianceUnity + 20, partyCentralization: s.stats.partyCentralization - 20 }, activeEvent: { id: 'broad_coalition_event', title: '大帐篷宣言', description: "宣言张贴在公告栏的时候，豪邦正带着几个人把最后一页对齐。纸张边缘卷着，风从走廊尽头吹来，得有人用手掌按住才能看全。\n\n温和派的人站在左边，手里还拿着装订好的材料；基层互助组的人站在右边，借还登记簿在课桌上摊着。两边原本各管各的，今天头一回在同一张纸上找自己的名字。排班、联系名册、物资清单，一项项并排写在一起，没有谁临时反悔。\n\n有人问，往后出了分歧，到底听谁的。豪邦没接话，只是指了指宣言末尾的空白。那里没有指定牵头人，也没写清责任。但此刻没人说“这跟我们没关系”。纸已经贴出去了，从今天起，谁都在这张议程上。", buttonText: '签署宣言', isStoryEvent: true } }), effectsText: ['联盟团结度 +20', '党内集权度 -20', '触发事件：大帐篷宣言'] },
-  { id: 'democratic_councils', title: '民主议事会', description: '让每个人都有发言权。', days: 14, x: 800, y: 350, requires: ['broad_coalition'], onComplete: (s) => ({ stats: { ...s.stats, allianceUnity: s.stats.allianceUnity + 10 }, nationalSpirits: s.nationalSpirits.concat({ id: 'democratic_councils_spirit', name: '民主议事会', description: "走廊与群聊中无休止的争吵并不能为我们带来共识，因此，各班代表设立了固定的发言席，将分散的诉求收编进严肃的会议记录。议事会并不能凭空创造团结，但它为新政府提供了一个制度化的出口。在这里，每一项主张都必须得到明确的答复，每一次支持都必须公开表态。争论被彻底赋予了合法性，民主终于有了可以被追问的实体。", type: 'positive', effects: { ppDaily: 0.2 } }), activeEvent: { id: 'democratic_councils_event', title: '议席之争', description: "议事会的桌子是几张课桌拼起来的，代表们绕圈坐下，膝盖碰着桌腿。过去路线上的分歧只在教室后门说，今天要当着别班代表的面讲。\n\n温和派的代表把材料铺开，从组织纪律讲起。基层互助组的人没打断，等他说完，才把值班表推过去，问物资调配到底按什么顺序。两边的问题都记在纸上，谁也不能摔门走人。\n\n有人低头记笔记，有人盯着代表名单。记录本传到靠窗的位置时，那个人犹豫了一下，还是写下了自己的意见。散场后，记录留在桌上，等着下轮接着看。", buttonText: '宣布首轮席位', isStoryEvent: true } }), effectsText: ['联盟团结度 +10', '获得国家精神：民主议事会 (每日PP +0.2)', '触发事件：议席之争'] },
-  { id: 'unite_teachers', title: '团结进步教师', description: '争取广泛的同盟军。', days: 14, x: 800, y: 500, requires: ['democratic_councils'], onComplete: (s) => {
+  { id: 'broad_coalition', title: '广泛的同盟', description: '团结一切可以团结的力量。', days: 10, x: 1040, y: 340, requires: ['declare_indep'], mutuallyExclusive: ['purge_moderates'], onComplete: (s) => ({
+    stats: { ...s.stats, allianceUnity: Math.min(100, s.stats.allianceUnity + 20), partyCentralization: Math.max(0, s.stats.partyCentralization - 20) },
+    activeEvent: {
+      id: 'broad_coalition_event',
+      title: '大帐篷宣言',
+      description: "宣言张贴在公告栏的时候，豪邦正带着几个人把最后一页对齐。纸张边缘卷着，风从走廊尽头吹来，得有人用手掌按住才能看全。\n\n温和派的人站在左边，手里还拿着装订好的材料；基层互助组的人站在右边，借还登记簿在课桌上摊着。两边原本各管各的，今天头一回在同一张纸上找自己的名字。排班、联系名册、物资清单，一项项并排写在一起，没有谁临时反悔。\n\n有人问，往后出了分歧，到底听谁的。豪邦没接话，只是指了指宣言末尾的空白。那里没有指定牵头人，也没写清责任。但此刻没人说“这跟我们没关系”。纸已经贴出去了，从今天起，谁都在这张议程上。",
+      isStoryEvent: true,
+      choices: [
+        {
+          text: '将各班互助组正式纳入革委会后勤体系，兑现分享权力的承诺。',
+          previewText: '联盟团结 +6，学生支持 +5，稳定度 +3',
+          effect: (st: GameState) => ({
+            stats: {
+              ...st.stats,
+              allianceUnity: Math.min(100, st.stats.allianceUnity + 6),
+              ss: Math.min(100, st.stats.ss + 5),
+              stab: Math.min(100, st.stats.stab + 3),
+            }
+          })
+        },
+        {
+          text: '保留先锋队对紧急防务的最终否决权，以防同盟在危急关头散架。',
+          previewText: '党内集权 +5，稳定度 +5，联盟团结 -3',
+          effect: (st: GameState) => ({
+            stats: {
+              ...st.stats,
+              partyCentralization: Math.min(100, st.stats.partyCentralization + 5),
+              stab: Math.min(100, st.stats.stab + 5),
+              allianceUnity: Math.max(0, st.stats.allianceUnity - 3),
+            }
+          })
+        }
+      ]
+    }
+  }), effectsText: ['联盟团结度 +20，党内集权度 -20', '触发抉择事件：大帐篷宣言'] },
+  { id: 'democratic_councils', title: '民主议事会', description: '让每个人都有发言权。', days: 10, x: 1040, y: 490, requires: ['broad_coalition'], onComplete: (s) => ({
+    stats: { ...s.stats, allianceUnity: Math.min(100, s.stats.allianceUnity + 10) },
+    nationalSpirits: s.nationalSpirits.concat({ id: 'democratic_councils_spirit', name: '民主议事会', description: "走廊与群聊中无休止的争吵并不能为我们带来共识，因此，各班代表设立了固定的发言席，将分散的诉求收编进严肃的会议记录。议事会并不能凭空创造团结，但它为新政府提供了一个制度化的出口。在这里，每一项主张都必须得到明确的答复，每一次支持都必须公开表态。争论被彻底赋予了合法性，民主终于有了可以被追问的实体。", type: 'positive', effects: { ppDaily: 0.2 } }),
+    activeEvent: {
+      id: 'democratic_councils_event',
+      title: '议席之争',
+      description: "议事会的桌子是几张课桌拼起来的，代表们绕圈坐下，膝盖碰着桌腿。过去路线上的分歧只在教室后门说，今天要当着别班代表的面讲。\n\n温和派的代表把材料铺开，从组织纪律讲起。基层互助组的人没打断，等他说完，才把值班表推过去，问物资调配到底按什么顺序。两边的问题都记在纸上，谁也不能摔门走人。\n\n有人低头记笔记，有人盯着代表名单。记录本传到靠窗的位置时，那个人犹豫了一下，还是写下了自己的意见。散场后，记录留在桌上，等着下轮接着看。",
+      buttonText: '宣布首轮席位',
+      isStoryEvent: true
+    }
+  }), effectsText: ['联盟团结度 +10', '获得国家精神：民主议事会 (每日PP +0.2)', '触发事件：阶梯教室里的第一场辩论'] },
+  { id: 'unite_teachers', title: '团结进步教师', description: '争取广泛的同盟军。', days: 10, x: 1040, y: 640, requires: ['democratic_councils'], onComplete: (s) => {
+    const flags = { ...s.flags };
+    ['dorm_1_4', 'dorm_5_7'].forEach(tid => {
+      flags[`tile_ctrl_${tid}`] = Math.min(100, (flags[`tile_ctrl_${tid}`] as number | undefined ?? 40) + 30);
+    });
     const newMap = { ...s.mapLocations };
-    newMap.b1b2 = { ...newMap.b1b2, studentControl: Math.min(100, newMap.b1b2.studentControl + 40) };
-    return { mapLocations: newMap, stats: { ...s.stats, ss: Math.min(100, s.stats.ss + 15) }, nationalSpirits: s.nationalSpirits.concat({ id: 'teacher_support', name: '教师同盟', description: "并非所有教职员工都愿意在一棵树上吊死。随着议事会的稳健运转，一部分不再沉默的教师选择与学生站在一起。他们在公开会议上为学生们的课时方案背书，将纸面上的革命决议带进教室化为现实。这些同情革命的底层教师默默承受着保守派同事的敌视与质疑，成为了新制度在日常教学中不可或缺的基石。", type: 'positive', effects: { stabDaily: 0.2 } }), activeEvent: { id: 'unite_teachers_event', title: '教师公开表态', description: "联合革命委员会发布通报：一批教师已在B1、B2教学楼公开表态支持本委员会。教学资源调配权开始向学生侧倾斜，相关交接工作正在按程序进行。\n\n委员会认为此举有利于巩固校园革命秩序，并请全体师生配合调配工作，维护正常教学运行。后续有关教师联络的事项将另行公布。", buttonText: '成立联络组', isStoryEvent: true } };
-  }, effectsText: ['B1&B2教学楼学生控制度 +40%', '学生支持度 (SS) +15', '获得国家精神：教师同盟 (稳定度每日 +0.2%)', '触发事件：教师公开表态'] },
+    newMap.b1b2 = { ...newMap.b1b2, studentControl: Math.min(100, newMap.b1b2.studentControl + 30) };
+    return {
+      flags,
+      mapLocations: newMap,
+      stats: { ...s.stats, ss: Math.min(100, s.stats.ss + 15) },
+      nationalSpirits: s.nationalSpirits.concat({ id: 'teacher_support', name: '教师同盟', description: "并非所有教职员工都愿意在一棵树上吊死。随着议事会的稳健运转，一部分不再沉默的教师选择与学生站在一起。他们在公开会议上为学生们的课时方案背书，将纸面上的革命决议带进教室化为现实。这些同情革命的底层教师默默承受着保守派同事的敌视与质疑，成为了新制度在日常教学中不可或缺的基石。", type: 'positive', effects: { stabDaily: 0.2 } }),
+      activeEvent: {
+        id: 'unite_teachers_event',
+        title: '教师公开表态',
+        description: "联合革命委员会发布通报：一批教师已在B1、B2教学楼公开表态支持本委员会。教学资源调配权开始向学生侧倾斜，相关交接工作正在按程序进行。\n\n委员会认为此举有利于巩固校园革命秩序，并请全体师生配合调配工作，维护正常教学运行。后续有关教师联络的事项将另行公布。",
+        buttonText: '成立联络组',
+        isStoryEvent: true
+      }
+    };
+  }, effectsText: ['B1&B2全部子地块控制度 +30%', '学生支持度 (SS) +15', '获得国家精神：教师同盟 (稳定度每日 +0.2%)', '触发事件：讲台上的倒戈'] },
 
   // Middle Branch (Pragmatic Action)
-  { id: 'disperse_guards', title: '驱散保安队', description: '吴福军的保安队是校方最后的武力依仗。把他们赶出校园，行政楼和操场的控制权将向革命者敞开。', days: 10, x: 400, y: 200, requires: ['declare_indep'], onComplete: (s) => {
+  { id: 'disperse_guards', title: '驱散保安队', description: '吴福军的保安队是校方最后的武力依仗。把他们赶出校园，行政楼和操场的控制权将向革命者敞开。', days: 8, x: 380, y: 340, requires: ['declare_indep'], onComplete: (s) => {
     const flags = { ...s.flags };
-    ['admin_main', 'admin_gym', 'canteen', 'track_field'].forEach(tid => { flags[`tile_ctrl_${tid}`] = Math.min(100, (flags[`tile_ctrl_${tid}`] ?? 30) + 10); });
-    return { flags, stats: { ...s.stats, stab: Math.min(100, s.stats.stab + 4), ss: Math.min(100, s.stats.ss + 3) }, activeEvent: { id: 'disperse_guards_event', title: '武装解除', description: "保安队撤走时没有列队。吴福军手底下的人先把楼道口的桌子搬开，接着一队人从侧门出去，岗亭里的杯子和登记册原样放着。\n\n消息比脚步声快。课间还没结束，走廊上已经有人走到原先不让停留的位置，操场边的门被试了试，从行政楼到操场那条路，第一次不用喊话就走通了。\n\n但值班表还空着。联合委员会把每班的人找来，对着表一个个核：半夜谁在楼道，钥匙挂在哪儿，出事找谁。有人觉得该高兴，有人只问宵夜怎么解决。格子一个个写上去，还没填满。", buttonText: '接管值班', isStoryEvent: true } };
-  }, effectsText: ['稳定度 +4, SS +3', '行政楼+操场子地块控制度各 +10'] },
-  { id: 'takeover_admin', title: '接管教务系统', description: '教务处掌握着全校学生的成绩数据和监控录像。拿下这里，就掌握了校方的信息命脉。', days: 10, x: 600, y: 200, requires: ['declare_indep'], onComplete: (s) => {
+    ['admin_main', 'admin_gym', 'canteen', 'track_field'].forEach(tid => { flags[`tile_ctrl_${tid}`] = Math.min(100, (flags[`tile_ctrl_${tid}`] ?? 30) + 12); });
+    return {
+      flags,
+      stats: { ...s.stats, stab: Math.min(100, s.stats.stab + 4), ss: Math.min(100, s.stats.ss + 4) },
+      activeEvent: {
+        id: 'disperse_guards_event',
+        title: '武装解除',
+        description: "保安队撤走时没有列队。吴福军手底下的人先把楼道口的桌子搬开，接着一队人从侧门出去，岗亭里的杯子和登记册原样放着。\n\n消息比脚步声快。课间还没结束，走廊上已经有人走到原先不让停留的位置，操场边的门被试了试，从行政楼到操场那条路，第一次不用喊话就走通了。\n\n但值班表还空着。联合委员会把每班的人找来，对着表一个个核：半夜谁在楼道，钥匙挂在哪儿，出事找谁。有人觉得该高兴，有人只问宵夜怎么解决。格子一个个写上去，还没填满。",
+        isStoryEvent: true,
+        choices: [
+          {
+            text: '立刻接管全部防暴盾牌与对讲机，武装革委会巡逻岗哨！',
+            previewText: '党内集权 +5，稳定度 +5，激进愤怒 +4',
+            effect: (st: GameState) => ({
+              stats: {
+                ...st.stats,
+                partyCentralization: Math.min(100, st.stats.partyCentralization + 5),
+                stab: Math.min(100, st.stats.stab + 5),
+                radicalAnger: Math.min(100, st.stats.radicalAnger + 4),
+              }
+            })
+          },
+          {
+            text: '当众清点并归还被没收的私人物品，把吴福军的罚没黑账贴满操场！',
+            previewText: '学生支持 +8，学生理智 +6，联盟团结 +4',
+            effect: (st: GameState) => ({
+              stats: {
+                ...st.stats,
+                ss: Math.min(100, st.stats.ss + 8),
+                studentSanity: Math.min(100, st.stats.studentSanity + 6),
+                allianceUnity: Math.min(100, st.stats.allianceUnity + 4),
+              }
+            })
+          }
+        ]
+      }
+    };
+  }, effectsText: ['稳定度 +4，SS +4', '行政楼+操场子地块控制度各 +12', '触发抉择事件：保安室的最后一道防线'] },
+  { id: 'takeover_admin', title: '接管教务系统', description: '教务处掌握着全校学生的成绩数据和监控录像。拿下这里，就掌握了校方的信息命脉。', days: 8, x: 820, y: 340, requires: ['declare_indep'], onComplete: (s) => {
     const flags = { ...s.flags };
     ['admin_main', 'admin_gym', 'lib_area'].forEach(tid => { flags[`tile_ctrl_${tid}`] = Math.min(100, (flags[`tile_ctrl_${tid}`] ?? 30) + 12); });
     return { flags, activeEvent: FLAVOR_EVENTS.admin_takeover };
-  }, effectsText: ['触发事件：接管教务系统', '行政楼+图书馆子地块控制度各 +12'] },
-  { id: 'seize_mouthpiece', title: '夺取校园广播站', description: '行政楼的广播站是全校的信息中枢。掌控这里，就掌控了话语权。但吴福军的保安队不会轻易放手——准备好迎接一场电波拉锯战。', days: 7, x: 500, y: 350, requires: ['disperse_guards', 'takeover_admin'],
+  }, effectsText: ['触发事件：教务系统的瘫痪', '行政楼+图书馆子地块控制度各 +12'] },
+  { id: 'seize_mouthpiece', title: '夺取校园广播站', description: '行政楼的广播站是全校的信息中枢。掌控这里，就掌控了话语权。但吴福军的保安队不会轻易放手——准备好迎接一场电波拉锯战。', days: 7, x: 600, y: 490, requires: ['disperse_guards', 'takeover_admin'],
     onStart: () => ({ activeMinigame: 'frequency_war', isPaused: true }),
     onComplete: (s) => ({ activeEvent: FLAVOR_EVENTS.broadcast_seized }),
-    effectsText: ['触发频率之战小游戏（4级结算）', '成功则大幅提升行政楼控制度和SS', '触发事件：夺取校园广播站'] },
-  { id: 'underground_print', title: '地下印刷网络', description: '实验楼的机房里有几台旧油印机。把它们改造成地下印刷所，向全校散播革命传单——前提是别被保安队的巡查抓到。', days: 7, x: 300, y: 350, requires: ['disperse_guards'],
+    effectsText: ['触发频率之战小游戏（4级结算）', '成功则大幅提升行政楼控制度和SS', '触发事件：校园广播站的新声音'] },
+  { id: 'underground_print', title: '地下印刷网络', description: '实验楼的机房里有几台旧油印机。把它们改造成地下印刷所，向全校散播革命传单——前提是别被保安队的巡查抓到。', days: 7, x: 380, y: 490, requires: ['disperse_guards'],
     onStart: () => ({ activeMinigame: 'print_workshop', isPaused: true }),
     onComplete: (s) => {
       const flags = { ...s.flags };
@@ -207,7 +369,7 @@ export const TREE_A_NODES: FocusNode[] = [
       return { flags, activeEvent: FLAVOR_EVENTS.committee_print_network };
     },
     effectsText: ['触发地下印刷所小游戏（4级结算）', '成功则提升实验楼控制度和SS', '国策完成后实验楼地块控制度额外+5'] },
-  { id: 'poster_campaign', title: '校园海报战', description: '占领行政楼后，把革命标语贴满校园的每一面墙。保安队会疯狂撕海报——我们需要覆盖六大建筑区让所有人都看到。', days: 7, x: 700, y: 350, requires: ['takeover_admin'],
+  { id: 'poster_campaign', title: '校园海报战', description: '占领行政楼后，把革命标语贴满校园的每一面墙。保安队会疯狂撕海报——我们需要覆盖六大建筑区让所有人都看到。', days: 7, x: 820, y: 490, requires: ['takeover_admin'],
     onStart: () => ({ activeMinigame: 'poster_war', isPaused: true }),
     onComplete: (s) => {
       const flags = { ...s.flags };
@@ -215,7 +377,7 @@ export const TREE_A_NODES: FocusNode[] = [
       return { flags, activeEvent: FLAVOR_EVENTS.committee_posters };
     },
     effectsText: ['触发校园海报战小游戏（4级结算）', '成功则大幅提升行政楼控制度和SS', '国策完成后行政楼地块控制度额外+5'] },
-  { id: 'convene_assembly', title: '召开学生代表大会', description: '广播站已经拿下，革命的声浪传遍了校园。是时候召集全体代表，决定联盟的未来了。', days: 12, x: 500, y: 520, requires: ['seize_mouthpiece'], onComplete: (s) => ({
+  { id: 'convene_assembly', title: '召开学生代表大会', description: '广播站已经拿下，革命的声浪传遍了校园。是时候召集全体代表，决定联盟的未来了。', days: 10, x: 600, y: 640, requires: ['seize_mouthpiece'], onComplete: (s) => ({
     stats: { ...s.stats, stab: Math.min(100, s.stats.stab + 10) },
     flags: { ...s.flags, assembly_unlocked: true },
     activeEvent: FLAVOR_EVENTS.committee_assembly_opening,
@@ -227,15 +389,49 @@ export const TREE_A_NODES: FocusNode[] = [
       type: 'neutral',
       effects: {}
     })
-  }), effectsText: ['解锁学生代表大会小游戏', '获得动态国家精神：议会政治', '稳定度 +10'] },
+  }), effectsText: ['解锁学生代表大会系统', '获得动态国家精神：议会政治', '稳定度 +10', '触发事件：同坐一间教室'] },
   
   // Crossroads
-  { id: 'trial_yang', title: '公审杨玉乐', description: '撤去杨玉乐的顾问职务，公开追究旧管理的责任。清算将增强红蛤在大会的地位，也会使温和盟友离心。', days: 21, x: 400, y: 650, requires: ['convene_assembly'], mutuallyExclusive: ['secret_compromise'], onComplete: (s) => ({ ...applyYangSettlement(s, 'trial'), activeEvent: FLAVOR_EVENTS.event_8_trial }), effectsText: ['杨玉乐退出顾问名单，不能再次任命', '正统派 +6席（从其他派重新分配）', '集权 +10，团结 -10，激进愤怒 +15', '触发事件：公审杨玉乐'] },
-  { id: 'secret_compromise', title: '秘密妥协，恢复秩序', description: '保留与旧教务人员的合作，允许温和派和做题派扩大代表权。秩序与同盟可以恢复，集中指挥则需让步。', days: 21, x: 600, y: 650, requires: ['convene_assembly'], mutuallyExclusive: ['trial_yang'], onComplete: (s) => ({ ...applyYangSettlement(s, 'compromise'), activeEvent: FLAVOR_EVENTS.secret_compromise }), effectsText: ['潘仁越民主派 +4席，做题派 +3席（重新分配）', '团结 +15，集权 -10，稳定 +20，激进愤怒 -30', '保留杨玉乐顾问资格', '触发事件：秘密妥协'] },
+  { id: 'trial_yang', title: '公审杨玉乐', description: '撤去杨玉乐的顾问职务，公开追究旧管理的责任。清算将增强红蛤在大会的地位，也会使温和盟友离心。', days: 12, x: 480, y: 790, requires: ['convene_assembly'], mutuallyExclusive: ['secret_compromise'], onComplete: (s) => ({ ...applyYangSettlement(s, 'trial'), activeEvent: FLAVOR_EVENTS.event_8_trial }), effectsText: ['杨玉乐退出顾问名单，不能再次任命', '正统派 +6席（从其他派重新分配）', '集权 +10，团结 -10，激进愤怒 +15', '触发事件：审判“套中人”'] },
+  { id: 'secret_compromise', title: '秘密妥协，恢复秩序', description: '保留与旧教务人员的合作，允许温和派和做题派扩大代表权。秩序与同盟可以恢复，集中指挥则需让步。', days: 12, x: 720, y: 790, requires: ['convene_assembly'], mutuallyExclusive: ['trial_yang'], onComplete: (s) => ({ ...applyYangSettlement(s, 'compromise'), activeEvent: FLAVOR_EVENTS.secret_compromise }), effectsText: ['潘仁越民主派 +4席，做题派 +3席（重新分配）', '团结 +15，集权 -10，稳定 +20，激进愤怒 -30', '保留杨玉乐顾问资格', '触发事件：深夜的密谈'] },
   
   // Final Showdown
-  { id: 'rectify_campus_order', title: '整顿校内秩序', description: '虽然夺取了控制权，但校园内一片混乱。我们需要重新建立秩序。', days: 14, x: 500, y: 800, requires: ['trial_yang', 'secret_compromise'], onComplete: (s) => ({ activeEvent: FLAVOR_EVENTS.event_9_rectify_order }), effectsText: ['触发事件：整顿校内秩序'] },
-  { id: 'crossroads_of_fate', title: '命运的十字路口', description: '七天后，代表们将确认谁来主导革委会。席位、联盟团结和党内集权共同决定道路；进入这项国策之前，先确认同盟能否接受你的指挥方式。', days: 7, x: 500, y: 950, requires: ['rectify_campus_order'], onComplete: (s) => ({ activeEvent: FLAVOR_EVENTS.event_10_crossroads }), effectsText: ['完成后出现判定事件，确认时以届时数值和席位分流', ...CROSSROADS_RULES] },
+  { id: 'rectify_campus_order', title: '整顿校内秩序', description: '虽然夺取了控制权，但校园内一片混乱。我们需要重新建立秩序。', days: 10, x: 600, y: 940, requires: ['trial_yang', 'secret_compromise'], onComplete: (s) => ({ activeEvent: FLAVOR_EVENTS.event_9_rectify_order }), effectsText: ['触发事件：整顿校内秩序'] },
+  { id: 'crossroads_of_fate', title: '命运的十字路口', description: '七天后，代表们将确认谁来主导革委会。席位、联盟团结和党内集权共同决定道路；进入这项国策之前，先确认同盟能否接受你的指挥方式。', days: 7, x: 600, y: 1090, requires: ['rectify_campus_order'], onComplete: (s) => ({ activeEvent: FLAVOR_EVENTS.event_10_crossroads }), effectsText: ['完成后触发终极分流判定，按届时席位与数值进入下一阶段', ...CROSSROADS_RULES] },
+  { id: 'committee_b3_fortification', title: '筑牢B3红色堡垒', description: '用废弃铁架床焊死一楼侧门，在顶层囤足水粮并架设简易警报网——把B3教学楼打造成任由保安队撞得头破血流的钢铁要塞。', days: 8, x: 160, y: 790, requires: ['student_militia'], onComplete: (s) => ({
+    flags: { ...s.flags, committee_b3_fortified: true },
+    activeEvent: FLAVOR_EVENTS.committee_b3_fortification_event
+  }), effectsText: ['B3三地块控制度大幅提升且防御天数 +5', '集权 +6，稳定度 +6', '触发事件：钢筋、课桌与红袖章'] },
+  { id: 'committee_student_charter', title: '起草《临时自治约法》', description: '将公开听证、午休保障、严禁强征教辅与限制执政者权力写入油印约法，把革命的热血凝成可以流传下去的制度铁律。', days: 8, x: 1040, y: 790, requires: ['unite_teachers'], onComplete: (s) => ({
+    flags: { ...s.flags, committee_charter_drafted: true },
+    activeEvent: FLAVOR_EVENTS.committee_student_charter_event
+  }), effectsText: ['联盟团结 +10，学生理智 +10，学生支持 +6', '触发事件：油印机里的第一部约法'] },
+  { id: 'committee_logistics_grid', title: '接管食堂与战时后勤', description: '革命不是只靠呐喊就能填饱肚子的。餐饮承包商锁门停火之际，时纪带领后勤小组接管粮仓——如何解决三千张嘴的吃饭与供纸，是新政权的第一道大考。', days: 7, x: 600, y: 340, requires: ['recruit_revolutionaries'], onComplete: (s) => {
+    const flags = { ...s.flags, committee_logistics_done: true };
+    flags['tile_ctrl_canteen'] = Math.min(100, (flags['tile_ctrl_canteen'] as number | undefined ?? 45) + 15);
+    return {
+      flags,
+      activeEvent: FLAVOR_EVENTS.committee_logistics_event
+    };
+  }, effectsText: ['食堂控制度 +15', '触发三选事件：食堂后厨的革命'] },
+  { id: 'committee_counter_infiltration', title: '反渗透与暗夜戒备', description: '保卫组截获吴福军勾结校外外包保安准备夜袭B3的密报。这是巩固外围防线的关键战备——也是随时切入「绝望线」或「吴福军铁腕线」的重大暗夜转折点！', days: 7, x: 380, y: 640, requires: ['seize_mouthpiece'],
+    onComplete: (s) => ({
+      activeEvent: FLAVOR_EVENTS.committee_counter_infiltration_event,
+      flags: { ...s.flags, committee_counter_infiltration_done: true }
+    }),
+    effectsText: ['触发三选事件：暗夜里的反扑警报', '可砸PP死守防线，也可直接选择转入【潘仁越绝望线】或【吴福军铁腕线】'] },
+  { id: 'committee_exam_question', title: '模考还考不考？', description: '王卷豪带着三十多名各班学委堵在了大会门口：推翻封安宝之后，六月的高考并不会消失。下周的模拟考与红黑榜究竟是彻底废除，还是保留给自愿冲刺的学生？', days: 7, x: 820, y: 640, requires: ['seize_mouthpiece'],
+    onComplete: (s) => ({
+      activeEvent: FLAVOR_EVENTS.committee_exam_question_event,
+      flags: { ...s.flags, committee_exam_question_done: true }
+    }),
+    effectsText: ['触发三选事件：模考还考不考？——做题派的拷问', '精准调节 TPR、理智、集权与团结数值'] },
+  { id: 'committee_external_siege', title: '围墙外的围堵', description: '校门外挤满了焦躁质问的家长，侧门阴影里则站着笑脸递来三千套免费密卷与赞助支票的及第教育代表。革命从来不是象牙塔里的孤岛——如何应付围墙外的风暴？', days: 7, x: 360, y: 940, requires: ['trial_yang', 'secret_compromise'],
+    onComplete: (s) => ({
+      activeEvent: FLAVOR_EVENTS.committee_external_siege_event,
+      flags: { ...s.flags, committee_external_siege_done: true }
+    }),
+    effectsText: ['触发三选事件：围墙外的围堵：家长与资本掮客', '可透明沟通稳住秩序、硬拒资本，或借及第赞助切入资本线'] },
 ];
 
 export const JIDI_TREE_NODES: FocusNode[] = [
@@ -1677,16 +1873,60 @@ export const TREE_A_PAN_NODES: FocusNode[] = [
 ];
 
 export const TREE_A_PAN_DESPAIR_NODES: FocusNode[] = [
-  { id: 'despair_street_fight', title: '绝望的走廊巷战', description: '最后的抵抗。', days: 7, x: 300, y: 50, onComplete: (s) => ({
-    nationalSpirits: s.nationalSpirits.concat({ id: 'desperate_defense', name: '绝望的抵抗', description: "最后的街垒已经筑起。参与者清楚赢不了，但没有人打算退。绝望在此处不表现为崩溃，而表现为明知结局仍不撤离的防御姿态。\n\n这种抵抗能拖住进攻方，却无法带来任何政治出路。它以持续消耗自身为代价换取时间，每一刻都在削弱本就脆弱的稳定。走廊尽头的决定尚未作出，但街垒后面的人已经用行动表明了立场。", type: 'neutral', effects: { defenseBonus: 0.2, stabDaily: -0.5 } }),
+  { id: 'despair_street_fight', title: '绝望的走廊巷战', description: '最后的抵抗。', days: 5, x: 500, y: 50, onComplete: (s) => ({
+    leader: {
+      name: '潘仁越',
+      title: 'B3抵抗军前线总指挥',
+      portrait: 'pan_renyue',
+      ideology: 'liberal',
+      description: "议会大厅的辩论与渐进改良的旧梦已被防暴钢叉击得粉碎。退守B3三层的潘仁越褪去了昔日实验班学霸的温文尔雅，眼眶深陷，声音嘶哑，校服袖口沾满粉笔灰与血渍。\n\n面对断水断电的围城与四面合围的校方保安队，这位曾经天真的自由派理想主义者终于明白：当强权掀翻谈判桌时，唯有扛起最惨烈的抵抗，才能替合一的后来者留下一丝不肯跪下的火种。",
+      buffs: ['每日联盟团结度 +0.5', '每日稳定度 +0.1']
+    },
+    nationalSpirits: s.nationalSpirits.filter(ns => ns.id !== 'desperate_defense').concat({
+      id: 'desperate_defense',
+      name: '绝望的抵抗',
+      description: "B3三层的最后一道课桌街垒已经筑起。守在楼梯口的少年们清楚外援渺茫、粮水将尽，却没有人转身缴械。这种背水一战的悲壮撑起了惊人的防线韧性，只是每一夜的拉锯，都在无情磨损着这座校园仅存的稳定。",
+      type: 'neutral',
+      effects: { defenseBonus: 0.2, stabDaily: -0.3 }
+    }),
     activeEvent: FLAVOR_EVENTS.despair_fight
-  }), effectsText: ['获得国家精神：绝望的抵抗 (防御加成 +20%，稳定度每日 -0.5%)', '触发事件：绝望的走廊巷战'] },
-  { id: 'telegram_six_schools', title: '六校联合的电报', description: '希望的曙光。', days: 7, x: 700, y: 50,
+  }), effectsText: ['获得国家精神：绝望的抵抗 (防御加成 +20%，稳定度每日 -0.3%)', '触发事件：最后的防线'] },
+  { id: 'telegram_six_schools', title: '六校联合的电报', description: '希望的曙光。', days: 6, x: 500, y: 200, requires: ['despair_street_fight'],
     onComplete: () => ({ activeEvent: FLAVOR_EVENTS.pan_despair_telegram_receipt }),
-    effectsText: ['解锁后续国策', '触发事件：电报回音'] },
-  { id: 'defend_b3', title: '死守B3教学楼', description: '触发B3保卫战小游戏！', days: 14, x: 500, y: 200, requires: ['despair_street_fight', 'telegram_six_schools'], effectsText: ['触发B3保卫战小游戏'] },
-  { id: 'counter_attack', title: '绝地反击', description: '从防守转入进攻。', days: 14, x: 500, y: 350, requires: ['defend_b3'], onComplete: (s) => ({ stats: { ...s.stats, ss: s.stats.ss + 30 } }), effectsText: ['学生支持度 (SS) +30'] },
-  { id: 'last_stand_fails', title: '最后的防线崩溃', description: '我们尽力了，但敌人太多了。', days: 21, x: 500, y: 500, requires: ['counter_attack'], onComplete: (s) => ({ gameEnding: 'game_over_despair' }), effectsText: ['触发结局：绝望的终局'] },
+    effectsText: ['学生支持 +8，学生理智 +10', '触发事件：电报回音：六校的沉默与微光'] },
+  { id: 'defend_b3', title: '死守B3教学楼', description: '吴福军的防暴队与及第雇佣兵发动全面强攻！完成后立刻进入「B3保卫战」小游戏——守住街垒将开启绝地反击线，防线失守则步入天台绝笔终章！', days: 8, x: 500, y: 500, requires: ['despair_burn_records', 'despair_red_toad_signal', 'despair_parents_cry'],
+    effectsText: ['触发B3保卫战小游戏！', '胜利→解锁右侧【绝地反击】分支', '失守→解锁左侧【天台绝笔】分支'] },
+  { id: 'counter_attack', title: '绝地反击：冲下楼梯间', description: '第一波总攻被血肉街垒死死撞碎！趁着外包保安内讧、家长围堵校门与东翼断电的绝佳战机，抵抗军翻过课桌街垒，向一楼大厅发起反冲锋！', days: 7, x: 700, y: 650, requires: ['defend_b3'], mutuallyExclusive: ['despair_rooftop_broadcast'],
+    canStart: (s) => Boolean(s.flags.despair_b3_held),
+    requiresText: ['在B3保卫战中守住防线'],
+    onComplete: () => ({ activeEvent: FLAVOR_EVENTS.despair_counter_attack_event }),
+    effectsText: ['全线反夺B3与行政楼控制度', '学生支持 +25，稳定度 +20，理智 +15', '触发事件：废墟上的反冲锋'] },
+  { id: 'last_stand_fails', title: '最后的防线崩溃', description: '天台铁门在暴雨中轰然倒地，强光探照灯吞没了最后一道不肯低头的火光。我们尽力了，但黑夜实在太漫长。', days: 8, x: 300, y: 800, requires: ['despair_rooftop_broadcast'],
+    onComplete: () => ({ activeEvent: FLAVOR_EVENTS.despair_final_fall_event }),
+    effectsText: ['触发终局事件：黑夜吞没最后一道火光', '达成结局：绝望的终局'] },
+  { id: 'despair_ration_water', title: '配给最后的水与粉笔', description: '教学楼水阀已被彻底拉断。清点各班饮水机残水与干粮，在伤员救护点与一线守卫之间做出最残酷的生存抉择。', days: 6, x: 220, y: 200, requires: ['despair_street_fight'],
+    onComplete: () => ({ activeEvent: FLAVOR_EVENTS.despair_ration_water_event }),
+    effectsText: ['触发抉择事件：一瓶矿泉水的重量', '稳住围城中的理智或强化B3防线'] },
+  { id: 'despair_smuggle_zhouchen', title: '暗廊里的递水人', description: '西侧背阴的消防梯响起三声轻叩。美术老师周晨与陈栋时代的老教师们冒着被开除的风险，在夜色中悄悄递来退烧药、纱布与温热馒头。', days: 6, x: 780, y: 200, requires: ['despair_street_fight'],
+    onComplete: () => ({ activeEvent: FLAVOR_EVENTS.despair_smuggle_zhouchen_event }),
+    effectsText: ['触发抉择事件：消防梯上的药箱', '抉择掩护伤员撤离，或送出血书真相'] },
+  { id: 'despair_burn_records', title: '焚烧量化黑账', description: '寒潮深夜，把二楼自治会搜出的六大箱量化扣分表与检讨书抬到窗边——是点起一把震慑吴福军的纸火，还是封存拍照作为扳倒校方的铁证？', days: 7, x: 220, y: 350, requires: ['despair_ration_water'],
+    onComplete: () => ({ activeEvent: FLAVOR_EVENTS.despair_burn_records_event }),
+    effectsText: ['触发抉择事件：黑夜里的纸火', '大幅提升学生理智或削减资本渗透'] },
+  { id: 'despair_red_toad_signal', title: 'B3通风管的暗语', description: '备用对讲机在午夜刺啦作响——早已被排挤出议会的王照凯与四十名钢铁红蛤残部潜伏在东翼配电间，提议暂搁路线旧怨、联手夹击吴福军！', days: 7, x: 500, y: 350, requires: ['telegram_six_schools'],
+    onComplete: () => ({ activeEvent: FLAVOR_EVENTS.despair_red_toad_signal_event }),
+    effectsText: ['触发抉择事件：昔日死敌的援手', '接受红蛤策应将极大提升绝地反击胜算'] },
+  { id: 'despair_parents_cry', title: '向围墙外喊话', description: '紫云路校门外挤满了焦急的家长。潘仁越踩上三楼窗台，用最后一只电池喊话器向围墙外揭露及第外包安保与防暴队打伤学生的全部真相！', days: 7, x: 780, y: 350, requires: ['despair_smuggle_zhouchen'],
+    onComplete: () => ({ activeEvent: FLAVOR_EVENTS.despair_parents_cry_event }),
+    effectsText: ['触发抉择事件：穿破夜雾的扩音器', '动摇外包安保军心，赢得家长与社会声援'] },
+  { id: 'despair_rooftop_broadcast', title: '天台上的最后广播', description: '三楼街垒在高压水枪与液压剪下终告失守。最后三十余名抵抗军退上暴雨倾盆的B3天台，潘仁越举起最后一只喊话器，发出留给未来合一人的绝笔。', days: 7, x: 300, y: 650, requires: ['defend_b3'], mutuallyExclusive: ['counter_attack'],
+    canStart: (s) => Boolean(s.flags.despair_b3_breached),
+    requiresText: ['B3保卫战失守后解锁'],
+    onComplete: () => ({ activeEvent: FLAVOR_EVENTS.despair_rooftop_broadcast_event }),
+    effectsText: ['触发事件：致未来的合一人'] },
+  { id: 'despair_reclaim_campus', title: '焦土上的黎明', description: '重夺广播站向全校与紫云路家长宣告B3未倒！迫于舆论滔天与伤情铁证，市教育局紧急叫停镇压、撤换封吴——合一在焦土之上守住了做人的脊梁！', days: 8, x: 700, y: 800, requires: ['counter_attack'],
+    onComplete: () => ({ activeEvent: FLAVOR_EVENTS.despair_dawn_break_event }),
+    effectsText: ['触发终局事件：焦土上的共和国', '达成结局：B3保卫战胜利'] },
 ];
 
 export const TREE_A_TRUE_LEFT_NODES: FocusNode[] = [
@@ -2620,7 +2860,8 @@ export const TREE_WU_NODES: FocusNode[] = [
     effectsText: ['稳定度 +5，卷子储备 +200', '教师支持 +5，学生愤怒 +3']
   },
   { id: 'wu_secure_perimeter', title: '肃清制高点', description: '把十五个区域重新置于校方绝对控制之下，不给残党任何藏身之地。', days: 14, x: 500, y: 330, requires: ['wu_resume_classes'],
-    canStart: (s) => ALL_SUB_TILES.every(t => getTileControl(s, t.id) <= 40),
+    canStart: (s) => ALL_SUB_TILES.every(t => getTileControl(s, t.id) <= 50),
+    requiresText: ['全校15个地块的学生控制度均压制至 50% 以下'],
     onComplete: (s) => ({
       wuState: s.wuState ? { ...s.wuState, guerrillaStrength: Math.max(0, s.wuState.guerrillaStrength - 15), fengTrust: Math.min(100, s.wuState.fengTrust + 10), studentAnger: Math.min(100, s.wuState.studentAnger + 5) } : undefined,
       stats: { ...s.stats, stab: Math.min(100, s.stats.stab + 5) },
@@ -2814,6 +3055,30 @@ export const TREE_WU_NODES: FocusNode[] = [
     },
     effectsText: ['一阶段国策树在此收束，按判定进入完全不同的二阶段路线', '模范校提名→封安宝千年线「秩序元年」', '限期整改→合一之春线「风暴前夕」', '不置可否→吴福军政变线「大权在握」']
   },
+  { id: 'wu_guard_academy', title: '护校队实战集训', description: '吴福军请来退伍教官在体育馆操练百人盾牌推进阵型。这支队伍越来越像一支随时能封锁街区的准军事力量。', days: 10, x: 140, y: 470, requires: ['wu_independent_command'],
+    onComplete: (s) => ({
+      flags: { ...s.flags, wu_guard_academy_done: true },
+      activeEvent: FLAVOR_EVENTS.wu_guard_academy_event
+    }),
+    effectsText: ['触发抉择事件：操场上的方阵', '全额批经费猛压残党（野心大涨）或财务敲打压制野心'] },
+  { id: 'wu_broadcast_discipline', title: '重塑校园宣传网', description: '刷白所有墙面涂鸦，接管全校希沃白板与高音喇叭——把校规朗读与一本率倒计时送进每一间教室的耳膜。', days: 9, x: 500, y: 470, requires: ['wu_secure_perimeter'],
+    onComplete: (s) => ({
+      flags: { ...s.flags, wu_broadcast_discipline_done: true },
+      activeEvent: FLAVOR_EVENTS.wu_broadcast_discipline_event
+    }),
+    effectsText: ['触发抉择事件：刷白的走廊墙', '选择高压通报或温情高考动员'] },
+  { id: 'wu_exam_blacklist', title: '整顿成绩红黑榜', description: '重新竖起三米长的年级总排名红黑榜。把学生的视线拉回残酷的分数竞争，是比警棍更持久的维稳武器。', days: 8, x: 860, y: 190, requires: ['wu_order_restored'],
+    onComplete: (s) => ({
+      flags: { ...s.flags, wu_exam_blacklist_done: true },
+      activeEvent: FLAVOR_EVENTS.wu_exam_blacklist_event
+    }),
+    effectsText: ['触发抉择事件：贴回墙上的红黑榜', '借分数竞争分化学生，大幅补充 TPR'] },
+  { id: 'wu_jidi_security_contract', title: '及第安保外包协作', description: '封安祥带着两百个高清探头、人脸闸机与成车密卷找上门来——只要让及第承包戒严期教辅，安防升级一分钱不花。', days: 10, x: 860, y: 330, requires: ['wu_exam_blacklist'],
+    onComplete: (s) => ({
+      flags: { ...s.flags, wu_jidi_security_done: true },
+      activeEvent: FLAVOR_EVENTS.wu_jidi_security_contract_event
+    }),
+    effectsText: ['触发抉择事件：弟弟的“义举”', '与资本交易换取大量PP与TPR，或坚持校方独立'] },
 ];
 
 // ============ v8.6.1 二阶段：按叙职判定进入三条完全不同的路线 ============
@@ -2909,6 +3174,24 @@ export const TREE_WU_P2_FENG_NODES: FocusNode[] = [
     effectsText: ['吴福军野心 -15，舆论压力 -10', '封校长信任 -5（借外力压制，吴福军心有不甘）', '安保指挥权收归校长']
   },
   WU_MILLENNIUM_NODE,
+  { id: 'wu_feng_curriculum_cage', title: '标准化“合一范式”白皮书', description: '联合杨玉乐名师工作室将高压备考流程编纂成全省示范范式，把青春彻底装订进精美的政绩画册。', days: 10, x: 220, y: 190, requires: ['wu_model_school'],
+    onComplete: (s) => ({
+      flags: { ...s.flags, wu_feng_whitepaper_done: true },
+      activeEvent: FLAVOR_EVENTS.wu_feng_curriculum_cage_event
+    }),
+    effectsText: ['触发抉择事件：白皮书里的青春', '强化封校长信任与舆论评价'] },
+  { id: 'wu_feng_student_cadres', title: '重建“模范学生督导团”', description: '用浅蓝袖章与强基综评加分招募重点班优等生充当巡查员——让最聪明的孩子自愿替学校看管同窗。', days: 10, x: 780, y: 190, requires: ['wu_model_school'],
+    onComplete: (s) => ({
+      flags: { ...s.flags, wu_feng_cadres_done: true },
+      activeEvent: FLAVOR_EVENTS.wu_feng_student_cadres_event
+    }),
+    effectsText: ['触发抉择事件：蓝袖章的新主人', '有效压制吴福军野心与残党实力'] },
+  { id: 'wu_feng_silenced_memorial', title: '改写校史馆陈列', description: '撤下陈栋时代的照片墙，抹去B3街垒与戒严的一切痕迹——校史只保留升学率曲线与平安示范校铜牌。', days: 10, x: 500, y: 470, requires: ['wu_wu_transfer', 'wu_bureau_backing'],
+    onComplete: (s) => ({
+      flags: { ...s.flags, wu_feng_memorial_done: true },
+      activeEvent: FLAVOR_EVENTS.wu_feng_silenced_memorial_event
+    }),
+    effectsText: ['稳定度 +8，政治点数 +25，舆论 -8，学生愤怒 -6', '触发事件：抹平的校史陈列柜'] },
 ];
 
 // ==================== 判定 reprimand：合一之春线「风暴前夕」 ====================
@@ -2972,7 +3255,7 @@ export const TREE_WU_P2_SPRING_NODES: FocusNode[] = [
     }),
     effectsText: ['吴福军野心 -30，封校长信任 +10', '教师支持 +10，学生愤怒 -5', '危机解除：安保指挥权平稳交接']
   },
-  { id: 'wu_rebel_contact', title: '与残党接触', description: '教育局的压力之下，与残党的谈判反而有了转机。谈谈，总比打下去强。', days: 14, x: 680, y: 330, requires: ['wu_club_concession'],
+  { id: 'wu_rebel_contact', title: '与残党接触', description: '教育局的压力之下，与残党的谈判反而有了转机。谈谈，总比打下去强。', days: 12, x: 740, y: 330, requires: ['wu_spring_midnight_talk'],
     onComplete: (s) => ({
       wuState: s.wuState ? { ...s.wuState, negotiationProgress: 20, publicOpinion: Math.max(0, s.wuState.publicOpinion - 5), fengTrust: Math.max(0, s.wuState.fengTrust - 5) } : undefined,
       flags: { ...s.flags, wu_negotiation_open: true },
@@ -2986,7 +3269,7 @@ export const TREE_WU_P2_SPRING_NODES: FocusNode[] = [
     }),
     effectsText: ['开启与残党和解谈判（谈判进度 20）', '舆论压力 -5，封校长信任 -5']
   },
-  { id: 'wu_negotiate_peace', title: '和平协议', description: '与残党达成和解。适度的让步，换取长久的平静。', days: 14, x: 680, y: 470, requires: ['wu_rebel_contact'],
+  { id: 'wu_negotiate_peace', title: '和平协议', description: '与残党达成和解。适度的让步，换取长久的平静。', days: 12, x: 740, y: 470, requires: ['wu_rebel_contact'],
     canStart: (s) => !!s.wuState && s.wuState.negotiationProgress >= 100 && !s.wuState.assassinationTriggered,
     onComplete: (s) => ({
       activeEvent: {
@@ -3000,7 +3283,7 @@ export const TREE_WU_P2_SPRING_NODES: FocusNode[] = [
     }),
     effectsText: ['达成结局：妥协与平静']
   },
-  { id: 'wu_ambition_peak', title: '忠诚与背叛', description: '被审查羞辱、被整改捆住手脚的吴福军，终于走向了那条最黑的路。', days: 10, x: 320, y: 330, requires: ['wu_power_review'],
+  { id: 'wu_ambition_peak', title: '忠诚与背叛', description: '被审查羞辱、被整改捆住手脚的吴福军，终于走向了那条最黑的路。', days: 10, x: 260, y: 330, requires: ['wu_power_review'],
     canStart: (s) => !!s.wuState && s.wuState.wuAmbition >= 100 && s.wuState.fengTrust < 40 && !s.wuState.assassinationTriggered,
     onComplete: (s) => ({
       wuState: s.wuState ? { ...s.wuState, assassinationTriggered: true } : undefined,
@@ -3016,6 +3299,12 @@ export const TREE_WU_P2_SPRING_NODES: FocusNode[] = [
     effectsText: ['达成结局：封安宝遇刺 · 合一之春']
   },
   WU_MILLENNIUM_NODE,
+  { id: 'wu_spring_whistleblower', title: '匿名信的回响', description: '复印机卡纸槽里拽出半沓控诉保安队滥权的匿名传单。吴福军暴跳如雷要求全校搜查，封安宝却忌惮督导组黄牌。', days: 8, x: 260, y: 190, requires: ['wu_inspection'],
+    onComplete: (s) => ({ flags: { ...s.flags, wu_spring_whistleblower_done: true }, activeEvent: FLAVOR_EVENTS.wu_spring_whistleblower_event }),
+    effectsText: ['触发抉择事件：复印机里的证词', '可借机激化吴福军矛盾（导向合一之春）或压制泄密'] },
+  { id: 'wu_spring_midnight_talk', title: '雨夜的弃子算盘', description: '封安宝深夜密会杨玉乐与老班主任，谋划拿吴福军挡刀并向地下残党递出和解橄榄枝——门外阴影里却闪过保安的身影。', days: 8, x: 740, y: 190, requires: ['wu_inspection'],
+    onComplete: (s) => ({ flags: { ...s.flags, wu_spring_midnight_done: true }, activeEvent: FLAVOR_EVENTS.wu_spring_midnight_talk_event }),
+    effectsText: ['触发抉择事件：雨夜弃子', '解锁与残党秘密接触渠道'] },
 ];
 
 // ==================== 判定 neutral：吴福军政变线「大权在握」 ====================
@@ -3148,7 +3437,7 @@ export const TREE_WU_P2_COUP_NODES: FocusNode[] = [
     effectsText: ['清除全部残党细胞，所有地块校方严控（控制度 3）', '残党实力 -35，学生愤怒 +18', '封校长信任 +8，吴福军野心 +10']
   },
   { id: 'wu_coup_december', title: '十二·十二', description: '一场没有硝烟的政变。五百人的护校队，将成为合一的唯一主人。', days: 10, x: 500, y: 610, requires: ['wu_scorched_earth', 'wu_first_strike_right'],
-    canStart: (s) => !!s.wuState && s.wuState.wuAmbition >= 100 && s.wuState.fengTrust >= 40 && !s.wuState.assassinationTriggered,
+    canStart: (s) => s.completedFocuses.includes('wu_coup_wiretap_office') && !!s.wuState && s.wuState.wuAmbition >= 100 && s.wuState.fengTrust >= 40 && !s.wuState.assassinationTriggered,
     onComplete: (s) => ({
       activeEvent: {
         id: 'wu_coup_story',
@@ -3159,8 +3448,20 @@ export const TREE_WU_P2_COUP_NODES: FocusNode[] = [
         effect: (st) => ({ gameEnding: 'game_over_wu_coup' })
       }
     }),
-    effectsText: ['达成结局：吴福军 · 十二·十二夜', '需要：犁庭扫穴 或 先斩后奏权 完成，且野心 100、信任 ≥40']
+    effectsText: ['达成结局：吴福军 · 十二·十二夜', '需要：接管总机与校园广播；犁庭扫穴、先斩后奏权至少一项；野心 100、信任 ≥40']
   },
+  { id: 'wu_coup_secret_loyalty', title: '保安室的效忠酒会', description: '吴福军自掏腰包在滨湖土菜馆宴请护校队骨干中队长并私发夜巡津贴——五百人队伍从此只认“吴司令”。', days: 8, x: 740, y: 190, requires: ['wu_power_expansion'],
+    onComplete: (s) => ({
+      flags: { ...s.flags, wu_coup_loyalty_done: true },
+      activeEvent: FLAVOR_EVENTS.wu_coup_secret_loyalty_event
+    }),
+    effectsText: ['触发抉择事件：酒杯里的“吴家军”', '大幅提升吴福军野心与护校队控制力'] },
+  { id: 'wu_coup_wiretap_office', title: '接管总机与校园广播', description: '借“防残党黑客”之名接管行政楼总机配线间——校长室每一通对外电话都在保安室的监听耳机里暴露无遗。', days: 10, x: 740, y: 330, requires: ['wu_coup_secret_loyalty'],
+    onComplete: (s) => ({
+      flags: { ...s.flags, wu_coup_wiretap_done: true },
+      activeEvent: FLAVOR_EVENTS.wu_coup_wiretap_office_event
+    }),
+    effectsText: ['触发抉择事件：监听耳机里的校长室', '完成政变筹备并可作为「十二·十二」的前置条件'] },
 ];
 
 export const getFocusNodes = (treeId: string) => {
@@ -3364,7 +3665,7 @@ export default function FocusTree({ state, startFocus, triggerError, isSuperEven
                   {node.requires && node.requires.length > 0 && (
                     <div className="mb-1.5">
                       <div className="text-[10px] font-bold text-tno-text mb-0.5">
-                        前置国策（{OR_REQUIRE_FOCUS_IDS.has(node.id) ? '满足其一即可' : '全部需要满足'}）:
+                        前置国策（{requiresIsOr(node.id) ? '满足其一即可' : '全部需要满足'}）:
                       </div>
                       <ul className="text-[11px] space-y-0.5">
                         {node.requires.map((req, idx) => {

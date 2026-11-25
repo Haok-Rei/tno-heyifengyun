@@ -16,6 +16,12 @@ export interface Artwork {
 }
 
 export const ARTWORKS: Artwork[] = [
+  { name:'暗夜分流', route:'联合革命', note:'9.6.1 · 暗夜分流', unlockHint:'经历联合革委会的暗夜抉择', events:['treeA_counterattack_choice_event'], sensitive:true },
+  { name:'B3三层', route:'绝望', note:'9.6.1 · 暗夜分流', unlockHint:'进入潘仁越绝望线', events:['despair_route_entry_event'], sensitive:true },
+  { name:'焦土黎明', route:'绝望', note:'9.6.1 · 暗夜分流', unlockHint:'走完绝望线的胜利终章', events:['despair_dawn_break_event'], sensitive:true },
+  { name:'天台回声', route:'绝望', note:'9.6.1 · 暗夜分流', unlockHint:'完成天台上的最后广播', events:['despair_rooftop_broadcast_event'], sensitive:true },
+  { name:'戒严台账', route:'吴福军', note:'9.6.1 · 暗夜分流', unlockHint:'经历铁腕时代的夜间审讯', events:['wu_night_interrogation_event'], sensitive:true },
+  { name:'行政楼夜餐', route:'吴福军', note:'9.6.1 · 暗夜分流', unlockHint:'见证封安宝与吴福军的庆功宴', events:['wu_feng_wu_dinner_event'], sensitive:true },
   // Supplied alternate editions retain their corresponding opening/ending unlock boundaries.
   { name:'封安宝时代', route:'终局', note:'校方体制 · 原始资料版本', unlockHint:'经历全面镇压或连任千年的结局', events:['game_over_school'], endings:['game_over_school','game_over_feng_millennium'] },
   { name:'陈栋与封安宝', route:'序章', note:'校园旧影 · 原始资料版本', unlockHint:'体验序章', opening:true },

@@ -3,6 +3,197 @@ import { applyTileCtrlDeltas } from '../engine/tileHelpers';
 import { startCampaignTeams } from '../engine/electionCampaign';
 
 export const STORY_EVENTS: Record<string, GameEvent> = {
+  treeA_counterattack_choice_event: {
+    id: 'treeA_counterattack_choice_event',
+    isStoryEvent: true,
+    title: '铁蹄临门：B3的暗夜抉择',
+    description: '联合革命委员会内部的分歧、见底的试卷储备与摇摇欲坠的外围阵地，终于给了行政楼里的旧官僚们最致命的反扑窗口。深夜十一点半，几十辆挂着校外安保牌照的面包车悄然驶入紫云路校门，吴福军手握防暴钢叉与大功率扩音器，带着重整完毕的保安队从四个方向逼近B3教学楼。\n\n刺眼的探照灯光柱直接打穿了三楼的玻璃窗。一楼走廊里已经传来铁锁被液压剪咬断的脆响，各班联络员满头大汗地跑来报告：“外围据点快守不住了！试卷和干粮也快见底了，现在必须立刻决定下一步怎么走！”\n\n站在决定滨湖校区命运的暗夜岔路口，历史将向你敞开三条截然不同的道路：',
+    choices: [
+      {
+        text: '【转入潘仁越绝望线】全线退守B3三层！拉起课桌街垒，打响绝望的走廊巷战！',
+        previewText: '切换至潘仁越绝望线国策树（含12个专属国策与双终局分支）',
+        effect: (state) => ({
+          flags: { ...state.flags, treeA_counterattack_choice_fired: true },
+          activeEvent: STORY_EVENTS.despair_route_entry_event
+        })
+      },
+      {
+        text: '【转入吴福军铁腕线】切换校方视角：响应吴福军总攻令，以铁靴终结乱局！',
+        previewText: '切换至校方视角，进入吴福军镇压线「铁腕时代」及三大二阶段路线',
+        effect: (state) => ({
+          flags: { ...state.flags, treeA_counterattack_choice_fired: true },
+          activeEvent: STORY_EVENTS.wu_crackdown_entry_event
+        })
+      },
+      {
+        text: '【死守革委会】拒绝退缩！动用一切残余力量稳住战线，留在联合革委会！',
+        previewText: '留在联合革命阶段继续推进；稳定度 -5，激进愤怒 +6（局势继续恶化仍会触发最后通牒）',
+        effect: (state) => ({
+          flags: { ...state.flags, treeA_counterattack_choice_fired: true },
+          stats: {
+            ...state.stats,
+            stab: Math.max(0, state.stats.stab - 5),
+            radicalAnger: Math.min(100, state.stats.radicalAnger + 6),
+          }
+        })
+      }
+    ],
+    effectsText: ['重大路线分流：可选择进入「潘仁越绝望线」「吴福军铁腕时代」或继续留在联合革委会']
+  },
+  treeA_final_collapse_choice_event: {
+    id: 'treeA_final_collapse_choice_event',
+    isStoryEvent: true,
+    title: '防线告破：最后的命运分流',
+    description: '最后的缓冲期耗尽了。保安队与及第雇佣兵已经攻入教学区核心，外围联络全面中断，联合革命委员会的常规统治宣告彻底破产。\n\n在硝烟与刺耳的防空哨声中，你再也没有拖延的余地：要么作为抵抗军退入B3三层打响孤注一掷的走廊巷战，要么彻底站在校方一边，见证吴福军用铁腕与戒严令重塑整座合肥一中。',
+    choices: [
+      {
+        text: '【转入潘仁越绝望线】绝不投降！退守B3三层打响绝望走廊巷战！',
+        previewText: '进入潘仁越绝望线国策树（12节点完整巷战剧情）',
+        effect: () => ({ activeEvent: STORY_EVENTS.despair_route_entry_event })
+      },
+      {
+        text: '【转入吴福军铁腕线】切换校方视角：启动总攻令，开启“铁腕时代”！',
+        previewText: '进入吴福军镇压线「铁腕时代」',
+        effect: () => ({ activeEvent: STORY_EVENTS.wu_crackdown_entry_event })
+      }
+    ],
+    effectsText: ['必须选择一条路线继续：潘仁越绝望线 或 吴福军铁腕时代']
+  },
+  despair_route_entry_event: {
+    id: 'despair_route_entry_event',
+    isStoryEvent: true,
+    title: '血火围城：B3三层的最后防线',
+    description: '外围控制区相继失守，油印室彻底见底，最后几百名不愿交出黑天红字旗的学生在深夜退守B3教学楼三层。走廊里堆起一人多高的课桌与铁皮柜街垒，灭火器、拖把杆与写满笔记的草稿纸散落一地。\n\n楼下，吴福军的防暴队与及第教育重金雇来的黑衣保安已经封死了每一道大门，切断了教学楼的水电供应。面对几乎毫无胜算的围城，潘仁越抹去额头的灰尘，站上了翻倒的讲台：“我们失去了广播站，失去了食堂，甚至失去了大多数人的支持。但只要B3三层还有一个人站着，封安宝就别想宣布他赢了！”\n\n绝望的走廊巷战，正式打响。',
+    buttonText: '背水一战，绝不退缩！',
+    effect: (state) => {
+      const tileFlags: Record<string, number> = {};
+      ALL_SUB_TILES.forEach(t => {
+        if (t.id === 'b3_tower') tileFlags[`tile_ctrl_${t.id}`] = 70;
+        else if (t.buildingId === 'b3') tileFlags[`tile_ctrl_${t.id}`] = 55;
+        else tileFlags[`tile_ctrl_${t.id}`] = 15;
+      });
+      return {
+        currentFocusTree: 'treeA_pan_despair',
+        completedFocuses: [],
+        activeFocus: null,
+        leader: {
+          name: '潘仁越',
+          title: 'B3抵抗军前线总指挥',
+          portrait: 'pan_renyue',
+          ideology: 'liberal',
+          description: "议会大厅的辩论与渐进改良的旧梦已被防暴钢叉击得粉碎。退守B3三层的潘仁越褪去了昔日实验班学霸的温文尔雅，眼眶深陷，声音嘶哑，校服袖口沾满粉笔灰与血渍。\n\n面对断水断电的围城与四面合围的校方保安队，这位曾经天真的自由派理想主义者终于明白：当强权掀翻谈判桌时，唯有扛起最惨烈的抵抗，才能替合一的后来者留下一丝不肯跪下的火种。",
+          buffs: []
+        },
+        stats: {
+          ...state.stats,
+          stab: Math.max(25, state.stats.stab),
+          ss: Math.max(30, state.stats.ss),
+        },
+        flags: {
+          ...state.flags,
+          ...tileFlags,
+          school_counterattack_complete: true,
+          treeA_counterattack_resolved: true,
+          treeA_counterattack_choice_fired: true,
+          wu_crackdown_generated: false,
+          pan_despair_days: 0,
+          despair_b3_held: false,
+          despair_b3_breached: false,
+        },
+        crises: state.crises.filter(c => c.id !== 'wu_crackdown' && c.id !== 'school_counterattack'),
+        activeSuperEvent: {
+          id: 'despair_corridor_super',
+          title: '绝 望 巷 战',
+          quote: '身后就是尊严，我们已无路可退。',
+          author: '潘仁越',
+          color: '#dc2626'
+        }
+      };
+    },
+    effectsText: ['切换至：潘仁越绝望线国策树（12个专属国策）', '更换领袖头衔为：B3抵抗军前线总指挥', 'B3成为孤立堡垒，触发绝望巷战阶段']
+  },
+  despair_siege_held_event: {
+    id: 'despair_siege_held_event',
+    isStoryEvent: true,
+    title: '血染街垒：第一波总攻被击退',
+    description: '干粉灭火器喷出的浓白烟雾呛得走廊伸手不见五指，碎裂的防暴盾牌和折断的拖把杆铺满了B3二楼到三楼的每一级台阶。经过近两个小时惨烈到令人窒息的肉搏拉锯，吴福军亲自带队发起的第一波强攻，竟然硬生生撞死在了学生们用血肉和课桌筑起的街垒之前！\n\n楼下的外包保安开始出现畏战与喧哗，几名被灭火器喷得涕泪横流的保安队员扔下盾牌退回了操场。潘仁越靠在滚烫的铁门后剧烈喘息，手背上被玻璃划出一道长长的血口，眼神却亮得惊人——敌人乱了阵脚，绝地反击的窗口就在眼前！',
+    buttonText: '准备反冲锋！',
+    effectsText: ['已解锁绝望线反击分支：「绝地反击：冲下楼梯间」', '政治点数 +40，学生支持度 +15，稳定度 +12']
+  },
+  despair_siege_breached_event: {
+    id: 'despair_siege_breached_event',
+    isStoryEvent: true,
+    title: '二楼失守：退守顶层天台',
+    description: '刺耳的金属断裂声最终还是击碎了三楼西侧楼梯口的最后一道防线。数倍于学生的全副武装保安队顶着防暴盾牌强行突进了走廊，高压水枪冰冷刺骨的水柱冲垮了课桌街垒，哭喊声与警棍敲击铁门的声音混成一片地狱般的喧嚣。\n\n“往天台撤！护住伤员，别落单！”潘仁越嘶哑着嗓子拉起摔倒的同学，带着最后几十名浑身湿透的抵抗军退进了通往楼顶天台的狭小铁门。外面下起了冰冷的夜雨，他们已经没有退路，但天台上那台蓄电池扩音器，还能发出最后一次呐喊。',
+    buttonText: '守住天台，直到最后一刻。',
+    effectsText: ['已解锁绝望线悲歌分支：「天台上的最后广播」', '稳定度 -10']
+  },
+  wu_night_interrogation_event: {
+    id: 'wu_night_interrogation_event',
+    isStoryEvent: true,
+    title: '保安室里的台灯',
+    description: '深夜十一点半，保安室里只亮着一盏发黄的台灯。灯下坐着一名刚从实验楼楼梯间揪出来的地下传单联络员——高二（七）班的一个瘦弱男生，校服领口被扯歪了，眼镜片上沾着灰，双手紧攥着膝盖止不住地发抖。\n\n吴福军没有像白天在操场上那样拍桌咆哮，只是往一次性纸杯里倒了半杯温水推过去，拉过折叠椅坐在他对面。“怕什么？”吴福军点起一根烟，烟雾在他布满血丝的眼眶前散开，“我也是从乡下考出来的。我知道你们觉得我像条恶狗，天天盯着你们上厕所、收你们的课外书。可你知不知道，今年小一六八的一本率压得咱们喘不过气？封校长拍了桌子，全市家长盯着红榜——真让你们天天在楼顶拉横幅、搞社团，到了六月七号考砸了，谁替你们这群十八岁的娃负一辈子的责？”\n\n瘦弱男生抬起头，眼里满是不解与倔强：“吴主任，您说为了我们好……可被您按在地上搜身的时候，我们觉得自己连条狗都不如。”\n\n保安室陷入了长久的死寂。台灯的灯管嗡嗡作响。良久，吴福军掐灭烟头，脸色重新冷成一块铁板：“规矩就是规矩。把名单交出来，今晚放你回寝室睡觉。”',
+    choices: [
+      {
+        text: '连夜顺藤摸瓜深挖地下网络，绝不心慈手软！',
+        previewText: '残党实力 -10，学生愤怒 +8，吴福军野心 +5',
+        effect: (s) => ({
+          wuState: s.wuState ? {
+            ...s.wuState,
+            guerrillaStrength: Math.max(0, s.wuState.guerrillaStrength - 10),
+            studentAnger: Math.min(100, s.wuState.studentAnger + 8),
+            wuAmbition: Math.min(100, s.wuState.wuAmbition + 5),
+          } : undefined
+        })
+      },
+      {
+        text: '口头训诫后把人放回寝室，只没收传单不再株连。',
+        previewText: '学生愤怒 -6，舆论压力 -4，封校长信任 -3',
+        effect: (s) => ({
+          wuState: s.wuState ? {
+            ...s.wuState,
+            studentAnger: Math.max(0, s.wuState.studentAnger - 6),
+            publicOpinion: Math.max(0, s.wuState.publicOpinion - 4),
+            fengTrust: Math.max(0, s.wuState.fengTrust - 3),
+          } : undefined
+        })
+      }
+    ],
+    effectsText: ['吴福军线专属人物事件']
+  },
+  wu_feng_wu_dinner_event: {
+    id: 'wu_feng_wu_dinner_event',
+    isStoryEvent: true,
+    title: '行政楼小食堂的庆功宴',
+    description: '周六晚间，行政楼二层专供领导接待的小包厢里摆了一桌四菜一汤。封安宝亲自替吴福军斟满一杯白酒，杨玉乐坐在下首笑眯眯地替两人夹菜——名义上是庆贺戒严以来校园“零重大事故”，实则包厢里的每一句寒暄都暗藏机锋。\n\n“福军啊，这段时间辛苦你了。”封安宝举起酒杯，目光却像探照灯一样锁在吴福军脸上，“不过我今天听总务处说，你把保安队几个中队长的排班和津贴都直接绕开校办批了？咱们合一讲的是规矩，你替学校看门，手伸得太长，外人看见了会说闲话的。”\n\n吴福军端着酒杯的手微微一顿，随即仰头一饮而尽，抹了抹嘴角笑道：“校长多虑了，前线兄弟们大半夜吹着冷风替学校抓暴徒，要是等行政办一层层签字，菜都凉透了。再说了——这所学校要不是我老吴带着兄弟们顶在前面，今天哪还有咱们在这儿喝庆功酒的份？”\n\n包厢瞬间静得能听见空调的滴水声。杨玉乐手里的筷子停在半空，微笑着打圆场，眼神却在两位掌权者之间飞快地转了一圈。',
+    choices: [
+      {
+        text: '封安宝当场敲打吴福军，重申所有安保开支必须经校长室复核！',
+        previewText: '吴福军野心 -8，封校长信任 -8，稳定度 +5',
+        effect: (s) => ({
+          stats: { ...s.stats, stab: Math.min(100, s.stats.stab + 5) },
+          wuState: s.wuState ? {
+            ...s.wuState,
+            wuAmbition: Math.max(0, s.wuState.wuAmbition - 8),
+            fengTrust: Math.max(0, s.wuState.fengTrust - 8),
+          } : undefined
+        })
+      },
+      {
+        text: '大笑揭过，默许吴福军在安保系统内继续独断专行。',
+        previewText: '吴福军野心 +12，封校长信任 +8，残党实力 -5',
+        effect: (s) => ({
+          wuState: s.wuState ? {
+            ...s.wuState,
+            wuAmbition: Math.min(100, s.wuState.wuAmbition + 12),
+            fengTrust: Math.min(100, s.wuState.fengTrust + 8),
+            guerrillaStrength: Math.max(0, s.wuState.guerrillaStrength - 5),
+          } : undefined
+        })
+      }
+    ],
+    effectsText: ['吴福军线专属人物事件']
+  },
   gx_cyber_start_demon_slayer: {
     id: 'gx_cyber_start_demon_slayer',
     title: '水之呼吸与油墨的交响',
@@ -2423,14 +2614,31 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
   wu_ultimatum_event: {
     id: 'wu_ultimatum_event',
     title: '吴福军的最后通牒',
-    description: '联合革命委员会的赤色版图正在校方防暴铁拳的步步蚕食下急速萎缩。随着图书馆、食堂与宿舍区外围据点接连沦陷，学生自治政权的控制区如退潮般向内坍缩，最终只剩下B3教学楼周边孤悬于铁丝网之内的几座残破孤岛。\n\n傍晚六点整，高三年级主任吴福军那沙哑而冷酷的声音通过强行切入的全校高音喇叭，在每一条被封锁的走廊上空轰然回荡：“B3楼里的闹事分子听着，校方给你们最后十五天期限。立刻拆除课桌街垒，交出王照凯、潘仁越等带头首犯，全员回班写检讨复课。十五天之后要是还有人敢负隅顽抗，我将亲自带保安队上楼，把你们从每一个老鼠洞里连根拔起！”\n\n广播里的吴福军没有了往日气急败坏的咆哮，取而代之的是一种猫戏老鼠般的、胜券在握的冰冷平静。\n\n楼下的操场中央，新近扩编并配发了全套防暴钢叉与强光盾牌的校卫队已经列成严整的黑衣方阵，看台四角架设的大功率探照灯彻夜长明，将B3教学楼的每一扇窗户都照得如同刑场般惨白。',
+    description: '联合革命委员会的赤色版图正在校方防暴铁拳的步步蚕食下急速萎缩。随着图书馆、食堂与宿舍区外围据点接连沦陷，学生自治政权的控制区如退潮般向内坍缩，最终只剩下B3教学楼周边孤悬于铁丝网之内的几座残破孤岛。\n\n傍晚六点整，高三年级主任吴福军那沙哑而冷酷的声音通过强行切入的全校高音喇叭，在每一条被封锁的走廊上空轰然回荡：“B3楼里的闹事分子听着，校方给你们最后十二天期限。立刻拆除课桌街垒，交出王照凯、潘仁越等带头首犯，全员回班写检讨复课。十二天之后要是还有人敢负隅顽抗，我将亲自带保安队上楼，把你们从每一个老鼠洞里连根拔起！”\n\n广播里的吴福军没有了往日气急败坏的咆哮，取而代之的是一种猫戏老鼠般的、胜券在握的冰冷平静。\n\n楼下的操场中央，新近扩编并配发了全套防暴钢叉与强光盾牌的校卫队已经列成严整的黑衣方阵，看台四角架设的大功率探照灯彻夜长明，将B3教学楼的每一扇窗户都照得如同刑场般惨白。',
     buttonText: '留给我们的时间不多了...',
-    effectsText: ['危机：吴福军最后通牒（15天）']
+    effectsText: ['危机：吴福军最后通牒（12天），或直接选择转入绝望线 / 铁腕时代'],
+    choices: [
+      {
+        text: '死战到底！在十二天倒计时内重夺失地，粉碎通牒！',
+        previewText: '留在当前路线，进入 12 天「吴福军最后通牒」危机',
+        effect: () => ({})
+      },
+      {
+        text: '【转入潘仁越绝望线】放弃外围空城，全员退守B3三层打响走廊巷战！',
+        previewText: '立即进入潘仁越绝望线（12节点完整巷战国策树）',
+        effect: () => ({ activeEvent: STORY_EVENTS.despair_route_entry_event })
+      },
+      {
+        text: '【转入吴福军铁腕线】切换校方视角：提前发动总攻令，开启“铁腕时代”！',
+        previewText: '立即切换至校方视角，进入吴福军镇压线（铁腕时代）',
+        effect: () => ({ activeEvent: STORY_EVENTS.wu_crackdown_entry_event })
+      }
+    ]
   },
   wu_crackdown_entry_event: {
     id: 'wu_crackdown_entry_event',
     title: '总攻令',
-    description: '十五天的期限，在漫长的对峙中走到了尽头。\n\n凌晨四点，保安队的冲锋哨划破了滨湖校区的夜空。按照吴福军亲手绘制的作战图，十五个小组同时行动，从宿舍区、实验楼、礼堂三个方向合围B3教学楼。学生们用课桌垒起的街垒，在专业化的推进队形面前土崩瓦解。\n\n当第一缕晨光照进B3楼顶的时候，黑天红字旗已经不见了。\n\n王照凯和残余的革委会成员在最后关头从地下管网撤退。有人在黑暗中回头望了一眼，看见校方的旗帜重新升起，看见操场上整齐列队的保安队员，看见自己的校园在朝阳里安静得像什么都没有发生过。\n\n“走吧。”潘仁越的声音在管道里回荡，“只要我们活着，就还有下次。”\n\n而此刻，吴福军正站在行政楼前，接受保安队的列队敬礼。他胸前的对讲机里，传出封安宝沙哑而满意的声音：“干得漂亮，福军。从今天起，这所学校，我说了算——不，是我们说了算。”\n\n铁腕的时代，从此开始。',
+    description: '行动令是深夜送到的。签发时间一栏只写了四个字：即刻执行。\n\n凌晨四点，保安队的冲锋哨划破了滨湖校区的夜空。按照吴福军亲手绘制的作战图，十五个小组同时行动，从宿舍区、实验楼、礼堂三个方向合围B3教学楼。学生们用课桌垒起的街垒，在专业化的推进队形面前土崩瓦解。\n\n当第一缕晨光照进B3楼顶的时候，黑天红字旗已经不见了。\n\n王照凯和残余的革委会成员在最后关头从地下管网撤退。有人在黑暗中回头望了一眼，看见校方的旗帜重新升起，看见操场上整齐列队的保安队员，看见自己的校园在朝阳里安静得像什么都没有发生过。\n\n“走吧。”潘仁越的声音在管道里回荡，“只要我们活着，就还有下次。”\n\n而此刻，吴福军正站在行政楼前，接受保安队的列队敬礼。他胸前的对讲机里，传出封安宝沙哑而满意的声音：“干得漂亮，福军。从今天起，这所学校，我说了算——不，是我们说了算。”\n\n铁腕的时代，从此开始。',
     buttonText: '镇压成功。',
     effect: (state) => {
       const tileFlags: Record<string, number> = {};
@@ -2446,7 +2654,7 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
           title: '校长',
           portrait: 'feng_anbao',
           ideology: 'authoritarian',
-          description: "在吴福军防暴队的胶棍与盾牌拱卫下，封安宝踏着B3街垒的残骸重返行政楼顶层，再次加冕为合肥一中不容置疑的绝对独裁者。这场曾将他逼至墙角的学生民主狂飙，彻底碾碎了他对‘温和改良’的最后一丝耐心——在他的铁血逻辑里，合一的动荡绝非源于衡水模式的压迫，而是因为铁笼的焊缝还不够密实。如今，随着全校十五个网格被防暴铁丝网全面接管，封安宝不再需要杨玉乐式的虚伪温情，也不再屑于与任何学生代表谈判。只要探照灯与量化罚单还能让三千名做题家在恐惧中低头刷题，哪怕将整座滨湖校区变成一座刺刀林立的死寂兵营，他也绝不皱一下眉头。",
+          description: "在防暴钢叉与冲锋哨的簇拥下，封安宝重新坐回了行政楼顶层的宽大皮椅。B3街垒的硝烟与数月来的剧烈震荡，没有让他对高压体制产生半分反思，反而印证了他骨子里的威权信条：动乱从来不是因为逼得太狠，而是因为绳索松得太早。\n\n这一次，他彻底撕下了“沟通”与“安抚”的虚伪面纱，把整座校园的日常治理权毫无保留地交给了吴福军与武装护校队。在他眼中，合一不再需要什么民主传统或人文温情——只要把一切反抗的火苗按死在萌芽里，这台百年应试机器便会永远轰鸣下去。然而，靠刺刀撑起的死寂终究是一把双刃剑：当他将全部威权寄托于保安队的铁拳时，却没察觉到门外那把越来越锋利的枪，早已不再只听校长室一人的号令。",
           buffs: ['每日稳定度 +0.05', '每日卷子储备 -10']
         },
         stats: {
@@ -2461,6 +2669,8 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
           wu_route_active: true,
           wu_crackdown_map_phase: true,
           map_struggle_ended: false,
+          wu_crackdown_generated: false,
+          treeA_counterattack_resolved: true,
           ...tileFlags,
         },
         nationalSpirits: state.nationalSpirits
@@ -2468,7 +2678,7 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
           .concat({
             id: 'wu_martial_law_spirit',
             name: '戒严令',
-            description: "随着《全校无限期戒严令》的颁布，滨湖校区的每一道连廊、每一处楼梯口与食堂通道都被持棍保安与铁马路障彻底锁死。跨班级交谈被定性为非法串联，课间走廊逗留超过三十秒即遭当场扣押，夜晚的宿舍楼更在探照灯的交叉扫射下化作了插翅难飞的囚笼。\n\n校方将这套令人窒息的准军事化管制粉饰为‘恢复高考备考秩序的必要阵痛’；但在数千名被剥夺了最后一点行动自由的合一学子眼中，整座校园已然退化为一座由哨声、监控球机与橡胶警棍统治的全景敞视监狱。",
+            description: "全校十五个关键路口全部架起了护校队岗哨，探照灯彻夜扫射着操场与连廊。任何跨楼层走动、课间三人以上停留或熄灯后的低声交谈都被列入《安全条例》的重点清查项。校方宣称这是保障升学的“战时安全秩序”，而在三千名学子眼中，整座合肥一中已彻底沦为一座没有死角的露天看守所。",
             type: 'negative',
             effects: { stabDaily: 0.4, ssDaily: -0.5 }
           }),
@@ -2485,7 +2695,7 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
           crackdownActions: 0,
           negotiationProgress: 0,
         },
-        crises: state.crises.filter(c => c.id !== 'wu_crackdown'),
+        crises: state.crises.filter(c => c.id !== 'wu_crackdown' && c.id !== 'school_counterattack'),
         activeSuperEvent: {
           id: 'wu_crackdown',
           title: '总 攻 令',
@@ -2500,7 +2710,7 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
   wu_reprieve_event: {
     id: 'wu_reprieve_event',
     title: '通牒撤回',
-    description: '在十五天最后通牒的倒计时即将归零的前夜，起义学生凭借着顽强的组织动员与侧翼反击，硬生生从校卫队手中夺回了数处关键通道，将摇摇欲坠的防线重新稳固在了安全线之上。\n\n集结在操场上的防暴保安队终究没能等来封安宝签署的强攻手令。第二天清晨的校园广播里，吴福军压抑着怒火的声音冷冷传出：“鉴于近期部分楼层日常秩序有所恢复，校方本着教育挽救的原则，对此前下达的清场通牒予以暂缓执行。”\n\nB3教学楼街垒后的学生们终于松开了紧握拖把杆的双手，长长地吐出一口浊气。然而每一个人都清楚，只要行政楼里的独裁者还在，这场休战就只是一次磨刀霍霍的喘息。\n\n保安室的落地窗后，吴福军死死盯着B3楼顶那面迎风招展的黑天红字旗，从牙缝里挤出一句冷笑：“躲得过初一，看你们怎么躲得过十五。”',
+    description: '在最后通牒尚未到期时，起义学生凭借着顽强的组织动员与侧翼反击，硬生生从校卫队手中夺回了数处关键通道，将摇摇欲坠的防线重新稳固在了安全线之上。\n\n集结在操场上的防暴保安队终究没能等来封安宝签署的强攻手令。第二天清晨的校园广播里，吴福军压抑着怒火的声音冷冷传出：“鉴于近期部分楼层日常秩序有所恢复，校方本着教育挽救的原则，对此前下达的清场通牒予以暂缓执行。”\n\nB3教学楼街垒后的学生们终于松开了紧握拖把杆的双手，长长地吐出一口浊气。然而每一个人都清楚，只要行政楼里的独裁者还在，这场休战就只是一次磨刀霍霍的喘息。\n\n保安室的落地窗后，吴福军死死盯着B3楼顶那面迎风招展的黑天红字旗，从牙缝里挤出一句冷笑：“躲得过初一，看你们怎么躲得过十五。”',
     buttonText: '侥幸脱险。',
     effectsText: ['危机化解']
   },

@@ -35,7 +35,7 @@ export const ROUTE_TREE: GuideNode = {
       title: '冲上B3教学楼！',
       type: 'branch',
       req: '激进愤怒度 >80；无需走完左右两侧国策',
-      story: '联合革委会起义的起点。完成后进入起义事件链；杨玉乐入口另按顾问、稳定度和完成日期判定。',
+      story: '可由读书会进入器材室聚会，或走跨班联络；开局的教辅合作与十月联考另有独立剧情。完成本国策进入起义事件链。',
       children: [
         {
           id: 'yang_yule_entry',
@@ -68,15 +68,15 @@ export const ROUTE_TREE: GuideNode = {
           id: 'tree_a',
           title: '联合革委会（Tree A · 王照凯）',
           type: 'route',
-          story: '革命胜利但群龙无首。此阶段是全校最大分歧场：地图斗争、学生大会、派系危机与命运十字路口，几乎所有路线都在这里分叉。',
+          story: '争取地区后，可通过食堂后勤、B3防务或临时约法提高支持与稳定。完成「反渗透与暗夜戒备」可留在革委会，或主动转入吴福军／潘仁越绝望线；也可继续走命运的十字路口。',
           children: [
             { id: 'committee_authority', title: '民主派争权', type: 'crisis', req: '首次解锁大会时必定出现；后续按派系与同盟状态形成，结束后冷却15天', story: '到期潘派从其他派系转入1–3席、集权降低5、团结小幅变化。潘派达到40席，或集权降至25以下，或团结≥80且集权≤40可抑制后续争权；首次危机保留首日反馈。' },
             {
               id: 'crisis_wu',
               title: '吴福军最后通牒',
               type: 'crisis',
-              req: '红区 ≥ 5（六建筑区中至少五个学生控制 <45%）且 稳定度 < 30 · 15天倒计时',
-              story: '失守建筑区减少至五个以下且稳定度 ≥30，可撤回通牒也可反复触发。到期不解决 → 吴福军总攻，视角翻转为校方。',
+              req: '至少4个建筑区控制度 <45%，且稳定度 <40；倒计时12天',
+              story: '失守建筑区少于4个且稳定度≥40时撤回；收到通牒可提前转线。革委会阶段超时必须在铁腕与绝望两线中选择。',
               children: [
                 {
                   id: 'wu_route',
@@ -88,13 +88,13 @@ export const ROUTE_TREE: GuideNode = {
                       id: 'wu_p1',
                       title: '一阶段：铁腕 / 怀柔 / 野心 三支线',
                       type: 'route',
-                      story: '11个国策收束于唯一节点「封安宝的年度叙职」，按 舆论压力/残党实力/学生愤怒 判定三档结果，进入三条互斥路线。',
+                      story: '戒严、怀柔与安保扩权可分别推进。年度叙职按结算前数值判定：舆论≤35、残党≤55且愤怒≤60获提名；舆论≥55或残党≥70限期整改；其余为不置可否。',
                       children: [
                         {
                           id: 'wu_p2_feng',
                           title: '秩序元年（模范校提名 → praise）',
                           type: 'route',
-                          story: '封安宝的完美答卷：模范校授牌 → 校规法治化 → 吴福军转岗或教育局背书 → 千年大计。',
+                          story: '授牌后可推进范式白皮书与学生督导团。校规法治化后处理吴福军去留，再改写校史馆或推进千年大计。',
                           children: [
                             { id: 'wu_end_feng', title: '连任千年', type: 'ending', endingId: 'game_over_feng_millennium', req: '完成「千年大计」（野心<50 / 愤怒<45 / 舆论<45，与合一之春线共享）', story: '校长任期改为“无固定期限”，一千年的题海开始涨潮。' },
                           ],
@@ -106,7 +106,7 @@ export const ROUTE_TREE: GuideNode = {
                           story: '督导组进驻，吴福军被当众羞辱。权力边界审查、整改、忠诚与背叛的抉择。',
                           children: [
                             { id: 'wu_end_spring', title: '合一之春', type: 'ending', endingId: 'game_over_hefei_spring', req: '「忠诚与背叛」：野心 = 100 且 封校长信任 < 40', story: '一声闷响。封安宝倒在行政楼走廊，吴福军被带走，冻结的校园缓慢苏醒。' },
-                            { id: 'wu_end_compromise', title: '妥协与平静', type: 'ending', endingId: 'compromise', req: '「与残党接触」推进和平协议：谈判进度 = 100', story: '怀柔路线走到尽头。学生回到教室，老师们重新拿起教鞭。' },
+                            { id: 'wu_end_compromise', title: '妥协与平静', type: 'ending', endingId: 'compromise', req: '完成「雨夜的弃子算盘」和「与残党接触」，谈判进度达100后签署和平协议', story: '怀柔路线走到尽头。学生回到教室，老师们重新拿起教鞭。' },
                             { id: 'wu_end_feng2', title: '连任千年', type: 'ending', endingId: 'game_over_feng_millennium', req: '「降级留任」后完成共享节点「千年大计」', story: '同上——秩序派路线在整改风暴中幸存后的归宿。' },
                           ],
                         },
@@ -116,7 +116,7 @@ export const ROUTE_TREE: GuideNode = {
                           type: 'route',
                           story: '保安队扩编、先斩后奏权、铁幕校规、犁庭扫穴——吴福军在自己的野心之路上狂奔。',
                           children: [
-                            { id: 'wu_end_coup', title: '十二·十二夜', type: 'ending', endingId: 'game_over_wu_coup', req: '「十二·十二」：野心 = 100 且 封校长信任 ≥ 40', story: '2023年12月12日夜，护校队封锁全校。吴福军站上升旗台，宣布校园一切事务由护校队司令部统一指挥。' },
+                            { id: 'wu_end_coup', title: '十二·十二夜', type: 'ending', endingId: 'game_over_wu_coup', req: '完成「接管总机与校园广播」及两项旧前置之一；野心达100、封安宝信任≥40', story: '2023年12月12日夜，护校队封锁全校。吴福军站上升旗台，宣布校园一切事务由护校队司令部统一指挥。' },
                           ],
                         },
                         { id: 'wu_fail', title: '升学率雪崩', type: 'ending', endingId: 'game_over_anarchy', req: '失败路径：残党实力 = 100', story: '铁腕失守，戒严彻底崩溃。' },
@@ -259,14 +259,14 @@ export const ROUTE_TREE: GuideNode = {
                     },
                     {
                       id: 'pan_despair',
-                      title: '校方反攻？（绝望分支）',
+                      title: '校方反攻与B3围城',
                       type: 'crisis',
-                      req: 'TPR ≤ 0 且 学生支持 < 30 · 30天倒计时',
-                      story: '民主失能，校方保安队与及第雇佣兵反扑。到期进入绝望分支，若仍在此路线，第3、6、9天分别会出现带选择的走廊巷战事件。完成「六校联合的电报」后会收到回信，解锁保卫战仍需完成两项前置国策。',
+                      req: '试卷储备≤180且学生支持<40，倒计时15天；也可从革委会暗夜抉择直接进入',
+                      story: '围城路线有配给、递药和六校电报三条准备线。完成「焚烧量化黑账」「B3通风管的暗语」「向围墙外喊话」后可进保卫战。',
                       children: [
-                        { id: 'despair_end_1', title: 'B3保卫战胜利', type: 'ending', endingId: 'game_over_victory', req: '死守B3小游戏获胜', story: '红旗未倒。这只是一个开始，但已经证明了学生的力量。' },
-                        { id: 'despair_end_2', title: '绝望的终局', type: 'ending', endingId: 'game_over_despair', req: '完成「最后的防线崩溃」国策', story: '潘仁越和抵抗军被镇压，抗争最终只是一场徒劳的悲剧。' },
-                        { id: 'despair_end_3', title: '升学率雪崩', type: 'ending', endingId: 'game_over_anarchy', req: '死守B3小游戏失败', story: '保安队突破防线，红旗被拔除，吴福军宣布全面军管。' },
+                        { id: 'despair_end_1', title: 'B3保卫战胜利', type: 'ending', endingId: 'game_over_victory', req: '保卫战守住B3，再完成「绝地反击」与「焦土上的黎明」', story: '红旗未倒。这只是一个开始，但已经证明了学生的力量。' },
+                        { id: 'despair_end_2', title: '绝望的终局', type: 'ending', endingId: 'game_over_despair', req: '完成「最后的防线崩溃」国策', story: '保卫战失守，抵抗军从楼梯间退上天台。最后一段广播之后，防线彻底瓦解。' },
+                        { id: 'despair_end_3', title: '升学率雪崩', type: 'ending', endingId: 'game_over_anarchy', req: '旧版已结算存档的结果；新版失守后继续「天台上的最后广播」', story: '保安队突破防线，红旗被拔除，吴福军宣布全面军管。' },
                       ],
                     },
                   ],

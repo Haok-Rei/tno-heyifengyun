@@ -1850,19 +1850,6 @@ export default function App() {
           }
         }
 
-        if (newCurrentFocusTree === 'treeA_pan_despair') {
-          const despairDays = (newFlags.pan_despair_days ?? 0) + 1;
-          newFlags.pan_despair_days = despairDays;
-          if (despairDays === 3 || despairDays === 6 || despairDays === 9) {
-            const eventId = 'pan_despair_chain_' + despairDays / 3;
-            const fired = eventId + '_fired';
-            if (!newFlags[fired]) {
-              newFlags[fired] = true;
-              queueEvent(FLAVOR_EVENTS[eventId]);
-            }
-          }
-        }
-
         // Update Focus
         let newIsPaused = prev.isPaused;
         let newActiveFocus = prev.activeFocus;
@@ -2368,20 +2355,21 @@ export default function App() {
           }
         }
 
-        // School Counterattack Crisis (潘仁越绝望线)
-        const isSchoolCounterattackConditionMet = prev.currentFocusTree === 'treeA_pan' && newStats.tpr <= 0 && newStats.ss < 30;
+        const isSchoolCounterattackConditionMet = (newCurrentFocusTree === 'treeA_pan' || newCurrentFocusTree === 'treeA')
+          && newStats.tpr <= 180 && newStats.ss < 40 && !newFlags.wu_route_active
+          && (newCurrentFocusTree === 'treeA_pan' || !newFlags.map_struggle_ended);
         const schoolCounterattackCrisisIndex = newCrises.findIndex(c => c.id === 'school_counterattack');
 
         if (isSchoolCounterattackConditionMet && !prev.flags['school_counterattack_complete']) {
           if (schoolCounterattackCrisisIndex === -1) {
             newCrises.push({
               id: 'school_counterattack',
-              title: '校方反攻？',
-              daysLeft: 30,
-              totalDays: 30,
-              description: '耗尽的卷子储备与跌入冰点的民心让新生议会沦为了空壳。行政楼前的探照灯彻夜通明，吴福军的防暴保安与及第资本的雇佣兵已完成合围，若不能在30天内恢复试卷供给或赢回学生支持，等待自由派的唯有绝望的走廊巷战！',
-              resolutionText: 'TPR >0 或 学生支持度 ≥30（自动解除）',
-              expiryText: '进入潘仁越绝望分支（走廊巷战）',
+              title: '校方反攻迫近',
+              daysLeft: 15,
+              totalDays: 15,
+              description: '试卷储备量告急（≤180）且学生支持度跌破警戒线（<40）。校方保安队与及第外包安保正在集结，若15天内无法恢复（TPR>180或学生支持≥40），防线将彻底崩盘！',
+              resolutionText: 'TPR >180 或 学生支持度 ≥40（自动解除）',
+              expiryText: '触发命运分流：转入「潘仁越绝望线」或「吴福军铁腕时代」',
             });
           }
         } else {
@@ -2435,8 +2423,8 @@ export default function App() {
           }
         }
 
-        const expiredCrises = newCrises.filter(c => c.daysLeft <= 0);
-        newCrises = newCrises.filter(c => c.daysLeft > 0);
+        const expiredCrises = newCrises.filter(c => c.daysLeft <= 0 && c.id !== 'wu_crackdown');
+        newCrises = newCrises.filter(c => c.daysLeft > 0 || c.id === 'wu_crackdown');
         
         expiredCrises.forEach(c => {
           // v8.0 编年史：危机爆发
@@ -2470,14 +2458,11 @@ export default function App() {
             newGameEnding = 'game_over_midnight';
           } else if (c.id === 'school_counterattack') {
             newFlags['school_counterattack_complete'] = true;
-            newCurrentFocusTree = 'treeA_pan_despair';
-            newCompletedFocuses = []; // Reset focuses for the despair tree
-            queueEvent({
-              id: 'enter_treeA_pan_despair',
-              title: '绝望的走廊巷战',
-              description: '最后一批油印试卷在昨日的混乱中消耗殆尽，而长期脱离现实的空谈也让普通学生的支持率跌入了冰冷的谷底。在这座被高考倒计时统治的校园里，无法提供做题力保障的自由议会终究被大多数人抛弃。嗅到血腥味的吴福军保安队与及第教育的黑衣雇佣兵在凌晨联合撞开了教学楼的铁门。\n\n刺耳的警笛声与防暴盾牌撞击地面的闷响回荡在B3一楼大厅，曾经冠冕堂皇的议员们作鸟兽散。潘仁越摘下那副沾满灰尘的眼镜，默默捡起地上散落的扩音喇叭，带着最后几十名不肯投降的死忠青年近卫队退守二楼楼梯口。课桌垒成的街垒后方，已再无退路可言——一场注定载入合一悲剧史册的绝望巷战，在刺刀与催泪瓦斯的寒光中拉开了帷幕。',
-              buttonText: '战斗到最后一刻！'
-            });
+            if (newCurrentFocusTree === 'treeA') {
+              queueEvent(STORY_EVENTS.treeA_final_collapse_choice_event, true);
+            } else {
+              queueEvent(STORY_EVENTS.despair_route_entry_event, true);
+            }
           } else if (c.id === 'reform_capital_crisis') {
             newFlags['reform_capital_crisis_complete'] = true;
             if (newReformState) {
@@ -2696,10 +2681,6 @@ export default function App() {
                 }
               }
             });
-          } else if (c.id === 'wu_crackdown') {
-            // v8.5: 最后通牒到期——吴福军总攻，进入铁腕时代
-            newFlags['wu_crackdown_generated'] = false;
-            queueEvent(STORY_EVENTS.wu_crackdown_entry_event);
           } else if (c.id === 'yang_yule_late_mock_exam') {
             queueEvent({
               id: 'yang_yule_late_game_mock_exam',
@@ -4122,20 +4103,46 @@ export default function App() {
           const greenCount = Object.values(newMapLocations).filter((l: any) => l.studentControl > 55).length;
 
           const isGouxiongRouteActive = prev.currentFocusTree === 'gouxiong_tree' || !!newFlags.gouxiong_system_unlocked || !!newFlags.gx_anarchy_phase || prev.leader.name === '狗熊';
-          const isWuRouteActive = prev.currentFocusTree === 'wu_tree' || prev.currentFocusTree.startsWith('wu_tree_p2') || !!newFlags.wu_route_active;
+          const isWuRouteActive = newCurrentFocusTree === 'wu_tree' || newCurrentFocusTree.startsWith('wu_tree_p2') || !!newFlags.wu_route_active;
 
-          if (redCount >= 5 && newStats.stab < 30 && !prev.flags['game_over_triggered'] && !prev.flags['yang_yule_route_started'] && !prev.flags['jidi_takeover_complete'] && !isGouxiongRouteActive && !isWuRouteActive) {
-            // v8.5: 吴福军下达最后通牒（可反复触发：化解后若局势再度恶化则重新下达）
+          const ultimatum = newCrises.find(c => c.id === 'wu_crackdown');
+          const recovered = redCount < 4 && newStats.stab >= 40;
+          const enteringAnotherRoute = newCurrentFocusTree !== prev.currentFocusTree;
+          const collapsePending = newFlags.school_counterattack_complete
+            && (newActiveEvent?.id === 'treeA_final_collapse_choice_event' || newActiveEvent?.id === 'despair_route_entry_event');
+          if (ultimatum && (recovered || enteringAnotherRoute || collapsePending || ultimatum.daysLeft <= 0)) {
+            newCrises = newCrises.filter(c => c.id !== 'wu_crackdown');
+            newFlags.wu_crackdown_generated = false;
+            if (!enteringAnotherRoute && !collapsePending) {
+              if (recovered) queueEvent(STORY_EVENTS.wu_reprieve_event);
+              else queueEvent(newCurrentFocusTree === 'treeA'
+                ? STORY_EVENTS.treeA_final_collapse_choice_event : STORY_EVENTS.wu_crackdown_entry_event, true);
+            }
+          }
+
+          if (newCurrentFocusTree === 'treeA' && !newFlags.treeA_counterattack_choice_fired && !newFlags.treeA_counterattack_resolved && !newFlags.map_struggle_ended && !prev.flags['yang_yule_route_started'] && !prev.flags['jidi_takeover_complete'] && !isGouxiongRouteActive && !isWuRouteActive) {
+            const treeADays = (newFlags.treeA_days_elapsed || 0) + 1;
+            newFlags.treeA_days_elapsed = treeADays;
+            const readyForChoice = treeADays >= 12 || getFocusNodes('treeA').filter(node => newCompletedFocuses.includes(node.id)).length >= 2;
+            const pressureHigh = (redCount >= 3 && newStats.stab < 45) || newStats.tpr < 250 || newStats.ss < 38;
+            if (readyForChoice && pressureHigh && !collapsePending && !(ultimatum && ultimatum.daysLeft <= 0 && !recovered)) {
+              newFlags.treeA_counterattack_choice_fired = true;
+              queueEvent(STORY_EVENTS.treeA_counterattack_choice_event, true);
+            }
+          }
+
+          if (!ultimatum && !collapsePending && !enteringAnotherRoute && redCount >= 4 && newStats.stab < 40 && !prev.flags['game_over_triggered'] && !prev.flags['yang_yule_route_started'] && !prev.flags['jidi_takeover_complete'] && !isGouxiongRouteActive && !isWuRouteActive && newCurrentFocusTree !== 'treeA_pan_despair') {
+            // 只在防线恶化时发出新的通牒。
             if (!newFlags.wu_crackdown_generated && !newCrises.some(c => c.id === 'wu_crackdown')) {
               newFlags.wu_crackdown_generated = true;
               newCrises = [...newCrises, {
                 id: 'wu_crackdown',
                 title: '吴福军最后通牒',
-                daysLeft: 15,
-                totalDays: 15,
-                description: '学生控制区域大幅萎缩，吴福军下达最后通牒。若15天内无法重夺控制区（≥5个建筑失守且稳定度<30视为恶化），保安队将发动总攻。',
-                resolutionText: '重夺控制区（失守建筑 <5 个）且稳定度 ≥30（通牒自动撤回，可反复触发）',
-                expiryText: '吴福军总攻，进入铁腕时代（校方视角）',
+                daysLeft: 12,
+                totalDays: 12,
+                description: '学生控制区域持续萎缩，吴福军下达最后通牒。若12天内无法重夺控制区（≥4个建筑失守且稳定度<40视为恶化），保安队将发动总攻。',
+                resolutionText: '重夺控制区（失守建筑 <4 个）且稳定度 ≥40（通牒自动撤回）',
+                expiryText: '触发命运分流：进入吴福军铁腕时代或潘仁越绝望线',
               }];
               newChronicle = pushChronicle(newChronicle, {
                 date: newDate.getTime(),
@@ -4145,9 +4152,9 @@ export default function App() {
                 routeTag: treeRouteTag(newCurrentFocusTree),
                 importance: 3,
               });
-              queueEvent(STORY_EVENTS.wu_ultimatum_event);
+              if (newActiveEvent?.id !== 'treeA_counterattack_choice_event') queueEvent(STORY_EVENTS.wu_ultimatum_event);
             }
-          } else if (greenCount >= 5 && newStats.tpr <= 0 && newStats.stab < 30 && !prev.flags['game_over_triggered'] && !prev.flags['yang_yule_route_started'] && !prev.flags['jidi_takeover_complete'] && !isGouxiongRouteActive && !isWuRouteActive) {
+          } else if (!newActiveEvent && !newCrises.some(c => c.id === 'school_counterattack') && greenCount >= 5 && newStats.tpr <= 0 && newStats.stab < 30 && !prev.flags['game_over_triggered'] && !prev.flags['yang_yule_route_started'] && !prev.flags['jidi_takeover_complete'] && !isGouxiongRouteActive && !isWuRouteActive && newCurrentFocusTree !== 'treeA_pan_despair') {
             newFlags['game_over_triggered'] = true;
             newChronicle = pushChronicle(newChronicle, {
               date: newDate.getTime(),
@@ -4164,13 +4171,6 @@ export default function App() {
               chronicle: newChronicle,
               gameEnding: 'game_over_anarchy'
             };
-          }
-
-          // v8.5: 最后通牒化解——条件恢复则撤回通牒
-          if (!isWuRouteActive && newCrises.some(c => c.id === 'wu_crackdown') && redCount < 5 && newStats.stab >= 30) {
-            newCrises = newCrises.filter(c => c.id !== 'wu_crackdown');
-            newFlags.wu_crackdown_generated = false;
-            queueEvent(STORY_EVENTS.wu_reprieve_event);
           }
 
         // ===== v8.5 吴福军镇压线每日逻辑 =====
@@ -4395,6 +4395,16 @@ export default function App() {
               queueEvent(STORY_EVENTS.wu_failure_event);
             }
 
+            if (newCurrentFocusTree === 'wu_tree') {
+              if (!newFlags.wu_night_interrogation_fired && (wuLocal.crackdownActions ?? 0) >= 3) {
+                newFlags.wu_night_interrogation_fired = true;
+                queueEvent(STORY_EVENTS.wu_night_interrogation_event);
+              }
+              if (!newFlags.wu_feng_wu_dinner_fired && wuLocal.wuAmbition >= 40) {
+                newFlags.wu_feng_wu_dinner_fired = true;
+                queueEvent(STORY_EVENTS.wu_feng_wu_dinner_event);
+              }
+            }
             newWuState = wuLocal;
           }
         }
@@ -4825,6 +4835,7 @@ export default function App() {
         if (effectPartial.mapLocations) newState.mapLocations = effectPartial.mapLocations;
         if (effectPartial.gameEnding) newState.gameEnding = effectPartial.gameEnding;
         if (effectPartial.currentFocusTree) newState.currentFocusTree = effectPartial.currentFocusTree;
+        if (effectPartial.activeFocus !== undefined) newState.activeFocus = effectPartial.activeFocus;
         if (effectPartial.completedFocuses) newState.completedFocuses = effectPartial.completedFocuses;
         if ('reformState' in effectPartial) newState.reformState = effectPartial.reformState;
         if ('yangYuleState' in effectPartial) newState.yangYuleState = effectPartial.yangYuleState;
@@ -4843,6 +4854,13 @@ export default function App() {
         if (effectPartial.redToadState) newState.redToadState = effectPartial.redToadState;
         if (effectPartial.wuState) newState.wuState = effectPartial.wuState;
         if (effectPartial.lawSystem) newState.lawSystem = { ...getLawSystem(newState.lawSystem), ...effectPartial.lawSystem };
+      }
+
+      if (newState.currentFocusTree !== prev.currentFocusTree
+          && (newState.currentFocusTree === 'treeA_pan_despair' || newState.currentFocusTree === 'wu_tree')) {
+        newState.activeFocus = null;
+        newState.activeStoryEvents = newState.activeStoryEvents.filter(event =>
+          !['treeA_counterattack_choice_event', 'treeA_final_collapse_choice_event', 'wu_ultimatum_event'].includes(event.id));
       }
 
       const storyLawNotice = lawChangeEvent(prev.lawSystem, newState.lawSystem, prev.activeEvent?.title ?? '剧情推进', prev.date);
@@ -4892,6 +4910,16 @@ export default function App() {
         newState.chronicle = newChronicle.length > MAX_CHRONICLE_ENTRIES
           ? newChronicle.slice(newChronicle.length - MAX_CHRONICLE_ENTRIES)
           : newChronicle;
+      }
+
+      if (newState.flags.trigger_despair_from_infiltration) {
+        newState.flags = { ...newState.flags, trigger_despair_from_infiltration: false };
+        newState.activeEvent = STORY_EVENTS.despair_route_entry_event;
+        newState.isPaused = true;
+      } else if (newState.flags.trigger_wu_from_infiltration) {
+        newState.flags = { ...newState.flags, trigger_wu_from_infiltration: false };
+        newState.activeEvent = STORY_EVENTS.wu_crackdown_entry_event;
+        newState.isPaused = true;
       }
 
       if (prev.activeEvent?.id === 'haobang_blank_event_3') {
@@ -5082,6 +5110,13 @@ export default function App() {
               isStoryEvent: true,
               effectsText: ['B3三块地块控制度 +15', 'B3防御天数 +3', '宿舍1-4栋 +5', 'SS +8, PP +10'],
             };
+          } else if (prev.currentFocusTree === 'treeA_pan_despair') {
+            newFlags.despair_b3_held = true;
+            newFlags.despair_b3_breached = false;
+            newStats.pp += 40;
+            newStats.ss = Math.min(100, newStats.ss + 15);
+            newStats.stab = Math.min(100, newStats.stab + 12);
+            newEvent = STORY_EVENTS.despair_siege_held_event;
           } else {
             // Win effects（终局保卫战）
             newEvent = {
@@ -5110,6 +5145,11 @@ export default function App() {
               isStoryEvent: true,
               effectsText: ['B3三块地块控制度 -12', '宿舍1-4栋 -5', '食堂 -5', '稳定度 -5'],
             };
+          } else if (prev.currentFocusTree === 'treeA_pan_despair') {
+            newFlags.despair_b3_breached = true;
+            newFlags.despair_b3_held = false;
+            newStats.stab = Math.max(0, newStats.stab - 10);
+            newEvent = STORY_EVENTS.despair_siege_breached_event;
           } else {
             // Lose effects（终局保卫战）
             newEvent = {

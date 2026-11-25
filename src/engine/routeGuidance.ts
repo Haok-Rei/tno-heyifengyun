@@ -52,6 +52,12 @@ export function getRouteGuideStatus(state: GameState) {
       checks.push({ label: '已通过法案', value: `${state.flags.passed_bills_count || 0}/3`, met: (state.flags.passed_bills_count || 0) >= 3 }, { label: '议会权力平衡', value: `${state.parliamentState?.powerBalance ?? 50} / ≤30`, met: (state.parliamentState?.powerBalance ?? 50) <= 30 }, { label: '学生理智', value: `${state.stats.studentSanity.toFixed(1)} / >80`, met: state.stats.studentSanity > 80 });
       tip = '“民主的胜利”还需完成透明财政与课程改革国策；随后“第一次民主普选”持续60天。大选开始前的地区拉票效果较弱。';
     }
+  } else if (state.currentFocusTree === 'treeA_pan_despair') {
+    const preparations = ['despair_burn_records', 'despair_red_toad_signal', 'despair_parents_cry'];
+    checks.push({ label: '围城准备', value: preparations.filter(done).length + ' / 3', met: preparations.every(done) });
+    tip = state.flags.despair_b3_held ? 'B3已守住，完成「绝地反击」与「焦土上的黎明」。'
+      : state.flags.despair_b3_breached ? '防线失守，完成「天台上的最后广播」与「最后的防线崩溃」。'
+      : '三条准备线都完成后，选择「死守B3教学楼」。保卫战结果决定战后分支。';
   } else if (state.currentFocusTree === 'treeA_true_left') {
     checks.push({ label: '题改进度', value: `${state.reformState?.progress ?? 0} / 100`, met: (state.reformState?.progress ?? 0) >= 100 });
     const deadline = state.crises.find(c => c.id === 'reform_fail_crisis');

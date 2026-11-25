@@ -13,6 +13,7 @@ import {restoreYangOfficeEffect} from './yangOfficeEffects';
 import { GameState } from '../types';
 import { restoreCampusEvent } from './campusEvents';
 import { FLAVOR_EVENTS } from '../data/flavorEvents';
+import { STORY_EVENTS } from '../data/storyEvents';
 import { reconcileRouteSpirits } from './routeSpirits';
 import { refreshReviewedDescriptions } from './proseRevisions';
 import { syncAssemblyConflict } from './assemblyConflict';
@@ -83,10 +84,25 @@ export function deserializeGameState(raw: string): GameState | null {
       chronicle: parsed.chronicle ?? [],
     } as GameState;
     const restore = (draft: NonNullable<GameState['activeEvent']>) => {
-      const event=restoreYangOfficeEffect(ensureEventIdentity(draft),state);
-      return event.campusSituation ? restoreCampusEvent(state, event)
-        : FLAVOR_EVENTS[event.id] ? { ...FLAVOR_EVENTS[event.id], ...event, effect: FLAVOR_EVENTS[event.id].effect, choices: FLAVOR_EVENTS[event.id].choices } : event;
+      const event = restoreYangOfficeEffect(ensureEventIdentity(draft), state);
+      if (event.campusSituation) return restoreCampusEvent(state, event);
+      if (state.currentFocusTree === 'treeA_pan_despair' && !state.gameEnding
+          && (event.id === 'b3_victory' || event.id === 'b3_defeat')) {
+        const held = event.id === 'b3_victory';
+        state.flags.despair_b3_held = held;
+        state.flags.despair_b3_breached = !held;
+        return STORY_EVENTS[held ? 'despair_siege_held_event' : 'despair_siege_breached_event'];
+      }
+      const canonical = FLAVOR_EVENTS[event.id] ?? STORY_EVENTS[event.id];
+      return canonical ? { ...canonical, ...event, effect: canonical.effect, choices: canonical.choices } : event;
     };
+    if (state.currentFocusTree === 'treeA_pan_despair' && !state.gameEnding
+        && state.completedFocuses.includes('defend_b3') && !state.activeMinigame
+        && !state.flags.despair_b3_held && !state.flags.despair_b3_breached
+        && ![state.activeEvent, ...(state.activeStoryEvents ?? [])].some(event =>
+          event?.id === 'b3_victory' || event?.id === 'b3_defeat')) {
+      state.activeMinigame = 'siege_b3';
+    }
     state.activeEvent = state.activeEvent ? restore(state.activeEvent) : null;
     state.activeStoryEvents = (state.activeStoryEvents ?? []).map(restore);
     const restored = restoreMapState(reconcileRouteSpirits(syncAssemblyConflict(refreshReviewedDescriptions(state))));

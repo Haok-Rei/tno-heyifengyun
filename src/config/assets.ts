@@ -134,6 +134,7 @@ export const ASSET_URLS: Record<AssetKey, string> = {
   superevent_yang_yule_death: loadingArt('特级教师'),
   superevent_yang_yule_success: loadingArt('特级'),
   superevent_yang_yule_fail: loadingArt('特级0'),
+  superevent_despair_corridor: loadingArt('B3三层'),
   superevent_wu_crackdown: loadingArt('总攻前夜'),
 
   mechanic_jidi_rnd_product_1: 'https://i.postimg.cc/NKKPM6GV/jd1.png',
@@ -269,6 +270,7 @@ const SUPER_EVENT_IMAGE_KEY_BY_ID: Record<string, AssetKey> = {
   yang_yule_success: 'superevent_yang_yule_success',
   yang_yule_fail: 'superevent_yang_yule_fail',
   wu_crackdown: 'superevent_wu_crackdown',
+  despair_corridor_super: 'superevent_despair_corridor',
 };
 
 function withDomain(domain: AssetDomain, keyOrId: string): AssetKey {

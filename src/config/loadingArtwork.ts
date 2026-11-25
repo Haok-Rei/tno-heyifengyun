@@ -2,6 +2,12 @@
 import { ENDING_CG } from './endingCgAssets';
 export const LOADING_ART: Record<string, string> = {
   ...ENDING_CG,
+  "暗夜分流": new URL("../assets/loading/暗夜分流.webp", import.meta.url).href,
+  "B3三层": new URL("../assets/loading/B3三层.webp", import.meta.url).href,
+  "焦土黎明": new URL("../assets/loading/焦土黎明.webp", import.meta.url).href,
+  "天台回声": new URL("../assets/loading/天台回声.webp", import.meta.url).href,
+  "戒严台账": new URL("../assets/loading/戒严台账.webp", import.meta.url).href,
+  "行政楼夜餐": new URL("../assets/loading/行政楼夜餐.webp", import.meta.url).href,
   "B3夜读": new URL("../assets/loading/B3夜读.webp", import.meta.url).href,
   "B3革命": new URL("../assets/loading/B3革命.webp", import.meta.url).href,
   "价格牌下的风暴": new URL("../assets/loading/价格牌下的风暴.webp", import.meta.url).href,

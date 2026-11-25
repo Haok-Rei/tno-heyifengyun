@@ -1,5 +1,5 @@
 {
-  "source": "8d77090",
+  "source": "9.6.1",
   "trees": {
     "phase1": [
       {
@@ -10,7 +10,7 @@
       },
       {
         "id": "build_art",
-        "days": 10,
+        "days": 8,
         "requires": [
           "start_2023"
         ],
@@ -18,7 +18,7 @@
       },
       {
         "id": "wu_patrol",
-        "days": 10,
+        "days": 8,
         "requires": [
           "build_art"
         ],
@@ -26,7 +26,7 @@
       },
       {
         "id": "fake_five_edu",
-        "days": 10,
+        "days": 8,
         "requires": [
           "wu_patrol"
         ],
@@ -34,7 +34,7 @@
       },
       {
         "id": "ban_books",
-        "days": 10,
+        "days": 8,
         "requires": [
           "wu_patrol"
         ],
@@ -42,7 +42,7 @@
       },
       {
         "id": "perfect_hengshui",
-        "days": 14,
+        "days": 10,
         "requires": [
           "fake_five_edu",
           "ban_books"
@@ -51,7 +51,7 @@
       },
       {
         "id": "dorm_talks",
-        "days": 10,
+        "days": 8,
         "requires": [
           "start_2023"
         ],
@@ -59,7 +59,7 @@
       },
       {
         "id": "contact_pan",
-        "days": 10,
+        "days": 8,
         "requires": [
           "dorm_talks"
         ],
@@ -67,7 +67,7 @@
       },
       {
         "id": "read_marx",
-        "days": 10,
+        "days": 8,
         "requires": [
           "dorm_talks"
         ],
@@ -75,7 +75,7 @@
       },
       {
         "id": "rally_classes",
-        "days": 10,
+        "days": 8,
         "requires": [
           "contact_pan"
         ],
@@ -83,7 +83,7 @@
       },
       {
         "id": "protest_privilege",
-        "days": 10,
+        "days": 8,
         "requires": [
           "read_marx"
         ],
@@ -91,9 +91,10 @@
       },
       {
         "id": "steel_toad",
-        "days": 14,
+        "days": 10,
         "requires": [
           "rally_classes",
+          "phase1_red_toad_cell",
           "protest_privilege"
         ],
         "mutuallyExclusive": []
@@ -103,12 +104,52 @@
         "days": 5,
         "requires": [],
         "mutuallyExclusive": []
+      },
+      {
+        "id": "phase1_jidi_deal",
+        "days": 8,
+        "requires": [
+          "build_art"
+        ],
+        "mutuallyExclusive": []
+      },
+      {
+        "id": "phase1_faculty_rift",
+        "days": 7,
+        "requires": [
+          "start_2023"
+        ],
+        "mutuallyExclusive": []
+      },
+      {
+        "id": "phase1_yang_studio",
+        "days": 8,
+        "requires": [
+          "phase1_faculty_rift"
+        ],
+        "mutuallyExclusive": []
+      },
+      {
+        "id": "phase1_october_exam",
+        "days": 10,
+        "requires": [
+          "phase1_yang_studio"
+        ],
+        "mutuallyExclusive": []
+      },
+      {
+        "id": "phase1_red_toad_cell",
+        "days": 8,
+        "requires": [
+          "read_marx"
+        ],
+        "mutuallyExclusive": []
       }
     ],
     "treeA": [
       {
         "id": "declare_indep",
-        "days": 7,
+        "days": 5,
         "requires": [],
         "mutuallyExclusive": []
       },
@@ -122,7 +163,7 @@
       },
       {
         "id": "purge_moderates",
-        "days": 14,
+        "days": 10,
         "requires": [
           "declare_indep"
         ],
@@ -132,7 +173,7 @@
       },
       {
         "id": "establish_vanguard",
-        "days": 14,
+        "days": 10,
         "requires": [
           "purge_moderates"
         ],
@@ -140,7 +181,7 @@
       },
       {
         "id": "student_militia",
-        "days": 14,
+        "days": 10,
         "requires": [
           "establish_vanguard"
         ],
@@ -148,7 +189,7 @@
       },
       {
         "id": "broad_coalition",
-        "days": 14,
+        "days": 10,
         "requires": [
           "declare_indep"
         ],
@@ -158,7 +199,7 @@
       },
       {
         "id": "democratic_councils",
-        "days": 14,
+        "days": 10,
         "requires": [
           "broad_coalition"
         ],
@@ -166,7 +207,7 @@
       },
       {
         "id": "unite_teachers",
-        "days": 14,
+        "days": 10,
         "requires": [
           "democratic_councils"
         ],
@@ -174,7 +215,7 @@
       },
       {
         "id": "disperse_guards",
-        "days": 10,
+        "days": 8,
         "requires": [
           "declare_indep"
         ],
@@ -182,7 +223,7 @@
       },
       {
         "id": "takeover_admin",
-        "days": 10,
+        "days": 8,
         "requires": [
           "declare_indep"
         ],
@@ -215,7 +256,7 @@
       },
       {
         "id": "convene_assembly",
-        "days": 12,
+        "days": 10,
         "requires": [
           "seize_mouthpiece"
         ],
@@ -223,7 +264,7 @@
       },
       {
         "id": "trial_yang",
-        "days": 21,
+        "days": 12,
         "requires": [
           "convene_assembly"
         ],
@@ -233,7 +274,7 @@
       },
       {
         "id": "secret_compromise",
-        "days": 21,
+        "days": 12,
         "requires": [
           "convene_assembly"
         ],
@@ -243,7 +284,7 @@
       },
       {
         "id": "rectify_campus_order",
-        "days": 14,
+        "days": 10,
         "requires": [
           "trial_yang",
           "secret_compromise"
@@ -255,6 +296,55 @@
         "days": 7,
         "requires": [
           "rectify_campus_order"
+        ],
+        "mutuallyExclusive": []
+      },
+      {
+        "id": "committee_b3_fortification",
+        "days": 8,
+        "requires": [
+          "student_militia"
+        ],
+        "mutuallyExclusive": []
+      },
+      {
+        "id": "committee_student_charter",
+        "days": 8,
+        "requires": [
+          "unite_teachers"
+        ],
+        "mutuallyExclusive": []
+      },
+      {
+        "id": "committee_logistics_grid",
+        "days": 7,
+        "requires": [
+          "recruit_revolutionaries"
+        ],
+        "mutuallyExclusive": []
+      },
+      {
+        "id": "committee_counter_infiltration",
+        "days": 7,
+        "requires": [
+          "seize_mouthpiece"
+        ],
+        "mutuallyExclusive": []
+      },
+      {
+        "id": "committee_exam_question",
+        "days": 7,
+        "requires": [
+          "seize_mouthpiece"
+        ],
+        "mutuallyExclusive": []
+      },
+      {
+        "id": "committee_external_siege",
+        "days": 7,
+        "requires": [
+          "trial_yang",
+          "secret_compromise"
         ],
         "mutuallyExclusive": []
       }

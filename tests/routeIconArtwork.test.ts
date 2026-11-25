@@ -20,7 +20,7 @@ test('every real playable focus renders the synchronized image, including web-on
     assert.equal(png.subarray(1,4).toString(), 'PNG');
     assert.equal(png.readUInt32BE(16), art.width); assert.equal(png.readUInt32BE(20), art.height);
   }
-  assert.equal(seen.size, 208); assert.equal(ROUTE_FOCUS_ART.wu_millennium_plan.important, true);
+  assert.equal(seen.size, 237); assert.equal(ROUTE_FOCUS_ART.wu_millennium_plan.important, true);
   assert.equal(Object.values(ROUTE_FOCUS_ART).filter(a => a.important).length, 33);
 });
 

@@ -20,14 +20,15 @@ interface FloorState {
 
 export default function MinigameSiege({ state, onComplete, spendTPR }: MinigameSiegeProps) {
   const fieldSupport = Math.min(3, getCommandState(state).preparation?.revolution || 0);
+  const coalitionSupport = !state.flags.siege_b3_drill && state.currentFocusTree === 'treeA_pan_despair' && state.flags.despair_red_toad_ally ? 1 : 0;
   const [turn, setTurn] = useState(1);
-  const [actionPoints, setActionPoints] = useState(() => 3 + fieldSupport);
+  const [actionPoints, setActionPoints] = useState(() => 3 + fieldSupport + coalitionSupport);
   const [floors, setFloors] = useState<FloorState[]>([
     { level: 5, enemyProgress: 0, unit: null },
     { level: 4, enemyProgress: 0, unit: null },
     { level: 3, enemyProgress: 0, unit: null },
     { level: 2, enemyProgress: 0, unit: null },
-    { level: 1, enemyProgress: 20, unit: null }, // Enemies start at floor 1
+    { level: 1, enemyProgress: coalitionSupport ? 10 : 20, unit: null }, // Enemies start at floor 1
   ]);
   const [selectedUnit, setSelectedUnit] = useState<UnitType>(null);
   const [shake, setShake] = useState(false);
@@ -43,18 +44,14 @@ export default function MinigameSiege({ state, onComplete, spendTPR }: MinigameS
       return;
     }
 
-    if (selectedUnit === 'barricade' && !spendTPR(200)) {
+    if (floors[floorIndex].unit || (selectedUnit === 'barricade' && !spendTPR(200))) {
       triggerError();
       return;
     }
 
     setFloors(prev => {
       const next = [...prev];
-      if (next[floorIndex].unit) {
-        triggerError();
-        return prev;
-      }
-      next[floorIndex].unit = selectedUnit;
+      next[floorIndex] = { ...next[floorIndex], unit: selectedUnit };
       return next;
     });
 
@@ -124,6 +121,7 @@ export default function MinigameSiege({ state, onComplete, spendTPR }: MinigameS
               <h2 className="text-2xl font-bold text-tno-highlight tracking-widest">经天纬地的铁壁</h2>
               <div className="text-xs text-tno-text/60">B3教学楼 - 阵地防卫战</div>
               {fieldSupport > 0 && <div className="text-xs text-emerald-300">地下联络工作组筹备 {fieldSupport} 份 · 首回合行动点 +{fieldSupport}</div>}
+              {coalitionSupport > 0 && <div className="text-xs text-emerald-300">红蛤策应 · 首回合行动点 +1，初始压力 −10</div>}
             </div>
           </div>
           <div className="text-right flex gap-6">
