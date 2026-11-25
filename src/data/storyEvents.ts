@@ -2,6 +2,7 @@ import { GameEvent, GameState, ALL_SUB_TILES } from '../types';
 import { applyTileCtrlDeltas } from '../engine/tileHelpers';
 import { startCampaignTeams } from '../engine/electionCampaign';
 import { FOCUS_COMPLETION_SUPER_EVENTS } from '../engine/gameLoop';
+import { FLAVOR_EVENTS } from './flavorEvents';
 
 export const STORY_EVENTS: Record<string, GameEvent> = {
   treeA_counterattack_choice_event: {
@@ -1519,10 +1520,12 @@ export const STORY_EVENTS: Record<string, GameEvent> = {
     effectsText: ['B3三块地块控制度 +10', '宿舍1-4栋 +5'],
     effect: (state) => {
       // v8.0 地图效果：起义爆发，B3与宿舍区控制度大涨
-      const flags = { ...state.flags, united_committee_established: true, rebellion_started: true };
+      const flags = { ...state.flags, rebellion_started: true };
       applyTileCtrlDeltas(flags, { b3_a1a3: 10, b3_b1b2: 10, b3_tower: 10, dorm_1_4: 5 });
       return {
-        activeSuperEvent: FOCUS_COMPLETION_SUPER_EVENTS.charge_b3,
+        ...(state.flags.event_seen_strike_b3_success
+          ? { activeSuperEvent: FOCUS_COMPLETION_SUPER_EVENTS.charge_b3 }
+          : { activeEvent: FLAVOR_EVENTS.strike_b3_success }),
         flags: { ...flags, story_6_triggered: true }
       };
     }

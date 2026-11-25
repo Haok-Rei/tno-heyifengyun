@@ -1,3 +1,4 @@
+import { InlineHint } from './FocusHoverCard';
 import { BRUSH_TITLES } from '../config/brushTitles';
 import MechanicCrest from './MechanicCrest';
 import React, { useState } from 'react';
@@ -151,14 +152,14 @@ export default function ReformCommittee({ state, setGameState, onClose, triggerE
                   <span className={`text-3xl font-black ${getSuccessRate(selectedRegion) < 30 ? 'text-tno-red' : getSuccessRate(selectedRegion) < 70 ? 'text-yellow-500' : 'text-emerald-300'}`}>
                     {getSuccessRate(selectedRegion)}%
                   </span>
-                  <div className="absolute top-full right-0 mt-2 w-64 bg-black border border-tno-panel p-3 hidden group-hover:block z-50 shadow-xl text-xs text-gray-300">
+                  <InlineHint><div className="archive-detail">
                     <div className="font-bold text-white mb-2 border-b border-gray-700 pb-1">成功率计算公式</div>
                     <div className="flex justify-between mb-1"><span>基础成功率:</span><span className="text-white">{baseSuccessRate}%</span></div>
                     <div className="flex justify-between mb-1"><span>区域顽固度惩罚:</span><span className="text-tno-red">-{Math.round(regionalStubbornness[selectedRegion] || 0)}%</span></div>
                     <div className="flex justify-between mb-1"><span>党内集权加成:</span><span className="text-emerald-300">+{Math.round(state.stats.partyCentralization * 0.2)}%</span></div>
                     <div className="flex justify-between"><span>资本渗透惩罚:</span><span className="text-tno-red">-{Math.round(state.stats.capitalPenetration * 0.15)}%</span></div>
                     <div className="flex justify-between"><span>工作组地区筹备（派遣时消耗）:</span><span className="text-emerald-300">+{Math.min(2, command.preparation?.reform || 0) * 8}%</span></div>
-                  </div>
+                  </div></InlineHint>
                 </div>
               </div>
 

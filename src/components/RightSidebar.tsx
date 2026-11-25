@@ -1,3 +1,4 @@
+import { ScrollText as DecisionIcon } from 'lucide-react';
 import React, { useState } from 'react';
 import { AlertTriangle, Target, Book } from 'lucide-react';
 import { GameState, Decision, ALL_SUB_TILES } from '../types';
@@ -1624,6 +1625,7 @@ export default function RightSidebar({ state, triggerDecision, triggerError }: R
                     <span className="font-bold text-sm text-tno-red">⚠ {crisis.title}</span>
                     <span className="text-[11px] text-tno-red font-bold crt-flicker">剩余 {crisis.daysLeft} / {(crisis.totalDays ?? 30)} 天</span>
                   </div>
+                  <p className="mb-2 text-xs italic text-tno-text/80">{crisis.description}</p>
                   {crisis.resolutionText && (
                     <div className="mb-1.5">
                       <span className="text-[11px] font-bold text-tno-green">化解条件：</span>
@@ -1647,9 +1649,7 @@ export default function RightSidebar({ state, triggerDecision, triggerError }: R
                 <div className="w-full h-1 bg-zinc-900 border border-tno-border mb-2">
                   <div className="h-full bg-tno-red" style={{ width: `${Math.min(100, Math.max(0, (crisis.daysLeft / (crisis.totalDays ?? 30)) * 100))}%` }}></div>
                 </div>
-                <p className="text-[10px] text-tno-text/80 leading-tight">
-                  {crisis.description}
-                </p>
+
               </div>
             </HoverWindow>
           ))}
@@ -1735,7 +1735,7 @@ export default function RightSidebar({ state, triggerDecision, triggerError }: R
                 >
                   <div className="flex justify-between items-start mb-1 gap-2">
                     <h4 className={`font-bold text-sm ${isAvailable ? 'text-tno-text' : 'text-tno-text/50'}`}>
-                      {decision.title}
+                      <DecisionIcon size={13} aria-hidden="true" className="decision-glyph"/>{decision.title}
                     </h4>
                     <div className="flex items-center gap-1 shrink-0">
                       {decision.costPP > 0 && (
@@ -1750,13 +1750,7 @@ export default function RightSidebar({ state, triggerDecision, triggerError }: R
                       )}
                     </div>
                   </div>
-                  <p className="text-[10px] text-tno-text/60 mb-1.5 leading-tight">{decision.description}</p>
                   {linkedPreparation > 0 && <p className="text-[10px] text-tno-green mb-1">工作组筹备 {linkedPreparation} 份待投入</p>}
-                  {decision.requirementsText && decision.requirementsText.length > 0 && (
-                    <div className="text-[9px] text-zinc-500 leading-tight">
-                      ⚑ {decision.requirementsText[0]}{decision.requirementsText.length > 1 ? ` 等${decision.requirementsText.length}项条件（悬浮查看全部）` : ''}
-                    </div>
-                  )}
                   <div className="flex items-center gap-2 mt-1.5">
                     {cooldown > 0 && (
                       <span className="text-[10px] text-tno-red font-bold">冷却中: {cooldown} 天</span>

@@ -8,6 +8,8 @@ import { applyYangSettlement, CROSSROADS_RULES, CROSSROADS_LABELS, getCrossroads
 import FocusHoverCard from './FocusHoverCard';
 import { formatControl, getCampusControlProgress, getTileControl } from '../engine/mapState';
 import { getFocusLayout, FOCUS_METRICS } from './focusLayout';
+import { FOCUS_LAW_TRANSITIONS } from '../engine/lawTransitions';
+import { LAW_CATEGORIES, LAWS, getLawSystem } from '../data/laws';
 
 interface FocusTreeProps {
   state: GameState;
@@ -72,7 +74,7 @@ export const PHASE1_NODES: FocusNode[] = [
   },
 
   // ===== 右路：学生反抗路线 =====
-  { id: 'dorm_talks', title: '寝室里的熄灯夜话', description: '晚上十一点半熄灯。黑暗成了最安全的保护色。在被窝里压低声音的交谈中，愤怒在发酵，思想在传播。有人递过来一部旧手机，屏幕上是一个叫钢铁红蛤的群聊。', days: 8, x: 780, y: 200, requires: ['start_2023'],
+  { id: 'dorm_talks', title: '寝室里的熄灯夜话', description: '晚上十一点半熄灯。黑暗成了最安全的保护色。在被窝里压低声音的交谈中，愤怒在发酵，思想在传播。有人递过来一部旧手机，屏幕上是一个叫钢铁红蛤的群聊。', days: 8, x: 810, y: 200, requires: ['start_2023'],
     onComplete: (s) => ({
       stats: { ...s.stats, allianceUnity: Math.min(100, s.stats.allianceUnity + 6), ss: Math.min(100, s.stats.ss + 3), radicalAnger: Math.min(100, s.stats.radicalAnger + 5) },
       activeEvent: FLAVOR_EVENTS.phase1_dorm_talks,
@@ -80,7 +82,7 @@ export const PHASE1_NODES: FocusNode[] = [
     }),
     effectsText: ['联盟团结度 +6，SS +3，激进愤怒度 +5', "触发事件：熄灯后的频率", "触发事件：经天纬地楼的阴影（国策完成后3天）"]
   },
-  { id: 'contact_pan', title: '接触潘仁越的自由派', description: '理科实验班的潘仁越，成绩稳居年级前十，却把民主挂在嘴边。他相信通过学生会提案、校长信箱这些合法渠道可以不流血地改变合一。理想得近乎天真——但足够危险。', days: 8, x: 680, y: 350, requires: ['dorm_talks'],
+  { id: 'contact_pan', title: '接触潘仁越的自由派', description: '理科实验班的潘仁越，成绩稳居年级前十，却把民主挂在嘴边。他相信通过学生会提案、校长信箱这些合法渠道可以不流血地改变合一。理想得近乎天真——但足够危险。', days: 8, x: 650, y: 350, requires: ['dorm_talks'],
     onComplete: (s) => ({
       stats: { ...s.stats, allianceUnity: Math.min(100, s.stats.allianceUnity + 10), ss: Math.min(100, s.stats.ss + 5) },
       activeEvent: FLAVOR_EVENTS.phase1_contact_pan,
@@ -88,7 +90,7 @@ export const PHASE1_NODES: FocusNode[] = [
     }),
     effectsText: ['联盟团结度 +10，SS +5', "触发事件：实验班的另一种声音"]
   },
-  { id: 'read_marx', title: '研读马列原典', description: '在那部屏幕碎裂的旧手机上，伪装成TXT小说的马列原典正在黑暗中被一行行阅读。政治课本上干瘪的条文，此刻像闪电一样劈开了铁屋子。王照凯正在成为最危险的那个人。', days: 8, x: 880, y: 350, requires: ['dorm_talks'],
+  { id: 'read_marx', title: '研读马列原典', description: '在那部屏幕碎裂的旧手机上，伪装成TXT小说的马列原典正在黑暗中被一行行阅读。政治课本上干瘪的条文，此刻像闪电一样劈开了铁屋子。王照凯正在成为最危险的那个人。', days: 8, x: 970, y: 350, requires: ['dorm_talks'],
     onComplete: (s) => ({
       stats: { ...s.stats, ss: Math.min(100, s.stats.ss + 8), radicalAnger: Math.min(100, s.stats.radicalAnger + 8) },
       activeEvent: STORY_EVENTS.story_3,
@@ -122,13 +124,13 @@ export const PHASE1_NODES: FocusNode[] = [
   },
 
   // ===== 最终节点：B3起义 =====
-  { id: 'charge_b3', title: '冲上B3教学楼！', description: '所有矛盾在这里汇聚。吴福军的保安队在楼下集结，杨玉乐拨不通封安宝的电话。走廊里的街垒已经堆了三小时，一个女生的额头撞上了消防栓。血沿着她的脸颊流下来——然后，所有人心里的最后一丝畏惧碎了。', days: 5, x: 500, y: 820, requires: ['steel_toad'],
+  { id: 'charge_b3', title: '冲上B3教学楼！', description: '所有矛盾在这里汇聚。吴福军的保安队在楼下集结，杨玉乐拨不通封安宝的电话。走廊里的街垒已经堆了三小时，一个女生的额头撞上了消防栓。血沿着她的脸颊流下来——然后，所有人心里的最后一丝畏惧碎了。', days: 5, x: 810, y: 820, requires: ['steel_toad'],
     canStart: (s) => s.stats.radicalAnger > 80,
     onComplete: (s) => ({
       activeEvent: FLAVOR_EVENTS.phase1_before_charge,
-      flags: { ...s.flags, rebellion_started: true, charge_b3_completed_days: 0, yy_charge_b3_done_date: s.date.getTime() }
+      flags: { ...s.flags, rebellion_started: true, yy_charge_b3_done_date: s.date.getTime() }
     }),
-    effectsText: ['开启校园地图斗争阶段', "触发事件：临界点／B3楼的黑天红字旗／联合革命委员会的胜利（按剧情分流）"],
+    effectsText: ['开启校园地图斗争阶段', "触发事件：临界点／B3楼的黑天红字旗／B3楼顶的统一战线／联合革命委员会的胜利（按剧情分流）"],
     requiresText: ['激进愤怒度 > 80']
   },
   { id: 'phase1_jidi_deal', title: '及第“培优”特许协议', description: '艺术礼堂地下层刚一封顶，成箱印着及第蓝白LOGO的冲刺密卷便被悄悄推进了校园。封安祥与新东方讲师李竞凯开始在重点班试水高价“强基培优”，资本的触角正式伸向高三课堂。', days: 8, x: 80, y: 350, requires: ['build_art'],
@@ -3546,6 +3548,19 @@ export default function FocusTree({ state, startFocus, triggerError, isSuperEven
     return true;
   };
 
+  const phaseOne = state.currentFocusTree === 'phase1';
+  const join = phaseOne ? currentNodes.find(node => node.id === 'steel_toad') : undefined;
+  const joinParents = join ? currentNodes.filter(node => join.requires?.includes(node.id)) : [];
+  const routeFocuses = new Set(['dorm_talks', 'contact_pan', 'read_marx', 'rally_classes', 'phase1_red_toad_cell', 'protest_privilege', 'steel_toad', 'charge_b3']);
+  const center = (node: FocusNode) => focusX(node) + FOCUS_METRICS.cardWidth / 2;
+  const crestPort = (node: FocusNode) => focusY(node) + 2;
+  const stemColor = (done: boolean) => done ? '#b5c99c' : '#9a7859';
+  const joinY = join && joinParents.length
+    ? Math.round((Math.max(...joinParents.map(node => focusY(node) + FOCUS_METRICS.cardHeight)) + crestPort(join)) / 2)
+    : 0;
+  const joinReady = joinParents.every(node => state.completedFocuses.includes(node.id));
+  const currentLaws = getLawSystem(state.lawSystem);
+
   const handleNodeClick = (node: FocusNode) => {
     if (canStartFocus(node)) {
       startFocus(node.id);
@@ -3590,20 +3605,34 @@ export default function FocusTree({ state, startFocus, triggerError, isSuperEven
         </div>
 
         {/* Lines */}
-           <svg className="absolute inset-0 pointer-events-none z-0" width={canvasWidth} height={canvasHeight}>
+           <svg className="absolute inset-0 pointer-events-none z-0" width={canvasWidth} height={canvasHeight} aria-hidden="true">
+          {join && joinParents.length > 0 && (
+            <g data-focus-merge="steel_toad" fill="none" strokeLinecap="round" strokeLinejoin="round">
+              <path d={'M '+Math.min(...joinParents.map(center))+' '+joinY+' H '+Math.max(...joinParents.map(center))}
+                stroke={stemColor(joinReady)} strokeWidth="2.4" />
+              {joinParents.map(parent => {
+                const done = state.completedFocuses.includes(parent.id);
+                return <path key={parent.id} d={'M '+center(parent)+' '+(focusY(parent) + FOCUS_METRICS.cardHeight)+' V '+joinY}
+                  stroke={stemColor(done)} strokeWidth="2.4" strokeDasharray={done ? undefined : '4 5'}/>;
+              })}
+              <path d={'M '+center(join)+' '+joinY+' V '+crestPort(join)} stroke={stemColor(joinReady)} strokeWidth="3.2" />
+              <circle cx={center(join)} cy={joinY} r="3.8" fill={stemColor(joinReady)} />
+            </g>
+          )}
           {currentNodes.filter(node => !node.isHidden || !node.isHidden(state)).map(node => {
-            if (!node.requires) return null;
+            if (!node.requires || node === join) return null;
             return node.requires.map(reqId => {
               const reqNode = currentNodes.find(n => n.id === reqId);
               if (!reqNode || (reqNode.isHidden && reqNode.isHidden(state))) return null;
               
               const isCompleted = state.completedFocuses.includes(reqId);
               const isAvailable = canStartFocus(node);
-              const strokeColor = isCompleted ? '#a5ba8d' : (isAvailable ? '#cbb581' : '#4c4b43');
+              const primary = phaseOne && routeFocuses.has(node.id);
+              const strokeColor = primary ? stemColor(isCompleted) : isCompleted ? '#a5ba8d' : (isAvailable ? '#cbb581' : '#4c4b43');
               const startX = focusX(reqNode) + FOCUS_METRICS.cardWidth/2;
               const startY = focusY(reqNode) + FOCUS_METRICS.cardHeight;
               const endX = focusX(node) + FOCUS_METRICS.cardWidth/2;
-              const endY = focusY(node);
+              const endY = primary ? crestPort(node) : focusY(node);
               const middleY = Math.min(endY - 2, startY + Math.max(2, (endY - startY) / 2));
 
               return (
@@ -3612,8 +3641,11 @@ export default function FocusTree({ state, startFocus, triggerError, isSuperEven
                   d={`M ${startX} ${startY} V ${middleY} H ${endX} V ${endY}`}
                   fill="none"
                   stroke={strokeColor} 
-                  strokeWidth="2"
-                  strokeDasharray={isCompleted ? undefined : '4 4'}
+                  strokeWidth={primary ? 2.7 : 2}
+                  strokeLinejoin="round"
+                  strokeDasharray={isCompleted ? undefined : primary ? '5 4' : '4 4'}
+                  data-focus-connector={reqId+'-'+node.id}
+                  data-phase1-spine={primary || undefined}
                 />
               );
             });
@@ -3706,6 +3738,20 @@ export default function FocusTree({ state, startFocus, triggerError, isSuperEven
                           <li key={idx}>{effect}</li>
                         ))}
                       </ul>
+                    </div>
+                  )}
+
+                  {FOCUS_LAW_TRANSITIONS[node.id] && LAW_CATEGORIES.some(category => {
+                    const law = FOCUS_LAW_TRANSITIONS[node.id][category.id];
+                    return law && law !== currentLaws[category.id];
+                  }) && (
+                    <div className="mb-1.5 border-t border-tno-border/60 pt-1 text-[10px] text-tno-text/85">
+                      <strong className="text-tno-highlight">校规与法案</strong>
+                      {LAW_CATEGORIES.map(category => {
+                        const law = FOCUS_LAW_TRANSITIONS[node.id][category.id];
+                        return law && law !== currentLaws[category.id]
+                          ? <div key={category.id}>{category.name} → {LAWS[law].name}</div> : null;
+                      })}
                     </div>
                   )}
 

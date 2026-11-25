@@ -1,3 +1,4 @@
+import { Preview } from './FocusHoverCard';
 import React, { useEffect, useId, useRef, useState } from 'react';
 import type { GameEvent, EventChoice, GameState } from '../types';
 import { motion, useDragControls, useReducedMotion } from 'motion/react';
@@ -17,6 +18,7 @@ interface EventPopupProps {
 export default function EventPopup({ event:incomingEvent, onConfirm, date, state }: EventPopupProps) {
   const event=ensureEventIdentity(incomingEvent);
   const [hovered, setHovered] = useState<number | null>(null);
+  const choiceAnchor = useRef<HTMLElement|null>(null);
   const bounds = useRef<HTMLDivElement>(null);
   const dialog = useRef<HTMLDivElement>(null);
   const drag = useDragControls();
@@ -68,7 +70,7 @@ export default function EventPopup({ event:incomingEvent, onConfirm, date, state
       className={'event-document tno-event-window event-window--'+(news ? 'news' : 'story')}
       drag dragControls={drag} dragListener={false} dragConstraints={bounds} dragElastic={0} dragMomentum={false}
       initial={reducedMotion ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: reducedMotion ? 0 : .18 }}>
+      transition={{ duration: reducedMotion ? 0 : .18, ease: [0.22,1,0.36,1] }}>
       <header className="event-titlebar" onPointerDown={e => drag.start(e)}>
         <span className="event-titlebar__kind">{news ? <Radio size={14}/> : <FileText size={14}/>} {kind}</span>
         <span className="event-titlebar__source">{news ? '合肥一中广播站' : dateText}</span>
@@ -82,25 +84,25 @@ export default function EventPopup({ event:incomingEvent, onConfirm, date, state
       <footer className="event-choice-footer">
         {!news && photo}
         <div className="event-choice-list">
-          {preview.length > 0 && <div id={previewId} role="tooltip" className="event-choice-preview">
+          {preview.length > 0 && choiceAnchor.current && <Preview anchor={choiceAnchor.current} dismiss={()=>setHovered(null)}><div id={previewId} role="tooltip" className="event-choice-preview">
             <strong>选项效果</strong>{preview.map((text, i) => <p key={i}>{text}</p>)}
-          </div>}
+          </div></Preview>}
           {choices ? choices.map((choice, index) => {
             const disabled = !!state && !!choice.disabled?.(state);
             return <div key={choice.id ?? index} className="event-choice-wrap"
-              onMouseEnter={() => setHovered(index)} onMouseLeave={() => setHovered(null)}>
+              onMouseEnter={e => { choiceAnchor.current=e.currentTarget; setHovered(index); }} onMouseLeave={() => setHovered(null)}>
               <button type="button" data-sound="event" disabled={disabled}
                 aria-describedby={hovered === index && preview.length ? previewId : undefined}
-                onFocus={() => setHovered(index)} onBlur={() => setHovered(null)}
+                onFocus={e => { choiceAnchor.current=e.currentTarget; setHovered(index); }} onBlur={() => setHovered(null)}
                 onClick={() => onConfirm(choice)}>
                 {disabled ? <Lock size={13} aria-hidden="true"/> : <ChevronRight size={14} aria-hidden="true"/>}
                 <span>{choice.text}</span>
               </button>
             </div>;
-          }) : <div className="event-choice-wrap" onMouseEnter={() => setHovered(-1)} onMouseLeave={() => setHovered(null)}>
+          }) : <div className="event-choice-wrap" onMouseEnter={e => { choiceAnchor.current=e.currentTarget; setHovered(-1); }} onMouseLeave={() => setHovered(null)}>
             <button type="button" data-sound="event" onClick={() => onConfirm()}
               aria-describedby={hovered === -1 && preview.length ? previewId : undefined}
-              onFocus={() => setHovered(-1)} onBlur={() => setHovered(null)}>
+              onFocus={e => { choiceAnchor.current=e.currentTarget; setHovered(-1); }} onBlur={() => setHovered(null)}>
               <ChevronRight size={14} aria-hidden="true"/><span>{event.buttonText || '确认'}</span>
             </button>
           </div>}

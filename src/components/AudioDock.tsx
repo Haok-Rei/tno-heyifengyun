@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { ChevronDown, ChevronUp, ListMusic, Pause, Play, SkipBack, SkipForward, Volume2, X } from 'lucide-react';
+import { ChevronDown, ChevronUp, Disc3, VolumeX, Pause, Play, SkipBack, SkipForward, Volume2, X } from 'lucide-react';
 import { AUDIO_SETTINGS_EVENT, readAudioSettings, writeAudioSettings } from '../engine/audioSettings';
 import { installUiSoundListener } from '../engine/uiSounds';
 import { SUPER_EVENT_AUDIO_END, SUPER_EVENT_AUDIO_START } from '../engine/superEventAudio';
@@ -137,7 +137,7 @@ export default function AudioDock() {
 
   return <div className="audio-dock">
     <audio ref={audioRef} src={current?.url} preload="metadata" onLoadedMetadata={event => setDuration(event.currentTarget.duration)} onTimeUpdate={event => setCurrentTime(event.currentTarget.currentTime)} onEnded={() => move(1, true)} onError={() => { setPlaying(false); setMessage('曲目加载失败'); }} />
-    <button className={`audio-dock-trigger ${open ? 'is-open' : ''}`} onClick={() => setOpen(value => !value)} aria-label="打开音乐播放器" aria-expanded={open} title="音乐播放器"><ListMusic size={17} /><span>音乐</span></button>
+    <button className={`audio-dock-trigger ${open ? 'is-open' : ''}`} onClick={() => setOpen(value => !value)} aria-label="打开音乐播放器" aria-expanded={open} title="音乐播放器">{settings.musicVolume * settings.masterVolume === 0 ? <VolumeX size={17}/> : <Disc3 size={18} className={playing?'radio-spinning':''}/>}</button>
     {open && <section className="audio-dock-panel" aria-label="音乐播放器">
       <header><div><small>HEFEI ORDER / RADIO</small><strong>校园电台</strong></div><button onClick={() => setOpen(false)} aria-label="关闭音乐播放器"><X size={16} /></button></header>
       <div className="audio-now-playing"><span>正在播放</span><strong title={current?.title}>{current?.title || '暂无曲目'}</strong></div>
@@ -149,13 +149,13 @@ export default function AudioDock() {
       <div className="audio-seek"><input aria-label="播放进度" type="range" min="0" max={Math.max(duration || 0, 1)} value={Math.min(currentTime, duration || 0)} onChange={event => { if (audioRef.current) audioRef.current.currentTime = Number(event.target.value); setCurrentTime(Number(event.target.value)); }} /><span>{formatTime(currentTime)} / {formatTime(duration)}</span></div>
       <div className="audio-mode"><span>播放顺序</span><select aria-label="播放顺序" value={playlist.mode} onChange={event => setPlaylist(prev => ({ ...prev, mode: event.target.value as PlayMode }))}><option value="ordered">顺序循环</option><option value="repeat">单曲循环</option><option value="shuffle">随机播放</option></select></div>
       <label className="audio-volume"><Volume2 size={15} /><span>音乐</span><input aria-label="音乐音量" type="range" min="0" max="100" value={settings.musicVolume} onChange={event => writeAudioSettings({ ...settings, musicVolume: Number(event.target.value) })} /><span>{settings.musicVolume}%</span></label>
-      <div className="audio-list-heading"><span>歌单 · {playlist.enabled.length}/{TRACKS.length}</span><small>勾选启用 · 箭头排序</small></div>
+      <details className="playlist-fold"><summary>歌单 · {playlist.enabled.length}/{TRACKS.length}</summary><div className="audio-list-heading"><span>歌单 · {playlist.enabled.length}/{TRACKS.length}</span><small>勾选启用 · 箭头排序</small></div>
       <div className="audio-track-list">{orderedTracks.map((track, index) => <div key={track.id} className={`audio-track ${track.id === playlist.trackId ? 'active' : ''}`}>
         <input type="checkbox" checked={playlist.enabled.includes(track.id)} onChange={() => toggleTrack(track.id)} aria-label={`启用 ${track.title}`} />
         <button className="audio-track-name" onClick={() => selectTrack(track.id)} title={track.title}><span>{String(index + 1).padStart(2, '0')}</span>{track.title}</button>
         <button onClick={() => shiftTrack(track.id, -1)} aria-label={`上移 ${track.title}`} disabled={index === 0}><ChevronUp size={13} /></button>
         <button onClick={() => shiftTrack(track.id, 1)} aria-label={`下移 ${track.title}`} disabled={index === orderedTracks.length - 1}><ChevronDown size={13} /></button>
-      </div>)}</div>
+      </div>)}</div></details>
       {message && <p className="audio-message" role="status">{message}</p>}
     </section>}
   </div>;

@@ -5,7 +5,7 @@ import { GameState, Advisor } from '../types';
 import { getAdvisorPortraitUrl, getLeaderPortraitUrl } from '../config/assets';
 import { getFocusNodes } from './FocusTree';
 import { formatModifierEntry } from '../engine/gameLoop';
-import { LAWS, LAW_CATEGORIES, getLawSystem, LAW_CHANGE_COST } from '../data/laws';
+import { type LawSystemState, LAWS, LAW_CATEGORIES, getLawSystem, LAW_CHANGE_COST } from '../data/laws';
 import HoverWindow from './HoverWindow';
 import { FocusArt, SpiritArt, LawArt } from './StrategicArt';
 import { FACTION_COLORS, getFactionDossier } from '../data/factionDossiers';
@@ -24,7 +24,7 @@ interface LeftSidebarProps {
   onOpenFocus: () => void;
   triggerError: () => void;
   /** v8.11 切换校内法案（App 内扣除150 PP） */
-  changeLaw: (categoryId: 'discipline' | 'schedule' | 'personnel' | 'education', levelId: string) => void;
+  changeLaw: (categoryId: keyof LawSystemState, levelId: string) => void;
 }
 
 /** 铁腕时代专属：吴福军自动受聘的加强版顾问 (v8.6.1) */
@@ -362,8 +362,29 @@ export default function LeftSidebar({ state, hireAdvisor, dismissAdvisor, cancel
               const isActive = lvId === getLawSystem(state.lawSystem)[lawCategory as 'discipline'];
               const canAfford = state.stats.pp >= LAW_CHANGE_COST;
               return (
+                <HoverWindow key={lvId} placement="right" content={<div className="archive-detail"><strong>{law.name}</strong>
+                  <div className="text-[10px] text-tno-text/80 leading-relaxed mb-1.5">{law.flavor}</div>
+                  <div className="text-[10px] space-y-0.5 border-t border-tno-border/40 pt-1.5">
+                    {Object.entries(law.effects).map(([k, v]) => {
+                      const fmt = formatModifierEntry(k, v as number);
+                      return (
+                        <div key={k} className="flex justify-between">
+                          <span className="text-tno-text/70">{fmt.label}</span>
+                          <span className={fmt.positive ? 'text-tno-green' : 'text-tno-red'}>{fmt.text}</span>
+                        </div>
+                      );
+                    })}
+                    {law.advisorCostMult && law.advisorCostMult !== 1 && (
+                      <div className="flex justify-between">
+                        <span className="text-tno-text/70">顾问雇佣费用</span>
+                        <span className={law.advisorCostMult < 1 ? 'text-tno-green' : 'text-tno-red'}>
+                          {law.advisorCostMult < 1 ? `-${Math.round((1 - law.advisorCostMult) * 100)}%` : `+${Math.round((law.advisorCostMult - 1) * 100)}%`}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                </div>}>
                 <button
-                  key={lvId}
                   onClick={() => { if (!isActive && canAfford) changeLaw(lawCategory as 'discipline', lvId); }}
                   disabled={isActive || !canAfford}
                   className={`w-full text-left border p-2.5 transition-colors ${
@@ -385,27 +406,7 @@ export default function LeftSidebar({ state, hireAdvisor, dismissAdvisor, cancel
                       </span>
                     )}
                   </div>
-                  <div className="text-[10px] text-tno-text/80 leading-relaxed mb-1.5">{law.flavor}</div>
-                  <div className="text-[10px] space-y-0.5 border-t border-tno-border/40 pt-1.5">
-                    {Object.entries(law.effects).map(([k, v]) => {
-                      const fmt = formatModifierEntry(k, v as number);
-                      return (
-                        <div key={k} className="flex justify-between">
-                          <span className="text-tno-text/70">{fmt.label}</span>
-                          <span className={fmt.positive ? 'text-tno-green' : 'text-tno-red'}>{fmt.text}</span>
-                        </div>
-                      );
-                    })}
-                    {law.advisorCostMult && law.advisorCostMult !== 1 && (
-                      <div className="flex justify-between">
-                        <span className="text-tno-text/70">顾问雇佣费用</span>
-                        <span className={law.advisorCostMult < 1 ? 'text-tno-green' : 'text-tno-red'}>
-                          {law.advisorCostMult < 1 ? `-${Math.round((1 - law.advisorCostMult) * 100)}%` : `+${Math.round((law.advisorCostMult - 1) * 100)}%`}
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                </button>
+                </button></HoverWindow>
               );
             })}
           </div>
@@ -421,19 +422,18 @@ export default function LeftSidebar({ state, hireAdvisor, dismissAdvisor, cancel
           </div>
           <div className="flex-1 overflow-y-auto space-y-2 pr-1">
             {getAvailableAdvisors(state).map(advisor => (
-              <button
-                key={advisor.id}
+              <HoverWindow key={advisor.id} placement="right" content={<CharacterProfile name={advisor.name} title={advisor.title} {...getAdvisorProfile(advisor)} />}><button
                 onClick={() => handleHire(advisor)}
                 className="nation-hire-option w-full text-left border border-tno-border p-2 hover:border-tno-highlight transition-colors"
               >
                 <img className="nation-hire-option__portrait" src={getAdvisorPortraitUrl(advisor.portrait, advisor.id)} alt={advisor.name} loading="lazy" />
                 <div className="nation-hire-option__body">
-                  <CharacterProfile name={advisor.name} title={advisor.title} {...getAdvisorProfile(advisor)} compact />
+                  <strong>{advisor.name}</strong><small>{advisor.title}</small>
                   <span className={`nation-hire-option__cost ${state.stats.pp >= getAdvisorCost(advisor) ? 'is-affordable' : 'is-unaffordable'}`}>
                     任命 · {getAdvisorCost(advisor)} PP
                   </span>
                 </div>
-              </button>
+              </button></HoverWindow>
             ))}
           </div>
         </div>

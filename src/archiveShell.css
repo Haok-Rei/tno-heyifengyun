@@ -1,0 +1,69 @@
+:root {
+  --archive-ink:#101615; --archive-raised:#242b27; --archive-rule:#55594b; --archive-brass:#cbb883;
+  --archive-muted:#9aa197; --archive-rim:inset 0 1px #fff1; --archive-shadow:0 8px 24px #080c0bad;
+  --archive-ease:cubic-bezier(.22,1,.36,1); --archive-radius:3px;
+}
+* {scrollbar-width:thin;scrollbar-color:#595e51 #151a18}
+::-webkit-scrollbar {width:6px;height:6px}
+::-webkit-scrollbar-thumb {background:#595e51;border-radius:3px}
+.archive-preview {position:fixed;z-index:160;max-height:calc(100dvh - 16px);overflow:auto;pointer-events:none;animation:archive-reveal 120ms var(--archive-ease);color:#d5d7c9;box-shadow:var(--archive-shadow);font-variant-numeric:tabular-nums}
+.archive-preview * {pointer-events:none!important}
+.archive-preview .action-reminder__tooltip {position:static;width:auto;max-height:none}
+.archive-detail {padding:12px 14px;background:linear-gradient(125deg,var(--archive-raised),var(--archive-ink));border:1px solid var(--archive-rule);font-size:12px}
+.archive-detail strong,.archive-detail small {color:var(--archive-brass)}
+.archive-detail p {margin:.45em 0;line-height:1.6}
+.resource-topbar {font-variant-numeric:tabular-nums}
+.resource-topbar .resource-label {position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.resource-topbar .group > .relative {position:static}
+.rate-trigger {font:9px Consolas,monospace;align-self:start}
+.rate-trigger::after {content:'';position:absolute;inset:0}
+.resource-topbar button,.audio-dock-trigger,.district-tabs button {border-radius:var(--archive-radius);box-shadow:var(--archive-rim)}
+.radio-spinning {animation:archive-spin 5s linear infinite}
+.playlist-fold>summary,.ledger-fold>summary {cursor:pointer;color:var(--archive-brass);font-size:11px;padding:7px 11px;background:linear-gradient(90deg,#282b24,#191f1c)}
+.ledger-fold>summary svg {display:inline-block;vertical-align:middle;margin-right:6px}
+.ledger-fold>summary b {margin-left:12px;font:10px monospace;color:var(--archive-muted)}
+.playlist-fold[open] .audio-list-heading>span {visibility:hidden}
+.campaign-rail button span svg {margin:auto}
+.campaign-rail button b {border:1px solid #a66e62;border-radius:7px;background:#5b302c;color:#f4d0b4}
+.map-viewport {isolation:isolate;background-color:#141b18}
+.map-viewport::after {content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 55%,#090e0c47),repeating-linear-gradient(0deg,transparent 0 31px,#b9b28e0a 31px 32px),repeating-linear-gradient(90deg,transparent 0 31px,#b9b28e0a 31px 32px)}
+.map-viewport svg g[role=button]:is(:hover,:focus-visible)>rect:nth-child(2) {stroke:#e3c790;stroke-width:2}
+.action-reminders .action-reminder>button {width:37px;height:37px;border-radius:2px}
+.district-window {height:auto!important;max-height:min(530px,calc(100% - 68px));border-color:var(--archive-rule)}
+.district-dock-root {min-height:0;overflow:auto;overscroll-behavior:contain}
+.district-window .territory-dock {height:auto;max-height:none}
+.district-window-titlebar {background:linear-gradient(110deg,#473630,#252b26);border-color:var(--archive-rule)}
+.district-tabs {position:sticky;top:0;z-index:1;display:flex;background:var(--archive-ink);padding:5px 0;gap:3px}
+.district-tabs button {flex:1;padding:6px 3px;border-bottom:2px solid transparent;color:var(--archive-muted);font-size:11px}
+.district-tabs button[aria-pressed=true] {background:var(--archive-raised);border-color:var(--archive-brass);color:#eee5c9}
+.district-tabs~div:not([hidden]) {animation:archive-reveal .16s var(--archive-ease)}
+.legacy-actions button {display:flex;align-items:center;justify-content:space-between;gap:8px;border-color:#5f6252;background:linear-gradient(100deg,#282e27,#1c211e)}
+.government-drawer,.decisions-drawer,.district-window {animation:archive-slide .2s var(--archive-ease)}
+.decisions-drawer button[data-sound] {padding:9px 10px;border-radius:var(--archive-radius);background:linear-gradient(110deg,#272c27,#1a201e);box-shadow:var(--archive-rim)}
+:is(.resource-topbar,.campaign-rail,.government-drawer,.decisions-drawer,.territory-dock,.audio-dock,.action-reminders) button {transition:background-color .16s,border-color .16s,transform .15s var(--archive-ease)}
+:is(.resource-topbar,.campaign-rail,.government-drawer,.decisions-drawer,.territory-dock,.audio-dock,.action-reminders) button:enabled:active {transform:scale(.975)}
+@keyframes archive-slide {from{opacity:0;translate:-6px 0}to{opacity:1;translate:0 0}}
+@keyframes archive-reveal {from{opacity:0}to{opacity:1}}
+@keyframes archive-spin {to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){
+  .archive-preview,.district-tabs~div,.government-drawer,.decisions-drawer,.district-window,.radio-spinning {animation:none!important}
+  :is(.resource-topbar,.campaign-rail,.government-drawer,.decisions-drawer,.territory-dock,.audio-dock,.action-reminders) button {transition:none!important;transform:none!important}
+}
+.archive-preview .event-choice-preview,.archive-preview .start-menu-tooltip,.archive-preview .heyi-light-v2__tooltip {display:block;position:static;width:100%;max-width:none}
+.archive-preview .event-choice-preview {max-height:none}
+.map-viewport {box-shadow:inset 0 0 48px color-mix(in srgb,var(--map-accent) 16%,transparent)}
+.map-beacon {animation:map-beacon 2.6s ease-in-out infinite}
+@keyframes map-beacon {50%{opacity:.58}}
+@media(prefers-reduced-motion:reduce){.map-beacon{animation:none}}
+.nation-hire-option__body>strong,.nation-hire-option__body>small {display:block}
+.nation-hire-option__body>strong {color:#e2d0a7;font:600 15px/1.6 SimSun,serif}
+.nation-hire-option__body>small {color:var(--archive-muted);font-size:11px}
+.decision-glyph {display:inline-block;vertical-align:-2px;margin-right:7px;color:var(--archive-brass)}
+.government-drawer .nation-module-heading {color:#b5ad96;letter-spacing:.14em}
+.government-drawer .nation-module {box-shadow:inset 0 1px #ebe7c008}
+.district-window .legacy-actions button:enabled:hover {border-color:var(--archive-brass);background:#30392e}
+.district-window .legacy-actions button:disabled {opacity:.66}
+
+.campaign-rail[data-front] {position:relative;z-index:151}
+.map-viewport g[role=button]:focus-visible {outline:none}
+.territory-heading h3 {border-left:3px solid var(--archive-brass);padding-left:9px}

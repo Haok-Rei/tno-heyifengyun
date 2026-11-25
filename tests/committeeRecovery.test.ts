@@ -212,7 +212,12 @@ test('9.6.3 opening requires all three student focuses and stages the uprising a
   assert.equal(intro.activeEvent?.id,'story_6');
   assert.equal(intro.currentFocusTree,undefined);
   const banner=STORY_EVENTS.story_6.effect!({...state,...completed,...intro});
-  assert.equal(banner.activeSuperEvent?.id,'b3_uprising');
+  assert.equal(banner.activeSuperEvent,undefined);
+  assert.equal(banner.activeEvent?.id,'strike_b3_success');
+  const pact=FLAVOR_EVENTS.strike_b3_success.effect!({...state,...completed,...intro,...banner});
+  assert.equal(pact.flags?.united_committee_established,true);
+  assert.equal(pact.activeSuperEvent?.id,'b3_uprising');
+  assert.equal(FLAVOR_EVENTS.strike_b3_success.effect!({...state,currentFocusTree:'treeA'}).activeSuperEvent,undefined);
   assert.equal(banner.currentFocusTree,undefined);
 });
 
@@ -233,7 +238,9 @@ test('9.6.3 interrupted legacy B3 saves resume without replaying settled routes'
   state.flags.story_6_triggered=true;
   state.flags.event_seen_story_6=true;
   const recovered=deserializeGameState(serializeGameState(state))!;
-  assert.equal(recovered.activeSuperEvent?.id,'b3_uprising');
+  assert.equal(recovered.activeEvent?.id,'strike_b3_success');
+  assert.equal(recovered.activeSuperEvent?.id,undefined);
+  assert.equal(FLAVOR_EVENTS.strike_b3_success.effect!(recovered).activeSuperEvent?.id,'b3_uprising');
   assert.equal(recovered.flags.focus_completed_date_charge_b3,state.date.getTime());
   state.completedFocuses=['declare_indep'];
   assert.equal(deserializeGameState(serializeGameState(state))?.activeSuperEvent?.id,undefined);

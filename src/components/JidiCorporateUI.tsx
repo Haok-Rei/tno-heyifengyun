@@ -1,3 +1,4 @@
+import { InlineHint } from './FocusHoverCard';
 import MechanicCrest from './MechanicCrest';
 import React, { useState } from 'react';
 import { JidiCorporateState } from '../types';
@@ -100,9 +101,9 @@ export function JidiCorporateUI({
                   <div className="transform -rotate-12 border-4 border-red-500 text-red-500 font-black text-xl px-4 py-1 tracking-widest bg-black/50 shadow-[0_0_15px_rgba(239,68,68,0.5)]">已被查封</div>
                 </div>
                 <div className="absolute inset-0 bg-[repeating-linear-gradient(45deg,#eab308_0,#eab308_10px,#000_10px,#000_20px)] opacity-30 z-10"></div>
-                <div className="absolute inset-0 hidden group-hover:flex items-center justify-center z-30 bg-black/90 text-red-500 text-xs font-mono p-2 text-center">
+                <InlineHint><div className="archive-detail">
                   因涉嫌违规操作，该终端已被教育局纪委查封。
-                </div>
+                </div></InlineHint>
               </>
             )}
           </button>
@@ -119,9 +120,9 @@ export function JidiCorporateUI({
                     <div className="transform -rotate-12 border-4 border-red-500 text-red-500 font-black text-xl px-4 py-1 tracking-widest bg-black/50 shadow-[0_0_15px_rgba(239,68,68,0.5)]">已被查封</div>
                   </div>
                   <div className="absolute inset-0 bg-[repeating-linear-gradient(45deg,#eab308_0,#eab308_10px,#000_10px,#000_20px)] opacity-30 z-10"></div>
-                  <div className="absolute inset-0 hidden group-hover:flex items-center justify-center z-30 bg-black/90 text-red-500 text-xs font-mono p-2 text-center">
+                  <InlineHint><div className="archive-detail">
                     因涉嫌违规研发，该终端已被教育局纪委查封。
-                  </div>
+                  </div></InlineHint>
                 </>
               )}
             </button>
@@ -139,9 +140,9 @@ export function JidiCorporateUI({
                     <div className="transform -rotate-12 border-4 border-red-500 text-red-500 font-black text-xl px-4 py-1 tracking-widest bg-black/50 shadow-[0_0_15px_rgba(239,68,68,0.5)]">已被查封</div>
                   </div>
                   <div className="absolute inset-0 bg-[repeating-linear-gradient(45deg,#eab308_0,#eab308_10px,#000_10px,#000_20px)] opacity-30 z-10"></div>
-                  <div className="absolute inset-0 hidden group-hover:flex items-center justify-center z-30 bg-black/90 text-red-500 text-xs font-mono p-2 text-center">
+                  <InlineHint><div className="archive-detail">
                     因涉嫌违规操作，该终端已被教育局纪委查封。
-                  </div>
+                  </div></InlineHint>
                 </>
               )}
             </button>

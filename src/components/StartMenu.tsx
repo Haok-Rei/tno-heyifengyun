@@ -1,3 +1,4 @@
+import { InlineHint } from './FocusHoverCard';
 import React, { lazy, Suspense, useCallback, useEffect, useState } from 'react';
 import { ASSET_URLS } from '../config/assets';
 import { CURRENT_VERSION, CURRENT_RELEASE, CURRENT_UPDATE } from '../config/releases';
@@ -113,7 +114,7 @@ export default function StartMenu({ onStartGame, onArtRoom, onSettings, onGaller
           className="h-36 w-36 object-contain drop-shadow-[0_0_18px_rgba(255,255,255,0.36)] md:h-52 md:w-52"
         />
         </button>
-        {!archiveOpen && <div className="start-menu-tooltip" id="start-version-tooltip" role="tooltip"><small>当前版本</small><strong>v{CURRENT_VERSION} · {CURRENT_UPDATE.title}</strong><time>{CURRENT_RELEASE.date}</time><span>点击查看历代更新</span></div>}
+        {!archiveOpen && <InlineHint><div className="start-menu-tooltip" id="start-version-tooltip" role="tooltip"><small>当前版本</small><strong>v{CURRENT_VERSION} · {CURRENT_UPDATE.title}</strong><time>{CURRENT_RELEASE.date}</time><span>点击查看历代更新</span></div></InlineHint>}
       </div>
 
       <div className="start-menu-archive absolute top-5 right-5 z-30 md:top-7 md:right-8">
@@ -123,7 +124,7 @@ export default function StartMenu({ onStartGame, onArtRoom, onSettings, onGaller
           alt="Studio Logo"
           className="h-[10.5rem] w-[10.5rem] object-contain drop-shadow-[0_0_22px_rgba(255,255,255,0.36)] md:h-[15.5rem] md:w-[15.5rem]"
         />
-        <div className="start-menu-tooltip" id="start-credits-tooltip" role="tooltip"><small>特别感谢</small><strong>母校 · 合肥一中</strong></div>
+        <InlineHint><div className="start-menu-tooltip" id="start-credits-tooltip" role="tooltip"><small>特别感谢</small><strong>母校 · 合肥一中</strong></div></InlineHint>
         </div>
         <PromoVideoButton onClick={()=>setPvOpen(true)}/>
       </div>

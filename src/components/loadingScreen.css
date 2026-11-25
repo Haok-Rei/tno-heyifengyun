@@ -1,0 +1,166 @@
+.loading-projector {
+  --projection-ink: #050b10;
+  --projection-text: #f1ead5;
+  --projection-line: #acd4d066;
+  --projection-cyan: #a5d5d4;
+  --projection-gold: #d9b87b;
+  --viewport-margin: clamp(1rem, 4vw, 3.75rem);
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow: hidden;
+  color: var(--projection-text);
+  background: var(--projection-ink);
+}
+.loading-projector__scenes, .loading-projector__scene, .loading-projector__grade,
+.loading-projector__grain, .loading-projector__wipe {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.loading-projector__scene { opacity: 0; transition: opacity .82s ease; }
+.loading-projector__scene.is-current { opacity: 1; }
+.loading-projector__scene img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 46%;
+  transform: scale(1.07);
+}
+.loading-projector__scene.is-current img {
+  animation: projector-camera 3.2s cubic-bezier(.19,.55,.35,1) both;
+}
+.loading-projector__scene:nth-child(even) img { animation-direction: reverse; }
+.loading-projector__grade {
+  background:
+    linear-gradient(0deg, #050a10 1%, #060e17c9 17%, transparent 52%),
+    linear-gradient(180deg, #050b12d8, #09121935 23%, transparent 45%),
+    radial-gradient(ellipse at 55% 40%, transparent 12%, #0510183e 60%, #05080abb 100%);
+}
+.loading-projector__grain {
+  opacity: .31;
+  background-image:
+    repeating-linear-gradient(0deg, transparent 0 3px, #05152270 4px 5px),
+    linear-gradient(112deg, #0e768d28, transparent 42%, #cea36c13);
+}
+.loading-projector__wipe {
+  width: 21%;
+  background: linear-gradient(90deg, transparent, #bce8e613 38%, #def1cd6b 49.7%, #bcfaff20 51%, transparent);
+  filter: blur(1px);
+  transform: translateX(-160%) skewX(-12deg);
+  animation: projector-wipe .9s cubic-bezier(.19,.52,.4,1) both;
+}
+.loading-projector__frame {
+  position: absolute;
+  inset: clamp(.58rem, 1.65vw, 1.5rem);
+  border: 1px solid #b0d5ce3d;
+  pointer-events: none;
+}
+.loading-projector__frame i {
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  border: solid var(--projection-cyan);
+  opacity: .74;
+}
+.loading-projector__frame i:nth-child(1) { top: -1px; left: -1px; border-width: 1px 0 0 1px; }
+.loading-projector__frame i:nth-child(2) { top: -1px; right: -1px; border-width: 1px 1px 0 0; }
+.loading-projector__frame i:nth-child(3) { bottom: -1px; left: -1px; border-width: 0 0 1px 1px; }
+.loading-projector__frame i:nth-child(4) { bottom: -1px; right: -1px; border-width: 0 1px 1px 0; }
+.loading-projector__header, .loading-projector__footer { position: relative; z-index: 1; margin-inline: var(--viewport-margin); }
+.loading-projector__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: .65rem 1.5rem;
+  padding: clamp(1.65rem, 4.5vh, 3rem) 0 .8rem;
+  border-bottom: 1px solid var(--projection-line);
+}
+.loading-projector__wordmark, .loading-projector__load-label {
+  color: var(--projection-cyan);
+  font: 600 .68rem/1.25 ui-monospace, monospace;
+  letter-spacing: .27em;
+}
+.loading-projector__header h1 {
+  margin: .5rem 0 0;
+  font: 700 clamp(1.4rem, 3.05vw, 2.8rem)/1.1 'Noto Serif SC', 'Songti SC', SimSun, serif;
+  letter-spacing: .13em;
+  text-shadow: 0 .2rem 1.2rem #080c12;
+}
+.loading-projector__plate { display: flex; align-items: baseline; gap: .65rem; color: #e8ddc2; font-size: .84rem; animation: projector-caption .52s ease-out both; }
+.loading-projector__plate small { color: var(--projection-gold); font-size: .68rem; }
+.loading-projector__footer {
+  grid-row: 3;
+  padding-bottom: clamp(1.65rem, 4.3vh, 3rem);
+}
+.loading-projector__quote {
+  min-height: clamp(6rem, 15vh, 10rem);
+  display: grid;
+  align-content: end;
+  margin: 0 0 clamp(1.1rem, 3.6vh, 2rem);
+  padding-inline: clamp(.75rem, 2.5vw, 1.9rem);
+  border-left: 2px solid var(--projection-gold);
+  animation: projector-caption .55s ease-out both;
+}
+.loading-projector__quote blockquote {
+  max-width: 38ch;
+  margin: 0;
+  font: 600 clamp(1.15rem, 2.65vw, 2.42rem)/1.48 'Noto Serif SC', 'Songti SC', SimSun, serif;
+  text-wrap: balance;
+  text-shadow: 0 .1em .6em #000;
+}
+.loading-projector__quote figcaption { margin-top: .55rem; color: var(--projection-gold); font-size: .79rem; letter-spacing: .09em; }
+.loading-projector__quote cite { color: #b9cbca; font-style: normal; }
+.loading-projector__load { border-top: 1px solid var(--projection-line); padding-top: .65rem; }
+.loading-projector__load-label { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: .42rem; }
+.loading-projector__load-label output { font-size: clamp(1.15rem, 2.05vw, 1.7rem); letter-spacing: .04em; font-variant-numeric: tabular-nums; color: var(--projection-text); }
+.loading-projector__load-label small { margin-left: .16rem; font-size: .65em; color: var(--projection-gold); }
+.loading-projector__progress {
+  position: relative;
+  height: 8px;
+  background: #99c6ce22;
+  border: 1px solid #8dc9cc3d;
+}
+.loading-projector__progress::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(90deg, transparent 0 calc(5% - 1px), #080d14a0 calc(5% - 1px) 5%);
+}
+.loading-projector__fill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #406d75, #9cd8d9 70%, #efcf9a);
+  transform: scaleX(var(--load-fraction));
+  transform-origin: left;
+  transition: transform 90ms linear;
+  box-shadow: 0 0 13px #88cadc5c;
+}
+@keyframes projector-camera {
+  from { transform: translate3d(-1.15%, .5%, 0) scale(1.06); }
+  to { transform: translate3d(1.1%, -.6%, 0) scale(1.105); }
+}
+@keyframes projector-wipe {
+  0% { opacity: 0; transform: translateX(-160%) skewX(-12deg); }
+  28% { opacity: .6; }
+  90%, 100% { opacity: 0; transform: translateX(590%) skewX(-12deg); }
+}
+@keyframes projector-caption {
+  from { opacity: 0; transform: translateY(.5rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 550px) {
+  .loading-projector { --viewport-margin: 1.2rem; }
+  .loading-projector__scene img { object-position: center; }
+  .loading-projector__plate { flex-basis: 100%; }
+  .loading-projector__quote { min-height: 7rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .loading-projector * { animation: none !important; transition: none !important; }
+  .loading-projector__wipe, .loading-projector__grain { display: none; }
+  .loading-projector__scene img { transform: none; }
+}

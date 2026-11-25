@@ -1,3 +1,4 @@
+import { Preview } from './FocusHoverCard';
 import { useEffect, useState } from 'react';
 import type { GameState } from '../types';
 import { campaignDay, isReminderDismissed, REMINDER_IGNORE_DAYS, type ActionReminder, type DismissedReminder, type ReminderKind } from '../engine/actionReminders';
@@ -21,6 +22,7 @@ function ReminderIcon({kind}:{kind:ReminderKind}) {
 
 export default function ActionReminders({state,reminders,onOpen}:{key?:number;state:GameState;reminders:ActionReminder[];onOpen:(reminder:ActionReminder)=>void}) {
   const [dismissed,setDismissed]=useState<Partial<Record<ReminderKind,DismissedReminder>>>({});
+  const [anchor,setAnchor]=useState<HTMLElement|null>(null);
   const [hovered,setHovered]=useState<ReminderKind|null>(null);
   const day=campaignDay(state.date);
   const presence=reminders.map(r=>r.id).join(',');
@@ -30,17 +32,17 @@ export default function ActionReminders({state,reminders,onOpen}:{key?:number;st
   },[presence,state.currentFocusTree,day]);
   const visible=reminders.filter(r=>!isReminderDismissed(r,dismissed[r.id],state));
   return <div className="action-reminders" data-tour="action-reminders" role="group" aria-label="当前可用操作" onMouseDown={e=>e.stopPropagation()} onWheel={e=>e.stopPropagation()}>
-    {visible.map(r=><div className={`action-reminder action-reminder--${r.id}`} key={r.id} onMouseEnter={()=>setHovered(r.id)} onMouseLeave={()=>setHovered(null)}>
+    {visible.map(r=><div className={`action-reminder action-reminder--${r.id}`} key={r.id} onMouseEnter={e=>{setAnchor(e.currentTarget);setHovered(r.id)}} onMouseLeave={()=>setHovered(null)}>
       <button aria-label={r.title} aria-describedby={hovered===r.id?`reminder-${r.id}`:undefined}
-        onFocus={()=>setHovered(r.id)} onBlur={()=>setHovered(null)} onClick={()=>{setHovered(null);onOpen(r);}}
+        onFocus={e=>{setAnchor(e.currentTarget);setHovered(r.id)}} onBlur={()=>setHovered(null)} onClick={()=>{setHovered(null);onOpen(r);}}
         onContextMenu={e=>{e.preventDefault();setHovered(null);setDismissed(prev=>({...prev,[r.id]:{keys:r.keys,route:state.currentFocusTree,until:day+REMINDER_IGNORE_DAYS}}));}}
         onKeyDown={e=>{if(e.key==='Delete'){e.preventDefault();setHovered(null);setDismissed(prev=>({...prev,[r.id]:{keys:r.keys,route:state.currentFocusTree,until:day+REMINDER_IGNORE_DAYS}}));}}}>
         <ReminderIcon kind={r.id}/><span className="action-reminder__count">{r.entries.length}</span>
       </button>
-      {hovered===r.id&&<div className="action-reminder__tooltip" id={`reminder-${r.id}`} role="tooltip">
+      {hovered===r.id&&anchor&&<Preview anchor={anchor} dismiss={()=>setHovered(null)}><div className="action-reminder__tooltip" id={`reminder-${r.id}`} role="tooltip">
         <strong>{r.title}</strong><ul>{r.entries.slice(0,6).map(entry=><li key={entry}>{entry}</li>)}</ul>
         {r.entries.length>6&&<p>另有 {r.entries.length-6} 项</p>}<small>左键打开{r.id==='mechanic'?`「${r.entries[0]}」`:''} · 右键暂时忽略<br/>新选项出现或30个游戏日后恢复</small>
-      </div>}
+      </div></Preview>}
     </div>)}
   </div>;
 }

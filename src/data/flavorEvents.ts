@@ -1,6 +1,7 @@
 import { GameState, GameEvent } from '../types';
 import { PUBLIC_NEWS_EVENT_IDS } from './eventKinds';
 import { STORY_EVENTS } from './storyEvents';
+import { FOCUS_COMPLETION_SUPER_EVENTS } from '../engine/gameLoop';
 import { canChooseDarkCrossroads, DARK_CROSSROADS_REQUIREMENTS } from '../engine/campusCounterattack';
 import { applyTileCtrlDeltas } from '../engine/tileHelpers';
 import { applyYangSettlement, getCrossroadsOutcome, CROSSROADS_RULES } from '../engine/assemblyPolitics';
@@ -2195,7 +2196,9 @@ export const FLAVOR_EVENTS: Record<string, GameEvent> = {
 漫长的十秒钟过去了。在一阵剧烈的心理斗争后，潘仁越缓缓推开身边的干事，向王照凯伸出了右手。“联合革委会。但重大决策，必须共同投票。”“成交。”王照凯有力地握住了那只手。“现在，同志们，让我们给吴福军一点小小的无产阶级震撼。”`,
     buttonText: '星星之火，可以燎原！',
     effect: (state: GameState) => ({
-      stats: { ...state.stats, ss: Math.min(100, state.stats.ss + 10), radicalAnger: Math.min(100, state.stats.radicalAnger + 10) }
+      stats: { ...state.stats, ss: Math.min(100, state.stats.ss + 10), radicalAnger: Math.min(100, state.stats.radicalAnger + 10) },
+      ...(state.currentFocusTree === 'phase1' || state.flags.b3_handover_pending
+        ? { flags: { ...state.flags, united_committee_established: true }, activeSuperEvent: FOCUS_COMPLETION_SUPER_EVENTS.charge_b3 } : {}),
     })
   },
   admin_takeover: {

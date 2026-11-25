@@ -1,18 +1,5 @@
-import React, { useRef, useState, useLayoutEffect } from 'react';
-import { createPortal } from 'react-dom';
-
-/**
- * HoverWindow (v8.11) — 视口固定定位的悬浮小窗
- *
- * 解决 absolute 悬浮窗在滚动容器内的两个问题：
- * 1. 超出容器边界被裁切（看不到完整内容）
- * 2. 撑大滚动区域（悬停后出现多余滚动条）
- *
- * 实现：鼠标悬停触发后测量触发元素 rect，用 portal 渲染到 body，
- * 以 fixed 定位在视口内（自动上下翻转 + 左右夹紧），带 120ms 关闭延迟
- * 防止鼠标移入小窗瞬间的"间隙消失"。
- */
-
+import React, { useRef, useState } from 'react';
+import { Preview } from './FocusHoverCard';
 interface HoverWindowProps {
   children: React.ReactNode;
   content: React.ReactNode;
@@ -27,74 +14,12 @@ interface HoverWindowProps {
   key?: React.Key;
 }
 
-export default function HoverWindow({ children, content, width = 300, estimateHeight = 240, openDelay = 80, placement = 'auto' }: HoverWindowProps) {
-  const [pos, setPos] = useState<{ top: number; left: number; maxHeight: number; show: boolean }>({
-    top: 0, left: 0, maxHeight: 400, show: false,
-  });
-  const popupRef = useRef<HTMLDivElement>(null);
-  useLayoutEffect(() => {
-    if (!pos.show || !popupRef.current) return;
-    const bounds = popupRef.current.getBoundingClientRect();
-    const top = Math.max(8, Math.min(pos.top, window.innerHeight - bounds.height - 8));
-    if (top !== pos.top) setPos(p => ({...p, top, maxHeight: window.innerHeight - top - 8}));
-  }, [pos.show, pos.top, content]);
-  const triggerRef = useRef<HTMLDivElement>(null);
-  const closeTimer = useRef<number | null>(null);
-  const openTimer = useRef<number | null>(null);
-
-  const clearTimers = () => {
-    if (closeTimer.current !== null) { window.clearTimeout(closeTimer.current); closeTimer.current = null; }
-    if (openTimer.current !== null) { window.clearTimeout(openTimer.current); openTimer.current = null; }
-  };
-
-  const scheduleClose = () => {
-    clearTimers();
-    closeTimer.current = window.setTimeout(() => setPos(p => ({ ...p, show: false })), 120);
-  };
-
-  const scheduleOpen = () => {
-    if (closeTimer.current !== null) { window.clearTimeout(closeTimer.current); closeTimer.current = null; }
-    if (openTimer.current !== null) return; // 已在排队打开
-    openTimer.current = window.setTimeout(() => {
-      openTimer.current = null;
-      const rect = triggerRef.current?.getBoundingClientRect();
-      if (!rect) return;
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
-      let top: number;
-      let left: number;
-      if (placement === 'right') {
-        top = Math.max(8, Math.min(rect.top - 6, vh - estimateHeight - 8));
-        left = rect.right + width + 8 <= vw
-          ? rect.right + 8
-          : Math.max(8, rect.left - width - 8);
-      } else {
-        top = rect.bottom + 6;
-        if (top + estimateHeight > vh) top = Math.max(8, rect.top - estimateHeight - 6);
-        left = Math.max(8, Math.min(rect.left, vw - width - 8));
-      }
-      const maxHeight = vh - 16;
-      setPos({ top, left, maxHeight, show: true });
-    }, openDelay);
-  };
-
-  return (
-    <>
-      <div ref={triggerRef} className="relative" onMouseEnter={scheduleOpen} onMouseLeave={scheduleClose} onFocus={scheduleOpen} onBlur={scheduleClose}>
-        {children}
-      </div>
-      {pos.show && createPortal(
-        <div
-          ref={popupRef}
-          className="fixed z-[150]"
-          style={{ top: pos.top, left: pos.left, width: Math.min(width, window.innerWidth - 16), maxHeight: pos.maxHeight, overflowY: 'auto' }}
-          onMouseEnter={scheduleOpen}
-          onMouseLeave={scheduleClose}
-        >
-          {content}
-        </div>,
-        document.body
-      )}
-    </>
-  );
+export default function HoverWindow({ children, content, width = 300, openDelay = 140, placement }: HoverWindowProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(false);
+  return <div ref={ref} className="relative" onMouseEnter={() => setActive(true)} onMouseLeave={() => setActive(false)}
+    onFocus={() => setActive(true)} onBlur={() => setActive(false)}>
+    {children}
+    {active && ref.current && <Preview anchor={ref.current} width={width} delay={openDelay} side={placement} dismiss={() => setActive(false)}>{content}</Preview>}
+  </div>;
 }

@@ -11,6 +11,6 @@ export default function PromoVideoButton({onClick}:{onClick:()=>void}) {
       <path className="pv-badge-play" d="M34 30l11 6-11 6Z" fill="#abd4d0"/>
       <path d="M15 55l9 6h33l9-6" fill="none" stroke="#82754c"/>
     </svg>
-    <span><small>向合一奔去</small><strong>观看PV</strong></span><i aria-hidden="true">V2</i>
+    <span><small>校园放映室 · 官方 PV</small><strong>向合一奔去</strong></span><i aria-hidden="true">▶</i>
   </button>;
 }

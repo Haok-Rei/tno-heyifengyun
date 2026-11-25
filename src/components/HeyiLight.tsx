@@ -1,3 +1,4 @@
+import { Preview } from './FocusHoverCard';
 import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from 'react';
 import { X } from 'lucide-react';
 import type { GameState } from '../types';
@@ -137,11 +138,11 @@ export default function HeyiLight({ state, onClose }: Props) {
     </header>
     <div ref={sceneRef} className="heyi-light-v2__scene-wrap">
       <Scene snapshot={artScene} chapter={getCampusArtChapter(state,artScene)} branch={getCampusArtBranch(state)} month={state.date.getMonth()} viewBox={viewBox} active={active} onZone={onZone} onPointer={onPointer} />
-      {active && <div className="heyi-light-v2__tooltip" role="status" style={{
+      {active && sceneRef.current && <Preview anchor={sceneRef.current} point={point} dismiss={()=>setActive(null)}><div className="heyi-light-v2__tooltip" role="status" style={{
         left: Math.min(point.x + 18, Math.max(8, (sceneRef.current?.clientWidth ?? 600) - 284)),
         top: Math.min(point.y + 18, Math.max(8, (sceneRef.current?.clientHeight ?? 400) - 118)),
         '--heyi-status': toneColor,
-      } as CSSProperties}><span>观察 / {snapshot.zones[active].label} <b>{snapshot.zones[active].status}</b></span><p>{snapshot.zones[active].description}</p></div>}
+      } as CSSProperties}><span>观察 / {snapshot.zones[active].label} <b>{snapshot.zones[active].status}</b></span><p>{snapshot.zones[active].description}</p></div></Preview>}
       <div className="heyi-light-v2__stamp" aria-hidden="true">{state.date.getFullYear()} / {String(state.date.getMonth() + 1).padStart(2, '0')} / {String(state.date.getDate()).padStart(2, '0')}</div>
     </div>
   </section>;

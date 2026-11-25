@@ -1,3 +1,4 @@
+import { InlineHint } from './FocusHoverCard';
 import { BRUSH_TITLES } from '../config/brushTitles';
 import MechanicCrest from './MechanicCrest';
 import React, { useState, useEffect } from 'react';
@@ -239,7 +240,7 @@ export default function RedToadPolitburo({ state, setGameState, onClose }: RedTo
               <button className="w-8 h-8 rounded-full border-2 border-[#ff5252] text-[#ff5252] font-bold flex items-center justify-center hover:bg-[#ff5252] hover:text-black transition-colors">
                 ?
               </button>
-              <div className="absolute left-0 top-full mt-2 w-[30rem] max-w-[calc(100vw-4rem)] p-4 bg-black border border-[#ff5252] text-[#e0e0e0] text-sm hidden group-hover:block z-[200] shadow-[0_0_15px_rgba(255,82,82,0.5)]">
+              <InlineHint><div className="archive-detail">
                 <h3 className="text-[#ff5252] font-bold mb-2">政治局机制说明</h3>
                 <ul className="list-disc pl-4 space-y-2">
                   <li><span className="text-[#4af0d4]">忠诚度</span>：影响党内总共识度。若忠诚派系不足3个，总共识度将下降。做题改革期间，各派忠诚度会随改革进度下降；题改完成后改为按稳定度下降（稳定度100时不下降）。</li>
@@ -247,7 +248,7 @@ export default function RedToadPolitburo({ state, setGameState, onClose }: RedTo
                   <li><span className="text-[#f0d44a]">{panelNoun}发起</span>：通过倾向于某派系的{panelNoun}会显著降低该派系的执行力，可用于化解危机。</li>
                   <li><span className="text-[#ff5252]">总共识度</span>：决定国家精神“红蛤政治局”的增益或减益效果。肃反委员会模式下，退休派系将被打X并停止参与忠诚/执行博弈。</li>
                 </ul>
-              </div>
+              </div></InlineHint>
             </div>
           </div>
           <button onClick={onClose} className="text-[#ff5252] hover:text-white font-bold text-xl px-4 py-1 border border-[#d32f2f] hover:bg-[#d32f2f]/20 transition-colors">

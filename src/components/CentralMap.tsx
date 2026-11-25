@@ -1,3 +1,4 @@
+import HoverWindow from './HoverWindow';
 import MapEngraving from './MapEngraving';
 import React, { useState, useCallback } from 'react';
 import { createPortal } from 'react-dom';
@@ -9,6 +10,7 @@ import { getCommandState, getSupplyNetwork, hasSupplyAccess } from '../engine/co
 import { formatControl, getBuildingControl, getMapMode, getTileControl } from '../engine/mapState';
 
 interface CentralMapProps {
+  teamTab: boolean; setTeamTab: (open:boolean)=>void; suggestedTile?:string;
   reminders?: React.ReactNode;
   state: GameState; setGameState: React.Dispatch<React.SetStateAction<GameState>>;
   triggerError: () => void; isElectionUIOpen?: boolean; setIsElectionUIOpen?: (v: boolean) => void;
@@ -64,14 +66,14 @@ const MapActionContext = React.createContext<ReadonlySet<string>>(new Set());
 const Btn=({actionId,n,c,d,on,ok,cd}:{actionId:string;n:string;c:string;d:string;on:()=>void;ok:boolean;cd?:boolean})=>{
   const allowed = React.useContext(MapActionContext);
   return allowed.has(actionId) ? (
-  <button onClick={on} disabled={!ok||cd} className={`w-full text-left p-2 border text-xs ${ok&&!cd?'border-[#ff4444]/50 hover:bg-[#ff4444]/20 text-white':'border-gray-700 text-gray-500 cursor-not-allowed'} transition-colors`}>
+  <HoverWindow width={250} content={<div className="archive-detail"><strong>{n}</strong><p>{d}</p><small>{c}</small></div>}><button onClick={on} disabled={!ok||cd} className={`w-full text-left p-2 border text-xs ${ok&&!cd?'border-[#ff4444]/50 hover:bg-[#ff4444]/20 text-white':'border-gray-700 text-gray-500 cursor-not-allowed'} transition-colors`}>
     <div className="font-bold text-sm">{n}{cd&&<span className="text-red-400 text-[10px] ml-1">(今日已执行)</span>}</div>
-    <div className="text-[11px] mt-0.5 opacity-70">{d} · {c}</div>
-  </button>
+    <div className="text-[11px] mt-0.5 opacity-70">{c}</div>
+  </button></HoverWindow>
   ) : null;
 };
 
-export default function CentralMap({state,setGameState,triggerError,isElectionUIOpen,setIsElectionUIOpen,selectedTileId:sel,onSelectTile:setSel,districtDockTarget,reminders}:CentralMapProps){
+export default function CentralMap({state,setGameState,triggerError,isElectionUIOpen,setIsElectionUIOpen,selectedTileId:sel,onSelectTile:setSel,districtDockTarget,reminders,teamTab,setTeamTab,suggestedTile}:CentralMapProps){
   const [mapLayer,setMapLayer]=useState<'control'|'supply'|'orders'>('control');
   const route = getCommandRoute(state);
   const supplyNetwork = getSupplyNetwork(state);
@@ -149,7 +151,7 @@ export default function CentralMap({state,setGameState,triggerError,isElectionUI
     <div className="campus-map-layout" data-tour="map">
       <div className="campus-map-stage">
       <div className="map-toolbar"><div><span className="eyebrow">{route.chapter} · {route.title}</span><strong>{modeTitle}</strong><small>{mapSubtitle}</small></div><div className="map-layers" data-tour="map-layers">{([{id:'control',label:'势力'},{id:'supply',label:'补给'},{id:'orders',label:'部署'}] as const).map(l=><button key={l.id} aria-pressed={mapLayer===l.id} className={mapLayer===l.id?'selected':''} onClick={()=>setMapLayer(l.id)}>{l.label}</button>)}</div></div>
-      <div className={`map-viewport layer-${mapLayer}`} onWheel={onWheel} onMouseDown={onMDown} onMouseMove={onMMove} onMouseUp={onMUp} onMouseLeave={onMUp} style={{cursor:isPan?'grabbing':'default'}}>
+      <div className={`map-viewport layer-${mapLayer}`} onWheel={onWheel} onMouseDown={onMDown} onMouseMove={onMMove} onMouseUp={onMUp} onMouseLeave={onMUp} style={{cursor:isPan?'grabbing':'default','--map-accent':route.color} as React.CSSProperties}>
 
       {/* SVG */}
       <svg width="100%" height="100%" viewBox="0 0 800 600"
@@ -231,6 +233,10 @@ export default function CentralMap({state,setGameState,triggerError,isElectionUI
               {/* 选中光晕 */}
               {isSel&&<rect x={r.x-2} y={r.y-2} width={r.w+4} height={r.h+4} rx={(r.rx??2)+2} fill="none" stroke="#fff" strokeWidth="2" strokeDasharray="4,2" filter="url(#g1)"/>}
               <MapEngraving x={r.x} y={r.y} w={r.w} h={r.h} stadium={r.tid==='track_field'}/>
+              {(state.yangYuleState?.rebelLocations?.[r.tid] || suggestedTile===r.tid) ? <g className="map-beacon" transform={`translate(${r.x+r.w-8} ${r.y+r.h-6})`}>
+                <title>{state.yangYuleState?.rebelLocations?.[r.tid]?'地区暴动':'推荐派驻工作组'}</title>
+                <path d="M0 -5 5 0 0 5 -5 0Z" stroke="#ece0c4" fill={state.yangYuleState?.rebelLocations?.[r.tid]?'#ac5144':'#869b70'}/>
+              </g> : null}
               {/* 标签 */}
               <text x={r.x+r.w/2} y={r.y+r.h/2+(r.h<35?3:-6)} textAnchor="middle" fontSize={r.w<75?11:13} fontWeight="bold" fill="#d9dfd7" style={{textShadow:'0 1px 3px #000'}}>{SHORT_LABELS[r.tid]||r.lb}</text>
               {r.h>=35&&<text x={r.x+r.w/2} y={r.y+r.h/2+15} textAnchor="middle" fontSize={mapLayer==='control'?17:12} fontWeight="bold" fill={mapLayer==='supply'?'#d1eadd':mapLayer==='orders'?'#c9dce0':color}>
@@ -281,6 +287,8 @@ export default function CentralMap({state,setGameState,triggerError,isElectionUI
             <div className="mt-1">本地区控制度 <strong style={{color:ctrlColor(selCtrl)}}>{formatControl(selCtrl)}%</strong>{isReb && selCtrl === 100 && state.flags.united_committee_established && <span className="ml-2 text-[#a2c4bc]">已巩固</span>}</div>
           </div>
 
+          <div className="district-tabs"><button aria-pressed={!teamTab} onClick={()=>setTeamTab(false)}>概览与行动</button><button aria-pressed={teamTab} onClick={()=>setTeamTab(true)}>工作组调度 · {teams.filter(t=>t.order?.tileId===sel).length}</button></div>
+          <div hidden={teamTab}>
           {/* 邻接地块 */}
           <div className="mb-3 p-2 bg-[#0a0f18] border border-[#1a2a3a]">
             <div className="text-[11px] text-gray-500 mb-1">邻接地块（点击跳转）</div>
@@ -432,11 +440,12 @@ export default function CentralMap({state,setGameState,triggerError,isElectionUI
             </div>)}
             {isJd&&<div className="space-y-2"><div className="text-yellow-400 text-center text-sm">及第模式 · 地区教学产线</div><Btn actionId="jd_optimize" n="教学产线优化" c="20 PP" d="卷子+80，GDP+1，理智-2" on={()=>act(sel,'jd_optimize')} ok={state.stats.pp>=20&&!!state.jidiCorporateState} cd={cd('jd_optimize')}/></div>}
           </div></details>
-          <CommandPanel state={state} tileId={sel!} setGameState={setGameState} />
+
 
           {selCtrl>=60&&selTile.adjacentTo.some(a=>tc(state,a)>=60)&&(
             <div className="mt-2 p-2 border border-[#39FF14]/15 bg-[#39FF14]/5 text-xs text-green-300">邻接加成激活 · 相邻高控制地块互相增益 +0.25%/日</div>
           )}
+          </div><div hidden={!teamTab}><CommandPanel state={state} tileId={sel!} setGameState={setGameState} />{!actionIds.size && !teams.some(t=>t.order?.tileId===sel) && <small>本区暂无可派驻任务</small>}</div>
         </div>, districtDockTarget
       )}
 

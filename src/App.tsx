@@ -1,3 +1,4 @@
+import { Landmark as RailGovernment, ScrollText as RailDecision, BookOpen as RailChronicle, CircleHelp as RailHelp, Settings as RailSettings } from 'lucide-react';
 import { getMechanismEntryArt } from './components/MechanicCrest';
 import { ensureEventIdentity } from './engine/mechanicEvents';
 import React, { useState, useEffect, useCallback, useRef } from 'react';
@@ -60,8 +61,8 @@ import { getFocusNodes } from './components/FocusTree';
 import { STORY_EVENTS } from './data/storyEvents';
 import { ensureRedToadState } from './data/redToadState';
 import { FLAVOR_EVENTS } from './data/flavorEvents';
-import { LAWS, LAW_CATEGORIES, DEFAULT_LAW_SYSTEM, getLawSystem, LAW_CHANGE_COST } from './data/laws';
-import { applyFocusLawTransition, lawChangeEvent } from './engine/lawTransitions';
+import { LAWS, LAW_CATEGORIES, DEFAULT_LAW_SYSTEM, getLawSystem, LAW_CHANGE_COST, type LawSystemState } from './data/laws';
+import { applyFocusLawTransition, getRouteGovernment, lawChangeEvent } from './engine/lawTransitions';
 import { advanceCampaignTeams } from './engine/electionCampaign';
 import { GOUXIONG_GAL_PHOTO_ASSETS } from './config/assets';
 import { hasFocusRequirements, calculateModifiers } from './engine/gameLoop';
@@ -632,7 +633,9 @@ export default function App() {
   const [reminderEpoch, setReminderEpoch] = useState(0);
   const [requestedNationSection, setRequestedNationSection] = useState<{section:'advisors'|'laws';nonce:number}>();
   const [decisionsOpen, setDecisionsOpen] = useState(false);
-  const [selectedTileId, setSelectedTileId] = useState<string | null>(null);
+  const [teamTab,setTeamTab] = useState(false);
+  const [selectedTileId, selectTile] = useState<string | null>(null);
+  function setSelectedTileId(tile: string | null) { selectTile(tile); setTeamTab(false); }
   const [districtDockTarget, setDistrictDockTarget] = useState<HTMLDivElement | null>(null);
 
   const [gameState, setGameState] = useState<GameState>(INITIAL_GAME_STATE);
@@ -646,7 +649,8 @@ export default function App() {
     setGovernmentOpen(anchor.startsWith('[data-tour="nation-'));
     setShowFocusTree(anchor === '[data-tour="focus-tree"]');
     setDecisionsOpen(anchor === '[data-tour="decisions"]' || anchor === '[data-tour="situation-metrics"]');
-    setSelectedTileId(anchor === '[data-tour="map"]' || anchor === '[data-tour="workgroups"]' ? 'b3_tower' : null);
+    setTeamTab(anchor === '[data-tour="workgroups"]');
+    selectTile(anchor === '[data-tour="map"]' || anchor === '[data-tour="workgroups"]' ? 'b3_tower' : null);
   }, [tutorialStep]);
   useEffect(() => {
     gameStateRef.current = gameState;
@@ -1327,7 +1331,7 @@ export default function App() {
           }
         };
 
-        if (newJidiCorporateState) {
+        if (newJidiCorporateState && prev.currentFocusTree === 'jidi_tree') {
           checkFocusEvent('jidi_establish_committee', 5, STORY_EVENTS.jidi_story_committee_5d);
           checkFocusEvent('jidi_performance_metrics', 5, STORY_EVENTS.jidi_story_kpi_5d);
           checkFocusEvent('jidi_performance_metrics', 6, STORY_EVENTS.lost_scroll_1);
@@ -1368,10 +1372,11 @@ export default function App() {
         checkFocusEvent('gx_ruin_settlement', 2, STORY_EVENTS.gx_ruin_settlement_2d_event);
         checkFocusEvent('gx_ruin_settlement', 3, STORY_EVENTS.gx_ruin_ending_event);
 
-        // Phase 1 delayed story events (3 days after focus completion)
-        checkFocusEvent('start_2023', 3, STORY_EVENTS.story_1);
-        checkFocusEvent('build_art', 3, STORY_EVENTS.story_2);
-        checkFocusEvent('dorm_talks', 3, STORY_EVENTS.story_2);
+        if (prev.currentFocusTree === 'phase1' && !prev.flags.rebellion_started) {
+          checkFocusEvent('start_2023', 3, STORY_EVENTS.story_1);
+          checkFocusEvent('build_art', 3, STORY_EVENTS.story_2);
+          checkFocusEvent('dorm_talks', 3, STORY_EVENTS.story_2);
+        }
 
         let newNationalSpirits = [...prev.nationalSpirits];
 
@@ -1781,14 +1786,6 @@ export default function App() {
           } else {
             newFlags.radical_anger_100_days = 0;
             newCrises = newCrises.filter(c => c.id !== 'ultra_left_error');
-          }
-        }
-
-        // Charge B3 Success Event Delay Logic
-        if (newFlags.charge_b3_completed_days !== undefined) {
-          newFlags.charge_b3_completed_days += 1;
-          if (newFlags.charge_b3_completed_days === 5) {
-            queueEvent(FLAVOR_EVENTS.strike_b3_success);
           }
         }
 
@@ -4404,6 +4401,11 @@ export default function App() {
           }
         }
 
+        const government = getRouteGovernment(prev.currentFocusTree, newCurrentFocusTree, newLawSystem);
+        if (government) {
+          newLawSystem = government.lawSystem;
+          newIdeologies = government.ideologies;
+        }
         const focusLawNotice = lawChangeEvent(prev.lawSystem, newLawSystem,
           newCompletedFocuses.length > prev.completedFocuses.length ? `国策「${getFocusNodes(newCurrentFocusTree).find(n => n.id === newCompletedFocuses[newCompletedFocuses.length - 1])?.title ?? '剧情推进'}」` : '剧情推进', newDate);
         if (focusLawNotice) queueEvent(focusLawNotice);
@@ -4761,7 +4763,7 @@ export default function App() {
   };
 
   /** v8.11 切换校内法案（150 PP） */
-  const changeLaw = (categoryId: 'discipline' | 'schedule' | 'personnel' | 'education', levelId: string) => {
+  const changeLaw = (categoryId: keyof LawSystemState, levelId: string) => {
     const cur = getLawSystem(gameState.lawSystem);
     if (cur[categoryId] === levelId) return;
     if (gameState.stats.pp < LAW_CHANGE_COST) {
@@ -4859,6 +4861,8 @@ export default function App() {
           !['treeA_counterattack_choice_event', 'treeA_final_collapse_choice_event', 'wu_ultimatum_event'].includes(event.id));
       }
 
+      const government = getRouteGovernment(prev.currentFocusTree, newState.currentFocusTree, newState.lawSystem);
+      if (government) Object.assign(newState, government);
       const storyLawNotice = lawChangeEvent(prev.lawSystem, newState.lawSystem, prev.activeEvent?.title ?? '剧情推进', prev.date);
       if (storyLawNotice) newState.activeStoryEvents = [...newState.activeStoryEvents, storyLawNotice];
 
@@ -4977,10 +4981,16 @@ export default function App() {
       }
 
       if (prev.activeSuperEvent?.id !== 'b3_uprising') return prev;
+      const government = getRouteGovernment(prev.flags.b3_handover_pending ? 'phase1' : prev.currentFocusTree, nextTree, prev.lawSystem);
+      const notice = lawChangeEvent(prev.lawSystem, government?.lawSystem ?? prev.lawSystem, transitionEvent.title, prev.date);
+      const pending = (prev.activeEvent ? [prev.activeEvent, ...prev.activeStoryEvents] : prev.activeStoryEvents)
+        .filter(event => event.id !== 'strike_b3_success');
       return reconcileRouteSpirits({
         ...prev,
         activeSuperEvent: null,
-        activeStoryEvents: prev.activeEvent ? [prev.activeEvent, ...prev.activeStoryEvents] : prev.activeStoryEvents,
+        ...government,
+        flags: { ...prev.flags, b3_handover_pending: false },
+        activeStoryEvents: notice ? [notice, ...pending] : pending,
         activeEvent: transitionEvent,
         isPaused: false,
         currentFocusTree: nextTree,
@@ -5455,16 +5465,16 @@ export default function App() {
     || gameState.nationalSpirits.some(spirit => spirit.id === 'assembly_dynamics')
     || !!gameState.parliamentState;
   const featureEntries = [
-    { id: 'heyi-light', label: '合一之光', glyph: '光', unlocked: true, open: () => setIsHeyiLightOpen(true), active: isHeyiLightOpen },
-    { id: 'assembly', label: '学生大会', glyph: '议', unlocked: hasAssemblyMechanic && (!gameState.flags.lu_nkpd_mode || gameState.currentFocusTree === 'treeA_haobang'), open: () => setIsAssemblyOpen(true), active: isAssemblyOpen },
-    { id: 'reform', label: '题改委员', glyph: '改', unlocked: !!gameState.flags.reform_unlocked, open: () => setIsReformCommitteeOpen(true), active: isReformCommitteeOpen },
-    { id: 'politburo', label: '红蛤政治局', glyph: '政', unlocked: !!gameState.flags.red_toad_politburo_unlocked, open: () => { setGameState(prev => ({ ...prev, redToadState: ensureRedToadState(prev.redToadState) })); setIsRedToadPolitburoOpen(true); }, active: isRedToadPolitburoOpen },
-    { id: 'wu', label: '戒严指挥', glyph: '戒', unlocked: !!gameState.wuState, open: () => setIsWuConsoleOpen(true), active: isWuConsoleOpen },
-    { id: 'jidi', label: '及第企业', glyph: '企', unlocked: !!gameState.jidiCorporateState, open: () => setIsJidiCorporateUIOpen(true), active: isJidiCorporateUIOpen },
-    { id: 'election', label: '大选计票', glyph: '票', unlocked: !!gameState.electionState?.isActive, open: () => setIsElectionUIOpen(true), active: isElectionUIOpen },
-    { id: 'cyber', label: '赛博解构', glyph: '构', unlocked: !!gameState.flags.gouxiong_coup_complete, open: () => setIsCyberDeconstructionOpen(true), active: isCyberDeconstructionOpen },
-    { id: 'gal', label: 'Gal聊天', glyph: '聊', unlocked: !!gameState.flags.gouxiong_coup_complete, open: () => setIsGouxiongGalOpen(true), active: isGouxiongGalOpen },
-    { id: 'yang', label: '杨特办公桌', glyph: '案', unlocked: !!gameState.yangYuleState?.unlockedMechanics?.desk, open: () => setIsYangYuleDeskOpen(true), active: isYangYuleDeskOpen },
+    { id: 'heyi-light', label: '合一之光', glyph: '光', unlocked: true, open: () => setIsHeyiLightOpen(true), close: () => setIsHeyiLightOpen(false), active: isHeyiLightOpen },
+    { id: 'assembly', label: '学生大会', glyph: '议', unlocked: hasAssemblyMechanic && (!gameState.flags.lu_nkpd_mode || gameState.currentFocusTree === 'treeA_haobang'), open: () => setIsAssemblyOpen(true), close: () => setIsAssemblyOpen(false), active: isAssemblyOpen },
+    { id: 'reform', label: '题改委员', glyph: '改', unlocked: !!gameState.flags.reform_unlocked, open: () => setIsReformCommitteeOpen(true), close: () => setIsReformCommitteeOpen(false), active: isReformCommitteeOpen },
+    { id: 'politburo', label: '红蛤政治局', glyph: '政', unlocked: !!gameState.flags.red_toad_politburo_unlocked, open: () => { setGameState(prev => ({ ...prev, redToadState: ensureRedToadState(prev.redToadState) })); setIsRedToadPolitburoOpen(true); }, close: () => setIsRedToadPolitburoOpen(false), active: isRedToadPolitburoOpen },
+    { id: 'wu', label: '戒严指挥', glyph: '戒', unlocked: !!gameState.wuState, open: () => setIsWuConsoleOpen(true), close: () => setIsWuConsoleOpen(false), active: isWuConsoleOpen },
+    { id: 'jidi', label: '及第企业', glyph: '企', unlocked: !!gameState.jidiCorporateState, open: () => setIsJidiCorporateUIOpen(true), close: () => setIsJidiCorporateUIOpen(false), active: isJidiCorporateUIOpen },
+    { id: 'election', label: '大选计票', glyph: '票', unlocked: !!gameState.electionState?.isActive, open: () => setIsElectionUIOpen(true), close: () => setIsElectionUIOpen(false), active: isElectionUIOpen },
+    { id: 'cyber', label: '赛博解构', glyph: '构', unlocked: !!gameState.flags.gouxiong_coup_complete, open: () => setIsCyberDeconstructionOpen(true), close: () => setIsCyberDeconstructionOpen(false), active: isCyberDeconstructionOpen },
+    { id: 'gal', label: 'Gal聊天', glyph: '聊', unlocked: !!gameState.flags.gouxiong_coup_complete, open: () => setIsGouxiongGalOpen(true), close: () => setIsGouxiongGalOpen(false), active: isGouxiongGalOpen },
+    { id: 'yang', label: '杨特办公桌', glyph: '案', unlocked: !!gameState.yangYuleState?.unlockedMechanics?.desk, open: () => setIsYangYuleDeskOpen(true), close: () => setIsYangYuleDeskOpen(false), active: isYangYuleDeskOpen },
   ].filter(entry => entry.unlocked);
 
   const reminders = getActionReminders(gameState, getFocusNodes(gameState.currentFocusTree), DECISIONS, featureEntries);
@@ -5486,7 +5496,7 @@ export default function App() {
       setGovernmentOpen(true);
       setRequestedNationSection(prev => ({section:reminder.id==='advisor'?'advisors':'laws',nonce:(prev?.nonce||0)+1}));
     }
-    if ((reminder.id === 'team' || reminder.id === 'stalled') && reminder.target) setSelectedTileId(reminder.target);
+    if ((reminder.id === 'team' || reminder.id === 'stalled') && reminder.target) { selectTile(reminder.target); setTeamTab(reminder.id === 'team'); }
     if (reminder.id === 'mechanic' || reminder.id === 'heyi') featureEntries.find(entry=>entry.id===reminder.target)?.open();
   };
 
@@ -5502,16 +5512,16 @@ export default function App() {
       />
       
       <div className={`game-workspace flex-1 overflow-hidden relative ${governmentOpen ? 'has-government' : ''} ${decisionsOpen ? 'has-decisions' : ''}`}>
-        <nav className="campaign-rail" aria-label="游戏主导航" data-tour="rail">
+        <nav className="campaign-rail" data-front={(isChronicleOpen || featureEntries.some(entry=>entry.active)) && !gameState.activeEvent && !gameState.activeMinigame && !gameState.activeSuperEvent && !isInGameMenuOpen && tutorialStep===null || undefined} aria-label="游戏主导航" data-tour="rail">
           <div className="rail-mark">合一<small>TNO</small></div>
-          <button className={governmentOpen ? 'active' : ''} aria-pressed={governmentOpen} onClick={() => setGovernmentOpen(v => !v)}><span>▤</span>国家</button>
-          <button className={decisionsOpen ? 'active' : ''} aria-pressed={decisionsOpen} onClick={() => setDecisionsOpen(v => !v)}><span>▣</span>决议{gameState.crises.length > 0 && <b>{gameState.crises.length}</b>}</button>
-          <button onClick={() => setIsChronicleOpen(true)}><span>▥</span>编年史</button>
-          <button data-tour="rail-tutorial" aria-label="重新开始教学" onClick={reopenTutorial}><span>?</span>教学</button>
+          <button className={governmentOpen ? 'active' : ''} aria-pressed={governmentOpen} onClick={() => setGovernmentOpen(v => !v)}><span><RailGovernment size={18} strokeWidth={1.5} aria-hidden="true"/></span>国家</button>
+          <button className={decisionsOpen ? 'active' : ''} aria-pressed={decisionsOpen} onClick={() => setDecisionsOpen(v => !v)}><span><RailDecision size={18} strokeWidth={1.5} aria-hidden="true"/></span>决议{gameState.crises.length > 0 && <b>{gameState.crises.length}</b>}</button>
+          <button aria-pressed={isChronicleOpen} onClick={() => setIsChronicleOpen(v=>!v)}><span><RailChronicle size={18} strokeWidth={1.5} aria-hidden="true"/></span>编年史</button>
+          <button data-tour="rail-tutorial" aria-label="重新开始教学" onClick={reopenTutorial}><span><RailHelp size={18} strokeWidth={1.5} aria-hidden="true"/></span>教学</button>
           {featureEntries.length > 0 && <div className="rail-feature-list" aria-label="已解锁的特色系统">
-            {featureEntries.map(entry => <button key={entry.id} data-tour={entry.id === 'heyi-light' ? 'heyi-light' : undefined} className={entry.active ? 'active' : ''} aria-pressed={entry.active} title={entry.label} onClick={entry.open}><span>{getMechanismEntryArt(entry.id) ? <img src={getMechanismEntryArt(entry.id)} alt="" draggable={false}/> : entry.glyph}</span>{entry.label}</button>)}
+            {featureEntries.map(entry => <button key={entry.id} data-tour={entry.id === 'heyi-light' ? 'heyi-light' : undefined} className={entry.active ? 'active' : ''} aria-pressed={entry.active} title={entry.label} onClick={entry.active ? entry.close : entry.open}><span>{getMechanismEntryArt(entry.id) ? <img src={getMechanismEntryArt(entry.id)} alt="" draggable={false}/> : entry.glyph}</span>{entry.label}</button>)}
           </div>}
-          <button className="rail-menu" onClick={openInGameMenu}><span>⚙</span>菜单</button>
+          <button className="rail-menu" onClick={openInGameMenu}><span><RailSettings size={18} strokeWidth={1.5} aria-hidden="true"/></span>菜单</button>
         </nav>
         {/* Game Ending Screen */}
         {gameState.gameEnding && (
@@ -5550,6 +5560,7 @@ export default function App() {
           <div className="heyi-map-slot">
           <CentralMap
             reminders={<ActionReminders key={reminderEpoch} state={gameState} reminders={reminders} onOpen={openReminder} />}
+            teamTab={teamTab} setTeamTab={setTeamTab} suggestedTile={reminders.find(r=>r.id==='team')?.target}
             selectedTileId={selectedTileId}
             districtDockTarget={districtDockTarget}
             onSelectTile={setSelectedTileId}
@@ -5561,7 +5572,7 @@ export default function App() {
           />
           {isHeyiLightOpen && <HeyiLight state={gameState} onClose={() => setIsHeyiLightOpen(false)} />}
           </div>
-          <CommandLedger state={gameState} setGameState={setGameState} onLocate={setSelectedTileId} />
+          <CommandLedger state={gameState} setGameState={setGameState} onLocate={tile=>{selectTile(tile);setTeamTab(true)}} />
           
           {/* Focus Tree Overlay */}
           {showFocusTree && (

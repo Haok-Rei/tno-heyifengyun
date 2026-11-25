@@ -24,7 +24,8 @@ export interface FactionDossier {
 export function getFactionDossier(state: GameState, key: string): FactionDossier {
   const tree = state.currentFocusTree;
   const revolutionary = tree.startsWith('treeA');
-  const parliament = tree.startsWith('treeA_pan');
+  const despair = tree === 'treeA_pan_despair';
+  const parliament = tree === 'treeA_pan';
   const iron = tree.startsWith('wu_tree');
   const capital = tree === 'jidi_tree';
   const cyber = tree === 'gouxiong_tree';
@@ -66,6 +67,11 @@ export function getFactionDossier(state: GameState, key: string): FactionDossier
       };
     }
     case 'radical_socialism': {
+      if (despair) return {
+        name: '真左派', leader: '王照凯', role: '钢铁红蛤联防代表', portrait: 'wang_zhaokai', period: 'B3围城',
+        description: '钢铁红蛤仍是联合阵线的一部分。王照凯和潘仁越把各班的值守名单并到同一张表上，争论留到下一次会议。',
+        situation: '保留自己的组织，与民主派轮换守楼。',
+      };
       if (haobang && state.flags.wzk_seat_vacant) return {
         name: '真左派', leader: '豪邦', role: '革委会临时舵手', portrait: 'hao_bang', period: '舵手逝世之后',
         description: '王照凯留下的正统派席位暂时空缺。豪邦试图把仍愿合作的革命派留在同一张桌旁，同时继续推进做题改革。',
@@ -88,6 +94,11 @@ export function getFactionDossier(state: GameState, key: string): FactionDossier
       };
     }
     case 'liberal': {
+      if (despair) return {
+        name: '自由派', leader: '潘仁越', role: 'B3联防负责人', portrait: 'pan_renyue', period: 'B3围城',
+        description: '潘仁越带着各班的联络员退回B3。议会暂时散会，留在楼里的人必须先把受伤的同学和各层的名单照看好。',
+        situation: '与王照凯共同守楼，联系校外的家长和教师。',
+      };
       if (parliament) return {
         name: '自由派', leader: '潘仁越', role: '学生议会议长', portrait: 'pan_renyue', period: '学生议会时期',
         description: '潘仁越把原先的学生会提案变成正式议会程序，让各班和各派都能争取席位。改革不再只是反抗校长，更要经得起公开辩论和投票。',

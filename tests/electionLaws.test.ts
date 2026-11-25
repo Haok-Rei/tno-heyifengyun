@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { DEFAULT_LAW_SYSTEM } from '../src/data/laws';
-import { applyFocusLawTransition, lawChangeEvent } from '../src/engine/lawTransitions';
+import { DEFAULT_LAW_SYSTEM, LAW_CATEGORIES } from '../src/data/laws';
+import { applyFocusLawTransition, getRouteGovernment, lawChangeEvent } from '../src/engine/lawTransitions';
 import { advanceCampaignTeams, startCampaignTeams } from '../src/engine/electionCampaign';
 import { availableMapActions, executeMapAction } from '../src/engine/mapActions';
 import { ALL_SUB_TILES, type GameState } from '../src/types';
@@ -58,4 +58,23 @@ test('manual electioneering is weaker before election and remains usable after m
   const active = { ...state, electionState: { isActive: true, daysLeft: 60, totalDays: 60, candidates: [...startCampaignTeams().map(team => team.candidate)], playerCandidate: 'pan', votes: {}, campaignTeams: startCampaignTeams() } };
   const during = executeMapAction(active, 'b3_tower', 'campaign');
   assert.ok((during.state.mapLocations.b3.pollingData?.pan ?? 0) > (before.state.mapLocations.b3.pollingData?.pan ?? 0));
+});
+
+
+test('new route handovers set complete ideology shares and valid law levels without resets within a route', () => {
+  const s = fixture();
+  const before = { ...DEFAULT_LAW_SYSTEM, education: 'balanced' };
+  const trees = ['treeA', 'treeA_pan_despair', 'wu_tree', 'wu_tree_p2_feng', 'wu_tree_p2_spring', 'wu_tree_p2_coup'];
+  const snapshots = trees.map(tree => getRouteGovernment('phase1', tree, before)!);
+  for (const { lawSystem, ideologies } of snapshots) {
+    assert.equal(Object.values(ideologies).reduce((a,b)=>a+b,0),100);
+    for (const category of LAW_CATEGORIES) assert.ok(category.levels.includes(lawSystem[category.id]));
+  }
+  assert.deepEqual(snapshots.map(p => p.ideologies.authoritarian), [12,20,58,55,38,72]);
+  assert.equal(snapshots[1].ideologies.radical_socialism,31);
+  assert.equal(snapshots[1].lawSystem.education,'balanced');
+  assert.equal(snapshots[4].lawSystem.schedule,'standard_schedule');
+  assert.equal(getRouteGovernment('wu_tree','wu_tree',before),undefined);
+  assert.ok(lawChangeEvent(s.lawSystem, snapshots[1].lawSystem, '围城', s.date));
+  assert.equal(applyFocusLawTransition(snapshots[0].lawSystem,'committee_student_charter').personnel,'student_assembly_hr');
 });

@@ -1,3 +1,4 @@
+import { InlineHint } from './FocusHoverCard';
 import MechanicCrest from './MechanicCrest';
 import React from 'react';
 import { Hammer, Ghost, Scale, Users, BookOpen, Shield, GraduationCap, ThumbsUp, ThumbsDown } from 'lucide-react';
@@ -177,7 +178,7 @@ export default function StudentAssembly({ state, onClose, onInteract }: StudentA
                           <span className="text-[10px] text-center leading-[1.1] break-words whitespace-normal w-full">{faction.name}</span>
                           
                           {/* Tooltip */}
-                          <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-max z-50">
+                          <InlineHint><div className="archive-detail">
                             <div className="bg-black border border-tno-border p-2 shadow-xl text-xs">
                               <div className="font-bold text-white mb-1">{faction.name}</div>
                               <div className="text-gray-400">
@@ -187,7 +188,7 @@ export default function StudentAssembly({ state, onClose, onInteract }: StudentA
                               </div>
                             </div>
                             <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-tno-border" />
-                          </div>
+                          </div></InlineHint>
                         </button>
                       );
                     })}
@@ -257,44 +258,44 @@ export default function StudentAssembly({ state, onClose, onInteract }: StudentA
                   {/* Stages */}
                   <div className="flex-1 border-r border-gray-600 group relative cursor-help">
                     <div className="absolute inset-0 hover:bg-white/10 transition-colors" />
-                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 bg-tno-panel border border-tno-border p-2 hidden group-hover:block z-50 shadow-lg text-left">
+                    <InlineHint><div className="archive-detail">
                       <div className="font-bold text-blue-400 text-sm mb-1">极度素质教育 (0-19)</div>
                       <div className="text-xs text-tno-text/80">每日PP <span className="text-tno-green">+1</span></div>
                       <div className="text-xs text-tno-text/80">每日TPR <span className="text-tno-red">-10</span></div>
                       <div className="text-xs text-tno-text/80">每日学生理智值 <span className="text-tno-green">+0.5%</span></div>
-                    </div>
+                    </div></InlineHint>
                   </div>
                   <div className="flex-1 border-r border-gray-600 group relative cursor-help">
                     <div className="absolute inset-0 hover:bg-white/10 transition-colors" />
-                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 bg-tno-panel border border-tno-border p-2 hidden group-hover:block z-50 shadow-lg text-left">
+                    <InlineHint><div className="archive-detail">
                       <div className="font-bold text-blue-300 text-sm mb-1">偏向素质教育 (20-39)</div>
                       <div className="text-xs text-tno-text/80">每日PP <span className="text-tno-green">+0.5</span></div>
                       <div className="text-xs text-tno-text/80">每日TPR <span className="text-tno-red">-5</span></div>
-                    </div>
+                    </div></InlineHint>
                   </div>
                   <div className="flex-1 border-r border-gray-600 group relative cursor-help">
                     <div className="absolute inset-0 hover:bg-white/10 transition-colors" />
-                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 bg-tno-panel border border-tno-border p-2 hidden group-hover:block z-50 shadow-lg text-left">
+                    <InlineHint><div className="archive-detail">
                       <div className="font-bold text-gray-300 text-sm mb-1">平衡 (40-60)</div>
                       <div className="text-xs text-tno-text/80">无额外效果</div>
-                    </div>
+                    </div></InlineHint>
                   </div>
                   <div className="flex-1 border-r border-gray-600 group relative cursor-help">
                     <div className="absolute inset-0 hover:bg-white/10 transition-colors" />
-                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 bg-tno-panel border border-tno-border p-2 hidden group-hover:block z-50 shadow-lg text-left">
+                    <InlineHint><div className="archive-detail">
                       <div className="font-bold text-yellow-500 text-sm mb-1">偏向应试教育 (61-80)</div>
                       <div className="text-xs text-tno-text/80">每日PP <span className="text-tno-red">-0.5</span></div>
                       <div className="text-xs text-tno-text/80">每日TPR <span className="text-tno-green">+10</span></div>
-                    </div>
+                    </div></InlineHint>
                   </div>
                   <div className="flex-1 group relative cursor-help">
                     <div className="absolute inset-0 hover:bg-white/10 transition-colors" />
-                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 bg-tno-panel border border-tno-border p-2 hidden group-hover:block z-50 shadow-lg text-left">
+                    <InlineHint><div className="archive-detail">
                       <div className="font-bold text-red-500 text-sm mb-1">极度应试教育 (81-100)</div>
                       <div className="text-xs text-tno-text/80">每日PP <span className="text-tno-red">-1</span></div>
                       <div className="text-xs text-tno-text/80">每日TPR <span className="text-tno-green">+20</span></div>
                       <div className="text-xs text-tno-text/80">每日学生理智值 <span className="text-tno-red">-0.5%</span></div>
-                    </div>
+                    </div></InlineHint>
                   </div>
 
                   {/* Indicator */}
@@ -415,7 +416,7 @@ export default function StudentAssembly({ state, onClose, onInteract }: StudentA
                 
                 {/* Hover Info */}
                 {isUpgraded && (
-                  <div className="hidden group-hover:block absolute z-50 left-0 top-full mt-1 w-full bg-zinc-900 border border-tno-border p-2 shadow-xl text-xs">
+                  <InlineHint><div className="archive-detail">
                     <div className="flex justify-between mb-1">
                       <span className="text-tno-text/70">领导人：</span>
                       <span className="font-bold">{faction.leader}</span>
@@ -426,7 +427,7 @@ export default function StudentAssembly({ state, onClose, onInteract }: StudentA
                         {faction.support}%
                       </span>
                     </div>
-                  </div>
+                  </div></InlineHint>
                 )}
                 
                 <div className="grid grid-cols-3 gap-2">

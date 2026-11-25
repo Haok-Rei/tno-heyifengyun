@@ -1,6 +1,7 @@
+import HoverWindow from './HoverWindow';
 import React from 'react';
 import { CAMPUS_FLAGS, getCampusFlagKey } from '../config/campusFlags';
-import { Scale, Activity, Users, FileText, Pause, Play } from 'lucide-react';
+import { Scale, Activity, Users, FileText, Pause, Play, Save, FolderOpen } from 'lucide-react';
 import { GameState } from '../types';
 import { calculateModifierBreakdown, ModifierEntry, BreakdownKey } from '../engine/gameLoop';
 
@@ -28,7 +29,7 @@ function StatTooltip({ title, desc, current, unit, breakdown }: {
 }) {
   const total = Math.round(breakdown.reduce((s, e) => s + e.value, 0) * 100) / 100;
   return (
-    <div className="absolute top-full left-0 mt-1.5 bg-[#0a0a14] border border-[#8b0000]/30 p-3 hidden group-hover:block z-50 w-72 text-xs shadow-[0_0_20px_rgba(0,0,0,0.85)]">
+    <HoverWindow content={<div className="archive-detail text-xs">
       <div className="flex justify-between items-baseline mb-1 border-b border-[#8b0000]/20 pb-1.5">
         <span className="text-[#e2e8f0] font-bold tracking-wider">{title}</span>
         <span className="text-[#e2e8f0] font-black">{current}{unit}</span>
@@ -46,7 +47,7 @@ function StatTooltip({ title, desc, current, unit, breakdown }: {
           </div>
         ))}
       </div>
-    </div>
+    </div>}><span tabIndex={0} aria-label={title} className="rate-trigger" style={{color:total<0?"#cd9082":"#b5c99c"}}>{fmt(total)}</span></HoverWindow>
   );
 }
 
@@ -139,7 +140,7 @@ export default function TopBar({ state, togglePause, setGameSpeed, onQuickSave, 
             className="px-2 py-0.5 text-xs font-bold text-cyan-200 hover:text-white hover:bg-cyan-500/20 transition-colors"
             title="即时存档 (F5)"
           >
-            即存
+            <Save size={15}/><span className="sr-only">即存</span>
           </button>
           <button
             onClick={onQuickLoad}
@@ -147,7 +148,7 @@ export default function TopBar({ state, togglePause, setGameSpeed, onQuickSave, 
             className={`px-2 py-0.5 text-xs font-bold transition-colors ${hasQuickSave ? 'text-emerald-200 hover:text-white hover:bg-emerald-500/20' : 'text-zinc-500 cursor-not-allowed'}`}
             title="读取即时存档 (F9)"
           >
-            读档
+            <FolderOpen size={15}/><span className="sr-only">读档</span>
           </button>
         </div>
         <div className="flex items-center gap-1 border border-tno-border p-1 bg-zinc-900/50">
@@ -155,19 +156,19 @@ export default function TopBar({ state, togglePause, setGameSpeed, onQuickSave, 
             onClick={() => setGameSpeed(1)}
             className={`px-2 py-0.5 text-xs font-bold transition-colors ${state.gameSpeed === 1 ? 'bg-tno-highlight text-black' : 'text-tno-text hover:text-tno-highlight'}`}
           >
-            &gt;
+            1×
           </button>
           <button
             onClick={() => setGameSpeed(2)}
             className={`px-2 py-0.5 text-xs font-bold transition-colors ${state.gameSpeed === 2 ? 'bg-tno-highlight text-black' : 'text-tno-text hover:text-tno-highlight'}`}
           >
-            &gt;&gt;
+            2×
           </button>
           <button
             onClick={() => setGameSpeed(3)}
             className={`px-2 py-0.5 text-xs font-bold transition-colors ${state.gameSpeed === 3 ? 'bg-tno-highlight text-black' : 'text-tno-text hover:text-tno-highlight'}`}
           >
-            &gt;&gt;&gt;
+            3×
           </button>
         </div>
         <button
@@ -176,7 +177,7 @@ export default function TopBar({ state, togglePause, setGameSpeed, onQuickSave, 
           title="空格：暂停 / 继续"
           className="p-1 border border-tno-border hover:border-tno-highlight hover:text-tno-highlight transition-colors"
         >
-          <span className="flex items-center gap-1 text-xs">{state.isPaused ? <Play className="w-4 h-4" /> : <Pause className="w-4 h-4" />}{state.isPaused ? '继续' : '暂停'}</span>
+          <span className="flex items-center gap-1 text-xs">{state.isPaused ? <Play className="w-4 h-4" /> : <Pause className="w-4 h-4" />}</span>
         </button>
       </div>
     </div>

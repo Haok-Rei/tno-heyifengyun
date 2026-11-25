@@ -45,3 +45,9 @@
   .pv-overlay { padding:8px; }.pv-titlebar { padding:7px 12px; }.pv-titlebar h2 { font-size:17px; }
   .pv-dialog footer { padding:5px 12px; }.pv-screen { max-height:calc(94dvh - 96px); }
 }
+
+.start-pv-trigger {isolation:isolate;overflow:hidden;background:#16211e;box-shadow:inset 0 1px #e5d4a75e,0 3px #4d4938,0 8px 16px #0009}
+.start-pv-trigger::before {content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#101815ed,#182320c9 62%,#18232070),url('/media/pv-v2/poster.webp?v=20261125') center/cover;transition:transform .22s ease}
+.start-pv-trigger:hover::before,.start-pv-trigger:focus-visible::before {transform:scale(1.08)}
+.start-pv-trigger i {top:50%;translate:0 -50%;font-size:13px;color:#e2cc94}
+@media(prefers-reduced-motion:reduce){.start-pv-trigger::before{transition:none}}

@@ -15,7 +15,7 @@ import { restoreCampusEvent } from './campusEvents';
 import { FLAVOR_EVENTS } from '../data/flavorEvents';
 import { STORY_EVENTS } from '../data/storyEvents';
 import { FOCUS_COMPLETION_SUPER_EVENTS } from './gameLoop';
-import { promotePendingEvent } from './eventQueue';
+import { enqueueEvent, promotePendingEvent } from './eventQueue';
 import { reconcileRouteSpirits } from './routeSpirits';
 import { refreshReviewedDescriptions } from './proseRevisions';
 import { syncAssemblyConflict } from './assemblyConflict';
@@ -113,18 +113,32 @@ export function deserializeGameState(raw: string): GameState | null {
       state.activeStoryEvents = state.activeStoryEvents.filter(event => event.id !== 'story_6');
       Object.assign(state, promotePendingEvent(state));
     }
-    if (!state.gameEnding && state.currentFocusTree === 'phase1' && state.activeEvent?.id === 'phase1_before_charge') {
-      state.activeStoryEvents = state.activeStoryEvents.filter(event => event.id !== 'story_6');
-      if (state.activeSuperEvent?.id === 'b3_uprising') state.activeSuperEvent = null;
+    if (!state.gameEnding && state.currentFocusTree === 'phase1') {
+      const event = state.activeEvent?.id;
+      if (event === 'phase1_before_charge' || event === 'story_6') {
+        state.activeStoryEvents = state.activeStoryEvents.filter(pending => pending.id !== 'story_6' && pending.id !== 'strike_b3_success');
+        if (state.activeSuperEvent?.id === 'b3_uprising') state.activeSuperEvent = null;
+      } else if (state.activeSuperEvent?.id === 'b3_uprising' && !state.flags.event_seen_strike_b3_success) {
+        Object.assign(state, enqueueEvent(state, FLAVOR_EVENTS.strike_b3_success, true));
+        state.activeSuperEvent = null;
+      }
     }
-    // Repair saves cut short by the old start-of-focus transition.
+    // The legacy start-of-focus story could leave a save just inside the committee tree.
     if (!state.gameEnding && state.currentFocusTree === 'treeA' && !state.activeFocus
         && !state.completedFocuses.length && !state.activeSuperEvent && state.flags.story_6_triggered
         && !state.flags.event_seen_enter_treeA && !state.flags.focus_completed_date_charge_b3
         && (state.flags.event_seen_story_6 || state.flags.united_committee_established)) {
       state.flags.focus_completed_date_charge_b3 = state.date.getTime();
-      state.flags.charge_b3_completed_days ??= 0;
-      state.activeSuperEvent = FOCUS_COMPLETION_SUPER_EVENTS.charge_b3;
+      state.flags.b3_handover_pending = true;
+      if (state.flags.event_seen_strike_b3_success) state.activeSuperEvent = FOCUS_COMPLETION_SUPER_EVENTS.charge_b3;
+      else Object.assign(state, enqueueEvent(state, FLAVOR_EVENTS.strike_b3_success, true));
+    }
+    if (state.currentFocusTree !== 'phase1' && !state.flags.b3_handover_pending && state.flags.charge_b3_completed_days !== undefined) {
+      state.activeStoryEvents = state.activeStoryEvents.filter(event => event.id !== 'strike_b3_success');
+      if (state.activeEvent?.id === 'strike_b3_success') {
+        state.activeEvent = null;
+        Object.assign(state, promotePendingEvent(state));
+      }
     }
     const restored = restoreMapState(reconcileRouteSpirits(syncAssemblyConflict(refreshReviewedDescriptions(state))));
     return restored.command ? { ...restored, command: getCommandState(restored) } : restored;

@@ -119,37 +119,6 @@ body {
   animation: spin-slow 4s linear infinite;
 }
 
-@keyframes loading-grid-move {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(48px); }
-}
-
-@keyframes loading-bar-glow {
-  0% { transform: translateX(-120%); }
-  100% { transform: translateX(220%); }
-}
-
-.loading-grid-overlay {
-  background-image:
-    linear-gradient(rgba(56, 189, 248, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(251, 146, 60, 0.035) 1px, transparent 1px);
-  background-size: 54px 54px;
-  mix-blend-mode: screen;
-  opacity: 0.28;
-  animation: loading-grid-move 8s linear infinite;
-}
-
-.loading-bar-sweep::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%;
-  width: 56px;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0));
-  animation: loading-bar-glow 1.6s ease-in-out infinite;
-}
-
 /* Shake Animation for Errors */
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
